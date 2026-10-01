@@ -8,7 +8,7 @@ is about (see tools/run_wine_tests.sh).
 
 Modules: advapi32 kernelbase (0002), crypt32 (0007), dnsapi/kernel32/ntdll (0010),
 kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), ws2_32 (0006, 0012).
-
+Also covers the Revit-only extra 0102 (dlls/dxgi/tests/dxgi.c).
 --- a/dlls/advapi32/tests/registry.c
 +++ b/dlls/advapi32/tests/registry.c
 @@ -1734,6 +1734,202 @@
@@ -224,7 +224,7 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
      test_rw_order();
 --- a/dlls/crypt32/tests/store.c
 +++ b/dlls/crypt32/tests/store.c
-@@ -1480,6 +1480,133 @@
+@@ -1480,6 +1480,147 @@
      RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\Microsoft\\SystemCertificates\\Bogus");
  }
  
@@ -264,7 +264,7 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
 +static void testSystemRegStoreLocations(void)
 +{
 +    static const WCHAR store_name[] = L"ROOT";
-+    WCHAR store_path[MAX_PATH];
++    WCHAR store_path[MAX_PATH], subkey_path[MAX_PATH];
 +    HCERTSTORE store;
 +    unsigned int i;
 +
@@ -334,22 +334,36 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
 +             location, GetLastError());
 +            if (store)
 +            {
-+                found = CertEnumCertificatesInStore(store, NULL);
++                found = CertFindCertificateInStore(store, X509_ASN_ENCODING, 0,
++                 CERT_FIND_EXISTING, cert, NULL);
 +                ok(found != NULL, "%08lx: the certificate was not saved\n",
 +                 location);
 +                if (found)
-+                    CertFreeCertificateContext(found);
++                {
++                    /* Removes the registry value the test set up. */
++                    ret = CertDeleteCertificateFromStore(found);
++                    ok(ret, "%08lx: deleting the certificate failed: %08lx\n",
++                     location, GetLastError());
++                }
 +                CertCloseStore(store, 0);
 +            }
 +        }
 +        if (cert)
 +            CertFreeCertificateContext(cert);
 +
-+        /* Clean up the registry values the test set up. */
++        /* Opening the store also created the Certificates/CRLs/CTLs subkeys.
++         * Remove those and the store key the test created; RegDeleteTreeW
++         * isn't available on every Wine/Windows version. */
 +        if (!existed)
 +        {
-+            ret = RegDeleteTreeW(root, store_path);
-+            ok(ret, "%08lx: removing the test store failed: %08lx\n",
++            wsprintfW(subkey_path, L"%s\\%s\\Certificates", base, store_name);
++            RegDeleteKeyW(root, subkey_path);
++            wsprintfW(subkey_path, L"%s\\%s\\CRLs", base, store_name);
++            RegDeleteKeyW(root, subkey_path);
++            wsprintfW(subkey_path, L"%s\\%s\\CTLs", base, store_name);
++            RegDeleteKeyW(root, subkey_path);
++            ret = RegDeleteKeyW(root, store_path);
++            ok(!ret, "%08lx: removing the test store failed: %08lx\n",
 +             location, GetLastError());
 +        }
 +    }
@@ -358,7 +372,18 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
  static const BYTE serializedStoreWithCertAndCRL[] = {
   0x00,0x00,0x00,0x00,0x43,0x45,0x52,0x54,0x20,0x00,0x00,0x00,0x01,0x00,0x00,
   0x00,0x7c,0x00,0x00,0x00,0x30,0x7a,0x02,0x01,0x01,0x30,0x02,0x06,0x00,0x30,
-@@ -3873,6 +4000,7 @@
+@@ -2112,7 +2253,9 @@
+     { CERT_SYSTEM_STORE_LOCAL_MACHINE, TRUE, 0},
+     { CERT_SYSTEM_STORE_LOCAL_MACHINE_GROUP_POLICY, TRUE, 0},
+     { CERT_SYSTEM_STORE_CURRENT_USER_GROUP_POLICY, TRUE, 0},
+-    { CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE, TRUE, 1}
++    /* The enterprise location is mapped to its registry path (see
++     * CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE in CRYPT_SysRegOpenStoreW). */
++    { CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE, TRUE, 0}
+ };
+ 
+ static void testCertRegisterSystemStore(void)
+@@ -3873,6 +4016,7 @@
  
      testSystemRegStore();
      testSystemStore();
@@ -1120,7 +1145,7 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
      test_zone_domains();
 --- a/dlls/wintrust/tests/softpub.c
 +++ b/dlls/wintrust/tests/softpub.c
-@@ -1739,6 +1739,69 @@
+@@ -1739,6 +1739,76 @@
      }
  }
  
@@ -1155,8 +1180,11 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
 +    if (sig_off + sig_len > sizeof(SelfSignedFile32))
 +        return;
 +
-+    blob.pbMemObject = (BYTE *)SelfSignedFile32 + sig_off + sizeof(WIN_CERTIFICATE);
-+    blob.cbMemObject = sig_len - sizeof(WIN_CERTIFICATE);
++    /* The signed message starts after the WIN_CERTIFICATE header; use the
++     * field offset, since sizeof(WIN_CERTIFICATE) includes padding. */
++    blob.pbMemObject = (BYTE *)SelfSignedFile32 + sig_off +
++     FIELD_OFFSET(WIN_CERTIFICATE, bCertificate);
++    blob.cbMemObject = sig_len - FIELD_OFFSET(WIN_CERTIFICATE, bCertificate);
 +
 +    data.dwUIChoice = WTD_UI_NONE;
 +    data.fdwRevocationChecks = WTD_REVOKE_NONE;
@@ -1166,10 +1194,14 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
 +    status = WinVerifyTrust(NULL, &generic_action_v2, &data);
 +    ok(status != ERROR_INVALID_PARAMETER,
 +     "WTD_CHOICE_BLOB is not supported, got %#lx\n", status);
-+    /* Same trust status as verifying the file the signature came from: the
-+     * signing certificate is not trusted. */
-+    ok(status == CERT_E_UNTRUSTEDROOT || status == CERT_E_CHAINING,
-+     "expected CERT_E_UNTRUSTEDROOT or CERT_E_CHAINING, got %#lx\n", status);
++    /* Same trust status as verifying the file the signature came from:
++     * Windows reports the untrusted self-signed root as CERT_E_CHAINING or
++     * CERT_E_UNTRUSTEDROOT (see test_wintrust_digest), while Wine trusts this
++     * chain and returns S_OK. */
++    ok(status == S_OK || status == CERT_E_UNTRUSTEDROOT ||
++     status == CERT_E_CHAINING,
++     "expected S_OK, CERT_E_UNTRUSTEDROOT or CERT_E_CHAINING, got %#lx\n",
++     status);
 +
 +    prov = WTHelperProvDataFromStateData(data.hWVTStateData);
 +    ok(prov != NULL, "got NULL provider data\n");
@@ -1190,7 +1222,7 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
  static void test_get_known_usages(void)
  {
      BOOL ret;
-@@ -1961,6 +2024,7 @@
+@@ -1961,6 +2031,7 @@
      test_sip_create_indirect_data();
      test_wintrust();
      test_wintrust_digest();
@@ -1460,3 +1492,110 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
  
      test_dns();
      test_gethostbyname();
+--- a/dlls/dxgi/tests/dxgi.c
++++ b/dlls/dxgi/tests/dxgi.c
+@@ -2420,6 +2420,96 @@
+     DestroyWindow(creation_desc.OutputWindow);
+ }
+ 
++/* A composition swapchain has no output window; a compositor shows its frames.
++ * The compositor rasterises the page into the swapchain's back buffer through
++ * IDXGISurface1::GetDC(), so that surface has to be GDI-compatible and the
++ * returned DC has to be usable. */
++static void test_create_swapchain_for_composition(IUnknown *device, BOOL is_d3d12)
++{
++    DXGI_SWAP_CHAIN_DESC1 desc;
++    IDXGISwapChain1 *swapchain1;
++    IDXGISurface1 *surface;
++    IDXGIFactory2 *factory2;
++    IDXGIFactory *factory;
++    IDXGIDevice *d3d11_device;
++    RECT rect = {0, 0, 64, 64};
++    BOOL ret;
++    HDC dc;
++    HRESULT hr;
++
++    if (is_d3d12)
++    {
++        skip("CreateSwapChainForComposition() needs a Direct3D 11 device.\n");
++        return;
++    }
++
++    if (!(d3d11_device = create_d3d11_device()))
++    {
++        skip("Failed to create a Direct3D 11 device.\n");
++        return;
++    }
++
++    get_factory(device, is_d3d12, &factory);
++    hr = IDXGIFactory_QueryInterface(factory, &IID_IDXGIFactory2, (void **)&factory2);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    IDXGIFactory_Release(factory);
++    if (FAILED(hr))
++    {
++        IDXGIDevice_Release(d3d11_device);
++        return;
++    }
++
++    desc.Width = 64;
++    desc.Height = 64;
++    desc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
++    desc.Stereo = FALSE;
++    desc.SampleDesc.Count = 1;
++    desc.SampleDesc.Quality = 0;
++    desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
++    desc.BufferCount = 2;
++    desc.Scaling = DXGI_SCALING_STRETCH;
++    desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
++    desc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
++    desc.Flags = 0;
++
++    swapchain1 = NULL;
++    hr = IDXGIFactory2_CreateSwapChainForComposition(factory2, (IUnknown *)d3d11_device, &desc,
++            NULL, &swapchain1);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    if (FAILED(hr))
++    {
++        ok(!swapchain1, "Got unexpected swapchain %p.\n", swapchain1);
++        IDXGIFactory2_Release(factory2);
++        IDXGIDevice_Release(d3d11_device);
++        return;
++    }
++    ok(!!swapchain1, "Got unexpected swapchain %p.\n", swapchain1);
++
++    /* The back buffer the compositor reads has to give a usable DC. */
++    hr = IDXGISwapChain1_GetBuffer(swapchain1, 0, &IID_IDXGISurface1, (void **)&surface);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    if (SUCCEEDED(hr))
++    {
++        dc = NULL;
++        hr = IDXGISurface1_GetDC(surface, FALSE, &dc);
++        ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++        ok(!!dc, "Got unexpected dc %p.\n", dc);
++        if (SUCCEEDED(hr))
++        {
++            ret = FillRect(dc, &rect, GetSysColorBrush(COLOR_WINDOW));
++            ok(ret, "Failed to draw into the surface DC, error %lu.\n", GetLastError());
++
++            hr = IDXGISurface1_ReleaseDC(surface, NULL);
++            ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++        }
++        IDXGISurface1_Release(surface);
++    }
++
++    IDXGISwapChain1_Release(swapchain1);
++    IDXGIFactory2_Release(factory2);
++    IDXGIDevice_Release(d3d11_device);
++}
++
+ static void test_get_containing_output(IUnknown *device, BOOL is_d3d12)
+ {
+     unsigned int adapter_idx, output_idx, output_count;
+@@ -9098,6 +9188,7 @@
+     test_swapchain_parameters();
+     test_swapchain_window_styles();
+     run_on_d3d10(test_create_swapchain);
++    run_on_d3d10(test_create_swapchain_for_composition);
+     run_on_d3d10(test_set_fullscreen);
+     run_on_d3d10(test_resize_target);
+     run_on_d3d10(test_resize_fullscreen);
