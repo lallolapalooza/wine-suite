@@ -7,8 +7,9 @@ export WINEROOT=${WINEROOT:-$SE/wine/wine-11.18}          # the tree that gets b
 export WINEPREFIX_INSTALL=${WINEPREFIX_INSTALL:-$SE/wine-install}
 export WINEBUILD=$WINEPREFIX_INSTALL/bin/wine
 
-# Siemens media (nothing Siemens is redistributed here).
-export SE_MEDIA=${SE_MEDIA:-$SE/installer/media}
+# Siemens media: the extracted InstallShield layout (setup.exe + the MSI + the cabs).
+# `installer/media/` holds the downloaded 7z chunks, `installer/media_x/` what they extract to.
+export SE_MEDIA=${SE_MEDIA:-$SE/installer/media_x/Solid Edge}
 
 # Work directory: the Wine prefix, logs and evidence live here.
 export SE_WORK=${SE_WORK:-$SE/state/work}

@@ -27,6 +27,11 @@ done
 [ -n "$TAG" ] || { sed -n '2,4p' "$0" >&2; exit 2; }
 
 D="$SE_LOGS/runs/$TAG"; rm -rf "$D"; mkdir -p "$D"
+# Every log line gets an elapsed-time stamp when any channel is on, so a click recorded by
+# tools/se_drive.sh can be aligned with the line it caused (see FINDINGS M8).
+if [ "$WDBG" != "-all" ] && [ "${WDBG#*timestamp}" = "$WDBG" ]; then
+  WDBG="+timestamp,$WDBG"
+fi
 export WINEPREFIX="$SE_PREFIX"
 export DISPLAY="$DISP"
 export WINEDLLOVERRIDES="${SE_DLLOVERRIDES:-mshtml=}"
