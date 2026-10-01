@@ -1,0 +1,1225 @@
+secur32: implement RFC 4178 SPNEGO in the Negotiate package, both roles
+
+Power BI Desktop's report canvas is gated by one call - IDBInitialize::Initialize() on the OLE DB
+provider msolap.dll - and under Wine that call failed with 0x80070001 and no OLE DB error
+information, which the app reports as:
+
+    DataMashup.Trace Critical: … DataExtensionErrorDetails: Details: ErrorCode=OpenConnectionError,
+      ProviderErrorCode=0x00000000, ErrorSource=PowerBI, Message=Failed to open the MSOLAP connection.,
+      HResult=0x80070001, … ErrorSourceOrigin=MsolapWrapper …
+    PBI.Dashboard.ErrorDialog: errorType=ExplorationContainer_FailedToLoadModel_DefaultDetails,
+      activityName=PBI.EX.LoadExplorationVisuals
+
+The provider connects to the Analysis Services engine (msmdsrv.exe) and authenticates the XMLA
+<Authenticate>/<SspiHandshake> exchange with SSPI, asking for the package "Negotiate" by name
+(AcquireCredentialsHandleW(principal=NULL, package="Negotiate", usage=SECPKG_CRED_OUTBOUND)) and
+driving InitializeSecurityContextW itself: it transmits a token only while the status is
+SEC_I_CONTINUE_NEEDED and treats SEC_E_OK as "nothing left to send".  That is the documented round
+shape of SPNEGO, which is what "Negotiate" is - and it is not the shape Wine had.
+
+Reproduction (the same provider, the same engine, one binary on both platforms):
+
+    # engine (Wine): starts msmdsrv.exe exactly as the app does and publishes the port
+    EXTRA='--sspi --hook' tools/msolap/connect_test.sh <tag> '' 15
+    # client: tools/winapi/msolapprobe.c, built once, run under Wine and on a Windows guest
+    #   LoadLibraryExW(msolap.dll) -> DllGetClassObject(CLSID_MSOLAP) -> CreateInstance(IDBInitialize)
+    #   -> SetProperties(DBPROP_INIT_PROVIDERSTRING) -> Initialize()
+
+Before the fix, Wine's per-round trace against a live engine (logs/msolap/sspi11.probe.out):
+
+    [sspi] InitializeSecurityContextW #1 -> status=0x00090312 attr=0x1081c
+    [sspi]   out: 40 bytes  [NTLMSSP....]  first=4e54 0100
+    [sspi] InitializeSecurityContextW #2 -> status=0x00000000 attr=0x1001e
+    [sspi]   out: 88 bytes  [NTLMSSP....]  first=4e54 0300
+    IDBInitialize::Initialize()                hr=0x80070001  FAIL
+
+and on Windows, same probe, same engine (logs/msolap/winprobe_engine_ok.out):
+
+    [sspi] InitializeSecurityContextW #1 -> status=0x00090312 attr=0x1000
+    [sspi]   out: 121 bytes  [`w..+......]  first=6077 0502
+    [sspi] InitializeSecurityContextW #2 -> status=0x00090312 attr=0x1001e
+    [sspi]   out: 121 bytes  [.w0u......Z]  first=a177 01a2
+    [sspi] InitializeSecurityContextW #3 -> status=0x00000000 attr=0x1001e
+    [sspi]   out: 0 bytes (empty)
+    IDBInitialize::Initialize()                hr=0x00000000  OK
+    MSOLAP probe: SUCCESS
+
+The failing step is the status/token *combination* of the second call: Wine returned SEC_E_OK
+*together with* the NTLM authenticate message (type 3), so the provider - which only transmits on
+SEC_I_CONTINUE_NEEDED - never sent it, and the engine dropped the socket (one client message in
+logs/msolap/sspi12.transcript.txt, no second WSASend in a +relay capture of msolap's own calls).
+
+What Windows does, and what this patch restores, is SPNEGO (RFC 4178): the initial token is an ASN.1
+NegTokenInit carrying the SPNEGO OID 1.3.6.1.5.5.2, a mechTypes list and the mechanism's first token;
+the acceptor answers with a NegTokenResp; and the exchange has one more round than the mechanism,
+ending with an empty token and SEC_E_OK.  Wine's "Negotiate" advertised SECPKG_FLAG_GSS_COMPATIBLE and
+RPC_C_AUTHN_GSS_NEGOTIATE (`nego_SpGetInfo`) but did no framing at all: dlls/secur32/negotiate.c is
+only the user-mode half (seal/unseal delegation), and the LSA-mode package in
+programs/lsass/negotiate.c - bound as package 0 by lsass.c's
+`init_package( L"", nego_SpLsaModeInitialize )` - forwarded the sub-package's token and status
+verbatim.  This patch makes the advertisement true.
+
+Rationale, and what was *not* needed:
+
+  * Both roles are implemented, because both ends of this connection are Wine's: the client is
+    msolap.dll in the app's process, the server is Wine's msv1_0 in lsass driven by the engine
+    process's AcceptSecurityContext.  A client-side-only change is measurably insufficient -
+    presenting the raw NTLM flow in the SPNEGO round shape (the probe's `--spnego` emulation) gets the
+    authenticate message onto the wire but then ends in SEC_E_INVALID_TOKEN, because Wine's acceptor
+    sends a 0-byte final token where SPNEGO answers a final NegTokenResp
+    (logs/msolap/spg1.probe.out).
+  * The ASN.1 is hand-rolled and fixed-shape (NegTokenInit / NegTokenResp, definite lengths only) - a
+    general ASN.1 library would be more code than the protocol needs.  It lives in the same file as
+    the package it serves, so the change touches exactly one pristine file.
+  * `SECPKG_ATTR_PACKAGE_INFO` is left delegating to the sub-package.  Windows returns the *negotiated*
+    mechanism there - the provider's own query on a Windows Negotiate context answers
+    `name="NTLM" caps=0x2882b37 maxToken=2888` immediately before `Initialize() = S_OK`
+    (logs/msolap/winprobe_sspi_ref.txt, line 183) - so the pre-existing delegation was already
+    correct.  An earlier revision of this patch answered "Negotiate" instead; it was measured and
+    reverted, because it was a divergence from Windows, not a fix.
+  * The user-mode mapping is re-published on the extra round.  The user-mode half registers itself under the
+    address of the caller-side context object's handle field (lsa.c: `LSA_USER_HANDLE(&handle)`), and secur32
+    replaces that object on *every* successful round (`new_context->dwLower = new_lsa_ctx`), while
+    `InitUserModeContext` only runs when the package reports the context as mapped.  msv1_0 maps on the round
+    it completes - round 2 here - so without help the caller's round-3 object would be unregistered and
+    `EncryptMessage`/`MakeSignature` would then fail with `SEC_E_INVALID_HANDLE` from
+    `find_user_ctx` in `dlls/secur32/negotiate.c`.  The package therefore keeps a copy of the sub-package's
+    user-mode context blob and re-publishes it on any later round the mechanism produces no mapping for.
+    Raw NTLM never hit this because its last round *is* the mechanism's completing round; the extra round
+    SPNEGO requires is what exposes it.
+  * mechListMIC is accepted and ignored but not produced: RFC 4178 makes it optional, it is only
+    defined once a session key exists, and Wine's NTLM package exposes no MIC facility to this layer.
+    Both ends of this connection are Wine, so no peer requires it.
+  * Nothing else had to change: no NTLM change, no msv1_0 change, no lsass dispatch change, and
+    rpcrt4/winhttp/credui call sites are untouched.  Sealing/unsealing keeps working because the
+    Negotiate context still maps to the sub-package's user-mode context exactly as before.  A peer
+    that speaks the sub-package's protocol directly still gets the old verbatim pass-through, so
+    nothing that worked before regresses.
+  * The context attributes reported on the initial call are masked to ISC_RET_INTERMEDIATE_RETURN,
+    which is what Windows returns before a mechanism has been picked; later rounds report the
+    sub-package's (Wine's NTLM returns 0x1081c where Windows' SPNEGO reports 0x1001e - the set is the
+    mechanism's, not something the wrapper invents).
+
+Verified:
+
+  * Codec unit test (the real functions, extracted verbatim, built for the host): round trips of
+    NegTokenInit / NegTokenResp / accept-completed with exact expected bytes, decoding of a
+    Windows-shaped 159-byte NegTokenResp, and 400000 malformed/truncated/mutated inputs without a
+    crash or a hang.  It found two real defects during development - the acceptor's first call did
+    not pass the credential handle to msv1_0, and the decoder did not unwrap the OCTET STRING inside
+    `[2]` - both fixed before the captures below.
+  * Local handshake, same binary on both platforms (logs/msolap/ntlmprobe_fixed_wine.txt vs
+    logs/msolap/ntlmprobe_windows2.txt), package "Negotiate":
+
+        Wine  (fixed): ISC#1 CONTINUE  74 B [`H..+...] attr=0x1000
+                       ASC   CONTINUE 307 B
+                       ISC#2 CONTINUE 115 B [.q0o....]
+                       ASC   OK         9 B [..0.....]
+                       ISC#3 OK         0 B
+        Windows      : ISC#1 CONTINUE 121 B [`w..+...] attr=0x1000
+                       ASC   CONTINUE 159 B
+                       ISC#2 CONTINUE 121 B [.w0u....]
+                       ASC   OK        29 B [..0.....]
+                       ISC#3 OK         0 B
+
+    Every status, the round count and the framing at each offset now match; the token *sizes* cannot,
+    because the mechanism's own tokens differ between the platforms (Wine's NTLM sends 40/272/88
+    bytes where Windows sends 53/128/94), so only the DER length bytes differ.  Judged by
+    tools/msolap/spnego_shape.py: round #1 framing PASS, status sequence PASS, terminal empty token
+    PASS, round count PASS, outcome PASS.
+  * The explicit "NTLM" package is unchanged against the pre-fix Wine capture
+    (spnego_shape.py --expect-ntlm: PASS), `AcquireCredentialsHandleW(NULL, NULL, …)` still fails with
+    SEC_E_SECPKG_NOT_FOUND on both platforms, and a client that speaks raw NTLM to the *Negotiate*
+    acceptor still gets the old pass-through (logs/msolap/negotiate_server_rawpassthrough.txt: raw
+    type 1 / type 2 / type 3, `handshake ended: client=0, server=0`).
+  * Engine-free proof of the whole post-handshake surface (`logs/msolap/sealprobe_fixed_wine.txt`; the probe
+    has the same shape as `tools/winapi/ntlmprobe.c` - a loopback Negotiate handshake in one process, then
+    `QCA(SIZES)`, `QCA(PACKAGE_INFO)`, `FreeContextBuffer` and `EncryptMessage`):
+
+        handshake round 1: client=0x00090312 out=74
+        handshake done:      client=0x00000000 server=0x00000000
+        QCA(SIZES)           status=0x00000000  cbMaxToken=1904 cbMaxSignature=16 cbBlockSize=0 cbSecurityTrailer=16
+        QCA(PACKAGE_INFO)    status=0x00000000  name=NTLM
+        FreeContextBuffer(lsa buffer) status=0x00000000  PASS  (want 0x00000000, as Windows returns)
+        FreeContextBuffer(heap buffer) status=0x00000000  PASS  (the RtlFreeHeap branch)
+        EncryptMessage       status=0x00000000  PASS  (user-mode context registered for this handle)
+
+    and with `WINEDEBUG=+secur32` the mapping is visible rather than inferred - three
+    `nego_SpInitUserModeContext` registrations (client round 2, server round 2, and the client's extra round,
+    re-published) with the seal on the object registered last, i.e. the one the caller holds:
+
+        0178:trace:secur32:nego_SpInitUserModeContext 7ffffe825ae0, …
+        0178:trace:secur32:nego_SpInitUserModeContext 7ffffe825b40, …
+        0178:trace:secur32:nego_SpInitUserModeContext 7ffffe825ba0, …
+        0178:trace:secur32:nego_SpSealMessage 7ffffe825ba0, 0, …
+
+    Before the re-publish that third registration was absent and `EncryptMessage` returned 0x80090301
+    (`SEC_E_INVALID_HANDLE`), measured by the provider slice on a session running an earlier revision of this
+    build (`logs/msolap/gA.probe.out`, `gB`, `gC`): the visible protocol was complete and identical to
+    Windows, and only the caller-side mapping was missing.
+  * Provider differential against a live engine (`--sspi --hook`, engine started by
+    tools/msolap/connect_test.sh), judged on the capture by the provider slice - all four shape
+    criteria pass:
+
+        round #1 framing       out=74   `60 48 05 02 …`   (byte0 0x60 + OID 1.3.6.1.5.5.2)
+        rounds 2..n-1 framing  out=115  `a1 71 30 6f a0 03 0a 01 01 …`   (byte0 0xa1)
+        status sequence        `00090312 00090312 00000000`, terminal token empty
+        round count            3   (Windows reference: 3)
+
+    The wire shows the consequence: the provider sends the 440 B `application/sx+xpress` message
+    carrying the NTLMSSP authenticate (it used to drop it), the engine answers with the 9-byte
+    `a1 07 30 05 a0 03 0a 01 00`, and the provider consumes it with `ISC#3 -> SEC_E_OK`.
+  * End-to-end outcome: with this patch alone `IDBInitialize::Initialize()` still returned 0x80070001 (measured
+    twice, `logs/msolap/gate3.probe.out` / `gate4.probe.out`), i.e. the framing removed the failure this patch
+    is about - the dropped authenticate message is on the wire - and left two further defects on the same path
+    that measuring exposed in turn: the `FreeContextBuffer` return (`0004-secur32-LsaFreeReturnBuffer.patch`)
+    and the user-mode mapping re-published here.  With all of it installed the provider differential passes all
+    five shape criteria and **`IDBInitialize::Initialize()` returns 0x00000000**
+    (`logs/msolap/gate13.run.txt`), which is the acceptance for the task; the application-level canvas
+    acceptance runs on the same build and is recorded in `FINDINGS.md` (M41) and
+    `docs/MSOLAP_CONNECTION.md` (§8).
+
+Not covered by this patch, stated plainly:
+
+  * mechListMIC is neither produced nor required (see above), so this is not a complete RFC 4178
+    implementation - it is the NegTokenInit/NegTokenResp exchange that "Negotiate" needs to be usable,
+    including the malformed-input handling (SEC_E_INVALID_TOKEN, no crash, no loop) and the raw
+    pass-through for peers that do not speak SPNEGO.
+  * The mechanism list offered is a single mechanism (NTLM, or Kerberos when Wine's Kerberos package
+    produces a token).  Windows offers a list and can be negotiated down; Wine's Kerberos does not
+    complete in this configuration, so the list carries whichever mechanism actually produced the
+    token.
+  * The acceptor's terminal token is a 9-byte NegTokenResp with negState accept-completed and no MIC;
+    Windows' is 29 bytes because it carries a 16-byte mechListMIC.  The initiator only needs a
+    non-empty final response before returning SEC_E_OK.
+--- a/programs/lsass/negotiate.c
++++ b/programs/lsass/negotiate.c
+@@ -34,6 +34,14 @@
+     SECPKG_FUNCTION_TABLE      *ntlm;
+     LSA_SEC_HANDLE              handle_krb;
+     LSA_SEC_HANDLE              handle_ntlm;
++    ULONG                       state;      /* enum nego_state: how far the SPNEGO exchange has got */
++    ULONG                       mode;       /* enum nego_mode: SPNEGO framing, or raw pass-through */
++    ULONG                       attr;       /* context attributes the sub-package negotiated */
++    const BYTE                 *oid;        /* DER OID of the mechanism in use */
++    ULONG                       oid_len;
++    BYTE                       *user_data;  /* copy of the sub-package's user-mode context data */
++    ULONG                       user_data_len;
++    ULONG                       user_ssp;   /* struct user_context_data.ssp for that copy */
+ };
+ 
+ struct user_context_data
+@@ -68,6 +76,499 @@
+     SECPKG_FLAG_LOGON             | \
+     SECPKG_FLAG_RESTRICTED_TOKENS )
+ 
++/* RFC 4178 SPNEGO.
++ *
++ * "Negotiate" is the GSS-API SPNEGO mechanism: its tokens carry an ASN.1 layer around the token of the
++ * mechanism that is actually being negotiated (Kerberos or NTLM here), and the exchange has one more round
++ * than the mechanism itself.  Wine used to forward the sub-package's token and status verbatim, which is
++ * wrong on the wire - the second client call returned SEC_E_OK *together with* the NTLM authenticate message,
++ * and a caller that transmits a token only while the status is SEC_I_CONTINUE_NEEDED, which is what Power BI's
++ * MSOLAP OLE DB provider does, then dropped that message, so the Analysis Services session was never
++ * authenticated and IDBInitialize::Initialize() failed with 0x80070001.
++ * docs/MSOLAP_CONNECTION.md has the measurement; logs/msolap/winprobe_engine_ok.out the Windows shape.
++ */
++
++enum nego_state
++{
++    NEGO_STATE_INIT,         /* client: nothing produced yet; server: nothing consumed yet */
++    NEGO_STATE_NEGOTIATING,  /* a sub-package token was exchanged and the sub-package is not finished */
++    NEGO_STATE_AWAIT_FINAL,  /* client: the sub-package finished and its last token was sent */
++    NEGO_STATE_DONE          /* the exchange is complete */
++};
++
++enum nego_mode
++{
++    NEGO_MODE_UNDECIDED,     /* no peer token seen yet: the initial token is always framed */
++    NEGO_MODE_SPNEGO,        /* the peer speaks SPNEGO */
++    NEGO_MODE_RAW            /* the peer speaks the sub-package's protocol directly */
++};
++
++#define SPNEGO_NEG_ACCEPT_COMPLETED  0
++#define SPNEGO_NEG_ACCEPT_INCOMPLETE 1
++#define SPNEGO_NEG_REJECT            2
++
++static const BYTE oid_spnego[] = {0x2b, 0x06, 0x01, 0x05, 0x05, 0x02};                         /* 1.3.6.1.5.5.2 */
++static const BYTE oid_krb5[]   = {0x2a, 0x86, 0x48, 0x86, 0xf7, 0x12, 0x01, 0x02, 0x02};       /* 1.2.840.48018.1.2.2 */
++static const BYTE oid_ntlm[]   = {0x2b, 0x06, 0x01, 0x04, 0x01, 0x82, 0x37, 0x02, 0x02, 0x0a}; /* 1.3.6.1.4.1.311.2.2.10 */
++static const BYTE ntlmssp_sig[] = {'N', 'T', 'L', 'M', 'S', 'S', 'P', 0};
++
++struct spnego_msg
++{
++    enum { SPNEGO_MSG_NONE, SPNEGO_MSG_INIT, SPNEGO_MSG_RESP } kind;
++    int neg_state;          /* -1 when absent, else one of SPNEGO_NEG_* */
++    const BYTE *token;      /* mechToken / responseToken, pointing into the token being decoded */
++    ULONG token_len;
++    BOOL mech_types_ntlm;
++    BOOL mech_types_krb5;
++};
++
++static BOOL asn1_read_len( const BYTE **p, const BYTE *end, ULONG *len )
++{
++    ULONG n, v = 0;
++
++    if (*p >= end) return FALSE;
++    if (**p < 0x80)
++    {
++        *len = **p;
++        (*p)++;
++        return TRUE;
++    }
++    n = **p & 0x7f;
++    (*p)++;
++    if (!n || n > sizeof(v) || (ULONG)(end - *p) < n) return FALSE; /* indefinite lengths are not DER */
++    while (n--) v = (v << 8) | *(*p)++;
++    *len = v;
++    return TRUE;
++}
++
++static BOOL asn1_read_tlv( const BYTE **p, const BYTE *end, BYTE tag, const BYTE **content, ULONG *len )
++{
++    if (end - *p < 2 || **p != tag) return FALSE;
++    (*p)++;
++    if (!asn1_read_len( p, end, len )) return FALSE;
++    if (*len > (ULONG)(end - *p)) return FALSE;
++    *content = *p;
++    *p += *len;
++    return TRUE;
++}
++
++static BOOL oid_is( const BYTE *oid, ULONG len, const BYTE *want, ULONG want_len )
++{
++    return len == want_len && !memcmp( oid, want, len );
++}
++
++static BOOL looks_like_ntlm( const BYTE *token, ULONG len )
++{
++    return token && len >= sizeof(ntlmssp_sig) && !memcmp( token, ntlmssp_sig, sizeof(ntlmssp_sig) );
++}
++
++static void parse_mech_types( const BYTE *p, const BYTE *end, struct spnego_msg *msg )
++{
++    const BYTE *content, *oid;
++    ULONG len, oid_len;
++
++    if (asn1_read_tlv( &p, end, 0x30, &content, &len ))
++    {
++        p = content;
++        end = content + len;
++    }
++    while (end - p >= 2)
++    {
++        if (!asn1_read_tlv( &p, end, 0x06, &oid, &oid_len )) break;
++        if (oid_is( oid, oid_len, oid_ntlm, sizeof(oid_ntlm) )) msg->mech_types_ntlm = TRUE;
++        else if (oid_is( oid, oid_len, oid_krb5, sizeof(oid_krb5) )) msg->mech_types_krb5 = TRUE;
++    }
++}
++
++static void parse_token_field( const BYTE *content, ULONG len, const BYTE **token, ULONG *token_len )
++{
++    const BYTE *q = content, *octet;
++    ULONG octet_len;
++
++    /* [2] wraps an OCTET STRING; a peer that encodes the value implicitly is tolerated too */
++    if (asn1_read_tlv( &q, content + len, 0x04, &octet, &octet_len ))
++    {
++        *token = octet;
++        *token_len = octet_len;
++    }
++    else
++    {
++        *token = content;
++        *token_len = len;
++    }
++}
++
++static void parse_init_fields( const BYTE *p, const BYTE *end, struct spnego_msg *msg )
++{
++    const BYTE *content;
++    ULONG len;
++
++    msg->kind = SPNEGO_MSG_INIT;
++    if (end - p >= 2 && *p == 0x30 && asn1_read_tlv( &p, end, 0x30, &content, &len ))
++    {
++        p = content;
++        end = content + len;
++    }
++    while (end - p >= 2)
++    {
++        BYTE tag = *p;
++
++        if (!asn1_read_tlv( &p, end, tag, &content, &len )) break;
++        switch (tag & 0x1f)
++        {
++        case 0:  parse_mech_types( content, content + len, msg ); break; /* mechTypes */
++        case 2:  parse_token_field( content, len, &msg->token, &msg->token_len ); break;
++        default: break;                                                /* mechListMIC: ignored */
++        }
++    }
++}
++
++static void parse_resp_fields( const BYTE *p, const BYTE *end, struct spnego_msg *msg )
++{
++    const BYTE *content;
++    ULONG len;
++
++    msg->kind = SPNEGO_MSG_RESP;
++    if (end - p >= 2 && *p == 0x30 && asn1_read_tlv( &p, end, 0x30, &content, &len ))
++    {
++        p = content;
++        end = content + len;
++    }
++    while (end - p >= 2)
++    {
++        BYTE tag = *p;
++
++        if (!asn1_read_tlv( &p, end, tag, &content, &len )) break;
++        switch (tag & 0x1f)
++        {
++        case 0:  if (len >= 3 && content[0] == 0x0a && content[1] == 0x01) msg->neg_state = content[2]; break;
++        case 2:  parse_token_field( content, len, &msg->token, &msg->token_len ); break;
++        default: break;                                                /* supportedMech, mechListMIC */
++        }
++    }
++}
++
++static NTSTATUS spnego_decode( const BYTE *data, ULONG len, struct spnego_msg *msg )
++{
++    const BYTE *p = data, *end = data + len, *content, *oid;
++    ULONG clen, oid_len;
++
++    memset( msg, 0, sizeof(*msg) );
++    msg->neg_state = -1;
++    if (!len) return SEC_E_INVALID_TOKEN;
++
++    if (*p == 0x60)     /* InitialContextToken [APPLICATION 0] { MechType, innerContextToken } */
++    {
++        if (!asn1_read_tlv( &p, end, 0x60, &content, &clen )) return SEC_E_INVALID_TOKEN;
++        p = content;
++        end = content + clen;
++        if (!asn1_read_tlv( &p, end, 0x06, &oid, &oid_len )) return SEC_E_INVALID_TOKEN;
++        if (!oid_is( oid, oid_len, oid_spnego, sizeof(oid_spnego) )) return SEC_E_INVALID_TOKEN;
++        if (end - p < 2) return SEC_E_INVALID_TOKEN;
++    }
++    if (*p == 0xa0)     /* negTokenInit */
++    {
++        if (!asn1_read_tlv( &p, end, 0xa0, &content, &clen )) return SEC_E_INVALID_TOKEN;
++        parse_init_fields( content, content + clen, msg );
++        return SEC_E_OK;
++    }
++    if (*p == 0xa1)     /* negTokenResp */
++    {
++        if (!asn1_read_tlv( &p, end, 0xa1, &content, &clen )) return SEC_E_INVALID_TOKEN;
++        parse_resp_fields( content, content + clen, msg );
++        return SEC_E_OK;
++    }
++    if (*p == 0x30)     /* NegTokenResp without the [1] wrapper */
++    {
++        if (!asn1_read_tlv( &p, end, 0x30, &content, &clen )) return SEC_E_INVALID_TOKEN;
++        parse_resp_fields( content, content + clen, msg );
++        return SEC_E_OK;
++    }
++    return SEC_E_INVALID_TOKEN;
++}
++
++static ULONG der_len_size( ULONG len )
++{
++    if (len < 0x80) return 1;
++    if (len <= 0xff) return 2;
++    if (len <= 0xffff) return 3;
++    return 4;
++}
++
++static ULONG der_tlv_size( ULONG content )
++{
++    return 1 + der_len_size( content ) + content;
++}
++
++static BYTE *der_put_len( BYTE *p, ULONG len )
++{
++    if (len < 0x80) *p++ = len;
++    else if (len <= 0xff) { *p++ = 0x81; *p++ = len; }
++    else if (len <= 0xffff) { *p++ = 0x82; *p++ = len >> 8; *p++ = len; }
++    else { *p++ = 0x83; *p++ = len >> 16; *p++ = len >> 8; *p++ = len; }
++    return p;
++}
++
++static BYTE *der_put_tlv( BYTE *p, BYTE tag, ULONG content )
++{
++    *p++ = tag;
++    return der_put_len( p, content );
++}
++
++static BYTE *der_put_octets( BYTE *p, BYTE tag, const BYTE *data, ULONG len )
++{
++    p = der_put_tlv( p, tag, len );
++    memcpy( p, data, len );
++    return p + len;
++}
++
++/* a0 { 30 { 06 <oid> } } - a MechTypeList holding the single mechanism Wine can negotiate */
++static ULONG mech_types_size( ULONG oid_len )
++{
++    return der_tlv_size( der_tlv_size( der_tlv_size( oid_len )));
++}
++
++/* a2 { 04 <token> } */
++static ULONG mech_token_size( ULONG token_len )
++{
++    return der_tlv_size( der_tlv_size( token_len ));
++}
++
++static ULONG spnego_init_size( ULONG oid_len, ULONG token_len )
++{
++    ULONG neg_init = der_tlv_size( mech_types_size( oid_len ) + mech_token_size( token_len ));
++
++    return der_tlv_size( der_tlv_size( sizeof(oid_spnego) ) + der_tlv_size( neg_init ));
++}
++
++static ULONG spnego_resp_size( int neg_state, BOOL supported_mech, ULONG oid_len, ULONG token_len )
++{
++    ULONG content = 0;
++
++    if (neg_state >= 0) content += der_tlv_size( 3 );                      /* a0 { 0a 01 <state> } */
++    if (supported_mech) content += der_tlv_size( der_tlv_size( oid_len )); /* a1 { 06 <oid> } */
++    if (token_len) content += der_tlv_size( der_tlv_size( token_len ));    /* a2 { 04 <token> } */
++    return der_tlv_size( der_tlv_size( content ));
++}
++
++static ULONG spnego_encode_init( BYTE *buf, const BYTE *oid, ULONG oid_len, const BYTE *token, ULONG token_len )
++{
++    ULONG mech_types = mech_types_size( oid_len );
++    ULONG fields = mech_types + mech_token_size( token_len );
++    ULONG neg_init = der_tlv_size( fields );
++    ULONG content = der_tlv_size( sizeof(oid_spnego) ) + der_tlv_size( neg_init );
++    BYTE *p = buf;
++
++    p = der_put_tlv( p, 0x60, content );
++    p = der_put_octets( p, 0x06, oid_spnego, sizeof(oid_spnego) );
++    /* NegTokenInit, [0] around its SEQUENCE - the shape Windows emits and every SPNEGO peer expects */
++    p = der_put_tlv( p, 0xa0, neg_init );
++    p = der_put_tlv( p, 0x30, fields );
++    p = der_put_tlv( p, 0xa0, der_tlv_size( der_tlv_size( oid_len )));
++    p = der_put_tlv( p, 0x30, der_tlv_size( oid_len ));
++    p = der_put_octets( p, 0x06, oid, oid_len );
++    p = der_put_tlv( p, 0xa2, der_tlv_size( token_len ));
++    p = der_put_octets( p, 0x04, token, token_len );
++    return p - buf;
++}
++
++static ULONG spnego_encode_resp( BYTE *buf, int neg_state, const BYTE *oid, ULONG oid_len,
++                                 const BYTE *token, ULONG token_len )
++{
++    ULONG content = 0;
++    BYTE *p = buf;
++
++    if (neg_state >= 0) content += der_tlv_size( 3 );
++    if (oid) content += der_tlv_size( der_tlv_size( oid_len ));
++    if (token_len) content += der_tlv_size( der_tlv_size( token_len ));
++
++    p = der_put_tlv( p, 0xa1, der_tlv_size( content ));
++    p = der_put_tlv( p, 0x30, content );
++    if (neg_state >= 0)
++    {
++        p = der_put_tlv( p, 0xa0, 3 );
++        p = der_put_tlv( p, 0x0a, 1 );
++        *p++ = neg_state;
++    }
++    if (oid)
++    {
++        p = der_put_tlv( p, 0xa1, der_tlv_size( oid_len ));
++        p = der_put_octets( p, 0x06, oid, oid_len );
++    }
++    if (token_len)
++    {
++        p = der_put_tlv( p, 0xa2, der_tlv_size( token_len ));
++        p = der_put_octets( p, 0x04, token, token_len );
++    }
++    return p - buf;
++}
++
++/* The peer's message, mapped into LSA memory.  `client' is the caller's own buffer holding the same bytes: the
++ * sub-package reads its token from the calling process, so the inner token has to be handed to it as an offset
++ * into that buffer rather than as a pointer into our copy. */
++struct nego_input
++{
++    const BYTE *mapped;
++    ULONG len;
++    BYTE *client;
++};
++
++static int token_buffer_index( SecBufferDesc *desc )
++{
++    int i;
++
++    if (!desc || !desc->cBuffers) return -1;
++    for (i = 0; i < desc->cBuffers; i++)
++        if (desc->pBuffers[i].BufferType == SECBUFFER_TOKEN) return i;
++    return 0;
++}
++
++static NTSTATUS map_nego_input( SecBufferDesc *input, struct nego_input *in )
++{
++    SecBuffer *buf;
++    int idx;
++
++    in->mapped = NULL;
++    in->len = 0;
++    in->client = NULL;
++    if (!input || (idx = token_buffer_index( input )) == -1) return SEC_E_INVALID_TOKEN;
++    buf = &input->pBuffers[idx];
++    if (!buf->pvBuffer || !buf->cbBuffer) return SEC_E_INVALID_TOKEN;
++    in->client = buf->pvBuffer;
++    if (buf->BufferType & SECBUFFER_UNMAPPED)
++    {
++        in->mapped = buf->pvBuffer;
++    }
++    else
++    {
++        NTSTATUS status = lsa_funcs->MapBuffer( buf, buf );
++
++        if (status) return status;
++        in->mapped = buf->pvBuffer;
++    }
++    in->len = buf->cbBuffer;
++    return SEC_E_OK;
++}
++
++/* A descriptor for the mechanism token inside the peer's message, pointing into the caller's buffer. */
++static SecBufferDesc *sub_input_desc( struct nego_input *peer, const BYTE *token, ULONG token_len,
++                                      SecBuffer *buf, SecBufferDesc *desc )
++{
++    if (!token) return NULL;
++    buf->pvBuffer = peer->client + (token - peer->mapped);
++    buf->cbBuffer = token_len;
++    buf->BufferType = SECBUFFER_TOKEN;
++    desc->ulVersion = SECBUFFER_VERSION;
++    desc->cBuffers = 1;
++    desc->pBuffers = buf;
++    return desc;
++}
++
++/* The sub-package returns its token in a buffer on the LSA heap (see lsa_MapBuffer); take a copy and drop it,
++ * because the Negotiate package has to replace it with the framed token. */
++static NTSTATUS take_sub_output( SecBufferDesc *output, int idx, void *client_ptr, BYTE **token, ULONG *len )
++{
++    SecBuffer *buf = &output->pBuffers[idx];
++
++    *token = NULL;
++    *len = 0;
++    if (!buf->pvBuffer || !buf->cbBuffer) return SEC_E_OK;
++    if (!(*token = malloc( buf->cbBuffer ))) return SEC_E_INSUFFICIENT_MEMORY;
++    memcpy( *token, buf->pvBuffer, buf->cbBuffer );
++    *len = buf->cbBuffer;
++    if (buf->pvBuffer != client_ptr) lsa_funcs->FreeLsaHeap( buf->pvBuffer );
++    buf->pvBuffer = NULL;
++    buf->cbBuffer = 0;
++    return SEC_E_OK;
++}
++
++static void set_output_token( SecBufferDesc *output, int idx, BYTE *mem, ULONG len )
++{
++    output->pBuffers[idx].pvBuffer = mem;
++    output->pBuffers[idx].cbBuffer = len;
++    output->pBuffers[idx].BufferType = (output->pBuffers[idx].BufferType & SECBUFFER_ATTRMASK)
++            | SECBUFFER_TOKEN | SECBUFFER_UNMAPPED;
++}
++
++static void set_empty_output( SecBufferDesc *output, int idx )
++{
++    output->pBuffers[idx].pvBuffer = NULL;
++    output->pBuffers[idx].cbBuffer = 0;
++    output->pBuffers[idx].BufferType = SECBUFFER_TOKEN;
++}
++
++/* The sub-package hands its user-mode context data up on the call where it creates its context; keep a copy.
++ * The caller (secur32) replaces its context object on every round and the user-mode half registers itself
++ * under that object's address (lsa.c: LSA_USER_HANDLE(&handle)), so a round the mechanism itself produces no
++ * mapping for - which is exactly the extra round SPNEGO adds after the mechanism has finished - would leave
++ * the caller's new object unregistered, and sealing would then fail with SEC_E_INVALID_HANDLE. */
++static void save_user_data( struct sec_handle *ctxt, const SecBuffer *context_data )
++{
++    BYTE *copy;
++
++    if (!context_data->cbBuffer || !context_data->pvBuffer) return;
++    if (!(copy = malloc( context_data->cbBuffer ))) return;
++    memcpy( copy, context_data->pvBuffer, context_data->cbBuffer );
++    free( ctxt->user_data );
++    ctxt->user_data = copy;
++    ctxt->user_data_len = context_data->cbBuffer;
++    ctxt->user_ssp = ctxt->krb ? SSP_KERBEROS : SSP_NTLM;
++}
++
++/* Wrap a sub-package context blob in the struct user_context_data the user-mode half expects, and hand the
++ * caller the mapping for this round's context object. */
++static BOOL publish_user_data( const BYTE *blob, ULONG len, ULONG ssp, SecBuffer *context_data )
++{
++    struct user_context_data *data = lsa_funcs->AllocateLsaHeap( sizeof(*data) + len );
++
++    if (!data) return FALSE;
++    data->ssp = ssp;
++    memcpy( data + 1, blob, len );
++    context_data->cbBuffer = len + sizeof(*data);
++    context_data->pvBuffer = data;
++    return TRUE;
++}
++
++static LSA_SEC_HANDLE sub_context_handle( struct sec_handle *ctxt, SECPKG_FUNCTION_TABLE *mech )
++{
++    return mech == ctxt->ntlm ? ctxt->handle_ntlm : ctxt->handle_krb;
++}
++
++static LSA_SEC_HANDLE *sub_new_handle( struct sec_handle *ctxt, SECPKG_FUNCTION_TABLE *mech )
++{
++    return mech == ctxt->ntlm ? &ctxt->handle_ntlm : &ctxt->handle_krb;
++}
++
++static NTSTATUS call_isc( struct sec_handle *ctxt, struct sec_handle *cred, SECPKG_FUNCTION_TABLE *mech,
++        LSA_SEC_HANDLE *new_handle, UNICODE_STRING *target_name, ULONG context_req, ULONG target_data_rep,
++        SecBufferDesc *input, SecBufferDesc *output, ULONG *context_attr, TimeStamp *expiry,
++        BOOLEAN *mapped_context, SecBuffer *context_data )
++{
++    return mech->InitLsaModeContext( cred ? (mech == ctxt->ntlm ? cred->handle_ntlm : cred->handle_krb) : 0,
++            sub_context_handle( ctxt, mech ), target_name, context_req, target_data_rep, input, new_handle,
++            output, context_attr, expiry, mapped_context, context_data );
++}
++
++static NTSTATUS call_asc( struct sec_handle *ctxt, struct sec_handle *cred, SECPKG_FUNCTION_TABLE *mech,
++        LSA_SEC_HANDLE *new_handle, SecBufferDesc *input, ULONG context_req, ULONG target_data_rep,
++        SecBufferDesc *output, ULONG *context_attr, TimeStamp *expiry, BOOLEAN *mapped_context,
++        SecBuffer *context_data )
++{
++    return mech->AcceptLsaModeContext( cred ? (mech == ctxt->ntlm ? cred->handle_ntlm : cred->handle_krb) : 0,
++            sub_context_handle( ctxt, mech ), input, context_req, target_data_rep, new_handle,
++            output, context_attr, expiry, mapped_context, context_data );
++}
++
++static const SecPkgInfoW nego_package_info =
++{
++    CAPS,
++    1,
++    RPC_C_AUTHN_GSS_NEGOTIATE,
++    NEGO_MAX_TOKEN,
++    nego_name_W,
++    negotiate_comment_W
++};
++
+ static NTSTATUS NTAPI nego_LsaApCallPackageUntrusted( PLSA_CLIENT_REQUEST req, void *in_buf,
+     void *client_buf_base, ULONG in_buf_len, void **out_buf, ULONG *out_buf_len, NTSTATUS *ret_status )
+ {
+@@ -129,15 +630,12 @@
+ 
+ static NTSTATUS NTAPI nego_SpGetInfo( SecPkgInfoW *info )
+ {
+-    const SecPkgInfoW infoW = {CAPS, 1, RPC_C_AUTHN_GSS_NEGOTIATE, NEGO_MAX_TOKEN,
+-                               nego_name_W, negotiate_comment_W};
+-
+     TRACE( "%p\n", info );
+ 
+     /* LSA will make a copy before forwarding the structure, so
+      * it's safe to put pointers to dynamic or constant data there.
+      */
+-    *info = infoW;
++    *info = nego_package_info;
+     return STATUS_SUCCESS;
+ }
+ 
+@@ -204,8 +702,19 @@
+     LSA_SEC_HANDLE *new_context, SecBufferDesc *output, ULONG *context_attr, TimeStamp *expiry,
+     BOOLEAN *mapped_context, SecBuffer *context_data )
+ {
+-    NTSTATUS ret = SEC_E_INVALID_HANDLE;
+-    struct sec_handle *handle = NULL, *ctxt, *new_ctxt = NULL, *cred = NULL;
++    NTSTATUS ret = SEC_E_INVALID_HANDLE, status = SEC_E_INVALID_HANDLE;
++    struct sec_handle *handle = NULL, *ctxt = NULL, *new_ctxt = NULL, *cred = NULL;
++    SECPKG_FUNCTION_TABLE *mech = NULL;
++    struct spnego_msg msg;
++    struct nego_input peer = { NULL, 0, NULL };
++    SecBuffer sub_buf = { 0 };
++    SecBufferDesc sub_desc;
++    const BYTE *peer_token = NULL;
++    BYTE *inner = NULL, *framed = NULL;
++    ULONG peer_len = 0, inner_len = 0, capacity = 0, framed_len;
++    void *client_ptr = NULL;
++    int idx = -1;
++    BOOL have_sub = FALSE;
+ 
+     TRACE( "%Ix, %Ix, %p, %#lx, %lu, %p, %p, %p, %p, %p, %p, %p\n", credential, context, target_name,
+            context_req, target_data_rep, input, new_context, output, context_attr, expiry,
+@@ -224,45 +733,216 @@
+     }
+     if (!handle) return SEC_E_INVALID_HANDLE;
+ 
+-    if (handle->krb)
++    if (!output || (idx = token_buffer_index( output )) == -1)
+     {
+-        ret = handle->krb->InitLsaModeContext( credential ? cred->handle_krb : 0,
+-                context ? ctxt->handle_krb : 0, target_name, context_req, target_data_rep, input,
+-                new_context ? &ctxt->handle_krb : NULL, output, context_attr, expiry, mapped_context, context_data );
+-        if ((ret == SEC_E_OK || ret == SEC_I_CONTINUE_NEEDED) && new_context)
++        ret = SEC_E_BUFFER_TOO_SMALL;
++        goto done;
++    }
++    capacity = output->pBuffers[idx].cbBuffer;
++    client_ptr = output->pBuffers[idx].pvBuffer;
++
++    if (ctxt->mode == NEGO_MODE_SPNEGO)
++    {
++        if (ctxt->state == NEGO_STATE_DONE)
+         {
+-            ctxt->ntlm = NULL;
+-            *new_context = (LSA_SEC_HANDLE)ctxt;
+-            if (new_ctxt == ctxt) new_ctxt = NULL;
++            ret = SEC_E_INVALID_TOKEN; /* the exchange is over, as on Windows */
++            goto done;
++        }
++        if (ctxt->state == NEGO_STATE_AWAIT_FINAL)
++        {
++            /* The sub-package is already finished: this call only consumes the acceptor's final NegTokenResp,
++             * which the mechanism itself has no use for (RFC 4178 4.2.2). */
++            if (map_nego_input( input, &peer ) == SEC_E_OK &&
++                spnego_decode( peer.mapped, peer.len, &msg ) == SEC_E_OK &&
++                msg.kind == SPNEGO_MSG_RESP && msg.neg_state == SPNEGO_NEG_REJECT)
++            {
++                ret = SEC_E_LOGON_DENIED;
++                goto done;
++            }
++            set_empty_output( output, idx );
++            *context_attr = ctxt->attr;
++            ctxt->state = NEGO_STATE_DONE;
++            ret = SEC_E_OK;
++            goto done;
++        }
++    }
++
++    if (ctxt->state != NEGO_STATE_INIT)
++    {
++        if ((status = map_nego_input( input, &peer )) != SEC_E_OK)
++        {
++            ret = status;
++            goto done;
++        }
++        peer_token = peer.mapped;
++        peer_len = peer.len;
++
++        if (spnego_decode( peer_token, peer_len, &msg ) == SEC_E_OK)
++        {
++            peer_token = msg.token;
++            peer_len = msg.token_len;
++            ctxt->mode = NEGO_MODE_SPNEGO;
++            if (!peer_token)
++            {
++                ret = SEC_E_INVALID_TOKEN;
++                goto done;
++            }
++        }
++        else if (looks_like_ntlm( peer_token, peer_len ))
++        {
++            /* a peer that answers with the sub-package's own protocol gets the old pass-through treatment */
++            ctxt->mode = NEGO_MODE_RAW;
+         }
+         else
+         {
+-            ctxt->krb = NULL;
++            ret = SEC_E_INVALID_TOKEN;
++            goto done;
+         }
+     }
+ 
+-    if (ret != SEC_E_OK && ret != SEC_I_CONTINUE_NEEDED && handle->ntlm)
++    if (ctxt->mode == NEGO_MODE_RAW)
+     {
+-        ret = handle->ntlm->InitLsaModeContext( credential ? cred->handle_ntlm : 0,
+-                context ? ctxt->handle_ntlm : 0, target_name, context_req, target_data_rep, input,
+-                new_context ? &ctxt->handle_ntlm : NULL, output, context_attr, expiry, mapped_context, context_data );
+-        if ((ret == SEC_E_OK || ret == SEC_I_CONTINUE_NEEDED) && new_context)
++        mech = ctxt->krb ? ctxt->krb : ctxt->ntlm;
++        if (!mech)
+         {
+-            ctxt->krb = NULL;
+-            *new_context = (LSA_SEC_HANDLE)ctxt;
+-            if (new_ctxt == ctxt) new_ctxt = NULL;
++            ret = SEC_E_INVALID_HANDLE;
++            goto done;
+         }
++        ret = call_isc( ctxt, cred, mech, new_context ? sub_new_handle( ctxt, mech ) : NULL, target_name,
++                context_req, target_data_rep, input, output, context_attr, expiry, mapped_context, context_data );
++        if (ret == SEC_E_OK || ret == SEC_I_CONTINUE_NEEDED)
++        {
++            ctxt->attr = *context_attr;
++            ctxt->state = (ret == SEC_E_OK) ? NEGO_STATE_DONE : NEGO_STATE_NEGOTIATING;
++        }
++        goto done;
+     }
+ 
+-    if (*mapped_context)
++    if (ctxt->state == NEGO_STATE_INIT)
+     {
+-        struct user_context_data *data = lsa_funcs->AllocateLsaHeap( sizeof(*data) + context_data->cbBuffer );
++        /* first call: Kerberos first, NTLM when that fails, as before */
++        if (ctxt->krb)
++        {
++            status = call_isc( ctxt, cred, ctxt->krb, new_context ? &ctxt->handle_krb : NULL, target_name,
++                    context_req, target_data_rep, NULL, output, context_attr, expiry, mapped_context, context_data );
++            if (status == SEC_E_OK || status == SEC_I_CONTINUE_NEEDED)
++            {
++                ctxt->ntlm = NULL;
++                mech = ctxt->krb;
++            }
++            else
++            {
++                ctxt->krb = NULL;
++            }
++        }
++        if (!mech && ctxt->ntlm)
++        {
++            status = call_isc( ctxt, cred, ctxt->ntlm, new_context ? &ctxt->handle_ntlm : NULL, target_name,
++                    context_req, target_data_rep, NULL, output, context_attr, expiry, mapped_context, context_data );
++            if (status == SEC_E_OK || status == SEC_I_CONTINUE_NEEDED) mech = ctxt->ntlm;
++        }
++        if (!mech)
++        {
++            ret = status;
++            goto done;
++        }
++        have_sub = TRUE;
++    }
++    else
++    {
++        mech = ctxt->krb ? ctxt->krb : ctxt->ntlm;
++        if (!mech)
++        {
++            ret = SEC_E_INVALID_HANDLE;
++            goto done;
++        }
++        status = call_isc( ctxt, NULL, mech, new_context ? sub_new_handle( ctxt, mech ) : NULL, target_name,
++                context_req, target_data_rep, sub_input_desc( &peer, peer_token, peer_len, &sub_buf, &sub_desc ),
++                output, context_attr, expiry, mapped_context, context_data );
++        have_sub = TRUE;
++    }
+ 
+-        data->ssp = (ctxt->krb ? SSP_KERBEROS : SSP_NTLM);
+-        memcpy( data + 1, context_data->pvBuffer, context_data->cbBuffer );
+-        context_data->cbBuffer += sizeof(*data);
+-        lsa_funcs->FreeLsaHeap( context_data->pvBuffer );
+-        context_data->pvBuffer = data;
++    if (status != SEC_E_OK && status != SEC_I_CONTINUE_NEEDED)
++    {
++        ret = status;
++        goto done;
++    }
++    ctxt->oid = mech == ctxt->ntlm ? oid_ntlm : oid_krb5;
++    ctxt->oid_len = mech == ctxt->ntlm ? sizeof(oid_ntlm) : sizeof(oid_krb5);
++    ctxt->attr = *context_attr;
++    ctxt->mode = NEGO_MODE_SPNEGO;
++
++    if ((ret = take_sub_output( output, idx, client_ptr, &inner, &inner_len )) != SEC_E_OK) goto done;
++
++    if (status == SEC_E_OK && !inner_len)
++    {
++        /* the mechanism finished without a token to send */
++        set_empty_output( output, idx );
++        ctxt->state = NEGO_STATE_DONE;
++        ret = SEC_E_OK;
++        goto done;
++    }
++
++    if (ctxt->state == NEGO_STATE_INIT)
++        framed_len = spnego_init_size( ctxt->oid_len, inner_len );
++    else
++        framed_len = spnego_resp_size( SPNEGO_NEG_ACCEPT_INCOMPLETE, TRUE, ctxt->oid_len, inner_len );
++
++    if (client_ptr && framed_len > capacity)
++    {
++        ret = SEC_E_BUFFER_TOO_SMALL;
++        goto done;
++    }
++    if (!(framed = lsa_funcs->AllocateLsaHeap( framed_len )))
++    {
++        ret = SEC_E_INSUFFICIENT_MEMORY;
++        goto done;
++    }
++    if (ctxt->state == NEGO_STATE_INIT)
++        spnego_encode_init( framed, ctxt->oid, ctxt->oid_len, inner, inner_len );
++    else
++        spnego_encode_resp( framed, SPNEGO_NEG_ACCEPT_INCOMPLETE, ctxt->oid, ctxt->oid_len, inner, inner_len );
++    set_output_token( output, idx, framed, framed_len );
++
++    /* Windows reports no mechanism attributes until a mechanism has been picked */
++    if (ctxt->state == NEGO_STATE_INIT) *context_attr = ISC_RET_INTERMEDIATE_RETURN;
++
++    /* The sub-package may already be done here: that is what makes this call return SEC_I_CONTINUE_NEEDED
++     * *with* the token instead of SEC_E_OK with it, so that the caller transmits it. */
++    ctxt->state = (status == SEC_E_OK) ? NEGO_STATE_AWAIT_FINAL : NEGO_STATE_NEGOTIATING;
++    ret = SEC_I_CONTINUE_NEEDED;
++
++done:
++    free( inner );
++    if (have_sub && (sub_buf.BufferType & SECBUFFER_UNMAPPED)) lsa_funcs->FreeLsaHeap( sub_buf.pvBuffer );
++    if (ret == SEC_E_OK || ret == SEC_I_CONTINUE_NEEDED)
++    {
++        if (new_context)
++        {
++            *new_context = (LSA_SEC_HANDLE)ctxt;
++            if (new_ctxt == ctxt) new_ctxt = NULL;
++        }
++        if (*mapped_context)
++        {
++            BYTE *blob = context_data->pvBuffer;
++            ULONG len = context_data->cbBuffer;
++
++            save_user_data( ctxt, context_data );
++            if (!publish_user_data( blob, len, ctxt->user_ssp, context_data ))
++            {
++                *mapped_context = FALSE;
++                context_data->pvBuffer = NULL;
++                context_data->cbBuffer = 0;
++            }
++            lsa_funcs->FreeLsaHeap( blob );
++        }
++        else if (ctxt->user_data &&
++                 publish_user_data( ctxt->user_data, ctxt->user_data_len, ctxt->user_ssp, context_data ))
++        {
++            /* the mechanism produced no mapping on this round: re-publish the one it produced earlier, so the
++             * caller's context object for this round is registered too */
++            *mapped_context = TRUE;
++        }
+     }
+     free( new_ctxt );
+     return ret;
+@@ -272,8 +952,19 @@
+     SecBufferDesc *input, ULONG context_req, ULONG target_data_rep, LSA_SEC_HANDLE *new_context,
+     SecBufferDesc *output, ULONG *context_attr, TimeStamp *expiry, BOOLEAN *mapped_context, SecBuffer *context_data )
+ {
+-    SECURITY_STATUS ret = SEC_E_INVALID_HANDLE;
+-    struct sec_handle *handle = NULL, *ctxt, *new_ctxt = NULL, *cred = NULL;
++    SECURITY_STATUS ret = SEC_E_INVALID_HANDLE, status = SEC_E_INVALID_HANDLE;
++    struct sec_handle *handle = NULL, *ctxt = NULL, *new_ctxt = NULL, *cred = NULL;
++    SECPKG_FUNCTION_TABLE *mech = NULL;
++    struct spnego_msg msg;
++    struct nego_input peer = { NULL, 0, NULL };
++    SecBuffer sub_buf = { 0 };
++    SecBufferDesc sub_desc;
++    const BYTE *peer_token = NULL;
++    BYTE *inner = NULL, *framed = NULL;
++    ULONG peer_len = 0, inner_len = 0, capacity = 0, framed_len;
++    void *client_ptr = NULL;
++    int idx = -1;
++    BOOL have_sub = FALSE;
+ 
+     TRACE( "%Ix, %Ix, %#lx, %lu, %p, %p, %p, %p, %p, %p, %p\n", credential, context, context_req, target_data_rep,
+            input, new_context, output, context_attr, expiry, mapped_context, context_data );
+@@ -291,47 +982,176 @@
+     }
+     if (!handle) return SEC_E_INVALID_HANDLE;
+ 
+-    if (handle->krb)
++    /* msv1_0's acceptor uses buffer 0 unconditionally (its InitLsaModeContext uses the token index), so the
++     * framework token must go to the same one to stay in step with the sub-package. */
++    if (!output || !output->cBuffers)
+     {
+-        ret = handle->krb->AcceptLsaModeContext( credential ? cred->handle_krb : 0,
+-                context ? ctxt->handle_krb : 0, input, context_req, target_data_rep,
+-                new_context ? &ctxt->handle_krb : NULL,
+-                output, context_attr, expiry, mapped_context, context_data );
+-        if ((ret == SEC_E_OK || ret == SEC_I_CONTINUE_NEEDED) && new_context)
++        ret = SEC_E_BUFFER_TOO_SMALL;
++        goto done;
++    }
++    idx = 0;
++    capacity = output->pBuffers[idx].cbBuffer;
++    client_ptr = output->pBuffers[idx].pvBuffer;
++
++    if (ctxt->state == NEGO_STATE_DONE)
++    {
++        ret = SEC_E_INVALID_TOKEN; /* nothing left to accept, as on Windows */
++        goto done;
++    }
++
++    if (!input || !input->cBuffers || !input->pBuffers[0].pvBuffer || !input->pBuffers[0].cbBuffer)
++    {
++        /* No token to look at.  The sub-packages answered SEC_E_INCOMPLETE_MESSAGE to this before the patch
++         * (Kerberos first, NTLM second), and nothing is framed without a token, so keep that answer. */
++        ret = (ctxt->krb || ctxt->ntlm) ? SEC_E_INCOMPLETE_MESSAGE : SEC_E_INVALID_HANDLE;
++        goto done;
++    }
++
++    if ((status = map_nego_input( input, &peer )) != SEC_E_OK)
++    {
++        ret = status;
++        goto done;
++    }
++    peer_token = peer.mapped;
++    peer_len = peer.len;
++
++    if (spnego_decode( peer_token, peer_len, &msg ) == SEC_E_OK)
++    {
++        peer_token = msg.token;
++        peer_len = msg.token_len;
++        ctxt->mode = NEGO_MODE_SPNEGO;
++        if (!peer_token)
+         {
+-            ctxt->ntlm = NULL;
+-            *new_context = (LSA_SEC_HANDLE)ctxt;
+-            if (new_ctxt == ctxt) new_ctxt = NULL;
++            ret = SEC_E_INVALID_TOKEN;
++            goto done;
+         }
+-        else
++    }
++    else if (looks_like_ntlm( peer_token, peer_len ))
++    {
++        /* a peer that opens with the sub-package's own protocol gets the old pass-through treatment */
++        ctxt->mode = NEGO_MODE_RAW;
++    }
++    else
++    {
++        ret = SEC_E_INVALID_TOKEN;
++        goto done;
++    }
++
++    if (ctxt->mode == NEGO_MODE_RAW)
++    {
++        mech = ctxt->krb ? ctxt->krb : ctxt->ntlm;
++        if (!mech)
++        {
++            ret = SEC_E_INVALID_HANDLE;
++            goto done;
++        }
++        ret = call_asc( ctxt, cred, mech, new_context ? sub_new_handle( ctxt, mech ) : NULL, input, context_req,
++                target_data_rep, output, context_attr, expiry, mapped_context, context_data );
++        if (ret == SEC_E_OK || ret == SEC_I_CONTINUE_NEEDED)
+         {
+-            ctxt->krb = NULL;
++            ctxt->attr = *context_attr;
++            ctxt->state = (ret == SEC_E_OK) ? NEGO_STATE_DONE : NEGO_STATE_NEGOTIATING;
+         }
++        goto done;
+     }
+ 
+-    if (ret != SEC_E_OK && ret != SEC_I_CONTINUE_NEEDED && handle->ntlm)
++    if (ctxt->state == NEGO_STATE_INIT)
+     {
+-        ret = handle->ntlm->AcceptLsaModeContext( credential ? cred->handle_ntlm : 0,
+-                context ? ctxt->handle_ntlm : 0, input, context_req, target_data_rep,
+-                new_context ? &ctxt->handle_ntlm : NULL,
+-                output, context_attr, expiry, mapped_context, context_data );
+-        if ((ret == SEC_E_OK || ret == SEC_I_CONTINUE_NEEDED) && new_context)
++        /* pick the mechanism the initiator offered */
++        if (msg.mech_types_ntlm || looks_like_ntlm( peer_token, peer_len )) mech = ctxt->ntlm;
++        else if (msg.mech_types_krb5) mech = ctxt->krb;
++        if (!mech)
+         {
+-            ctxt->krb = NULL;
+-            *new_context = (LSA_SEC_HANDLE)ctxt;
+-            if (new_ctxt == ctxt) new_ctxt = NULL;
++            ret = SEC_E_SECPKG_NOT_FOUND;
++            goto done;
+         }
++        if (mech == ctxt->ntlm) ctxt->krb = NULL;
++        else ctxt->ntlm = NULL;
++        ctxt->oid = mech == ctxt->ntlm ? oid_ntlm : oid_krb5;
++        ctxt->oid_len = mech == ctxt->ntlm ? sizeof(oid_ntlm) : sizeof(oid_krb5);
+     }
++    else
++    {
++        mech = ctxt->krb ? ctxt->krb : ctxt->ntlm;
++        if (!mech)
++        {
++            ret = SEC_E_INVALID_HANDLE;
++            goto done;
++        }
++    }
++
++    status = call_asc( ctxt, cred, mech, new_context ? sub_new_handle( ctxt, mech ) : NULL,
++            sub_input_desc( &peer, peer_token, peer_len, &sub_buf, &sub_desc ), context_req, target_data_rep,
++            output, context_attr, expiry, mapped_context, context_data );
++    have_sub = TRUE;
+ 
+-    if (*mapped_context)
++    if (status != SEC_E_OK && status != SEC_I_CONTINUE_NEEDED)
+     {
+-        struct user_context_data *data = lsa_funcs->AllocateLsaHeap( sizeof(*data) + context_data->cbBuffer );
++        ret = status;
++        goto done;
++    }
++    ctxt->attr = *context_attr;
++
++    if ((ret = take_sub_output( output, idx, client_ptr, &inner, &inner_len )) != SEC_E_OK) goto done;
++
++    if (status == SEC_E_OK)
++        /* the mechanism is done: the acceptor's last token is a NegTokenResp with accept-completed carrying
++         * whatever the mechanism produced (nothing, for NTLM); the caller sends it and the initiator answers
++         * with an empty token and SEC_E_OK */
++        framed_len = spnego_resp_size( SPNEGO_NEG_ACCEPT_COMPLETED, FALSE, 0, inner_len );
++    else
++        framed_len = spnego_resp_size( SPNEGO_NEG_ACCEPT_INCOMPLETE, TRUE, ctxt->oid_len, inner_len );
+ 
+-        data->ssp = (ctxt->krb ? SSP_KERBEROS : SSP_NTLM);
+-        memcpy( data + 1, context_data->pvBuffer, context_data->cbBuffer );
+-        context_data->cbBuffer += sizeof(*data);
+-        lsa_funcs->FreeLsaHeap( context_data->pvBuffer );
+-        context_data->pvBuffer = data;
++    if (client_ptr && framed_len > capacity)
++    {
++        ret = SEC_E_BUFFER_TOO_SMALL;
++        goto done;
++    }
++    if (!(framed = lsa_funcs->AllocateLsaHeap( framed_len )))
++    {
++        ret = SEC_E_INSUFFICIENT_MEMORY;
++        goto done;
++    }
++    if (status == SEC_E_OK)
++        spnego_encode_resp( framed, SPNEGO_NEG_ACCEPT_COMPLETED, NULL, 0, inner, inner_len );
++    else
++        spnego_encode_resp( framed, SPNEGO_NEG_ACCEPT_INCOMPLETE, ctxt->oid, ctxt->oid_len, inner, inner_len );
++    set_output_token( output, idx, framed, framed_len );
++
++    ctxt->state = (status == SEC_E_OK) ? NEGO_STATE_DONE : NEGO_STATE_NEGOTIATING;
++    ret = status;
++
++done:
++    free( inner );
++    if (have_sub && (sub_buf.BufferType & SECBUFFER_UNMAPPED)) lsa_funcs->FreeLsaHeap( sub_buf.pvBuffer );
++    if (ret == SEC_E_OK || ret == SEC_I_CONTINUE_NEEDED)
++    {
++        if (new_context)
++        {
++            *new_context = (LSA_SEC_HANDLE)ctxt;
++            if (new_ctxt == ctxt) new_ctxt = NULL;
++        }
++        if (*mapped_context)
++        {
++            BYTE *blob = context_data->pvBuffer;
++            ULONG len = context_data->cbBuffer;
++
++            save_user_data( ctxt, context_data );
++            if (!publish_user_data( blob, len, ctxt->user_ssp, context_data ))
++            {
++                *mapped_context = FALSE;
++                context_data->pvBuffer = NULL;
++                context_data->cbBuffer = 0;
++            }
++            lsa_funcs->FreeLsaHeap( blob );
++        }
++        else if (ctxt->user_data &&
++                 publish_user_data( ctxt->user_data, ctxt->user_data_len, ctxt->user_ssp, context_data ))
++        {
++            /* the mechanism produced no mapping on this round: re-publish the one it produced earlier, so the
++             * caller's context object for this round is registered too */
++            *mapped_context = TRUE;
++        }
+     }
+     free( new_ctxt );
+     return ret;
+@@ -356,6 +1176,7 @@
+         ret = ctxt->ntlm->DeleteContext( ctxt->handle_ntlm );
+     }
+     TRACE( "freeing %p\n", ctxt );
++    free( ctxt->user_data );
+     free( ctxt );
+     return ret;
+ }

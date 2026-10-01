@@ -1,0 +1,35 @@
+--- a/dlls/dwmapi/dwmapi_main.c	2026-09-18 15:36:23.000000000 -0500
++++ b/dlls/dwmapi/dwmapi_main.c	2026-10-01 00:03:08.484900848 -0500
+@@ -179,6 +179,23 @@
+     return FALSE;
+ }
+ 
++/* DEBUG ONLY: name the module that called us, so a FIXME can be attributed to a library
++ * without a relay trace.  Not part of the series. */
++static void log_caller(DWORD attribute, HWND hwnd)
++{
++    HMODULE module = NULL;
++    WCHAR path[MAX_PATH];
++    void *caller = __builtin_return_address(0);
++
++    if (!GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
++                            GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (const WCHAR *)caller, &module))
++        return;
++    if (!GetModuleFileNameW(module, path, ARRAY_SIZE(path)))
++        return;
++    WARN("attribute %lu on hwnd %p came from %p in %s\n", attribute, hwnd, caller,
++         wine_dbgstr_w(path));
++}
++
+ /**********************************************************************
+  *           DwmGetWindowAttribute         (DWMAPI.@)
+  */
+@@ -189,6 +206,8 @@
+ 
+     TRACE("(%p %ld %p %ld)\n", hwnd, attribute, pv_attribute, size);
+ 
++    log_caller(attribute, hwnd);
++
+     if (DwmIsCompositionEnabled(&enabled) == S_OK && !enabled)
+         return E_HANDLE;
+     if (!IsWindow(hwnd))

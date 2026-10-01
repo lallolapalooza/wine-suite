@@ -1,0 +1,7 @@
+
+Wed Sep 30 23:15:02 2026
+ vncext:      VNC extension running!
+ vncext:      Listening for VNC connections on local interface(s), port 5902
+ vncext:      Created VNC server for screen 0
+[mi] mieq: warning: overriding existing handler (nil) with 0x5a02b2a1c0a0 for event 2
+[mi] mieq: warning: overriding existing handler (nil) with 0x5a02b2a1c0a0 for event 3
