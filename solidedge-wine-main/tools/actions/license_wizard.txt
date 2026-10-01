@@ -1,0 +1,6 @@
+# If the Siemens license wizard appears, screenshot it first — never guess at its buttons.
+note license-wizard
+wait 5
+shot lic0
+wait 5
+shot lic1

@@ -296,3 +296,103 @@ Worked example from that tool: in `control.dll`,
 `PostMessageW(tab_item_hwnd, WM_SYSCOMMAND (0x112), SC_*, 0)` — i.e. that is the **document tab's**
 close path (`CXTPTabManagerItem::GetHandle` from `ToolkitPro2410vc170x64U.dll` supplies the HWND),
 not the main frame's title-bar X.
+
+## M9 — the DwmGetWindowAttribute patch, verified two ways
+
+`patches/local/0023-dwmapi-window-attributes.patch` implements the M3 contract and stores
+`DwmSetWindowAttribute` values as window properties so they round-trip (as Windows does).
+
+**1. The Wine test suite** (the form every sibling project uses for evidence):
+
+```
+$ DISP=:2 tools/run_wine_tests.sh dwmapi dwmapi
+== building dlls/dwmapi/tests
+== running dwmapi_test.exe dwmapi under .../wine-install/bin/wine
+0020:dwmapi: 54 tests executed (0 marked as todo, 0 as flaky, 0 failures), 0 skipped.
+```
+
+`test_DWMWA_attributes()` asserts the whole table: `S_OK`+value for 1/14/15/16/20/33/37/38,
+`E_INVALIDARG` for the attributes Windows does not know, `E_INVALIDARG` for a NULL pointer or a
+too-small DWORD buffer, `E_NOT_SUFFICIENT_BUFFER` for a too-small RECT buffer on 5/9, `E_HANDLE`
+for a bogus HWND and for a child window on 9, an exact-DWORD requirement on 37, and the
+set/get round trips.
+
+**2. The differential probe** — the same `dwmprobe.exe` on the guest and under this fork, diffed:
+
+```
+$ diff <(grep -E '^attr|^pv|^size|^bogus|^set|^get|^DwmIs' logs/dwmprobe_windows.txt) \
+       <(grep -E '^attr|^pv|^size|^bogus|^set|^get|^DwmIs' logs/dwmprobe_wine.txt)
+13c13
+< attr  5 size 16 DWMWA_CAPTION_BUTTON_BOUNDS   hr=0x00000000  INT[4] 247 0 393 30
+> attr  5 size 16 DWMWA_CAPTION_BUTTON_BOUNDS   hr=0x00000000  INT[4] 346 0 400 26
+21c21
+< attr  9 size 16 DWMWA_EXTENDED_FRAME_BOUNDS   hr=0x00000000  INT[4] 57 50 443 343
+> attr  9 size 16 DWMWA_EXTENDED_FRAME_BOUNDS   hr=0x00000000  INT[4] 50 50 450 350
+82c82
+< attr 40 size  4                                hr=0x8007007a  unchanged abababab..
+> attr 40 size  4                                hr=0x80070057  unchanged abababab..
+```
+
+Every **status code and buffer-size rule** now matches. The remaining differences:
+
+* attributes 5 and 9 return *a* rect in both cases; the numbers depend on each platform's window
+  decoration and non-client metrics (`INT[4] 247 0 393 30` vs `346 0 400 26`), so they are not
+  comparable values and the test does not assert them.
+* attribute 40 is one Windows knows and Wine has no constant for; only its `size < 8` case differs
+  in which failure it reports (`ERROR_INSUFFICIENT_BUFFER` vs `E_INVALIDARG`).
+* attribute **19** is the pre-Windows-11 number for `DWMWA_WINDOW_CORNER_PREFERENCE` (33), and
+  Windows 11 still answers it: `set 19=3` → `S_OK`, then `get 19` → `1` while `get 33` is
+  unchanged at `2`, and `set 33=4` leaves `get 19` at `1` — so they are **separate slots**. The
+  patch answers both (`DWMWA_WINDOW_CORNER_PREFERENCE_OLD`); the only residual difference is that
+  Windows *clamps* the value it reads back (3 → 1) where Wine returns what was set, which the test
+  deliberately does not assert.
+* `set 20=5` then `get 18` → `E_INVALIDARG` on both: 18 is not a usable number on this build even
+  though the SDK names it.
+
+## M10 — a ~900 ms SwapBuffers on the VNC display is the *display's*, not Wine's (native control)
+
+Measured while looking for the flickering viewport: on the TigerVNC display `:2` with the Intel Arc
+GPU, `SwapBuffers`/`glXSwapBuffers` with a swap interval of 1 blocks for **~900 ms** — with interval
+0 it is ~1.5 ms. Wine's per-window interval defaults to 1 (`dlls/win32u/window.c:5971
+win->swap_interval = 1;`), the same as Windows, and Solid Edge's `Visual.dll` names
+`wglSwapInterval{,ARB,EXT}`, so it can set it too.
+
+| client | display | interval | swap |
+|---|---|---|---|
+| `tools/winapi/swapprobe.exe` (Wine, top-level) | `:2` | 0 | **1.59 ms** |
+| `tools/winapi/swapprobe.exe` (Wine, top-level) | `:2` | 1 | **899.95 ms** (max 1001.61) |
+| `tools/winapi/swapprobe.exe` (Wine, child) | `:2` | 0 | 1.30 ms |
+| `tools/winapi/swapprobe.exe` (Wine, child) | `:2` | 1 | 899.93 ms |
+| `tools/winapi/swapprobe.exe` (Wine) | `:9` Xvfb/llvmpipe | 1 | 0.66 ms |
+| `tools/native/glxswap` (**native X client**, no Wine) | `:2` | 1 | **899.39 ms** (max 1001.18) |
+| `tools/native/glxswap` (**native X client**, no Wine) | `:2` | 0 | 1.67 ms |
+| `tools/native/glxswap` (native) | `:2`, `LIBGL_ALWAYS_SOFTWARE=1` | 1 | 0.50 ms |
+
+The native control settles it: the block is Xtigervnc's GLX present path, not Wine — so there is no
+Wine patch to write for it, and **a vsync-enabled GL application cannot be judged on `:2` with
+hardware GL** (it would run at ~1 fps and look exactly like a viewport that keeps going black).
+Two ways out, both measured: `LIBGL_ALWAYS_SOFTWARE=1` (llvmpipe, 0.50 ms at interval 1) or an
+Xvfb display.  Consequences for this project: run Solid Edge with
+`LIBGL_ALWAYS_SOFTWARE=1` while judging *presentation*, and re-check any timing claim on a display
+whose present does not block.
+
+A second control, for the record: `tools/winapi/glchild.exe` builds the shape of Solid Edge's
+viewport — a frame that paints its background and a GL child that draws and swaps — with the
+variants that Solid Edge's own imports suggest (`control.dll` and `ToolkitPro2410vc170x64U.dll`
+import `SetLayeredWindowAttributes`/`UpdateLayeredWindow`/`SetWindowRgn`, and `control.dll` calls
+`DwmSetWindowAttribute(hwnd, DWMWA_WINDOW_CORNER_PREFERENCE (0x21), 2 /* ROUND */, 4)`), and
+`tools/host/flicker.py` counted **0 black frames in every variant**:
+
+| variant | black frames |
+|---|---|
+| `--clipchildren` (default) | 0 / 60 |
+| `--no-clipchildren` | 0 / 60 |
+| `--single` (no `PFD_DOUBLEBUFFER`) | 0 / 60 |
+| `--no-clipchildren --single` | 0 / 60 |
+| `--layered` (`WS_EX_LAYERED` + `SetLayeredWindowAttributes`) | 0 / 50 |
+| `--rgn` (`SetWindowRgn` with a round rect) | 0 / 50 |
+| `--layered --rgn` | 0 / 50 |
+
+So "a GL child window in Wine", even a layered one with a rounded frame, does not flicker black on
+its own; the flicker needs whatever else Solid Edge does, and has to be found in the application's
+own logs and window tree rather than reproduced from its imports.

@@ -1,6 +1,6 @@
 # Solid Edge X (2026) on Wine — working state
 
-Updated: 2026-10-01 00:00 (session 1). **Read `FINDINGS.md` next** — it holds the evidence; this
+Updated: 2026-10-01 00:50 (session 1). **Read `FINDINGS.md` next** — it holds the evidence; this
 file holds the position.
 
 ## Goal
@@ -30,6 +30,34 @@ fix three defects, each evidenced by VNC observation + Wine logs + disassembly:
 | Patch series in the working directory | `patches/series/0001..0022` (acad base 14 + powerbi 5 + revit graphics 3), `patches/sources/` (the untouched originals of all four sibling projects), `patches/SERIES.tsv` (provenance), `patches/README.md`. All 22 apply in order to pristine wine-11.18, and all 46 files they touch are byte-identical to the build tree. |
 | VNC display | `Xtigervnc :2` 1600x1000x24 on port 5902, `-SecurityTypes None -localhost`. `openbox` started by `tools/run_se.sh`. |
 | DWM patch written | `patches/local/0023-dwmapi-window-attributes.patch` — implements the M3 contract and stores `DwmSetWindowAttribute` values as window properties so they round-trip; adds `test_DWMWA_attributes()` to `dlls/dwmapi/tests/dwmapi.c`. Both files **compile clean** (cross-compiled standalone with the exact flags from the build log). Applies clean to the patched tree (`patch -p1 --dry-run` OK). **Not yet run.** |
+
+## New since the last update
+- The fork is **built and installed**: `wine-install/bin/wine --version` → `wine-11.18`. The build
+  followed the Wine wiki's new-WoW64 recipe; `nasm` was absent and unnecessary.
+- `patches/local/0023` is applied and **verified twice** (FINDINGS **M9**):
+  `tools/run_wine_tests.sh dwmapi dwmapi` → `54 tests executed (0 marked as todo, 0 as flaky,
+  0 failures)`; and the probe diff against the guest now matches on every status code and
+  buffer-size rule.
+- Two control experiments killed two candidate causes of bug 1 (FINDINGS **M10**): a GL child window
+  in Wine does **not** flicker black in any of seven shapes (plain, ±`WS_CLIPCHILDREN`, ±double
+  buffer, layered, rounded region, both), and the ~900 ms `SwapBuffers` seen on the VNC display is
+  a **native** X client behaviour too — `tools/native/glxswap` blocks identically without Wine — so
+  it is Xtigervnc's present path, not a Wine defect. Run Solid Edge with
+  `LIBGL_ALWAYS_SOFTWARE=1` (measured 0.50 ms at swap interval 1) when judging presentation.
+- `Win+R` + `d:\g.bat` bootstrapped the guest command channel; the controller is
+  `tools/vm/vmcmd.sh` (now with `-f` for a script file).
+- **Solid Edge install is in progress**: `tools/install_se_prefix.sh state/work/prefix` is running
+  `winetricks dotnet48` (started 00:49; dotnet40 stage done). Watch it: winetricks' dotnet verbs
+  raise **modal dialogs** that block an unattended install — a `.NET Framework Initialization
+  Error` ("Unable to find a version of the runtime to run this application.") appeared and had to
+  be clicked; `tools/host/dismiss_dialogs.py` now runs alongside (log
+  `logs/dismiss_dialogs.log`). The prefix must end on **win10**: the MSI's `LaunchCondition`
+  rejects `VersionNT` 400..602, and winetricks switches the version around while installing .NET —
+  the script re-asserts win10 afterwards.
+- Media size check: the MSI's `File` table sums to **11.36 GB** for all languages, and all 30
+  `Media` cabs are present in `installer/media_x/Solid Edge/`. The guest has 13.27 GB free, so a
+  guest install is not affordable without freeing space — reference work stays with the differential
+  probes.
 
 ## In flight
 - `make -j8` of the whole tree (`logs/build.log`) — started 23:13, has built `tools/`, `libs/`, the

@@ -67,8 +67,8 @@ them, as Windows 7 does).  Run:
 
 and the probe's two outputs diff clean against the guest's.
 --- a/dlls/dwmapi/dwmapi_main.c	2026-09-18 15:36:23.000000000 -0500
-+++ b/dlls/dwmapi/dwmapi_main.c	2026-09-30 23:54:32.963511251 -0500
-@@ -96,13 +96,90 @@
++++ b/dlls/dwmapi/dwmapi_main.c	2026-10-01 00:39:00.253427342 -0500
+@@ -96,13 +96,95 @@
  }
  
  /**********************************************************************
@@ -84,6 +84,10 @@ and the probe's two outputs diff clean against the guest's.
 + * Kept as window properties: they live and die with the window and, because Wine's properties
 + * are server-side, they are visible to other processes' dwmapi just as Windows' are.
 + */
++/* DWMWA_WINDOW_CORNER_PREFERENCE moved from 19 to 33, and Windows 11 still answers both as
++ * separate slots (measured: setting 19 does not change what 33 reads, and the reverse). */
++#define DWMWA_WINDOW_CORNER_PREFERENCE_OLD 19
++
 +static void attribute_name(DWORD attribute, WCHAR *buffer, unsigned int len)
 +{
 +    static const WCHAR fmt[] = L"__wine_dwm_attr_%lu";
@@ -148,6 +152,7 @@ and the probe's two outputs diff clean against the guest's.
 +    case DWMWA_FREEZE_REPRESENTATION:
 +    case DWMWA_PASSIVE_UPDATE_MODE:
 +    case DWMWA_WINDOW_CORNER_PREFERENCE:
++    case DWMWA_WINDOW_CORNER_PREFERENCE_OLD:
 +    case DWMWA_USE_IMMERSIVE_DARK_MODE:
 +    case DWMWA_SYSTEMBACKDROP_TYPE:
 +        if (!attribute || size < sizeof(DWORD))
@@ -160,7 +165,7 @@ and the probe's two outputs diff clean against the guest's.
  
      return S_OK;
  }
-@@ -217,9 +294,68 @@
+@@ -217,9 +299,69 @@
          SetThreadDpiAwarenessContext(context);
          break;
      }
@@ -203,6 +208,7 @@ and the probe's two outputs diff clean against the guest's.
 +        hr = get_dword_attribute(hwnd, attribute, pv_attribute, size, 0);
 +        break;
 +    case DWMWA_WINDOW_CORNER_PREFERENCE:
++    case DWMWA_WINDOW_CORNER_PREFERENCE_OLD:
 +    case DWMWA_USE_IMMERSIVE_DARK_MODE:
 +        /* DWMWCP_DEFAULT / dark mode off until the application asks for something else. */
 +        hr = get_dword_attribute(hwnd, attribute, pv_attribute, size, 0);
@@ -232,8 +238,8 @@ and the probe's two outputs diff clean against the guest's.
      }
  
 --- a/dlls/dwmapi/tests/dwmapi.c	2026-09-18 15:36:23.000000000 -0500
-+++ b/dlls/dwmapi/tests/dwmapi.c	2026-09-30 23:54:58.820131768 -0500
-@@ -140,6 +140,113 @@
++++ b/dlls/dwmapi/tests/dwmapi.c	2026-10-01 00:39:00.308834558 -0500
+@@ -140,6 +140,128 @@
      DestroyWindow(hwnd);
  }
  
@@ -331,6 +337,21 @@ and the probe's two outputs diff clean against the guest's.
 +    if (hr == S_OK)
 +        ok(value == 2, "Got %lu.\n", value);
 +
++    /* attribute 19 is the pre-Windows-11 number for the corner preference, and Windows still
++     * answers it as its own slot */
++    hr = DwmGetWindowAttribute(hwnd, 19, &value, sizeof(value));
++    if (hr == S_OK)
++    {
++        value = 3;
++        hr = DwmSetWindowAttribute(hwnd, 19, &value, sizeof(value));
++        ok(hr == S_OK, "Got hr %#lx.\n", hr);
++        value = 0xdeadbeef;
++        hr = DwmGetWindowAttribute(hwnd, 19, &value, sizeof(value));
++        ok(hr == S_OK, "Got hr %#lx.\n", hr);
++    }
++    else
++        ok(broken(hr == E_INVALIDARG), "Got hr %#lx.\n", hr);
++
 +    /* a child window is not cloaked either, but has no DWM frame */
 +    value = 0xdeadbeef;
 +    hr = DwmGetWindowAttribute(child, DWMWA_CLOAKED, &value, sizeof(value));
@@ -347,7 +368,7 @@ and the probe's two outputs diff clean against the guest's.
  static void WINAPI apc_func(ULONG_PTR apc_count)
  {
      ++*(unsigned int *)apc_count;
-@@ -175,5 +282,6 @@
+@@ -175,5 +297,6 @@
      test_DwmIsCompositionEnabled();
      test_DwmGetCompositionTimingInfo();
      test_DWMWA_EXTENDED_FRAME_BOUNDS();

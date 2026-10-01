@@ -125,6 +125,15 @@ int main(void)
     { int v = 0x1234; hr = DwmSetWindowAttribute(hwnd, 34, &v, sizeof(v)); printf("set 34     -> hr=0x%08lx\n", (unsigned long)hr); }
     { unsigned int v = 0xAB; hr = DwmGetWindowAttribute(hwnd, 34, &v, 4); printf("get 34     -> hr=0x%08lx v=0x%x\n", (unsigned long)hr, v); }
 
+    /* is attribute 19 the same slot as 33 (WINDOW_CORNER_PREFERENCE), or its own? */
+    { int v = 3; hr = DwmSetWindowAttribute(hwnd, 19, &v, sizeof(v)); printf("set 19=3   -> hr=0x%08lx\n", (unsigned long)hr); }
+    { unsigned int v = 0xAB; hr = DwmGetWindowAttribute(hwnd, 19, &v, 4); printf("get 19     -> hr=0x%08lx v=%u\n", (unsigned long)hr, v); }
+    { unsigned int v = 0xAB; hr = DwmGetWindowAttribute(hwnd, 33, &v, 4); printf("get 33 after set19 -> hr=0x%08lx v=%u\n", (unsigned long)hr, v); }
+    { int v = 4; hr = DwmSetWindowAttribute(hwnd, 33, &v, sizeof(v)); printf("set 33=4   -> hr=0x%08lx\n", (unsigned long)hr); }
+    { unsigned int v = 0xAB; hr = DwmGetWindowAttribute(hwnd, 19, &v, 4); printf("get 19 after set33 -> hr=0x%08lx v=%u\n", (unsigned long)hr, v); }
+    { int v = 5; hr = DwmSetWindowAttribute(hwnd, 20, &v, sizeof(v)); printf("set 20=5   -> hr=0x%08lx\n", (unsigned long)hr); }
+    { unsigned int v = 0xAB; hr = DwmGetWindowAttribute(hwnd, 18, &v, 4); printf("get 18 after set20 -> hr=0x%08lx v=%u\n", (unsigned long)hr, v); }
+
     DestroyWindow(child);
     DestroyWindow(hwnd);
     printf("\ndone\n");

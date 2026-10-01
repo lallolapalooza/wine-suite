@@ -9,6 +9,7 @@
 #   --install-only   stop after the Solid Edge install
 #   --force-install  install even if Edge.exe is already present
 #   --skip-prereqs   do not run winetricks/VC++/WebView2 (use when they are already done)
+#   --msi            drive the MSI with msiexec directly instead of InstallShield's setup.exe
 #
 # Media: $SE_MEDIA must contain the InstallShield layout (setup.exe + "Siemens Solid Edge 2026.msi"
 # + the cabs), i.e. the extracted `Solid Edge/` directory from
@@ -30,11 +31,13 @@ PREFIX_IN=""
 INSTALL_ONLY=0
 FORCE_INSTALL=0
 SKIP_PREREQS=0
+USE_MSI=0
 while [ $# -gt 0 ]; do
   case "$1" in
     --install-only)  INSTALL_ONLY=1; shift ;;
     --force-install) FORCE_INSTALL=1; shift ;;
     --skip-prereqs)  SKIP_PREREQS=1; shift ;;
+    --msi)           USE_MSI=1; shift ;;
     --wine)          WINE="$2"; shift 2 ;;
     -h|--help)       sed -n '2,20p' "$0"; exit 0 ;;
     *)               PREFIX_IN="$1"; shift ;;
@@ -79,7 +82,9 @@ fi
 grep -q '#arch=win64' "$PREFIX/system.reg" || { missing "$PREFIX is not win64"; exit 1; }
 # Solid Edge 2026 refuses to install on a Windows version older than 10.
 wrun reg add 'HKCU\Software\Wine' /v Version /t REG_SZ /d win10 /f >/dev/null 2>&1
-wrun winetricks -q win10 >/dev/null 2>&1 || note "winetricks win10 returned non-zero"
+WINEPREFIX="$PREFIX" WINE="$WINE" WINESERVER="$(dirname "$WINE")/wineserver" \
+    winetricks -q win10 > "$LOG_DIR/winetricks_win10.log" 2>&1 ||
+  note "winetricks win10 returned non-zero (log $LOG_DIR/winetricks_win10.log)"
 ok "Windows version: win10"
 
 if [ "$SKIP_PREREQS" = 0 ] && [ "$INSTALL_ONLY" = 0 ]; then
@@ -101,23 +106,26 @@ if [ "$SKIP_PREREQS" = 0 ] && [ "$INSTALL_ONLY" = 0 ]; then
   fi
 
   step "2b. Visual C++ 2022 runtime (x64) — Edge.exe/render.dll import MSVCP140/VCRUNTIME140"
-  if [ -f "$PREFIX/drive_c/windows/system32/vcruntime140_1.dll" ]; then
-    note "already present"
+  # A Wine prefix always has a *builtin* vcruntime140_1.dll, so the presence of the file proves
+  # nothing; the native redistributable reports itself in the registry, so ask for that.
+  if reg_q() { WINEPREFIX="$PREFIX" "$WINE" reg query "$1" /v "$2" >/dev/null 2>&1; }
+     reg_q 'HKLM\Software\Microsoft\VisualStudio\14.0\VC\Runtimes\x64' Version; then
+    note "native VC++ runtime already registered"
   else
     ( cd "$MEDIA/ISSetupPrerequisites/MS VC++ 2022 Redist (x64)" && \
       WINEPREFIX="$PREFIX" DISPLAY="$DISPLAY_X" \
       WINE="$WINE" "$WINE" VC_redist.x64.exe /install /quiet /norestart ) \
       > "$LOG_DIR/vcredist.log" 2>&1
     rc=$?
-    if [ -f "$PREFIX/drive_c/windows/system32/vcruntime140_1.dll" ]; then
-      ok "VC_redist.x64.exe rc=$rc, vcruntime140_1.dll present"
+    if reg_q 'HKLM\Software\Microsoft\VisualStudio\14.0\VC\Runtimes\x64' Version; then
+      ok "VC_redist.x64.exe rc=$rc, runtime registered"
     else
-      warn "VC_redist rc=$rc and vcruntime140_1.dll is absent; trying winetricks vcrun2022"
+      warn "VC_redist rc=$rc and nothing registered; trying winetricks vcrun2022"
       ( WINEPREFIX="$PREFIX" DISPLAY="$DISPLAY_X" WINEDLLOVERRIDES="mshtml=" \
           WINE="$WINE" WINESERVER="$(dirname "$WINE")/wineserver" winetricks -q vcrun2022 ) \
         > "$LOG_DIR/vcrun2022.log" 2>&1
-      [ -f "$PREFIX/drive_c/windows/system32/vcruntime140_1.dll" ] &&
-        ok "winetricks vcrun2022 installed it" || missing "no vcruntime140_1.dll (see $LOG_DIR)"
+      reg_q 'HKLM\Software\Microsoft\VisualStudio\14.0\VC\Runtimes\x64' Version &&
+        ok "winetricks vcrun2022 installed it" || missing "no native VC++ runtime (see $LOG_DIR)"
     fi
   fi
 
@@ -134,6 +142,12 @@ if [ "$SKIP_PREREQS" = 0 ] && [ "$INSTALL_ONLY" = 0 ]; then
         winetricks -q --force dotnet48 ) > "$LOG_DIR/dotnet48.log" 2>&1
     ok "winetricks dotnet48 rc=$? (log $LOG_DIR/dotnet48.log)"
   fi
+  # winetricks switches the reported Windows version around while installing .NET (winxp64 then
+  # win7); Solid Edge wants 10, so put it back.
+  wrun reg add 'HKCU\Software\Wine' /v Version /t REG_SZ /d win10 /f >/dev/null 2>&1
+  WINEPREFIX="$PREFIX" WINE="$WINE" WINESERVER="$(dirname "$WINE")/wineserver" \
+      winetricks -q win10 >/dev/null 2>&1 || true
+  ok "Windows version re-asserted: win10"
 
   step "2d. WebView2 runtime (control.dll imports WebView2Loader.dll)"
   if [ -n "$(find "$PREFIX/drive_c/Program Files (x86)/Microsoft/EdgeWebView/Application" \
@@ -169,13 +183,27 @@ else
   # demo licence (SElicense.lic, from Licens~1.cab) is placed.
   INSTDIR_WIN='C:\Program Files\Siemens\Solid Edge 2026'
   LICFILE_WIN="$INSTDIR_WIN\\Preferences\\SELicense.lic"
-  VCMD="/s /clone_wait /v\"/qn\" /v\"INSTALLDIR=\\\"$INSTDIR_WIN\\\"\" /v\"USERFILESPEC=\\\"$LICFILE_WIN\\\"\" /v\"/l*v C:\\\\se_install.log\""
-  note "setup.exe $VCMD"
-  ( cd "$MEDIA" && WINEPREFIX="$PREFIX" DISPLAY="$DISPLAY_X" \
-      WINEDLLOVERRIDES="${SE_DLLOVERRIDES:-mshtml=}" \
-      timeout "${INSTALL_TIMEOUT:-7200}" \
-      "$WINE" ./setup.exe $VCMD ) > "$ilog" 2>&1
-  ok "setup rc=$? (log $ilog)"
+  if [ "$USE_MSI" = 1 ]; then
+    # Fallback that bypasses InstallShield's launcher entirely: drive the MSI directly with the
+    # en-US transform.  `setup.exe` is the path the vendor itself uses (FINDINGS M6); this is what
+    # to try when it fails before reaching the MSI.
+    note "msiexec /i \"Siemens Solid Edge 2026.msi\" TRANSFORMS=1033.mst"
+    ( cd "$MEDIA" && WINEPREFIX="$PREFIX" DISPLAY="$DISPLAY_X" \
+        WINEDLLOVERRIDES="${SE_DLLOVERRIDES:-mshtml=}" \
+        timeout "${INSTALL_TIMEOUT:-7200}" \
+        "$WINE" msiexec /i "Siemens Solid Edge 2026.msi" TRANSFORMS=1033.mst \
+            INSTALLDIR="$INSTDIR_WIN" USERFILESPEC="$LICFILE_WIN" \
+            /qn /l*v C:\\se_install_msi.log ) > "$ilog" 2>&1
+    ok "msiexec rc=$? (log $ilog)"
+  else
+    VCMD="/s /clone_wait /v\"/qn\" /v\"INSTALLDIR=\\\"$INSTDIR_WIN\\\"\" /v\"USERFILESPEC=\\\"$LICFILE_WIN\\\"\" /v\"/l*v C:\\\\se_install.log\""
+    note "setup.exe $VCMD"
+    ( cd "$MEDIA" && WINEPREFIX="$PREFIX" DISPLAY="$DISPLAY_X" \
+        WINEDLLOVERRIDES="${SE_DLLOVERRIDES:-mshtml=}" \
+        timeout "${INSTALL_TIMEOUT:-7200}" \
+        "$WINE" ./setup.exe $VCMD ) > "$ilog" 2>&1
+    ok "setup rc=$? (log $ilog)"
+  fi
 fi
 WINEPREFIX="$PREFIX" "$WINE" wineserver -w 2>/dev/null || true
 

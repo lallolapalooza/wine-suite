@@ -38,6 +38,8 @@ static int opt_invalidate = 1;
 static int opt_print = 0;
 static int opt_swapinterval = 0;
 static DWORD opt_childstyle = WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS;
+static int opt_layered = 0;      /* WS_EX_LAYERED + SetLayeredWindowAttributes on the frame */
+static int opt_rgn = 0;          /* SetWindowRgn (rounded) on the frame */
 static int run_seconds = 20;
 
 static HWND frame, child;
@@ -157,11 +159,13 @@ int main(int argc, char **argv)
         else if (!strcmp(argv[i], "--print")) opt_print = 1;
         else if (!strcmp(argv[i], "--swapinterval") && i + 1 < argc) opt_swapinterval = atoi(argv[++i]);
         else if (!strcmp(argv[i], "--childstyle") && i + 1 < argc) opt_childstyle = strtoul(argv[++i], NULL, 0);
+        else if (!strcmp(argv[i], "--layered")) opt_layered = 1;
+        else if (!strcmp(argv[i], "--rgn")) opt_rgn = 1;
         else run_seconds = atoi(argv[i]);
     }
-    printf("glchild: clipchildren=%d doublebuffer=%d parentpaint=%d invalidate=%d swapinterval=%d childstyle=%#lx secs=%d\n",
+    printf("glchild: clipchildren=%d doublebuffer=%d parentpaint=%d invalidate=%d swapinterval=%d childstyle=%#lx layered=%d rgn=%d secs=%d\n",
            opt_clipchildren, opt_doublebuffer, opt_parentpaint, opt_invalidate, opt_swapinterval,
-           (unsigned long)opt_childstyle, run_seconds);
+           (unsigned long)opt_childstyle, opt_layered, opt_rgn, run_seconds);
 
     wc.lpfnWndProc = frame_proc;
     wc.hInstance = GetModuleHandleA(NULL);
@@ -173,10 +177,23 @@ int main(int argc, char **argv)
     wc.lpszClassName = "glchild_child";
     RegisterClassA(&wc);
 
-    frame = CreateWindowExA(0, "glchild_frame", "glchild", WS_OVERLAPPEDWINDOW | WS_VISIBLE |
+    frame = CreateWindowExA(opt_layered ? WS_EX_LAYERED : 0, "glchild_frame", "glchild",
+                            WS_OVERLAPPEDWINDOW | WS_VISIBLE |
                             (opt_clipchildren ? WS_CLIPCHILDREN : 0),
                             40, 40, 800, 600, NULL, NULL, wc.hInstance, NULL);
     if (!frame) { printf("frame CreateWindow failed %lu\n", GetLastError()); return 1; }
+    if (opt_layered) {
+        /* Solid Edge's frame does this (control.dll/ToolkitPro import SetLayeredWindowAttributes
+         * and UpdateLayeredWindow), and puts a rounded region on it (it asks DWM for
+         * DWMWA_WINDOW_CORNER_PREFERENCE = DWMWCP_ROUND). */
+        BOOL ok = SetLayeredWindowAttributes(frame, 0, 255, LWA_ALPHA);
+        printf("SetLayeredWindowAttributes(LWA_ALPHA,255) -> %d (err %lu)\n", ok, GetLastError());
+    }
+    if (opt_rgn) {
+        HRGN rgn = CreateRoundRectRgn(0, 0, 801, 601, 24, 24);
+        BOOL ok = SetWindowRgn(frame, rgn, TRUE);
+        printf("SetWindowRgn(round) -> %d (err %lu)\n", ok, GetLastError());
+    }
 
     child = CreateWindowExA(0, "glchild_child", "", opt_childstyle,
                             4, 4, 780, 560, frame, NULL, wc.hInstance, NULL);
