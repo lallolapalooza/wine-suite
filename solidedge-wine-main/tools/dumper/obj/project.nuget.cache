@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "gaMQcOLcEio=",
+  "success": true,
+  "projectFilePath": "/home/asdf/projects/solidedge-wine-main/tools/dumper/dumper.csproj",
+  "expectedPackageFiles": [
+    "/home/asdf/.nuget/packages/icsharpcode.decompiler/11.0.0.9375/icsharpcode.decompiler.11.0.0.9375.nupkg.sha512",
+    "/home/asdf/.nuget/packages/system.collections.immutable/9.0.0/system.collections.immutable.9.0.0.nupkg.sha512",
+    "/home/asdf/.nuget/packages/system.reflection.metadata/9.0.0/system.reflection.metadata.9.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

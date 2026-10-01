@@ -1,0 +1,130 @@
+
+*.a
+*.bin
+# build output and binaries (regenerable from the sources)
+*.dll
+*.drv
+*.dylib
+*.exe
+installer/
+installer/cabs_x/_1237058C5D22FA431417F11350B7D79C
+installer/cabs_x/_1289F987508CECC5408362FC17A0DE7E
+installer/cabs_x/_180F196E7C266AF6F0C961143460570A
+installer/cabs_x/_1AB6FAD8A75D41A3691C5763A8A85641
+installer/cabs_x/_344676EE4759524FFAA1B0FAAFBD8BD9
+installer/cabs_x/_5AAD46FDC75FC70C6AAFB9B22B630036
+installer/cabs_x/_5B3754A6DE72638F14CB81F213C32B8F
+installer/cabs_x/_5ECD6BA83C7433BB0F6341DEA0420ADF
+installer/cabs_x/_756A79B93C20A15426D0F5C25B180868
+installer/cabs_x/_7C36EA7BE11E3E8431CB4A654DB50D38
+installer/cabs_x/_8632BE6FADE7735205B3952EF3F36BA6
+installer/cabs_x/_94F76E2B578CA4114B9BB96F9EFB9DC9
+installer/cabs_x/_9D34DB47FECF3C9963657DC83F10488A
+installer/cabs_x/_A1376B47B05B4A5E6653E01615626B2B
+installer/cabs_x/_AF9AC566B8E8B48AF10B56CA60BDEA49
+installer/cabs_x/_B3EA02464E396963E543DC0597E09D63
+installer/cabs_x/_B41E31D3B744D5DFEF8F38112C8EA71F
+installer/cabs_x/_C0211CCBDE7DE7F6D5630C44A87251BF
+installer/cabs_x/_C0760E3E6A08D8A680C157D0B10A287C
+installer/cabs_x/_CB6D830563549E0AB3A32450F2A3929C
+installer/cabs_x/_CEE82BD0BA86CEB4845F2D34B29A904B
+installer/cabs_x/_D0DAB81A300812826957344B3241C959
+installer/cabs_x/_D25C93852758D7CCE7DD3B7C74623F5A
+installer/cabs_x/_D56295A79D370B4FD869C907C934917B
+installer/cabs_x/ddmseapi.dll
+installer/cabs_x/_F7DC0A3A2D3A3562825B180AF61509E4
+installer/cabs_x/_FE8DBB6D1CB62359A561BEA4EF16BF8D
+installer/cabs_x/_FFEF04854AA7134ACBB9F19A919787B7
+installer/media/Solid_Edge_Web_Package_2026.7z.001
+installer/media/Solid_Edge_Web_Package_2026.7z.002
+installer/media/Solid_Edge_Web_Package_2026.7z.003
+installer/media/Solid_Edge_Web_Package_2026.7z.004
+installer/media/Solid_Edge_Web_Package_2026.7z.005
+installer/media/Solid_Edge_Web_Package_2026.7z.006
+installer/media/Solid_Edge_Web_Package_2026.7z.007
+installer/media/Solid_Edge_Web_Package_2026.7z.008
+installer/media/Solid_Edge_Web_Package_2026.7z.009
+installer/media/Solid_Edge_Web_Package_2026.7z.010
+installer/media/Solid_Edge_Web_Package_2026.7z.011
+installer/media/Solid_Edge_Web_Package_2026.7z.012
+installer/media/Solid_Edge_Web_Package_2026.7z.013
+installer/media/Solid_Edge_Web_Package_2026.7z.014
+installer/media/Solid_Edge_Web_Package_2026.7z.015
+installer/media/Solid_Edge_Web_Package_2026.7z.016
+installer/media/Solid_Edge_Web_Package_2026.7z.017
+installer/media/Solid_Edge_Web_Package_2026.7z.018
+installer/media/Solid_Edge_Web_Package_2026.7z.019
+installer/media/Solid_Edge_Web_Package_2026.7z.020
+installer/media/Solid_Edge_Web_Package_2026.7z.021
+installer/media/Solid_Edge_Web_Package_2026.7z.022
+installer/media/Solid_Edge_Web_Package_2026.7z.023
+installer/media/Solid_Edge_Web_Package_2026.7z.024
+installer/media/Solid_Edge_Web_Package_2026.7z.025
+installer/media/Solid_Edge_Web_Package_2026.7z.026
+installer/media/Solid_Edge_Web_Package_2026.7z.027
+installer/media_x/Solid Edge/ADDINS.cab
+installer/media_x/Solid Edge/COM_SE~1.cab
+installer/media_x/Solid Edge/DLLS.cab
+installer/media_x/Solid Edge/Femap.cab
+installer/media_x/Solid Edge/Images.cab
+installer/media_x/Solid Edge/ISSetupPrerequisites/DotNET4.8/ndp48-x86-x64-allos-enu.exe
+installer/media_x/Solid Edge/ISSetupPrerequisites/Evergreen WebView2 Runtime/MicrosoftEdgeWebView2RuntimeInstallerX64.exe
+installer/media_x/Solid Edge/ISSetupPrerequisites/Keyshot/keyshot_w64.exe
+installer/media_x/Solid Edge/ISSetupPrerequisites/MS VC++ 2022 Redist (x64)/VC_redist.x64.exe
+installer/media_x/Solid Edge/ISSetupPrerequisites/Siemens Connector/SiemensConnectorSetup.exe
+installer/media_x/Solid Edge/L10n_1.cab
+installer/media_x/Solid Edge/L10n_2.cab
+installer/media_x/Solid Edge/L10n_3.cab
+installer/media_x/Solid Edge/L10n_4.cab
+installer/media_x/Solid Edge/L10n_5.cab
+installer/media_x/Solid Edge/Prefer~1.cab
+installer/media_x/Solid Edge/PROGRA~1.cab
+installer/media_x/Solid Edge/Program Files 64/Siemens/Solid Edge 2026/Program/DynMotionSolver/execute/intel64/vlmotionslv.dll
+installer/media_x/Solid Edge/ResDLLs.cab
+installer/media_x/Solid Edge/Siemens Solid Edge 2026.msi
+installer/media_x/Solid Edge/StdPar~1.cab
+installer/media_x/Solid Edge/Templa~1.cab
+installer/media_x/Solid Edge/Tutori~1.cab
+*.lib
+logs/webview2/wv2.zip
+node_modules/
+*.o
+*.obj
+*.ocx
+*.pdb
+*.png
+*.pyc
+__pycache__/
+*.pyo
+*.res
+# single files larger than 20 MB (kept out of git; fetch or regenerate them)
+*.so
+state/
+state/media_bin/SE_Tech_Pubs_Export.dll
+state/work/probe/drive_c/windows/Installer/2143.msi
+state/work/probe/drive_c/windows/system32/icu.dll
+state/work/probe/drive_c/windows/system32/mshtml.dll
+state/work/probe/drive_c/windows/system32/wined3d.dll
+state/work/probe/drive_c/windows/syswow64/icu.dll
+state/work/probe/drive_c/windows/syswow64/mshtml.dll
+state/work/probe/drive_c/windows/syswow64/wined3d.dll
+state/work/webview2/tree/msedge.dll
+state/work/webview2/tree/ResiliencyLinks/resources.pak.DATA
+state/work/webview2/tree/resources.pak
+state/work/webview2/tree/WidevineCdm/_platform_specific/win_x64/widevinecdm.dll
+*.sys
+venv/
+vmshare/
+vmshare/wv2.zip
+*-windows/
+wine/
+wine-11.18/nls/icudtl.dat
+wine/wine-11.18/dlls/icu/i386-windows/icu.dll
+wine/wine-11.18/dlls/icu/x86_64-windows/icu.dll
+wine/wine-11.18/libs/icucommon/i386-windows/libicucommon.a
+wine/wine-11.18/libs/icucommon/x86_64-windows/libicucommon.a
+wine/wine-11.18/libs/icui18n/i386-windows/libicui18n.a
+wine/wine-11.18/libs/icui18n/x86_64-windows/libicui18n.a
+wine/wine-11.18/libs/vkd3d/x86_64-windows/libvkd3d.a
+wine/wine-11.18/Makefile
+wine/wine-11.18/nls/icudtl.dat

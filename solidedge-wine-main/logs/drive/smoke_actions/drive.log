@@ -1,0 +1,8 @@
+00:11:10.230475556 window Openbox -> 0x20011f  rect 1x1+-100+-100  display :2
+00:11:10.251522125 --- 4 action lines
+00:11:10.271351041 NOTE smoke
+00:11:10.289835952 2 wait 0.5
+/home/asdf/projects/solidedge-wine-main/logs/drive/smoke_actions/smoke.png 1x1 mean=255.0 dark=0.000 verdict=BLANK
+00:11:11.849664291 4 key Return
+sent key Return to 0x20011f
+00:11:11.913289889 done
