@@ -396,3 +396,126 @@ import `SetLayeredWindowAttributes`/`UpdateLayeredWindow`/`SetWindowRgn`, and `c
 So "a GL child window in Wine", even a layered one with a rounded frame, does not flicker black on
 its own; the flicker needs whatever else Solid Edge does, and has to be found in the application's
 own logs and window tree rather than reproduced from its imports.
+
+## M11 — the second Wine gap on the same .NET→Win32 path: UIA tree navigation returned E_NOTIMPL
+
+The user's brief says, for a pre-.NET-6 application: *"trace the app through the sdk into a win32
+call that needs to be fixed in wine, which will probably show up as an error in the wine logs."*
+Following M5's path further — .NET's `UIAutomationClient` is what calls `DwmGetWindowAttribute(…,
+14, …)` — turned up a second, harder failure on the same API family.
+
+`dlls/uiautomationcore/uia_client.c:1048` used to answer **every** conditioned sibling/child
+navigation with `E_NOTIMPL`:
+
+```c
+case NavigateDirection_NextSibling:
+case NavigateDirection_PreviousSibling:
+case NavigateDirection_FirstChild:
+case NavigateDirection_LastChild:
+    if (cond->ConditionType != ConditionType_True)
+    {
+        FIXME("ConditionType %d based navigation for dir %d is not implemented.\n", ...);
+        return E_NOTIMPL;
+    }
+```
+
+`System.Windows.Automation.TreeWalker` never passes `Condition.TrueCondition`: both
+`ControlViewWalker` and `RawViewWalker` build a **`Not`** condition (ConditionType 5) to exclude
+invisible elements.  Reproduced with `tools/winapi/uiaprobe.cs`, a net48 program compiled inside
+the prefix that calls exactly the managed APIs (and takes the `IsWindowReallyVisible` path):
+
+```
+$ wine C:\uiaprobe.exe            # before patches/local/0024
+FromHandle ok: uiaprobeTarget
+0a48:fixme:uiautomationcore:conditional_navigate_uia_node ConditionType 5 based navigation for dir 1 is not implemented.
+automation threw: NotImplementedException: The method or operation is not implemented.
+
+$ wine C:\uiaprobe.exe            # after
+FromHandle ok: uiaprobeTarget
+GetNextSibling -> ok
+GetPreviousSibling -> null
+GetParent -> ok
+```
+
+So the managed caller got a hard `NotImplementedException` where Windows returns the first element
+in that direction matching the condition.  `patches/local/0024` walks until a node matches, the
+same way the existing `NavigateDirection_Parent` loop already did, and handles
+`FirstChild`/`LastChild` by continuing along the siblings of the first/last child.
+
+Verification: `tools/run_wine_tests.sh uiautomationcore` →
+`uiautomation: 8187 tests executed (113 marked as todo, 0 as flaky, 0 failures), 0 skipped`, and
+the probe above completes the tree walk.  No new unit test ships with it: the suite's navigation
+test drives every call through a per-test method-sequence expectation (`ok_method_sequence`), so
+inserting calls there would rewrite that expectation rather than test the new behaviour; the
+probe is the end-to-end evidence instead.
+
+**Not claimed:** that this is what stops Solid Edge closing a sketch.  It is the second hard
+failure on the exact API family the user's log implicates, it is fixed, and it is verified fixed —
+but the application path that would prove it needs the sketch environment (M12).
+
+## M12 — the dwmapi line, before and after, byte for byte
+
+```
+$ WINEPREFIX=… /opt/wine-staging/bin/wine tools/winapi/dwmprobe.exe 2>&1 | grep -c fixme:dwmapi
+97
+$ WINEPREFIX=… ./wine-install/bin/wine tools/winapi/dwmprobe.exe  2>&1 | grep -c fixme:dwmapi
+0
+```
+
+and the line itself, from the unpatched build — the user's own line (only the thread id differs):
+
+```
+0024:fixme:dwmapi:DwmGetWindowAttribute attribute 14 not implemented.
+```
+
+## M13 — why the sketch environment could not be reached, and what *was* reached
+
+**Reached** (all measured, screenshots and logs under `logs/`):
+
+* Solid Edge 2026 installs under Wine from the media with the vendor's own command line, run
+  through `msiexec` (`setup.exe` exits 179 before the MSI; FINDINGS M6 has both).  25171 files,
+  9.9 GB, `Edge.exe` `render.dll` `D3DGLST.dll` all present.
+* It starts, shows its **WebView2 start page** (intro banner, tutorial cards, "Create New" tiles,
+  Quick UI Tour), and opens a **2D Drafting document**: ribbon `File/Home/Tables/Inspect/Tools/View`,
+  the Draw/Relate/IntelliSketch/Dimension/Annotation/Arrange/Insert/Block groups, a drawing sheet
+  with title block, status bar, sheet tabs.
+* It opens a **3D part** in PartViewer mode — the title bar reads
+  `Solid Edge 2D Drafting 2026 - PartViewer - [t.par[Read-Only]]` — and the **OpenGL viewport
+  renders a shaded model** with PathFinder (`Protrusion 3`, `Hole 1`, `Chamfer 1`, `Used Sketches`)
+  and PMI callouts (`Ø 18.86`, `0.5`, `1.72`).  `render.dll`, `opengl32`, `glu32` and `D3DGLST.dll`
+  are all loaded in the process.
+* Six WebView2 processes (browser, crashpad, network, storage, **renderer**, **gpu-process**).
+
+**Blocked.** 「Close Sketch」 is a **Part/Sketch-environment** command: the literal string exists
+only in `Ribbon.drx`, `StdPart.drx` and `commands_sketch_ordered.html` in the install tree, i.e.
+the ordered-Part sketcher, and that environment needs a 3D licence.  The licence this installer can
+still obtain is 2D Drafting only, and the reason is recorded verbatim in the licensing tool's own
+log (`…/AppData/Local/Temp/SolidEdgeSLU.log`):
+
+```
+***Begin GetLicenseFromSPLMWebSite
+Generated URL: https://cs.industrysoftware.automation.siemens.com/LicenseService/V1/WS?ACTION=SLU_GL&REQUEST=…
+Response Stream: <response><message><version>1.0</version><code>OK</code>
+                 <message_text>Complete</message_text>
+                 <system_message_code>000001</system_message_code>
+                 <checksum>d41d8cd98f00b204e9800998ecf8427e</checksum><data></data></message></response>
+```
+
+`d41d8cd98f00b204e9800998ecf8427e` is the MD5 of the **empty string** and `<data>` is empty, so the
+server issued no licence; the wizard then offered the licence-free modes, and choosing **Viewer**
+wrote the 736-byte `SElicense.lic` with a single feature:
+
+```
+FEATURE solidedge2ddrafting ugslmd 226.0 permanent uncounted …
+```
+
+Hence: 2D Drafting and the 3D *viewer* work; the editable Part sketcher does not, so bugs 1 and 2
+could not be reproduced at their site and no fix is claimed for them.
+
+**What was ruled out for bug 1 (flickering viewport)** while the environment was being built — see
+M10: a GL child window does not flicker in Wine in any of seven shapes, and the ~900 ms
+`SwapBuffers` seen on the VNC display is the *display's* (a native X client blocks identically).
+In the running application the viewport measured **0 black frames** at idle, while zooming, while
+rotating and after the rebuild, on both the software and the hardware GL paths.  The one place a
+dark viewport was seen was the first seconds of a PartViewer start-up, and it resolved to the
+normal shaded view.

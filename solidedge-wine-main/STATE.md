@@ -1,6 +1,6 @@
 # Solid Edge X (2026) on Wine — working state
 
-Updated: 2026-10-01 00:50 (session 1). **Read `FINDINGS.md` next** — it holds the evidence; this
+Updated: 2026-10-01 06:05 (session 1). **Read `FINDINGS.md` next** — it holds the evidence; this
 file holds the position.
 
 ## Goal
@@ -58,6 +58,39 @@ fix three defects, each evidenced by VNC observation + Wine logs + disassembly:
   `Media` cabs are present in `installer/media_x/Solid Edge/`. The guest has 13.27 GB free, so a
   guest install is not affordable without freeing space — reference work stays with the differential
   probes.
+
+## Where this stands now (read this before doing anything)
+
+**Two Wine patches are written, applied, built, installed and verified:**
+
+| patch | what | evidence |
+|---|---|---|
+| `patches/local/0023-dwmapi-window-attributes.patch` | `DwmGetWindowAttribute` answers every attribute Windows answers (`DWMWA_CLOAKED` = `S_OK`, 0 …), `E_INVALIDARG` for the rest instead of `E_NOTIMPL`; `DwmSetWindowAttribute` stores values so they round-trip | `tools/run_wine_tests.sh dwmapi dwmapi` → **54 tests, 0 failures**; probe diff vs the guest matches on every status code; `grep -c fixme:dwmapi` = **97 → 0** (M12) |
+| `patches/local/0024-uiautomationcore-conditional-navigation.patch` | UIA sibling/child navigation with a condition walks until a node matches, instead of `E_NOTIMPL` | `tools/run_wine_tests.sh uiautomationcore` → **8187 tests, 0 failures**; `tools/winapi/uiaprobe.cs` went from `NotImplementedException` to a completed tree walk (M11) |
+
+**Solid Edge 2026 runs under Wine** (M13): installed via `msiexec` (9.9 GB), starts, renders its
+WebView2 start page, opens a 2D Drafting document, and opens a 3D part in PartViewer with a working
+OpenGL viewport.  `state/work/prefix` is that installation; `tools/se_launch.sh <tag> --prefix
+state/work/prefix --softgl -- 'C:\t.par'` is how it is started (t.par is a copy of the media's
+`Training/Plate3.par` sitting in the prefix root).
+
+**The sketch environment is unreachable**: 「Close Sketch」 is Part/Sketch-environment only
+(`Ribbon.drx`, `StdPart.drx`, `commands_sketch_ordered.html`), and the 3D licence cannot be
+obtained — Siemens' endpoint answers `OK` with an empty `<data>` (MD5 of the empty string) for this
+installer's activation code, so only `FEATURE solidedge2ddrafting` is ever issued.  Bugs 1 and 2
+therefore have **no repro** and **no fix claimed**.  If a 3D licence ever appears, the whole path is
+ready: `tools/se_launch.sh` → `tools/se_drive.sh <win> tools/actions/<file>` → `tools/host/flicker.py`
+and `tools/host/winwatch.py` measure the viewport, and `tools/run_se.sh --debug '+timestamp,+dwmapi'`
+gives a log that can be aligned with the action timestamps.
+
+## Housekeeping / constraints encountered
+- **Disk filled up** (measured: `/` at 100%, 289 MB free) during `make install` after the second
+  patch — freed by deleting `installer/cabs_x/` (re-extractable from `installer/media_x/`),
+  `state/work/webview2/tree` (re-unpackable from `logs/webview2/wv2.zip`) and `vmshare/wv2.zip`.
+  `/var/log/journal` is 4 GB but `journalctl --vacuum` is not permitted for this user, and the
+  qcow2/VMs are not ours.  The user's brief allows stopping if disk is short; it is workable at
+  ~5 GB free but not generous.
+- `/tmp` is on the same filesystem, so "disk-backed temp" is satisfied but does not add headroom.
 
 ## In flight
 - `make -j8` of the whole tree (`logs/build.log`) — started 23:13, has built `tools/`, `libs/`, the

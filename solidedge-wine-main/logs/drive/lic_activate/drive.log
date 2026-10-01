@@ -1,0 +1,28 @@
+05:08:36.77620349 window 0xe00001 -> 0xe00001  rect 758x522+421+252  display :2
+05:08:36.86929792 --- 22 action lines
+05:08:36.94818462 NOTE activation
+05:08:36.102488925 2 click 42 362
+clicked window 0xe00001 at +42+362 -> display 463,614  (window 758x522 at 421,252)
+05:08:51.625251516 3 wait 1
+05:08:52.637536704 4 click 537 359
+clicked window 0xe00001 at +537+359 -> display 958,611  (window 758x522 at 421,252)
+05:08:53.63710699 5 wait 1
+05:08:54.76540771 6 typeraw '7262936774378157'
+typed into 0xe00001
+05:08:54.586893162 7 wait 1
+05:08:55.616637115 8 click 432 390
+clicked window 0xe00001 at +432+390 -> display 853,642  (window 758x522 at 421,252)
+05:08:56.67965974 9 wait 1
+05:08:57.109034007 10 typeraw 'SOLIDEDGEWINE1'
+typed into 0xe00001
+05:08:57.565626150 11 wait 1
+/home/asdf/projects/solidedge-wine-main/logs/drive/lic_activate/lic_filled.png 758x522 mean=169.2 dark=0.277 verdict=CONTENT
+05:08:59.160340863 13 click 497 495
+clicked window 0xe00001 at +497+495 -> display 918,747  (window 758x522 at 421,252)
+05:08:59.588500348 14 wait 10
+/home/asdf/projects/solidedge-wine-main/logs/drive/lic_activate/lic_result1.png 758x522 mean=169.2 dark=0.277 verdict=CONTENT
+05:09:10.206593066 16 wait 10
+/home/asdf/projects/solidedge-wine-main/logs/drive/lic_activate/lic_result2.png 758x522 mean=169.2 dark=0.277 verdict=CONTENT
+05:09:20.904143642 18 wait 10
+/home/asdf/projects/solidedge-wine-main/logs/drive/lic_activate/lic_result3.png 758x522 mean=169.2 dark=0.277 verdict=CONTENT
+05:09:31.614044411 done

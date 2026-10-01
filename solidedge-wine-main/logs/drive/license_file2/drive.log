@@ -1,0 +1,16 @@
+05:05:02.289173102 window 0x1000001 -> 0x1000001  rect 758x522+421+252  display :2
+05:05:02.297725370 --- 14 action lines
+05:05:02.304782120 NOTE select-license-file
+05:05:02.313354504 2 click 42 321
+clicked window 0x1000001 at +42+321 -> display 463,573  (window 758x522 at 421,252)
+05:05:02.746882657 3 wait 1
+05:05:03.758274563 4 click 481 379
+clicked window 0x1000001 at +481+379 -> display 902,631  (window 758x522 at 421,252)
+05:05:04.183942014 5 wait 1
+05:05:05.194771204 6 typeraw 'C:\Program Files\Siemens\Solid Edge 2026\Preferences\SELicense.lic'
+typed into 0x1000001
+05:05:07.242685077 7 wait 1
+/home/asdf/projects/solidedge-wine-main/logs/drive/license_file2/lic_typed.png 758x522 mean=168.6 dark=0.277 verdict=CONTENT
+05:05:08.903365893 9 click 500 503
+clicked window 0x1000001 at +500+503 -> display 921,755  (window 758x522 at 421,252)
+05:05:09.330985625 10 wait 8

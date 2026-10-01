@@ -1,8 +1,5 @@
-# 2026-10-01 00:39:44  module=dwmapi  bin=/home/asdf/projects/solidedge-wine-main/wine/wine-11.18/dlls/dwmapi/tests/x86_64-windows/dwmapi_test.exe  args=dwmapi
+# 2026-10-01 05:53:02  module=dwmapi  bin=/home/asdf/projects/solidedge-wine-main/wine/wine-11.18/dlls/dwmapi/tests/x86_64-windows/dwmapi_test.exe  args=dwmapi
 # wine: wine-11.18
-00b4:fixme:wineusb:query_id Unhandled ID query type 0x5.
-00b4:fixme:wineusb:query_id Unhandled ID query type 0x5.
-00b4:fixme:wineusb:query_id Unhandled ID query type 0x5.
 0024:fixme:dwmapi:DwmGetCompositionTimingInfo (0000000000000000 00007FFFFE23FAC0)
 0024:fixme:dwmapi:DwmFlush stub.
 0020:dwmapi: 54 tests executed (0 marked as todo, 0 as flaky, 0 failures), 0 skipped.
