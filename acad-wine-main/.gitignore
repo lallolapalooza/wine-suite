@@ -1,0 +1,23 @@
+
+# Build output and run artifacts — the vendored Wine source and the patches are tracked.
+# The patterns are rooted so they cannot match anything inside wine-11.18/ (its tree
+# build output / scratch\n*-windows/\n*.o\n*.a\n*.so\n*.dll\n*.exe\n*.sys\n*.res\n*.so\n
+# contains directories named `wine` under include/ and tools/, and `ntoskrnl.exe` under dlls/).
+# single files larger than 20 MB (kept out of git)
+*.pyc
+/acad.err*
+/installer/
+/log_*.txt
+/logs/
+/pkgs/
+/prefix*/
+/root/
+/tools/venv/
+/wine-install/
+/wine/
+__pycache__/
+installer/ODIS/CER/CER/service/cer_service.exe
+installer/Setup.exe
+logs/freshinstall/acad-prefix-raw/install_attempt1.log
+logs/freshinstall/acad-prefix/install_attempt1.log
+wine-11.18/nls/icudtl.dat
