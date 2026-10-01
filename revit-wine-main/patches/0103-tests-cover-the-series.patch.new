@@ -8,8 +8,7 @@ is about (see tools/run_wine_tests.sh).
 
 Modules: advapi32 kernelbase (0002), crypt32 (0007), dnsapi/kernel32/ntdll (0010),
 kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), ws2_32 (0006, 0012).
-
---- a/dlls/advapi32/tests/registry.c
+Also covers the Revit-only extra 0102 (dlls/dxgi/tests/dxgi.c).
 --- a/dlls/advapi32/tests/registry.c
 +++ b/dlls/advapi32/tests/registry.c
 @@ -1734,6 +1734,202 @@
@@ -1493,3 +1492,110 @@ kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), w
  
      test_dns();
      test_gethostbyname();
+--- a/dlls/dxgi/tests/dxgi.c
++++ b/dlls/dxgi/tests/dxgi.c
+@@ -2420,6 +2420,96 @@
+     DestroyWindow(creation_desc.OutputWindow);
+ }
+ 
++/* A composition swapchain has no output window; a compositor shows its frames.
++ * The compositor rasterises the page into the swapchain's back buffer through
++ * IDXGISurface1::GetDC(), so that surface has to be GDI-compatible and the
++ * returned DC has to be usable. */
++static void test_create_swapchain_for_composition(IUnknown *device, BOOL is_d3d12)
++{
++    DXGI_SWAP_CHAIN_DESC1 desc;
++    IDXGISwapChain1 *swapchain1;
++    IDXGISurface1 *surface;
++    IDXGIFactory2 *factory2;
++    IDXGIFactory *factory;
++    IDXGIDevice *d3d11_device;
++    RECT rect = {0, 0, 64, 64};
++    BOOL ret;
++    HDC dc;
++    HRESULT hr;
++
++    if (is_d3d12)
++    {
++        skip("CreateSwapChainForComposition() needs a Direct3D 11 device.\n");
++        return;
++    }
++
++    if (!(d3d11_device = create_d3d11_device()))
++    {
++        skip("Failed to create a Direct3D 11 device.\n");
++        return;
++    }
++
++    get_factory(device, is_d3d12, &factory);
++    hr = IDXGIFactory_QueryInterface(factory, &IID_IDXGIFactory2, (void **)&factory2);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    IDXGIFactory_Release(factory);
++    if (FAILED(hr))
++    {
++        IDXGIDevice_Release(d3d11_device);
++        return;
++    }
++
++    desc.Width = 64;
++    desc.Height = 64;
++    desc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
++    desc.Stereo = FALSE;
++    desc.SampleDesc.Count = 1;
++    desc.SampleDesc.Quality = 0;
++    desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
++    desc.BufferCount = 2;
++    desc.Scaling = DXGI_SCALING_STRETCH;
++    desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
++    desc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
++    desc.Flags = 0;
++
++    swapchain1 = NULL;
++    hr = IDXGIFactory2_CreateSwapChainForComposition(factory2, (IUnknown *)d3d11_device, &desc,
++            NULL, &swapchain1);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    if (FAILED(hr))
++    {
++        ok(!swapchain1, "Got unexpected swapchain %p.\n", swapchain1);
++        IDXGIFactory2_Release(factory2);
++        IDXGIDevice_Release(d3d11_device);
++        return;
++    }
++    ok(!!swapchain1, "Got unexpected swapchain %p.\n", swapchain1);
++
++    /* The back buffer the compositor reads has to give a usable DC. */
++    hr = IDXGISwapChain1_GetBuffer(swapchain1, 0, &IID_IDXGISurface1, (void **)&surface);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    if (SUCCEEDED(hr))
++    {
++        dc = NULL;
++        hr = IDXGISurface1_GetDC(surface, FALSE, &dc);
++        ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++        ok(!!dc, "Got unexpected dc %p.\n", dc);
++        if (SUCCEEDED(hr))
++        {
++            ret = FillRect(dc, &rect, GetSysColorBrush(COLOR_WINDOW));
++            ok(ret, "Failed to draw into the surface DC, error %lu.\n", GetLastError());
++
++            hr = IDXGISurface1_ReleaseDC(surface, NULL);
++            ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++        }
++        IDXGISurface1_Release(surface);
++    }
++
++    IDXGISwapChain1_Release(swapchain1);
++    IDXGIFactory2_Release(factory2);
++    IDXGIDevice_Release(d3d11_device);
++}
++
+ static void test_get_containing_output(IUnknown *device, BOOL is_d3d12)
+ {
+     unsigned int adapter_idx, output_idx, output_count;
+@@ -9098,6 +9188,7 @@
+     test_swapchain_parameters();
+     test_swapchain_window_styles();
+     run_on_d3d10(test_create_swapchain);
++    run_on_d3d10(test_create_swapchain_for_composition);
+     run_on_d3d10(test_set_fullscreen);
+     run_on_d3d10(test_resize_target);
+     run_on_d3d10(test_resize_fullscreen);
