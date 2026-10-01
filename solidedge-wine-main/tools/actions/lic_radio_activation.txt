@@ -1,0 +1,5 @@
+note select-activation-code
+shot lic_start
+click 42 362
+wait 1
+shot lic_activation_selected

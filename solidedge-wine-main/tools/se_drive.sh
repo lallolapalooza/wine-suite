@@ -78,6 +78,8 @@ while IFS= read -r line; do
     move)     DISPLAY=$DISP xdotool mousemove "$1" "$2"; log "$n move $1 $2" ;;
     key)      log "$n key $1"; "$UI" "$DISP" key "$W" "$1" | tee -a "$OUTDIR/drive.log" ;;
     type)     log "$n type '$1'"; "$UI" "$DISP" type "$W" "$1" | tee -a "$OUTDIR/drive.log" ;;
+    # typeraw takes everything after the keyword, so a path with spaces survives
+    typeraw)  log "$n typeraw '$*'"; "$UI" "$DISP" type "$W" "$*" | tee -a "$OUTDIR/drive.log" ;;
     *)        log "UNKNOWN directive: $line" ;;
   esac
 done < "$ACTIONS"

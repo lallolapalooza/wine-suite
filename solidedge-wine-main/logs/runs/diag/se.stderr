@@ -1,0 +1,27 @@
+0084:fixme:seh:WerSetFlags (2) stub
+0084:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+0098:fixme:process:SetProcessShutdownParameters (00000380, 00000000): partial stub.
+0098:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 00006FFFFAB425B7, 28) stub
+0098:fixme:ver:GetCurrentPackageId (00007FFFFEF6EB50 0000000000000000): stub
+00bc:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+00bc:fixme:seh:WerSetFlags (2) stub
+00bc:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+00dc:fixme:process:SetProcessShutdownParameters (00000380, 00000000): partial stub.
+00dc:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 79243241, 28) stub
+00dc:fixme:ver:GetCurrentPackageId (00E2ECBC 00000000): stub
+0164:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 00006FFFFAB425B7, 28) stub
+0164:fixme:ver:GetCurrentPackageId (00007FFFFE23B980 0000000000000000): stub
+0164:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 00006FFFF7A4CDE4, 28) stub
+0098:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0098:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0098:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0098:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0098:fixme:service:QueryServiceConfig2W Level 6 not implemented
+00dc:fixme:service:QueryServiceConfig2W Level 6 not implemented
+00dc:fixme:service:QueryServiceConfig2W Level 6 not implemented
+00dc:fixme:service:QueryServiceConfig2W Level 6 not implemented
+00dc:fixme:service:QueryServiceConfig2W Level 6 not implemented
+00dc:fixme:service:QueryServiceConfig2W Level 6 not implemented
+017c:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+017c:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 79243241, 28) stub
+017c:fixme:ver:GetCurrentPackageId (0036BFF0 00000000): stub

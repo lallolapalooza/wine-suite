@@ -32,7 +32,7 @@ D="$SE_LOGS/runs/$TAG"; rm -rf "$D"; mkdir -p "$D"
 if [ "$WDBG" != "-all" ] && [ "${WDBG#*timestamp}" = "$WDBG" ]; then
   WDBG="+timestamp,$WDBG"
 fi
-export WINEPREFIX="$SE_PREFIX"
+export WINEPREFIX=$(readlink -f "$SE_PREFIX")
 export DISPLAY="$DISP"
 export WINEDLLOVERRIDES="${SE_DLLOVERRIDES:-mshtml=}"
 export WINEDEBUG="$WDBG"
