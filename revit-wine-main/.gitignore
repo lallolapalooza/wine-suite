@@ -5,6 +5,8 @@
 # contains directories named `wine` under include/ and tools/, and `ntoskrnl.exe` under dlls/).
 # single files larger than 20 MB (kept out of git)
 *.pyc
+/build/
+/install/
 /installer/
 /log_*.txt
 /logs/
@@ -12,6 +14,7 @@
 /prefix*/
 /revit.err*
 /root/
+/testprefix/
 /tools/venv/
 /wine-install/
 /wine/
