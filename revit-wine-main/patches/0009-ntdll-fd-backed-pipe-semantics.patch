@@ -1,0 +1,195 @@
+ntdll: make handles on fd-backed Unix pipes behave like Windows pipes
+
+Node.js - and therefore Electron, and therefore Autodesk's Electron-based licensing UI host
+AdskAccessUIHost.exe - aborts at startup as soon as it writes to a piped stdout:
+
+    $ WINEPREFIX=$PWD/prefix WINEDEBUG=-all ./wine-install/bin/wine \
+        'C:\probe\node\node-v24.21.0-win-x64\node.exe' -e "console.log('x')" | cat
+    Error: open EBADF
+        at new Socket (node:net:651:13)
+        at createWritableStdioStream (node:internal/bootstrap/switches/is_main_thread:83:18)
+
+A handle that Wine creates for an inherited Unix pipe (as opposed to a handle on a Wine named pipe
+object, which is what CreatePipe/CreateNamedPipe produce) is an fd-backed file object, not a named
+pipe object.  libuv's uv_pipe_open() runs the Windows named-pipe sequence on it and turns the first
+failure into UV_EBADF.  Measured with tools/pipeprobe, a native probe that replays that sequence on
+fd 1 (stdout = pipe) and prints every result:
+
+    _get_osfhandle(1) = 0xc             -> valid
+    GetFileType(0xc)  = 3               (FILE_TYPE_PIPE)
+    DuplicateHandle(INVALID_HANDLE_VALUE, 0xc, .., DUPLICATE_SAME_ACCESS) -> TRUE, dup 0x38
+    NtQueryInformationFile(dup, FileAccessInformation) -> STATUS_SUCCESS, access 0x120116
+    SetNamedPipeHandleState(dup, PIPE_READMODE_BYTE|PIPE_WAIT) -> FALSE, GetLastError() = 6
+        -> NtSetInformationFile(FilePipeInformation) -> STATUS_OBJECT_TYPE_MISMATCH (0xc0000024)
+        -> RtlNtStatusToDosError -> ERROR_INVALID_HANDLE (6) -> uv_translate_sys_error -> UV_EBADF
+
+So three related pieces of pipe semantics that Windows implements for any pipe handle are missing
+for fd-backed Unix pipes.  Each one is only used once the server request/object type has already
+refused the operation, and each fallback is restricted to fds that fstat() reports as FIFO/socket
+(via the new fd_is_unix_pipe() helper), so handles on real Wine named pipes keep their existing
+code paths:
+
+ 1. NtSetInformationFile(FilePipeInformation): such a pipe is always a byte-stream blocking pipe,
+    which is exactly what PIPE_READMODE_BYTE|PIPE_WAIT asks for, so accept it - mirroring
+    server/named_pipe.c's rule that message-mode reads are only valid on message-mode pipes.
+ 2. FSCTL_PIPE_PEEK (PeekNamedPipe): report the bytes already available on the fd with FIONREAD,
+    and STATUS_PIPE_BROKEN when the pipe is at end-of-file - the same status the server returns for
+    a named pipe whose other end is gone.  The data itself cannot be copied out, as unlike a pipe
+    message it cannot be pushed back once read; the callers that matter only ask for the count.
+ 3. A zero-length read: Windows uses it to wait for a pipe to become readable and fails it with
+    STATUS_PIPE_BROKEN when the other end is closed (asserted by Wine's own tests, see
+    dlls/kernel32/tests/pipe.c around ReadFile(hfile, buffer, 0, ...)).  libuv depends on this for
+    a non-overlapped pipe handle (uv_pipe_zero_readfile_thread_proc); without it its read loop
+    never reports EOF on a Unix pipe and spins at 100% CPU instead.
+
+Before (pre-patch ntdll.so) / after, all with piped stdio:
+
+    node -e "console.log('x')" | cat
+        before: "Error: open EBADF", exit 1        after: "x", exit 0
+    electron.exe --version | cat
+        before: no output (JS error before it can print)   after: "v44.4.4", exit 0
+    echo hi | node stdintest.js | cat   (stdin+stdout both pipes)
+        before: "Error: read ENOTSUP" (PeekNamedPipe)      after: "got:hi" + "END", exit 0
+    empty closed stdin pipe: PeekNamedPipe -> ERROR_BROKEN_PIPE (109), ReadFile(len=0) -> 109,
+        matching the Windows behaviour asserted by Wine's own tests.
+    Regressions: tools/ioprobe still reports skipmodes=True iocp=340 err=0 for stdout/stderr (run
+    through the prefix's Windows .NET 10 runtime), Wine-internal named pipes still work
+    (wine cmd /c "echo hi | node ..." prints "got:hi" + "END"), stdout redirected to a file is
+    unchanged, and an Electron app with a piped stdout now logs its four lines, creates its
+    BrowserWindow on the Wine display and exits 0.
+--- a/dlls/ntdll/unix/file.c
++++ b/dlls/ntdll/unix/file.c
+@@ -5200,6 +5200,14 @@
+ /******************************************************************************
+  *              NtSetInformationFile   (NTDLL.@)
+  */
++/* a handle whose fd is a Unix pipe (as opposed to a Wine named pipe object) */
++static BOOL fd_is_unix_pipe( int fd )
++{
++    struct stat st;
++
++    return !fstat( fd, &st ) && (S_ISFIFO( st.st_mode ) || S_ISSOCK( st.st_mode ));
++}
++
+ NTSTATUS WINAPI NtSetInformationFile( HANDLE handle, IO_STATUS_BLOCK *io,
+                                       void *ptr, ULONG len, FILE_INFORMATION_CLASS class )
+ {
+@@ -5289,6 +5297,28 @@
+                 status = wine_server_call( req );
+             }
+             SERVER_END_REQ;
++
++            /* A handle for a Unix pipe inherited from the parent process (e.g.
++             * stdio redirected to a pipe by the Unix shell) is not a named pipe
++             * object, so the request above fails. Such a pipe always behaves as
++             * a byte-stream blocking pipe, which is exactly what byte mode with
++             * queue-operation completion asks for, so report success for it.
++             * Applications (libuv's uv_pipe_open for instance) rely on this to
++             * use a redirected stdio handle as a pipe. */
++            if (status == STATUS_OBJECT_TYPE_MISMATCH)
++            {
++                if (info->CompletionMode || info->ReadMode)
++                {
++                    /* message stream reads and non-blocking mode cannot be set
++                     * on a handle that is not a named pipe object */
++                    status = STATUS_INVALID_PARAMETER;
++                }
++                else if (!server_get_unix_fd( handle, 0, &fd, &needs_close, NULL, NULL ))
++                {
++                    if (fd_is_unix_pipe( fd )) status = STATUS_SUCCESS;
++                    if (needs_close) close( fd );
++                }
++            }
+         }
+         else status = STATUS_INVALID_PARAMETER_3;
+         break;
+@@ -6184,7 +6214,29 @@
+                 case FD_TYPE_FILE:
+                 case FD_TYPE_CHAR:
+                 case FD_TYPE_DEVICE:
+-                    status = length ? STATUS_END_OF_FILE : STATUS_SUCCESS;
++                    if (length)
++                    {
++                        status = STATUS_END_OF_FILE;
++                        goto done;
++                    }
++                    /* A zero-length read on a synchronous pipe waits until the
++                     * pipe has data or is closed, and fails with
++                     * STATUS_PIPE_BROKEN in the latter case, like on Windows.
++                     * libuv relies on this to wait for data on a non-overlapped
++                     * pipe handle (Node.js reading a redirected stdin). */
++                    if (!async_read && fd_is_unix_pipe( unix_handle ))
++                    {
++                        struct pollfd pfd;
++
++                        pfd.fd = unix_handle;
++                        pfd.events = POLLIN;
++                        pfd.revents = 0;
++                        while (poll( &pfd, 1, -1 ) == -1 && errno == EINTR);
++
++                        status = (!(pfd.revents & POLLIN) && (pfd.revents & (POLLHUP | POLLERR)))
++                            ? STATUS_PIPE_BROKEN : STATUS_SUCCESS;
++                    }
++                    else status = STATUS_SUCCESS;
+                     goto done;
+                 case FD_TYPE_SERIAL:
+                     if (!length)
+@@ -6842,6 +6894,58 @@
+         TRACE("FSCTL_SET_SPARSE: Ignoring request\n");
+         status = STATUS_SUCCESS;
+         break;
++
++    case FSCTL_PIPE_PEEK:
++        status = server_ioctl_file( handle, event, apc, apc_context, io, code,
++                                    in_buffer, in_size, out_buffer, out_size );
++        if (status != STATUS_NOT_SUPPORTED)
++            return status;  /* named pipe, or access denied */
++
++        /* A handle on a Unix pipe (e.g. stdio redirected to a pipe by the Unix
++         * parent) is not a named pipe object, so the server doesn't know about
++         * it.  Such a pipe has no message queue to peek at, but the number of
++         * bytes that are already available on the fd can be reported without
++         * consuming them.  The data itself is not copied out, as unlike a pipe
++         * message it cannot be pushed back once read; callers (libuv's
++         * uv_pipe_zero_readfile_thread_proc, and Node.js/Electron reading a
++         * redirected stdin) only ask for the available byte count. */
++        if (out_size < offsetof( FILE_PIPE_PEEK_BUFFER, Data ))
++        {
++            status = STATUS_BUFFER_TOO_SMALL;
++            break;
++        }
++
++        if (!server_get_unix_fd( handle, FILE_READ_DATA, &fd, &needs_close, NULL, NULL ))
++        {
++            FILE_PIPE_PEEK_BUFFER *info = out_buffer;
++            int avail = 0;
++
++            if (fd_is_unix_pipe( fd ))
++            {
++                struct pollfd pfd;
++                BOOL broken = FALSE;
++
++                pfd.fd = fd;
++                pfd.events = POLLIN;
++                pfd.revents = 0;
++                if (poll( &pfd, 1, 0 ) == 1 && !(pfd.revents & POLLIN))
++                    broken = (pfd.revents & (POLLHUP | POLLERR)) != 0;
++
++                if (!broken && !ioctl( fd, FIONREAD, &avail ))
++                {
++                    info->NamedPipeState    = FILE_PIPE_CONNECTED_STATE;
++                    info->ReadDataAvailable = avail;
++                    info->NumberOfMessages  = 0;
++                    info->MessageLength     = 0;
++                    size = offsetof( FILE_PIPE_PEEK_BUFFER, Data );
++                    status = STATUS_SUCCESS;
++                }
++                else if (broken) status = STATUS_PIPE_BROKEN;
++            }
++            if (needs_close) close( fd );
++        }
++        break;
++
+     default:
+         return server_ioctl_file( handle, event, apc, apc_context, io, code,
+                                   in_buffer, in_size, out_buffer, out_size );
