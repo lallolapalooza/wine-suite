@@ -1,0 +1,5 @@
+# nonce 1791054039.061914730
+Get-Process -Name "ETC_EosFamily_v3.3.10.28" -ErrorAction SilentlyContinue | Stop-Process -Force; Start-Sleep 3; "installer procs left: " + ((Get-Process -Name "ETC_EosFamily_v3.3.10.28" -ErrorAction SilentlyContinue | Measure-Object).Count)
+"--- suspicious processes:"; (Get-Process | Where-Object { $_.ProcessName -match "Eos|ETC|Augment|apitrace|Setup" } | Select-Object Id,ProcessName | Out-String).Trim()
+"Eos.exe present: " + (Test-Path "C:\Program Files\ETC\EosFamily\v3\Eos\Eos.exe")
+"FREE_GB=" + [math]::Round((Get-PSDrive C).Free/1GB,3)

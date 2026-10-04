@@ -1,0 +1,487 @@
+iphlpapi: deliver NotifyIpInterfaceChange / NotifyUnicastIpAddressChange callbacks
+
+Windows' NotifyIpInterfaceChange() and NotifyUnicastIpAddressChange() register a callback
+that the system invokes whenever an IP interface or a unicast IP address is added, removed
+or modified, and return a handle that CancelMibChangeNotify2() unregisters.  Wine implemented
+neither: NotifyIpInterfaceChange() was a pure stub that returned NO_ERROR, set
+*handle = NULL and never invoked the callback, and NotifyUnicastIpAddressChange() was a
+semi-stub that only called back when InitialNotification != 0.  An application that registers
+for change notifications (ETC Eos' EtcPal NetworkMonitor does, with InitialNotification
+FALSE for both) therefore never saw a single notification under Wine.
+
+The implementation follows the existing NSI change-notification plumbing already used by
+NotifyAddrChange(): a per-registration worker thread keeps an asynchronous
+NsiRequestChangeNotification() on NSI_IP_UNICAST_TABLE armed for AF_INET, AF_INET6, or both
+families for AF_UNSPEC.  An NSI notification only reports the module/table that changed, not
+what changed in it, so on every wake (and on a 1 s timeout) the relevant table
+(GetIpInterfaceTable() / GetUnicastIpAddressTable()) is re-enumerated and diffed against the
+previous snapshot; the differences are reported to the callback as MibAddInstance /
+MibDeleteInstance / MibParameterNotification with a pointer to the row.  If
+InitialNotification is TRUE the callback is invoked synchronously with a NULL row and
+MibInitialNotification, exactly as Windows documents.  CancelMibChangeNotify2() stops the
+worker thread, cancels the pending NSI requests and frees the registration; the handle is an
+opaque per-registration pointer, so (as on Windows) CloseHandle() on it fails.
+
+Deliberate simplification: the NSI plumbing has no notification source for the interface
+table (the Linux netlink socket is subscribed to RTMGRP_IPV4_IFADDR/RTMGRP_IPV6_IFADDR
+only), so interface changes that do not also modify the unicast address table (pure link
+state, MTU, ...) are detected by the periodic re-check rather than being signalled
+immediately.  Address changes are still signalled by NSI.  AF_UNSPEC registers both families.
+
+Verification: with this patch the Eos start-up trace should show
+iphlpapi:NotifyIpInterfaceChange / NotifyUnicastIpAddressChange being registered with a
+non-NULL handle instead of the former fixme: stub / semi-stub messages, and any interface or
+address change (e.g. adding an address with `ip addr add` on the host while Eos runs) should
+produce the corresponding callback.  Wine's own dlls/iphlpapi/tests/iphlpapi.c
+test_NotifyUnicastIpAddressChange (initial notification, then CancelMibChangeNotify2) must
+keep passing.  Reaching the Eos editor in ~10 s like Windows additionally needs the bundle's
+slpd SLP service in the prefix, which the discovery bring-up in the same window depends on.
+
+--- a/dlls/iphlpapi/iphlpapi_main.c
++++ b/dlls/iphlpapi/iphlpapi_main.c
+@@ -39,6 +39,7 @@
+ #include "icmpapi.h"
+ #include "psapi.h"
+ 
++#include "wine/list.h"
+ #include "wine/nsi.h"
+ #include "wine/debug.h"
+ 
+@@ -141,13 +142,402 @@
+ }
+ 
+ 
++typedef VOID (WINAPI *mib_notification_callback_t)( PVOID context, PVOID row, MIB_NOTIFICATION_TYPE type );
++
++enum mib_notification_kind
++{
++    MIB_NOTIFICATION_INTERFACE,
++    MIB_NOTIFICATION_UNICAST_ADDRESS,
++};
++
++struct mib_notification
++{
++    struct list entry;
++    enum mib_notification_kind kind;
++    ADDRESS_FAMILY family;
++    mib_notification_callback_t callback;
++    void *context;
++
++    HANDLE stop_event;
++    HANDLE thread;
++    HANDLE nsi_device;
++    HANDLE events[2];
++    OVERLAPPED ovr[2];
++    BOOL armed[2];
++    unsigned int request_count;
++
++    void *snapshot;
++    SIZE_T snapshot_count;
++    BOOL have_snapshot;
++};
++
++static struct list mib_notification_list = LIST_INIT( mib_notification_list );
++
++static CRITICAL_SECTION mib_notification_cs;
++static CRITICAL_SECTION_DEBUG mib_notification_cs_debug =
++{
++    0, 0, &mib_notification_cs,
++    { &mib_notification_cs_debug.ProcessLocksList, &mib_notification_cs_debug.ProcessLocksList },
++    0, 0, { (DWORD_PTR)(__FILE__ ": mib_notification_cs") }
++};
++static CRITICAL_SECTION mib_notification_cs = { &mib_notification_cs_debug, -1, 0, 0, 0, 0 };
++
++/* An NSI change notification only reports the module and table that changed, not what changed in
++ * it.  Re-enumerate the table on each trigger and diff it against the previous snapshot to derive
++ * the individual notifications.  Address table changes are signalled by NSI; changes to the
++ * interface table that do not also modify the address table (link state, MTU, ...) are only
++ * noticed by the periodic re-check, as the NSI plumbing has no interface-table notification
++ * source. */
++#define MIB_NOTIFICATION_POLL_MS 1000
++
++static void *mib_notification_get_snapshot( struct mib_notification *notification, SIZE_T *count, BOOL *ok )
++{
++    void *snapshot = NULL;
++    SIZE_T size;
++
++    *count = 0;
++    *ok = FALSE;
++
++    if (notification->kind == MIB_NOTIFICATION_INTERFACE)
++    {
++        MIB_IPINTERFACE_TABLE *table;
++
++        if (GetIpInterfaceTable( notification->family, &table )) return NULL;
++        *count = table->NumEntries;
++        if ((size = *count * sizeof(table->Table[0])))
++        {
++            if (!(snapshot = HeapAlloc( GetProcessHeap(), 0, size )))
++            {
++                FreeMibTable( table );
++                return NULL;
++            }
++            memcpy( snapshot, table->Table, size );
++        }
++        FreeMibTable( table );
++    }
++    else
++    {
++        MIB_UNICASTIPADDRESS_TABLE *table;
++
++        if (GetUnicastIpAddressTable( notification->family, &table )) return NULL;
++        *count = table->NumEntries;
++        if ((size = *count * sizeof(table->Table[0])))
++        {
++            if (!(snapshot = HeapAlloc( GetProcessHeap(), 0, size )))
++            {
++                FreeMibTable( table );
++                return NULL;
++            }
++            memcpy( snapshot, table->Table, size );
++        }
++        FreeMibTable( table );
++    }
++    *ok = TRUE;
++    return snapshot;
++}
++
++static BOOL mib_interface_row_changed( const MIB_IPINTERFACE_ROW *a, const MIB_IPINTERFACE_ROW *b )
++{
++    return a->InterfaceIndex != b->InterfaceIndex ||
++           a->NlMtu != b->NlMtu ||
++           a->Metric != b->Metric ||
++           a->Connected != b->Connected ||
++           a->AdvertisingEnabled != b->AdvertisingEnabled ||
++           a->ForwardingEnabled != b->ForwardingEnabled ||
++           a->WeakHostSend != b->WeakHostSend ||
++           a->WeakHostReceive != b->WeakHostReceive ||
++           a->UseAutomaticMetric != b->UseAutomaticMetric ||
++           a->DadTransmits != b->DadTransmits ||
++           a->BaseReachableTime != b->BaseReachableTime ||
++           a->RetransmitTime != b->RetransmitTime ||
++           a->ReachableTime != b->ReachableTime ||
++           a->PathMtuDiscoveryTimeout != b->PathMtuDiscoveryTimeout ||
++           a->SitePrefixLength != b->SitePrefixLength;
++}
++
++static void mib_notification_check_interfaces( struct mib_notification *notification )
++{
++    MIB_IPINTERFACE_ROW *old = notification->snapshot;
++    MIB_IPINTERFACE_TABLE *table;
++    BOOL *seen;
++    SIZE_T i, j;
++
++    if (GetIpInterfaceTable( notification->family, &table )) return;
++    seen = table->NumEntries ? HeapAlloc( GetProcessHeap(), HEAP_ZERO_MEMORY,
++                                          table->NumEntries * sizeof(*seen) ) : NULL;
++    if (table->NumEntries && !seen)
++    {
++        FreeMibTable( table );
++        return;
++    }
++
++    for (i = 0; i < table->NumEntries; i++)
++    {
++        MIB_IPINTERFACE_ROW *row = &table->Table[i];
++
++        for (j = 0; j < notification->snapshot_count; j++)
++            if (old[j].Family == row->Family && old[j].InterfaceLuid.Value == row->InterfaceLuid.Value)
++                break;
++        if (j == notification->snapshot_count)
++        {
++            notification->callback( notification->context, row, MibAddInstance );
++            continue;
++        }
++        seen[j] = TRUE;
++        if (mib_interface_row_changed( &old[j], row ))
++            notification->callback( notification->context, row, MibParameterNotification );
++    }
++
++    for (j = 0; j < notification->snapshot_count; j++)
++        if (!seen || !seen[j])
++            notification->callback( notification->context, &old[j], MibDeleteInstance );
++
++    HeapFree( GetProcessHeap(), 0, seen );
++    FreeMibTable( table );
++}
++
++static BOOL mib_unicast_rows_match( const MIB_UNICASTIPADDRESS_ROW *a, const MIB_UNICASTIPADDRESS_ROW *b )
++{
++    if (a->Address.si_family != b->Address.si_family) return FALSE;
++    if (a->InterfaceLuid.Value != b->InterfaceLuid.Value) return FALSE;
++    if (a->Address.si_family == AF_INET)
++        return a->Address.Ipv4.sin_addr.s_addr == b->Address.Ipv4.sin_addr.s_addr;
++    return !memcmp( &a->Address.Ipv6.sin6_addr, &b->Address.Ipv6.sin6_addr,
++                    sizeof(a->Address.Ipv6.sin6_addr) );
++}
++
++static BOOL mib_unicast_row_changed( const MIB_UNICASTIPADDRESS_ROW *a, const MIB_UNICASTIPADDRESS_ROW *b )
++{
++    return a->InterfaceIndex != b->InterfaceIndex ||
++           a->PrefixOrigin != b->PrefixOrigin ||
++           a->SuffixOrigin != b->SuffixOrigin ||
++           a->ValidLifetime != b->ValidLifetime ||
++           a->PreferredLifetime != b->PreferredLifetime ||
++           a->OnLinkPrefixLength != b->OnLinkPrefixLength ||
++           a->SkipAsSource != b->SkipAsSource ||
++           a->DadState != b->DadState ||
++           a->ScopeId.Value != b->ScopeId.Value;
++}
++
++static void mib_notification_check_unicast( struct mib_notification *notification )
++{
++    MIB_UNICASTIPADDRESS_ROW *old = notification->snapshot;
++    MIB_UNICASTIPADDRESS_TABLE *table;
++    BOOL *seen;
++    SIZE_T i, j;
++
++    if (GetUnicastIpAddressTable( notification->family, &table )) return;
++    seen = table->NumEntries ? HeapAlloc( GetProcessHeap(), HEAP_ZERO_MEMORY,
++                                          table->NumEntries * sizeof(*seen) ) : NULL;
++    if (table->NumEntries && !seen)
++    {
++        FreeMibTable( table );
++        return;
++    }
++
++    for (i = 0; i < table->NumEntries; i++)
++    {
++        MIB_UNICASTIPADDRESS_ROW *row = &table->Table[i];
++
++        for (j = 0; j < notification->snapshot_count; j++)
++            if (mib_unicast_rows_match( &old[j], row ))
++                break;
++        if (j == notification->snapshot_count)
++        {
++            notification->callback( notification->context, row, MibAddInstance );
++            continue;
++        }
++        seen[j] = TRUE;
++        if (mib_unicast_row_changed( &old[j], row ))
++            notification->callback( notification->context, row, MibParameterNotification );
++    }
++
++    for (j = 0; j < notification->snapshot_count; j++)
++        if (!seen || !seen[j])
++            notification->callback( notification->context, &old[j], MibDeleteInstance );
++
++    HeapFree( GetProcessHeap(), 0, seen );
++    FreeMibTable( table );
++}
++
++static void mib_notification_check( struct mib_notification *notification )
++{
++    SIZE_T count;
++    void *snapshot;
++    BOOL ok;
++
++    snapshot = mib_notification_get_snapshot( notification, &count, &ok );
++    if (!ok) return;
++
++    if (notification->have_snapshot)
++    {
++        if (notification->kind == MIB_NOTIFICATION_INTERFACE)
++            mib_notification_check_interfaces( notification );
++        else
++            mib_notification_check_unicast( notification );
++    }
++
++    HeapFree( GetProcessHeap(), 0, notification->snapshot );
++    notification->snapshot = snapshot;
++    notification->snapshot_count = count;
++    notification->have_snapshot = TRUE;
++}
++
++static DWORD WINAPI mib_notification_thread( void *arg )
++{
++    struct mib_notification *notification = arg;
++    HANDLE wait[3];
++    DWORD len, ret;
++    unsigned int i;
++
++    wait[0] = notification->stop_event;
++    for (i = 0; i < notification->request_count; i++) wait[i + 1] = notification->events[i];
++
++    for (;;)
++    {
++        for (i = 0; i < notification->request_count; i++)
++        {
++            const NPI_MODULEID *module = i ? &NPI_MS_IPV6_MODULEID : &NPI_MS_IPV4_MODULEID;
++
++            memset( &notification->ovr[i], 0, sizeof(OVERLAPPED) );
++            notification->ovr[i].hEvent = notification->events[i];
++            ResetEvent( notification->events[i] );
++            notification->armed[i] = NsiRequestChangeNotification( 0, module, NSI_IP_UNICAST_TABLE,
++                                                                    &notification->ovr[i],
++                                                                    &notification->nsi_device ) == ERROR_IO_PENDING;
++        }
++
++        ret = WaitForMultipleObjects( notification->request_count + 1, wait, FALSE, MIB_NOTIFICATION_POLL_MS );
++        if (ret == WAIT_OBJECT_0) break;    /* cancelled */
++
++        for (i = 0; i < notification->request_count; i++)
++        {
++            if (!notification->armed[i]) continue;
++            if (CancelIoEx( notification->nsi_device, &notification->ovr[i] ))
++                GetOverlappedResult( notification->nsi_device, &notification->ovr[i], &len, TRUE );
++            notification->armed[i] = FALSE;
++        }
++
++        mib_notification_check( notification );
++    }
++
++    for (i = 0; i < notification->request_count; i++)
++    {
++        if (!notification->armed[i]) continue;
++        if (CancelIoEx( notification->nsi_device, &notification->ovr[i] ))
++            GetOverlappedResult( notification->nsi_device, &notification->ovr[i], &len, TRUE );
++    }
++    return 0;
++}
++
++static struct mib_notification *mib_notification_from_handle( HANDLE handle )
++{
++    struct mib_notification *notification;
++
++    LIST_FOR_EACH_ENTRY( notification, &mib_notification_list, struct mib_notification, entry )
++        if (notification == (struct mib_notification *)handle) return notification;
++
++    return NULL;
++}
++
++static DWORD mib_notification_register( enum mib_notification_kind kind, ADDRESS_FAMILY family,
++                                        mib_notification_callback_t callback, void *context,
++                                        BOOLEAN init_notify, HANDLE *handle )
++{
++    struct mib_notification *notification;
++    DWORD err;
++    unsigned int i;
++    BOOL ok;
++
++    TRACE( "kind %u, family %u, callback %p, context %p, init_notify %u, handle %p.\n",
++           kind, family, callback, context, init_notify, handle );
++
++    if (!handle || !callback || (family != AF_INET && family != AF_INET6 && family != AF_UNSPEC))
++        return ERROR_INVALID_PARAMETER;
++
++    *handle = NULL;
++
++    if (!(notification = HeapAlloc( GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(*notification) )))
++        return ERROR_NOT_ENOUGH_MEMORY;
++    notification->kind = kind;
++    notification->family = family;
++    notification->callback = callback;
++    notification->context = context;
++    notification->request_count = (family == AF_UNSPEC) ? 2 : 1;
++
++    if (!(notification->stop_event = CreateEventW( NULL, TRUE, FALSE, NULL )))
++    {
++        err = GetLastError();
++        HeapFree( GetProcessHeap(), 0, notification );
++        return err;
++    }
++    for (i = 0; i < notification->request_count; i++)
++    {
++        if ((notification->events[i] = CreateEventW( NULL, FALSE, FALSE, NULL ))) continue;
++        err = GetLastError();
++        while (i--) CloseHandle( notification->events[i] );
++        CloseHandle( notification->stop_event );
++        HeapFree( GetProcessHeap(), 0, notification );
++        return err;
++    }
++
++    notification->snapshot = mib_notification_get_snapshot( notification, &notification->snapshot_count, &ok );
++    notification->have_snapshot = ok;
++
++    EnterCriticalSection( &mib_notification_cs );
++    list_add_tail( &mib_notification_list, &notification->entry );
++    LeaveCriticalSection( &mib_notification_cs );
++
++    if (init_notify)
++        notification->callback( context, NULL, MibInitialNotification );
++
++    if (!(notification->thread = CreateThread( NULL, 0, mib_notification_thread, notification, 0, NULL )))
++    {
++        err = GetLastError();
++        EnterCriticalSection( &mib_notification_cs );
++        list_remove( &notification->entry );
++        LeaveCriticalSection( &mib_notification_cs );
++        HeapFree( GetProcessHeap(), 0, notification->snapshot );
++        for (i = 0; i < notification->request_count; i++) CloseHandle( notification->events[i] );
++        CloseHandle( notification->stop_event );
++        HeapFree( GetProcessHeap(), 0, notification );
++        return err;
++    }
++
++    *handle = (HANDLE)notification;
++    return ERROR_SUCCESS;
++}
++
+ /******************************************************************
+  *    CancelMibChangeNotify2 (IPHLPAPI.@)
+  */
+ DWORD WINAPI CancelMibChangeNotify2(HANDLE handle)
+ {
+-    FIXME("(handle %p): stub\n", handle);
+-    return NO_ERROR;
++    struct mib_notification *notification;
++    unsigned int i;
++
++    TRACE( "(handle %p).\n", handle );
++
++    if (!handle) return ERROR_INVALID_PARAMETER;
++
++    EnterCriticalSection( &mib_notification_cs );
++    if (!(notification = mib_notification_from_handle( handle )))
++    {
++        LeaveCriticalSection( &mib_notification_cs );
++        return ERROR_INVALID_PARAMETER;
++    }
++    list_remove( &notification->entry );
++    LeaveCriticalSection( &mib_notification_cs );
++
++    SetEvent( notification->stop_event );
++    WaitForSingleObject( notification->thread, INFINITE );
++    CloseHandle( notification->thread );
++
++    for (i = 0; i < notification->request_count; i++) CloseHandle( notification->events[i] );
++    CloseHandle( notification->stop_event );
++    HeapFree( GetProcessHeap(), 0, notification->snapshot );
++    HeapFree( GetProcessHeap(), 0, notification );
++    return ERROR_SUCCESS;
+ }
+ 
+ 
+@@ -3966,10 +4356,11 @@
+ DWORD WINAPI NotifyIpInterfaceChange(ADDRESS_FAMILY family, PIPINTERFACE_CHANGE_CALLBACK callback,
+                                      PVOID context, BOOLEAN init_notify, PHANDLE handle)
+ {
+-    FIXME("(family %d, callback %p, context %p, init_notify %d, handle %p): stub\n",
++    TRACE("(family %d, callback %p, context %p, init_notify %d, handle %p)\n",
+           family, callback, context, init_notify, handle);
+-    if (handle) *handle = NULL;
+-    return NO_ERROR;
++
++    return mib_notification_register( MIB_NOTIFICATION_INTERFACE, family,
++                                      (mib_notification_callback_t)callback, context, init_notify, handle );
+ }
+ 
+ /******************************************************************
+@@ -4014,14 +4405,11 @@
+ DWORD WINAPI NotifyUnicastIpAddressChange(ADDRESS_FAMILY family, PUNICAST_IPADDRESS_CHANGE_CALLBACK callback,
+                                           PVOID context, BOOLEAN init_notify, PHANDLE handle)
+ {
+-    FIXME("(family %d, callback %p, context %p, init_notify %d, handle %p): semi-stub\n",
++    TRACE("(family %d, callback %p, context %p, init_notify %d, handle %p)\n",
+           family, callback, context, init_notify, handle);
+-    if (handle) *handle = NULL;
+ 
+-    if (init_notify)
+-        callback(context, NULL, MibInitialNotification);
+-
+-    return NO_ERROR;
++    return mib_notification_register( MIB_NOTIFICATION_UNICAST_ADDRESS, family,
++                                      (mib_notification_callback_t)callback, context, init_notify, handle );
+ }
+ 
+ /******************************************************************
