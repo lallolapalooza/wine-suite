@@ -1,0 +1,1424 @@
+# OpenGL / WGL requirements of Resolume Arena 7 (Windows-side fact sheet)
+
+Scope: `installer/media_x/app/{Arena.exe,WireLib.dll,WireNodes.dll}` and `installer/media_x/app/docs/`.
+Host: Linux x64, GNU binutils 2.46. Commands were run from the directory containing the binaries
+unless noted. Every claim is preceded by the command that produced it.
+
+## 1. Imported GL/WGL entry points (`objdump -p`)
+
+Command (per binary):
+
+```sh
+objdump -p <bin> | awk '$1 ~ /^[0-9a-f]+$/ && $3 ~ /^[0-9a-f]+$/ {print $4}' | grep -E '^(wgl|gl|egl)[A-Za-z]' | sort -u
+```
+
+### 1a. wgl* actually imported (all from OPENGL32.dll)
+
+| symbol | Arena.exe | WireLib.dll | WireNodes.dll |
+|---|---|---|---|
+| `wglCreateContext` | Y | Y | . |
+| `wglDeleteContext` | Y | Y | . |
+| `wglGetCurrentContext` | Y | Y | Y |
+| `wglGetCurrentDC` | Y | Y | Y |
+| `wglGetProcAddress` | Y | Y | Y |
+| `wglMakeCurrent` | Y | Y | . |
+| `wglShareLists` | Y | . | . |
+
+Raw unique wgl imports per binary:
+
+```text
+Arena.exe    : wglCreateContext wglDeleteContext wglGetCurrentContext wglGetCurrentDC wglGetProcAddress wglMakeCurrent wglShareLists
+WireLib.dll  : wglCreateContext wglDeleteContext wglGetCurrentContext wglGetCurrentDC wglGetProcAddress wglMakeCurrent
+WireNodes.dll: wglGetCurrentContext wglGetCurrentDC wglGetProcAddress
+```
+
+Note: **no ARB/EXT wgl function is a statically imported symbol.** Everything advanced
+(context-attribs, pixel-format, pbuffer, swap-control, NV_DX_interop) is resolved at runtime through
+`wglGetProcAddress`, which is why they appear only as *strings* (section 2) and why Wine must return
+valid pointers for them.
+
+### 1b. gl* actually imported (from OPENGL32.dll)
+
+Arena.exe imports 36 `gl*`; WireLib.dll 33; WireNodes.dll 30. All are OpenGL 1.1 base entry points
+(`glBindTexture`, `glTexImage2D`, `glGetString`, `glGetIntegerv`, ...). No GL 2.0+ `gl*` symbol is
+statically imported either; those too go through `wglGetProcAddress`.
+
+### 1c. Other graphics DLLs imported (Arena.exe only)
+
+```sh
+objdump -p Arena.exe | grep "DLL Name:" | grep -iE "d3d|dxgi|opengl"
+	DLL Name: OPENGL32.dll
+	DLL Name: d3d11.dll
+	DLL Name: dxgi.dll
+```
+
+Imported symbols from those two: `CreateDXGIFactory`, `CreateDXGIFactory1`, `D3D11CreateDevice`.
+
+## 2. wgl* tokens appearing as strings
+
+Commands (Resolume mixes ANSI and UTF-16, so both were used):
+
+```sh
+strings -a  <bin> | grep -hoE 'wgl[A-Za-z0-9_]+' | sort -u
+strings -el  <bin> | grep -hoE 'wgl[A-Za-z0-9_]+' | sort -u   # UTF-16LE
+```
+
+Result: **all** wgl/GL/WGL tokens are ASCII; `strings -el` (UTF-16LE) contributed **zero**
+wgl*/GL_/WGL_ tokens. (UTF-16 strings in Arena.exe are registry paths / driver names, section 6.)
+
+Unique wgl* string counts per binary: Arena.exe 127, WireLib.dll 126, WireNodes.dll 122; union 127.
+The full union (the GLEW-known WGL entry-point names; the app resolves these by name) follows.
+
+```text
+wglAllocateMemoryNV
+wglAssociateImageBufferEventsI3D
+wglBeginFrameTrackingI3D
+wglBindDisplayColorTableEXT
+wglBindSwapBarrierNV
+wglBindTexImageARB
+wglBindVideoCaptureDeviceNV
+wglBindVideoDeviceNV
+wglBindVideoImageNV
+wglBlitContextFramebufferAMD
+wglChoosePixelFormatARB
+wglChoosePixelFormatEXT
+wglCopyImageSubDataNV
+wglCreateAffinityDCNV
+wglCreateAssociatedContextAMD
+wglCreateAssociatedContextAttribsAMD
+wglCreateBufferRegionARB
+wglCreateContext
+wglCreateContextAttribsARB
+wglCreateDisplayColorTableEXT
+wglCreateImageBufferI3D
+wglCreatePbufferARB
+wglCreatePbufferEXT
+wglDXCloseDeviceNV
+wglDXLockObjectsNV
+wglDXObjectAccessNV
+wglDXOpenDeviceNV
+wglDXRegisterObjectNV
+wglDXSetResourceShareHandleNV
+wglDXUnlockObjectsNV
+wglDXUnregisterObjectNV
+wglDelayBeforeSwapNV
+wglDeleteAssociatedContextAMD
+wglDeleteBufferRegionARB
+wglDeleteContext
+wglDeleteDCNV
+wglDestroyDisplayColorTableEXT
+wglDestroyImageBufferI3D
+wglDestroyPbufferARB
+wglDestroyPbufferEXT
+wglDisableFrameLockI3D
+wglDisableGenlockI3D
+wglEnableFrameLockI3D
+wglEnableGenlockI3D
+wglEndFrameTrackingI3D
+wglEnumGpuDevicesNV
+wglEnumGpusFromAffinityDCNV
+wglEnumGpusNV
+wglEnumerateVideoCaptureDevicesNV
+wglEnumerateVideoDevicesNV
+wglFreeMemoryNV
+wglGenlockSampleRateI3D
+wglGenlockSourceDelayI3D
+wglGenlockSourceEdgeI3D
+wglGenlockSourceI3D
+wglGetContextGPUIDAMD
+wglGetCurrentAssociatedContextAMD
+wglGetCurrentContext
+wglGetCurrentDC
+wglGetCurrentReadDCARB
+wglGetCurrentReadDCEXT
+wglGetDigitalVideoParametersI3D
+wglGetExtensionsStringARB
+wglGetExtensionsStringEXT
+wglGetFrameUsageI3D
+wglGetGPUIDsAMD
+wglGetGPUInfoAMD
+wglGetGammaTableI3D
+wglGetGammaTableParametersI3D
+wglGetGenlockSampleRateI3D
+wglGetGenlockSourceDelayI3D
+wglGetGenlockSourceEdgeI3D
+wglGetGenlockSourceI3D
+wglGetMscRateOML
+wglGetPbufferDCARB
+wglGetPbufferDCEXT
+wglGetPixelFormatAttribfvARB
+wglGetPixelFormatAttribfvEXT
+wglGetPixelFormatAttribivARB
+wglGetPixelFormatAttribivEXT
+wglGetProcAddress
+wglGetSwapIntervalEXT
+wglGetSyncValuesOML
+wglGetVideoDeviceNV
+wglGetVideoInfoNV
+wglIsEnabledFrameLockI3D
+wglIsEnabledGenlockI3D
+wglJoinSwapGroupNV
+wglLoadDisplayColorTableEXT
+wglLockVideoCaptureDeviceNV
+wglMakeAssociatedContextCurrentAMD
+wglMakeContextCurrentARB
+wglMakeContextCurrentEXT
+wglMakeCurrent
+wglQueryCurrentContextNV
+wglQueryFrameCountNV
+wglQueryFrameLockMasterI3D
+wglQueryFrameTrackingI3D
+wglQueryGenlockMaxSourceDelayI3D
+wglQueryMaxSwapGroupsNV
+wglQueryPbufferARB
+wglQueryPbufferEXT
+wglQuerySwapGroupNV
+wglQueryVideoCaptureDeviceNV
+wglReleaseImageBufferEventsI3D
+wglReleasePbufferDCARB
+wglReleasePbufferDCEXT
+wglReleaseTexImageARB
+wglReleaseVideoCaptureDeviceNV
+wglReleaseVideoDeviceNV
+wglReleaseVideoImageNV
+wglResetFrameCountNV
+wglRestoreBufferRegionARB
+wglSaveBufferRegionARB
+wglSendPbufferToVideoNV
+wglSetDigitalVideoParametersI3D
+wglSetGammaTableI3D
+wglSetGammaTableParametersI3D
+wglSetPbufferAttribARB
+wglSetStereoEmitterState3DL
+wglShareLists
+wglSwapBuffersMscOML
+wglSwapIntervalEXT
+wglSwapLayerBuffersMscOML
+wglWaitForMscOML
+wglWaitForSbcOML
+wglWok
+```
+
+### Named functions called out in the task (present in all three binaries)
+
+- `wglCreateContextAttribsARB`
+- `wglChoosePixelFormatARB`
+- `wglGetExtensionsStringARB`
+- `wglGetExtensionsStringEXT`
+- `wglSwapIntervalEXT`
+- `wglGetSwapIntervalEXT`
+- `wglCreatePbufferARB`
+- `wglDestroyPbufferARB`
+- `wglBindTexImageARB`
+- `wglReleaseTexImageARB`
+- `wglDXOpenDeviceNV`
+- `wglDXRegisterObjectNV`
+- `wglDXLockObjectsNV`
+- `wglDXUnlockObjectsNV`
+- `wglDXSetResourceShareHandleNV`
+
+## 3. WGL_ extension-name strings
+
+```sh
+strings -a <bin> | grep -hoE 'WGL_[A-Za-z0-9_]+' | sort -u   # 57 unique, identical in all 3 binaries
+```
+
+```text
+WGL_3DFX_multisample
+WGL_3DL_stereo_control
+WGL_AMD_gpu_association
+WGL_ARB_buffer_region
+WGL_ARB_context_flush_control
+WGL_ARB_create_context
+WGL_ARB_create_context_no_error
+WGL_ARB_create_context_profile
+WGL_ARB_create_context_robustness
+WGL_ARB_extensions_string
+WGL_ARB_framebuffer_sRGB
+WGL_ARB_make_current_read
+WGL_ARB_multisample
+WGL_ARB_pbuffer
+WGL_ARB_pixel_format
+WGL_ARB_pixel_format_float
+WGL_ARB_render_texture
+WGL_ARB_robustness_application_isolation
+WGL_ARB_robustness_share_group_isolation
+WGL_ATI_pixel_format_float
+WGL_ATI_render_texture_rectangle
+WGL_EXT_colorspace
+WGL_EXT_create_context_es2_profile
+WGL_EXT_create_context_es_profile
+WGL_EXT_depth_float
+WGL_EXT_display_color_table
+WGL_EXT_extensions_string
+WGL_EXT_framebuffer_sRGB
+WGL_EXT_make_current_read
+WGL_EXT_multisample
+WGL_EXT_pbuffer
+WGL_EXT_pixel_format
+WGL_EXT_pixel_format_packed_float
+WGL_EXT_swap_control
+WGL_EXT_swap_control_tear
+WGL_I3D_digital_video_control
+WGL_I3D_gamma
+WGL_I3D_genlock
+WGL_I3D_image_buffer
+WGL_I3D_swap_frame_lock
+WGL_I3D_swap_frame_usage
+WGL_NV_DX_interop
+WGL_NV_DX_interop2
+WGL_NV_copy_image
+WGL_NV_delay_before_swap
+WGL_NV_float_buffer
+WGL_NV_gpu_affinity
+WGL_NV_multigpu_context
+WGL_NV_multisample_coverage
+WGL_NV_present_video
+WGL_NV_render_depth_texture
+WGL_NV_render_texture_rectangle
+WGL_NV_swap_group
+WGL_NV_vertex_array_range
+WGL_NV_video_capture
+WGL_NV_video_output
+WGL_OML_sync_control
+```
+
+Notably present: `WGL_ARB_create_context`, `WGL_ARB_create_context_profile`,
+`WGL_ARB_create_context_robustness`, `WGL_ARB_pixel_format`, `WGL_ARB_pbuffer`,
+`WGL_ARB_render_texture`, `WGL_ARB_framebuffer_sRGB`, `WGL_EXT_swap_control`,
+`WGL_EXT_swap_control_tear`, `WGL_NV_DX_interop`, `WGL_NV_DX_interop2`, `WGL_NV_swap_group`,
+`WGL_AMD_gpu_association`, `WGL_NV_present_video`, `WGL_OML_sync_control`, plus the
+WGL_I3D_* / WGL_3DFX_* / WGL_ATI_* legacy families.
+
+## 4. GL_ extension-name strings (GLEW registry)
+
+```sh
+strings -a <bin> | grep -hoE 'GL_[A-Za-z0-9_]+' | sort -u   # Arena 991, WireLib 983, WireNodes 975
+```
+
+These are **extension names** from GLEW's registry, not enum constants: there is no `GL_VENDOR`,
+`GL_RENDERER`, `GL_VERSION`, `GL_TRIANGLES`, `GL_TEXTURE_2D` among them (each verified 0 matches).
+So the app checks the GL extension string but does **not** read `GL_VENDOR`/`GL_RENDERER`.
+Full union (992 tokens):
+
+```text
+GL_3DFX_multisample
+GL_3DFX_tbuffer
+GL_3DFX_texture_compression_FXT1
+GL_3DL_stereo_control
+GL_AMD_blend_minmax_factor
+GL_AMD_compressed_3DC_texture
+GL_AMD_compressed_ATC_texture
+GL_AMD_conservative_depth
+GL_AMD_debug_output
+GL_AMD_depth_clamp_separate
+GL_AMD_draw_buffers_blend
+GL_AMD_framebuffer_multisample_advanced
+GL_AMD_framebuffer_sample_positions
+GL_AMD_gcn_shader
+GL_AMD_gpu_association
+GL_AMD_gpu_shader_half_float
+GL_AMD_gpu_shader_half_float_fetch
+GL_AMD_gpu_shader_int16
+GL_AMD_gpu_shader_int64
+GL_AMD_interleaved_elements
+GL_AMD_multi_draw_indirect
+GL_AMD_name_gen_delete
+GL_AMD_occlusion_query_event
+GL_AMD_performance_monitor
+GL_AMD_pinned_memory
+GL_AMD_program_binary_Z400
+GL_AMD_query_buffer_object
+GL_AMD_sample_positions
+GL_AMD_seamless_cubemap_per_texture
+GL_AMD_shader_atomic_counter_ops
+GL_AMD_shader_ballot
+GL_AMD_shader_explicit_vertex_parameter
+GL_AMD_shader_image_load_store_lod
+GL_AMD_shader_stencil_export
+GL_AMD_shader_stencil_value_export
+GL_AMD_shader_trinary_minmax
+GL_AMD_sparse_texture
+GL_AMD_stencil_operation_extended
+GL_AMD_texture_gather_bias_lod
+GL_AMD_texture_texture4
+GL_AMD_transform_feedback3_lines_triangles
+GL_AMD_transform_feedback4
+GL_AMD_vertex_shader_layer
+GL_AMD_vertex_shader_tessellator
+GL_AMD_vertex_shader_viewport_index
+GL_ANDROID_extension_pack_es31a
+GL_ANGLE_depth_texture
+GL_ANGLE_framebuffer_blit
+GL_ANGLE_framebuffer_multisample
+GL_ANGLE_instanced_arrays
+GL_ANGLE_pack_reverse_row_order
+GL_ANGLE_program_binary
+GL_ANGLE_texture_compression_dxt1
+GL_ANGLE_texture_compression_dxt3
+GL_ANGLE_texture_compression_dxt5
+GL_ANGLE_texture_usage
+GL_ANGLE_timer_query
+GL_ANGLE_translated_shader_source
+GL_APPLE_aux_depth_stencil
+GL_APPLE_client_storage
+GL_APPLE_clip_distance
+GL_APPLE_color_buffer_packed_float
+GL_APPLE_copy_texture_levels
+GL_APPLE_element_array
+GL_APPLE_fence
+GL_APPLE_float_pixels
+GL_APPLE_flush_buffer_range
+GL_APPLE_framebuffer_multisample
+GL_APPLE_object_purgeable
+GL_APPLE_pixel_buffer
+GL_APPLE_rgb_422
+GL_APPLE_row_bytes
+GL_APPLE_specular_vector
+GL_APPLE_sync
+GL_APPLE_texture_2D_limited_npot
+GL_APPLE_texture_format_BGRA8888
+GL_APPLE_texture_max_level
+GL_APPLE_texture_packed_float
+GL_APPLE_texture_range
+GL_APPLE_transform_hint
+GL_APPLE_vertex_array_object
+GL_APPLE_vertex_array_range
+GL_APPLE_vertex_program_evaluators
+GL_APPLE_ycbcr_422
+GL_ARB_ES2_compatibility
+GL_ARB_ES3_1_compatibility
+GL_ARB_ES3_2_compatibility
+GL_ARB_ES3_compatibility
+GL_ARB_arrays_of_arrays
+GL_ARB_base_instance
+GL_ARB_bindless_texture
+GL_ARB_blend_func_extended
+GL_ARB_buffer_region
+GL_ARB_buffer_storage
+GL_ARB_cl_event
+GL_ARB_clear_buffer_object
+GL_ARB_clear_texture
+GL_ARB_clip_control
+GL_ARB_color_buffer_float
+GL_ARB_compatibility
+GL_ARB_compressed_texture_pixel_storage
+GL_ARB_compute_shader
+GL_ARB_compute_variable_group_size
+GL_ARB_conditional_render_inverted
+GL_ARB_conservative_depth
+GL_ARB_context_flush_control
+GL_ARB_copy_buffer
+GL_ARB_copy_image
+GL_ARB_create_context
+GL_ARB_create_context_no_error
+GL_ARB_create_context_profile
+GL_ARB_create_context_robustness
+GL_ARB_cull_distance
+GL_ARB_debug_output
+GL_ARB_depth_buffer_float
+GL_ARB_depth_clamp
+GL_ARB_depth_texture
+GL_ARB_derivative_control
+GL_ARB_direct_state_access
+GL_ARB_draw_buffers
+GL_ARB_draw_buffers_blend
+GL_ARB_draw_elements_base_vertex
+GL_ARB_draw_indirect
+GL_ARB_draw_instanced
+GL_ARB_enhanced_layouts
+GL_ARB_explicit_attrib_location
+GL_ARB_explicit_uniform_location
+GL_ARB_extensions_string
+GL_ARB_fragment_coord_conventions
+GL_ARB_fragment_layer_viewport
+GL_ARB_fragment_program
+GL_ARB_fragment_program_shadow
+GL_ARB_fragment_shader
+GL_ARB_fragment_shader_interlock
+GL_ARB_framebuffer_no_attachments
+GL_ARB_framebuffer_object
+GL_ARB_framebuffer_sRGB
+GL_ARB_geometry_shader4
+GL_ARB_get_program_binary
+GL_ARB_get_texture_sub_image
+GL_ARB_gl_spirv
+GL_ARB_gpu_shader5
+GL_ARB_gpu_shader_fp64
+GL_ARB_gpu_shader_int64
+GL_ARB_half_float_pixel
+GL_ARB_half_float_vertex
+GL_ARB_imaging
+GL_ARB_indirect_parameters
+GL_ARB_instanced_arrays
+GL_ARB_internalformat_query
+GL_ARB_internalformat_query2
+GL_ARB_invalidate_subdata
+GL_ARB_make_current_read
+GL_ARB_map_buffer_alignment
+GL_ARB_map_buffer_range
+GL_ARB_matrix_palette
+GL_ARB_multi_bind
+GL_ARB_multi_draw_indirect
+GL_ARB_multisample
+GL_ARB_multitexture
+GL_ARB_occlusion_query
+GL_ARB_occlusion_query2
+GL_ARB_parallel_shader_compile
+GL_ARB_pbuffer
+GL_ARB_pipeline_statistics_query
+GL_ARB_pixel_buffer_object
+GL_ARB_pixel_format
+GL_ARB_pixel_format_float
+GL_ARB_point_parameters
+GL_ARB_point_sprite
+GL_ARB_polygon_offset_clamp
+GL_ARB_post_depth_coverage
+GL_ARB_program_interface_query
+GL_ARB_provoking_vertex
+GL_ARB_query_buffer_object
+GL_ARB_render_texture
+GL_ARB_robust_buffer_access_behavior
+GL_ARB_robustness
+GL_ARB_robustness_application_isolation
+GL_ARB_robustness_share_group_isolation
+GL_ARB_sample_locations
+GL_ARB_sample_shading
+GL_ARB_sampler_objects
+GL_ARB_seamless_cube_map
+GL_ARB_seamless_cubemap_per_texture
+GL_ARB_separate_shader_objects
+GL_ARB_shader_atomic_counter_ops
+GL_ARB_shader_atomic_counters
+GL_ARB_shader_ballot
+GL_ARB_shader_bit_encoding
+GL_ARB_shader_clock
+GL_ARB_shader_draw_parameters
+GL_ARB_shader_group_vote
+GL_ARB_shader_image_load_store
+GL_ARB_shader_image_size
+GL_ARB_shader_objects
+GL_ARB_shader_precision
+GL_ARB_shader_stencil_export
+GL_ARB_shader_storage_buffer_object
+GL_ARB_shader_subroutine
+GL_ARB_shader_texture_image_samples
+GL_ARB_shader_texture_lod
+GL_ARB_shader_viewport_layer_array
+GL_ARB_shading_language_100
+GL_ARB_shading_language_420pack
+GL_ARB_shading_language_include
+GL_ARB_shading_language_packing
+GL_ARB_shadow
+GL_ARB_shadow_ambient
+GL_ARB_sparse_buffer
+GL_ARB_sparse_texture
+GL_ARB_sparse_texture2
+GL_ARB_sparse_texture_clamp
+GL_ARB_spirv_extensions
+GL_ARB_stencil_texturing
+GL_ARB_sync
+GL_ARB_tessellation_shader
+GL_ARB_texture_barrier
+GL_ARB_texture_border_clamp
+GL_ARB_texture_buffer_object
+GL_ARB_texture_buffer_object_rgb32
+GL_ARB_texture_buffer_range
+GL_ARB_texture_compression
+GL_ARB_texture_compression_bptc
+GL_ARB_texture_compression_rgtc
+GL_ARB_texture_cube_map
+GL_ARB_texture_cube_map_array
+GL_ARB_texture_env_add
+GL_ARB_texture_env_combine
+GL_ARB_texture_env_crossbar
+GL_ARB_texture_env_dot3
+GL_ARB_texture_filter_anisotropic
+GL_ARB_texture_filter_minmax
+GL_ARB_texture_float
+GL_ARB_texture_gather
+GL_ARB_texture_mirror_clamp_to_edge
+GL_ARB_texture_mirrored_repeat
+GL_ARB_texture_multisample
+GL_ARB_texture_non_power_of_two
+GL_ARB_texture_query_levels
+GL_ARB_texture_query_lod
+GL_ARB_texture_rectangle
+GL_ARB_texture_rg
+GL_ARB_texture_rgb10_a2ui
+GL_ARB_texture_stencil8
+GL_ARB_texture_storage
+GL_ARB_texture_storage_multisample
+GL_ARB_texture_swizzle
+GL_ARB_texture_view
+GL_ARB_timer_query
+GL_ARB_transform_feedback2
+GL_ARB_transform_feedback3
+GL_ARB_transform_feedback_instanced
+GL_ARB_transform_feedback_overflow_query
+GL_ARB_transpose_matrix
+GL_ARB_uniform_buffer_object
+GL_ARB_vertex_array_bgra
+GL_ARB_vertex_array_object
+GL_ARB_vertex_attrib_64bit
+GL_ARB_vertex_attrib_binding
+GL_ARB_vertex_blend
+GL_ARB_vertex_buffer_object
+GL_ARB_vertex_program
+GL_ARB_vertex_shader
+GL_ARB_vertex_type_10f_11f_11f_rev
+GL_ARB_vertex_type_2_10_10_10_rev
+GL_ARB_viewport_array
+GL_ARB_window_pos
+GL_ARM_mali_program_binary
+GL_ARM_mali_shader_binary
+GL_ARM_rgba8
+GL_ARM_shader_framebuffer_fetch
+GL_ARM_shader_framebuffer_fetch_depth_stencil
+GL_ARM_texture_unnormalized_coordinates
+GL_ATIX_point_sprites
+GL_ATIX_texture_env_combine3
+GL_ATIX_texture_env_route
+GL_ATIX_vertex_shader_output_point_size
+GL_ATI_draw_buffers
+GL_ATI_element_array
+GL_ATI_envmap_bumpmap
+GL_ATI_fragment_shader
+GL_ATI_map_object_buffer
+GL_ATI_meminfo
+GL_ATI_pixel_format_float
+GL_ATI_pn_triangles
+GL_ATI_render_texture_rectangle
+GL_ATI_separate_stencil
+GL_ATI_shader_texture_lod
+GL_ATI_text_fragment_shader
+GL_ATI_texture_compression_3dc
+GL_ATI_texture_env_combine3
+GL_ATI_texture_float
+GL_ATI_texture_mirror_once
+GL_ATI_vertex_array_object
+GL_ATI_vertex_attrib_array_object
+GL_ATI_vertex_streams
+GL_DMP_program_binary
+GL_DMP_shader_binary
+GL_EXT_422_pixels
+GL_EXT_Cg_shader
+GL_EXT_EGL_image_array
+GL_EXT_EGL_image_external_wrap_modes
+GL_EXT_EGL_image_storage
+GL_EXT_EGL_sync
+GL_EXT_YUV_target
+GL_EXT_abgr
+GL_EXT_base_instance
+GL_EXT_bgra
+GL_EXT_bindable_uniform
+GL_EXT_blend_color
+GL_EXT_blend_equation_separate
+GL_EXT_blend_func_extended
+GL_EXT_blend_func_separate
+GL_EXT_blend_logic_op
+GL_EXT_blend_minmax
+GL_EXT_blend_subtract
+GL_EXT_buffer_storage
+GL_EXT_clear_texture
+GL_EXT_clip_control
+GL_EXT_clip_cull_distance
+GL_EXT_clip_volume_hint
+GL_EXT_cmyka
+GL_EXT_color_buffer_float
+GL_EXT_color_buffer_half_float
+GL_EXT_color_subtable
+GL_EXT_colorspace
+GL_EXT_compiled_vertex_array
+GL_EXT_compressed_ETC1_RGB8_sub_texture
+GL_EXT_conservative_depth
+GL_EXT_convolution
+GL_EXT_coordinate_frame
+GL_EXT_copy_image
+GL_EXT_copy_texture
+GL_EXT_create_context_es2_profile
+GL_EXT_create_context_es_profile
+GL_EXT_cull_vertex
+GL_EXT_debug_label
+GL_EXT_debug_marker
+GL_EXT_depth_bounds_test
+GL_EXT_depth_clamp
+GL_EXT_depth_float
+GL_EXT_direct_state_access
+GL_EXT_discard_framebuffer
+GL_EXT_disjoint_timer_query
+GL_EXT_display_color_table
+GL_EXT_draw_buffers
+GL_EXT_draw_buffers2
+GL_EXT_draw_buffers_indexed
+GL_EXT_draw_elements_base_vertex
+GL_EXT_draw_instanced
+GL_EXT_draw_range_elements
+GL_EXT_draw_transform_feedback
+GL_EXT_extensions_string
+GL_EXT_external_buffer
+GL_EXT_float_blend
+GL_EXT_fog_coord
+GL_EXT_frag_depth
+GL_EXT_fragment_lighting
+GL_EXT_framebuffer_blit
+GL_EXT_framebuffer_multisample
+GL_EXT_framebuffer_multisample_blit_scaled
+GL_EXT_framebuffer_object
+GL_EXT_framebuffer_sRGB
+GL_EXT_geometry_point_size
+GL_EXT_geometry_shader
+GL_EXT_geometry_shader4
+GL_EXT_gpu_program_parameters
+GL_EXT_gpu_shader4
+GL_EXT_gpu_shader5
+GL_EXT_histogram
+GL_EXT_index_array_formats
+GL_EXT_index_func
+GL_EXT_index_material
+GL_EXT_index_texture
+GL_EXT_instanced_arrays
+GL_EXT_light_texture
+GL_EXT_make_current_read
+GL_EXT_map_buffer_range
+GL_EXT_memory_object
+GL_EXT_memory_object_fd
+GL_EXT_memory_object_win32
+GL_EXT_misc_attribute
+GL_EXT_multi_draw_arrays
+GL_EXT_multi_draw_indirect
+GL_EXT_multiple_textures
+GL_EXT_multisample
+GL_EXT_multisample_compatibility
+GL_EXT_multisampled_render_to_texture
+GL_EXT_multisampled_render_to_texture2
+GL_EXT_multiview_draw_buffers
+GL_EXT_multiview_tessellation_geometry_shader
+GL_EXT_multiview_texture_multisample
+GL_EXT_multiview_timer_query
+GL_EXT_occlusion_query_boolean
+GL_EXT_packed_depth_stencil
+GL_EXT_packed_float
+GL_EXT_packed_pixels
+GL_EXT_paletted_texture
+GL_EXT_pbuffer
+GL_EXT_pixel_buffer_object
+GL_EXT_pixel_format
+GL_EXT_pixel_format_packed_float
+GL_EXT_pixel_transform
+GL_EXT_pixel_transform_color_table
+GL_EXT_point_parameters
+GL_EXT_polygon_offset
+GL_EXT_polygon_offset_clamp
+GL_EXT_post_depth_coverage
+GL_EXT_primitive_bounding_box
+GL_EXT_protected_textures
+GL_EXT_provoking_vertex
+GL_EXT_pvrtc_sRGB
+GL_EXT_raster_multisample
+GL_EXT_read_format_bgra
+GL_EXT_render_snorm
+GL_EXT_rescale_normal
+GL_EXT_robustness
+GL_EXT_sRGB
+GL_EXT_sRGB_write_control
+GL_EXT_scene_marker
+GL_EXT_secondary_color
+GL_EXT_semaphore
+GL_EXT_semaphore_fd
+GL_EXT_semaphore_win32
+GL_EXT_separate_shader_objects
+GL_EXT_separate_specular_color
+GL_EXT_shader_framebuffer_fetch
+GL_EXT_shader_framebuffer_fetch_non_coherent
+GL_EXT_shader_group_vote
+GL_EXT_shader_image_load_formatted
+GL_EXT_shader_image_load_store
+GL_EXT_shader_implicit_conversions
+GL_EXT_shader_integer_mix
+GL_EXT_shader_io_blocks
+GL_EXT_shader_non_constant_global_initializers
+GL_EXT_shader_pixel_local_storage
+GL_EXT_shader_pixel_local_storage2
+GL_EXT_shader_texture_lod
+GL_EXT_shadow_funcs
+GL_EXT_shadow_samplers
+GL_EXT_shared_texture_palette
+GL_EXT_sparse_texture
+GL_EXT_sparse_texture2
+GL_EXT_static_vertex_array
+GL_EXT_stencil_clear_tag
+GL_EXT_stencil_two_side
+GL_EXT_stencil_wrap
+GL_EXT_subtexture
+GL_EXT_swap_control
+GL_EXT_swap_control_tear
+GL_EXT_tessellation_point_size
+GL_EXT_tessellation_shader
+GL_EXT_texture
+GL_EXT_texture3D
+GL_EXT_texture_array
+GL_EXT_texture_border_clamp
+GL_EXT_texture_buffer
+GL_EXT_texture_buffer_object
+GL_EXT_texture_compression_astc_decode_mode
+GL_EXT_texture_compression_astc_decode_mode_rgb9e5
+GL_EXT_texture_compression_bptc
+GL_EXT_texture_compression_dxt1
+GL_EXT_texture_compression_latc
+GL_EXT_texture_compression_rgtc
+GL_EXT_texture_compression_s3tc
+GL_EXT_texture_compression_s3tc_srgb
+GL_EXT_texture_cube_map
+GL_EXT_texture_cube_map_array
+GL_EXT_texture_edge_clamp
+GL_EXT_texture_env
+GL_EXT_texture_env_add
+GL_EXT_texture_env_combine
+GL_EXT_texture_env_dot3
+GL_EXT_texture_filter_anisotropic
+GL_EXT_texture_filter_minmax
+GL_EXT_texture_format_BGRA8888
+GL_EXT_texture_format_sRGB_override
+GL_EXT_texture_integer
+GL_EXT_texture_lod_bias
+GL_EXT_texture_mirror_clamp
+GL_EXT_texture_mirror_clamp_to_edge
+GL_EXT_texture_norm16
+GL_EXT_texture_object
+GL_EXT_texture_perturb_normal
+GL_EXT_texture_query_lod
+GL_EXT_texture_rectangle
+GL_EXT_texture_rg
+GL_EXT_texture_sRGB
+GL_EXT_texture_sRGB_R8
+GL_EXT_texture_sRGB_RG8
+GL_EXT_texture_sRGB_decode
+GL_EXT_texture_shadow_lod
+GL_EXT_texture_shared_exponent
+GL_EXT_texture_snorm
+GL_EXT_texture_storage
+GL_EXT_texture_swizzle
+GL_EXT_texture_type_2_10_10_10_REV
+GL_EXT_texture_view
+GL_EXT_timer_query
+GL_EXT_transform_feedback
+GL_EXT_unpack_subimage
+GL_EXT_vertex_array
+GL_EXT_vertex_array_bgra
+GL_EXT_vertex_array_setXXX
+GL_EXT_vertex_attrib_64bit
+GL_EXT_vertex_shader
+GL_EXT_vertex_weighting
+GL_EXT_win32_keyed_mutex
+GL_EXT_window_rectangles
+GL_EXT_x11_sync_object
+GL_FJ_shader_binary_GCCSO
+GL_FRAMEBUFFER
+GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT
+GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT_EXT
+GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS_EXT
+GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER
+GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER_EXT
+GL_FRAMEBUFFER_INCOMPLETE_FORMATS_EXT
+GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT
+GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT_EXT
+GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER
+GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER_EXT
+GL_FRAMEBUFFER_UNDEFINED
+GL_FRAMEBUFFER_UNSUPPORTED
+GL_FRAMEBUFFER_UNSUPPORTED_EXT
+GL_GREMEDY_frame_terminator
+GL_GREMEDY_string_marker
+GL_HP_convolution_border_modes
+GL_HP_image_transform
+GL_HP_occlusion_test
+GL_HP_texture_lighting
+GL_I3D_digital_video_control
+GL_I3D_gamma
+GL_I3D_genlock
+GL_I3D_image_buffer
+GL_I3D_swap_frame_lock
+GL_I3D_swap_frame_usage
+GL_IBM_cull_vertex
+GL_IBM_multimode_draw_arrays
+GL_IBM_rasterpos_clip
+GL_IBM_static_data
+GL_IBM_texture_mirrored_repeat
+GL_IBM_vertex_array_lists
+GL_IMG_bindless_texture
+GL_IMG_framebuffer_downsample
+GL_IMG_multisampled_render_to_texture
+GL_IMG_program_binary
+GL_IMG_read_format
+GL_IMG_shader_binary
+GL_IMG_texture_compression_pvrtc
+GL_IMG_texture_compression_pvrtc2
+GL_IMG_texture_env_enhanced_fixed_function
+GL_IMG_texture_filter_cubic
+GL_INGR_color_clamp
+GL_INGR_interlace_read
+GL_INTEL_blackhole_render
+GL_INTEL_conservative_rasterization
+GL_INTEL_fragment_shader_ordering
+GL_INTEL_framebuffer_CMAA
+GL_INTEL_map_texture
+GL_INTEL_parallel_arrays
+GL_INTEL_performance_query
+GL_INTEL_shader_integer_functions2
+GL_INTEL_texture_scissor
+GL_INVALID_ENUM
+GL_KHR_blend_equation_advanced
+GL_KHR_blend_equation_advanced_coherent
+GL_KHR_context_flush_control
+GL_KHR_debug
+GL_KHR_no_error
+GL_KHR_parallel_shader_compile
+GL_KHR_robust_buffer_access_behavior
+GL_KHR_robustness
+GL_KHR_shader_subgroup
+GL_KHR_texture_compression_astc_hdr
+GL_KHR_texture_compression_astc_ldr
+GL_KHR_texture_compression_astc_sliced_3d
+GL_KTX_buffer_region
+GL_MESAX_texture_stack
+GL_MESA_framebuffer_flip_y
+GL_MESA_pack_invert
+GL_MESA_program_binary_formats
+GL_MESA_resize_buffers
+GL_MESA_shader_integer_functions
+GL_MESA_tile_raster_order
+GL_MESA_window_pos
+GL_MESA_ycbcr_texture
+GL_NUM_EXTENSIONS
+GL_NVX_blend_equation_advanced_multi_draw_buffers
+GL_NVX_conditional_render
+GL_NVX_gpu_memory_info
+GL_NVX_gpu_multicast2
+GL_NVX_linked_gpu_multicast
+GL_NVX_progress_fence
+GL_NV_3dvision_settings
+GL_NV_DX_interop
+GL_NV_DX_interop2
+GL_NV_EGL_stream_consumer_external
+GL_NV_alpha_to_coverage_dither_control
+GL_NV_bgr
+GL_NV_bindless_multi_draw_indirect
+GL_NV_bindless_multi_draw_indirect_count
+GL_NV_bindless_texture
+GL_NV_blend_equation_advanced
+GL_NV_blend_equation_advanced_coherent
+GL_NV_blend_minmax_factor
+GL_NV_blend_square
+GL_NV_clip_space_w_scaling
+GL_NV_command_list
+GL_NV_compute_program5
+GL_NV_compute_shader_derivatives
+GL_NV_conditional_render
+GL_NV_conservative_raster
+GL_NV_conservative_raster_dilate
+GL_NV_conservative_raster_pre_snap
+GL_NV_conservative_raster_pre_snap_triangles
+GL_NV_conservative_raster_underestimation
+GL_NV_copy_buffer
+GL_NV_copy_depth_to_color
+GL_NV_copy_image
+GL_NV_deep_texture3D
+GL_NV_delay_before_swap
+GL_NV_depth_buffer_float
+GL_NV_depth_clamp
+GL_NV_depth_nonlinear
+GL_NV_depth_range_unclamped
+GL_NV_draw_buffers
+GL_NV_draw_instanced
+GL_NV_draw_texture
+GL_NV_draw_vulkan_image
+GL_NV_evaluators
+GL_NV_explicit_attrib_location
+GL_NV_explicit_multisample
+GL_NV_fbo_color_attachments
+GL_NV_fence
+GL_NV_fill_rectangle
+GL_NV_float_buffer
+GL_NV_fog_distance
+GL_NV_fragment_coverage_to_color
+GL_NV_fragment_program
+GL_NV_fragment_program2
+GL_NV_fragment_program4
+GL_NV_fragment_program_option
+GL_NV_fragment_shader_barycentric
+GL_NV_fragment_shader_interlock
+GL_NV_framebuffer_blit
+GL_NV_framebuffer_mixed_samples
+GL_NV_framebuffer_multisample
+GL_NV_framebuffer_multisample_coverage
+GL_NV_generate_mipmap_sRGB
+GL_NV_geometry_program4
+GL_NV_geometry_shader4
+GL_NV_geometry_shader_passthrough
+GL_NV_gpu_affinity
+GL_NV_gpu_multicast
+GL_NV_gpu_program4
+GL_NV_gpu_program5
+GL_NV_gpu_program5_mem_extended
+GL_NV_gpu_program_fp64
+GL_NV_gpu_shader5
+GL_NV_half_float
+GL_NV_image_formats
+GL_NV_instanced_arrays
+GL_NV_internalformat_sample_query
+GL_NV_light_max_exponent
+GL_NV_memory_attachment
+GL_NV_mesh_shader
+GL_NV_multigpu_context
+GL_NV_multisample_coverage
+GL_NV_multisample_filter_hint
+GL_NV_non_square_matrices
+GL_NV_occlusion_query
+GL_NV_pack_subimage
+GL_NV_packed_depth_stencil
+GL_NV_packed_float
+GL_NV_packed_float_linear
+GL_NV_parameter_buffer_object
+GL_NV_parameter_buffer_object2
+GL_NV_path_rendering
+GL_NV_path_rendering_shared_edge
+GL_NV_pixel_buffer_object
+GL_NV_pixel_data_range
+GL_NV_platform_binary
+GL_NV_point_sprite
+GL_NV_polygon_mode
+GL_NV_present_video
+GL_NV_primitive_restart
+GL_NV_query_resource_tag
+GL_NV_read_buffer
+GL_NV_read_buffer_front
+GL_NV_read_depth
+GL_NV_read_depth_stencil
+GL_NV_read_stencil
+GL_NV_register_combiners
+GL_NV_register_combiners2
+GL_NV_render_depth_texture
+GL_NV_render_texture_rectangle
+GL_NV_representative_fragment_test
+GL_NV_robustness_video_memory_purge
+GL_NV_sRGB_formats
+GL_NV_sample_locations
+GL_NV_sample_mask_override_coverage
+GL_NV_scissor_exclusive
+GL_NV_shader_atomic_counters
+GL_NV_shader_atomic_float
+GL_NV_shader_atomic_float64
+GL_NV_shader_atomic_fp16_vector
+GL_NV_shader_atomic_int64
+GL_NV_shader_buffer_load
+GL_NV_shader_noperspective_interpolation
+GL_NV_shader_storage_buffer_object
+GL_NV_shader_subgroup_partitioned
+GL_NV_shader_texture_footprint
+GL_NV_shader_thread_group
+GL_NV_shader_thread_shuffle
+GL_NV_shading_rate_image
+GL_NV_shadow_samplers_array
+GL_NV_shadow_samplers_cube
+GL_NV_stereo_view_rendering
+GL_NV_swap_group
+GL_NV_tessellation_program5
+GL_NV_texgen_emboss
+GL_NV_texgen_reflection
+GL_NV_texture_array
+GL_NV_texture_barrier
+GL_NV_texture_border_clamp
+GL_NV_texture_compression_latc
+GL_NV_texture_compression_s3tc
+GL_NV_texture_compression_s3tc_update
+GL_NV_texture_compression_vtc
+GL_NV_texture_env_combine4
+GL_NV_texture_expand_normal
+GL_NV_texture_multisample
+GL_NV_texture_npot_2D_mipmap
+GL_NV_texture_rectangle
+GL_NV_texture_rectangle_compressed
+GL_NV_texture_shader
+GL_NV_texture_shader2
+GL_NV_texture_shader3
+GL_NV_transform_feedback
+GL_NV_transform_feedback2
+GL_NV_uniform_buffer_unified_memory
+GL_NV_vdpau_interop
+GL_NV_vdpau_interop2
+GL_NV_vertex_array_range
+GL_NV_vertex_array_range2
+GL_NV_vertex_attrib_integer_64bit
+GL_NV_vertex_buffer_unified_memory
+GL_NV_vertex_program
+GL_NV_vertex_program1_1
+GL_NV_vertex_program2
+GL_NV_vertex_program2_option
+GL_NV_vertex_program3
+GL_NV_vertex_program4
+GL_NV_video_capture
+GL_NV_video_output
+GL_NV_viewport_array
+GL_NV_viewport_array2
+GL_NV_viewport_swizzle
+GL_OES_
+GL_OES_EGL_image
+GL_OES_EGL_image_external
+GL_OES_EGL_image_external_essl3
+GL_OES_blend_equation_separate
+GL_OES_blend_func_separate
+GL_OES_blend_subtract
+GL_OES_byte_coordinates
+GL_OES_compressed_ETC1_RGB8_texture
+GL_OES_compressed_paletted_texture
+GL_OES_copy_image
+GL_OES_depth24
+GL_OES_depth32
+GL_OES_depth_texture
+GL_OES_depth_texture_cube_map
+GL_OES_draw_buffers_indexed
+GL_OES_draw_texture
+GL_OES_element_index_uint
+GL_OES_extended_matrix_palette
+GL_OES_fbo_render_mipmap
+GL_OES_fragment_precision_high
+GL_OES_framebuffer_object
+GL_OES_geometry_point_size
+GL_OES_geometry_shader
+GL_OES_get_program_binary
+GL_OES_gpu_shader5
+GL_OES_mapbuffer
+GL_OES_matrix_get
+GL_OES_matrix_palette
+GL_OES_packed_depth_stencil
+GL_OES_point_size_array
+GL_OES_point_sprite
+GL_OES_read_format
+GL_OES_required_internalformat
+GL_OES_rgb8_rgba8
+GL_OES_sample_shading
+GL_OES_sample_variables
+GL_OES_shader_image_atomic
+GL_OES_shader_io_blocks
+GL_OES_shader_multisample_interpolation
+GL_OES_single_precision
+GL_OES_standard_derivatives
+GL_OES_stencil1
+GL_OES_stencil4
+GL_OES_stencil8
+GL_OES_surfaceless_context
+GL_OES_tessellation_point_size
+GL_OES_tessellation_shader
+GL_OES_texture_3D
+GL_OES_texture_border_clamp
+GL_OES_texture_buffer
+GL_OES_texture_compression_astc
+GL_OES_texture_cube_map
+GL_OES_texture_cube_map_array
+GL_OES_texture_env_crossbar
+GL_OES_texture_mirrored_repeat
+GL_OES_texture_npot
+GL_OES_texture_stencil8
+GL_OES_texture_storage_multisample_2d_array
+GL_OES_texture_view
+GL_OES_vertex_array_object
+GL_OES_vertex_half_float
+GL_OES_vertex_type_10_10_10_2
+GL_OML_interlace
+GL_OML_resample
+GL_OML_subsample
+GL_OML_sync_control
+GL_OVR_multiview
+GL_OVR_multiview2
+GL_OVR_multiview_multisampled_render_to_texture
+GL_PGI_misc_hints
+GL_PGI_vertex_hints
+GL_QCOM_YUV_texture_gather
+GL_QCOM_alpha_test
+GL_QCOM_binning_control
+GL_QCOM_driver_control
+GL_QCOM_extended_get
+GL_QCOM_extended_get2
+GL_QCOM_framebuffer_foveated
+GL_QCOM_perfmon_global_mode
+GL_QCOM_shader_framebuffer_fetch_noncoherent
+GL_QCOM_shader_framebuffer_fetch_rate
+GL_QCOM_texture_foveated
+GL_QCOM_texture_foveated_subsampled_layout
+GL_QCOM_tiled_rendering
+GL_QCOM_writeonly_rendering
+GL_REGAL_ES1_0_compatibility
+GL_REGAL_ES1_1_compatibility
+GL_REGAL_enable
+GL_REGAL_error_string
+GL_REGAL_extension_query
+GL_REGAL_log
+GL_REGAL_proc_address
+GL_REND_screen_coordinates
+GL_S3_s3tc
+GL_SGIS_clip_band_hint
+GL_SGIS_color_range
+GL_SGIS_detail_texture
+GL_SGIS_fog_function
+GL_SGIS_generate_mipmap
+GL_SGIS_line_texgen
+GL_SGIS_multisample
+GL_SGIS_multitexture
+GL_SGIS_pixel_texture
+GL_SGIS_point_line_texgen
+GL_SGIS_shared_multisample
+GL_SGIS_sharpen_texture
+GL_SGIS_texture4D
+GL_SGIS_texture_border_clamp
+GL_SGIS_texture_edge_clamp
+GL_SGIS_texture_filter4
+GL_SGIS_texture_lod
+GL_SGIS_texture_select
+GL_SGIX_async
+GL_SGIX_async_histogram
+GL_SGIX_async_pixel
+GL_SGIX_bali_g_instruments
+GL_SGIX_bali_r_instruments
+GL_SGIX_bali_timer_instruments
+GL_SGIX_blend_alpha_minmax
+GL_SGIX_blend_cadd
+GL_SGIX_blend_cmultiply
+GL_SGIX_calligraphic_fragment
+GL_SGIX_clipmap
+GL_SGIX_color_matrix_accuracy
+GL_SGIX_color_table_index_mode
+GL_SGIX_complex_polar
+GL_SGIX_convolution_accuracy
+GL_SGIX_cube_map
+GL_SGIX_cylinder_texgen
+GL_SGIX_datapipe
+GL_SGIX_decimation
+GL_SGIX_depth_pass_instrument
+GL_SGIX_depth_texture
+GL_SGIX_dvc
+GL_SGIX_flush_raster
+GL_SGIX_fog_blend
+GL_SGIX_fog_factor_to_alpha
+GL_SGIX_fog_layers
+GL_SGIX_fog_offset
+GL_SGIX_fog_patchy
+GL_SGIX_fog_scale
+GL_SGIX_fog_texture
+GL_SGIX_fragment_lighting_space
+GL_SGIX_fragment_specular_lighting
+GL_SGIX_fragments_instrument
+GL_SGIX_framezoom
+GL_SGIX_icc_texture
+GL_SGIX_igloo_interface
+GL_SGIX_image_compression
+GL_SGIX_impact_pixel_texture
+GL_SGIX_instrument_error
+GL_SGIX_interlace
+GL_SGIX_ir_instrument1
+GL_SGIX_line_quality_hint
+GL_SGIX_list_priority
+GL_SGIX_mpeg1
+GL_SGIX_mpeg2
+GL_SGIX_nonlinear_lighting_pervertex
+GL_SGIX_nurbs_eval
+GL_SGIX_occlusion_instrument
+GL_SGIX_packed_6bytes
+GL_SGIX_pixel_texture
+GL_SGIX_pixel_texture_bits
+GL_SGIX_pixel_texture_lod
+GL_SGIX_pixel_tiles
+GL_SGIX_polynomial_ffd
+GL_SGIX_quad_mesh
+GL_SGIX_reference_plane
+GL_SGIX_resample
+GL_SGIX_scalebias_hint
+GL_SGIX_shadow
+GL_SGIX_shadow_ambient
+GL_SGIX_slim
+GL_SGIX_spotlight_cutoff
+GL_SGIX_sprite
+GL_SGIX_subdiv_patch
+GL_SGIX_subsample
+GL_SGIX_tag_sample_buffer
+GL_SGIX_texture_add_env
+GL_SGIX_texture_coordinate_clamp
+GL_SGIX_texture_lod_bias
+GL_SGIX_texture_mipmap_anisotropic
+GL_SGIX_texture_multi_buffer
+GL_SGIX_texture_phase
+GL_SGIX_texture_range
+GL_SGIX_texture_scale_bias
+GL_SGIX_texture_supersample
+GL_SGIX_vector_ops
+GL_SGIX_vertex_array_object
+GL_SGIX_vertex_preclip
+GL_SGIX_vertex_preclip_hint
+GL_SGIX_ycrcb
+GL_SGIX_ycrcb_subsample
+GL_SGIX_ycrcba
+GL_SGI_color_matrix
+GL_SGI_color_table
+GL_SGI_complex
+GL_SGI_complex_type
+GL_SGI_fft
+GL_SGI_texture_color_table
+GL_SUNX_constant_data
+GL_SUN_convolution_border_modes
+GL_SUN_global_alpha
+GL_SUN_mesh_array
+GL_SUN_read_video_pixels
+GL_SUN_slice_accum
+GL_SUN_triangle_list
+GL_SUN_vertex
+GL_VERSION_1_2
+GL_VERSION_1_2_1
+GL_VERSION_1_3
+GL_VERSION_1_4
+GL_VERSION_1_5
+GL_VERSION_2_0
+GL_VERSION_2_1
+GL_VERSION_3_0
+GL_VERSION_3_1
+GL_VERSION_3_2
+GL_VERSION_3_3
+GL_VERSION_4_0
+GL_VERSION_4_1
+GL_VERSION_4_2
+GL_VERSION_4_3
+GL_VERSION_4_4
+GL_VERSION_4_5
+GL_VERSION_4_6
+GL_VIV_shader_binary
+GL_WIN_phong_shading
+GL_WIN_scene_markerXXX
+GL_WIN_specular_fog
+GL_WIN_swap_hint
+```
+
+## 5. Minimum GL / shader version
+
+```sh
+strings -a <bin> | grep -aE 'OpenGL|#version|core profile|compatibility profile'
+```
+
+Key output (Arena.exe and WireLib.dll):
+
+```text
+Shutdown sequence triggered because another instance is already running or OpenGL 4.1 is not supported
+Application failed to initialize. Make sure your system meets the system requirements, eg OpenGL version 4.1
+This system supports OpenGL version: %s
+Maximum Supported OpenGL version: %d.%d
+%s: Failed to create context for OpenGL 4.1 (error %lu, pixel format %d/%d, share %p).
+%s: Advanced context creation function unavailable.      <-- wglCreateContextAttribsARB missing
+ra::Context::initialize / ra::Context::createOffscreenContext
+```
+
+**Minimum is OpenGL 4.1** (GLSL 4.10). Shader `#version` directives found in the binaries:
+
+```sh
+strings -a <bin> | grep -hoaE '#version [0-9]+' | sort | uniq -c
+    501 #version 410
+     24 #version 120
+      8 #version 410 core
+```
+
+No `core profile` / `compatibility profile` English strings exist in any binary (grep returns
+nothing). But the `#version 410 core` shaders combined with `WGL_ARB_create_context_profile` mean a
+**4.1 core-profile** context (with some residual legacy `#version 120` shaders). Context creation
+uses `wglCreateContextAttribsARB`; when that proc is missing the app logs "Advanced context creation
+function unavailable." and aborts initialization.
+
+## 6. GPU-vendor strings
+
+### 6a. NVIDIA-specific (Arena.exe only)
+
+```sh
+strings -a Arena.exe | grep -ai nvidia
+--RemoveFromNvidiaProfile
+nvidia
+Failed loading nvidia settings from disk
+Custom Nvidia profile doesn't exist yet, please restart for optimal performance
+Ensuring Nvidia profile correctness
+Failed creating custom nvidia profile
+Failed saving settings for custom nvidia profile
+Nvidia profile setup finished successfully
+Destroying NvidiaProfile utility
+ to custom nvidia profile, it's probably already present
+```
+
+Dynamically loaded driver DLL name and PCI vendor id (UTF-16 strings in Arena.exe):
+
+```text
+nvapi64.dll        (NVIDIA NVAPI)
+nvpowerapi.dll     (NVIDIA power API)
+VEN_10DE           (NVIDIA PCI vendor id, used with SetupAPI)
+```
+
+Vendor/registry enumeration block (UTF-16 strings): `SOFTWARE\Khronos\OpenCL\Vendors`,
+`SOFTWARE\Khronos\Vulkan\Drivers`, `OpenGLDriverName`, `UserModeDriverName`, `DriverSupportModules`,
+`UserModeDListDriverName` -- i.e. Arena inspects the installed GPU driver list via SetupAPI and
+applies an NVIDIA-specific profile/registry tweak.
+
+### 6b. No Mesa / llvmpipe / VMware / Microsoft Basic / Intel checks
+
+```sh
+grep -HoaiE 'llvmpipe|VMware|Microsoft Basic|Softpipe|SVGA3D|GDI Generic' *.txt   # no matches
+grep -HoaiE 'Intel\(R\)|Mesa' *.txt
+  (only random base64/JS noise around the letters "mesa"; no real GL_VENDOR string)
+```
+
+The `GL_INTEL_*`, `GL_MESA*`, `GL_AMD_*` tokens present are just GLEW extension-registry names, not
+vendor checks. **The only hard vendor dependency is NVIDIA (NVAPI + driver profile).**
+
+## 7. opengl32 only, or also EGL / Vulkan?
+
+Answer: **opengl32 + D3D11/DXGI only. No EGL and no Vulkan API usage.**
+
+- No `libEGL.dll` / `libGLESv2.dll` / `EGL.dll` import or loadable name.
+- No `eglGetDisplay|eglInitialize|eglCreateContext|eglMakeCurrent|eglSwapBuffers|eglGetProcAddress` string.
+- EGL appears *only* inside GLEW extension names (`GL_EXT_EGL_image_storage`, `GL_OES_EGL_image`,
+  `GL_NV_EGL_stream_consumer_external`, `glEGLImageTargetTexture2DOES`, ...).
+- No `vulkan-1.dll` / `libvulkan` loadable name, no `vk*` entry-point string.
+- `vulkan` appears only as `GL_NV_draw_vulkan_image` (GLEW name) and as the UTF-16 registry path
+  `SOFTWARE\Khronos\Vulkan\Drivers` inside the SetupAPI driver-enumeration block.
+- Licenses `moltenvk.md`, `vulkanmemoryallocator.md`, `glslang.md`, `spirv-cross.md` exist under
+  `app/licenses/` but pair with macOS tooling (MoltenVK); the Windows binaries expose no Vulkan API.
+- The real D3D coupling on Windows is **WGL_NV_DX_interop / wglDX* + D3D11CreateDevice**
+  (Arena only), used for Spout input (`spoutGLDXinterop`, `loadInteropExtensions`, `GetInteropDevice`).
+
+## 8. app/docs system requirements
+
+`app/docs/` contains only UI localisation data, no requirements text:
+
+```sh
+ls -R app/docs
+docs/gui/{English.txt,Deutsch.txt,Español.txt,日本語.txt,简体字.txt,繁體字.txt}
+docs/help/{English.xml,...}                          # context-sensitive help strings
+grep -rail 'opengl' app/docs     # (empty)
+grep -rai 'requirement' app/docs # (empty)
+```
+
+So there is **no OpenGL/GPU text in `app/docs/`** (GUI/help only). The requirement is enforced by
+the binaries; the exact strings that stand in for the published system requirements are:
+
+```text
+"Application failed to initialize. Make sure your system meets the system requirements, eg OpenGL version 4.1"
+"Shutdown sequence triggered because another instance is already running or OpenGL 4.1 is not supported"
+```
+
+(Resolume Arena 7 official requirement is OpenGL 4.1; the binary enforces it as shown in section 5.)
+
+## 9. Bottom line for Wine
+
+1. Wine needs a working OpenGL 4.1 **core** context via `wglCreateContextAttribsARB` +
+   `wglChoosePixelFormatARB`/`wglGetExtensionsStringARB`. If the ARB proc is NULL, Arena aborts.
+2. `wglSwapIntervalEXT` (WGL_EXT_swap_control / _tear) must resolve.
+3. Arena needs full **WGL_NV_DX_interop** (`wglDXOpenDeviceNV`, `wglDXRegisterObjectNV`, ...)
+   because it shares D3D11 textures with GL (Spout input). This is the least-likely Wine piece.
+4. `wglCreatePbufferARB`/`wglBindTexImageARB` (WGL_ARB_pbuffer / WGL_ARB_render_texture) are
+   resolved and must work for offscreen/`createOffscreenContext`.
+5. Only `opengl32.dll` (plus `d3d11.dll`/`dxgi.dll`) is needed -- no EGL, no Vulkan.
+6. NVIDIA-only code paths (NVAPI `nvapi64.dll`, `nvpowerapi.dll`, driver profile) will simply be
+   skipped/absent under Wine; they are not a GL blocker, and a Mesa/virgl GL_VENDOR string is not
+   needed since Arena never reads GL_VENDOR/GL_RENDERER.

@@ -1,0 +1,113 @@
+start 10:29:06 tag=wine-final2 prefix=/home/asdf/projects/resolume-wine/state/work/prefix display=:2 secs=80 debug= exe=Arena.exe extra=''
+t=20s alive=2 win=0xc00037
+t=40s alive=2 win=0xc00037
+t=60s alive=2 win=0xc00037
+t=80s alive=2 win=0xc00037
+=== windows ===
+     0xc00037 "Advanced Output": ("arena.exe" "arena.exe")  1100x593+0+29  +0+29
+     0xc00036 (has no name): ("arena.exe" "arena.exe")  1x1+0+0  +0+0
+     0xc00032 "Resapi offscreen window": ("arena.exe" "arena.exe")  111x64+0+0  +0+0
+     0xc00026 "ResapiHiddenMessageWindowName0.00030": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc00025 "JUCEWindow": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc0001e "DirectSound": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc0001d "Windows Audio": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc0001c "Windows Audio": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc0001b "Windows Audio": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc0001a "JuceMidiDeviceDetector_": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc00019 "Resapi offscreen window": ("arena.exe" "arena.exe")  111x64+0+0  +0+0
+     0xc00018 "Resapi offscreen window": ("arena.exe" "arena.exe")  111x64+0+0  +0+0
+     0xc00017 "Resapi offscreen window": ("arena.exe" "arena.exe")  111x64+0+0  +0+0
+     0xc00015 "ResapiHiddenMessageWindowName2362.76890": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc00001 "JUCEWindow": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc00002 "Default IME": ("arena.exe" "arena.exe")  1x1+0+0  +0+0
+     0x600007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x600003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+        0xc0003b "Resolume Arena - Example (1280 x 720, 8bpc)": ("arena.exe" "arena.exe")  1560x960+1+22  +20+30
+=== stderr tail ===
+02c4:fixme:win:RegisterTouchWindow hwnd 0000000000050050, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000050050 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000050050 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000050050 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 0000000000050050, 0: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007AE453C3FC28): semi-stub
+02c4:fixme:win:RegisterTouchWindow hwnd 0000000000060050, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000060050 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000060050 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000060050 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 0000000000060050, 0: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007AE453C3FC28): semi-stub
+02c4:fixme:win:RegisterTouchWindow hwnd 0000000000070050, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000070050 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000070050 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000070050 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 0000000000070050, 0: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007AE453C3FC28): semi-stub
+02c4:fixme:win:RegisterTouchWindow hwnd 0000000000080050, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000080050 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000080050 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000080050 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 0000000000080050, 0: stub.
+ParamCollection::rebuildLookupIfNeeded() took 0.0211 milliseconds for 19 params.
+ParamCollection::rebuildLookupIfNeeded() took 0.0392 milliseconds for 34 params.
+Logging input channels:
+	FFT: 0
+	SMPTE1: 0
+	SMPTE2: 0
+Logging output channels:
+	Master: 3
+	Preview: 0
+02c4:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007AE41D401158): semi-stub
+02c4:fixme:win:RegisterTouchWindow hwnd 0000000000020084, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000020084 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000020084 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000020084 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 0000000000020084, 0: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007AE41D401158): semi-stub
+02c4:fixme:win:RegisterTouchWindow hwnd 0000000000030084, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000030084 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000030084 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000030084 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 0000000000030084, 0: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007AE41D401158): semi-stub
+02c4:fixme:win:RegisterTouchWindow hwnd 0000000000040084, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000040084 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000040084 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000040084 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 0000000000040084, 0: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007AE41D401158): semi-stub
+02c4:fixme:win:RegisterTouchWindow hwnd 0000000000050084, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000050084 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000050084 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000050084 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 0000000000050084, 0: stub.
+02c4:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007AE41D400C98): semi-stub
+02c4:fixme:win:RegisterTouchWindow hwnd 000000000002008A, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 000000000002008A 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 000000000002008A 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 000000000002008A 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 000000000002008A, 0: stub.
+02c4:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007AE41D400EF8): semi-stub
+02c4:fixme:win:RegisterTouchWindow hwnd 0000000000020088, flags 0 stub!
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000020088 233 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000020088 4a 1 0000000000000000
+02c4:fixme:msg:ChangeWindowMessageFilterEx 0000000000020088 49 1 0000000000000000
+02c4:fixme:win:RegisterSuspendResumeNotification 0000000000020088, 0: stub.
+0454:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007AE40C1DFF50
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+02c4:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+end 10:30:29

@@ -1,0 +1,48 @@
+apitrace: started pid 1300 (suspended): "C:\Program Files\Resolume Arena\Arena.exe"
+apitrace: dll=Z:\home\asdf\projects\resolume-wine\tools\apitrace\build\apihook.dll
+apitrace: cfg=Z:\home\asdf\projects\resolume-wine\tools\apitrace\res.cfg
+apitrace: out=Z:\home\asdf\projects\resolume-wine\logs\runs\fonttrace.log
+apitrace: apihook.dll@0xf1910000 loaded in pid 1300
+0518:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFE68F838): semi-stub
+0518:fixme:win:RegisterTouchWindow hwnd 0000000000070068, flags 0 stub!
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000070068 233 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000070068 4a 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000070068 49 1 0000000000000000
+0518:err:ole:com_get_class_object class {aa509086-5ca9-4c25-8f95-589d3c07b48a} not registered
+0518:err:ole:com_get_class_object class {aa509086-5ca9-4c25-8f95-589d3c07b48a} not registered
+0518:err:ole:create_server class {aa509086-5ca9-4c25-8f95-589d3c07b48a} not registered
+0518:fixme:ole:com_get_class_object CLSCTX_REMOTE_SERVER not supported
+0518:err:ole:com_get_class_object no class object {aa509086-5ca9-4c25-8f95-589d3c07b48a} could be created for context 0x17
+0518:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFE693FD8): semi-stub
+0518:fixme:win:RegisterTouchWindow hwnd 0000000000070058, flags 0 stub!
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000070058 233 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000070058 4a 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000070058 49 1 0000000000000000
+0518:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+0518:fixme:win:RegisterSuspendResumeNotification 0000000000070058, 0: stub.
+0558:fixme:dxgi:dxgi_output_WaitForVBlank iface 00007FFFFE692C50 stub!
+0518:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFE8155B8): semi-stub
+0518:fixme:win:RegisterTouchWindow hwnd 0000000000090076, flags 0 stub!
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000090076 233 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000090076 4a 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000090076 49 1 0000000000000000
+0518:fixme:win:RegisterSuspendResumeNotification 0000000000090076, 0: stub.
+0518:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFE8193C8): semi-stub
+0518:fixme:win:RegisterTouchWindow hwnd 0000000000070088, flags 0 stub!
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000070088 233 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000070088 4a 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 0000000000070088 49 1 0000000000000000
+0518:fixme:win:RegisterSuspendResumeNotification 0000000000070088, 0: stub.
+0518:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFE819738): semi-stub
+0518:fixme:win:RegisterTouchWindow hwnd 000000000008006A, flags 0 stub!
+0518:fixme:msg:ChangeWindowMessageFilterEx 000000000008006A 233 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 000000000008006A 4a 1 0000000000000000
+0518:fixme:msg:ChangeWindowMessageFilterEx 000000000008006A 49 1 0000000000000000
+0518:fixme:win:RegisterSuspendResumeNotification 000000000008006A, 0: stub.
+0518:fixme:win:RegisterSuspendResumeNotification 0000000000070068, 0: stub.
+05a4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+05a4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0518:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+0518:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+0518:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.
+0518:fixme:win:UnregisterSuspendResumeNotification 00000000DEADBEEF: stub.

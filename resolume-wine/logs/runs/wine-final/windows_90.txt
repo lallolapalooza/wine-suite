@@ -1,0 +1,153 @@
+
+xwininfo: Window id: 0x47c (the root window) (has no name)
+
+  Root window id: 0x47c (the root window) (has no name)
+  Parent window id: 0x0 (none)
+     38 children:
+     0xe00037 "Advanced Output": ("arena.exe" "arena.exe")  1100x593+0+29  +0+29
+     0xe00036 (has no name): ("arena.exe" "arena.exe")  1x1+0+0  +0+0
+     0xe00032 "Resapi offscreen window": ("arena.exe" "arena.exe")  111x64+0+0  +0+0
+        1 child:
+        0xc0018f (has no name): ()  111x64+0+0  +0+0
+     0xe00026 "ResapiHiddenMessageWindowName0.00040": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xe00025 "JUCEWindow": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xe0001e "DirectSound": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xe0001d "Windows Audio": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xe0001c "Windows Audio": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xe0001b "Windows Audio": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xe0001a "JuceMidiDeviceDetector_": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xe00019 "Resapi offscreen window": ("arena.exe" "arena.exe")  111x64+0+0  +0+0
+        1 child:
+        0xc00103 (has no name): ()  111x64+0+0  +0+0
+     0xe00018 "Resapi offscreen window": ("arena.exe" "arena.exe")  111x64+0+0  +0+0
+        1 child:
+        0xc000fd (has no name): ()  111x64+0+0  +0+0
+     0xe00017 "Resapi offscreen window": ("arena.exe" "arena.exe")  111x64+0+0  +0+0
+        1 child:
+        0xc000f7 (has no name): ()  111x64+0+0  +0+0
+     0xe00015 "ResapiHiddenMessageWindowName2818.21620": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xc0001e (has no name): ()  1x1+0+0  +0+0
+        2 children:
+        0xc001f3 (has no name): ()  385x231+1+676  +1+676
+        0xc001e4 (has no name): ()  385x231+1+393  +1+393
+     0xe00001 "JUCEWindow": ("arena.exe" "arena.exe")  113x2+3+29  +3+29
+     0xe00002 "Default IME": ("arena.exe" "arena.exe")  1x1+0+0  +0+0
+     0x600007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x800001 (has no name): ()  1x1+0+0  +0+0
+     0x600002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x600003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600001 (has no name): ()  1x1+0+0  +0+0
+     0x486 (has no name): ()  100x100+0+0  +0+0
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x200173 (has no name): ()  1x1+0+0  +0+0
+        1 child:
+        0x200174 (has no name): ()  1x1+0+0  +1+1
+     0x200171 (has no name): ()  1x1+0+0  +0+0
+        1 child:
+        0x200172 (has no name): ()  1x1+0+0  +1+1
+     0x20016e (has no name): ()  1x1+0+0  +0+0
+        1 child:
+        0x20016f (has no name): ()  1x1+0+0  +1+1
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+        3 children:
+        0x20016d (has no name): ()  1x1+0+0  +1+1
+        0x20016c (has no name): ()  1x1+0+0  +1+1
+        0x20016b (has no name): ()  1x1+0+0  +1+1
+     0x200167 (has no name): ()  1x1+0+0  +0+0
+        2 children:
+        0x200169 (has no name): ()  1x1+0+0  +1+1
+        0x200168 (has no name): ()  1x1+0+0  +1+1
+     0x200166 (has no name): ()  1x1+0+0  +0+0
+     0x200165 (has no name): ()  1x1+0+0  +0+0
+     0x200164 (has no name): ()  1x1+0+0  +0+0
+     0x200163 (has no name): ()  1x1+0+0  +0+0
+     0x200170 (has no name): ()  1x1+0+0  +0+0
+     0x206069 (has no name): ()  1562x987+19+8  +19+8
+        56 children:
+        0xe0003b "Resolume Arena - Example (1280 x 720, 8bpc)": ("arena.exe" "arena.exe")  1560x960+1+22  +20+30
+        0x2060b5 (has no name): ()  1x1+0+0  +19+8
+        0x2060b4 (has no name): ()  1x1+0+0  +19+8
+        0x2060b3 (has no name): ()  1x1+0+0  +19+8
+        0x2060b2 (has no name): ()  1x1+0+0  +19+8
+        0x2060b1 (has no name): ()  1x1+0+0  +19+8
+        0x2060b0 (has no name): ()  1x1+0+0  +19+8
+        0x2060af (has no name): ()  1x1+0+0  +19+8
+        0x2060ae (has no name): ()  1x1+0+0  +19+8
+        0x2060ad (has no name): ()  1x1+0+0  +19+8
+        0x2060ac (has no name): ()  1x1+0+0  +19+8
+        0x2060ab (has no name): ()  1x1+0+0  +19+8
+        0x2060aa (has no name): ()  1x1+0+0  +19+8
+        0x2060a9 (has no name): ()  1x1+0+0  +19+8
+        0x2060a8 (has no name): ()  1x1+0+0  +19+8
+        0x2060a7 (has no name): ()  1x1+0+0  +19+8
+        0x2060a6 (has no name): ()  1x1+0+0  +19+8
+        0x2060a5 (has no name): ()  1x1+0+0  +19+8
+        0x2060a4 (has no name): ()  1x1+0+0  +19+8
+        0x2060a3 (has no name): ()  1x1+0+0  +19+8
+        0x2060a2 (has no name): ()  1x1+0+0  +19+8
+        0x2060a1 (has no name): ()  1x1+0+0  +19+8
+        0x2060a0 (has no name): ()  1x1+0+0  +19+8
+        0x20609f (has no name): ()  1x1+0+0  +19+8
+        0x20609e (has no name): ()  1x1+0+0  +19+8
+        0x20609d (has no name): ()  1x1+0+0  +19+8
+        0x20609c (has no name): ()  1x1+0+0  +19+8
+        0x20609b (has no name): ()  1x1+0+0  +19+8
+        0x20609a (has no name): ()  1x1+0+0  +19+8
+        0x206099 (has no name): ()  1x1+0+0  +19+8
+        0x206098 (has no name): ()  1x1+0+0  +19+8
+        0x206097 (has no name): ()  1x1+0+0  +19+8
+        0x206096 (has no name): ()  1x1+0+0  +19+8
+        0x206095 (has no name): ()  26x1+1535+986  +1554+994
+        0x206094 (has no name): ()  26x1+1535+982  +1554+990
+        0x206093 (has no name): ()  1x25+1561+962  +1580+970
+        0x206092 (has no name): ()  26x1+1+986  +20+994
+        0x206091 (has no name): ()  26x1+1+982  +20+990
+        0x206090 (has no name): ()  1x25+0+962  +19+970
+        0x20608f (has no name): ()  1508x1+27+986  +46+994
+        0x20608e (has no name): ()  1508x1+27+982  +46+990
+        0x206089 (has no name): ()  1560x3+1+983  +20+991
+           4 children:
+           0x20608d (has no name): ()  1x3+1534+0  +1554+991
+           0x20608c (has no name): ()  1x3+25+0  +45+991
+           0x20608b (has no name): ()  25x3+1535+0  +1555+991
+           0x20608a (has no name): ()  25x3+0+0  +20+991
+        0x206081 (has no name): ()  1x937+1561+26  +1580+34
+        0x206080 (has no name): ()  1x937+0+26  +19+34
+        0x20607a (has no name): ()  1560x1+1+21  +20+29
+        0x206079 (has no name): ()  1x25+1561+1  +1580+9
+        0x206078 (has no name): ()  26x1+1536+0  +1555+8
+        0x206077 (has no name): ()  26x1+0+0  +19+8
+        0x206076 (has no name): ()  1510x1+26+0  +45+8
+        0x206075 (has no name): ()  1x25+0+1  +19+9
+        0x206074 (has no name): ()  1560x20+1+1  +20+9
+           12 children:
+           0x206088 (has no name): ()  14x14+1506+3  +1526+12
+           0x206087 (has no name): ()  16x16+4+2  +24+11
+           0x206086 (has no name): ()  14x14+0+0  +20+9
+           0x206085 (has no name): ()  14x14+0+0  +20+9
+           0x206084 (has no name): ()  14x14+1542+3  +1562+12
+           0x206083 (has no name): ()  14x14+1524+3  +1544+12
+           0x206082 (has no name): ()  1444x16+58+2  +78+11
+           0x20607f (has no name): ()  4x20+1556+0  +1576+9
+           0x20607e (has no name): ()  25x3+1535+0  +1555+9
+           0x20607d (has no name): ()  4x20+0+0  +20+9
+           0x20607c (has no name): ()  25x3+0+0  +20+9
+           0x20607b (has no name): ()  1510x3+25+0  +45+9
+        0x20606f (has no name): ()  1x1+0+0  +19+8
+           2 children:
+           0x206071 (has no name): ()  1x1+0+0  +19+8
+           0x206070 (has no name): ()  1x1+0+0  +19+8
+        0x20606e (has no name): ()  1x1+0+0  +19+8
+           1 child:
+           0x206073 (has no name): ()  1x1+0+0  +19+8
+        0x20606d (has no name): ()  1x1+0+0  +19+8
+        0x20606c (has no name): ()  1x1+0+0  +19+8
+           1 child:
+           0x206072 (has no name): ()  1x1+0+0  +19+8
+        0x20606a (has no name): ()  1560x960+1+22  +20+30
+           1 child:
+           0x20606b (has no name): ()  1560x960+0+0  +20+30
+

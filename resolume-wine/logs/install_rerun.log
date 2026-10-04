@@ -1,0 +1,19 @@
+02d4:fixme:wtsapi:WTSRegisterSessionNotification Stub 0001011C 0x00000000
+02d4:fixme:uxtheme:BufferedPaintInit Stub ()
+02d4:fixme:win:DisableProcessWindowsGhosting : stub
+02d4:fixme:graphics:ShutdownBlockReasonDestroy (0001011C): stub
+02d4:fixme:graphics:ShutdownBlockReasonCreate (0001011C, L"Installing"): stub
+02d4:fixme:rstrtmgr:RmStartSession 006D778C, 0, 006D7790 stub!
+02d4:fixme:graphics:ShutdownBlockReasonDestroy (0001011C): stub
+02d4:fixme:graphics:ShutdownBlockReasonCreate (0001011C, L"Installing Resolume Arena."): stub
+02d4:fixme:system:EnableNonClientDpiScaling (0001012A): stub
+02d4:fixme:msg:ChangeWindowMessageFilterEx 0001012A c041 1 00000000
+02d4:fixme:system:EnableNonClientDpiScaling (0002012A): stub
+02d4:fixme:msg:ChangeWindowMessageFilterEx 0002012A c041 1 00000000
+02d4:fixme:msg:ChangeWindowMessageFilterEx 00010134 c041 1 00000000
+02d4:fixme:msg:ChangeWindowMessageFilterEx 00020134 c041 1 00000000
+02d4:fixme:shell:SHAutoComplete stub
+02d4:fixme:rstrtmgr:RmRegisterResources -559038737, 48, 01B6DE30, 0, 00000000, 0, 00000000 stub!
+02d4:fixme:rstrtmgr:RmGetList -559038737, 0026FE34, 0026FE38, 01B6DE30, 0026FE30 stub!
+02d4:fixme:explorerframe:taskbar_list_SetProgressValue iface 01CF5D30, hwnd 0001011C, ullCompleted 0, ullTotal 305 stub!
+02d4:fixme:sfc:SfcIsFileProtected (00000000, L"C:\\Program Files\\Resolume Arena\\unins001.exe") stub

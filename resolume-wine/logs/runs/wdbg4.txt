@@ -1,0 +1,31 @@
+WineDbg attached to pid 0020
+01f0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01f0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+Wine-dbg>No such thread
+Wine-dbg>Backtrace:
+=>0 0x006fffffbd1181 in ntdll (+0x11181) (0000000000000000)
+  1 0x006fffffbd1174 in ntdll (+0x11174) (0000000000000000)
+  2 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  3 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+Wine-dbg>No such thread
+Wine-dbg>Backtrace:
+=>0 0x006fffffbd1181 in ntdll (+0x11181) (0000000000000000)
+  1 0x006fffffbd1174 in ntdll (+0x11174) (0000000000000000)
+  2 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  3 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+Wine-dbg>No such thread
+syntax error
+Wine-dbg>Backtrace:
+=>0 0x006fffffbd1181 in ntdll (+0x11181) (0000000000000000)
+  1 0x006fffffbd1174 in ntdll (+0x11174) (0000000000000000)
+  2 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  3 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+Wine-dbg>No such thread
+syntax error
+Wine-dbg>Backtrace:
+=>0 0x006fffffbd1181 in ntdll (+0x11181) (0000000000000000)
+  1 0x006fffffbd1174 in ntdll (+0x11174) (0000000000000000)
+  2 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  3 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+Wine-dbg>
