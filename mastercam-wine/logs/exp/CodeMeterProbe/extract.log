@@ -1,0 +1,21 @@
+
+7-Zip 26.00 (x64) : Copyright (c) 1999-2026 Igor Pavlov : 2026-02-12
+ 64-bit locale=en_US.UTF-8 Threads:22 OPEN_MAX:524288, ASM
+
+Scanning the drive for archives:
+1 file, 195231744 bytes (187 MiB)
+
+Extracting archive: /run/media/asdf/Windows/mastercam-media/SetupPrerequisites/CodeMeterRuntime64.msi
+--
+Path = /run/media/asdf/Windows/mastercam-media/SetupPrerequisites/CodeMeterRuntime64.msi
+Type = Compound
+Physical Size = 195231744
+Extension = msi
+Cluster Size = 4096
+
+Everything is Ok
+
+Folders: 7
+Files: 197
+Size:       194875870
+Compressed: 195231744

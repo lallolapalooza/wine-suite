@@ -1,0 +1,58 @@
+=== 11:57:14 wine wine-11.18 prefix /home/asdf/projects/mastercam-wine/state/work/prefix ===
+msi.dll: 2026-10-03 11:50:10.967676425 -0500
+=== 1. mkprefix ===
+
+== wine wine-11.18
+
+== prefix /home/asdf/projects/mastercam-wine/state/work/prefix (fresh=0, stage=fonts)
+
+== wineboot -u
+
+== set Windows 10
+
+== core fonts
+   (fonts not installed; see tools/install_corefonts.sh)
+
+== result
+=== 2. core fonts (RW_TMP workaround) ===
+  FOUND family "Arial" charset=177 type=4
+  FOUND family "Arial" charset=178 type=4
+  FOUND family "Arial" charset=186 type=4
+  FOUND family "Arial" charset=204 type=4
+  FOUND family "Arial" charset=238 type=4
+  FOUND family "Verdana" charset=0 type=4
+
+== done
+=== 3. .NET 10 Desktop Runtime 10.0.12 (11:57:49) ===
+dotnet10 rc=0
+/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/dotnet
+/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/dotnet/shared
+/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/dotnet/shared/Microsoft.WindowsDesktop.App
+/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/dotnet/shared/Microsoft.WindowsDesktop.App/10.0.12
+/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/dotnet/shared/Microsoft.NETCore.App
+/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/dotnet/shared/Microsoft.NETCore.App/10.0.12
+/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/dotnet/host
+/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/dotnet/host/fxr
+=== 4. .NET Framework 4.8 (winetricks, ~15 min) (11:57:57) ===
+dotnet48 rc=0
+1033
+ASP.NETWebAdminFiles
+Accessibility.dll
+=== 5. VC++ 2022 x64 (12:05:43) ===
+vc2022 rc=0
+=== 6. CodeMeter Runtime (patch 0101 test) (12:05:46) ===
+codemeter msi rc=67
+-- cm.log decisive --
+-- service state --
+The following services are running:
+    Microsoft .NET Framework NGEN v4.0.30319_X86
+    Microsoft .NET Framework NGEN v4.0.30319_X64
+    Event Log
+    Plug and Play Service
+    Remote Procedure Call (RPC)
+    Security Accounts Manager
+    Task Scheduler
+    Winedevice1
+    Winedevice2
+ls: cannot access '/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/CodeMeter/Runtime/CodeMeter.exe': No such file or directory
+=== stage A done 12:05:47 ===

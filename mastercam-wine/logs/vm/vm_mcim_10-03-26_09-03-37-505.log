@@ -1,0 +1,293 @@
+[09:03:37:505] <DEBUG> : Frontend log started.
+[09:03:37:524] <DEBUG> : The Frontend commandline is: 
+[09:03:39:314] <DEBUG> : Setup.exe path: E:
+[09:03:39:316] <DEBUG> : Path to datapaths.ini: E:\datapaths.ini
+[09:03:39:318] <DEBUG> : Path to mcim.ini: E:\support\mcim.ini
+[09:03:39:334] <DEBUG> : SetupLanguageVector:  Opened InstallLangs database successfully.
+[09:03:39:340] <DEBUG> : Found user preferred UI language: en-US
+[09:03:39:340] <DEBUG> : The system's locale language: en
+[09:03:39:354] <DEBUG> : GetSupportedLanguages:  Supported language found for language:cs
+[09:03:39:361] <DEBUG> : GetSupportedLanguages:  Supported language found for language:de
+[09:03:39:373] <DEBUG> : GetSupportedLanguages:  Supported language found for language:en
+[09:03:39:375] <DEBUG> : GetSupportedLanguages:  Supported language found for language:es
+[09:03:39:375] <DEBUG> : GetSupportedLanguages:  Supported language found for language:fi
+[09:03:39:377] <DEBUG> : GetSupportedLanguages:  Supported language found for language:fr
+[09:03:39:379] <DEBUG> : GetSupportedLanguages:  Supported language found for language:it
+[09:03:39:379] <DEBUG> : GetSupportedLanguages:  Supported language found for language:ja
+[09:03:39:381] <DEBUG> : GetSupportedLanguages:  Supported language found for language:ko-kr
+[09:03:39:381] <DEBUG> : GetSupportedLanguages:  Supported language found for language:pl
+[09:03:39:383] <DEBUG> : GetSupportedLanguages:  Supported language found for language:pt-br
+[09:03:39:383] <DEBUG> : GetSupportedLanguages:  Supported language found for language:sv
+[09:03:39:385] <DEBUG> : GetSupportedLanguages:  Supported language found for language:tr
+[09:03:39:399] <DEBUG> : GetSupportedLanguages:  Supported language found for language:zh-cn
+[09:03:39:406] <DEBUG> : GetSupportedLanguages:  Supported language found for language:zh-tw
+[09:03:39:407] <WARNING> : GetCurrentLanguage:  Could not open registry key: Software\CNC Software\Mastercam 2027
+[09:03:40:371] <DEBUG> : Setting up path map.
+[09:03:40:371] <DEBUG> : Setup.exe path: E:
+[09:03:40:373] <DEBUG> : isEnglishOnly value: 0
+[09:03:40:562] <WARNING> : No value specified for default units. Value retrieved based on locale: I
+[09:03:40:576] <DEBUG> : Set Unit type: I
+[09:03:40:587] <DEBUG> : Setup.exe path: E:
+[09:03:40:593] <DEBUG> : Path to productcodes.dat: E:\productcodes.dat
+[09:03:40:640] <DEBUG> : Product name: ProDrill
+[09:03:40:643] <DEBUG> : GUID: {4DBC2C37-9DF4-40A4-8261-47540062CC85}
+[09:03:40:643] <DEBUG> : Product name: Onshape
+[09:03:40:645] <DEBUG> : GUID: {9F079DB3-2100-4DAB-A3DE-810E4C35E745}
+[09:03:40:653] <DEBUG> : Product name: languagepack_mastercam
+[09:03:40:657] <DEBUG> : GUID: {C253C79A-FFA7-493A-BE3D-053214932BA9}
+[09:03:40:659] <DEBUG> : Product name: Updater
+[09:03:40:661] <DEBUG> : GUID: {1E59AE7A-09DE-41B7-97A1-32A5C7CEAEDB}
+[09:03:40:663] <DEBUG> : Product name: MastercamLicensing
+[09:03:40:665] <DEBUG> : GUID: {6FCF92EF-02B6-45BB-82CE-1C0A52F3338A}
+[09:03:40:667] <DEBUG> : Product name: AutomatedTesting
+[09:03:40:669] <DEBUG> : GUID: {FEE52672-AAC6-4ECC-8027-C67BB542E091}
+[09:03:40:671] <DEBUG> : Product name: Mastercam
+[09:03:40:673] <DEBUG> : GUID: {E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+[09:03:40:673] <DEBUG> : Product name: SDK
+[09:03:40:675] <DEBUG> : GUID: {3CD7F1B7-1D7F-4FE8-AF93-D74511E4327B}
+[09:03:40:677] <DEBUG> : Product name: EverPath
+[09:03:40:677] <DEBUG> : GUID: {D6A97C1A-6258-4BFE-BF51-786DD2FCA58B}
+[09:03:40:683] <DEBUG> : Product name AutomatedTesting will be ignored and not added to map.
+[09:03:40:685] <DEBUG> : Product name Onshape will be ignored and not added to map.
+[09:03:40:689] <DEBUG> : Product name ProDrill will be ignored and not added to map.
+[09:03:40:691] <DEBUG> : Product name SDK will be ignored and not added to map.
+[09:03:40:693] <WARNING> : Product to product code map sizes do not match!
+[09:03:40:701] <DEBUG> : IsProductCodeInstalled, value of fullPath: Software\Microsoft\Windows\CurrentVersion\Uninstall\{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+[09:03:40:703] <WARNING> : IsProductCodeInstalled:  Could not open registry key: Software\Microsoft\Windows\CurrentVersion\Uninstall\{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+[09:03:40:711] <DEBUG> : Set dest dir: C:\Program Files\Mastercam 2027
+[09:03:40:713] <DEBUG> : Set Dest dir default path: C:\Program Files\Mastercam 2027
+[09:03:40:717] <DEBUG> : SetPathToLanguagePacksOnMedia: E:\\support\languagepacks
+[09:03:40:719] <DEBUG> : SetPathToLocalLanguagePacks: C:\Users\adsf\Downloads
+[09:03:41:343] <DEBUG> : The system's locale language: en
+[09:03:42:778] <DEBUG> : The system's locale language: en
+[09:03:42:778] <DEBUG> : GetAvailableLanguagePacks:  Language pack found for language:en
+[09:03:42:780] <DEBUG> : GetAvailableLanguagePacks:  Adding language pack to map: E:\support\languagepacks\2027_en_language_pack_mastercam.exe
+[09:03:42:780] <DEBUG> : Set user access: 1
+[09:03:42:786] <DEBUG> : Set Shared defaults: C:\Users\Public\Documents\Shared Mastercam 2027
+[09:03:42:790] <DEBUG> : Set Default shared defaults: C:\Users\Public\Documents\Shared Mastercam 2027
+[09:03:42:792] <DEBUG> : Set Install Machsim: 1
+[09:03:42:794] <DEBUG> : GetUserInformation:  userInfo:  adsf
+[09:03:42:798] <DEBUG> : Set user name: adsf
+[09:03:42:798] <DEBUG> : GetUserInformation:  userInfo:  
+[09:03:42:798] <DEBUG> : Set company name: 
+[09:03:42:798] <DEBUG> : Set Install core machines and posts: 1
+[09:03:42:798] <DEBUG> : Set Log path: C:\Users\adsf\AppData\Local\Temp\
+[09:03:42:800] <DEBUG> : Set Log path: C:\Users\adsf\AppData\Local\Temp\
+[09:03:42:800] <DEBUG> : Set transforms: 
+[09:03:42:800] <WARNING> : No company name specified. Defaulting to: My company name
+[09:03:42:800] <DEBUG> : Set company name: My company name
+[09:03:42:800] <DEBUG> : Run the FrontEnd.
+[09:03:42:828] <DEBUG> : Setup.exe path: E:
+[09:03:42:832] <DEBUG> : GetPathToProductName:  strAppDir:  E:\Mastercam
+[09:03:42:836] <DEBUG> : GetPathToMsi:  strAppDir:  E:\Mastercam\Mastercam_Installer.msi
+[09:07:45:036] <DEBUG> : GetMsiProperty:  csProperty:  29.0.10172.0
+[09:07:45:047] <DEBUG> : Main product not installed. Product version is: 29.0.10172.0
+[09:07:45:047] <DEBUG> : Title bar string: 2027 (Build 29.0.10172.0)
+[09:07:45:254] <DEBUG> : Hard Disk (Fixed) drive found: C:\
+[09:07:45:256] <DEBUG> : Available space on drive C:\ is 11 GB.
+[09:07:45:256] <DEBUG> : CD-Rom/DVD-Rom drive found: D:\
+[09:07:45:256] <DEBUG> : CD-Rom/DVD-Rom drive found: E:\
+[09:07:45:259] <WARNING> : SystemMeetsStorageRequirement is false.
+[09:07:45:268] <DEBUG> : Monitor found with resolution: 1280x800
+[09:07:45:288] <WARNING> : MonitorMeetsResolutionRequirement is false.
+[09:07:45:410] <DEBUG> : Detected system OpenGL version: -27492124.-27492116
+[09:07:45:412] <WARNING> : Warning - System does not meet OpenGL requirements!
+[09:07:45:414] <DEBUG> : SystemMeetsOpenGLRequirement is true.
+[09:07:45:416] <DEBUG> : System total memory is 8 GB.
+[09:07:45:416] <DEBUG> : SystemMeetsMemoryRequirement is true.
+[09:07:45:418] <DEBUG> : System processor speed is 3.00 
+[09:07:45:418] <DEBUG> : ProcessorMeetsSpeedRequirement is true.
+[09:07:45:418] <DEBUG> : IsWindows7OrGreater is true.
+[09:07:45:420] <DEBUG> : Setup.exe path: E:
+[09:07:45:543] <DEBUG> : The system's locale language: en
+[09:07:45:547] <DEBUG> : The system's locale language: en
+[09:07:45:549] <DEBUG> : GetAvailableLanguagePacks:  Language pack found for language:en
+[09:07:45:549] <DEBUG> : GetAvailableLanguagePacks:  Adding language pack to map: E:\support\languagepacks\2027_en_language_pack_mastercam.exe
+[09:07:45:716] <DEBUG> : Setup.exe path: E:
+[09:07:46:278] <DEBUG> : MakePages return value:  1
+[09:07:46:294] <DEBUG> : Setup.exe path: E:
+[09:07:46:332] <DEBUG> : Product name AutomatedTesting will be ignored and not added to map.
+[09:07:46:332] <DEBUG> : Product name Onshape will be ignored and not added to map.
+[09:07:46:332] <DEBUG> : Product name ProDrill will be ignored and not added to map.
+[09:07:46:334] <DEBUG> : Product name SDK will be ignored and not added to map.
+[09:10:57:919] <DEBUG> : IsProductCodeInstalled, value of fullPath: Software\Microsoft\Windows\CurrentVersion\Uninstall\{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+[09:10:57:923] <WARNING> : IsProductCodeInstalled:  Could not open registry key: Software\Microsoft\Windows\CurrentVersion\Uninstall\{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+[09:10:57:925] <DEBUG> : Setup.exe path: E:
+[09:10:57:927] <DEBUG> : GetPathToProductName:  strAppDir:  E:\Mastercam
+[09:10:57:927] <DEBUG> : GetPathToMsi:  strAppDir:  E:\Mastercam\Mastercam_Installer.msi
+[09:10:58:926] <DEBUG> : GetMsiProperty:  csProperty:  29.0.10172.0
+[09:10:58:952] <DEBUG> : In function HideActivePage
+[09:10:59:148] <DEBUG> : In function HideActivePage: Hiding page # 0
+[09:10:59:148] <DEBUG> : User entered page: FE_SYSTEM_REQ_PAGE
+[09:15:28:740] <DEBUG> : Setup.exe path: E:
+[09:15:28:743] <DEBUG> : GetPathToProductName:  strAppDir:  E:\Mastercam
+[09:15:28:746] <DEBUG> : GetPathToMsi:  strAppDir:  E:\Mastercam\Mastercam_Installer.msi
+[09:15:28:835] <DEBUG> : GetMsiProperty:  csProperty:  29.0.10172.0
+[09:15:28:855] <DEBUG> : In function HideActivePage
+[09:15:29:017] <DEBUG> : In function HideActivePage: Hiding page # 2
+[09:15:29:019] <DEBUG> : User entered page: FE_LANGUAGEPACKS_PAGE
+[09:15:29:041] <DEBUG> : IsMastercamRunning return value:  0
+[09:17:06:281] <DEBUG> : SetPathToLocalLanguagePacks: C:\Users\adsf\Downloads
+[09:17:06:284] <DEBUG> : Setup.exe path: E:
+[09:17:06:284] <DEBUG> : GetPathToProductName:  strAppDir:  E:\Mastercam
+[09:17:06:286] <DEBUG> : GetPathToMsi:  strAppDir:  E:\Mastercam\Mastercam_Installer.msi
+[09:17:06:418] <DEBUG> : GetMsiProperty:  csProperty:  29.0.10172.0
+[09:17:06:469] <DEBUG> : In function HideActivePage
+[09:17:06:735] <DEBUG> : In function HideActivePage: Hiding page # 3
+[09:17:06:736] <DEBUG> : User entered page: FE_REVIEW_PAGE
+[09:17:06:736] <DEBUG> : Setup.exe path: E:
+[09:17:06:741] <DEBUG> : IsDotNetInstalled: Retrieved dotnet release version: 533509
+[09:17:06:745] <DEBUG> : IsProductNameInstalled, value of fullPath: Software\Microsoft\Windows\CurrentVersion\Uninstall\CodeMeter Runtime Kit
+[09:17:06:748] <DEBUG> : IsProductNameInstalled, value of findSubset:  1
+[09:17:06:838] <DEBUG> : Adding CodeMeterRuntime64.msi/i "E:\SetupPrerequisites\CodeMeterRuntime64.msi" /q /norestart
+[09:17:06:840] <DEBUG> : Set Setup prerequisite command line: /i "E:\SetupPrerequisites\CodeMeterRuntime64.msi" /q /norestart
+[09:17:06:840] <DEBUG> : Set Log path: C:\Users\adsf\AppData\Local\Temp\
+[09:17:06:842] <DEBUG> : PopulateInstallObjectWithData: Setup new install with name: Setup Prerequisites
+[09:17:06:844] <DEBUG> : IsProductNameInstalled, value of fullPath: Software\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Visual C++ 2022 Redistributable (x86)
+[09:17:06:844] <DEBUG> : IsProductNameInstalled, value of findSubset:  1
+[09:17:06:931] <DEBUG> : Adding MSVC++ 2022 X86
+[09:17:06:933] <DEBUG> : Set Setup prerequisite command line: /q /norestart
+[09:17:06:933] <DEBUG> : Set Log path: C:\Users\adsf\AppData\Local\Temp\
+[09:17:06:935] <DEBUG> : PopulateInstallObjectWithData: Setup new install with name: Setup Prerequisites
+[09:17:06:938] <DEBUG> : IsProductNameInstalled, value of fullPath: Software\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Visual C++ 2022 Redistributable (x64)
+[09:17:06:938] <DEBUG> : IsProductNameInstalled, value of findSubset:  1
+[09:17:06:991] <DEBUG> : Adding MSVC++ 2022 X64
+[09:17:06:993] <DEBUG> : Set Setup prerequisite command line: /q /norestart
+[09:17:07:004] <DEBUG> : Set Log path: C:\Users\adsf\AppData\Local\Temp\
+[09:17:07:011] <DEBUG> : PopulateInstallObjectWithData: Setup new install with name: Setup Prerequisites
+[09:17:07:018] <DEBUG> : Setup.exe path: E:
+[09:17:07:023] <DEBUG> : IsProductNameInstalled, value of fullPath: Software\Microsoft\Windows\CurrentVersion\Uninstall\Licensing Utilities
+[09:17:07:029] <DEBUG> : IsProductNameInstalled, value of findSubset:  1
+[09:17:07:096] <DEBUG> : CheckForMastercamDependency: Adding new dependency installer, s, located at, s, to the vector.
+[09:17:07:105] <DEBUG> : AddDependencyToVector: Adding Licensing Utilities to the vector.
+[09:17:07:107] <DEBUG> : Set Setup prerequisite command line: /L1033 /clone_wait /S /v"REBOOT=ReallySuppress /L*V "%s" /qn"
+[09:17:07:109] <DEBUG> : Set Log path: C:\Users\adsf\AppData\Local\Temp\
+[09:17:07:109] <DEBUG> : PopulateInstallObjectWithData: Setup new install with name: Licensing Utilities
+[09:17:07:111] <DEBUG> : Setup.exe path: E:
+[09:17:07:111] <DEBUG> : GetPathToProductName:  strAppDir:  E:\Mastercam
+[09:17:07:116] <DEBUG> : GetPathToMsi:  strAppDir:  E:\Mastercam\Mastercam_Installer.msi
+[09:17:07:204] <DEBUG> : GetMsiProperty:  csProperty:  29.0.10172.0
+[09:17:07:270] <DEBUG> : Set Installer product version: 29.0.10172.0
+[09:17:07:270] <DEBUG> : IsProductCodeInstalled, value of fullPath: Software\Microsoft\Windows\CurrentVersion\Uninstall\{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+[09:17:07:272] <WARNING> : IsProductCodeInstalled:  Could not open registry key: Software\Microsoft\Windows\CurrentVersion\Uninstall\{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+[09:17:07:274] <DEBUG> : Setup.exe path: E:
+[09:17:07:274] <DEBUG> : IsProductNameInstalled, value of fullPath: Software\Microsoft\Windows\CurrentVersion\Uninstall\Mastercam 2027 Updater
+[09:17:07:277] <DEBUG> : IsProductNameInstalled, value of findSubset:  1
+[09:17:07:302] <DEBUG> : CheckForMastercamDependency: Adding new dependency installer, s, located at, s, to the vector.
+[09:17:07:311] <DEBUG> : AddDependencyToVector: Adding Updater to the vector.
+[09:17:07:319] <DEBUG> : Set Setup prerequisite command line: /L1033 /clone_wait /S /v"REBOOT=ReallySuppress /L*V "%s" /qn"
+[09:17:07:326] <DEBUG> : Set Log path: C:\Users\adsf\AppData\Local\Temp\
+[09:17:07:332] <DEBUG> : PopulateInstallObjectWithData: Setup new install with name: Updater
+[09:17:07:341] <DEBUG> : AddLanguagePackToVector: Adding language pack, English Language Pack
+[09:17:07:402] <DEBUG> : Mastercam destination drive found: C:\
+[09:17:49:328] <DEBUG> : SystemHasEnoughSpaceToInstallMastercam, size of Licensing Utilities = 0.0
+[09:17:49:330] <DEBUG> : SystemHasEnoughSpaceToInstallMastercam, size of Mastercam 2027 = 0.0
+[09:17:49:333] <DEBUG> : SystemHasEnoughSpaceToInstallMastercam, size of Updater = 0.0
+[09:17:49:333] <DEBUG> : Available space on C:\ drive is 10384 MB.
+[09:17:49:335] <DEBUG> : SystemHasEnoughSpaceToInstallMastercam, totalSize = 0.0, setupPrereqTotalSize =  0.0, availableSpace = 10384
+[09:17:49:335] <DEBUG> : InstallFolderExists return value:  0
+[09:17:49:335] <DEBUG> : Setup.exe path: E:
+[09:17:49:337] <DEBUG> : GetPathToProductName:  strAppDir:  E:\Mastercam
+[09:17:49:337] <DEBUG> : GetPathToMsi:  strAppDir:  E:\Mastercam\Mastercam_Installer.msi
+[09:17:49:359] <DEBUG> : GetMsiProperty:  csProperty:  29.0.10172.0
+[09:17:49:368] <DEBUG> : In function HideActivePage
+[09:17:49:496] <DEBUG> : In function HideActivePage: Hiding page # 4
+[09:17:49:496] <DEBUG> : User entered page: FE_LICENSE_PAGE
+[09:18:52:107] <DEBUG> : Setup.exe path: E:
+[09:18:52:109] <DEBUG> : GetPathToProductName:  strAppDir:  E:\Mastercam
+[09:18:52:111] <DEBUG> : GetPathToMsi:  strAppDir:  E:\Mastercam\Mastercam_Installer.msi
+[09:18:52:184] <DEBUG> : GetMsiProperty:  csProperty:  29.0.10172.0
+[09:18:52:208] <DEBUG> : In function HideActivePage
+[09:18:52:349] <DEBUG> : In function HideActivePage: Hiding page # 5
+[09:18:52:349] <DEBUG> : User entered page: FE_LOADING_PAGE
+[09:18:52:454] <DEBUG> : Set Install log file name: C:\Users\adsf\AppData\Local\Temp\Setup_Prerequisites_Install_10-03-26_09-18-52.log
+[09:18:52:454] <DEBUG> : Setting current directory:  C:\WINDOWS\system32\msiexec.exe
+[09:18:52:456] <DEBUG> : Set Setup prerequisite command line: /i "E:\SetupPrerequisites\CodeMeterRuntime64.msi" /q /norestart
+[09:18:52:456] <DEBUG> : Running setup:  Setup Prerequisites. Command Line:  /i "E:\SetupPrerequisites\CodeMeterRuntime64.msi" /q /norestart
+[09:18:52:804] <DEBUG> : Preparing to launch .exe file:  C:\WINDOWS\system32\msiexec.exe\
+[09:18:52:804] <DEBUG> : Function LaunchShellExecute:  Ready to call ShellExecuteEx on executable.C:\WINDOWS\system32\msiexec.exe\
+[09:18:53:000] <DEBUG> : Function LaunchShellExecute:  ShellExecuteEx called on executable:  C:\WINDOWS\system32\msiexec.exe\
+[09:21:00:123] <DEBUG> : Function LaunchShellExecute:  WaitForSingleObject completed. Closing handle.
+[09:21:00:125] <DEBUG> : Setup finished.  Return value:  1
+[09:21:00:127] <DEBUG> : Exiting Run function with value:  0
+[09:21:00:129] <DEBUG> : Set Install success: 0
+[09:21:00:131] <DEBUG> : Set Install log file name: C:\Users\adsf\AppData\Local\Temp\Setup_Prerequisites_Install_10-03-26_09-21-00.log
+[09:21:00:133] <DEBUG> : Setting current directory:  E:\SetupPrerequisites\VC2022
+[09:21:00:135] <DEBUG> : Set Setup prerequisite command line: /q /norestart
+[09:21:00:135] <DEBUG> : Running setup:  Setup Prerequisites. Command Line:  /q /norestart
+[09:21:00:231] <DEBUG> : Preparing to launch .exe file:  E:\SetupPrerequisites\VC2022\vc_redist.x86.exe
+[09:21:00:231] <DEBUG> : Function LaunchShellExecute:  Ready to call ShellExecuteEx on executable.E:\SetupPrerequisites\VC2022\vc_redist.x86.exe
+[09:21:00:800] <DEBUG> : Function LaunchShellExecute:  ShellExecuteEx called on executable:  E:\SetupPrerequisites\VC2022\vc_redist.x86.exe
+[09:21:03:404] <DEBUG> : Function LaunchShellExecute:  WaitForSingleObject completed. Closing handle.
+[09:21:03:406] <DEBUG> : Setup finished.  Return value:  1
+[09:21:03:408] <DEBUG> : Exiting Run function with value:  0
+[09:21:03:412] <DEBUG> : Set Install success: 0
+[09:21:03:416] <DEBUG> : Set Install log file name: C:\Users\adsf\AppData\Local\Temp\Setup_Prerequisites_Install_10-03-26_09-21-03.log
+[09:21:03:416] <DEBUG> : Setting current directory:  E:\SetupPrerequisites\VC2022
+[09:21:03:416] <DEBUG> : Set Setup prerequisite command line: /q /norestart
+[09:21:03:416] <DEBUG> : Running setup:  Setup Prerequisites. Command Line:  /q /norestart
+[09:21:03:471] <DEBUG> : Preparing to launch .exe file:  E:\SetupPrerequisites\VC2022\vc_redist.x64.exe
+[09:21:03:471] <DEBUG> : Function LaunchShellExecute:  Ready to call ShellExecuteEx on executable.E:\SetupPrerequisites\VC2022\vc_redist.x64.exe
+[09:21:03:903] <DEBUG> : Function LaunchShellExecute:  ShellExecuteEx called on executable:  E:\SetupPrerequisites\VC2022\vc_redist.x64.exe
+[09:21:15:157] <DEBUG> : Function LaunchShellExecute:  WaitForSingleObject completed. Closing handle.
+[09:21:15:161] <DEBUG> : Setup finished.  Return value:  1
+[09:21:15:163] <DEBUG> : Exiting Run function with value:  0
+[09:21:15:167] <DEBUG> : Set Install success: 0
+[09:21:15:184] <DEBUG> : Set Install log file name: C:\Users\adsf\AppData\Local\Temp\Licensing_Utilities_Install_10-03-26_09-21-15.log
+[09:21:15:186] <DEBUG> : Setting current directory:  E:\SetupPrerequisites\MastercamLicensing
+[09:21:15:188] <DEBUG> : Set Setup prerequisite command line: /L1033 /clone_wait /S /v"REBOOT=ReallySuppress /L*V "C:\Users\adsf\AppData\Local\Temp\Licensing_Utilities_Install_10-03-26_09-21-15.log" /qn"
+[09:21:15:188] <DEBUG> : Running setup:  Licensing Utilities. Command Line:  /L1033 /clone_wait /S /v"REBOOT=ReallySuppress /L*V "C:\Users\adsf\AppData\Local\Temp\Licensing_Utilities_Install_10-03-26_09-21-15.log" /qn"
+[09:21:15:278] <DEBUG> : Preparing to launch .exe file:  E:\SetupPrerequisites\MastercamLicensing\MastercamLicensingSetup.exe
+[09:21:15:298] <DEBUG> : Function LaunchShellExecute:  Ready to call ShellExecuteEx on executable.E:\SetupPrerequisites\MastercamLicensing\MastercamLicensingSetup.exe
+[09:21:37:630] <DEBUG> : Function LaunchShellExecute:  ShellExecuteEx called on executable:  E:\SetupPrerequisites\MastercamLicensing\MastercamLicensingSetup.exe
+[09:26:25:172] <DEBUG> : Function LaunchShellExecute:  WaitForSingleObject completed. Closing handle.
+[09:26:25:172] <DEBUG> : Setup finished.  Return value:  1
+[09:26:25:175] <DEBUG> : Exiting Run function with value:  0
+[09:26:25:175] <DEBUG> : Set Install success: 0
+[09:26:25:177] <DEBUG> : Set Install log file name: C:\Users\adsf\AppData\Local\Temp\Mastercam_2027_Install_10-03-26_09-26-25.log
+[09:26:25:177] <DEBUG> : Setting current directory:  E:\Mastercam
+[09:26:25:179] <DEBUG> : Running setup:  Mastercam 2027. Command Line:   ADDLOCAL="ALL" CNC_DEST_DIR="C:\Program Files\Mastercam 2027" CNC_SHAREDDEFAULTS="C:\Users\Public\Documents\Shared Mastercam 2027" ALLUSERS="1" USERNAME="adsf" COMPANYNAME="My company name" ARPSYSTEMCOMPONENT="1" MSIRMSHUTDOWN=0 CNC_UNIT_TYPE="I" CNC_INSTALL_MACHSIM="Y" CNC_INSTALL_CORE_MACHINES_AND_POSTS="Y" TRANSFORMS="1033.mst" CNC_INCLUDE_UNINSTALL_REG="Yes" MSIRESTARTMANAGERCONTROL=0 REBOOT=ReallySuppress
+[09:26:25:181] <DEBUG> : Preparing to launch setup:  Mastercam 2027
+[09:26:25:220] <DEBUG> : Install success for [09:36:23:215] <DEBUG> : MSI Setup finished.  Return value:  0
+[09:36:23:239] <DEBUG> : Exiting Run function with value:  0
+[09:36:23:241] <DEBUG> : Set Install success: 0
+[09:36:23:638] <DEBUG> : GetMsiProperty:  csProperty:  {F25E5DEF-DB04-4C91-A400-2CF4E3FC2989}
+[09:36:23:646] <DEBUG> : Setup.exe path: E:
+[09:36:23:648] <DEBUG> : Full path to uninstaller.exe: C:\Program Files (x86)\InstallShield Installation Information\{F25E5DEF-DB04-4C91-A400-2CF4E3FC2989}
+[09:36:23:648] <DEBUG> : Full path to uninstaller.exe: C:\Program Files (x86)\InstallShield Installation Information\{F25E5DEF-DB04-4C91-A400-2CF4E3FC2989}
+[09:36:23:650] <DEBUG> : DoesUninstallerExeExist return value: 0
+[09:36:23:650] <DEBUG> : Copying source:  E:\support\uninstaller\uninstaller.exe
+[09:36:23:650] <DEBUG> : Copying destination:  C:\Program Files (x86)\InstallShield Installation Information\{F25E5DEF-DB04-4C91-A400-2CF4E3FC2989}\uninstaller.exe
+[09:36:23:693] <DEBUG> : CopyFile (uninstaller.exe) return value:  1
+[09:36:23:693] <DEBUG> : Set Install log file name: C:\Users\adsf\AppData\Local\Temp\Updater_Install_10-03-26_09-36-23.log
+[09:36:23:693] <DEBUG> : Install success for [09:36:23:715] <DEBUG> : Setting current directory:  E:\support\updater
+[09:36:23:715] <DEBUG> : Set Setup prerequisite command line: /L1033 /clone_wait /S /v"REBOOT=ReallySuppress /L*V "C:\Users\adsf\AppData\Local\Temp\Updater_Install_10-03-26_09-36-23.log" /qn"
+[09:36:23:717] <DEBUG> : Running setup:  Updater. Command Line:  /L1033 /clone_wait /S /v"REBOOT=ReallySuppress /L*V "C:\Users\adsf\AppData\Local\Temp\Updater_Install_10-03-26_09-36-23.log" /qn"
+[09:36:23:773] <DEBUG> : Preparing to launch .exe file:  E:\support\updater\mastercam2027-updater.exe
+[09:36:23:773] <DEBUG> : Function LaunchShellExecute:  Ready to call ShellExecuteEx on executable.E:\support\updater\mastercam2027-updater.exe
+[09:36:24:502] <DEBUG> : Function LaunchShellExecute:  ShellExecuteEx called on executable:  E:\support\updater\mastercam2027-updater.exe
+[09:37:53:448] <DEBUG> : Function LaunchShellExecute:  WaitForSingleObject completed. Closing handle.
+[09:37:53:450] <DEBUG> : Setup finished.  Return value:  1
+[09:37:53:452] <DEBUG> : Exiting Run function with value:  0
+[09:37:53:455] <DEBUG> : Set Install success: 0
+[09:37:53:459] <DEBUG> : Set Install log file name: C:\Users\adsf\AppData\Local\Temp\English_Language_Pack_Install_10-03-26_09-37-53.log
+[09:37:53:578] <DEBUG> : Install success for [09:37:53:580] <DEBUG> : Preparing to launch .exe file:  E:\support\languagepacks\2027_en_language_pack_mastercam.exe
+[09:37:53:580] <DEBUG> : Function LaunchShellExecute:  Ready to call ShellExecuteEx on executable.E:\support\languagepacks\2027_en_language_pack_mastercam.exe
+[09:37:54:818] <DEBUG> : Function LaunchShellExecute:  ShellExecuteEx called on executable:  E:\support\languagepacks\2027_en_language_pack_mastercam.exe
+[09:41:36:775] <DEBUG> : Function LaunchShellExecute:  WaitForSingleObject completed. Closing handle.
+[09:41:36:785] <DEBUG> : Setup finished.  Return value:  1
+[09:41:36:803] <DEBUG> : Exiting Run function with value:  0
+[09:41:36:805] <DEBUG> : Set Install success: 0
+[09:41:36:807] <DEBUG> : Finished running all setups.
+[09:41:37:025] <DEBUG> : Install success for [09:41:38:033] <DEBUG> : Setup.exe path: E:
+[09:41:38:041] <DEBUG> : GetPathToProductName:  strAppDir:  E:\Mastercam
+[09:41:38:051] <DEBUG> : GetPathToMsi:  strAppDir:  E:\Mastercam\Mastercam_Installer.msi
+[09:41:38:117] <DEBUG> : GetMsiProperty:  csProperty:  29.0.10172.0
+[09:41:38:129] <DEBUG> : In function HideActivePage
+[09:41:38:158] <DEBUG> : In function HideActivePage: Hiding page # 6
+[09:41:38:158] <DEBUG> : User entered page: FE_FINISH_PAGE
+[09:43:18:380] <DEBUG> : In function HideActivePage
+[09:43:18:538] <DEBUG> : In function HideActivePage: Hiding page # 7
+[09:43:18:540] <DEBUG> : IsProductCodeInstalled, value of fullPath: Software\Microsoft\Windows\CurrentVersion\Uninstall\{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+[09:43:56:656] <DEBUG> : Exiting the frontend.
+[09:43:56:666] <DEBUG> : We're done with our resource DLL, so free it.

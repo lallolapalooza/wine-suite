@@ -1,0 +1,121 @@
+start 12:31:13 tag=launch1 prefix=/home/asdf/projects/mastercam-wine/state/work/prefix display=:2 secs=30 debug=+timestamp,+seh,+module exe=MastercamLauncher.exe extra=''
+t=10s alive=4 win=0x1000003
+t=20s alive=4 win=0x1000003
+t=30s alive=4 win=0x1000003
+=== windows ===
+     0x1000003 (has no name): ("mastercamlauncher.exe" "mastercamlauncher.exe")  1x1+0+0  +0+0
+     0x1000002 "Default IME": ("mastercamlauncher.exe" "mastercamlauncher.exe")  1x1+0+0  +0+0
+     0xc00003 (has no name): ("mastercam.exe" "mastercam.exe")  1x1+0+0  +0+0
+     0xc00002 "Default IME": ("mastercam.exe" "mastercam.exe")  1x1+0+0  +0+0
+     0x600007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x600003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+        0x1000001 "MastercamLauncher": ("mastercamlauncher.exe" "mastercamlauncher.exe")  301x82+1+22  +649+472
+        0xc00001 "C:\Program Files\Mastercam 2027\Mastercam.exe": ("mastercam.exe" "mastercam.exe")  307x82+1+22  +646+472
+=== stderr tail ===
+226189.812:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E9C0.
+226189.812:0214:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 000000000014F090, base 000000000014F088.
+226189.812:0214:trace:module:find_dll_file found L"C:\\windows\\winsxs\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef\\comctl32.dll" for L"comctl32.dll"
+226189.812:0214:trace:module:LdrGetDllHandleEx L"comctl32.dll" -> 00006FFFF6960000 (load path (null))
+226189.812:0214:trace:module:FindResourceExW 00006FFFFD700000 #000c #7f00 0000
+226189.812:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DD978
+226189.812:0214:trace:module:FindResourceExW 00006FFFFD700000 #0001 #0003 0000
+226189.812:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E9C0.
+226189.812:0214:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 000000000014F090, base 000000000014F088.
+226189.812:0214:trace:module:find_dll_file found L"C:\\windows\\winsxs\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef\\comctl32.dll" for L"comctl32.dll"
+226189.812:0214:trace:module:LdrGetDllHandleEx L"comctl32.dll" -> 00006FFFF6960000 (load path (null))
+226189.812:0214:trace:module:FindResourceExW 00006FFFFD700000 #000c #7f00 0000
+226189.812:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DD978
+226189.812:0214:trace:module:FindResourceExW 00006FFFFD700000 #0001 #0003 0000
+226189.812:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E9C0.
+226189.813:0214:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 000000000014F090, base 000000000014F088.
+226189.813:0214:trace:module:find_dll_file found L"C:\\windows\\winsxs\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef\\comctl32.dll" for L"comctl32.dll"
+226189.813:0214:trace:module:LdrGetDllHandleEx L"comctl32.dll" -> 00006FFFF6960000 (load path (null))
+226189.813:0214:trace:module:FindResourceExW 00006FFFFD700000 #000c #7f00 0000
+226189.813:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DD978
+226189.813:0214:trace:module:FindResourceExW 00006FFFFD700000 #0001 #0003 0000
+226189.813:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E9C0.
+226189.813:0214:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 000000000014F090, base 000000000014F088.
+226189.813:0214:trace:module:find_dll_file found L"C:\\windows\\winsxs\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef\\comctl32.dll" for L"comctl32.dll"
+226189.813:0214:trace:module:LdrGetDllHandleEx L"comctl32.dll" -> 00006FFFF6960000 (load path (null))
+226189.813:0214:trace:module:FindResourceExW 00006FFFFD700000 #000c #7f00 0000
+226189.813:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DD978
+226189.813:0214:trace:module:FindResourceExW 00006FFFFD700000 #0001 #0003 0000
+226189.813:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E9C0.
+226189.814:0214:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 000000000014F090, base 000000000014F088.
+226189.814:0214:trace:module:find_dll_file found L"C:\\windows\\winsxs\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef\\comctl32.dll" for L"comctl32.dll"
+226189.814:0214:trace:module:LdrGetDllHandleEx L"comctl32.dll" -> 00006FFFF6960000 (load path (null))
+226189.814:0214:trace:module:FindResourceExW 00006FFFFD700000 #000c #7f00 0000
+226189.814:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DD978
+226189.814:0214:trace:module:FindResourceExW 00006FFFFD700000 #0001 #0003 0000
+226189.814:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E9C0.
+226189.814:0214:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 000000000014F090, base 000000000014F088.
+226189.814:0214:trace:module:find_dll_file found L"C:\\windows\\winsxs\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef\\comctl32.dll" for L"comctl32.dll"
+226189.814:0214:trace:module:LdrGetDllHandleEx L"comctl32.dll" -> 00006FFFF6960000 (load path (null))
+226189.814:0214:trace:module:FindResourceExW 00006FFFFD700000 #000c #7f00 0000
+226189.814:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DD978
+226189.814:0214:trace:module:FindResourceExW 00006FFFFD700000 #0001 #0003 0000
+226189.814:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E9C0.
+226189.815:0214:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 000000000014F090, base 000000000014F088.
+226189.815:0214:trace:module:find_dll_file found L"C:\\windows\\winsxs\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef\\comctl32.dll" for L"comctl32.dll"
+226189.815:0214:trace:module:LdrGetDllHandleEx L"comctl32.dll" -> 00006FFFF6960000 (load path (null))
+226189.815:0214:trace:module:FindResourceExW 00006FFFFD700000 #000c #7f00 0000
+226189.815:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DD978
+226189.815:0214:trace:module:FindResourceExW 00006FFFFD700000 #0001 #0003 0000
+226189.815:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E9C0.
+226189.815:0214:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 000000000014F090, base 000000000014F088.
+226189.815:0214:trace:module:find_dll_file found L"C:\\windows\\winsxs\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.2600.2982_none_deadbeef\\comctl32.dll" for L"comctl32.dll"
+226189.815:0214:trace:module:LdrGetDllHandleEx L"comctl32.dll" -> 00006FFFF6960000 (load path (null))
+226189.815:0214:trace:module:FindResourceExW 00006FFFFD700000 #000c #7f00 0000
+226189.815:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DD978
+226189.815:0214:trace:module:FindResourceExW 00006FFFFD700000 #0001 #0003 0000
+226189.815:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E9C0.
+226189.816:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF6960000, 00006FFFF6A112F8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF6A114F0, 0x00000000)
+226189.816:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF6960000, 00006FFFF6A112F8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF6A11400, 0x00000000)
+226189.819:0214:trace:module:FindResourceExW 00006FFFFD700000 #000e #7f03 0000
+226189.819:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DDB68
+226189.819:0214:trace:module:FindResourceExW 00006FFFFD700000 #0003 #0026 0000
+226189.819:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014E090.
+226189.819:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DC578
+226189.819:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014DCE0.
+226189.824:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFFAAC0000, 00006FFFFAACF148, 0000000000000000, 00006FFFFF9ED594, 00006FFFFAACF1B0, 0x00000000)
+226189.824:0214:trace:module:load_dll looking for L"ole32.dll" in L"C:\\Program Files\\Mastercam 2027;C:\\windows\\system32;C:\\windows\\system;C:\\windows;.;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0;C:\\Program Files\\dotnet\\"
+226189.824:0214:trace:module:load_dll Found L"C:\\windows\\system32\\ole32.dll" for L"ole32.dll" at 00006FFFFE1C0000, count=-1
+226189.824:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFFAAC0000, 00006FFFFAACF148, 0000000000000000, 00006FFFFF9ED594, 00006FFFFAACF1A0, 0x00000000)
+226189.824:0214:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 000000000014E200, base 000000000014E1F8.
+226189.824:0214:trace:module:LdrGetDllHandleEx L"ole32" -> 00006FFFFE1C0000 (load path (null))
+226189.824:0214:trace:module:load_dll looking for L"imm32.dll" in L"C:\\Program Files\\Mastercam 2027;C:\\windows\\system32;C:\\windows\\system;C:\\windows;.;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0;C:\\Program Files\\dotnet\\"
+226189.824:0214:trace:module:load_dll Found L"C:\\windows\\system32\\imm32.dll" for L"imm32.dll" at 00006FFFFAAC0000, count=4
+226189.825:0214:trace:module:FindResourceExW 00006FFFFD700000 #000c #7f00 0000
+226189.825:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DD978
+226189.825:0214:trace:module:FindResourceExW 00006FFFFD700000 #0001 #0003 0000
+226189.825:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014D960.
+226189.825:0214:trace:module:FindResourceExW 00006FFFFD700000 #000e #7f00 0000
+226189.825:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DDB38
+226189.825:0214:trace:module:FindResourceExW 00006FFFFD700000 #0003 #0006 0000
+226189.825:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014D960.
+226189.827:0214:trace:module:FindResourceExW 00006FFFFD700000 #000e #7f05 0000
+226189.827:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DDB88
+226189.827:0214:trace:module:FindResourceExW 00006FFFFD700000 #0003 #003b 0000
+226189.827:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014EFB0.
+226189.827:0214:trace:module:LoadResource 00006FFFFD700000 00006FFFFD7DC6C8
+226189.827:0214:trace:module:LdrGetDllFullName module 00006FFFFD700000, name 000000000014EC00.
+226189.828:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF6960000, 00006FFFF6A112F8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF6A11470, 0x00000000)
+226189.828:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF6960000, 00006FFFF6A112F8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF6A11500, 0x00000000)
+226189.828:0214:trace:module:FindResourceExW 0000000000B20001 #0002 L"blue_button_bmp" 0000
+226189.828:0214:trace:module:LoadResource 0000000000B20001 0000000000B25380
+226189.828:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF6960000, 00006FFFF6A112F8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF6A11430, 0x00000000)
+226189.828:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF6960000, 00006FFFF6A112F8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF6A11410, 0x00000000)
+226189.828:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF8E30000, 00006FFFF8E460D8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF8E46130, 0x00000000)
+226189.828:0214:trace:module:load_dll looking for L"msimg32.dll" in L"C:\\Program Files\\Mastercam 2027;C:\\windows\\system32;C:\\windows\\system;C:\\windows;.;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0;C:\\Program Files\\dotnet\\"
+226189.828:0214:trace:module:load_dll Found L"C:\\windows\\system32\\MSIMG32.dll" for L"msimg32.dll" at 00006FFFF5140000, count=-1
+226189.828:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF8E30000, 00006FFFF8E460D8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF8E46130, 0x00000000)
+226189.828:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF8E30000, 00006FFFF8E460D8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF8E46130, 0x00000000)
+226189.828:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF8E30000, 00006FFFF8E460D8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF8E46130, 0x00000000)
+226189.828:0214:trace:module:LdrResolveDelayLoadedAPI (00006FFFF6960000, 00006FFFF6A112F8, 0000000000000000, 00006FFFFF9ED594, 00006FFFF6A11440, 0x00000000)
+end 12:31:46

@@ -1,0 +1,35 @@
+start 12:48:50 tag=launcher_lp prefix=/home/asdf/projects/mastercam-wine/state/work/prefix display=:2 secs=240 debug=+timestamp,+seh exe=MastercamLauncher.exe extra=''
+t=20s alive=4 win=0xc00003
+t=40s alive=4 win=0xc00003
+t=60s alive=4 win=0xc00003
+t=80s alive=4 win=0xc00003
+t=100s alive=4 win=0xc00003
+t=120s alive=4 win=0xc00003
+t=140s alive=4 win=0xc00003
+t=160s alive=4 win=0xc00003
+t=180s alive=4 win=0xc00003
+t=200s alive=4 win=0xc00003
+t=220s alive=4 win=0xc00003
+t=240s alive=4 win=0xc00003
+=== windows ===
+     0xc00003 (has no name): ("mastercamlauncher.exe" "mastercamlauncher.exe")  1x1+0+0  +0+0
+     0xc00002 "Default IME": ("mastercamlauncher.exe" "mastercamlauncher.exe")  1x1+0+0  +0+0
+     0x600007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x600003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+        0xc00001 "MastercamLauncher": ("mastercamlauncher.exe" "mastercamlauncher.exe")  157x82+1+22  +721+472
+=== stderr tail ===
+227245.747:0304:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.233:0304:fixme:wtsapi:WTSQuerySessionInformationW Unimplemented class 4
+end 12:52:54

@@ -1,0 +1,278 @@
+﻿AarSvc_e7b95	Agent Activation Runtime_e7b95	Stopped	Manual
+ADPSvc	Aggregated Data Platform Service	Stopped	Manual
+AdskLicensingService	Autodesk Desktop Licensing Service	Stopped	Automatic
+ALG	Application Layer Gateway Service	Stopped	Manual
+AppIDSvc	Application Identity	Stopped	Manual
+Appinfo	Application Information	Running	Manual
+AppMgmt	Application Management	Stopped	Manual
+AppReadiness	App Readiness	Stopped	Manual
+AppVClient	Microsoft App-V Client	Stopped	Disabled
+AppXSvc	AppX Deployment Service (AppXSVC)	Stopped	Automatic
+ApxSvc	Windows Virtual Audio Device Proxy Service	Stopped	Manual
+AssignedAccessManagerSvc	AssignedAccessManager Service	Stopped	Manual
+AudioEndpointBuilder	Windows Audio Endpoint Builder	Running	Automatic
+Audiosrv	Windows Audio	Running	Automatic
+Autodesk Access Service Host	Autodesk Access Service Host	Running	Automatic
+Autodesk CER Service	Autodesk CER Service	Running	Automatic
+autotimesvc	Cellular Time	Stopped	Manual
+AxInstSV	ActiveX Installer (AxInstSV)	Stopped	Manual
+BcastDVRUserService_e7b95	GameDVR and Broadcast User Service_e7b95	Stopped	Manual
+BDESVC	BitLocker Drive Encryption Service	Running	Manual
+BFE	Base Filtering Engine	Running	Automatic
+BITS	Background Intelligent Transfer Service	Stopped	Manual
+BluetoothUserService_e7b95	Bluetooth User Support Service_e7b95	Stopped	Manual
+Bonjour Service	Bonjour Service	Running	Automatic
+BrokerInfrastructure	Background Tasks Infrastructure Service	Running	Automatic
+BTAGService	Bluetooth Audio Gateway Service	Stopped	Manual
+BthAvctpSvc	AVCTP service	Stopped	Manual
+bthserv	Bluetooth Support Service	Stopped	Manual
+camsvc	Capability Access Manager Service	Running	Automatic
+CaptureService_e7b95	CaptureService_e7b95	Stopped	Manual
+cbdhsvc_e7b95	Clipboard User Service_e7b95	Running	Automatic
+CDPSvc	Connected Devices Platform Service	Running	Automatic
+CDPUserSvc_e7b95	Connected Devices Platform User Service_e7b95	Running	Automatic
+CertPropSvc	Certificate Propagation	Stopped	Manual
+ClipSVC	Client License Service (ClipSVC)	Stopped	Manual
+CloudBackupRestoreSvc_e7b95	Cloud Backup and Restore Service_e7b95	Stopped	Manual
+cloudidsvc	Microsoft Cloud Identity Service	Stopped	Manual
+CmWebAdmin.exe	CmWebAdmin	Running	Automatic
+CodeMeter.exe	CodeMeter Runtime Server	Running	Automatic
+COMSysApp	COM+ System Application	Stopped	Manual
+ConsentUxUserSvc_e7b95	ConsentUX User Service_e7b95	Stopped	Manual
+CoreMessagingRegistrar	CoreMessaging	Running	Automatic
+CredentialEnrollmentManagerUserSvc_e7b95	CredentialEnrollmentManagerUserSvc_e7b95	Stopped	Manual
+CryptSvc	Cryptographic Services	Running	Automatic
+CscService	Offline Files	Stopped	Manual
+DcomLaunch	DCOM Server Process Launcher	Running	Automatic
+dcsvc	Declared Configuration(DC) service	Stopped	Manual
+defragsvc	Optimize drives	Stopped	Manual
+DeviceAssociationBrokerSvc_e7b95	DeviceAssociationBroker_e7b95	Stopped	Manual
+DeviceAssociationService	Device Association Service	Stopped	Manual
+DeviceInstall	Device Install Service	Stopped	Manual
+DevicePickerUserSvc_e7b95	DevicePicker_e7b95	Stopped	Manual
+DevicesFlowUserSvc_e7b95	DevicesFlow_e7b95	Stopped	Manual
+DevQueryBroker	DevQuery Background Discovery Broker	Stopped	Manual
+Dhcp	DHCP Client	Running	Automatic
+diagsvc	Diagnostic Execution Service	Stopped	Manual
+DiagTrack	Connected User Experiences and Telemetry	Running	Automatic
+DialogBlockingService	DialogBlockingService	Stopped	Disabled
+DispBrokerDesktopSvc	Display Policy Service	Running	Automatic
+DisplayEnhancementService	Display Enhancement Service	Running	Manual
+DmEnrollmentSvc	Device Management Enrollment Service	Stopped	Manual
+dmwappushservice	Device Management Wireless Application Protocol (WAP) Push message Routing Service	Stopped	Manual
+Dnscache	DNS Client	Running	Automatic
+DoSvc	Delivery Optimization	Stopped	Automatic
+dot3svc	Wired AutoConfig	Stopped	Manual
+DPS	Diagnostic Policy Service	Running	Automatic
+DsmSvc	Device Setup Manager	Stopped	Manual
+DsSvc	Data Sharing Service	Running	Manual
+DusmSvc	Data Usage	Running	Automatic
+EapHost	Extensible Authentication Protocol	Stopped	Manual
+edgeupdate	Microsoft Edge Update Service (edgeupdate)	Stopped	Automatic
+edgeupdatem	Microsoft Edge Update Service (edgeupdatem)	Stopped	Manual
+EFS	Encrypting File System (EFS)	Stopped	Manual
+embeddedmode	Embedded Mode	Stopped	Manual
+EntAppSvc	Enterprise App Management Service	Stopped	Manual
+EventLog	Windows Event Log	Running	Automatic
+EventSystem	COM+ Event System	Running	Automatic
+fdPHost	Function Discovery Provider Host	Stopped	Manual
+FDResPub	Function Discovery Resource Publication	Stopped	Manual
+fhsvc	File History Service	Stopped	Manual
+FlexNet Licensing Service 64	FlexNet Licensing Service 64	Running	Automatic
+FontCache	Windows Font Cache Service	Running	Automatic
+FrameServer	Windows Camera Frame Server	Stopped	Manual
+FrameServerMonitor	Windows Camera Frame Server Monitor	Stopped	Manual
+GameInputSvc	GameInput Service	Stopped	Manual
+gpsvc	Group Policy Client	Running	Automatic
+GraphicsPerfSvc	GraphicsPerfSvc	Stopped	Manual
+hasplms	Sentinel LDK License Manager	Running	Automatic
+hidserv	Human Interface Device Service	Stopped	Manual
+hpatchmon	Hotpatch Monitoring Service	Stopped	Manual
+HvHost	HV Host Service	Stopped	Manual
+icssvc	Windows Mobile Hotspot Service	Stopped	Manual
+IKEEXT	IKE and AuthIP IPsec Keying Modules	Stopped	Manual
+InstallService	Microsoft Store Install Service	Running	Manual
+InventorySvc	Inventory and Compatibility Appraisal service	Running	Automatic
+iphlpsvc	IP Helper	Running	Automatic
+IpxlatCfgSvc	IP Translation Configuration Service	Stopped	Manual
+IsoEnvBroker	Isolation Environment Broker	Stopped	Manual
+IsolationSession	IsolationSession	Stopped	Manual
+KeyIso	CNG Key Isolation	Running	Manual
+KtmRm	KtmRm for Distributed Transaction Coordinator	Stopped	Manual
+LanmanServer	Server	Running	Automatic
+LanmanWorkstation	Workstation	Running	Automatic
+lfsvc	Geolocation Service	Running	Manual
+LicenseManager	Windows License Manager Service	Running	Manual
+lltdsvc	Link-Layer Topology Discovery Mapper	Stopped	Manual
+lmhosts	TCP/IP NetBIOS Helper	Running	Manual
+LocalKdc	Kerberos Local Key Distribution Center	Stopped	Manual
+LSM	Local Session Manager	Running	Automatic
+LxpSvc	Language Experience Service	Stopped	Manual
+MapsBroker	Downloaded Maps Manager	Stopped	Automatic
+McmSvc	Mobile Connectivity Management Service	Stopped	Manual
+McpManagementService	McpManagementService	Stopped	Manual
+MDCoreSvc	Microsoft Defender Core Service	Running	Automatic
+MessagingService_e7b95	MessagingService_e7b95	Stopped	Manual
+MicrosoftEdgeElevationService	Microsoft Edge Elevation Service (MicrosoftEdgeElevationService)	Stopped	Manual
+midisrv	Windows MIDI Service	Running	Manual
+mpssvc	Windows Defender Firewall	Running	Automatic
+MSDTC	Distributed Transaction Coordinator	Stopped	Manual
+MSiSCSI	Microsoft iSCSI Initiator Service	Stopped	Manual
+msiserver	Windows Installer	Stopped	Manual
+MsKeyboardFilter	Microsoft Keyboard Filter	Stopped	Disabled
+NaturalAuthentication	Natural Authentication	Stopped	Manual
+NcaSvc	Network Connectivity Assistant	Stopped	Manual
+NcbService	Network Connection Broker	Running	Manual
+NcdAutoSetup	Network Connected Devices Auto-Setup	Stopped	Manual
+Netlogon	Netlogon	Stopped	Manual
+Netman	Network Connections	Stopped	Manual
+netprofm	Network List Service	Running	Manual
+NetSetupSvc	Network Setup Service	Stopped	Manual
+NetTcpPortSharing	Net.Tcp Port Sharing Service	Stopped	Disabled
+NgcCtnrSvc	Microsoft Passport Container	Stopped	Manual
+NgcSvc	Microsoft Passport	Stopped	Manual
+NlaSvc	Network Location Awareness	Stopped	Manual
+NPSMSvc_e7b95	Now Playing Session Manager Service_e7b95	Stopped	Manual
+nsi	Network Store Interface Service	Running	Automatic
+OneSyncSvc_e7b95	Sync Host_e7b95	Stopped	Manual
+P9RdrService_e7b95	P9RdrService_e7b95	Stopped	Manual
+PcaSvc	Program Compatibility Assistant Service	Running	Automatic
+PeerDistSvc	BranchCache	Stopped	Manual
+PenService_e7b95	PenService_e7b95	Stopped	Manual
+perceptionsimulation	Windows Perception Simulation Service	Stopped	Manual
+PerfHost	Performance Counter DLL Host	Stopped	Manual
+PhoneSvc	Phone Service	Stopped	Manual
+PimIndexMaintenanceSvc_e7b95	Contact Data_e7b95	Stopped	Manual
+pla	Performance Logs & Alerts	Stopped	Manual
+PlugPlay	Plug and Play	Running	Manual
+PolicyAgent	IPsec Policy Agent	Stopped	Manual
+Power	Power	Running	Automatic
+PrintDeviceConfigurationService	Print Device Configuration Service	Stopped	Manual
+PrintNotify	Printer Extensions and Notifications	Stopped	Manual
+PrintScanBrokerService	PrintScanBrokerService	Stopped	Manual
+PrintWorkflowUserSvc_e7b95	PrintWorkflow_e7b95	Stopped	Manual
+ProfSvc	User Profile Service	Running	Automatic
+PushToInstall	Windows PushToInstall Service	Stopped	Manual
+QWAVE	Quality Windows Audio Video Experience	Stopped	Manual
+RasAuto	Remote Access Auto Connection Manager	Stopped	Manual
+RasMan	Remote Access Connection Manager	Stopped	Manual
+refsdedupsvc	ReFS Dedup Service	Stopped	Manual
+RemoteAccess	Routing and Remote Access	Stopped	Disabled
+RemoteRegistry	Remote Registry	Stopped	Disabled
+RetailDemo	Retail Demo Service	Stopped	Manual
+RmSvc	Radio Management Service	Running	Manual
+RpcEptMapper	RPC Endpoint Mapper	Running	Automatic
+RpcLocator	Remote Procedure Call (RPC) Locator	Stopped	Manual
+RpcSs	Remote Procedure Call (RPC)	Running	Automatic
+SamSs	Security Accounts Manager	Running	Automatic
+SCardSvr	Smart Card	Stopped	Manual
+ScDeviceEnum	Smart Card Device Enumeration Service	Stopped	Manual
+Schedule	Task Scheduler	Running	Automatic
+SCPolicySvc	Smart Card Removal Policy	Stopped	Manual
+SDRSVC	Windows Backup	Stopped	Manual
+seclogon	Secondary Logon	Stopped	Manual
+SecurityHealthService	Windows Security Service	Running	Manual
+SEMgrSvc	Payments and NFC/SE Manager	Stopped	Manual
+SENS	System Event Notification Service	Running	Automatic
+Sense	Windows Defender Advanced Threat Protection Service	Stopped	Manual
+SensorDataService	Sensor Data Service	Stopped	Manual
+SensorService	Sensor Service	Running	Manual
+SensrSvc	Sensor Monitoring Service	Stopped	Manual
+SessionEnv	Remote Desktop Configuration	Stopped	Manual
+SharedAccess	Internet Connection Sharing (ICS)	Stopped	Manual
+ShellHWDetection	Shell Hardware Detection	Running	Automatic
+shpamsvc	Shared PC Account Manager	Stopped	Disabled
+smphost	Microsoft Storage Spaces SMP	Stopped	Manual
+SmsRouter	Microsoft Windows SMS Router Service.	Stopped	Manual
+SNMPTrap	SNMP Trap	Stopped	Manual
+Spooler	Print Spooler	Running	Automatic
+sppsvc	Software Protection	Stopped	Automatic
+SSDPSRV	SSDP Discovery	Running	Manual
+ssh-agent	OpenSSH Authentication Agent	Stopped	Disabled
+sshd	OpenSSH SSH Server	Running	Automatic
+SstpSvc	Secure Socket Tunneling Protocol Service	Stopped	Manual
+StateRepository	State Repository Service	Running	Automatic
+StiSvc	Windows Image Acquisition (WIA)	Stopped	Manual
+StorSvc	Storage Service	Running	Automatic
+svsvc	Spot Verifier	Stopped	Manual
+swprv	Microsoft Software Shadow Copy Provider	Stopped	Manual
+SysMain	SysMain	Running	Automatic
+SystemEventsBroker	System Events Broker	Running	Automatic
+TapiSrv	Telephony	Stopped	Manual
+TermService	Remote Desktop Services	Stopped	Manual
+TextInputManagementService	Text Input Management Service	Running	Automatic
+Themes	Themes	Running	Automatic
+TieringEngineService	Storage Tiers Management	Stopped	Manual
+TimeBrokerSvc	Time Broker	Running	Manual
+TokenBroker	Web Account Manager	Running	Manual
+TrkWks	Distributed Link Tracking Client	Running	Automatic
+TroubleshootingSvc	Recommended Troubleshooting Service	Stopped	Manual
+TrustedInstaller	Windows Modules Installer	Stopped	Manual
+tzautoupdate	Auto Time Zone Updater	Stopped	Disabled
+UdkUserSvc_e7b95	Udk User Service_e7b95	Running	Manual
+UevAgentService	User Experience Virtualization Service	Stopped	Disabled
+UmRdpService	Remote Desktop Services UserMode Port Redirector	Stopped	Manual
+UnistoreSvc_e7b95	User Data Storage_e7b95	Stopped	Manual
+upnphost	UPnP Device Host	Stopped	Manual
+UserDataSvc_e7b95	User Data Access_e7b95	Stopped	Manual
+UserManager	User Manager	Running	Automatic
+UsoSvc	Update Orchestrator Service	Running	Automatic
+VaultSvc	Credential Manager	Running	Manual
+vds	Virtual Disk	Stopped	Manual
+vmicguestinterface	Hyper-V Guest Service Interface	Stopped	Manual
+vmicheartbeat	Hyper-V Heartbeat Service	Stopped	Manual
+vmickvpexchange	Hyper-V Data Exchange Service	Stopped	Manual
+vmicrdv	Hyper-V Remote Desktop Virtualization Service	Stopped	Manual
+vmicshutdown	Hyper-V Guest Shutdown Service	Stopped	Manual
+vmictimesync	Hyper-V Time Synchronization Service	Stopped	Manual
+vmicvmsession	Hyper-V PowerShell Direct Service	Stopped	Manual
+vmicvss	Hyper-V Volume Shadow Copy Requestor	Stopped	Manual
+VSS	Volume Shadow Copy	Stopped	Manual
+W32Time	Windows Time	Stopped	Manual
+WaaSMedicSvc	WaaSMedicSvc	Stopped	Manual
+WalletService	WalletService	Stopped	Manual
+WarpJITSvc	Warp JIT Service	Stopped	Manual
+wbengine	Block Level Backup Engine Service	Stopped	Manual
+WbioSrvc	Windows Biometric Service	Stopped	Manual
+Wcmsvc	Windows Connection Manager	Running	Automatic
+wcncsvc	Windows Connect Now - Config Registrar	Stopped	Manual
+WdiServiceHost	Diagnostic Service Host	Stopped	Manual
+WdiSystemHost	Diagnostic System Host	Running	Manual
+WdNisSvc	Microsoft Defender Antivirus Network Inspection Service	Running	Manual
+WebClient	WebClient	Stopped	Manual
+webthreatdefsvc	Web Threat Defense Service	Running	Manual
+webthreatdefusersvc_e7b95	Web Threat Defense User Service_e7b95	Running	Automatic
+Wecsvc	Windows Event Collector	Stopped	Manual
+WEPHOSTSVC	Windows Encryption Provider Host Service	Stopped	Manual
+wercplsupport	Problem Reports Control Panel Support	Stopped	Manual
+WerSvc	Windows Error Reporting Service	Stopped	Manual
+WFDSConMgrSvc	Wi-Fi Direct Services Connection Manager Service	Stopped	Manual
+whesvc	Windows Health and Optimized Experiences	Running	Automatic
+WiaRpc	Still Image Acquisition Events	Stopped	Manual
+WinDefend	Microsoft Defender Antivirus Service	Running	Automatic
+WinHttpAutoProxySvc	WinHTTP Web Proxy Auto-Discovery Service	Running	Manual
+Winmgmt	Windows Management Instrumentation	Running	Automatic
+WinRM	Windows Remote Management (WS-Management)	Stopped	Manual
+wisvc	Windows Insider Service	Stopped	Manual
+WlanSvc	WLAN AutoConfig	Stopped	Manual
+wlidsvc	Microsoft Account Sign-in Assistant	Stopped	Manual
+wlpasvc	Local Profile Assistant Service	Stopped	Manual
+WManSvc	Windows Management Service	Stopped	Manual
+wmiApSrv	WMI Performance Adapter	Stopped	Manual
+WMPNetworkSvc	Windows Media Player Network Sharing Service	Stopped	Manual
+workfolderssvc	Work Folders	Stopped	Manual
+WpcMonSvc	Parental Controls	Stopped	Manual
+WPDBusEnum	Portable Device Enumerator Service	Stopped	Manual
+WpnService	Windows Push Notifications System Service	Running	Automatic
+WpnUserService_e7b95	Windows Push Notifications User Service_e7b95	Running	Automatic
+WSAIFabricSvc	Windows AI Components Host	Running	Automatic
+wscsvc	Security Center	Running	Automatic
+WSearch	Windows Search	Running	Automatic
+wuauserv	Windows Update	Stopped	Manual
+wuqisvc	Microsoft Usage and Quality Insights	Stopped	Manual
+WwanSvc	WWAN AutoConfig	Stopped	Manual
+XblAuthManager	Xbox Live Auth Manager	Stopped	Manual
+XblGameSave	Xbox Live Game Save	Stopped	Manual
+XboxGipSvc	Xbox Accessory Management Service	Stopped	Manual
+XboxNetApiSvc	Xbox Live Networking Service	Stopped	Manual
+ZTHELPER	ZTDNS Helper service	Stopped	Manual

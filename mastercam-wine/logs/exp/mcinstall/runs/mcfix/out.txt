@@ -1,0 +1,1 @@
+start 11:57:00 tag=mcfix prefix=/run/media/asdf/Windows/mc-scratch/pfx2 display=:2 secs=90 debug=+timestamp,+err,+warn exe=MastercamLauncher.exe extra=''

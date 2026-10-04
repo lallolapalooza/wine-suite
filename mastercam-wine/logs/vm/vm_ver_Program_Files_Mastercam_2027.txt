@@ -1,0 +1,700 @@
+﻿C:\Program Files\Mastercam 2027\Backplot.dll	29.0.0.0	1, 0, 0, 0	CNC Software, LLC	ToolpathViewer DLL
+C:\Program Files\Mastercam 2027\BackplotBNCI.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	BNCIModelFilter DLL
+C:\Program Files\Mastercam 2027\BCGCBPRO3220u143.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	BCGControlBar Professional DLL
+C:\Program Files\Mastercam 2027\BCGPStyle2007Aqua3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2007 (Aqua) style resource library
+C:\Program Files\Mastercam 2027\BCGPStyle2007Luna3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2007 (Blue) style resource library
+C:\Program Files\Mastercam 2027\BCGPStyle2007Obsidian3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2007 (Black) style resource library
+C:\Program Files\Mastercam 2027\BCGPStyle2007Silver3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2007 (Silver) style resource library
+C:\Program Files\Mastercam 2027\BCGPStyle2010Black3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2010 (Black) style resource library
+C:\Program Files\Mastercam 2027\BCGPStyle2010Blue3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2010 (Blue) style resource library
+C:\Program Files\Mastercam 2027\BCGPStyle2010White3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2010 (White) style resource library
+C:\Program Files\Mastercam 2027\BCGPStyleCarbon3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Carbon style resource library
+C:\Program Files\Mastercam 2027\BCGPStyleScenic3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Scenic style resource library
+C:\Program Files\Mastercam 2027\bnci.dll	29.0.0.0	20.0	CNC Software, LLC	Mastercam Tools
+C:\Program Files\Mastercam 2027\boost_chrono-vc140-mt-1_63.dll				
+C:\Program Files\Mastercam 2027\boost_system-vc140-mt-1_63.dll				
+C:\Program Files\Mastercam 2027\boost_thread-vc140-mt-1_63.dll				
+C:\Program Files\Mastercam 2027\CfpCommandTracker.Interop.dll	29.0.0.0	2027	CNC Software, LLC	CfpCommandTracker.Interop
+C:\Program Files\Mastercam 2027\CHookAPI.dll	29.0.0.0	1.0.0	CNC Software, LLC	Mastercam C++ API
+C:\Program Files\Mastercam 2027\Cnc.Math.GridCompute.Client.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam GridCompute Client Library
+C:\Program Files\Mastercam 2027\Cnc.Math.GridCompute.Server.Windows.exe	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam GridCompute Server
+C:\Program Files\Mastercam 2027\Cnc.Math.GridCompute.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam GridCompute Library
+C:\Program Files\Mastercam 2027\Cnc.Math.Linear.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Linear Library
+C:\Program Files\Mastercam 2027\Cnc.Math.Measure.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Measure Library
+C:\Program Files\Mastercam 2027\Cnc.Math.Partition.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Partition Library
+C:\Program Files\Mastercam 2027\Cnc.Math.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Math Library
+C:\Program Files\Mastercam 2027\Cnc.Modules.Core.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam Core Modules Library
+C:\Program Files\Mastercam 2027\Cnc.Modules.Core.MFC.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam Core Modules MFC Library
+C:\Program Files\Mastercam 2027\Cnc.Modules.Core.Windows.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam Core Modules Windows Library
+C:\Program Files\Mastercam 2027\Cnc.TestAutomation.Windows.dll				
+C:\Program Files\Mastercam 2027\Cnc.Tool.Core.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Core Tooling Library
+C:\Program Files\Mastercam 2027\Cnc.Utilities.Core.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Core Utilities Library
+C:\Program Files\Mastercam 2027\Cnc.Utilities.Core.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Core Utilities Windows Library
+C:\Program Files\Mastercam 2027\CncReducedMKL.dll	2020.0.1.1	2020.0	Intel Corporation	Intel® Math Kernel Library
+C:\Program Files\Mastercam 2027\Database.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Database Library
+C:\Program Files\Mastercam 2027\DebuggingClientServerShared.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	
+C:\Program Files\Mastercam 2027\FreeImage.dll	3, 19, 0, 0	3, 19, 0, 0	FreeImage	FreeImage library
+C:\Program Files\Mastercam 2027\gafbase.dll	29.0.0.0	2027	CNC Software, LLC	gafbase DLL
+C:\Program Files\Mastercam 2027\gafgr.dll	29.0.0.0	2027	CNC Software, LLC	gafgr DLL
+C:\Program Files\Mastercam 2027\gafmt.dll	29.0.0.0	2027	CNC Software, LLC	gafmt DLL
+C:\Program Files\Mastercam 2027\gafui.dll	29.0.0.0	2027	CNC Software, LLC	gafui DLL
+C:\Program Files\Mastercam 2027\gafut.dll	29.0.0.0	2027	CNC Software, LLC	gafut DLL
+C:\Program Files\Mastercam 2027\glew64.dll	1,7,0,0	1,7,0,0		The OpenGL Extension Wrangler Library
+C:\Program Files\Mastercam 2027\ifequicut.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifoffset.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifsilhouette.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifsmoop.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifsphoffset.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifspinsil.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifstitch.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifsweep.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifuncut.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifunderoffset.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\ifzcut.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial DLL
+C:\Program Files\Mastercam 2027\Ijwhost.dll	10,0,25,52411 @Commit: b0f34d51fccc69fd334253924abd8d6853fad7aa	10.0.0 @Commit: b0f34d51fccc69fd334253924abd8d6853fad7aa	Microsoft Corporation	.NET IJW Host
+C:\Program Files\Mastercam 2027\ImportExportDatakit.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Import Export Datakit Plugin
+C:\Program Files\Mastercam 2027\ImportExportInterface.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Import Export Interface
+C:\Program Files\Mastercam 2027\interfacial01.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial02.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial03.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial04.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial05.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial06.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial07.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial08.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial09.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial10.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial11.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial12.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial13.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial14.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial15.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial16.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial17.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial20.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial21.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial22.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial24.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial25.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\interfacial28.dll	1,1,0,297	1,1,0,297	Interfacial Associates LLC	Interfacial module
+C:\Program Files\Mastercam 2027\IOF.MC.dll	29.0.0.0	2027	CNC Software, LLC	IOF.MC
+C:\Program Files\Mastercam 2027\JobSetup.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam Job Setup
+C:\Program Files\Mastercam 2027\JobSetupCore.dll	29.0.0.0	2027	CNC Software, LLC	JobSetupCore
+C:\Program Files\Mastercam 2027\LibFits.dll				
+C:\Program Files\Mastercam 2027\libiomp5md.dll	20200205	5.0	Intel Corporation	Intel(R) OpenMP* Runtime Library
+C:\Program Files\Mastercam 2027\Mastercam.Dll	29.0.0.0	22.0	CNC Software, LLC	Mastercam 2027
+C:\Program Files\Mastercam 2027\Mastercam.exe	29.0.0.0	22.0	CNC Software, LLC	Mastercam 2027
+C:\Program Files\Mastercam 2027\MastercamLauncher.exe	29.0.0.0	2027	CNC Software, LLC	Mastercam Launcher Application
+C:\Program Files\Mastercam 2027\McamAdvConfig.exe	29.0.0.0	2027	CNC Software, LLC	McamAdvConfig
+C:\Program Files\Mastercam 2027\MCCAD.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Solids
+C:\Program Files\Mastercam 2027\MCCADUtil.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Solids
+C:\Program Files\Mastercam 2027\MCCE.dll	29.0.0.0	10, 0, 0, 1	CNC Software, LLC	Mastercam MCCE Library
+C:\Program Files\Mastercam 2027\MCControl.dll	29.0.0.0	12.0	CNC Software, LLC	Mastercam Control Module
+C:\Program Files\Mastercam 2027\MCCore.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Core
+C:\Program Files\Mastercam 2027\MCCoreBase.dll	29.0.0.0	2027	CNC Software, LLC	MCCoreBase
+C:\Program Files\Mastercam 2027\MCCurveSurfGeom.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Solids
+C:\Program Files\Mastercam 2027\MCDXFToToolProfile.dll	29.0.0.0	10.0	CNC Software, LLC	DXFToToolProfile Import/Export Library
+C:\Program Files\Mastercam 2027\MCExcel.dll	26.0.0.0	1, 0, 0, 1	CNC Software, LLC	mcexcel
+C:\Program Files\Mastercam 2027\MCGeomSld.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Solids
+C:\Program Files\Mastercam 2027\MCGuiBase.dll	29.0.0.0	2027	CNC Software, LLC	MCGuiBase
+C:\Program Files\Mastercam 2027\McHmm.dll	12.1.34	12.1.34	CNC Software, LLC	MCHmm.dll
+C:\Program Files\Mastercam 2027\MCIk.dll	29.0.0.0	10.0	CNC Software, LLC	Inverse Kinematics Module
+C:\Program Files\Mastercam 2027\McIPC.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam IPC
+C:\Program Files\Mastercam 2027\MCKernel.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Kernel
+C:\Program Files\Mastercam 2027\MCLathe.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Lathe Core
+C:\Program Files\Mastercam 2027\MCLogr.exe	29.0.0.0	1.0.0.1	CNC Software, LLC	Logs Mastercam events.
+C:\Program Files\Mastercam 2027\MCMachineDef.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Machine Definition Module
+C:\Program Files\Mastercam 2027\MCMachineDefApi.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Machine Definition Api Module
+C:\Program Files\Mastercam 2027\MCMill.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Mill
+C:\Program Files\Mastercam 2027\MCMpParameters.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	MCMpParameters
+C:\Program Files\Mastercam 2027\MCMSurf.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Multi Surface
+C:\Program Files\Mastercam 2027\MCMultiax.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Multiaxis
+C:\Program Files\Mastercam 2027\MCOReader.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	MCO Reader
+C:\Program Files\Mastercam 2027\MCOReaderCLR.DLL	29.0.0.0	1.0.0.1	CNC Software, LLC	MCOReaderCLR
+C:\Program Files\Mastercam 2027\MCPartIO.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam MCPartIO
+C:\Program Files\Mastercam 2027\MCPost.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Post
+C:\Program Files\Mastercam 2027\MCPrvVerFile.dll	29.0.0.0	11.0	CNC Software, LLC	Mastercam Previous Version File Converter
+C:\Program Files\Mastercam 2027\MCRouter.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Router
+C:\Program Files\Mastercam 2027\MCRtClasses.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam RT Classes
+C:\Program Files\Mastercam 2027\MCTool.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Tools
+C:\Program Files\Mastercam 2027\MCToolBase.dll	29.0.0.0	2027	CNC Software, LLC	MCToolBase
+C:\Program Files\Mastercam 2027\MCUI5Ax.dll	29.0.0.0	10.0	CNC Software, LLC	MCUI5Ax
+C:\Program Files\Mastercam 2027\MCVerify.dll	29.0.0.0	10.0	CNC Software, LLC	MCVerify
+C:\Program Files\Mastercam 2027\MCWire.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Wire
+C:\Program Files\Mastercam 2027\ModelessDialogTabHandler.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ModelessDialogTabHandler
+C:\Program Files\Mastercam 2027\MPDebugClient.exe	29.0.0.0	29.0.0.0	CNC Software, LLC	MPDebugClient
+C:\Program Files\Mastercam 2027\N64DLL.DLL	2024.1.0.0	2024.1.0.0	HCL Technologies Ltd	NestDLL Dynamic Link Library
+C:\Program Files\Mastercam 2027\NativeResourceReader.dll	29.0.0.0	2, 0, 0, 1	CNC Software, LLC	NativeRe Dynamic Link Library
+C:\Program Files\Mastercam 2027\NETAppStaticAPI.dll	29.0.0.0	2027	CNC Software, LLC	NETAppStaticAPI
+C:\Program Files\Mastercam 2027\NETHook3_0.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam .NET API
+C:\Program Files\Mastercam 2027\psbodyshop.dll	38.0.116	38.0.116	Siemens.	Parasolid/BodyShop dll
+C:\Program Files\Mastercam 2027\pskernel.dll	38.00.185	38.00.185	Siemens	Parasolid DLL 
+C:\Program Files\Mastercam 2027\revlibdll.dll				
+C:\Program Files\Mastercam 2027\RibbonUI.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam RibbonUI
+C:\Program Files\Mastercam 2027\ruiSDK_5.3.1.x64.dll				
+C:\Program Files\Mastercam 2027\SimAccess.dll	28.0.0.0	2026	CNC Software, LLC	SimAccess DLL
+C:\Program Files\Mastercam 2027\SimAccessManaged.Core.dll	1.0.0.1	1.0.0.1	CNC Software, LLC	
+C:\Program Files\Mastercam 2027\SimAccessManaged.dll	1.0.0.1	1.0.0.1	CNC Software, LLC	
+C:\Program Files\Mastercam 2027\SysTypes.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	SysTypes
+C:\Program Files\Mastercam 2027\tbb12.dll				
+C:\Program Files\Mastercam 2027\tbbmalloc.dll				
+C:\Program Files\Mastercam 2027\TLCore.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam TLCore
+C:\Program Files\Mastercam 2027\ToolkitPro2430vc170x64U.dll	24, 3, 0, 0	24, 3, 0, 0	Codejock Software	Xtreme Toolkit Pro™ Library
+C:\Program Files\Mastercam 2027\ToolNetApi.dll	29.0.0.0	2027	CNC Software, LLC	ToolNetAPI
+C:\Program Files\Mastercam 2027\TPFiveAx.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam TPFiveAx
+C:\Program Files\Mastercam 2027\TPGeom.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam TPGeom
+C:\Program Files\Mastercam 2027\TPIFTools.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Interfacial Tools
+C:\Program Files\Mastercam 2027\UICtrls.dll	29.0.0.0	2027	CNC Software, LLC	UICtrls
+C:\Program Files\Mastercam 2027\VBSpline.dll	2.2.0.0	2.2.0.0	VBSpline	VBSpline DLL (Thread Safe)
+C:\Program Files\Mastercam 2027\VistaFileDialogs.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Vista and Win7 File Dialog
+C:\Program Files\Mastercam 2027\VSMathUtil.dll				
+C:\Program Files\Mastercam 2027\apps\McAggrHead.dll	29.0.0.0	10.0	CNC Software, LLC	McAggrHead App
+C:\Program Files\Mastercam 2027\apps\MCFileUpdateTracking.dll	29.0.0.0	10.0	CNC Software, LLC	MCFileUpdateTracking App
+C:\Program Files\Mastercam 2027\apps\MP.dll	29.0.0.0	10.0	CNC Software, LLC	MP App
+C:\Program Files\Mastercam 2027\apps\NBM.dll	29.0.0.0	10.0	CNC Software, LLC	NBM App
+C:\Program Files\Mastercam 2027\apps\Nesting.dll	29.0.0.0	10.0	CNC Software, LLC	MCNesting App
+C:\Program Files\Mastercam 2027\apps\PickoffSetup.dll	29.0.0.0	2027	CNC Software, LLC	PickoffSetup
+C:\Program Files\Mastercam 2027\apps\VersionChecker.dll	29.0.0.0	10.0	CNC Software, LLC	VersionChecker App
+C:\Program Files\Mastercam 2027\apps\en\McAggrHeadRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	McAggrHead DLL
+C:\Program Files\Mastercam 2027\apps\en\MCFileUpdateTrackingRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	File Update and Tracking App
+C:\Program Files\Mastercam 2027\apps\en\MCNestingRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	Nesting
+C:\Program Files\Mastercam 2027\apps\en\PickoffSetupRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	MMT Pickoff Setup Utility
+C:\Program Files\Mastercam 2027\apps\en\VersionCheckerRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	
+C:\Program Files\Mastercam 2027\chooks\3DAnnotationFinder.dll	29.0.0.0	10.0	CNC Software, LLC	3DAnnotationFinder C-Hook
+C:\Program Files\Mastercam 2027\chooks\Aggregat.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	Aggregate C-Hook
+C:\Program Files\Mastercam 2027\chooks\agiereg.dll	29.0.0.0	1.0	CNC Software, LLC	agiereg C-Hook
+C:\Program Files\Mastercam 2027\chooks\Arc3D.dll	29.0.0.0	10.0	CNC Software, LLC	Arc3D C-Hook
+C:\Program Files\Mastercam 2027\chooks\ArcMultiEdit.dll	29.0.0.0	10.0	CNC Software, LLC	ArcMultiEdit
+C:\Program Files\Mastercam 2027\chooks\Asphere.dll	29.0.0.0	10.0	CNC Software, LLC	Asphere C-Hook
+C:\Program Files\Mastercam 2027\chooks\Bitangency.dll				
+C:\Program Files\Mastercam 2027\chooks\BlankDuplicates.dll	29.0.0.0	10.0	CNC Software, LLC	BlankDuplicates C-Hook
+C:\Program Files\Mastercam 2027\chooks\BreakCircles.dll	29.0.0.0	10.0	CNC Software, LLC	BreakCircles C-Hook
+C:\Program Files\Mastercam 2027\chooks\CheckHolder.dll	29.0.0.0	10.0	CNC Software, LLC	CheckHolder C-Hook
+C:\Program Files\Mastercam 2027\chooks\Comp3D.dll	29.0.0.0	10.0	CNC Software, LLC	Comp3D C-Hook
+C:\Program Files\Mastercam 2027\chooks\ConsToSpline.dll	29.0.0.0	10.0	CNC Software, LLC	ConsToSpline C-Hook
+C:\Program Files\Mastercam 2027\chooks\CoonsSurf.dll	29.0.0.0	10.0	CNC Software, LLC	CoonsSurf C-Hook
+C:\Program Files\Mastercam 2027\chooks\CreateBoundary.dll	29.0.0.0	10.0	CNC Software, LLC	CreateBoundary C-Hook
+C:\Program Files\Mastercam 2027\chooks\CreateFillets.dll	29.0.0.0	10.0	CNC Software, LLC	CreateFillets C-Hook
+C:\Program Files\Mastercam 2027\chooks\DXFRescuer.dll	29.0.0.0	10.0	CNC Software, LLC	DXFRescuer C-Hook
+C:\Program Files\Mastercam 2027\chooks\FindOverlap.dll	29.0.0.0	10.0	CNC Software, LLC	FindOverlap C-Hook
+C:\Program Files\Mastercam 2027\chooks\FlattenSurf.dll	29.0.0.0	10.0	CNC Software, LLC	FlattenSurf C-Hook
+C:\Program Files\Mastercam 2027\chooks\fplot.dll	29.0.0.0	10.0	CNC Software, LLC	FPlot C-Hook
+C:\Program Files\Mastercam 2027\chooks\Gear.dll	29.0.0.0	10.0	CNC Software, LLC	Gear C-Hook
+C:\Program Files\Mastercam 2027\chooks\GridPock.dll	29.0.0.0	10.0	CNC Software, LLC	GridPock C-Hook
+C:\Program Files\Mastercam 2027\chooks\map.dll	29.0.0.0	10.0	CNC Software, LLC	Map C-Hook
+C:\Program Files\Mastercam 2027\chooks\MCCommandFinder.dll	29.0.0.0	10.0	CNC Software, LLC	MCCommandFinder C-Hook
+C:\Program Files\Mastercam 2027\chooks\MCDigitize.dll	29.0.0.0	10.0	CNC Software, LLC	MCDigitize C-Hook
+C:\Program Files\Mastercam 2027\chooks\MedialAxis.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Medial Axis
+C:\Program Files\Mastercam 2027\chooks\metafile.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	metafile Dynamic Link Library
+C:\Program Files\Mastercam 2027\chooks\mpbin.dll	29.0.0.0	10.0	CNC Software, LLC	MPBin C-Hook
+C:\Program Files\Mastercam 2027\chooks\prob2spl.dll	29.0.0.0	10.0	CNC Software, LLC	prob2spl C-Hook
+C:\Program Files\Mastercam 2027\chooks\Pts2Arcs.dll	29.0.0.0	10.0	CNC Software, LLC	Pts2Arcs
+C:\Program Files\Mastercam 2027\chooks\Rev2Rev.dll	29.0.0.0	10.0	CNC Software, LLC	Rev2Rev C-Hook
+C:\Program Files\Mastercam 2027\chooks\Rolldie.dll	29.0.0.0	10.0	CNC Software, LLC	Rolldie C-Hook
+C:\Program Files\Mastercam 2027\chooks\SectionNCI.dll	29.0.0.0	10.0	CNC Software, LLC	SectionNCI C-Hook
+C:\Program Files\Mastercam 2027\chooks\SortCircles.dll	29.0.0.0	10.0	CNC Software, LLC	SortCircles
+C:\Program Files\Mastercam 2027\chooks\Sprocket.dll	29.0.0.0	10.0	CNC Software, LLC	Sprocket C-Hook
+C:\Program Files\Mastercam 2027\chooks\Steadyrest.dll	29.0.0.0	10.0	CNC Software, LLC	Lathe Steadyrest C-Hook
+C:\Program Files\Mastercam 2027\chooks\ThreadC.dll	29.0.0.0	10.0	CNC Software, LLC	MCThread C-Hook
+C:\Program Files\Mastercam 2027\chooks\txtchain.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Txtchain
+C:\Program Files\Mastercam 2027\chooks\UpdatePost.dll	29.0.0.0	10.0	CNC Software, LLC	UpdatePost C-Hook
+C:\Program Files\Mastercam 2027\chooks\vHelix.dll	29.0.0.0	10.0	CNC Software, LLC	Variable Pitch Helix
+C:\Program Files\Mastercam 2027\chooks\zSpiral.dll	29.0.0.0	10.0	CNC Software, LLC	Z-Spiral
+C:\Program Files\Mastercam 2027\chooks\atp\XATP.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Mastercam ATP
+C:\Program Files\Mastercam 2027\chooks\CD_Compare\CDC.dll	29.0.0.0	17.0.0.0	CNC Software, LLC	CD_Compare worker file.
+C:\Program Files\Mastercam 2027\chooks\CD_Compare\CD_Compare.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	CD Compare
+C:\Program Files\Mastercam 2027\chooks\CD_Compare\Microsoft.Extensions.DependencyInjection.Abstractions.dll	8.0.1024.46610	8.0.10+81cabf2857a01351e5ab578947c7403a5b128ad1	Microsoft Corporation	Microsoft.Extensions.DependencyInjection.Abstractions
+C:\Program Files\Mastercam 2027\chooks\CD_Compare\Microsoft.Extensions.DependencyInjection.dll	8.0.1024.46610	8.0.10+81cabf2857a01351e5ab578947c7403a5b128ad1	Microsoft Corporation	Microsoft.Extensions.DependencyInjection
+C:\Program Files\Mastercam 2027\chooks\CD_Compare\en\CD_CompareRes.dll	29.0.0.0	17.0.0.2	CNC Software, LLC	CD_Compare Resource file.
+C:\Program Files\Mastercam 2027\chooks\en\3DAnnotationFinderRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam 3DAnnotationFinder Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\AggregateRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Aggregate Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\AgieregRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	Mastercam Agiereg Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\Arc3DRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Arc3D Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\ArcMultiEditRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam ArcMultiEdit Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\AsphereRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Asphere Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\BitangencyRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	
+C:\Program Files\Mastercam 2027\chooks\en\BlankDuplicatesRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam BlankDuplicates Resource 
+C:\Program Files\Mastercam 2027\chooks\en\BreakCirclesRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam BreakCircles Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\CheckHolderRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam CheckHolder Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\Comp3DRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Comp3D Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\ConsToSplineRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam ConsToSpline Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\CoonsSurfRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam CoonsSurf Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\CreateBoundaryRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam CreateBoundary Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\CreateFilletsRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam CreateFillets Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\DXFRescuerRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam DXFRescuer Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\FindOverlapRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam FindOverlap Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\FlattenSurfRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam FlattenSurf Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\FPlotRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam FPlot Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\GearRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Gear Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\GridPockRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam GridPock Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\MapRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Map Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\MCCommandFinderRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam MCCommandFinder Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\MCDigitizeRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam MCDigitize Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\MCThreadCRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam MCThreadC Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\MedialAxisRes.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Medial Axis Resources
+C:\Program Files\Mastercam 2027\chooks\en\MPBinRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam MPBin Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\OnshapeConnectRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam OnshapeConnect Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\Prob2splRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Prob2spl Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\Pts2ArcsRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Pts2Arcs Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\Rev2RevRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Rev2Rev Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\RolldieRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Rolldie Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\SectionNCIRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam SectionNCI Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\SortCirclesRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam SortCircles Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\SprocketRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Sprocket Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\SteadyrestRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	Steadyrest Component Boundary DLL
+C:\Program Files\Mastercam 2027\chooks\en\txtchainRes.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Txtchain resource
+C:\Program Files\Mastercam 2027\chooks\en\UpdatePostRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam UpdatePost Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\vHelixRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Variable Pitch Helix Resource DLL
+C:\Program Files\Mastercam 2027\chooks\en\zSpiralRes.dll	29.0.0.0	1.0	CNC Software, LLC	Mastercam Z-Spiral Resource DLL
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\ActiproSoftware.Ribbon.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Ribbon (for WPF)
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\ActiproSoftware.Shared.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Shared Library (for WPF)
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\ActiproSoftware.SyntaxEditor.Addons.DotNet.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro SyntaxEditor .NET Languages Add-on (for WPF)
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\ActiproSoftware.SyntaxEditor.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro SyntaxEditor (for WPF)
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\ActiproSoftware.Text.Addons.DotNet.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Text .NET Languages Add-on (for WPF)
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\ActiproSoftware.Text.LLParser.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro LL(*) Parser (for WPF)
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\ActiproSoftware.Text.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Text/Parsing Library (for WPF)
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\IPCServer.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Mastercam NET-Scripting Add-In
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\Microsoft.CodeAnalysis.CSharp.dll	4.1200.24.57207	4.12.0-3.24572.7+dfa7fc6bdea31a858a402168384192b633c811fa	Microsoft Corporation	Microsoft.CodeAnalysis.CSharp
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\Microsoft.CodeAnalysis.CSharp.Scripting.dll	4.1200.24.57207	4.12.0-3.24572.7+dfa7fc6bdea31a858a402168384192b633c811fa	Microsoft Corporation	Microsoft.CodeAnalysis.CSharp.Scripting
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\Microsoft.CodeAnalysis.dll	4.1200.24.57207	4.12.0-3.24572.7+dfa7fc6bdea31a858a402168384192b633c811fa	Microsoft Corporation	Microsoft.CodeAnalysis
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\Microsoft.CodeAnalysis.Scripting.dll	4.1200.24.57207	4.12.0-3.24572.7+dfa7fc6bdea31a858a402168384192b633c811fa	Microsoft Corporation	Microsoft.CodeAnalysis.Scripting
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\Microsoft.Xaml.Behaviors.dll	1.1.19.35512	1.1.19+b88a49dfad	Microsoft Corporation	Microsoft.Xaml.Behaviors
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\NetScripting.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Mastercam NET-Scripting Add-In
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\ScriptDebugHost.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Mastercam NET-Scripting Add-In
+C:\Program Files\Mastercam 2027\chooks\MCNetScripting\RestApi\RestApi.dll	1.0.0.0	1.0.0+0b30cc0862fbe5fa52314e1e3cb89f36ea244735	RestApi	RestApi
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\MD_CD_PST_Rename.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MD CD PST Rename
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\MD_CD_PST_Rename_Interop.dll	29.0.0.0	2027	CNC Software, LLC	MD_CD_PST_Rename Utility (support file)
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.Configuration.Abstractions.dll	8.0.23.53103	8.0.0+5535e31a712343a63f5d7d796cd874e563e5ac14	Microsoft Corporation	Microsoft.Extensions.Configuration.Abstractions
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.Configuration.dll	8.0.23.53103	8.0.0+5535e31a712343a63f5d7d796cd874e563e5ac14	Microsoft Corporation	Microsoft.Extensions.Configuration
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.Configuration.FileExtensions.dll	8.0.724.31311	8.0.7+2aade6beb02ea367fd97c4070a4198802fe61c03	Microsoft Corporation	Microsoft.Extensions.Configuration.FileExtensions
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.Configuration.Json.dll	8.0.1024.46610	8.0.10+81cabf2857a01351e5ab578947c7403a5b128ad1	Microsoft Corporation	Microsoft.Extensions.Configuration.Json
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.DependencyInjection.Abstractions.dll	8.0.1024.46610	8.0.10+81cabf2857a01351e5ab578947c7403a5b128ad1	Microsoft Corporation	Microsoft.Extensions.DependencyInjection.Abstractions
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.DependencyInjection.dll	8.0.1024.46610	8.0.10+81cabf2857a01351e5ab578947c7403a5b128ad1	Microsoft Corporation	Microsoft.Extensions.DependencyInjection
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.FileProviders.Abstractions.dll	8.0.23.53103	8.0.0+5535e31a712343a63f5d7d796cd874e563e5ac14	Microsoft Corporation	Microsoft.Extensions.FileProviders.Abstractions
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.FileProviders.Physical.dll	8.0.23.53103	8.0.0+5535e31a712343a63f5d7d796cd874e563e5ac14	Microsoft Corporation	Microsoft.Extensions.FileProviders.Physical
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.FileSystemGlobbing.dll	8.0.23.53103	8.0.0+5535e31a712343a63f5d7d796cd874e563e5ac14	Microsoft Corporation	Microsoft.Extensions.FileSystemGlobbing
+C:\Program Files\Mastercam 2027\chooks\MD_CD_PST_Rename\Microsoft.Extensions.Primitives.dll	8.0.23.53103	8.0.0+5535e31a712343a63f5d7d796cd874e563e5ac14	Microsoft Corporation	Microsoft.Extensions.Primitives
+C:\Program Files\Mastercam 2027\chooks\PowerSurface\1Verisurf.dll	21.0.0.2	21.0.0.2	Verisurf Software, Inc.	
+C:\Program Files\Mastercam 2027\chooks\PowerSurface\2VScene.dll				
+C:\Program Files\Mastercam 2027\chooks\PowerSurface\PowerSurf.dll				
+C:\Program Files\Mastercam 2027\chooks\PowerSurface\en\PowerSurfRes.dll	1.0.0.1	26.0.0.1	Verisurf Inc.	PowerSurfRes
+C:\Program Files\Mastercam 2027\chooks\PowerSurface\Styles\VisualStudio2015.dll	24, 0, 0, 042924	24, 0, 0, 042924	Codejock Software	Visual Studio 2015 Theme Resource DLL
+C:\Program Files\Mastercam 2027\chooks\Zip2Go\C1.Zip.dll	2.0.20202.1	2.0.20202.1	GrapeCity inc.	C1.Zip
+C:\Program Files\Mastercam 2027\chooks\Zip2Go\Z2GData.dll	29.0.0.0	17.0.0.0	CNC Software, LLC	Zip2Go worker file.
+C:\Program Files\Mastercam 2027\chooks\Zip2Go\Zip2Go.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Zip2Go
+C:\Program Files\Mastercam 2027\chooks\Zip2Go\en\Zip2GoRes.dll	29.0.0.0	17.0.0.0	CNC Software, LLC	Zip2Go resources
+C:\Program Files\Mastercam 2027\common\3MFData\lib3mf.dll	2.0.0.216	2.0.0-alpha	3MF Consortium	lib3mf is the reference-implementation of the 3D Manufacturing Format file standard
+C:\Program Files\Mastercam 2027\common\AcadData\InventorDrawingConverter.exe	26.0.0.0	1.0.0.1	CNC Software, LLC	Inventor Drawing Importer Utility
+C:\Program Files\Mastercam 2027\common\AcadData\InventorPartAssemblyConverter.exe	26.0.0.0	1.0.0.1	CNC Software, LLC	Inventor Part and Assembly Importer Utility
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\CimcoDNC.exe	5, 0, 0, 1	5, 0, 0, 1	CIMCO Integration	CIMCO MiniDNC 
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\CIMCOEdit.exe	26,01,02,0	26,01,02,0	CIMCO A/S	CIMCO Edit
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\AdvRenumbering.dll	26,01,02,0	26,01,02,0	CIMCO A/S	EditPlugin GUI Template
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\DNCServerConfig.dll	1, 0, 0, 1	1, 0, 0, 1		DNCServerConfig DLL
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\EditorConfig.dll	1, 0, 0, 1	1, 0, 0, 1		EditorConfig DLL
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\FileDialogs.dll	1.0.0.1	1.0.0.1	CIMCO A/S	FileDialogs
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\FileDirSelector.dll	1, 0, 0, 1	1, 0, 0, 1		FileDirSelector DLL
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\iconv-2.dll	1.18	1.18	Free Software Foundation	LGPLed libiconv for Windows
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\libxml2.dll	2.15.1	2.15.1		libxml2 library
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\License.dll	1.0.0.1	1.0.0.1	CIMCO A/S	License
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\Localization.dll	1, 0, 0, 1	1, 0, 0, 1	CIMCO A/S	Localization
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\MachineSetup.dll	4, 10, 13, 0	4, 10, 13, 0		MachineSetup DLL
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\MiscDialogs.dll	1, 0, 0, 1	1, 0, 0, 1		MiscDialogs DLL
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\NCFunc.dll	1, 0, 0, 1	1, 0, 0, 1		NCFunctions DLL
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\Office2016.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Office 2016 Theme Resource DLL
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Dll\zlib1.dll	1.3.1	1.3.1		zlib data compression library
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceArSa.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceBg.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceCs.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceDa.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceDe.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceEl.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceEn.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceEs.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceEt.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceFi.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceFr.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceHe.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceHr.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceHu.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceIt.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceJa.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceKo.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceLt.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceLv.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceNl.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceNo.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourcePl.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourcePt.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourcePtBr.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceRo.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceRu.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceSk.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceSl.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceSr.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceSv.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceTh.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceTr.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceUk.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceZhCn.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Msg\External\ToolkitPro.ResourceZhTw.dll	19, 3, 0, 0	19, 3, 0, 0	Codejock Software	Codejock Software Resource file
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Protocols\PFtpClient.dll	1, 0, 0, 1	1, 0, 0, 1	CIMCO A/S	PFtpClient
+C:\Program Files\Mastercam 2027\common\Editors\CIMCOEdit\Protocols\PStandardSerial.dll	4, 10, 10, 0	4, 10, 10, 0	CIMCO Integration	PStandardSerial DLL
+C:\Program Files\Mastercam 2027\common\reports\ActiveReports_Common.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	 
+C:\Program Files\Mastercam 2027\common\reports\ActiveReports_Designer.exe	29.0.0.0	29.0.0.0	CNC Software, LLC	ActiveReport Designer
+C:\Program Files\Mastercam 2027\common\reports\ActiveReports_Viewer.exe	29.0.0.0	29.0.0.0	CNC Software, LLC	ActiveReport Viewer
+C:\Program Files\Mastercam 2027\common\reports\BouncyCastle.Crypto.dll	1.8.2.223	1.8.2+Branch.netstandard.Sha.c81b266295aeacd86f4e0bef03db7de82953c391	The Legion of the Bouncy Castle Inc.	BouncyCastle.Crypto
+C:\Program Files\Mastercam 2027\common\reports\DocumentFormat.OpenXml.dll	2.12.1	2.12.1+Branch.release-2.12.1.Sha.e7604363a6c85ce9db0c34ff1cdf8cf60ac5ffe7.e7604363a6c85ce9db0c34ff1cdf8cf60ac5ffe7	Microsoft	DocumentFormat.OpenXml
+C:\Program Files\Mastercam 2027\common\reports\Gcef.Data.DataEngine.dll	3.3.0.0	3.3.0	GrapeCity, Inc.	DataEngine
+C:\Program Files\Mastercam 2027\common\reports\Gcef.Data.ExpressionInfo.dll	3.3.0.0	3.3.0	GrapeCity, Inc.	Gcef.Data.ExpressionInfo
+C:\Program Files\Mastercam 2027\common\reports\Gcef.Data.VBFunctionLib.dll	3.3.0.0	3.3.0	GrapeCity, Inc.	Gcef.Data.VBFunctionLib
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Chart.dll	17.0.3.0	17.0.3	GrapeCity, Inc.	GrapeCity ActiveReports Chart
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Chart.Win.dll	17.0.3.0	17.0.3	GrapeCity, Inc.	GrapeCity ActiveReports Chart Designer
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.DataProviders.dll	2.1.3.0	2.1.3	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.DataProviders
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Document.dll	4.1.1.0	4.1.1	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Document
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Document.Drawing.Gc.dll	4.1.1.0	4.1.1	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Document.Drawing.Gc
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Document.Drawing.Gdi.dll	4.1.1.0	4.1.1	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Document.Drawing.Gdi
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Drawing.Gc.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Drawing.Gc
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Drawing.Gdi.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Drawing.Gdi
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Export.Excel.Page.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Export.Excel.Page
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Export.Html.Page.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Export.Html.Page
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Export.Image.Page.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Export.Image.Page
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Export.Pdf.Page.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Export.Pdf.Page
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Export.Pdf.Section.dll	4.1.1.0	4.1.1	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Export.Pdf.Section
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Export.Svg.Page.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Export.Svg.Page
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Export.Text.Page.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Export.Text.Page
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Export.Tiff.Section.dll	4.1.1.0	4.1.1	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Export.Tiff.Section
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Export.Word.Page.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Export.Word.Page
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Rdl.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Rdl
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Rendering.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Rendering
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Scripting.dll	3.6.0.0	3.6.0	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Scripting
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Core.Svg.dll	1.0.2.0	1.0.2	GrapeCity, Inc.	GrapeCity.ActiveReports.Core.Svg
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Design.Win.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports Designer
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports for .NET
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Export.Excel.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports Excel Export
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Export.Html.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports HTML Export
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Export.Image.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports Image Export
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Export.Image.Win.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports Image Export
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Export.Pdf.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports PDF Export
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Export.Pdf.Win.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports PDF Export
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Export.Rdf.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports RDF Export
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Export.Word.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports RTF and Word Export
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Export.Xml.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports Text and XML Export
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Serializer.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports Report CodeDomSerializer
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.SpreadBuilder.dll	2.0.0.0	2.0.0	GrapeCity, Inc.	GrapeCity SpreadBuilder
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Viewer.Common.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports Viewer Base
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Viewer.Win.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports Viewer
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Viewer.Wpf.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports WPF Viewer
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.ActiveReports.Win.dll	17.1.1.0	17.1.1	GrapeCity, Inc.	GrapeCity ActiveReports for .NET, Windows.Forms dependencies
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.DataVisualization.Chart.dll	0.4.136.0	0.4.136	GrapeCity Inc.	GrapeCity.DataVisualization.Chart
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.Documents.DX.Windows.dll	6.0.5	6.0.5	GrapeCity, Inc.	GrapeCity.Documents.DX.Windows
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.Documents.Imaging.dll	6.0.5	6.0.5	GrapeCity, Inc.	GrapeCity.Documents.Imaging
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.Documents.Imaging.Windows.dll	6.0.5	6.0.5	GrapeCity, Inc.	GrapeCity.Documents.Imaging.Windows
+C:\Program Files\Mastercam 2027\common\reports\GrapeCity.Documents.Pdf.dll	6.0.5	6.0.5	GrapeCity, Inc.	GrapeCity.Documents.Pdf
+C:\Program Files\Mastercam 2027\common\reports\Microsoft.Bcl.AsyncInterfaces.dll	5.0.20.51904	5.0.0+cf258a14b70ad9069470a108f13765e0e5988f51	Microsoft Corporation	Microsoft.Bcl.AsyncInterfaces
+C:\Program Files\Mastercam 2027\common\reports\Microsoft.VisualStudio.DpiAwareness.dll	6.1.28916.169	6.1.28916.169	Microsoft Corporation	Microsoft.VisualStudio.DpiAwareness.dll
+C:\Program Files\Mastercam 2027\common\reports\System.Buffers.dll	4.6.28619.01	4.6.28619.01 @BuiltBy: dlab14-DDVSOWINAGE069 @Branch: release/2.1 @SrcCode: https://github.com/dotnet/corefx/tree/7601f4f6225089ffb291dc7d58293c7bbf5c5d4f	Microsoft Corporation	System.Buffers
+C:\Program Files\Mastercam 2027\common\reports\System.Drawing.dll	4.8.4161.0 built by: NET48REL1	4.8.4161.0	Microsoft Corporation	.NET Framework
+C:\Program Files\Mastercam 2027\common\reports\System.Memory.dll	4.6.28619.01	4.6.28619.01 @BuiltBy: dlab14-DDVSOWINAGE069 @Branch: release/2.1 @SrcCode: https://github.com/dotnet/corefx/tree/7601f4f6225089ffb291dc7d58293c7bbf5c5d4f	Microsoft Corporation	System.Memory
+C:\Program Files\Mastercam 2027\common\reports\System.Numerics.Vectors.dll	4.6.26515.06	4.6.26515.06 @BuiltBy: dlab-DDVSOWINAGE059 @Branch: release/2.1 @SrcCode: https://github.com/dotnet/corefx/tree/30ab651fcb4354552bd4891619a0bdd81e0ebdbf	Microsoft Corporation	System.Numerics.Vectors
+C:\Program Files\Mastercam 2027\common\reports\System.Runtime.CompilerServices.Unsafe.dll	5.0.20.51904	5.0.0+cf258a14b70ad9069470a108f13765e0e5988f51	Microsoft Corporation	System.Runtime.CompilerServices.Unsafe
+C:\Program Files\Mastercam 2027\common\reports\System.Text.Encodings.Web.dll	5.0.421.11614	5.0.4+f27d33729518f5aa478aa818b7b4f54a4d50bef1	Microsoft Corporation	System.Text.Encodings.Web
+C:\Program Files\Mastercam 2027\common\reports\System.Text.Json.dll	5.0.521.16609	5.0.5+2f740adc1457e8a28c1c072993b66f515977eb51	Microsoft Corporation	System.Text.Json
+C:\Program Files\Mastercam 2027\common\reports\System.Threading.Tasks.Extensions.dll	4.6.28619.01	4.6.28619.01 @BuiltBy: dlab14-DDVSOWINAGE069 @Branch: release/2.1 @SrcCode: https://github.com/dotnet/corefx/tree/7601f4f6225089ffb291dc7d58293c7bbf5c5d4f	Microsoft Corporation	System.Threading.Tasks.Extensions
+C:\Program Files\Mastercam 2027\common\reports\System.ValueTuple.dll	4.6.26515.06	4.6.26515.06 @BuiltBy: dlab-DDVSOWINAGE059 @Branch: release/2.1 @SrcCode: https://github.com/dotnet/corefx/tree/30ab651fcb4354552bd4891619a0bdd81e0ebdbf	Microsoft Corporation	System.ValueTuple
+C:\Program Files\Mastercam 2027\common\reports\System.Windows.Forms.dll	4.8.9093.0 built by: NET481REL1LAST_C	4.8.9093.0	Microsoft Corporation	.NET Framework
+C:\Program Files\Mastercam 2027\common\SharedDefaults\engrave\EStamp7.exe				
+C:\Program Files\Mastercam 2027\common\SharedDefaults\engrave\HEdit.dll				
+C:\Program Files\Mastercam 2027\common\SketchUpData\SketchUpAPI.dll	22.0.354	22.0.354	Trimble, Inc.	SketchUp SDK DLL (64-bit)
+C:\Program Files\Mastercam 2027\common\SketchUpData\SketchUpCommonPreferences.dll	22.0.354	22.0.354	Trimble, Inc.	SketchUp Common Preferences
+C:\Program Files\Mastercam 2027\crashservice\Cnc.Utilities.Core.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Core Utilities Library
+C:\Program Files\Mastercam 2027\crashservice\Cnc.Utilities.Core.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Core Utilities Windows Library
+C:\Program Files\Mastercam 2027\crashservice\crashpad_handler.exe	0.11.3	0.11.3		Crashpad Handler
+C:\Program Files\Mastercam 2027\crashservice\crashpad_wer.dll	0.11.3	0.11.3		Crashpad WER Module
+C:\Program Files\Mastercam 2027\crashservice\CrashReporter.exe	1.0.0.1	1.0.0.1	TODO: <Company name>	CrashReporter
+C:\Program Files\Mastercam 2027\crashservice\CrashService.dll				
+C:\Program Files\Mastercam 2027\crashservice\sentry.dll	0.11.3	0.11.3		Client Library
+C:\Program Files\Mastercam 2027\crashservice\managed\CrashServiceManaged.dll				
+C:\Program Files\Mastercam 2027\crashservice\managed\Sentry.dll	5.16.2.0	5.16.2	Sentry.io	Sentry
+C:\Program Files\Mastercam 2027\en\BackplotRes.dll	29.0.0.0	18.0	CNC Software, LLC	Backplot Resource DLL
+C:\Program Files\Mastercam 2027\en\BCGCBProRes.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	BCGControlBar Professional DLL
+C:\Program Files\Mastercam 2027\en\gafres.dll	29.0.0.0	2027	CNC Software, LLC	gafres DLL
+C:\Program Files\Mastercam 2027\en\JobSetupRes.dll	29.0.0.0	10.0	CNC Software, LLC	JobSetup Resource DLL
+C:\Program Files\Mastercam 2027\en\MastercamLauncherRes.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam Launcher Resource DLL
+C:\Program Files\Mastercam 2027\en\McamAdvConfigRes.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam Advanced Configuration Resources
+C:\Program Files\Mastercam 2027\en\MCCADRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCCAD Resource DLL
+C:\Program Files\Mastercam 2027\en\MCCADUtilRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCCADUtilRes Resource DLL
+C:\Program Files\Mastercam 2027\en\MCControlRes.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Control Resource DLL
+C:\Program Files\Mastercam 2027\en\MCCoreBaseRes.dll	29.0.0.0	10.0	CNC Software, LLC	RibbonUI Resource DLL
+C:\Program Files\Mastercam 2027\en\MCCoreRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCCore Resource DLL
+C:\Program Files\Mastercam 2027\en\MCCurveSurfGeomRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCCurveSurfGeom Resource DLL
+C:\Program Files\Mastercam 2027\en\MCGeomSldRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCGeomSld Resource DLL
+C:\Program Files\Mastercam 2027\en\MCIOFRes.dll	29.0.0.0	2027	CNC Software, LLC	MCIOF Resource DLL
+C:\Program Files\Mastercam 2027\en\MCLatheRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	Mastercam Lathe Resource DLL
+C:\Program Files\Mastercam 2027\en\McLogrRes.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam Event Logger Resources
+C:\Program Files\Mastercam 2027\en\MCMachineDefRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	Mastercam Machine Definition Module Resource DLL
+C:\Program Files\Mastercam 2027\en\MCMillRes.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Mill Resource DLL
+C:\Program Files\Mastercam 2027\en\MCMSurfRes.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Multi Surface Resource DLL
+C:\Program Files\Mastercam 2027\en\MCMultiaxRes.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam MultiAxis Resource DLL
+C:\Program Files\Mastercam 2027\en\MCPostRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	Mastercam Post Resource DLL
+C:\Program Files\Mastercam 2027\en\MCRouterRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	Mastercam Router Resource DLL
+C:\Program Files\Mastercam 2027\en\MCToolRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCToolRes Resource DLL
+C:\Program Files\Mastercam 2027\en\McUexRes.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	McUex resource dll
+C:\Program Files\Mastercam 2027\en\MCUI5AxRes.dll	29.0.0.0	1, 0, 0, 1	CNC Software, LLC	MCUI5AxRes
+C:\Program Files\Mastercam 2027\en\MCVerifyRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCVerify
+C:\Program Files\Mastercam 2027\en\MCWireRes.dll	29.0.0.0	10.0	CNC Software, LLC	Mastercam Wire Product Resource DLL
+C:\Program Files\Mastercam 2027\en\MPDebugClientRes.dll	29.0.0.0	10.0.100.0	CNC Software, LLC	CNC Software
+C:\Program Files\Mastercam 2027\en\opmanres.dll	29.0.0.0	1.0.B2	CNC Software, LLC	MastercamX
+C:\Program Files\Mastercam 2027\en\RibbonUIRes.dll	29.0.0.0	10.0	CNC Software, LLC	RibbonUI Resource DLL
+C:\Program Files\Mastercam 2027\en\UICtrlsRes.dll	29.0.0.0	17.0.0.0	CNC Software, LLC	Mastercam UICtrls resources
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.BarCode.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Bar Code (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.DataGrid.Contrib.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro DataGrid Contrib (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Docking.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Docking/MDI (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Editors.Interop.Grids.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Editors/PropertyGrid Interop (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Editors.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Editors (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Gauge.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Gauge (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Grids.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Grids (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Navigation.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Navigation (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Ribbon.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Ribbon (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Shared.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Shared Library (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.SyntaxEditor.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro SyntaxEditor (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Text.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Text/Parsing Library (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Views.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Views (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\ActiproSoftware.Wizard.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Wizard (for WPF)
+C:\Program Files\Mastercam 2027\Extensions\AxProtector.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	AxProtector.UI
+C:\Program Files\Mastercam 2027\Extensions\BCGCBPRO3220u143.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	BCGControlBar Professional DLL
+C:\Program Files\Mastercam 2027\Extensions\BCGPStyle2007Aqua3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2007 (Aqua) style resource library
+C:\Program Files\Mastercam 2027\Extensions\BCGPStyle2007Luna3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2007 (Blue) style resource library
+C:\Program Files\Mastercam 2027\Extensions\BCGPStyle2007Obsidian3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2007 (Black) style resource library
+C:\Program Files\Mastercam 2027\Extensions\BCGPStyle2007Silver3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2007 (Silver) style resource library
+C:\Program Files\Mastercam 2027\Extensions\BCGPStyle2010Black3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2010 (Black) style resource library
+C:\Program Files\Mastercam 2027\Extensions\BCGPStyle2010Blue3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2010 (Blue) style resource library
+C:\Program Files\Mastercam 2027\Extensions\BCGPStyle2010White3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Office 2010 (White) style resource library
+C:\Program Files\Mastercam 2027\Extensions\BCGPStyleCarbon3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Carbon style resource library
+C:\Program Files\Mastercam 2027\Extensions\BCGPStyleScenic3220.dll	32, 20, 0, 0	32, 20, 0, 0	BCGSoft Co Ltd	Scenic style resource library
+C:\Program Files\Mastercam 2027\Extensions\Cnc.Math.GridCompute.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam GridCompute Library
+C:\Program Files\Mastercam 2027\Extensions\Cnc.Math.Partition.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Partition Library
+C:\Program Files\Mastercam 2027\Extensions\Cnc.Math.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Math Library
+C:\Program Files\Mastercam 2027\Extensions\Cnc.Tool.Core.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Core Tooling Library
+C:\Program Files\Mastercam 2027\Extensions\Cnc.Utilities.Core.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Core Utilities Library
+C:\Program Files\Mastercam 2027\Extensions\Cnc.Utilities.Core.Windows.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	Mastercam Core Utilities Windows Library
+C:\Program Files\Mastercam 2027\Extensions\Cnc.Utilities.Core.Windows.Managed.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam Core Utilities Windows Managed Library
+C:\Program Files\Mastercam 2027\Extensions\CodeExpert.exe	29.0.0.0	29.0.0.0	CNC Software, LLC	Code Expert
+C:\Program Files\Mastercam 2027\Extensions\CodeExpert.Interprocess.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	CodeExpert.Interprocess
+C:\Program Files\Mastercam 2027\Extensions\CodeExpert.Shared.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	CodeExpert.Shared
+C:\Program Files\Mastercam 2027\Extensions\CodeExpert.Workspace.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	CodeExpert.Workspace
+C:\Program Files\Mastercam 2027\Extensions\Editor.Core.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Editor.Core
+C:\Program Files\Mastercam 2027\Extensions\Editor.Models.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Editor.Models
+C:\Program Files\Mastercam 2027\Extensions\Editor.Workspace.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Editor.Workspace
+C:\Program Files\Mastercam 2027\Extensions\gafbase.dll	29.0.0.0	2027	CNC Software, LLC	gafbase DLL
+C:\Program Files\Mastercam 2027\Extensions\GAFControl.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam GAFControl
+C:\Program Files\Mastercam 2027\Extensions\GAFControl.Interop.dll	29.0.0.0	2027	CNC Software, LLC	GAFControl.Interop
+C:\Program Files\Mastercam 2027\Extensions\gafgr.dll	29.0.0.0	2027	CNC Software, LLC	gafgr DLL
+C:\Program Files\Mastercam 2027\Extensions\gafmt.dll	29.0.0.0	2027	CNC Software, LLC	gafmt DLL
+C:\Program Files\Mastercam 2027\Extensions\gafui.dll	29.0.0.0	2027	CNC Software, LLC	gafui DLL
+C:\Program Files\Mastercam 2027\Extensions\gafut.dll	29.0.0.0	2027	CNC Software, LLC	gafut DLL
+C:\Program Files\Mastercam 2027\Extensions\glew64.dll	1,7,0,0	1,7,0,0		The OpenGL Extension Wrangler Library
+C:\Program Files\Mastercam 2027\Extensions\IOFAPI.dll	29.0.0.0	X7	CNC Software, LLC	IOFAPI
+C:\Program Files\Mastercam 2027\Extensions\IOFDB.dll	29.0.0.0	2027	CNC Software, LLC	IOFDB
+C:\Program Files\Mastercam 2027\Extensions\IOFLogic.dll	29.0.0.0	2027	CNC Software, LLC	IOF.MC
+C:\Program Files\Mastercam 2027\Extensions\IOFViewer.exe	29.0.0.0	2027	CNC Software, LLC	IOF.MC
+C:\Program Files\Mastercam 2027\Extensions\IronPython.dll	2.7.2.1001	IronPython 2.7.2 final 1	IronPython Team	IronPython
+C:\Program Files\Mastercam 2027\Extensions\IronPython.Modules.dll	2.7.2.1001	IronPython 2.7.2 final 1	IronPython Team	IronPython.Modules
+C:\Program Files\Mastercam 2027\Extensions\Machine.Core.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Machine.Core
+C:\Program Files\Mastercam 2027\Extensions\Machine.Models.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Machine.Models
+C:\Program Files\Mastercam 2027\Extensions\Machine.Serialization.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Machine.Serialization
+C:\Program Files\Mastercam 2027\Extensions\MachineBuilder.Models.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MachineBuilder.Models
+C:\Program Files\Mastercam 2027\Extensions\MastercamExtensions.GAF.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MastercamExtensions.GAF
+C:\Program Files\Mastercam 2027\Extensions\MastercamExtensions.ImportExport.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MastercamExtensions.ImportExport
+C:\Program Files\Mastercam 2027\Extensions\MastercamExtensions.Infrastructure.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MastercamExtensions.Infrastructure
+C:\Program Files\Mastercam 2027\Extensions\MastercamExtensions.Licensing.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MastercamExtensions.Licensing
+C:\Program Files\Mastercam 2027\Extensions\MastercamExtensions.Localization.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MastercamExtensions.Localization
+C:\Program Files\Mastercam 2027\Extensions\MastercamExtensions.Shell.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MastercamExtensions.Shell
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Dynamic.dll	1.1.0.20	1.1	Microsoft	Microsoft.Scripting
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Practices.EnterpriseLibrary.Common.dll	6.0.1304.0	6.0.1304.0	Microsoft Corporation	Enterprise Library Shared Library
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll	6.0.1304.0	6.0.1304.0	Microsoft Corporation	Enterprise Library Exception Handling Application Block
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll	6.0.1304.0	6.0.1304.0	Microsoft Corporation	Enterprise Library Exception Handling Logging Provider
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Practices.EnterpriseLibrary.Logging.dll	6.0.1304.0	6.0.1304.0	Microsoft Corporation	Enterprise Library Logging Application Block
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Practices.ServiceLocation.dll	1.3.0.0	1.3.0.0	Microsoft	Microsoft.Practices.ServiceLocation
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Practices.Unity.Configuration.dll	4.0.1.0	4.0.1	Microsoft Corporation	Microsoft.Practices.Unity.Configuration
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Practices.Unity.dll	4.0.1.0	4.0.1	Microsoft Corporation	 
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Practices.Unity.RegistrationByConvention.dll	4.0.1.0	4.0.1	Microsoft Corporation	 
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Scripting.dll	1.1.0.20	1.1	Microsoft	Microsoft.Scripting
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.Scripting.Metadata.dll	1.1.0.20	1.1	Microsoft	Microsoft.Scripting.Metadata
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.WindowsAPICodePack.dll	1.1.0.0	1.1.0.0	Microsoft	Microsoft.WindowsAPICodePack
+C:\Program Files\Mastercam 2027\Extensions\Microsoft.WindowsAPICodePack.Shell.dll	1.1.0.0	1.1.0.0	Microsoft	Microsoft.WindowsAPICodePack.Shell
+C:\Program Files\Mastercam 2027\Extensions\PostEngine.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	PostEngine
+C:\Program Files\Mastercam 2027\Extensions\Prism.dll	6.3.0	6.3.0		Prism
+C:\Program Files\Mastercam 2027\Extensions\Prism.Unity.Wpf.dll	6.3.0	6.3.0		Prism.Unity.Wpf
+C:\Program Files\Mastercam 2027\Extensions\Prism.Wpf.dll	6.3.0	6.3.0		Prism.Wpf
+C:\Program Files\Mastercam 2027\Extensions\ServiceClient.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ServiceClient
+C:\Program Files\Mastercam 2027\Extensions\SQLite.Interop.dll	1.0.77.0	1.0.77.0	Robert Simpson, et al.	System.Data.SQLite Interop Assembly
+C:\Program Files\Mastercam 2027\Extensions\SyncManager.Core.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	SyncManager.Core
+C:\Program Files\Mastercam 2027\Extensions\System.Configuration.ConfigurationManager.dll	8.0.23.53103	8.0.0+5535e31a712343a63f5d7d796cd874e563e5ac14	Microsoft Corporation	System.Configuration.ConfigurationManager
+C:\Program Files\Mastercam 2027\Extensions\System.Data.SQLite.dll	1.0.77.0	1.0.77.0	Robert Simpson, et al.	System.Data.SQLite Interop Assembly
+C:\Program Files\Mastercam 2027\Extensions\System.Data.SQLite.Linq.dll	1.0.77.0	1.0.77.0	http://system.data.sqlite.org/	System.Data.SQLite for LINQ
+C:\Program Files\Mastercam 2027\Extensions\System.Linq.Dynamic.dll	2.1.0.0	2.1.0.0	Microsoft	System.Linq.Dynamic
+C:\Program Files\Mastercam 2027\Extensions\System.Windows.Interactivity.dll	3.0.40218.0	3.0.40218.0	Microsoft Corporation	System.Windows.Interactivity
+C:\Program Files\Mastercam 2027\Extensions\SysTypes.dll	29.0.0.0	1.0.0.1	CNC Software, LLC	SysTypes
+C:\Program Files\Mastercam 2027\Extensions\TDx.SpaceMouse.Navigation3D.dll	1.0.0.0	1.0.0.0		TDx.SpaceMouse.Navigation3D
+C:\Program Files\Mastercam 2027\Extensions\TlCoreAPI.dll	29.0.0.0	X7	CNC Software, LLC	TlCoreAPI
+C:\Program Files\Mastercam 2027\Extensions\ToolManager.Core.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ToolManager.Core
+C:\Program Files\Mastercam 2027\Extensions\ToolManager.Database.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ToolManager.Database
+C:\Program Files\Mastercam 2027\Extensions\ToolManager.exe	29.0.0.0	29.0.0.0	CNC Software, LLC	ToolManager.Shell
+C:\Program Files\Mastercam 2027\Extensions\ToolManager.Search.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ToolManager.Search
+C:\Program Files\Mastercam 2027\Extensions\ToolManager.Shared.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ToolManager.Models
+C:\Program Files\Mastercam 2027\Extensions\ToolManager.ToolWizard.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ToolManager.ToolWizard
+C:\Program Files\Mastercam 2027\Extensions\ToolManager.Workspace.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ToolManager.Workspace
+C:\Program Files\Mastercam 2027\Extensions\UXSharedResources.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	UXSharedResources
+C:\Program Files\Mastercam 2027\Extensions\Xceed.Wpf.Controls.v4.3.dll	4.3.12074.17240	4.3.12074.17240	Xceed Software Inc.	Xceed Controls for WPF
+C:\Program Files\Mastercam 2027\Extensions\Xceed.Wpf.DataGrid.ThemePack.1.v4.3.dll	4.3.12074.17240	4.3.12074.17240	Xceed Software Inc.	Xceed DataGrid for WPF Theme Pack #1
+C:\Program Files\Mastercam 2027\Extensions\Xceed.Wpf.DataGrid.v4.3.dll	4.3.12074.17240	4.3.12074.17240	Xceed Software Inc.	Xceed DataGrid for WPF
+C:\Program Files\Mastercam 2027\Extensions\en\GAFControlRes.dll	29.0.0.0	2027	CNC Software, LLC	Mastercam GAFControl Resource DLL
+C:\Program Files\Mastercam 2027\Extensions\en\gafres.dll	29.0.0.0	2027	CNC Software, LLC	gafres DLL
+C:\Program Files\Mastercam 2027\importexport\mc3mf.dll	29.0.0.0	10.0	CNC Software, LLC	MC3MF Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\mcascii.dll	29.0.0.0	10.0	CNC Software, LLC	MCASCII Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\McAutoCAD.dll	29.0.0.0	10.0	CNC Software, LLC	MCAutoCAD Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\mccadl.dll	29.0.0.0	10.0	CNC Software, LLC	MCCadl Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\MCDatakit.dll	29.0.0.0	10.0	CNC Software, LLC	MCUnigraphics Import Library
+C:\Program Files\Mastercam 2027\importexport\mceps.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Eps
+C:\Program Files\Mastercam 2027\importexport\MCGDML.dll	29.0.0.0	10.0	CNC Software, LLC	MCGDML Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\mchpgl.dll	29.0.0.0	10.0	CNC Software, LLC	MCHpgl Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\MCIGES.dll	29.0.0.0	10.0	CNC Software, LLC	MCIGES Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\MCParasolid.dll	29.0.0.0	10.0	CNC Software, LLC	MCParasolid Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\mcrhino.dll	29.0.0.0	10.0	CNC Software, LLC	MCRhino Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\MCSketchUp.DLL	29.0.0.0	10.0	CNC Software, LLC	MCSketchup Import Library
+C:\Program Files\Mastercam 2027\importexport\MCStl.dll	29.0.0.0	10.0	CNC Software, LLC	MCStl Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\MCToolStep.dll	29.0.0.0	10.0	CNC Software, LLC	MCToolStep Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\MCVda.dll	29.0.0.0	10.0	CNC Software, LLC	MCVda Import/Export Library
+C:\Program Files\Mastercam 2027\importexport\en\mc3MFRes.dll	29.0.0.0	10.0	CNC Software, LLC	MC3MF Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCASCIIRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCASCII Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCAutoCADRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCAutoCAD Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\McCadlRes.dll	29.0.0.0	10.0	CNC Software, LLC	McCadl Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCDatakitRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCUnigraphics Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCEpsRes.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Eps resource
+C:\Program Files\Mastercam 2027\importexport\en\MCGDMLRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCGDML Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCHpglRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCHpgl Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCIGESRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCIGES Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCParasolidRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCParasolid Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCRhinoRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCRhino Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCSketchupRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCSketchup Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCStlRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCStl Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCToolStepRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCToolStep Import/Export Resources
+C:\Program Files\Mastercam 2027\importexport\en\MCVdaRes.dll	29.0.0.0	10.0	CNC Software, LLC	MCVda Import/Export Resources
+C:\Program Files\Mastercam 2027\ManagedUI\ActiproSoftware.DataGrid.Contrib.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro DataGrid Contrib (for WPF)
+C:\Program Files\Mastercam 2027\ManagedUI\ActiproSoftware.Editors.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Editors (for WPF)
+C:\Program Files\Mastercam 2027\ManagedUI\ActiproSoftware.Gauge.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Gauge (for WPF)
+C:\Program Files\Mastercam 2027\ManagedUI\ActiproSoftware.Grids.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Grids (for WPF)
+C:\Program Files\Mastercam 2027\ManagedUI\ActiproSoftware.Ribbon.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Ribbon (for WPF)
+C:\Program Files\Mastercam 2027\ManagedUI\ActiproSoftware.Shared.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Shared Library (for WPF)
+C:\Program Files\Mastercam 2027\ManagedUI\ActiproSoftware.Wizard.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Wizard (for WPF)
+C:\Program Files\Mastercam 2027\ManagedUI\Cnc.ActiproLicensing.Wpf.dll	1.0.0.0	1.0.0+11e499d1bd9f04953fd8ceb37a44470ae6acf3a2	Cnc.ActiproLicensing.Wpf	Cnc.ActiproLicensing.Wpf
+C:\Program Files\Mastercam 2027\ManagedUI\Cnc.Localization.Wpf.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	Cnc.Localization.Wpf
+C:\Program Files\Mastercam 2027\ManagedUI\CNCSoftware.Controls.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	CNCSoftware.Controls
+C:\Program Files\Mastercam 2027\ManagedUI\CNCSoftware.MVVM.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	CNCSoftware.MVVM
+C:\Program Files\Mastercam 2027\ManagedUI\JobSetup.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	JobSetup.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\JobSetup.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	JobSetup.UI
+C:\Program Files\Mastercam 2027\ManagedUI\JobSetup.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	JobSetup.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\ManagedUI.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	ManagedUI.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\ManagedUI.Interop.dll	29.0.0.0	2027	CNC Software, LLC	ManagedUI.Interop
+C:\Program Files\Mastercam 2027\ManagedUI\ManagedUI.MyMastercam.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ManagedUI.MyMastercam
+C:\Program Files\Mastercam 2027\ManagedUI\ManagedUI.Shared.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	ManagedUI.Shared
+C:\Program Files\Mastercam 2027\ManagedUI\MCCAD.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCCAD.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCCAD.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCCAD.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCCAD.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCCAD.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\MCCADUtil.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCCADUtil.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCCADUtil.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCCADUtil.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCCADUtil.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCCADUtil.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\MCCore.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCCore.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCCore.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCCore.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCCore.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCCore.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\MCCoreBase.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCCoreBase.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCCoreBase.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCCoreBase.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCCoreBase.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCCoreBase.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\MCGeomSld.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCGeomSld.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCGeomSld.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCGeomSld.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCGeomSld.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCGeomSld.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\MCLathe.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCLathe.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCLathe.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCLathe.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCLathe.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCLathe.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\MCMachineDef.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCMachineDef.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCMachineDef.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCMachineDef.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCMachineDef.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCMachineDef.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\MCMill.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCMill.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCMill.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCMill.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCMill.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCMill.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\MCMSurf.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCMSurf.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCMSurf.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCMSurf.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCMSurf.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCMSurf.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\MCTool.Controllers.dll	29.0.0.0	2027	CNC Software, LLC	MCTool.Controllers
+C:\Program Files\Mastercam 2027\ManagedUI\MCTool.UI.dll	29.0.0.0	29.0.0.0	CNC Software, LLC	MCTool.UI
+C:\Program Files\Mastercam 2027\ManagedUI\MCTool.ViewModels.dll	29.0.0.0	2027	CNC Software, LLC	MCTool.ViewModels
+C:\Program Files\Mastercam 2027\ManagedUI\Microsoft.ApplicationInsights.dll	2.22.0.00997	2.22.0+43825e06a22cdfb702fc199a7ba99a7d541d48c6	Microsoft	Microsoft.ApplicationInsights
+C:\Program Files\Mastercam 2027\ManagedUI\Microsoft.Extensions.DependencyInjection.Abstractions.dll	8.0.1024.46610	8.0.10+81cabf2857a01351e5ab578947c7403a5b128ad1	Microsoft Corporation	Microsoft.Extensions.DependencyInjection.Abstractions
+C:\Program Files\Mastercam 2027\ManagedUI\Microsoft.Extensions.Logging.Abstractions.dll	8.0.1024.46610	8.0.10+81cabf2857a01351e5ab578947c7403a5b128ad1	Microsoft Corporation	Microsoft.Extensions.Logging.Abstractions
+C:\Program Files\Mastercam 2027\ManagedUI\Microsoft.Web.WebView2.Core.dll	1.0.2849.39	1.0.2849.39	Microsoft	Microsoft.Web.WebView2.Core
+C:\Program Files\Mastercam 2027\ManagedUI\Microsoft.Web.WebView2.Wpf.dll	1.0.2849.39	1.0.2849.39	Microsoft	Microsoft.Web.WebView2.Wpf
+C:\Program Files\Mastercam 2027\ManagedUI\Newtonsoft.Json.dll	13.0.1.25517	13.0.1+ae9fe44e1323e91bcbd185ca1a14099fba7c021f	Newtonsoft	Json.NET .NET Standard 2.0
+C:\Program Files\Mastercam 2027\ManagedUI\WebView2Loader.dll	1.0.2849.39	1.0.2849.39	Microsoft Corporation	Microsoft Edge Embedded Browser WebView Loader
+C:\Program Files\Mastercam 2027\ManagedUI\XamlAnimatedGif.dll	2.3.1.0	2.3.1+2edf2d339861e971ca83f397126181c054c13472	Thomas Levesque	XamlAnimatedGif
+C:\Program Files\Mastercam 2027\simulator\5axcore.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	5 Axis Core Component
+C:\Program Files\Mastercam 2027\simulator\5axmfcuiutils.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	Commit: c4f054a340f8+, x64
+C:\Program Files\Mastercam 2027\simulator\5axmsurf.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	5axmsurf
+C:\Program Files\Mastercam 2027\simulator\5axmsurfclr.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	5axmsurfclr
+C:\Program Files\Mastercam 2027\simulator\5axmsurfnet.dll	2512.2026.0423.1545	2025.12.64.c4f054a340f8+	ModuleWorks GmbH	 
+C:\Program Files\Mastercam 2027\simulator\5axui.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	Commit: c4f054a340f8+, x64
+C:\Program Files\Mastercam 2027\simulator\5axui_res_neutral.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Commit: d851ae5b8f33+, x64
+C:\Program Files\Mastercam 2027\simulator\ActiproSoftware.DataGrid.Contrib.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro DataGrid Contrib (for WPF)
+C:\Program Files\Mastercam 2027\simulator\ActiproSoftware.Docking.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Docking/MDI (for WPF)
+C:\Program Files\Mastercam 2027\simulator\ActiproSoftware.Editors.Interop.DataGrid.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Editors/DataGrid Interop (for WPF)
+C:\Program Files\Mastercam 2027\simulator\ActiproSoftware.Editors.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Editors (for WPF)
+C:\Program Files\Mastercam 2027\simulator\ActiproSoftware.Grids.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Grids (for WPF)
+C:\Program Files\Mastercam 2027\simulator\ActiproSoftware.Ribbon.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Ribbon (for WPF)
+C:\Program Files\Mastercam 2027\simulator\ActiproSoftware.Shared.Wpf.dll	25.1.0.0	25.1.0.0	Actipro Software LLC	Actipro Shared Library (for WPF)
+C:\Program Files\Mastercam 2027\simulator\engrave.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Engrave
+C:\Program Files\Mastercam 2027\simulator\hw_nlib_core.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	Commit: c4f054a340f8+, x64
+C:\Program Files\Mastercam 2027\simulator\iges_nlib.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	Commit: c4f054a340f8+, x64
+C:\Program Files\Mastercam 2027\simulator\machsim.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Mastercam Simulator
+C:\Program Files\Mastercam 2027\simulator\MDESEquipment.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	MDESEquipment
+C:\Program Files\Mastercam 2027\simulator\Microsoft.Xaml.Behaviors.dll	1.1.31.10800	1.1.31+302a27da21	Microsoft Corporation	Microsoft.Xaml.Behaviors
+C:\Program Files\Mastercam 2027\simulator\MultiXPost.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	Multi Axis Post Processor
+C:\Program Files\Mastercam 2027\simulator\mwCNCSim.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	CNCSim Core Component
+C:\Program Files\Mastercam 2027\simulator\mwCNCSimInterpolationUtil.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	CNCSim Interpolation Utility Component
+C:\Program Files\Mastercam 2027\simulator\mwCNCSimVisualization.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	CNCSim Visualization Component
+C:\Program Files\Mastercam 2027\simulator\mwCustomStreamService.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	mwCustomerStreamService helper
+C:\Program Files\Mastercam 2027\simulator\mwEntities.dll	2512.2026.0423.1545	2025.12.64.c4f054a340f8+	ModuleWorks GmbH	The CLI Wrapper allows using ModuleWorks components from CLI languages like C#.
+C:\Program Files\Mastercam 2027\simulator\mwgeolib.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	5 Axis Core Component
+C:\Program Files\Mastercam 2027\simulator\mwInterop.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	The CLI Wrapper allows using ModuleWorks components from CLI languages like C#.
+C:\Program Files\Mastercam 2027\simulator\mwJobSetup.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	JobSetup
+C:\Program Files\Mastercam 2027\simulator\mwMachineConverter.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Machine Converter
+C:\Program Files\Mastercam 2027\simulator\mwManagedUtil.dll	2512.2026.0527.0925	2025.12.64.d851ae5b8f33+	ModuleWorks GmbH	The CLI Wrapper allows using ModuleWorks components from CLI languages like C#.
+C:\Program Files\Mastercam 2027\simulator\mwMcamSimExt.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Machine Simulator component
+C:\Program Files\Mastercam 2027\simulator\mwMSimApp.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Machine Simulator Core Component
+C:\Program Files\Mastercam 2027\simulator\mwMSimCollisionChecker.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Collision Checker library
+C:\Program Files\Mastercam 2027\simulator\mwMSimDefGui.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Commit: d851ae5b8f33+, x64
+C:\Program Files\Mastercam 2027\simulator\mwMSimOperationBuilder.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Machine Simulator Input Processor
+C:\Program Files\Mastercam 2027\simulator\mwRaster2Vector.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Raster2Vector Core Component
+C:\Program Files\Mastercam 2027\simulator\mwSimMfcUiUtils.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Simulation UI utilities
+C:\Program Files\Mastercam 2027\simulator\mwSimStreamManager.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	mwSimStreamManager component
+C:\Program Files\Mastercam 2027\simulator\mwUbvsProxy.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	mwUbvsProxy component
+C:\Program Files\Mastercam 2027\simulator\mwutil.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	Simulation Utilities
+C:\Program Files\Mastercam 2027\simulator\mwVerifier.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	Cutting/Adding Material Simulator Core Component
+C:\Program Files\Mastercam 2027\simulator\mwVerifierGui.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Graphical User Interface for Material Removal
+C:\Program Files\Mastercam 2027\simulator\mwVerifierVisualization.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Verifier Generic Visualization Component
+C:\Program Files\Mastercam 2027\simulator\mwVisualization.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Generic Visualization Component
+C:\Program Files\Mastercam 2027\simulator\MXPUI.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Graphical User Interface for MultiXPost
+C:\Program Files\Mastercam 2027\simulator\NLib.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	Commit: c4f054a340f8+, x64
+C:\Program Files\Mastercam 2027\simulator\OpenTK.dll	3.1.0	3.1.0		OpenTK
+C:\Program Files\Mastercam 2027\simulator\OpenTK.GLControl.dll	3.1.0	3.1.0		OpenTK.GLControl
+C:\Program Files\Mastercam 2027\simulator\Rast2vec.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Raster to vector
+C:\Program Files\Mastercam 2027\simulator\TSNLib.dll	2512.2026.0423.1545	5.A8.2604201458.c4f054a340f8+	ModuleWorks GmbH	Commit: c4f054a340f8+, x64
+C:\Program Files\Mastercam 2027\simulator\UBVS.dll	2512.2026.0527.0925	2025.12.64.d851ae5b8f33+	ModuleWorks GmbH	 
+C:\Program Files\Mastercam 2027\simulator\UbvsResources.dll	2512.2026.0527.0925	2025.12.64.d851ae5b8f33+	ModuleWorks GmbH	 
+C:\Program Files\Mastercam 2027\simulator\en\5axmsurf_res.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	5axmsurf resource
+C:\Program Files\Mastercam 2027\simulator\en\5axui_res.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	5axui resource
+C:\Program Files\Mastercam 2027\simulator\en\engraveRes.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Engrave resource
+C:\Program Files\Mastercam 2027\simulator\en\machsim_res.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Mastercam Simulator resource
+C:\Program Files\Mastercam 2027\simulator\en\mwExceptions_res.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Commit: d851ae5b8f33+, x64
+C:\Program Files\Mastercam 2027\simulator\en\mwMachSimCustomBackgroundLogo.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Additional Mastercam Simulator resource
+C:\Program Files\Mastercam 2027\simulator\en\mwMachSim_res.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Resources for Machine Simulator GUI
+C:\Program Files\Mastercam 2027\simulator\en\mwVerifierGUI_res.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Resources for Material Removal GUI
+C:\Program Files\Mastercam 2027\simulator\en\rast2vecRes.dll	2512.2026.0527.0925	290100360.A8.2605261759.d851ae5b8f33+	ModuleWorks GmbH	Raster to vector resource

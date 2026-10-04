@@ -1,0 +1,112 @@
+start 12:13:28 tag=mcdirect prefix=/home/asdf/projects/mastercam-wine/state/work/prefix display=:2 secs=90 debug=+timestamp,+err,+warn,+seh exe=Mastercam.exe extra=''
+t=15s alive=2 win=none
+t=30s alive=2 win=none
+t=45s alive=2 win=none
+t=60s alive=2 win=none
+t=75s alive=2 win=none
+t=90s alive=2 win=none
+=== windows ===
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+=== stderr tail ===
+225131.853:0024:trace:seh:validate_cxx_function_descr4     6: ip offset 0x7 (00006FFFF7634321) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     7: ip offset 0x7 (00006FFFF7634328) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     8: ip offset 0x88 (00006FFFF76343B0) state 11
+225131.853:0024:trace:seh:validate_cxx_function_descr4     9: ip offset 0xe (00006FFFF76343BE) state 12
+225131.853:0024:trace:seh:validate_cxx_function_descr4     10: ip offset 0x32 (00006FFFF76343F0) state 11
+225131.853:0024:trace:seh:validate_cxx_function_descr4     11: ip offset 0x8 (00006FFFF76343F8) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     12: ip offset 0x8 (00006FFFF7634400) state 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     13: ip offset 0x79 (00006FFFF7634479) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     14: ip offset 0x14 (00006FFFF763448D) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     15: ip offset 0x6e (00006FFFF76344FB) state 7
+225131.853:0024:trace:seh:validate_cxx_function_descr4     16: ip offset 0x33 (00006FFFF763452E) state 6
+225131.853:0024:trace:seh:validate_cxx_function_descr4     17: ip offset 0x7 (00006FFFF7634535) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     18: ip offset 0xe (00006FFFF7634543) state 8
+225131.853:0024:trace:seh:validate_cxx_function_descr4     19: ip offset 0xa1 (00006FFFF76345E4) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     20: ip offset 0x13 (00006FFFF76345F7) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     21: ip offset 0xeb (00006FFFF76346E2) state 10
+225131.853:0024:trace:seh:validate_cxx_function_descr4     22: ip offset 0x9f (00006FFFF7634781) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     23: ip offset 0x19 (00006FFFF763479A) state 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     24: ip offset 0x31 (00006FFFF76347CB) state 16
+225131.853:0024:trace:seh:validate_cxx_function_descr4     25: ip offset 0x32 (00006FFFF76347FD) state 15
+225131.853:0024:trace:seh:validate_cxx_function_descr4     26: ip offset 0x8 (00006FFFF7634805) state 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     27: ip offset 0x10 (00006FFFF7634815) state 17
+225131.853:0024:trace:seh:validate_cxx_function_descr4     28: ip offset 0xa8 (00006FFFF76348BD) state 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     29: ip offset 0x14 (00006FFFF76348D1) state 13
+225131.853:0024:trace:seh:validate_cxx_function_descr4     30: ip offset 0x60 (00006FFFF7634931) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     31: ip offset 0x90 (00006FFFF76349C1) state 20
+225131.853:0024:trace:seh:validate_cxx_function_descr4     32: ip offset 0x5 (00006FFFF76349C6) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     33: ip offset 0xd (00006FFFF76349D3) state 21
+225131.853:0024:trace:seh:validate_cxx_function_descr4     34: ip offset 0x15 (00006FFFF76349E8) state 23
+225131.853:0024:trace:seh:validate_cxx_function_descr4     35: ip offset 0x69 (00006FFFF7634A51) state 24
+225131.853:0024:trace:seh:validate_cxx_function_descr4     36: ip offset 0xfc (00006FFFF7634B4D) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     37: ip offset 0x60 (00006FFFF7634BAD) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     38: ip offset 0x5c (00006FFFF7634C09) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     39: ip offset 0x5c (00006FFFF7634C65) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     40: ip offset 0x98 (00006FFFF7634CFD) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.853:0024:trace:seh:ip_to_state4 6ffff7634ae2 -> state 24
+225131.853:0024:trace:seh:cxx_local_unwind4 current level: 24, last level: -1
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024EA28
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7633470 object: 000000000024EAC8
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024EAE8
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024EAA8
+225131.853:0024:trace:seh:RtlUnwindEx handler 00006FFFF763C1CC returned 1
+225131.853:0024:trace:seh:RtlUnwindEx calling handler 000000010E9DB62C (rec=000000000024E2B0, frame=24ed80 context=000000000024D060, dispatch=000000000024CA10)
+225131.853:0024:trace:seh:__CxxFrameHandler4 000000000024E2B0 24ed80 000000000024D060 000000000024CA10
+225131.853:0024:trace:seh:validate_cxx_function_descr4 header 0x8
+225131.853:0024:trace:seh:validate_cxx_function_descr4 basic block transformations flags: 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 unwind table: 0xb0fe5a(000000010EE2FE5A) 3
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0 (000000010EE2FE5A): type 0x1 prev 0000000000000000 func 0x6b48fd object 0x30
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1 (000000010EE2FE60): type 0x1 prev 000000010EE2FE5A func 0x9040 object 0x58
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2 (000000010EE2FE66): type 0x1 prev 000000010EE2FE60 func 0x9040 object 0x38
+225131.853:0024:trace:seh:validate_cxx_function_descr4 try table: 0x0(000000010E320000) 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 ipmap: 0xb0fe6d(000000010EE2FE6D) 7
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0: ip offset 0x0 (000000010E633650) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1: ip offset 0x32 (000000010E633682) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2: ip offset 0x29 (000000010E6336AB) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     3: ip offset 0x26 (000000010E6336D1) state 2
+225131.853:0024:trace:seh:validate_cxx_function_descr4     4: ip offset 0x23 (000000010E6336F4) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     5: ip offset 0x6b (000000010E63375F) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     6: ip offset 0x83 (000000010E6337E2) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.853:0024:trace:seh:ip_to_state4 10e6336ed -> state 2
+225131.853:0024:trace:seh:cxx_local_unwind4 current level: 2, last level: -1
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010E329040 object: 000000000024EDB8
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010E329040 object: 000000000024EDD8
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010E9D48FD object: 000000000024EDB0
+225131.853:0024:trace:seh:RtlUnwindEx handler 000000010E9DB62C returned 1
+225131.853:0024:trace:seh:RtlUnwindEx calling handler 000000010EA01E5D (rec=000000000024E2B0, frame=24ee10 context=000000000024D060, dispatch=000000000024CA10)
+225131.853:0024:trace:seh:__CxxFrameHandler4 000000000024E2B0 24ee10 000000000024D060 000000000024CA10
+225131.853:0024:trace:seh:validate_cxx_function_descr4 header 0x8
+225131.853:0024:trace:seh:validate_cxx_function_descr4 basic block transformations flags: 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 unwind table: 0xb0fb12(000000010EE2FB12) 2
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0 (000000010EE2FB12): type 0x3 prev 0000000000000000 func 0x7b1cd0 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1 (000000010EE2FB17): type 0x1 prev 000000010EE2FB12 func 0x6ba65d object 0x50
+225131.853:0024:trace:seh:validate_cxx_function_descr4 try table: 0x0(000000010E320000) 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 ipmap: 0xb0fb1e(000000010EE2FB1E) 3
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0: ip offset 0x0 (000000010E6335B0) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1: ip offset 0x28 (000000010E6335D8) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2: ip offset 0x4f (000000010E633627) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.853:0024:trace:seh:ip_to_state4 10e6335e9 -> state 1
+225131.853:0024:trace:seh:cxx_local_unwind4 current level: 1, last level: -1
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010E9DA65D object: 000000000024EE60
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010EAD1CD0 object: 000000000024EE10
+225131.853:0024:trace:seh:RtlUnwindEx handler 000000010EA01E5D returned 1
+225131.853:0024:trace:seh:RtlUnwindEx calling handler 000000010EA01EB1 (rec=000000000024E2B0, frame=24eef0 context=000000000024D060, dispatch=000000000024CA10)
+225131.853:0024:trace:seh:RtlUnwindEx handler 000000010EA01EB1 returned 1
+225131.853:0024:trace:seh:RtlRestoreContext returning to 00006FFFFFBD352A stack 000000000024EFC0
+225131.853:0024:err:module:loader_init "MCTool.dll" failed to initialize, aborting
+225131.853:0024:err:module:loader_init Initializing dlls for L"C:\\Program Files\\Mastercam 2027\\Mastercam.exe" failed, status e06d7363
+225135.467:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.469:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.470:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.506:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.537:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.682:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.683:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.685:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.734:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.772:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+end 12:15:02

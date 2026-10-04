@@ -1,0 +1,77 @@
+=== 7. Mastercam product MSI (12:07:43) ===
+
+real	1m53.696s
+user	0m0.047s
+sys	0m0.104s
+MSIEXEC_EXIT=0
+-- PS key after install --
+    (Default)    REG_SZ    C:\windows\system32\oleaut32.dll
+-- decisive MSI-log lines --
+101:Action ended 12:07:53: SetDateTimeFormat. Return value 1.
+2743:Action ended 12:08:18: ISLockPermissionsInstall. Return value 1.
+12440:Action ended 12:09:11: ISLockPermissionsInstall. Return value 1.
+12726:Action ended 12:09:17: InstallFinalize. Return value 1.
+12783:Action ended 12:09:36: INSTALL. Return value 1.
+13821:Action ended 12:09:36: INSTALL. Return value 1.
+-- stderr err lines --
+576:224812.546:01c0:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+577:224812.546:01c0:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+-- footprint --
+total 724252
+drwxrwxr-x 11 asdf asdf     12288 Oct  3 12:08 .
+drwxrwxr-x  9 asdf asdf      4096 Oct  3 12:08 ..
+-rw-rw-r--  1 asdf asdf  12296024 Jun  6 02:06 BCGCBPRO3220u143.dll
+-rw-rw-r--  1 asdf asdf    273056 Jun  5 23:48 BCGPStyle2007Aqua3220.dll
+-rw-rw-r--  1 asdf asdf    293536 Jun  5 23:51 BCGPStyle2007Luna3220.dll
+-rw-rw-r--  1 asdf asdf    305824 Jun  5 23:50 BCGPStyle2007Obsidian3220.dll
+-rw-rw-r--  1 asdf asdf    305824 Jun  5 23:53 BCGPStyle2007Silver3220.dll
+-rw-rw-r--  1 asdf asdf    252576 Jun  5 23:52 BCGPStyle2010Black3220.dll
+-rw-rw-r--  1 asdf asdf    301728 Jun  5 23:49 BCGPStyle2010Blue3220.dll
+-rw-rw-r--  1 asdf asdf    297632 Jun  5 23:53 BCGPStyle2010White3220.dll
+-rw-rw-r--  1 asdf asdf     51872 Jun  5 23:46 BCGPStyleCarbon3220.dll
+-rw-rw-r--  1 asdf asdf    129696 Jun  5 23:48 BCGPStyleScenic3220.dll
+-rw-rw-r--  1 asdf asdf   1423704 Jun  6 01:59 Backplot.dll
+-rw-rw-r--  1 asdf asdf   1766744 Jun  6 01:59 BackplotBNCI.dll
+-rw-rw-r--  1 asdf asdf    395608 Jun  6 01:59 CHookAPI.dll
+-rw-rw-r--  1 asdf asdf   4000199 Jun  5 23:49 CHookAPI.xml
+-rw-rw-r--  1 asdf asdf    184152 Jun  6 02:00 CfpCommandTracker.Interop.dll
+-rw-rw-r--  1 asdf asdf     77656 Jun  6 02:00 Cnc.Math.GridCompute.Client.Windows.dll
+-rwxrwxr-x  1 asdf asdf    106840 Jun  6 02:00 Cnc.Math.GridCompute.Server.Windows.exe
+-rw-rw-r--  1 asdf asdf     96600 Jun  6 02:00 Cnc.Math.GridCompute.Windows.dll
+-rw-rw-r--  1 asdf asdf    270680 Jun  6 02:00 Cnc.Math.Linear.Windows.dll
+-rw-rw-r--  1 asdf asdf   1504600 Jun  6 02:00 Cnc.Math.Measure.Windows.dll
+-rw-rw-r--  1 asdf asdf   3519320 Jun  6 02:00 Cnc.Math.Partition.Windows.dll
+-rw-rw-r--  1 asdf asdf   1111384 Jun  6 02:00 Cnc.Math.Windows.dll
+-rw-rw-r--  1 asdf asdf     37208 Jun  6 02:00 Cnc.Modules.Core.MFC.dll
+-rw-rw-r--  1 asdf asdf    168792 Jun  6 02:00 Cnc.Modules.Core.Windows.dll
+-rw-rw-r--  1 asdf asdf     75096 Jun  6 02:00 Cnc.Modules.Core.dll
+-rw-rw-r--  1 asdf asdf    193880 Jun  6 02:00 Cnc.TestAutomation.Windows.dll
+-rw-rw-r--  1 asdf asdf   1751896 Jun  6 02:00 Cnc.Tool.Core.dll
+files: 1215
+2.5G	/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/Mastercam 2027
+ls: cannot access '/home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/Mastercam 2027/Mastercam.dll': No such file or directory
+-rwxrwxr-x 1 asdf asdf   226136 Jun  6 01:58 /home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/Mastercam 2027/Mastercam.exe
+-rwxrwxr-x 1 asdf asdf 11815768 Jun  6 02:02 /home/asdf/projects/mastercam-wine/state/work/prefix/drive_c/Program Files/Mastercam 2027/MastercamLauncher.exe
+=== 8. regression probes ===
+test exe: 32-bit
+CoInitialize                             -> 0x00000000
+CoGetPSClsid(IID_IDispatch)              -> 0x00000000 clsid=00020420-0000-...
+CoGetClassObject(PS, INPROC|PS_DLL)      -> 0x00000000
+LoadLibraryEx(syswow64\oleaut32, ALT)          -> 79880000 err=0
+LoadLibraryEx(system32\oleaut32, ALT)          -> 79880000 err=0
+test exe: 64-bit
+CoInitialize                             -> 0x00000000
+CoGetPSClsid(IID_IDispatch)              -> 0x00000000 clsid=00020420-0000-...
+CoGetClassObject(PS, INPROC|PS_DLL)      -> 0x00000000
+LoadLibraryEx(syswow64\oleaut32, ALT)          -> 0000000000000000 err=193
+LoadLibraryEx(system32\oleaut32, ALT)          -> 00006ffffbae0000 err=0
+=== 9. launch MastercamLauncher.exe (12:09:38) ===
+logs/exp/mcinstall/e2e_stageB.sh: line 69: 2640095 Killed                     tools/run_mastercam.sh mcfinal --secs 180 --iv 15 --prefix "$WINEPREFIX" --wine "$W" --debug '+timestamp,+err,+warn' --exe MastercamLauncher.exe
+-- window trees --
+## /home/asdf/projects/mastercam-wine/logs/exp/mcinstall/runs/mcfinal/windows_*.txt
+grep: /home/asdf/projects/mastercam-wine/logs/exp/mcinstall/runs/mcfinal/windows_*.txt: No such file or directory
+-- OCR of captures --
+-- app.stderr head --
+=== 10. launch Mastercam.exe directly ===
+logs/exp/mcinstall/e2e_stageB.sh: line 69: 2640114 Killed                     tools/run_mastercam.sh mcdirect --secs 120 --iv 15 --prefix "$WINEPREFIX" --wine "$W" --debug '+timestamp,+err,+warn' --exe Mastercam.exe
+=== stage B done 12:09:38 ===

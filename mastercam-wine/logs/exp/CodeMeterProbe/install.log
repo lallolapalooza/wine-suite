@@ -1,0 +1,29 @@
+== install start 2026-10-03T10:57:18-05:00
+0124:fixme:file:NtLockFile I/O completion on lock not implemented yet
+0124:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+012c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FEB0
+0134:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFA, 0026FEBC
+01e4:fixme:hnetcfg:netfw_rules_Item 0094A308, L"CodeMeterFWExP22350UDP", 0110FA20
+regsvr32: Successfully registered DLL 'C:\Program Files (x86)\CodeMeter\Runtime\bin\WibuCmTrigger32.dll'
+regsvr32: Successfully registered DLL 'C:\Program Files\CodeMeter\Runtime\bin\WibuCmTrigger64.dll'
+0264:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E37B0 4 0000000000000000 0 00007FFFFEF1F70C - semi-stub
+0264:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E37B0 4 00007FFFFE7E3770 28 00007FFFFEF1F70C - semi-stub
+0264:fixme:advapi:SetSecurityInfo unimplemented type 2, returning success
+0264:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E3830 4 0000000000000000 0 00007FFFFEF1F70C - semi-stub
+0264:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E3830 4 00007FFFFE7E37F0 28 00007FFFFEF1F70C - semi-stub
+0264:fixme:advapi:SetSecurityInfo unimplemented type 2, returning success
+0270:fixme:seh:WerGetFlags (FFFFFFFFFFFFFFFF, 000000000024FD98) stub
+0270:fixme:seh:WerSetFlags (32) stub
+0270:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,000000000024FD10,000000000024FD20) stub!
+025c:err:service:process_send_start_message service L"CmWebAdmin.exe" failed to start
+0124:err:msi:ITERATE_StartService failed to start service L"CmWebAdmin.exe" (1053)
+0124:err:msi:execute_script Execution of script 0 halted; action L"StartServices" returned 1627
+0124:err:msi:ITERATE_Actions Execution halted, action L"InstallExecute" returned 1627
+regsvr32: Successfully unregistered DLL 'C:\Program Files (x86)\CodeMeter\Runtime\bin\WibuCmTrigger32.dll'
+regsvr32: Successfully unregistered DLL 'C:\Program Files\CodeMeter\Runtime\bin\WibuCmTrigger64.dll'
+regsvr32: Failed to load DLL 'C:\Program Files\WIBU-SYSTEMS\System\WibuShellExt64.dll'
+regsvr32: Failed to load DLL 'C:\Program Files (x86)\CodeMeter\Runtime\bin\WibuCmTrigger32.dll'
+regsvr32: Failed to load DLL 'C:\Program Files\CodeMeter\Runtime\bin\WibuCmTrigger64.dll'
+regsvr32: Failed to load DLL 'C:\Program Files\WIBU-SYSTEMS\System\WibuShellExt64.dll'
+02f4:fixme:hnetcfg:netfw_rules_Remove 0094A520, L"CodeMeterFWExP22350UDP"
+msiexec exit=91

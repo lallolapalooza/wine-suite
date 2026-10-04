@@ -1,0 +1,110 @@
+start 12:19:00 tag=direct1 prefix=/home/asdf/projects/mastercam-wine/state/work/prefix display=:2 secs=40 debug=+timestamp,+seh,+module,+ole,+rpc,+service exe=Mastercam.exe extra=''
+t=10s alive=2 win=none
+t=20s alive=2 win=none
+t=30s alive=2 win=none
+t=40s alive=2 win=none
+=== windows ===
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+=== stderr tail ===
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F170
+225468.210:0040:trace:rpc:RPCRT4_ReleaseConnection 00007FFFFE897020 ref=0
+225468.210:0040:trace:rpc:RPCRT4_CloseConnection (Connection == ^00007FFFFE897020)
+225468.210:0040:trace:rpc:RPCRT4_ReleaseBinding binding: 00007FFFFE897DB0
+225468.210:0040:trace:rpc:RpcAssoc_Release destroying assoc 00007FFFFE899C60
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE89A7F0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE891AB0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE89A860
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F1F0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE89E0A0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE8913B0
+225468.210:0040:trace:rpc:RPCRT4_ReleaseConnection 00007FFFFE89E110 ref=0
+225468.210:0040:trace:rpc:RPCRT4_CloseConnection (Connection == ^00007FFFFE89E110)
+225468.210:0040:trace:rpc:RPCRT4_ReleaseBinding binding: 00007FFFFE89EEA0
+225468.210:0040:trace:rpc:RpcAssoc_Release destroying assoc 00007FFFFE8A0D50
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A18E0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F780
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A1950
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE891430
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A19C0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F2B0
+225468.210:0040:trace:rpc:RPCRT4_ReleaseConnection 00007FFFFE8A5270 ref=0
+225468.210:0040:trace:rpc:RPCRT4_CloseConnection (Connection == ^00007FFFFE8A5270)
+225468.210:0040:trace:rpc:RPCRT4_ReleaseBinding binding: 00007FFFFE8A9340
+225468.210:0040:trace:rpc:RpcAssoc_Release destroying assoc 00007FFFFE8AB1F0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A6FE0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F7E0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A54F0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE891570
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A7050
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F430
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A5560
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE891B10
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A5870
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE891BD0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A78A0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F960
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A58E0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE891C00
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A7910
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F990
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A5950
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE891C30
+225468.210:0040:trace:rpc:RPCRT4_ReleaseConnection 00007FFFFE8B16B0 ref=0
+225468.210:0040:trace:rpc:RPCRT4_CloseConnection (Connection == ^00007FFFFE8B16B0)
+225468.210:0040:trace:rpc:RPCRT4_ReleaseBinding binding: 00007FFFFE8B4550
+225468.210:0040:trace:rpc:RpcAssoc_Release destroying assoc 00007FFFFE8B6FC0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A70C0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F810
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A55D0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE891630
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A7130
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F4F0
+225468.210:0040:trace:rpc:RPCRT4_ReleaseConnection 00007FFFFE828B90 ref=0
+225468.210:0040:trace:rpc:RPCRT4_CloseConnection (Connection == ^00007FFFFE828B90)
+225468.210:0040:trace:rpc:RPCRT4_ReleaseBinding binding: 00007FFFFE8D6D60
+225468.210:0040:trace:rpc:RpcAssoc_Release destroying assoc 00007FFFFE8D8C30
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A7670
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE88F8A0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A76E0
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE8C5C10
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy freeing 00007FFFFE8A7750
+225468.210:0040:trace:rpc:RpcContextHandle_Destroy calling rundown routine 0000000140001A70 with user context 00007FFFFE8C5C90
+225468.210:0040:trace:rpc:RPCRT4_server_thread done
+225468.210:0040:trace:module:LdrShutdownThread ()
+225468.210:0040:trace:module:MODULE_InitDLL (00006FFFFE6C0000 L"rpcrt4.dll",THREAD_DETACH,0000000000000000) - CALL
+225468.210:0040:trace:module:MODULE_InitDLL (00006FFFFE6C0000,THREAD_DETACH,0000000000000000) - RETURN 1
+225468.210:0040:trace:module:MODULE_InitDLL (00006FFFFE980000 L"ucrtbase.dll",THREAD_DETACH,0000000000000000) - CALL
+225468.210:0040:trace:module:MODULE_InitDLL (00006FFFFE980000,THREAD_DETACH,0000000000000000) - RETURN 1
+225468.210:0040:trace:module:MODULE_InitDLL (00006FFFFEE60000 L"msvcrt.dll",THREAD_DETACH,0000000000000000) - CALL
+225468.210:0040:trace:module:MODULE_InitDLL (00006FFFFEE60000,THREAD_DETACH,0000000000000000) - RETURN 1
+225468.210:003c:trace:service:main services.exe exited with code 0
+225468.210:003c:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 00007FFFFE23FEE0, base 00007FFFFE23FED8.
+225468.210:003c:trace:module:find_dll_file Skipping file search for L"mscoree.dll".
+225468.210:003c:trace:module:LdrGetDllHandleEx L"mscoree" -> 0000000000000000 (load path (null))
+225468.210:003c:trace:module:LdrShutdownProcess ()
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFB7E0000 L"userenv.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFB7E0000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFBC60000 L"setupapi.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFBC60000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFBBB0000 L"cfgmgr32.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFBBB0000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFE6C0000 L"rpcrt4.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFE6C0000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFE680000 L"cryptbase.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFE680000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFF200000 L"advapi32.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFF200000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFEDC0000 L"sechost.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFEDC0000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFE980000 L"ucrtbase.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFE980000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFEE60000 L"msvcrt.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFEE60000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFF9E0000 L"kernel32.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFF9E0000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFF360000 L"kernelbase.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFF360000,PROCESS_DETACH,0000000000000001) - RETURN 1
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFFBC0000 L"ntdll.dll",PROCESS_DETACH,0000000000000001) - CALL
+225468.210:003c:trace:module:MODULE_InitDLL (00006FFFFFBC0000,PROCESS_DETACH,0000000000000001) - RETURN 1
+end 12:19:43

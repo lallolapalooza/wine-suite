@@ -1,0 +1,26 @@
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxRemoveEvent-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxRemoveEvent", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxReplaceEvent-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxReplaceEvent", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxAddedEvent-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxAddedEvent", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmNetworkLostEvent-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmNetworkLostEvent", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmNetworkReplacedEvent-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmNetworkReplacedEvent", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmEntryModifiedEvent-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmEntryModifiedEvent", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmThresholdUCEvent-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmThresholdUCEvent", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmThresholdExpDateEvent-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmThresholdExpDateEvent", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmServerTerminatedEvent-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmServerTerminatedEvent", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxEnabled-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxEnabled", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxDisabled-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmBoxDisabled", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmEntryAltered-1", type 0, state 0
+00a4:trace:sync:NtCreateEvent access 0x1f0003, name L"Global\\CmEntryAltered", type 0, state 0
+003c:err:service:process_send_start_message service L"CmWebAdmin.exe" failed to start
+003c:fixme:service:scmdatabase_autostart_services Auto-start service L"CmWebAdmin.exe" failed to start: 1053

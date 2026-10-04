@@ -1,0 +1,132 @@
+start 12:40:14 tag=mc_lp prefix=/home/asdf/projects/mastercam-wine/state/work/prefix display=:2 secs=240 debug=+timestamp,+seh exe=Mastercam.exe extra=''
+t=20s alive=4 win=0xc00003
+t=40s alive=4 win=0xc00003
+t=60s alive=4 win=0xc00003
+t=80s alive=4 win=0xc00003
+t=100s alive=4 win=0xc00003
+t=120s alive=4 win=0xc00003
+t=140s alive=4 win=0xc00003
+t=160s alive=4 win=0xc00003
+t=180s alive=4 win=0xc00003
+t=200s alive=4 win=0xc00003
+t=220s alive=4 win=0xc00003
+t=240s alive=4 win=0xc00003
+=== windows ===
+     0xc00003 (has no name): ("mastercam.exe" "mastercam.exe")  1x1+0+0  +0+0
+     0xc00002 "Default IME": ("mastercam.exe" "mastercam.exe")  1x1+0+0  +0+0
+     0x1200003 (has no name): ("mastercam.exe" "mastercam.exe")  1x1+0+0  +0+0
+     0x1200002 "Default IME": ("mastercam.exe" "mastercam.exe")  1x1+0+0  +0+0
+     0x1000001 (has no name): ("crashpad_handler.exe" "crashpad_handler.exe")  113x2+3+29  +3+29
+     0x1000002 "Default IME": ("crashpad_handler.exe" "crashpad_handler.exe")  1x1+0+0  +0+0
+     0x600007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x600003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+        0xc00001 "Exiting...": ("mastercam.exe" "mastercam.exe")  251x82+1+22  +674+472
+        0x1200001 "Warning": ("mastercam.exe" "mastercam.exe")  354x124+1+22  +623+451
+=== stderr tail ===
+226813.452:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226825.216:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226842.986:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226855.251:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226855.502:01d0:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+226855.502:01d0:trace:seh:dispatch_exception  info[0]=0000000019930520
+226855.502:01d0:trace:seh:dispatch_exception  info[1]=00007D5F0570EAD8
+226855.502:01d0:trace:seh:dispatch_exception  info[2]=0000000142895020
+226855.502:01d0:trace:seh:dispatch_exception  info[3]=0000000140000000
+226855.502:01d0:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=00007d5f0570e930 rbp=00007d5f0570eb20 eflags=00000206
+226855.502:01d0:trace:seh:dispatch_exception rax=00007d5f0570e970 rbx=0000000142895020 rcx=00007d5f0570e950 rdx=0000000000000001
+226855.502:01d0:trace:seh:dispatch_exception rsi=00007d5f0570ea58 rdi=00007d5f0570e990  r8=0000000000000004  r9=00007d5f0570ea38
+226855.502:01d0:trace:seh:dispatch_exception r10=00006fffffc69e60 r11=00006fffffc430a0 r12=82fc172c20bf05cb r13=082fc172e0bf05cb
+226855.502:01d0:trace:seh:dispatch_exception r14=0000000000000018 r15=0000000000000010 mxcsr=00001f80 cs=0033 ss=002b
+226855.502:01d0:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=00007D5F0570E950, frame=7d5f0570eaa0 context=00007D5F0570E450, dispatch=00007D5F0570DD20)
+226855.502:01d0:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+226855.502:01d0:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=00007D5F0570E950, frame=7d5f0570ed40 context=00007D5F0570E450, dispatch=00007D5F0570DD20)
+226855.502:01d0:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=00007D5F0570ED40 target_ip=000000014037481A
+226855.502:01d0:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+226855.502:01d0:trace:seh:RtlUnwindEx  info[1]=00007d5f0570da58
+226855.502:01d0:trace:seh:RtlUnwindEx  info[2]=0000000140375670
+226855.502:01d0:trace:seh:RtlUnwindEx  info[3]=0000000000000015
+226855.502:01d0:trace:seh:RtlUnwindEx  info[4]=00007d5f0570e450
+226855.502:01d0:trace:seh:RtlUnwindEx  info[5]=00000001428f9ae0
+226855.502:01d0:trace:seh:RtlUnwindEx  info[6]=00007d5f0570e950
+226855.502:01d0:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+226855.502:01d0:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+226855.502:01d0:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+226855.502:01d0:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+226855.502:01d0:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+226855.502:01d0:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+226855.502:01d0:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+226855.502:01d0:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+226855.502:01d0:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=00007d5f0570d220 rbp=00007d5f0570de50 eflags=00000202
+226855.502:01d0:trace:seh:RtlUnwindEx rax=00007ffffe003000 rbx=00007d5f0570d8f0 rcx=00007d5f0570de50 rdx=000000014037481a
+226855.502:01d0:trace:seh:RtlUnwindEx rsi=00007d5f0570de50 rdi=0000000000000015  r8=00007d5f0570d8f0  r9=0000000000000000
+226855.502:01d0:trace:seh:RtlUnwindEx r10=00007d5f0570dd20 r11=00007d5f0570dc70 r12=00007d5f0570d390 r13=00000001428f9ae0
+226855.502:01d0:trace:seh:RtlUnwindEx r14=00007d5f0570ed40 r15=0000000000000000 mxcsr=00001f80 cs=0033 ss=002b
+226855.502:01d0:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=00007D5F0570D8F0, frame=7d5f0570d8c0 context=00007D5F0570DE50, dispatch=00007D5F0570D2A0)
+226855.502:01d0:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+226855.502:01d0:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=00007D5F0570D8F0, frame=7d5f0570da50 context=00007D5F0570DE50, dispatch=00007D5F0570D2A0)
+226855.502:01d0:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+226855.502:01d0:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=00007D5F0570D8F0, frame=7d5f0570eaa0 context=00007D5F0570DE50, dispatch=00007D5F0570D2A0)
+226855.502:01d0:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+226855.502:01d0:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=00007D5F0570D8F0, frame=7d5f0570ed40 context=00007D5F0570DE50, dispatch=00007D5F0570D2A0)
+226855.502:01d0:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+226855.502:01d0:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=00007D5F0570D8F0)
+226855.502:01d0:trace:seh:RtlRestoreContext returning to 00000001403749DA stack 00007D5F0570ED40
+226870.268:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226879.779:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226899.800:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226912.564:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226915.569:01d0:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+226915.569:01d0:trace:seh:dispatch_exception  info[0]=0000000019930520
+226915.569:01d0:trace:seh:dispatch_exception  info[1]=00007D5F0570EAD8
+226915.569:01d0:trace:seh:dispatch_exception  info[2]=0000000142895020
+226915.569:01d0:trace:seh:dispatch_exception  info[3]=0000000140000000
+226915.569:01d0:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=00007d5f0570e930 rbp=00007d5f0570eb20 eflags=00000206
+226915.569:01d0:trace:seh:dispatch_exception rax=00007d5f0570e970 rbx=0000000142895020 rcx=00007d5f0570e950 rdx=0000000000000001
+226915.569:01d0:trace:seh:dispatch_exception rsi=00007d5f0570ea58 rdi=00007d5f0570e990  r8=0000000000000004  r9=00007d5f0570ea38
+226915.569:01d0:trace:seh:dispatch_exception r10=00006fffffc69e60 r11=00006fffffc430a0 r12=82fc172c20bf05cb r13=082fc172e0bf05cb
+226915.569:01d0:trace:seh:dispatch_exception r14=0000000000000018 r15=0000000000000010 mxcsr=00001f80 cs=0033 ss=002b
+226915.569:01d0:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=00007D5F0570E950, frame=7d5f0570eaa0 context=00007D5F0570E450, dispatch=00007D5F0570DD20)
+226915.569:01d0:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+226915.569:01d0:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=00007D5F0570E950, frame=7d5f0570ed40 context=00007D5F0570E450, dispatch=00007D5F0570DD20)
+226915.569:01d0:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=00007D5F0570ED40 target_ip=000000014037481A
+226915.569:01d0:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+226915.569:01d0:trace:seh:RtlUnwindEx  info[1]=00007d5f0570da58
+226915.569:01d0:trace:seh:RtlUnwindEx  info[2]=0000000140375670
+226915.569:01d0:trace:seh:RtlUnwindEx  info[3]=0000000000000015
+226915.569:01d0:trace:seh:RtlUnwindEx  info[4]=00007d5f0570e450
+226915.569:01d0:trace:seh:RtlUnwindEx  info[5]=00000001428f9ae0
+226915.569:01d0:trace:seh:RtlUnwindEx  info[6]=00007d5f0570e950
+226915.569:01d0:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+226915.569:01d0:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+226915.569:01d0:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+226915.569:01d0:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+226915.569:01d0:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+226915.569:01d0:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+226915.569:01d0:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+226915.569:01d0:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+226915.569:01d0:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=00007d5f0570d220 rbp=00007d5f0570de50 eflags=00000202
+226915.569:01d0:trace:seh:RtlUnwindEx rax=00007ffffe003000 rbx=00007d5f0570d8f0 rcx=00007d5f0570de50 rdx=000000014037481a
+226915.569:01d0:trace:seh:RtlUnwindEx rsi=00007d5f0570de50 rdi=0000000000000015  r8=00007d5f0570d8f0  r9=0000000000000000
+226915.569:01d0:trace:seh:RtlUnwindEx r10=00007d5f0570dd20 r11=00007d5f0570dc70 r12=00007d5f0570d390 r13=00000001428f9ae0
+226915.569:01d0:trace:seh:RtlUnwindEx r14=00007d5f0570ed40 r15=0000000000000000 mxcsr=00001f80 cs=0033 ss=002b
+226915.569:01d0:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=00007D5F0570D8F0, frame=7d5f0570d8c0 context=00007D5F0570DE50, dispatch=00007D5F0570D2A0)
+226915.569:01d0:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+226915.569:01d0:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=00007D5F0570D8F0, frame=7d5f0570da50 context=00007D5F0570DE50, dispatch=00007D5F0570D2A0)
+226915.569:01d0:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+226915.569:01d0:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=00007D5F0570D8F0, frame=7d5f0570eaa0 context=00007D5F0570DE50, dispatch=00007D5F0570D2A0)
+226915.569:01d0:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+226915.569:01d0:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=00007D5F0570D8F0, frame=7d5f0570ed40 context=00007D5F0570DE50, dispatch=00007D5F0570D2A0)
+226915.569:01d0:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+226915.569:01d0:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=00007D5F0570D8F0)
+226915.569:01d0:trace:seh:RtlRestoreContext returning to 00000001403749DA stack 00007D5F0570ED40
+226926.082:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226939.100:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226951.615:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226961.626:01d0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+end 12:44:19

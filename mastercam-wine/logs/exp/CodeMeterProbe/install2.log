@@ -1,0 +1,115 @@
+== install2 start 2026-10-03T11:02:43-05:00
+0138:fixme:file:NtLockFile I/O completion on lock not implemented yet
+0138:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+0140:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FEB0
+0148:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFA, 0026FEBC
+018c:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E37B0 4 0000000000000000 0 00007FFFFEF1F73C - semi-stub
+018c:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E37B0 4 00007FFFFE7E3770 28 00007FFFFEF1F73C - semi-stub
+0138:fixme:service:EnumDependentServicesW 00007FFFFF680560 0x00000001 0000000000000000 0x00000000 00007FFFFE23EF98 00007FFFFE23EF9C - stub
+01f8:fixme:hnetcfg:netfw_rules_Item 0094A308, L"CodeMeterFWExP22350UDP", 0110FA20
+regsvr32: Successfully registered DLL 'C:\Program Files (x86)\CodeMeter\Runtime\bin\WibuCmTrigger32.dll'
+regsvr32: Successfully registered DLL 'C:\Program Files\CodeMeter\Runtime\bin\WibuCmTrigger64.dll'
+027c:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E37B0 4 0000000000000000 0 00007FFFFEF1F70C - semi-stub
+027c:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E37B0 4 00007FFFFE7E3770 28 00007FFFFEF1F70C - semi-stub
+027c:fixme:advapi:SetSecurityInfo unimplemented type 2, returning success
+027c:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E3830 4 0000000000000000 0 00007FFFFEF1F70C - semi-stub
+027c:fixme:service:QueryServiceObjectSecurity 00007FFFFE7E3830 4 00007FFFFE7E37F0 28 00007FFFFEF1F70C - semi-stub
+027c:fixme:advapi:SetSecurityInfo unimplemented type 2, returning success
+02b4:fixme:netsh:wmain stub: L"netsh" L"advfirewall" L"firewall" L"delete" L"rule" L"name=CodeMeter Runtime Server"
+02cc:fixme:netsh:wmain stub: L"netsh" L"advfirewall" L"firewall" L"delete" L"rule" L"name=CmWebAdminFWEx1"
+02e4:fixme:netsh:wmain stub: L"netsh" L"advfirewall" L"firewall" L"delete" L"rule" L"name=CodeMeterFWEx1"
+02fc:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,00007FFFFE13F260,00006FFFF8DE9AB8) stub!
+0328:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007FFFFECFFF50
+02fc:fixme:ntdll:enum_firmware_info info_class SYSTEM_FIRMWARE_TABLE_INFORMATION provider 41435049
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0338:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,00007FFFFE13F260,00006FFFF8DE9AB8) stub!
+0340:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007FFFFECFFF50
+0354:fixme:advapi:RegisterEventSourceA ((null),"CodeMeter Runtime Server"): stub
+0354:fixme:advapi:RegisterEventSourceW (L"",L"CodeMeter Runtime Server"): stub
+0354:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000200,0000000000000000,0x0000,0x00000000,00007CFC9C12FD48,0000000000000000): stub
+0354:fixme:ntdll:enum_firmware_info info_class SYSTEM_FIRMWARE_TABLE_INFORMATION provider 41435049
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0354:fixme:iphlpapi:NotifyIpInterfaceChange (family 0, callback 0000000140A1B120, context 0000000142F6F240, init_notify 0, handle 00007CFC9C12F1B8): stub
+0354:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0360:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007CFC8FEDFF50
+0360:fixme:wtsapi:WTSWaitSystemEvent Stub 0000000000000000 0x7fffffff 00007CFC8FEDFF04
+0354:fixme:tape:BackupRead (0000000000000128, 00007CFC9C12F270, 20, 00007CFC9C12F2C4, 0, 0, 00007CFC9C12F2B0)
+0354:fixme:tape:BackupRead (0000000000000128, 0000000000000000, 0, 0000000000000000, 1, 0, 00007CFC9C12F2B0)
+0354:fixme:tape:BackupRead (0000000000000128, 00007CFC9C12F270, 20, 00007CFC9C12F2C4, 0, 0, 00007CFC9C12F2B0)
+0354:fixme:tape:BackupRead (0000000000000128, 0000000000000000, 0, 0000000000000000, 1, 0, 00007CFC9C12F2B0)
+0354:fixme:tape:BackupRead (0000000000000128, 00007CFC9C12F270, 20, 00007CFC9C12F2C4, 0, 0, 00007CFC9C12F2B0)
+0354:fixme:tape:BackupRead (0000000000000128, 0000000000000000, 0, 0000000000000000, 1, 0, 00007CFC9C12F2B0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0354:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+0354:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0354:fixme:netapi32:DsEnumerateDomainTrustsA ((null), 0x0008, 00007CFC9C12F5C8, 00007CFC9C12F5C4): stub
+0354:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0354:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000080, 00007CFC9C12F4C8): semi-stub
+0354:fixme:security:GetWindowsAccountDomainSid (00007CFC9C12E220 00007FFFFE7A2058 00007CFC9C12E21C): semi-stub
+0354:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000011, 00007CFC9C12F4C8): semi-stub
+0354:fixme:security:GetWindowsAccountDomainSid (00007CFC9C12E220 00007FFFFE7A26C8 00007CFC9C12E21C): semi-stub
+0354:fixme:netapi32:DsEnumerateDomainTrustsW ((null), 0x003f, 00007CFC9C12F0D8, 00007CFC9C12EF90): stub
+0354:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007CFC9C12F858,0000000000000000): stub
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0354:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0354:fixme:wbemprox:wbem_locator_ConnectServer unsupported flags
+0354:fixme:wbemprox:client_security_SetBlanket 00006FFFF7252030, 00007FFFFF5FCB10, 10, 0, (null), 3, 3, 0000000000000000, 0
+0354:fixme:wbemprox:client_security_Release 00006FFFF7252030
+0354:fixme:wbemprox:enum_class_object_Next timeout not supported
+0354:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 00007CFC9C129B18): stub
+0354:fixme:advapi:OpenEventLogW ((null),L"System") stub
+0354:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF672040,0x00010000,00007CFC9C129814,00007CFC9C12981C) stub
+0354:fixme:advapi:OpenEventLogW ((null),L"Applications") stub
+0354:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF682050,0x00010000,00007CFC9C129814,00007CFC9C12981C) stub
+0354:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+0354:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+0354:fixme:security:GetWindowsAccountDomainSid (00007CFC9C128DE0 00007FFFFE7A2D38 00007CFC9C128DDC): semi-stub
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0354:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 00007CFC9C129FB8): stub
+0388:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007CFC8F2FD618,0000000000000000): stub
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0388:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007CFC8F2FD618,0000000000000000): stub
+0388:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007CFC8F2FD618,0000000000000000): stub
+0388:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007CFC8F2FD618,0000000000000000): stub
+0388:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 00007CFC8F2FA198): stub
+02fc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FEB0
+02fc:fixme:powrprof:PowerUnregisterSuspendResumeNotification (00000000DEADBEEF) stub!
+msiexec exit=0
+0218:err:menubuilder:InvokeShellLinker failed to extract icon from L"C:\\ProgramData\\CodeMeter\\Backup"
+0228:err:menubuilder:InvokeShellLinker failed to extract icon from L"C:\\ProgramData\\CodeMeter\\Logs"
+0238:err:menubuilder:InvokeShellLinker failed to extract icon from L"C:\\ProgramData\\CodeMeter\\CmAct"
+0250:err:menubuilder:InvokeShellLinker failed to extract icon from L"C:\\windows\\Installer\\{F5234E0C-A06D-4404-8175-DCF5F9CFC337}\\I_cmu_cmd_64.1992E333_D17A_448B_8484_ED047109D182.exe"
+0258:err:menubuilder:InvokeShellLinker failed to extract icon from L"C:\\Program Files\\CodeMeter\\Runtime\\help\\8.40a\\CmUserHelp\\index.html"
+0208:err:menubuilder:InvokeShellLinker failed to extract icon from L"C:\\windows\\Installer\\{F5234E0C-A06D-4404-8175-DCF5F9CFC337}\\Icon_cmu.1992E333_D17A_448B_8484_ED047109D182.exe"
+0370:err:service:device_notify_proc failed to get event, error 1726

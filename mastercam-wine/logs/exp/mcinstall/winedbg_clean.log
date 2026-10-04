@@ -1,0 +1,639 @@
+222489.750:0260:fixme:file:NtLockFile I/O completion on lock not implemented yet
+222492.135:0260:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+222493.710:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222493.711:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222494.389:02a0:fixme:crypt:I_CertUpdateStore semi-stub
+222494.775:02b4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2b0000002b4, oid=2
+222494.775:02b4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222494.776:02b4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222494.784:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222494.787:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222495.242:02dc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2d8000002dc, oid=2
+222495.243:02dc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222495.244:02dc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222495.245:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222495.245:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222495.740:02fc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2f8000002fc, oid=2
+222495.740:02fc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222495.741:02fc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222495.749:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222495.750:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222496.191:031c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3180000031c, oid=2
+222496.191:031c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222496.191:031c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222496.197:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222496.197:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222496.724:033c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3380000033c, oid=2
+222496.724:033c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222496.725:033c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222496.764:0358:fixme:ver:GetCurrentPackageId (0227FF00 00000000): stub
+222496.813:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222496.814:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222497.385:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222497.385:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222497.967:037c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3780000037c, oid=2
+222497.969:037c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222497.969:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222497.970:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222497.975:037c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222498.610:039c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3980000039c, oid=2
+222498.610:039c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222498.614:039c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222498.614:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222498.614:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222499.230:03c4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3c0000003c4, oid=2
+222499.230:03c4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222499.230:03c4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222499.246:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222499.246:02a0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222499.904:03f0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3ec000003f0, oid=2
+222499.904:03f0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222499.905:03f0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222500.185:0360:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=35c00000360, oid=2
+222500.185:0360:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222500.185:0360:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222500.556:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222500.556:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222501.091:0418:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=41400000418, oid=2
+222501.091:0418:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222501.093:0418:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222501.096:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222501.096:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222501.460:0438:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=43400000438, oid=2
+222501.461:0438:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222501.462:0438:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222501.465:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222501.466:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222501.910:0458:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=45400000458, oid=2
+222501.910:0458:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222501.911:0458:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222501.913:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222501.914:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222502.545:0478:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=47400000478, oid=2
+222502.545:0478:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222502.546:0478:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222502.546:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222502.546:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222503.051:0498:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=49400000498, oid=2
+222503.051:0498:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222503.052:0498:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222503.064:04b4:fixme:ver:GetCurrentPackageId (0287FF00 00000000): stub
+222503.106:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222503.107:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222503.751:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222503.752:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222504.183:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222504.183:04d8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4d4000004d8, oid=2
+222504.183:04d8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222504.183:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222504.183:04d8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222504.535:04f8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4f4000004f8, oid=2
+222504.535:04f8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222504.537:04f8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222504.542:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222504.546:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222504.830:0518:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=51400000518, oid=2
+222504.831:0518:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222504.833:0518:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222504.843:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222504.843:0410:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222505.302:0538:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=53400000538, oid=2
+222505.302:0538:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222505.303:0538:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222505.595:04bc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4b8000004bc, oid=2
+222505.595:04bc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222505.595:04bc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222505.861:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222505.862:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222506.337:0568:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=56400000568, oid=2
+222506.337:0568:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222506.337:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222506.337:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222506.337:0568:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222506.904:0590:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=58c00000590, oid=2
+222506.904:0590:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222506.907:0590:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222506.910:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222506.910:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222507.533:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222507.534:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222507.534:05b0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5ac000005b0, oid=2
+222507.534:05b0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222507.534:05b0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222508.072:05d0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5cc000005d0, oid=2
+222508.072:05d0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222508.073:05d0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222508.074:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222508.074:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222508.557:05f0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5ec000005f0, oid=2
+222508.557:05f0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222508.558:05f0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222508.601:060c:fixme:ver:GetCurrentPackageId (0287FF00 00000000): stub
+222508.715:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222508.715:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222509.218:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222509.218:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222509.815:0630:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=62c00000630, oid=2
+222509.815:0630:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222509.819:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222509.819:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222509.822:0630:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222510.444:0650:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=64c00000650, oid=2
+222510.444:0650:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222510.445:0650:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222510.449:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222510.450:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222511.077:0670:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=66c00000670, oid=2
+222511.079:0670:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222511.081:0670:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222511.124:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222511.126:0560:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222511.532:0690:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=68c00000690, oid=2
+222511.532:0690:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222511.533:0690:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222511.764:0614:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=61000000614, oid=2
+222511.764:0614:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222511.765:0614:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222512.204:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222512.205:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222512.811:06cc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=6c8000006cc, oid=2
+222512.811:06cc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222512.811:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222512.811:06cc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222512.812:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222513.233:06f4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=6f0000006f4, oid=2
+222513.233:06f4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222513.234:06f4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222513.235:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222513.235:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222513.717:0714:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=71000000714, oid=2
+222513.718:0714:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222513.719:0714:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222513.719:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222513.720:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222514.352:0734:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=73000000734, oid=2
+222514.352:0734:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222514.352:0734:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222514.353:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222514.353:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222514.994:0754:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=75000000754, oid=2
+222514.994:0754:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222514.995:0754:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222515.042:0770:fixme:ver:GetCurrentPackageId (0287FF00 00000000): stub
+222515.130:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222515.131:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222515.663:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222515.664:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222516.271:0798:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=79400000798, oid=2
+222516.272:0798:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222516.279:0798:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222516.291:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222516.292:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222516.847:07b8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7b4000007b8, oid=2
+222516.847:07b8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222516.847:07b8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222516.848:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222516.848:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222517.330:07d8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7d4000007d8, oid=2
+222517.330:07d8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222517.330:07d8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222517.339:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222517.340:06bc:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222517.874:07f8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7f4000007f8, oid=2
+222517.874:07f8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222517.875:07f8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222518.162:0778:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=77400000778, oid=2
+222518.163:0778:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222518.163:0778:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222518.596:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222518.597:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222519.140:0060:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=81c00000060, oid=2
+222519.140:0060:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222519.142:0060:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222519.148:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222519.153:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222519.716:00cc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=ac000000cc, oid=2
+222519.716:00cc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222519.716:00cc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222519.717:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222519.717:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222520.381:00bc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=b8000000bc, oid=2
+222520.381:00bc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222520.383:00bc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222520.398:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222520.402:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222520.952:00e8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=94000000e8, oid=2
+222520.952:00e8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222520.953:00e8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222520.969:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222520.972:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222521.606:0128:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=12c00000128, oid=2
+222521.606:0128:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222521.606:0128:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222521.660:0164:fixme:ver:GetCurrentPackageId (0287FF00 00000000): stub
+222521.701:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222521.702:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222522.419:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222522.419:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222522.862:01b8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=1a8000001b8, oid=2
+222522.862:01b8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222522.864:01b8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222522.864:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222522.868:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222523.538:01c0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=20000001c0, oid=2
+222523.538:01c0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222523.540:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222523.541:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222523.541:01c0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222524.114:01dc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=1d8000001dc, oid=2
+222524.114:01dc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222524.115:01dc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222524.124:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222524.125:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222524.468:01fc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=1f8000001fc, oid=2
+222524.468:01fc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222524.469:01fc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222524.703:013c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=14c0000013c, oid=2
+222524.704:013c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222524.704:013c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222526.322:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222526.324:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222526.965:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222526.965:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222526.965:0268:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=27000000268, oid=2
+222526.965:0268:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222526.969:0268:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222527.493:02b4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2bc000002b4, oid=2
+222527.493:02b4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222527.494:02b4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222527.495:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222527.495:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222528.142:02dc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2e4000002dc, oid=2
+222528.142:02dc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222528.143:02dc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222528.145:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222528.145:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222528.551:02fc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=304000002fc, oid=2
+222528.551:02fc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222528.552:02fc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222528.553:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222528.553:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222529.067:031c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3240000031c, oid=2
+222529.067:031c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222529.068:031c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222529.108:0344:fixme:ver:GetCurrentPackageId (02A7FF00 00000000): stub
+222529.173:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222529.173:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222529.742:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222529.742:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222530.333:037c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3840000037c, oid=2
+222530.333:037c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222530.334:037c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222530.353:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222530.355:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222530.829:039c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3ac0000039c, oid=2
+222530.830:039c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222530.831:039c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222530.836:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222530.836:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222531.388:03c4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3d4000003c4, oid=2
+222531.388:03c4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222531.389:03c4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222531.400:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222531.402:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222532.027:0408:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=40000000408, oid=2
+222532.027:0408:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222532.039:0408:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222532.265:0348:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=33c00000348, oid=2
+222532.265:0348:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222532.266:0348:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222536.038:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222536.039:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222536.555:0430:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=42800000430, oid=2
+222536.555:0430:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222536.556:0430:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222536.556:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222536.557:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222537.083:0450:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=44800000450, oid=2
+222537.083:0450:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222537.084:0450:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222537.085:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222537.085:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222537.639:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222537.639:0470:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=46800000470, oid=2
+222537.639:0470:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222537.640:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222537.640:0470:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222538.084:0490:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=48800000490, oid=2
+222538.084:0490:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222538.085:0490:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222538.087:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222538.088:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222538.798:04b0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4a8000004b0, oid=2
+222538.799:04b0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222538.800:04b0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222538.817:04e8:fixme:ver:GetCurrentPackageId (02A7FF00 00000000): stub
+222538.879:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222538.880:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222539.636:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222539.637:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222540.228:04fc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=510000004fc, oid=2
+222540.228:04fc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222540.230:04fc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222540.234:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222540.234:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222540.800:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222540.800:0518:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=52000000518, oid=2
+222540.800:0518:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222540.801:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222540.806:0518:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222541.269:0538:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=54000000538, oid=2
+222541.269:0538:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222541.270:0538:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222541.273:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222541.273:029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222541.836:04c8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4bc000004c8, oid=2
+222541.836:04c8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222541.838:04c8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222542.107:04ec:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4f0000004ec, oid=2
+222542.107:04ec:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222542.108:04ec:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222542.421:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222542.425:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222542.942:0588:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=58000000588, oid=2
+222542.942:0588:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222542.943:0588:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222542.951:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222542.952:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222543.605:05a4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5a0000005a4, oid=2
+222543.605:05a4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222543.605:05a4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222543.606:0554:err:ole:ifproxy_release_public_refs IRemUnknown_RemRelease failed with error 0x800706be
+222543.609:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222543.610:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222544.117:05c8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5c0000005c8, oid=2
+222544.118:05c8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222544.119:05c8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222544.120:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222544.121:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222544.791:05e8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5e0000005e8, oid=2
+222544.791:05e8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222544.793:05e8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222544.805:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222544.805:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222545.449:0608:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=60000000608, oid=2
+222545.449:0608:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222545.450:0608:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222545.482:0640:fixme:ver:GetCurrentPackageId (02A7FF00 00000000): stub
+222545.597:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222545.597:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222546.247:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222546.248:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222546.806:0668:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=66000000668, oid=2
+222546.806:0668:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222546.810:0668:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222546.823:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222546.824:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222547.309:0670:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=67800000670, oid=2
+222547.310:0670:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222547.311:0670:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222547.312:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222547.313:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222547.751:0690:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=69800000690, oid=2
+222547.752:0690:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222547.753:0690:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222547.757:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222547.757:0554:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222548.151:0620:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=61400000620, oid=2
+222548.151:0620:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222548.154:0620:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222548.385:0644:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=64800000644, oid=2
+222548.385:0644:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222548.390:0644:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222548.878:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222548.879:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222549.490:06d8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=6e8000006d8, oid=2
+222549.490:06d8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222549.491:06d8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222549.491:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222549.492:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222550.174:06c0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=6d0000006c0, oid=2
+222550.174:06c0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222550.175:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222550.175:06c0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222550.175:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222550.896:06f0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=700000006f0, oid=2
+222550.897:06f0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222550.897:06f0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222550.898:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222550.898:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222551.405:0744:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=71000000744, oid=2
+222551.405:0744:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222551.406:0744:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222551.406:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222551.409:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222552.034:076c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7300000076c, oid=2
+222552.034:076c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222552.036:076c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222552.077:0750:fixme:ver:GetCurrentPackageId (02A7FF00 00000000): stub
+222552.157:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222552.157:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222552.732:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222552.732:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222553.481:07c8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=794000007c8, oid=2
+222553.481:07c8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222553.482:07c8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222553.484:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222553.484:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222554.194:07f0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7e8000007f0, oid=2
+222554.195:07f0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222554.200:07f0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222554.204:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222554.209:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222554.780:07fc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=80c000007fc, oid=2
+222554.780:07fc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222554.781:07fc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222554.807:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222554.808:06ec:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222555.545:0780:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=77c00000780, oid=2
+222555.545:0780:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222555.549:0780:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222555.869:07ac:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7a8000007ac, oid=2
+222555.869:07ac:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222555.872:07ac:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222561.574:0260:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+222561.574:0260:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+222689.793:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222689.793:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222690.030:0058:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=22400000058, oid=2
+222690.030:0058:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222690.031:0058:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222690.031:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222690.031:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222690.313:026c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2d40000026c, oid=2
+222690.313:026c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222690.313:026c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222690.314:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222690.315:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222690.631:02c0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2f0000002c0, oid=2
+222690.631:02c0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222690.632:02c0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222690.633:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222690.633:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222691.052:02e8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=314000002e8, oid=2
+222691.052:02e8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222691.052:02e8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222691.053:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222691.053:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222691.425:0308:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=33400000308, oid=2
+222691.425:0308:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222691.425:0308:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222691.453:0340:fixme:ver:GetCurrentPackageId (0227FF00 00000000): stub
+222691.511:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222691.511:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222691.850:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222691.851:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222692.203:0384:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3b400000384, oid=2
+222692.203:0384:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222692.204:0384:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222692.204:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222692.205:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222692.517:03ac:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3dc000003ac, oid=2
+222692.517:03ac:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222692.518:03ac:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222692.518:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222692.519:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222692.868:03cc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3c4000003cc, oid=2
+222692.869:03cc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222692.869:03cc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222692.877:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222692.878:0818:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222693.136:03f8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=408000003f8, oid=2
+222693.137:03f8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222693.137:03f8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222693.261:034c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=31c0000034c, oid=2
+222693.261:034c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222693.262:034c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222694.395:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222694.396:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222694.677:0374:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222694.677:0374:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222694.679:0374:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4800000374, oid=2
+222694.679:0374:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222694.679:0374:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222694.683:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222694.684:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222694.962:0360:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222694.962:0360:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222694.964:0360:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=35c00000360, oid=2
+222694.964:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222694.964:0360:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222694.964:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222694.964:0360:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222695.262:0420:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222695.262:0420:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222695.264:0420:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=43000000420, oid=2
+222695.264:0420:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222695.265:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222695.265:0420:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222695.265:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222695.484:0450:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222695.484:0450:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222695.487:0450:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=43c00000450, oid=2
+222695.487:0450:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222695.488:0450:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222695.489:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222695.489:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222695.850:045c:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222695.850:045c:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222695.851:045c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=46c0000045c, oid=2
+222695.851:045c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222695.852:045c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222695.862:0484:fixme:ver:GetCurrentPackageId (0248FF00 00000000): stub
+222695.887:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222695.887:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222696.061:047c:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222696.061:047c:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222696.062:047c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=48c0000047c, oid=2
+222696.062:047c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222696.063:047c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222696.092:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222696.093:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222696.380:04ac:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222696.380:04ac:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222696.381:04ac:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4a4000004ac, oid=2
+222696.382:04ac:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222696.382:04ac:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222696.382:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222696.382:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222696.740:051c:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222696.741:051c:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222696.743:051c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=52c0000051c, oid=2
+222696.743:051c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222696.744:051c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222696.748:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222696.749:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222696.970:04e0:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222696.970:04e0:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222696.977:04e0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4f8000004e0, oid=2
+222696.977:04e0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222696.978:04e0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222696.993:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222696.994:0228:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222697.218:0514:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222697.218:0514:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222697.219:0514:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=52400000514, oid=2
+222697.219:0514:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222697.220:0514:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222703.580:0558:err:ole:apartment_add_dll couldn't load in-process dll L"C:\\windows\\syswow64\\oleaut32.dll"
+222703.580:0558:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222703.581:0558:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4b800000558, oid=2
+222703.581:0558:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222703.582:0558:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222704.096:0260:err:msi:execute_script Execution of script 0 halted; action L"[MACHINE\\SOFTWARE\\CNC Software\\Mastercam 2027\\Flags|Registry|ASDF-THINKPAD-E|Everyone|983103|8<=>S-1-5-21-0-0-0-1000<=>{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}]ISLockPermissionsInstall" returned 1603
+222704.096:0260:err:msi:ITERATE_Actions Execution halted, action L"InstallFinalize" returned 1603
+222737.817:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222737.818:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222738.476:05a0:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+222738.476:05a0:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222738.480:05a0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=598000005a0, oid=2
+222738.480:05a0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222738.480:05a0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222738.483:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222738.483:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222739.030:05d0:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+222739.030:05d0:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222739.033:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222739.033:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222739.033:05d0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5c0000005d0, oid=2
+222739.033:05d0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222739.034:05d0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222739.411:05ec:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+222739.411:05ec:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222739.414:05ec:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5f0000005ec, oid=2
+222739.414:05ec:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222739.414:05ec:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222739.418:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222739.419:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222739.830:0674:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+222739.830:0674:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222739.839:0674:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=68400000674, oid=2
+222739.839:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222739.839:0674:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222739.840:0594:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+222739.841:0674:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222740.422:0654:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+222740.422:0654:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+222740.424:0654:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=65000000654, oid=2
+222740.424:0654:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+222740.424:0654:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+222740.448:067c:fixme:ver:GetCurrentPackageId (0248FF00 00000000): stub
+223040.448:0594:err:ole:get_unmarshaler_from_stream Failed to read common OBJREF header, 0
+223040.451:0594:err:msi:__wine_msi_call_dll_function Custom action (L"C:\\users\\asdf\\AppData\\Local\\Temp\\msiF829.tmp":"f34") caused an exception: 0xc0000005
+223040.458:067c:err:ole:get_unmarshaler_from_stream Failed to read common OBJREF header, 0
+223040.459:067c:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x1
+223040.459:067c:err:ole:marshal_object Failed to create an IRpcStubBuffer from IPSFactory for {9428a859-6da5-4b68-b599-3751b6c6b281} with error 0x8003001e
+223040.459:067c:err:ole:StdMarshalImpl_MarshalInterface Failed to create ifstub, hr 0x8003001e
+223040.459:067c:err:ole:CoMarshalInterface Failed to marshal the interface {9428a859-6da5-4b68-b599-3751b6c6b281}, hr 0x8003001e
+223040.464:0260:err:msi:execute_script Execution of script 2 halted; action L"StartCodeMeterServiceOnRollback" returned 1603
+223040.486:0260:err:msi:free_package_structures failed to delete L"C:\\users\\asdf\\AppData\\Local\\Temp\\msiF829.tmp" (32)

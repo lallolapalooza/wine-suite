@@ -1,0 +1,6 @@
+07c0:fixme:seh:WerGetFlags (FFFFFFFFFFFFFFFF, 000000000024FD98) stub
+07c0:fixme:seh:WerSetFlags (32) stub
+07c0:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,000000000024FD10,000000000024FD20) stub!
+2026/10/03 11:14:42 Running in CM mode
+2026/10/03 11:14:42 Starting HTTP-Server...
+	HTTP:Listening on localhost and port 22352...

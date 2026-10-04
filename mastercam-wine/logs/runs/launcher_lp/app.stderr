@@ -1,0 +1,8 @@
+227245.747:0304:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.232:0304:trace:seh:__processing_throw ()
+227246.233:0304:fixme:wtsapi:WTSQuerySessionInformationW Unimplemented class 4

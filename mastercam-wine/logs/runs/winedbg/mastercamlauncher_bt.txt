@@ -1,0 +1,1418 @@
+006c:fixme:seh:WerGetFlags (FFFFFFFFFFFFFFFF, 000000000024FD98) stub
+006c:fixme:seh:WerSetFlags (32) stub
+006c:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,000000000024FD10,000000000024FD20) stub!
+009c:err:secur32:start_samss Failed to start SamSs service
+009c:err:secur32:load_auth_packages Failed to get security packages list: 80090304
+0074:err:ole:start_rpcss Failed to start RpcSs service
+009c:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,00007FFFFE13F260,00006FFFFA6F9AB8) stub!
+00dc:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007FFFFEF0FF50
+00e8:fixme:advapi:RegisterEventSourceA ((null),"CodeMeter Runtime Server"): stub
+00e8:fixme:advapi:RegisterEventSourceW (L"",L"CodeMeter Runtime Server"): stub
+00e8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000200,0000000000000000,0x0000,0x00000000,00007549E5AEFD48,0000000000000000): stub
+00e8:fixme:ntdll:enum_firmware_info info_class SYSTEM_FIRMWARE_TABLE_INFORMATION provider 41435049
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0104:fixme:seh:WerSetFlags (2) stub
+0104:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+0110:fixme:process:SetProcessShutdownParameters (00000380, 00000000): partial stub.
+0110:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 00006FFFFC3625B7, 28) stub
+0110:fixme:ver:GetCurrentPackageId (00007FFFFEF6EB50 0000000000000000): stub
+011c:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+00e8:fixme:iphlpapi:NotifyIpInterfaceChange (family 0, callback 0000000140A1B120, context 0000000142F6F240, init_notify 0, handle 00007549E5AEF1B8): stub
+0120:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007549E59DFF50
+0120:fixme:wtsapi:WTSWaitSystemEvent Stub 0000000000000000 0x7fffffff 00007549E59DFF04
+00e8:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+011c:fixme:seh:WerSetFlags (2) stub
+011c:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+012c:fixme:process:SetProcessShutdownParameters (00000380, 00000000): partial stub.
+012c:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 79103241, 28) stub
+012c:fixme:ver:GetCurrentPackageId (00D2ECBC 00000000): stub
+00e8:fixme:tape:BackupRead (0000000000000114, 00007549E5AEF270, 20, 00007549E5AEF2C4, 0, 0, 00007549E5AEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 0000000000000000, 0, 0000000000000000, 1, 0, 00007549E5AEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 00007549E5AEF270, 20, 00007549E5AEF2C4, 0, 0, 00007549E5AEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 0000000000000000, 0, 0000000000000000, 1, 0, 00007549E5AEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 00007549E5AEF270, 20, 00007549E5AEF2C4, 0, 0, 00007549E5AEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 0000000000000000, 0, 0000000000000000, 1, 0, 00007549E5AEF2B0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+00e8:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+00e8:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+00e8:fixme:netapi32:DsEnumerateDomainTrustsA ((null), 0x0008, 00007549E5AEF5C8, 00007549E5AEF5C4): stub
+00e8:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+00e8:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000080, 00007549E5AEF4C8): semi-stub
+00e8:fixme:security:GetWindowsAccountDomainSid (00007549E5AEE220 00007FFFFE7A2068 00007549E5AEE21C): semi-stub
+00e8:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000011, 00007549E5AEF4C8): semi-stub
+00e8:fixme:security:GetWindowsAccountDomainSid (00007549E5AEE220 00007FFFFE7A26D8 00007549E5AEE21C): semi-stub
+00e8:fixme:netapi32:DsEnumerateDomainTrustsW ((null), 0x003f, 00007549E5AEF0D8, 00007549E5AEEF90): stub
+00e8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007549E5AEF858,0000000000000000): stub
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+00e8:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+00e8:fixme:wbemprox:wbem_locator_ConnectServer unsupported flags
+00e8:fixme:wbemprox:client_security_SetBlanket 00006FFFFBEB2030, 00007FFFFF5FB9E0, 10, 0, (null), 3, 3, 0000000000000000, 0
+00e8:fixme:wbemprox:client_security_Release 00006FFFFBEB2030
+00e8:fixme:wbemprox:enum_class_object_Next timeout not supported
+00e8:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 00007549E5AE9B18): stub
+00e8:fixme:advapi:OpenEventLogW ((null),L"System") stub
+00e8:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF668000,0x00010000,00007549E5AE9814,00007549E5AE981C) stub
+00e8:fixme:advapi:OpenEventLogW ((null),L"Applications") stub
+00e8:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF678010,0x00010000,00007549E5AE9814,00007549E5AE981C) stub
+00e8:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+00e8:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+00e8:fixme:security:GetWindowsAccountDomainSid (00007549E5AE8DE0 00007FFFFE7A2D48 00007549E5AE8DDC): semi-stub
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+015c:fixme:win:devnotify_service_callback Support for service handles is not yet implemented!
+015c:fixme:win:devnotify_service_callback Support for service handles is not yet implemented!
+WineDbg starting on pid 01b4
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+00e8:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 00007549E5AE9FB8): stub
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1151 ntdll+0x11151: retq 
+Wine-dbg>01c8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007549E4DFD618,0000000000000000): stub
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+01c8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007549E4DFD618,0000000000000000): stub
+01c8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007549E4DFD618,0000000000000000): stub
+01c8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007549E4DFD618,0000000000000000): stub
+01c8:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 00007549E4DFA198): stub
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+012c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+012c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+012c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+012c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+012c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+process  tid      prio    name (all IDs are in hex)
+00000020 start.exe
+	00000024    0     
+00000038 services.exe
+	0000003c    0     
+	00000040    0     
+	0000004c    0     
+	0000008c    0     
+	000000c0    0     
+	000000d0    0     
+	000000f4    0     
+	00000108    0     
+	00000124    0     
+	00000148    0     
+	00000170    0     
+	00000190    0     
+	000001a8    0     
+00000044 winedevice.exe
+	00000048    0     
+	00000054    0     
+	00000058    0     
+	0000005c    0     
+	00000060    0     
+	00000064    0     
+	00000158    0     
+00000068 CmWebAdmin.exe
+	0000006c    0     
+	00000078    0     
+	0000007c    0     
+	00000080    0     
+	00000084    0     
+	00000088    0     
+	00000090    0     
+	00000094    0     
+	000000a0    0     
+	000000a4    0     
+	000000a8    0     
+	000000ac    0     
+	000000b0    0     
+	000000b4    0     
+	000000b8    0     
+	000000bc    0     
+00000070 explorer.exe
+	00000074    0     
+	000000c4    0     
+	000000c8    0     
+	000000cc    0     
+00000098 CodeMeter.exe
+	0000009c    0     
+	000000d8    0     
+	000000dc    0     
+	000000e0    0     
+	000000e4    0     
+	000000e8    0     
+	0000013c    0     
+	00000140    0     
+	00000144    0     
+	0000015c    0     
+	000001bc    0     
+	000001c0    0     
+	000001c4    0     
+	000001c8    0     
+	000001cc    0     
+000000ec svchost.exe
+	000000f0    0     
+	000000f8    0     
+	000000fc    0     
+00000100 mscorsvw.exe
+	00000104    0     
+	0000010c    0     
+	00000110    0     
+	00000114    0     
+00000118 mscorsvw.exe
+	0000011c    0     
+	00000128    0     
+	0000012c    0     
+	00000130    0     
+00000134 plugplay.exe
+	00000138    0     
+	0000014c    0     
+	00000150    0     
+	00000154    0     
+	00000168    0     
+	0000016c    0     
+	0000019c    0     
+00000160 winedevice.exe
+	00000164    0     
+	00000174    0     
+	00000178    0     
+	0000017c    0     
+	00000180    0     
+	00000184    0     
+	0000018c    0     
+	00000194    0     
+	00000198    0     
+	000001a4    0     
+000001b4 (D) C:\Program Files\Mastercam 2027\MastercamLauncher.exe
+	000001b8    0 <== 
+Wine-dbg>01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 0024 in process 0020 (C:\windows\system32\start.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x006ffffea04770)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x006ffffea04770)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x006ffffea04770)
+  3 0x00000140003429 wmain+0x669(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/start/start.c:675] in start (0x006ffffea04770)
+  4 0x00000140003d47 wmainCRTStartup+0x97() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/msvcrt/crt_wmain.c:68] in start (0000000000000000)
+  5 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  6 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 003c in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x000000000000f8)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x000000000000f8)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x000000000000f8)
+  3 0x0000014000ac42 main+0xc52(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/services/services.c:1324] in services (0x000000000000f8)
+  4 0x00000140003337 mainCRTStartup+0x97() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/msvcrt/crt_main.c:68] in services (0000000000000000)
+  5 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  6 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0040 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x2, handles=00007FFFFE8277A0, wait_all=0, timeout=<internal error>, alertable=0x1) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006ffffe706598 rpcrt4_protseq_np_wait_for_new_connection+0x38(protseq=00007FFFFE26AA60, count=0x2, wait_array=00007FFFFE8277A0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:731] in rpcrt4 (0x006fffff9f12fc)
+  3 0x006ffffe6eb126 RPCRT4_server_thread+0x76(the_arg=00007FFFFE26AA60) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:665] in rpcrt4 (0x007ffffec2ff3c)
+  4 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  5 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 004c in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007ffffef3fd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007ffffef3fd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007ffffef3fd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007ffffef3fd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007ffffef3fd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 008c in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007fffff55fd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007fffff55fd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007fffff55fd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007fffff55fd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007fffff55fd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00c0 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007fffff86fd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007fffff86fd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007fffff86fd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007fffff86fd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007fffff86fd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00d0 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007fffffb7fd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007fffffb7fd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007fffffb7fd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007fffffb7fd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007fffffb7fd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00f4 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007acf05cdfd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007acf05cdfd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007acf05cdfd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007acf05cdfd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007acf05cdfd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0108 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007acf05acfd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007acf05acfd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007acf05acfd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007acf05acfd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007acf05acfd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0124 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007acf058bfd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007acf058bfd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007acf058bfd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007acf058bfd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007acf058bfd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0148 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007acf056afd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007acf056afd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007acf056afd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007acf056afd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007acf056afd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0170 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007acf0549fd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007acf0549fd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007acf0549fd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007acf0549fd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007acf0549fd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0190 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007acf0528fd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007acf0528fd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007acf0528fd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007acf0528fd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007acf0528fd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 01a8 in process 0038 (C:\windows\system32\services.exe):
+Backtrace:
+=>0 0x006fffffbced94 in ntdll (+0xed94) (0x00000000000030)
+  1 0x006fffff38de0c GetQueuedCompletionStatus+0x64(port=0000000000000030, count=00007ACF0507FF0C, key=00007ACF0507FF18, overlapped=00007ACF0507FF10, timeout=0xffffffff) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:1263] in kernelbase (0x00000000000030)
+  2 0x000001400036dc process_monitor_thread_proc+0x6c(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/services/services.c:1244] in services (0x007acf0507ff10)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 0048 in process 0044 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x4, handles=00007FFFFE23FCB0, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x006fffffbe64a0)
+  3 0x006ffffedcd27e service_run_main_thread+0x29e() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1871] in sechost (0x006fffffbe64a0)
+  4 0x00000140002609 wmain+0x39(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/winedevice/device.c:159] in winedevice (0000000000000000)
+  5 0x000001400026a7 wmainCRTStartup+0x97() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/msvcrt/crt_wmain.c:68] in winedevice (0000000000000000)
+  6 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  7 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0054 in process 0044 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbced34 in ntdll (+0xed34) (0x007ffffeb4ff10)
+  1 0x006fffff3ac778 ReadFile+0x110(file=000000000000002C, buffer=00007FFFFEB4FF10, count=0x10, result=00007FFFFEB4FF08, overlapped=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/file.c:3652] in kernelbase (0x007ffffeb4ff10)
+  2 0x006ffffedccb37 service_control_dispatcher+0x137(arg=00007FFFFE266D90) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1683] in sechost (0x006ffffedd00a0)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0058 in process 0044 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x2, handles=00007FFFFEE5FB10, wait_all=0, timeout=<internal error>, alertable=0x1) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006ffffb5edb46 wine_ntoskrnl_main_loop+0x426(stop_event=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntoskrnl.exe/ntoskrnl.c:1069] in ntoskrnl (0x006fffffc3cbb0)
+  3 0x000001400013f4 ServiceMain+0x104(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/winedevice/device.c:143] in winedevice (0x00000140003020)
+  4 0x006ffffedcd53f service_thread+0xcf(arg=00007FFFFE2636D0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1610] in sechost (0x007ffffe2636d0)
+  5 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  6 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 005c in process 0044 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbd0d14 in ntdll (+0x10d14) (0000000000000000)
+  1 0x006fffffbfcc88 RtlWaitOnAddress+0x168(addr=00006FFFFB6104C0, cmp=00007FFFFF26FEBC, size=<internal error>, timeout=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:912] in ntdll (0000000000000000)
+  2 0x006fffffbf8714 RtlSleepConditionVariableCS+0x34(variable=00006FFFFB6104C0, crit=00006FFFFB5EE420, timeout=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:771] in ntdll (0x006fffff9f0edc)
+  3 0x006fffff3c173d SleepConditionVariableCS+0x25(variable=<internal error>, crit=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:1189] in kernelbase (0x006fffff9f0edc)
+  4 0x006ffffb5e52b0 device_enum_thread_proc+0x50(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntoskrnl.exe/pnp.c:1748] in ntoskrnl (0x006fffff9f0edc)
+  5 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  6 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0060 in process 0044 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbcf2f4 in ntdll (+0xf2f4) (0000000000000000)
+  1 0x006fffff3c1860 SleepEx+0x28(timeout=<internal error>, alertable=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:378] in kernelbase (0000000000000000)
+  2 0x006ffffb55403c device_op_thread+0x1c(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/mountmgr.sys/mountmgr.c:557] in mountmgr.sys (0000000000000000)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0064 in process 0044 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006ffffb557c89 run_loop_thread+0x29(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/mountmgr.sys/mountmgr.c:565] in mountmgr.sys (0000000000000000)
+  1 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  2 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0158 in process 0044 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006ffffba5221d notification_thread_proc+0x5d(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/nsiproxy.sys/device.c:479] in nsiproxy.sys (0x006ffffe9d6500)
+  1 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  2 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 006c in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x4, handles=000000000024F9F0, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x006fffffbe64a0)
+  3 0x006ffffedcd27e service_run_main_thread+0x29e() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1871] in sechost (0x006fffffbe64a0)
+  4 0x0000000047d869 in cmwebadmin (+0x7d869) (0x0000000024fd90)
+  5 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x0000000024fdc0)
+  6 0x0000000047bc23 in cmwebadmin (+0x7bc23) (0x0000c0001c5d48)
+  7 0x00000000471272 in cmwebadmin (+0x71272) (0x0000c0001c5db0)
+  8 0x0000000045fc2e in cmwebadmin (+0x5fc2e) (0x0000c0001c5dd0)
+  9 0x00000000477f29 in cmwebadmin (+0x77f29) (0x0000c0001c5e20)
+  10 0x0000000087418f in cmwebadmin (+0x47418f) (0x0000c0001c5e68)
+  11 0x000000008757e8 in cmwebadmin (+0x4757e8) (0x0000c0001c5eb0)
+  12 0x00000000876e18 in cmwebadmin (+0x476e18) (0x0000c0001c5f00)
+  13 0x000000008769c5 in cmwebadmin (+0x4769c5) (0x0000c0001c5f40)
+  14 0x00000000443ddd in cmwebadmin (+0x43ddd) (0x0000c0001c5fd0)
+  15 0x0000000047bfe1 in cmwebadmin (+0x7bfe1) (0000000000000000)
+
+Backtracing for thread 0078 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x2, handles=0000000046D4FD70, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x00000046d4fc80)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x00000046d4fc80)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x00000046d4fcb0)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x00000046d4fcd8)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x00000046d4fd10)
+  7 0x0000000043e176 in cmwebadmin (+0x3e176) (0x00000046d4fd28)
+  8 0x0000000043d312 in cmwebadmin (+0x3d312) (0x00000046d4fd90)
+  9 0x00000000417ca6 in cmwebadmin (+0x17ca6) (0x00000046d4fdd0)
+  10 0x00000000417e7f in cmwebadmin (+0x17e7f) (0x00000046d4fe00)
+  11 0x000000004504a5 in cmwebadmin (+0x504a5) (0x00000046d4fe80)
+  12 0x0000000044727d in cmwebadmin (+0x4727d) (0x00000046d4fea8)
+  13 0x000000004471ca in cmwebadmin (+0x471ca) (0x00000046d4fed0)
+  14 0x00000000479f05 in cmwebadmin (+0x79f05) (0000000000000000)
+  15 0x000000008e59b1 in cmwebadmin (+0x4e59b1) (0000000000000000)
+
+Backtracing for thread 007c in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbd0794 in ntdll (+0x10794) (0x00000000000008)
+  1 0x006fffff38df76 GetQueuedCompletionStatusEx+0x6e(port=00000000000000F8, entries=0000000046F8F490, count=0x8, written=0000000046F8F468, timeout=0xea5f, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:1291] in kernelbase (0x00000000000008)
+  2 0x0000000047d869 in cmwebadmin (+0x7d869) (0x00000046f8f360)
+  3 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x00000046f8f390)
+  4 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x00000046f8f3b0)
+  5 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x00000046f8f3e8)
+  6 0x0000000043e276 in cmwebadmin (+0x3e276) (0x00000046f8f400)
+  7 0x0000000043b8bb in cmwebadmin (+0x3b8bb) (0x00000046f8fc90)
+  8 0x0000000044a029 in cmwebadmin (+0x4a029) (0x00000046f8fe08)
+  9 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x00000046f8fe40)
+  10 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x00000046f8fea0)
+  11 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c000079f50)
+  12 0x000000004743ee in cmwebadmin (+0x743ee) (0x0000c000079f70)
+  13 0x0000000042cfbf in cmwebadmin (+0x2cfbf) (0x0000c000079fb8)
+  14 0x000000004213a5 in cmwebadmin (+0x213a5) (0x0000c000079fd0)
+  15 0x0000000047bfe1 in cmwebadmin (+0x7bfe1) (0000000000000000)
+
+Backtracing for thread 0080 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x0000004718fb20)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x0000004718fb20)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x0000004718fb20)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x0000004718fb20)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x0000004718fb50)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x0000004718fb78)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x0000004718fbb0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x0000004718fbc8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x0000004718fc30)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x0000004718fc60)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x0000004718fc90)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x0000004718fe08)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x0000004718fe40)
+  13 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x0000004718fea0)
+  14 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c00065b9f8)
+  15 0x000000004743ee in cmwebadmin (+0x743ee) (0x00000000454ad0)
+  16 0x000000004559aa in cmwebadmin (+0x559aa) (0x0000c00065bb50)
+  17 0x000000005f6f68 in cmwebadmin (+0x1f6f68) (0x0000c00065be48)
+
+Backtracing for thread 0084 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x000000473cfa00)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x000000473cfa00)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x000000473cfa00)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x000000473cfa00)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x000000473cfa30)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x000000473cfa58)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x000000473cfa90)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x000000473cfaa8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x000000473cfb10)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x000000473cfb40)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x000000473cfb70)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x000000473cfce8)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x000000473cfd20)
+  13 0x0000000044bc58 in cmwebadmin (+0x4bc58) (0x000000473cfd70)
+  14 0x0000000045a0d1 in cmwebadmin (+0x5a0d1) (0x000000473cfea8)
+  15 0x0000000047a0d9 in cmwebadmin (+0x7a0d9) (0000000000000000)
+
+Backtracing for thread 0088 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x000000475cfd20)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x000000475cfd20)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x000000475cfd20)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x000000475cfd20)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x000000475cfd50)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x000000475cfd78)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x000000475cfdb0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x000000475cfdc8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x000000475cfe30)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x000000475cfe60)
+  10 0x00000000448911 in cmwebadmin (+0x48911) (0x000000475cfe80)
+  11 0x0000000044727d in cmwebadmin (+0x4727d) (0x000000475cfea8)
+  12 0x000000004471ca in cmwebadmin (+0x471ca) (0x000000475cfed0)
+  13 0x00000000479f05 in cmwebadmin (+0x79f05) (0000000000000000)
+  14 0x000000008e59b1 in cmwebadmin (+0x4e59b1) (0000000000000000)
+
+Backtracing for thread 0090 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbced34 in ntdll (+0xed34) (0x000000477cff10)
+  1 0x006fffff3ac778 ReadFile+0x110(file=00000000000000CC, buffer=00000000477CFF10, count=0x10, result=00000000477CFF08, overlapped=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/file.c:3652] in kernelbase (0x000000477cff10)
+  2 0x006ffffedccb37 service_control_dispatcher+0x137(arg=00000000014FAF70) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1683] in sechost (0x006ffffedd00a0)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0094 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x000000479cfb60)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x000000479cfb60)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x000000479cfb60)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x000000479cfb60)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x000000479cfb90)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x000000479cfbb0)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x000000479cfbe8)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x000000479cfc00)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x000000479cfc68)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x000000479cfc98)
+  10 0x000000004491b3 in cmwebadmin (+0x491b3) (0x000000479cfcf0)
+  11 0x0000000044b57a in cmwebadmin (+0x4b57a) (0x000000479cfd28)
+  12 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x000000479cfd88)
+  13 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c00007d6e8)
+  14 0x000000004743ee in cmwebadmin (+0x743ee) (0x0000c00007d708)
+  15 0x00000000455437 in cmwebadmin (+0x55437) (0x0000c00007d840)
+  16 0x00000000875465 in cmwebadmin (+0x475465) (0x0000c00007da38)
+  17 0x0000000047a4c8 in cmwebadmin (+0x7a4c8) (0x0000c00007da58)
+  18 0x0000000045fb25 in cmwebadmin (+0x5fb25) (0x0000c00007de30)
+  19 0x00000000410c15 in cmwebadmin (+0x10c15) (0x0000c00007dee8)
+  20 0x00000000410867 in cmwebadmin (+0x10867) (0x0000c00007df80)
+  21 0x00000000480bae in cmwebadmin (+0x80bae) (0x0000c00007dfa8)
+  22 0x0000000047bd6c in cmwebadmin (+0x7bd6c) (0x000000479cfdb8)
+  23 0x0000000047db75 in cmwebadmin (+0x7db75) (0x000000014fce40)
+  24 0x0000000045f920 in cmwebadmin (+0x5f920) (0x000000014fce40)
+
+Backtracing for thread 00a0 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x00000047e1fb20)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x00000047e1fb20)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x00000047e1fb20)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x00000047e1fb20)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x00000047e1fb50)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x00000047e1fb78)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x00000047e1fbb0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x00000047e1fbc8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x00000047e1fc30)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x00000047e1fc60)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x00000047e1fc90)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x00000047e1fe08)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x00000047e1fe40)
+  13 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x00000047e1fea0)
+  14 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c0000356d8)
+  15 0x00000000474959 in cmwebadmin (+0x74959) (0x0000c000035748)
+  16 0x000000004712d0 in cmwebadmin (+0x712d0) (0x0000c0000357b0)
+  17 0x0000000045fc2e in cmwebadmin (+0x5fc2e) (0x0000c0000357d0)
+  18 0x00000000477fd7 in cmwebadmin (+0x77fd7) (0x0000c000035850)
+  19 0x000000004e3b2c in cmwebadmin (+0xe3b2c) (0x0000c0000358d8)
+  20 0x00000000473585 in cmwebadmin (+0x73585) (0x0000c0000358f8)
+  21 0x00000000505f47 in cmwebadmin (+0x105f47) (0x0000c000035920)
+  22 0x000000005073a5 in cmwebadmin (+0x1073a5) (0x0000c000035998)
+  23 0x0000000050b925 in cmwebadmin (+0x10b925) (0x0000c0000359f8)
+  24 0x0000000050bc56 in cmwebadmin (+0x10bc56) (0x0000c000035ab0)
+  25 0x000000005ec16b in cmwebadmin (+0x1ec16b) (0x0000c000035bc8)
+  26 0x000000006018db in cmwebadmin (+0x2018db) (0x0000c000035c18)
+  27 0x000000006009d0 in cmwebadmin (+0x2009d0) (0x0000c000035c48)
+  28 0x00000000720a04 in cmwebadmin (+0x320a04) (0x0000c000035c60)
+  29 0x0000000070cbcc in cmwebadmin (+0x30cbcc) (0x0000c000035d90)
+  30 0x0000000070c7d1 in cmwebadmin (+0x30c7d1) (0x0000c000035dc0)
+  31 0x00000000827275 in cmwebadmin (+0x427275) (0x0000c000035f60)
+  32 0x0000000086acea in cmwebadmin (+0x46acea) (0x0000c000035fd0)
+  33 0x0000000047bfe1 in cmwebadmin (+0x7bfe1) (0000000000000000)
+
+Backtracing for thread 00a4 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x0000004801fb20)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x0000004801fb20)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x0000004801fb20)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x0000004801fb20)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x0000004801fb50)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x0000004801fb78)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x0000004801fbb0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x0000004801fbc8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x0000004801fc30)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x0000004801fc60)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x0000004801fc90)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x0000004801fe08)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x0000004801fe40)
+  13 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x0000004801fea0)
+  14 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c000035880)
+  15 0x000000004743ee in cmwebadmin (+0x743ee) (0x0000c0000358a0)
+  16 0x0000000043aef7 in cmwebadmin (+0x3aef7) (0x0000c0000358d8)
+  17 0x00000000473585 in cmwebadmin (+0x73585) (0x0000c0000358f8)
+  18 0x00000000505f47 in cmwebadmin (+0x105f47) (0x0000c000035920)
+  19 0x000000005073a5 in cmwebadmin (+0x1073a5) (0x0000c000035998)
+  20 0x0000000050b925 in cmwebadmin (+0x10b925) (0x0000c0000359f8)
+  21 0x0000000050bc56 in cmwebadmin (+0x10bc56) (0x0000c000035ab0)
+  22 0x000000005ec16b in cmwebadmin (+0x1ec16b) (0x0000c000035bc8)
+  23 0x000000006018db in cmwebadmin (+0x2018db) (0x0000c000035c18)
+  24 0x000000006009d0 in cmwebadmin (+0x2009d0) (0x0000c000035c48)
+  25 0x00000000720a04 in cmwebadmin (+0x320a04) (0x0000c000035c60)
+  26 0x0000000070cbcc in cmwebadmin (+0x30cbcc) (0x0000c000035d90)
+  27 0x0000000070c7d1 in cmwebadmin (+0x30c7d1) (0x0000c000035dc0)
+  28 0x00000000827275 in cmwebadmin (+0x427275) (0x0000c000035f60)
+  29 0x0000000086acea in cmwebadmin (+0x46acea) (0x0000c000035fd0)
+  30 0x0000000047bfe1 in cmwebadmin (+0x7bfe1) (0000000000000000)
+
+Backtracing for thread 00a8 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x0000004822fb20)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x0000004822fb20)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x0000004822fb20)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x0000004822fb20)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x0000004822fb50)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x0000004822fb78)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x0000004822fbb0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x0000004822fbc8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x0000004822fc30)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x0000004822fc60)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x0000004822fc90)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x0000004822fe08)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x0000004822fe40)
+  13 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x0000004822fea0)
+  14 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c000531f08)
+  15 0x000000004743ee in cmwebadmin (+0x743ee) (0x0000c000531f28)
+  16 0x000000004238c9 in cmwebadmin (+0x238c9) (0x0000c000531fb8)
+  17 0x000000004237a5 in cmwebadmin (+0x237a5) (0x0000c000531fd0)
+  18 0x0000000047bfe1 in cmwebadmin (+0x7bfe1) (0000000000000000)
+
+Backtracing for thread 00ac in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x0000004846fb20)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x0000004846fb20)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x0000004846fb20)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x0000004846fb20)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x0000004846fb50)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x0000004846fb78)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x0000004846fbb0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x0000004846fbc8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x0000004846fc30)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x0000004846fc60)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x0000004846fc90)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x0000004846fe08)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x0000004846fe40)
+  13 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x0000004846fea0)
+  14 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c00052ff08)
+  15 0x000000004743ee in cmwebadmin (+0x743ee) (0x0000c00052ff28)
+  16 0x000000004238c9 in cmwebadmin (+0x238c9) (0x0000c00052ffb8)
+  17 0x000000004237a5 in cmwebadmin (+0x237a5) (0x0000c00052ffd0)
+  18 0x0000000047bfe1 in cmwebadmin (+0x7bfe1) (0000000000000000)
+
+Backtracing for thread 00b0 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x000000486efb20)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x000000486efb20)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x000000486efb20)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x000000486efb20)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x000000486efb50)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x000000486efb78)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x000000486efbb0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x000000486efbc8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x000000486efc30)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x000000486efc60)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x000000486efc90)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x000000486efe08)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x000000486efe40)
+  13 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x000000486efea0)
+  14 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c000527f08)
+  15 0x000000004743ee in cmwebadmin (+0x743ee) (0x0000c000527f28)
+  16 0x000000004238c9 in cmwebadmin (+0x238c9) (0x0000c000527fb8)
+  17 0x000000004237a5 in cmwebadmin (+0x237a5) (0x0000c000527fd0)
+  18 0x0000000047bfe1 in cmwebadmin (+0x7bfe1) (0000000000000000)
+
+Backtracing for thread 00b4 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x000000488efb20)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x000000488efb20)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x000000488efb20)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x000000488efb20)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x000000488efb50)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x000000488efb78)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x000000488efbb0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x000000488efbc8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x000000488efc30)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x000000488efc60)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x000000488efc90)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x000000488efe08)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x000000488efe40)
+  13 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x000000488efea0)
+  14 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c000529f08)
+  15 0x000000004743ee in cmwebadmin (+0x743ee) (0x0000c000529f28)
+  16 0x000000004238c9 in cmwebadmin (+0x238c9) (0x0000c000529fb8)
+  17 0x000000004237a5 in cmwebadmin (+0x237a5) (0x0000c000529fd0)
+  18 0x0000000047bfe1 in cmwebadmin (+0x7bfe1) (0000000000000000)
+
+Backtracing for thread 00b8 in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x00000048b6fb20)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x00000048b6fb20)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x00000048b6fb20)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x00000048b6fb20)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x00000048b6fb50)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x00000048b6fb78)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x00000048b6fbb0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x00000048b6fbc8)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x00000048b6fc30)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x00000048b6fc60)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x00000048b6fc90)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x00000048b6fe08)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x00000048b6fe40)
+  13 0x0000000044baa5 in cmwebadmin (+0x4baa5) (0x00000048b6fea0)
+  14 0x00000000479f93 in cmwebadmin (+0x79f93) (0x0000c000529f08)
+  15 0x000000004743ee in cmwebadmin (+0x743ee) (0x0000c000529f28)
+  16 0x000000004238c9 in cmwebadmin (+0x238c9) (0x0000c000529fb8)
+  17 0x000000004237a5 in cmwebadmin (+0x237a5) (0x0000c000529fd0)
+  18 0x0000000047bfe1 in cmwebadmin (+0x7bfe1) (0000000000000000)
+
+Backtracing for thread 00bc in process 0068 (C:\Program Files\CodeMeter\Runtime\bin\CmWebAdmin.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x00000048ddfb60)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x00000048ddfb60)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x00000048ddfb60)
+  3 0x0000000047d869 in cmwebadmin (+0x7d869) (0x00000048ddfb60)
+  4 0x0000000047bbad in cmwebadmin (+0x7bbad) (0x00000048ddfb90)
+  5 0x0000000047bc61 in cmwebadmin (+0x7bc61) (0x00000048ddfbb8)
+  6 0x0000000043df3b in cmwebadmin (+0x3df3b) (0x00000048ddfbf0)
+  7 0x0000000043e076 in cmwebadmin (+0x3e076) (0x00000048ddfc08)
+  8 0x0000000043d1a5 in cmwebadmin (+0x3d1a5) (0x00000048ddfc70)
+  9 0x00000000417b05 in cmwebadmin (+0x17b05) (0x00000048ddfca0)
+  10 0x00000000448a2c in cmwebadmin (+0x48a2c) (0x00000048ddfcd0)
+  11 0x0000000044a4fc in cmwebadmin (+0x4a4fc) (0x00000048ddfe48)
+  12 0x0000000044b5f1 in cmwebadmin (+0x4b5f1) (0x00000048ddfe80)
+  13 0x000000004472b7 in cmwebadmin (+0x472b7) (0x00000048ddfea8)
+  14 0x000000004471ca in cmwebadmin (+0x471ca) (0x00000048ddfed0)
+  15 0x00000000479f05 in cmwebadmin (+0x79f05) (0000000000000000)
+  16 0x000000008e59b1 in cmwebadmin (+0x4e59b1) (0000000000000000)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 0074 in process 0070 (C:\windows\system32\explorer.exe):
+Backtrace:
+=>0 0x006ffffd6b3cc4 in win32u (+0x13cc4) (0x006ffffd71ec70)
+  1 0x00000140007dd2 manage_desktop+0xf92(arg=<is not available>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/explorer/desktop.c:1330] in explorer (0x006ffffd71ec70)
+  2 0x0000014000dc11 parse_command_line+0xc64(parameters=<internal error>, commandline=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/explorer/explorer.c:862] in explorer (0x000001400162c0)
+  3 0x0000014000dc11 wWinMain+0xc81(hinstance=<internal error>, previnstance=<internal error>, cmdline=<internal error>, cmdshow=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/explorer/explorer.c:935] in explorer (0x000001400162c0)
+  4 0x000001400112a8 wmain+0x88(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/msvcrt/crt_wwinmain.c:64] in explorer (0000000000000000)
+  5 0x00000140011397 wmainCRTStartup+0x97() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/msvcrt/crt_wmain.c:68] in explorer (0000000000000000)
+  6 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  7 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00c4 in process 0070 (C:\windows\system32\explorer.exe):
+Backtrace:
+=>0 0x006ffffd6b3cc4 in win32u (+0x13cc4) (0x0000000000c025)
+  1 0x0000014000374a clipboard_thread+0xf2(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/explorer/desktop.c:705] in explorer (0x0000000000c025)
+  2 0x0000014000374a clipboard_thread+0x11a(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/explorer/desktop.c:707] in explorer (0x0000000000c025)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00c8 in process 0070 (C:\windows\system32\explorer.exe):
+Backtrace:
+=>0 0x006ffffd6b50c4 in win32u (+0x150c4) (0000000000000000)
+  1 0x0000014000433b display_settings_restorer_thread+0x19b(param=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/explorer/desktop.c:774] in explorer (0000000000000000)
+  2 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  3 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00cc in process 0070 (C:\windows\system32\explorer.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x2, handles=00007FFFFE84FBB0, wait_all=0, timeout=<internal error>, alertable=0x1) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006ffffe706598 rpcrt4_protseq_np_wait_for_new_connection+0x38(protseq=00007FFFFE84E260, count=0x2, wait_array=00007FFFFE84FBB0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:731] in rpcrt4 (0x006fffff9f12fc)
+  3 0x006ffffe6eb126 RPCRT4_server_thread+0x76(the_arg=00007FFFFE84E260) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:665] in rpcrt4 (0x007fe1ce5dff3c)
+  4 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  5 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 009c in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x4, handles=00007FFFFE13F200, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x006fffffbe64a0)
+  3 0x006ffffedcd27e service_run_main_thread+0x29e() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1871] in sechost (0x006fffffbe64a0)
+  4 0x00000142150071 in codemeter (+0x2150071) (0x00000000000041)
+  5 0x000001421506ec in codemeter (+0x21506ec) (0x00000000000003)
+  6 0x0000014214ef74 in codemeter (+0x214ef74) (0x007ffffe13f7e0)
+  7 0x0000014014736e in codemeter (+0x14736e) (0x007ffffe13f7e0)
+  8 0x0000014014aeec in codemeter (+0x14aeec) (0x007ffffe13f9c0)
+  9 0x0000014005d84e in codemeter (+0x5d84e) (0x007ffffe13fc50)
+  10 0x0000014005e39a in codemeter (+0x5e39a) (0x007ffffe13fda0)
+  11 0x00000140001b6f in codemeter (+0x1b6f) (0x007ffffe13ff10)
+  12 0x000001426894da in codemeter (+0x26894da) (0000000000000000)
+  13 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  14 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00d8 in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbd0d14 in ntdll (+0x10d14) (0x007ffffecffe18)
+  1 0x006fffffbfcc88 RtlWaitOnAddress+0x168(addr=00007FFFFE270858, cmp=00007FFFFECFFDCC, size=<internal error>, timeout=00007FFFFECFFE18) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:912] in ntdll (0x007ffffecffe18)
+  2 0x006fffffbf879b RtlSleepConditionVariableSRW+0x6b(variable=00007FFFFE270858, lock=00007FFFFE2708A8, timeout=00007FFFFECFFE18, flags=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:810] in ntdll (0x007ffffecffe00)
+  3 0x006fffff3c17cd SleepConditionVariableSRW+0x25(variable=<internal error>, lock=<internal error>, timeout=<internal error>, flags=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:1201] in kernelbase (0x007ffffecffe00)
+  4 0x006ffffa1f4479 in cpsrt (+0xc14479) (0x007ffffecffe00)
+  5 0x006ffff9b5b2fc in cpsrt (+0x57b2fc) (0x007ffffecffeb0)
+  6 0x006ffff98e2ab5 in cpsrt (+0x302ab5) (0x007ffffecfff40)
+  7 0x006ffffa211b66 in cpsrt (+0xc31b66) (0000000000000000)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00dc in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcf2f4 in ntdll (+0xf2f4) (0x0000000006aa60)
+  1 0x006fffff3c16dc Sleep+0x24(timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:55] in kernelbase (0x0000000006aa60)
+  2 0x006ffff95e4505 in cpsrt (+0x4505) (0x0000000006aa60)
+  3 0x006ffff9968e2a in cpsrt (+0x388e2a) (0x007ffffef0feb0)
+  4 0x006ffff98e2ab5 in cpsrt (+0x302ab5) (0x007ffffef0ff40)
+  5 0x006ffffa211b66 in cpsrt (+0xc31b66) (0000000000000000)
+  6 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  7 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00e0 in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbd0d14 in ntdll (+0x10d14) (0x007fffff11fe18)
+  1 0x006fffffbfcc88 RtlWaitOnAddress+0x168(addr=00007FFFFE270858, cmp=00007FFFFF11FDCC, size=<internal error>, timeout=00007FFFFF11FE18) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:912] in ntdll (0x007fffff11fe18)
+  2 0x006fffffbf879b RtlSleepConditionVariableSRW+0x6b(variable=00007FFFFE270858, lock=00007FFFFE2708A8, timeout=00007FFFFF11FE18, flags=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:810] in ntdll (0x007fffff11fe00)
+  3 0x006fffff3c17cd SleepConditionVariableSRW+0x25(variable=<internal error>, lock=<internal error>, timeout=<internal error>, flags=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:1201] in kernelbase (0x007fffff11fe00)
+  4 0x006ffffa1f4479 in cpsrt (+0xc14479) (0x007fffff11fe00)
+  5 0x006ffff9b5b2fc in cpsrt (+0x57b2fc) (0x007fffff11feb0)
+  6 0x006ffff98e2ab5 in cpsrt (+0x302ab5) (0x007fffff11ff40)
+  7 0x006ffffa211b66 in cpsrt (+0xc31b66) (0000000000000000)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00e4 in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbced34 in ntdll (+0xed34) (0x007549e605ff10)
+  1 0x006fffff3ac778 ReadFile+0x110(file=00000000000000DC, buffer=00007549E605FF10, count=0x10, result=00007549E605FF08, overlapped=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/file.c:3652] in kernelbase (0x007549e605ff10)
+  2 0x006ffffedccb37 service_control_dispatcher+0x137(arg=00007FFFFF5EEC70) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1683] in sechost (0x006ffffedd00a0)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00e8 in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcf2f4 in ntdll (+0xf2f4) (0x007549e5aef6b0)
+  1 0x006fffff3c16dc Sleep+0x24(timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:55] in kernelbase (0x007549e5aef6b0)
+  2 0x000001400d1e6b in codemeter (+0xd1e6b) (0x007549e5aef6b0)
+  3 0x000001400d0a31 in codemeter (+0xd0a31) (0x007549e5aef6b0)
+  4 0x000001401bff23 in codemeter (+0x1bff23) (0x007549e5aef6b0)
+  5 0x000001401ab08d in codemeter (+0x1ab08d) (0x007549e5aefae0)
+  6 0x0000014013f5f5 in codemeter (+0x13f5f5) (0x007549e5aefae0)
+  7 0x0000014014dbee in codemeter (+0x14dbee) (0x007549e5aefc10)
+  8 0x0000014214d335 in codemeter (+0x214d335) (0x007549e5aefe80)
+  9 0x006ffffedcd60e service_thread+0x19e(arg=00007FFFFE34BAD0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1627] in sechost (0x007ffffe34bad0)
+  10 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  11 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 013c in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbced94 in ntdll (+0xed94) (0x00000000000114)
+  1 0x006fffff38de0c GetQueuedCompletionStatus+0x64(port=0000000000000114, count=00007549E556FCB4, key=00007549E556FCC0, overlapped=00007549E556FC90, timeout=0xffffffff) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:1263] in kernelbase (0x00000000000114)
+  2 0x00000140a1619b in codemeter (+0xa1619b) (0x007549e556fc80)
+  3 0x00000140a132b9 in codemeter (+0xa132b9) (0x007549e556fc80)
+  4 0x00000140c8bd8c in codemeter (+0xc8bd8c) (0x007549e556fda0)
+  5 0x000001400d0ab7 in codemeter (+0xd0ab7) (0000000000000000)
+  6 0x000001426c59e8 in codemeter (+0x26c59e8) (0000000000000000)
+  7 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  8 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0140 in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbced94 in ntdll (+0xed94) (0x00000000000114)
+  1 0x006fffff38de0c GetQueuedCompletionStatus+0x64(port=0000000000000114, count=00007549E545FCB4, key=00007549E545FCC0, overlapped=00007549E545FC90, timeout=0xffffffff) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:1263] in kernelbase (0x00000000000114)
+  2 0x00000140a1619b in codemeter (+0xa1619b) (0x007549e545fc80)
+  3 0x00000140a132b9 in codemeter (+0xa132b9) (0x007549e545fc80)
+  4 0x00000140c8bd8c in codemeter (+0xc8bd8c) (0x007549e545fda0)
+  5 0x000001400d0ab7 in codemeter (+0xd0ab7) (0000000000000000)
+  6 0x000001426c59e8 in codemeter (+0x26c59e8) (0000000000000000)
+  7 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  8 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0144 in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcf2f4 in ntdll (+0xf2f4) (0x007549e534fc30)
+  1 0x006fffff3c16dc Sleep+0x24(timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:55] in kernelbase (0x007549e534fc30)
+  2 0x0000014268b56c in codemeter (+0x268b56c) (0x007549e534fc30)
+  3 0x000001403432cd in codemeter (+0x3432cd) (0x007549e534fc30)
+  4 0x0000014033c9e2 in codemeter (+0x33c9e2) (0x007549e534fe70)
+  5 0x0000014034c919 in codemeter (+0x34c919) (0x007549e534fe70)
+  6 0x0000014033ca02 in codemeter (+0x33ca02) (0000000000000000)
+  7 0x000001426c59e8 in codemeter (+0x26c59e8) (0000000000000000)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 015c in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007549e523e300)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007549e523e300)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007549e523e300)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007549e523e300)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007549e523e300)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e250)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e250)
+  7 0x006ffffe6d4ced I_RpcReceive+0x6d(pMsg=<register RBX not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1551] in rpcrt4 (0x006ffffe70e250)
+  8 0x006ffffe6d527c I_RpcSendReceive+0x6c(pMsg=<register RBX not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1924] in rpcrt4 (0000000000000000)
+  9 0x006ffffe6e152d NdrSendReceive+0x3d(stubmsg=<register RBX not accessible in this frame>, buffer=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/ndr_clientserver.c:214] in rpcrt4 (0000000000000000)
+  10 0x006ffffe700194 ndr_client_call+0x4e4(stub_desc=<is not available>, format=<register RDI not accessible in this frame>, handle_format=<internal error>, stack_top=<internal error>, fpu_args=[<register RSP not accessible in this frame>, stub_msg=[<register RSP not accessible in this frame>, procedure_number=[<register RSP not accessible in this frame>, number_of_params=[<register RSP not accessible in this frame>, Oif_flags=[<register RSP not accessible in this frame>, ext_flags=[<register RSP not accessible in this frame>, proc_header=[<register RSP not accessible in this frame>, stack_size=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/ndr_stubless.c:796] in rpcrt4 (0000000000000000)
+  11 0x006ffffe6e4a08 NdrpClientCall2+0x6f8(pStubDesc=[<register RSP not accessible in this frame>, pFormat=<is not available>, stack_top=[<register RSP not accessible in this frame>, fpu_args=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/ndr_stubless.c:978] in rpcrt4 (0x006ffffe9d6500)
+  12 0x006ffffe6c66ab in rpcrt4 (+0x66ab) (0x006ffffe9d6500)
+  13 0x006ffffedcb8e7 plugplay_get_event+0x27(handle=<internal error>, path=<internal error>, data=<internal error>, size=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/x86_64-windows/plugplay_c.c:76] in sechost (0x006ffffe9d6500)
+  14 0x006ffffedc98e8 __wine_pop_frame(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/include/wine/exception.h:278] in sechost (0x006ffffe9d6500)
+  15 0x006ffffedc98e8 device_notify_proc+0x448(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:2094] in sechost (0x006ffffe9d6500)
+  16 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  17 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 01bc in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcf2f4 in ntdll (+0xf2f4) (0x007549e512fdd0)
+  1 0x006fffff3c16dc Sleep+0x24(timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:55] in kernelbase (0x007549e512fdd0)
+  2 0x0000014268b56c in codemeter (+0x268b56c) (0x007549e512fdd0)
+  3 0x000001403d121f in codemeter (+0x3d121f) (0x007549e512fdd0)
+  4 0x000001403d0d57 in codemeter (+0x3d0d57) (0x007549e512fe90)
+  5 0x000001403cf857 in codemeter (+0x3cf857) (0000000000000000)
+  6 0x000001400d0ab7 in codemeter (+0xd0ab7) (0000000000000000)
+  7 0x000001426c59e8 in codemeter (+0x26c59e8) (0000000000000000)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 01c0 in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcf2f4 in ntdll (+0xf2f4) (0x007549e501bd60)
+  1 0x006fffff3c16dc Sleep+0x24(timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:55] in kernelbase (0x007549e501bd60)
+  2 0x000001400d1e6b in codemeter (+0xd1e6b) (0x007549e501bd60)
+  3 0x000001400d0a31 in codemeter (+0xd0a31) (0x007549e501bd60)
+  4 0x0000014024a3df in codemeter (+0x24a3df) (0x007549e501bd60)
+  5 0x000001403d08dd in codemeter (+0x3d08dd) (0x007549e501fe90)
+  6 0x000001403cf877 in codemeter (+0x3cf877) (0000000000000000)
+  7 0x000001400d0ab7 in codemeter (+0xd0ab7) (0000000000000000)
+  8 0x000001426c59e8 in codemeter (+0x26c59e8) (0000000000000000)
+  9 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  10 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 01c4 in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcf2f4 in ntdll (+0xf2f4) (0x007549e4f0b9c0)
+  1 0x006fffff3c16dc Sleep+0x24(timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:55] in kernelbase (0x007549e4f0b9c0)
+  2 0x0000014268b56c in codemeter (+0x268b56c) (0x007549e4f0b9c0)
+  3 0x000001403432cd in codemeter (+0x3432cd) (0x007549e4f0b9c0)
+  4 0x0000014033c9e2 in codemeter (+0x33c9e2) (0x007549e4f0bc00)
+  5 0x00000140337393 in codemeter (+0x337393) (0x007549e4f0bc00)
+  6 0x000001403cea1e in codemeter (+0x3cea1e) (0x007549e4f0be90)
+  7 0x000001400d0ab7 in codemeter (+0xd0ab7) (0000000000000000)
+  8 0x000001426c59e8 in codemeter (+0x26c59e8) (0000000000000000)
+  9 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  10 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 01c8 in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcf2f4 in ntdll (+0xf2f4) (0x007549e4dffd90)
+  1 0x006fffff3c16dc Sleep+0x24(timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:55] in kernelbase (0x007549e4dffd90)
+  2 0x000001400d1e6b in codemeter (+0xd1e6b) (0x007549e4dffd90)
+  3 0x000001400d0a31 in codemeter (+0xd0a31) (0x007549e4dffd90)
+  4 0x000001403d3724 in codemeter (+0x3d3724) (0x007549e4dffd90)
+  5 0x000001400d0ab7 in codemeter (+0xd0ab7) (0000000000000000)
+  6 0x000001426c59e8 in codemeter (+0x26c59e8) (0000000000000000)
+  7 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  8 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 01cc in process 0098 (C:\Program Files\CodeMeter\Runtime\bin\CodeMeter.exe):
+Backtrace:
+=>0 0x006fffffbcf2f4 in ntdll (+0xf2f4) (0x007549e4cefa60)
+  1 0x006fffff3c16dc Sleep+0x24(timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:55] in kernelbase (0x007549e4cefa60)
+  2 0x000001400d1e6b in codemeter (+0xd1e6b) (0x007549e4cefa60)
+  3 0x000001400d0a31 in codemeter (+0xd0a31) (0x007549e4cefa60)
+  4 0x000001401c883f in codemeter (+0x1c883f) (0x007549e4cefa60)
+  5 0x000001401aafe5 in codemeter (+0x1aafe5) (0000000000000000)
+  6 0x000001400d0ab7 in codemeter (+0xd0ab7) (0000000000000000)
+  7 0x000001426c59e8 in codemeter (+0x26c59e8) (0000000000000000)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01c8:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 00f0 in process 00ec (C:\windows\system32\svchost.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x4, handles=00007FFFFE23FC00, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x006fffffbe64a0)
+  3 0x006ffffedcd27e service_run_main_thread+0x29e() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1871] in sechost (0x006fffffbe64a0)
+  4 0x00000140002721 StartGroupServices+0x3fa(services=<has been optimized away by compiler>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/svchost/svchost.c:265] in svchost (0x006fffff9ef2a4)
+  5 0x00000140002721 LoadGroup+0x4a9(group_name=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/svchost/svchost.c:281] in svchost (0x006fffff9ef2a4)
+  6 0x00000140002721 wmain+0x531(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/svchost/svchost.c:335] in svchost (0x006fffff9ef2a4)
+  7 0x00000140002f17 wmainCRTStartup+0x97() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/msvcrt/crt_wmain.c:68] in svchost (0000000000000000)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00f8 in process 00ec (C:\windows\system32\svchost.exe):
+Backtrace:
+=>0 0x006fffffbced34 in ntdll (+0xed34) (0x007ffffeb2ff10)
+  1 0x006fffff3ac778 ReadFile+0x110(file=000000000000002C, buffer=00007FFFFEB2FF10, count=0x10, result=00007FFFFEB2FF08, overlapped=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/file.c:3652] in kernelbase (0x007ffffeb2ff10)
+  2 0x006ffffedccb37 service_control_dispatcher+0x137(arg=00007FFFFE267920) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1683] in sechost (0x006ffffedd00a0)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 00fc in process 00ec (C:\windows\system32\svchost.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007ffffe2636a0)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007ffffe2636a0)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007ffffe2636a0)
+  3 0x006ffffc641389 ServiceMain+0x99(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/wevtsvc/wevtsvc.c:81] in wevtsvc (0x007ffffe2636a0)
+  4 0x006ffffedcd53f service_thread+0xcf(arg=<register RBP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1610] in sechost (0x007ffffe2636a0)
+  5 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  6 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 0104 in process 0100 (C:\windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x4, handles=00007FFFFE13F9A0, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x006fffffbe64a0)
+  3 0x006ffffedcd27e service_run_main_thread+0x29e() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1871] in sechost (0x006fffffbe64a0)
+  4 0x006ffffc43c271 in mscorsvc (+0x1c271) (0x007ffffe13fd10)
+  5 0x006ffffc44a4de in mscorsvc (+0x2a4de) (0x007ffffe13fd10)
+  6 0x00000140003648 in mscorsvw (+0x3648) (0x007ffffe13fed0)
+  7 0x00000140004b8d in mscorsvw (+0x4b8d) (0000000000000000)
+  8 0x0000014000da93 in mscorsvw (+0xda93) (0000000000000000)
+  9 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  10 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 010c in process 0100 (C:\windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe):
+Backtrace:
+=>0 0x006fffffbced34 in ntdll (+0xed34) (0x007ffffed5ff10)
+  1 0x006fffff3ac778 ReadFile+0x110(file=0000000000000058, buffer=00007FFFFED5FF10, count=0x10, result=00007FFFFED5FF08, overlapped=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/file.c:3652] in kernelbase (0x007ffffed5ff10)
+  2 0x006ffffedccb37 service_control_dispatcher+0x137(arg=00007FFFFE723C80) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1683] in sechost (0x006ffffedd00a0)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0110 in process 0100 (C:\windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x1, handles=00007FFFFEF6FA58, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x007ffffef6fa90)
+  3 0x006ffffc43a4cb in mscorsvc (+0x1a4cb) (0x007ffffef6fa90)
+  4 0x006ffffc43aa09 in mscorsvc (+0x1aa09) (0x007ffffef6fa90)
+  5 0x006ffffc43ae0e in mscorsvc (+0x1ae0e) (0x007ffffef6fb48)
+  6 0x006ffffc43af26 in mscorsvc (+0x1af26) (0x007ffffef6fc70)
+  7 0x006ffffc449a62 in mscorsvc (+0x29a62) (0x00000000000001)
+  8 0x006ffffc449d1b in mscorsvc (+0x29d1b) (0x00000000000001)
+  9 0x006ffffedcd53f service_thread+0xcf(arg=00007FFFFE7236B0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1610] in sechost (0x007ffffe7236b0)
+  10 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  11 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0114 in process 0100 (C:\windows\Microsoft.NET\Framework64\v4.0.30319\mscorsvw.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x5, handles=00007FFFFF17FF28, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x007fffff17ff19)
+  3 0x006ffffc439c15 in mscorsvc (+0x19c15) (0x007fffff17ff19)
+  4 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  5 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+First chance exception: page fault on execute access to 0xffbd115c in wow64 32-bit code (0x000000ffbd115c).
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+Register dump:
+ CS:0023 SS:002b DS:002b ES:002b FS:0000 GS:002b
+ EIP:ffbd115c ESP:0102ff44 EBP:0102ff58 EFLAGS:00010246(  R- --  I  Z- -P- )
+ EAX:00000000 EBX:00000000 ECX:00000000 EDX:ffbd115c
+ ESI:00000000 EDI:00000000
+Stack dump:
+0x0000000102ff44:  7b98fd48 00000000 7bb4e497 7bb4e497
+0x0000000102ff54:  00000000 0102ff6c 7bb4e497 00000000
+0x0000000102ff64:  00000000 00000000 0102ffe8 7bb8da8d
+0x0000000102ff74:  7b98fd38 ffbd115c 00000000 00000000
+0x0000000102ff84:  ffbd115c ffffffff 7bb86a00 7bb8dc40
+0x0000000102ff94:  00000000 0102ffe8 00000000 00000000
+Backtrace:
+=>0 0x000000ffbd115c (0x0000000102ff58)
+  1 0x0000007bb4e497 in ntdll (+0xe497) (0x0000000102ff6c)
+  2 0x0000007bb8da8d in ntdll (+0x4da8d) (0x0000000102ffe8)
+0x000000ffbd115c: -- no code accessible --
+
+Backtracing for thread 011c in process 0118 (C:\windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe):
+Backtrace:
+=>0 0x0000007bb4d840 in ntdll (+0xd840) (0x0000000026f998)
+  1 0x0000007b44e2cb WaitForMultipleObjectsEx+0xa6(count=0x4, handles=<is not available>, wait_all=0, timeout=0xffffffff, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x0000000026f998)
+  2 0x0000007b44e1e5 WaitForMultipleObjectsEx+0x2a(alertable=<internal error>, timeout=<internal error>, wait_all=<internal error>, handles=<internal error>, count=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x0000000026f9b4)
+  3 0x0000007b44e1e5 WaitForMultipleObjects+0x30(count=0x4, handles=000000000026F9E8, wait_all=0, timeout=0xffffffff) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:426] in kernelbase (0x0000000026f9b4)
+  4 0x0000007af7cc73 service_run_main_thread+0x343() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1870] in sechost (0x0000000026fbf8)
+  5 0x0000007af78489 StartServiceCtrlDispatcherW+0xe4(servent=000000000026FC50) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1977] in sechost (0x0000000026fc28)
+  6 0x00000079791c90 in mscorsvc (+0x21c90) (0x0000000026fe80)
+  7 0x00000079792b2c in mscorsvc (+0x22b2c) (0x0000000026fea0)
+  8 0x0000000040c5fe in mscorsvw (+0xc5fe) (0x0000000026fedc)
+  9 0x0000000040d91d in mscorsvw (+0xd91d) (0x0000000026fef4)
+  10 0x00000000415248 in mscorsvw (+0x15248) (0x0000000026ff40)
+  11 0x0000007b98fd48 in kernel32 (+0xfd48) (0x0000000026ff58)
+  12 0x0000007bb4e497 in ntdll (+0xe497) (0x0000000026ff6c)
+  13 0x0000007bb8da8d in ntdll (+0x4da8d) (0x0000000026ffe8)
+
+Backtracing for thread 0128 in process 0118 (C:\windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe):
+Backtrace:
+=>0 0x0000007bb4d2f0 in ntdll (+0xd2f0) (0x00000000c2fef4)
+  1 0x0000007b42adbc ReadFile+0x117(file=000000000000005C, buffer=0000000000C2FF20, count=0x10, result=0000000000C2FF18, overlapped=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/file.c:3650] in kernelbase (0x00000000c2fef4)
+  2 0x0000007af7c418 service_control_dispatcher+0x128(arg=000000000015DDB0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1683] in sechost (0x00000000c2ff40)
+  3 0x0000007b98fd48 in kernel32 (+0xfd48) (0x00000000c2ff58)
+  4 0x0000007bb4e497 in ntdll (+0xe497) (0x00000000c2ff6c)
+  5 0x0000007bb8da8d in ntdll (+0x4da8d) (0x00000000c2ffe8)
+
+Backtracing for thread 012c in process 0118 (C:\windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe):
+Backtrace:
+=>0 0x0000007bb4d840 in ntdll (+0xd840) (0x00000000d2fbe4)
+  1 0x0000007b44e2cb WaitForMultipleObjectsEx+0xa6(count=0x1, handles=<is not available>, wait_all=0, timeout=0xea60, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x00000000d2fbe4)
+  2 0x0000007b44e1e5 WaitForMultipleObjectsEx+0x2a(alertable=<internal error>, timeout=<internal error>, wait_all=<internal error>, handles=<internal error>, count=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x00000000d2fc00)
+  3 0x0000007b44e1e5 WaitForMultipleObjects+0x30(count=0x1, handles=0000000000D2FC1C, wait_all=0, timeout=0xea60) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:426] in kernelbase (0x00000000d2fc00)
+  4 0x0000007978ea2b in mscorsvc (+0x1ea2b) (0x00000000d2fc20)
+  5 0x0000007978f3cd in mscorsvc (+0x1f3cd) (0x00000000d2fc5c)
+  6 0x0000007978faad in mscorsvc (+0x1faad) (0x00000000d2fc90)
+  7 0x0000007978fc10 in mscorsvc (+0x1fc10) (0x00000000d2fee0)
+  8 0x0000007979fd79 in mscorsvc (+0x2fd79) (0x00000000d2ff00)
+  9 0x0000007af7cf74 service_thread+0xd4(arg=000000000015D900) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1610] in sechost (0x00000000d2ff40)
+  10 0x0000007b98fd48 in kernel32 (+0xfd48) (0x00000000d2ff58)
+  11 0x0000007bb4e497 in ntdll (+0xe497) (0x00000000d2ff6c)
+  12 0x0000007bb8da8d in ntdll (+0x4da8d) (0x00000000d2ffe8)
+
+Backtracing for thread 0130 in process 0118 (C:\windows\Microsoft.NET\Framework\v4.0.30319\mscorsvw.exe):
+Backtrace:
+=>0 0x0000007bb4d840 in ntdll (+0xd840) (0x00000000f2fea4)
+  1 0x0000007b44e2cb WaitForMultipleObjectsEx+0xa6(count=0x5, handles=<is not available>, wait_all=0, timeout=0xffffffff, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x00000000f2fea4)
+  2 0x0000007b44e1e5 WaitForMultipleObjectsEx+0x2a(alertable=<internal error>, timeout=<internal error>, wait_all=<internal error>, handles=<internal error>, count=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x00000000f2fec0)
+  3 0x0000007b44e1e5 WaitForMultipleObjects+0x30(count=0x5, handles=0000000000F2FEE0, wait_all=0, timeout=0xffffffff) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:426] in kernelbase (0x00000000f2fec0)
+  4 0x0000007978d8d8 in mscorsvc (+0x1d8d8) (0x00000000f2fefc)
+  5 0x0000007978dd01 in mscorsvc (+0x1dd01) (0x00000000f2ff40)
+  6 0x0000007b98fd48 in kernel32 (+0xfd48) (0x00000000f2ff58)
+  7 0x0000007bb4e497 in ntdll (+0xe497) (0x00000000f2ff6c)
+  8 0x0000007bb8da8d in ntdll (+0x4da8d) (0x00000000f2ffe8)
+wine: Unhandled page fault on execute access to FFBD115C at address FFBD115C (thread 01f0), starting debugger...
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 0138 in process 0134 (C:\windows\system32\plugplay.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x4, handles=00007FFFFE23FCD0, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x006fffffbe64a0)
+  3 0x006ffffedcd27e service_run_main_thread+0x29e() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1871] in sechost (0x006fffffbe64a0)
+  4 0x00000140002571 wmain+0x11(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/plugplay/main.c:268] in plugplay (0000000000000000)
+  5 0x00000140002617 wmainCRTStartup+0x97() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/msvcrt/crt_wmain.c:68] in plugplay (0000000000000000)
+  6 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  7 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 014c in process 0134 (C:\windows\system32\plugplay.exe):
+Backtrace:
+=>0 0x006fffffbced34 in ntdll (+0xed34) (0x007ffffee1ff10)
+  1 0x006fffff3ac778 ReadFile+0x110(file=0000000000000054, buffer=00007FFFFEE1FF10, count=0x10, result=00007FFFFEE1FF08, overlapped=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/file.c:3652] in kernelbase (0x007ffffee1ff10)
+  2 0x006ffffedccb37 service_control_dispatcher+0x137(arg=00007FFFFE26B440) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1683] in sechost (0x006ffffedd00a0)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0150 in process 0134 (C:\windows\system32\plugplay.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007ffffe263780)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007ffffe263780)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007ffffe263780)
+  3 0x00000140001535 ServiceMain+0x1e5(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/plugplay/main.c:249] in plugplay (0x007ffffe263780)
+  4 0x006ffffedcd53f service_thread+0xcf(arg=<register RBP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1610] in sechost (0x007ffffe263780)
+  5 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  6 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0154 in process 0134 (C:\windows\system32\plugplay.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x2, handles=00007FFFFF131AE0, wait_all=0, timeout=<internal error>, alertable=0x1) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006ffffe706598 rpcrt4_protseq_np_wait_for_new_connection+0x38(protseq=00007FFFFE26FBF0, count=0x2, wait_array=00007FFFFF131AE0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:731] in rpcrt4 (0x006fffff9f12fc)
+  3 0x006ffffe6eb126 RPCRT4_server_thread+0x76(the_arg=00007FFFFE26FBF0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:665] in rpcrt4 (0x007fffff53ff3c)
+  4 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  5 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0168 in process 0134 (C:\windows\system32\plugplay.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007fffff84fd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007fffff84fd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007fffff84fd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007fffff84fd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007fffff84fd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 016c in process 0134 (C:\windows\system32\plugplay.exe):
+Backtrace:
+=>0 0x006fffffbd0d14 in ntdll (+0x10d14) (0000000000000000)
+  1 0x006fffffbfcc88 RtlWaitOnAddress+0x168(addr=00007FFFFF1354E0, cmp=00007FFFFFB5EF6C, size=<internal error>, timeout=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:912] in ntdll (0000000000000000)
+  2 0x006fffffbf8714 RtlSleepConditionVariableCS+0x34(variable=00007FFFFF1354E0, crit=0000000140003060, timeout=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:771] in ntdll (0x006fffff9f0edc)
+  3 0x006fffff3c173d SleepConditionVariableCS+0x25(variable=<internal error>, crit=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:1189] in kernelbase (0x006fffff9f0edc)
+  4 0x0000014000212e list_next+0x2e(handle=00007FFFFF1354C0, path=00007FFFFF1354F0, data=00007FFFFF135520, size=00007FFFFF135550) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/include/wine/list.h:121] in plugplay (0x006fffff9f0edc)
+  5 0x0000014000212e list_head+0x2e(handle=<register RBX not accessible in this frame>, path=<register R15 not accessible in this frame>, data=<register R14 not accessible in this frame>, size=<register R13 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/plugplay/main.c:122] in plugplay (0x006fffff9f0edc)
+  6 0x0000014000212e plugplay_get_event+0x5e(handle=<register RBX not accessible in this frame>, path=<register R15 not accessible in this frame>, data=<register R14 not accessible in this frame>, size=<register R13 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/plugplay/main.c:122] in plugplay (0x006fffff9f0edc)
+  7 0x006ffffe6cd75a in rpcrt4 (+0xd75a) (0x007fffffb5f090)
+  8 0x006ffffe6e293f NdrStubCall2+0x30f(pThis=<is not available>, pChannel=<is not available>, pRpcMsg=<register RDI not accessible in this frame>, pdwStubPhase=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/ndr_stubless.c:1412] in rpcrt4 (0x007fffffb5f110)
+  9 0x006ffffe6e1615 NdrServerCall2+0x15(pRpcMsg=<register R8 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/ndr_stubless.c:1485] in rpcrt4 (0x007fffff133640)
+  10 0x006ffffe700e6c __wine_pop_frame(conn=[<register RSP not accessible in this frame>, hdr=<register RBP not accessible in this frame>, msg=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/include/wine/exception.h:278] in rpcrt4 (0x007fffff133640)
+  11 0x006ffffe700e6c process_request_packet+0x33c(conn=[<register RSP not accessible in this frame>, hdr=<register RBP not accessible in this frame>, msg=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:436] in rpcrt4 (0x007fffff133640)
+  12 0x006ffffe6eba47 RPCRT4_process_packet+0x10c(auth_length=<internal error>, auth_data=<internal error>, msg=<internal error>, hdr=<internal error>, conn=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:515] in rpcrt4 (0000000000000000)
+  13 0x006ffffe6eba47 RPCRT4_worker_thread+0x127(the_arg=<register RBX not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:541] in rpcrt4 (0000000000000000)
+  14 0x006fffffc2efd7 process_rtl_work_item+0x17(instance=<internal error>, userdata=<register RBX not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/threadpool.c:422] in ntdll (0x007fffffb5fe60)
+  15 0x006fffffc33c6a tp_object_execute+0x3da(object=<register RBX not accessible in this frame>, wait_thread=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/threadpool.c:2331] in ntdll (0x007fffffb5fe60)
+  16 0x006fffffc32ca1 threadpool_worker_proc+0x191(param=<register R15 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/threadpool.c:2463] in ntdll (0x007fffff133eb8)
+  17 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  18 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 019c in process 0134 (C:\windows\system32\plugplay.exe):
+Backtrace:
+=>0 0x006fffffbcecf4 in ntdll (+0xecf4) (0x007e36f5fefd90)
+  1 0x006fffff3d08dd WaitForSingleObjectEx+0x41(alertable=<internal error>, timeout=<internal error>, handle=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:412] in kernelbase (0x007e36f5fefd90)
+  2 0x006fffff3d08dd WaitForSingleObject+0x45(handle=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:396] in kernelbase (0x007e36f5fefd90)
+  3 0x006ffffe701668 rpcrt4_conn_np_read+0x118(conn=<register RSI not accessible in this frame>, buffer=<register RBP not accessible in this frame>, count=<register R12 not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_transport.c:397] in rpcrt4 (0x007e36f5fefd90)
+  4 0x006ffffe6ea0b3 RPCRT4_default_receive_fragment+0x53(Connection=<register RDI not accessible in this frame>, Header=<register RBX not accessible in this frame>, Payload=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1296] in rpcrt4 (0x007e36f5fefd90)
+  5 0x006ffffe6e8973 RPCRT4_receive_fragment+0x577(Payload=<internal error>, Header=<internal error>, Connection=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1361] in rpcrt4 (0x006ffffe70e400)
+  6 0x006ffffe6e8973 RPCRT4_ReceiveWithAuth+0x603(Connection=<register R12 not accessible in this frame>, Header=<register R14 not accessible in this frame>, pMsg=<register RBX not accessible in this frame>, auth_data_out=[<register RSP not accessible in this frame>, auth_length_out=[<register RSP not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_message.c:1408] in rpcrt4 (0x006ffffe70e400)
+  7 0x006ffffe6eac98 RPCRT4_io_thread+0x88(the_arg=<register RSI not accessible in this frame>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/rpcrt4/rpc_server.c:561] in rpcrt4 (0x006ffffe70e400)
+  8 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  9 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+018c:err:wineusb:usb_main_loop Error handling events: System call interrupted (perhaps due to signal)
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+0x006fffffbd1181 ntdll+0x11181: retq 
+
+Backtracing for thread 0164 in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x4, handles=00007FFFFE23FCB0, wait_all=0, timeout=<internal error>, alertable=0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006fffff3d069e WaitForMultipleObjects+0x16(count=<internal error>, handles=<internal error>, wait_all=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:442] in kernelbase (0x006fffffbe64a0)
+  3 0x006ffffedcd27e service_run_main_thread+0x29e() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1871] in sechost (0x006fffffbe64a0)
+  4 0x00000140002609 wmain+0x39(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/winedevice/device.c:159] in winedevice (0000000000000000)
+  5 0x000001400026a7 wmainCRTStartup+0x97() [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/msvcrt/crt_wmain.c:68] in winedevice (0000000000000000)
+  6 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  7 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0174 in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbced34 in ntdll (+0xed34) (0x007ffffeb4ff10)
+  1 0x006fffff3ac778 ReadFile+0x110(file=000000000000002C, buffer=00007FFFFEB4FF10, count=0x10, result=00007FFFFEB4FF08, overlapped=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/file.c:3652] in kernelbase (0x007ffffeb4ff10)
+  2 0x006ffffedccb37 service_control_dispatcher+0x137(arg=00007FFFFE266D90) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1683] in sechost (0x006ffffedd00a0)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0178 in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x000000fffffff4)
+  1 0x006fffff3d0810 WaitForMultipleObjectsEx+0xc8(count=0x2, handles=00007FFFFEE5FB10, wait_all=0, timeout=<internal error>, alertable=0x1) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:451] in kernelbase (0x000000fffffff4)
+  2 0x006ffffb5edb46 wine_ntoskrnl_main_loop+0x426(stop_event=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntoskrnl.exe/ntoskrnl.c:1069] in ntoskrnl (0x006fffffc3cbb0)
+  3 0x000001400013f4 ServiceMain+0x104(argc=<internal error>, argv=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/programs/winedevice/device.c:143] in winedevice (0x00000140003020)
+  4 0x006ffffedcd53f service_thread+0xcf(arg=00007FFFFE2636D0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/sechost/service.c:1610] in sechost (0x007ffffe2636d0)
+  5 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  6 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 017c in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbd0d14 in ntdll (+0x10d14) (0000000000000000)
+  1 0x006fffffbfcc88 RtlWaitOnAddress+0x168(addr=00006FFFFB6104C0, cmp=00007FFFFF26FEBC, size=<internal error>, timeout=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:912] in ntdll (0000000000000000)
+  2 0x006fffffbf8714 RtlSleepConditionVariableCS+0x34(variable=00006FFFFB6104C0, crit=00006FFFFB5EE420, timeout=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/sync.c:771] in ntdll (0x006fffff9f0edc)
+  3 0x006fffff3c173d SleepConditionVariableCS+0x25(variable=<internal error>, crit=<internal error>, timeout=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/sync.c:1189] in kernelbase (0x006fffff9f0edc)
+  4 0x006ffffb5e52b0 device_enum_thread_proc+0x50(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntoskrnl.exe/pnp.c:1748] in ntoskrnl (0x006fffff9f0edc)
+  5 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  6 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0180 in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006ffff87b1eea bus_main_thread+0xaa(args=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/winebus.sys/main.c:985] in winebus.sys (0x00000000000054)
+  1 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  2 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0184 in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006ffff87b1eea bus_main_thread+0xaa(args=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/winebus.sys/main.c:985] in winebus.sys (0x00000000000054)
+  1 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  2 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 018c in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006ffff868243a event_thread_proc+0x7a(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/wineusb.sys/wineusb.c:199] in wineusb.sys (0x006fffffbe64a0)
+  1 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  2 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0194 in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x00000000000002)
+  1 0x006ffffb5e071c KeWaitForMultipleObjects+0x10c(count=0x2, pobjs=000077BD1AE1FEE0, wait_type=WaitAny, reason=<internal error>, mode=0, alertable=0, timeout=0000000000000000, wait_blocks=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntoskrnl.exe/sync.c:102] in ntoskrnl (0x00000000000002)
+  2 0x006ffff86c37bd hid_device_thread+0x26d(args=<is not available>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/hidclass.sys/device.c:342] in hidclass.sys (0000000000000000)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 0198 in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006fffffbcf7d4 in ntdll (+0xf7d4) (0x00000000000002)
+  1 0x006ffffb5e071c KeWaitForMultipleObjects+0x10c(count=0x2, pobjs=000077BD1AC0FEE0, wait_type=WaitAny, reason=<internal error>, mode=0, alertable=0, timeout=0000000000000000, wait_blocks=0000000000000000) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntoskrnl.exe/sync.c:102] in ntoskrnl (0x00000000000002)
+  2 0x006ffff86c37bd hid_device_thread+0x26d(args=<is not available>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/hidclass.sys/device.c:342] in hidclass.sys (0000000000000000)
+  3 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  4 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+
+Backtracing for thread 01a4 in process 0160 (C:\windows\system32\winedevice.exe):
+Backtrace:
+=>0 0x006ffff8608530 winebluetooth_get_event+0x40(result=000077BD1A9FFBD0) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/winebth.sys/winebluetooth.c:271] in winebth.sys (0x006ffff8609080)
+  1 0x006ffff8601d17 bluetooth_event_loop_thread_proc+0x57(arg=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/winebth.sys/winebth.c:1660] in winebth.sys (0x006ffff8609080)
+  2 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  3 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+018c:err:wineusb:usb_main_loop Error handling events: System call interrupted (perhaps due to signal)
+018c:err:wineusb:usb_main_loop Error handling events: System call interrupted (perhaps due to signal)
+
+Backtracing for thread 01b8 in process 01b4 (C:\Program Files\Mastercam 2027\MastercamLauncher.exe):
+Backtrace:
+=>0 0x006fffffbd1151 in ntdll (+0x11151) (0x006fffffc3d460)
+  1 0x006fffffc20003 loader_init+0x253(context=<internal error>, entry=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/loader.c:4588] in ntdll (0x006fffffc3d460)
+  2 0x006fffffbd7f44 LdrInitializeThunk+0x14(context=000000000014FB00, unk2=<internal error>, unk3=<internal error>, unk4=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/ntdll/signal_x86_64.c:1043] in ntdll (0000000000000000)
+Wine-dbg>First chance exception: C++ exception(object = 000000000014F470, type = 00006FFFF85E40B8, base = 00006FFFF85D0000) in 64-bit code (0x006fffff3ab49e).
+01b0:fixme:dbghelp:elf_search_auxv can't find symbol in module
+Register dump:
+ rip:00006fffff3ab49e rsp:000000000014f2d0 rbp:00000000000000b0 eflags:00000202 (   - --  I   - - - )
+ rax:000000000014f310 rbx:00006fffff9eff04 rcx:000000000014f2f0 rdx:0000000000000001
+ rsi:000000000014f400 rdi:000000000014f330  r8:0000000000000004  r9:000000000014f3e0 r10:0000000000000060
+ r11:0000000000000020 r12:0000000000000000 r13:000000000014fdf8 r14:000000000014f588 r15:0000000000000000
+Stack dump:
+0x0000000014f2d0:  000000000014f2f0 000000000014f470
+0x0000000014f2e0:  00000000000000b0 0000000000000000
+0x0000000014f2f0:  00000001e06d7363 0000000000000000
+0x0000000014f300:  00006fffff3ab49e 00006fff00000004
+0x0000000014f310:  0000000019930520 000000000014f470
+0x0000000014f320:  00006ffff85e40b8 00006ffff85d0000
+0x0000000014f330:  000000000014f3c8 00006ffff85e0e00
+0x0000000014f340:  000000000014f3f8 00006ffffe9b8d4d
+0x0000000014f350:  00006ffff85d0000 00006fffffbf20a5
+0x0000000014f360:  000000000014f478 000000000014f3f8
+0x0000000014f370:  000000000014f478 00006ffffe9a034c
+0x0000000014f380:  0000000000000000 00006ffff85e40b8
+Backtrace:
+=>0 0x006fffff3ab49e RaiseException+0x46(code=<internal error>, flags=<internal error>, count=<is not available>, args=<internal error>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/debug.c:334] in kernelbase (0x000000000000b0)
+  1 0x006ffffe9992d5 _CxxThrowException+0x65(object=<internal error>, type=<is not available>) [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/msvcrt/cpp.c:920] in ucrtbase (0x000000000000b0)
+  2 0x006ffff85d38a5 in cnc.utilities.core.windows (+0x38a5) (0x000000000000b0)
+  3 0x006ffff85d3a9a in cnc.utilities.core.windows (+0x3a9a) (0x0000000014f589)
+  4 0x006ffff85d3e2a in cnc.utilities.core.windows (+0x3e2a) (0x0000000014f6f0)
+  5 0x006ffff85d4eb6 in cnc.utilities.core.windows (+0x4eb6) (0x0000000014f900)
+  6 0x006ffff85d4ae2 in cnc.utilities.core.windows (+0x4ae2) (0x0000000014fb10)
+  7 0x000001400a043b in mastercamlauncher (+0xa043b) (0x0000000014feb8)
+  8 0x000001400a012a in mastercamlauncher (+0xa012a) (0x0000000014feb8)
+  9 0x00000140823dd3 in mastercamlauncher (+0x823dd3) (0x00000140000000)
+  10 0x000001402b1c12 in mastercamlauncher (+0x2b1c12) (0000000000000000)
+  11 0x006fffff9f1799 in kernel32 (+0x11799) (0000000000000000)
+  12 0x006fffffbd111b in ntdll (+0x1111b) (0000000000000000)
+0x006fffff3ab49e RaiseException+0x46 [/home/asdf/projects/mastercam-wine/wine/wine-11.18/dlls/kernelbase/debug.c:334] in kernelbase: nop 
+334	    RtlRaiseException( &record );
+Wine-dbg>01c8:fixme:powrprof:PowerUnregisterSuspendResumeNotification (00000000DEADBEEF) stub!
+winedbg exited rc=1

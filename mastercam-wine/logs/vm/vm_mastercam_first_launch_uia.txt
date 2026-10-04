@@ -1,0 +1,82 @@
+﻿cmd=# nonce 1791046267.908152718
+$ErrorActionPreference='Continue'
+Add-Type -AssemblyName UIAutomationClient,UIAutomationTypes
+$AE=[System.Windows.Automation.AutomationElement]; $TS=[System.Windows.Automation.TreeScope]
+foreach ($p in (Get-Process Mastercam)) {
+  "== pid $($p.Id) =="
+  $c=New-Object System.Windows.Automation.PropertyCondition($AE::ProcessIdProperty,[int]$p.Id)
+  $w=$AE::RootElement.FindAll($TS::Children,$c)
+  foreach($x in $w){
+    "W: '$($x.Current.Name)' class=$($x.Current.ClassName) rect=$($x.Current.BoundingRectangle)"
+    $k=$x.FindAll($TS::Descendants,[System.Windows.Automation.Condition]::TrueCondition)
+    $i=0
+    foreach($e in $k){ if($i -ge 25){break}; if(-not $e.Current.IsOffscreen){ "   '$($e.Current.Name)' [$($e.Current.ControlType.ProgrammaticName)] rect=$($e.Current.BoundingRectangle)"; $i++ } }
+  }
+}
+rc=0
+--- output ---
+== pid 1640 ==
+W: 'Mastercam 2027' class=#32770 rect=470,349,399,159
+   'Yes' [ControlType.Pane] rect=688,468,75,23
+   'No' [ControlType.Pane] rect=771,468,75,23
+   '' [ControlType.Pane] rect=499,403,32,32
+   'No Mastercam license found.  Do you have an activation code?' [ControlType.Pane] rect=540,406,293,28
+W: '' class=Window rect=440,176,400,400
+   '' [ControlType.Custom] rect=440,176,400,400
+   '' [ControlType.Image] rect=441,177,398,398
+   '' [ControlType.Image] rect=441,177,398,398
+   '' [ControlType.Image] rect=472,337,337,87
+   'License number:' [ControlType.Text] rect=491,426,64,11
+   'License number:' [ControlType.Text] rect=491,426,63,11
+   '' [ControlType.Text] rect=555,426,234,11
+   'License type:' [ControlType.Text] rect=491,437,51,12
+   'License type:' [ControlType.Text] rect=491,437,50,12
+   '' [ControlType.Text] rect=542,437,247,12
+   'User type:' [ControlType.Text] rect=491,449,40,12
+   'User type:' [ControlType.Text] rect=491,449,39,12
+   '' [ControlType.Text] rect=531,449,258,12
+   'Expiration date:' [ControlType.Text] rect=491,461,61,11
+   'Expiration date:' [ControlType.Text] rect=491,461,60,11
+   '' [ControlType.Text] rect=552,461,237,11
+   'Version:' [ControlType.Text] rect=491,472,31,12
+   'Version:' [ControlType.Text] rect=491,472,30,12
+   '29.0.10172.0' [ControlType.Text] rect=522,472,267,12
+   '© 1983-2026 CNC Software, LLC. All Rights Reserved.' [ControlType.Text] rect=491,484,298,11
+   '© 1983-2026 CNC Software, LLC. All Rights Reserved.' [ControlType.Text] rect=491,484,207,11
+   'Checking license...' [ControlType.Text] rect=491,528,298,12
+   '' [ControlType.ProgressBar] rect=491,540,298,9
+   '' [ControlType.Image] rect=817,188,10,10
+   '' [ControlType.Button] rect=817,188,10,10
+== pid 5548 ==
+W: 'Mastercam 2027' class=#32770 rect=492,371,399,159
+   'Yes' [ControlType.Pane] rect=710,490,75,23
+   'No' [ControlType.Pane] rect=793,490,75,23
+   '' [ControlType.Pane] rect=521,425,32,32
+   'No Mastercam license found.  Do you have an activation code?' [ControlType.Pane] rect=562,428,293,28
+W: '' class=Window rect=440,176,400,400
+   '' [ControlType.Custom] rect=440,176,400,400
+   '' [ControlType.Image] rect=441,177,398,398
+   '' [ControlType.Image] rect=441,177,398,398
+   '' [ControlType.Image] rect=472,337,337,87
+   'License number:' [ControlType.Text] rect=491,426,64,11
+   'License number:' [ControlType.Text] rect=491,426,63,11
+   '' [ControlType.Text] rect=555,426,234,11
+   'License type:' [ControlType.Text] rect=491,437,51,12
+   'License type:' [ControlType.Text] rect=491,437,50,12
+   '' [ControlType.Text] rect=542,437,247,12
+   'User type:' [ControlType.Text] rect=491,449,40,12
+   'User type:' [ControlType.Text] rect=491,449,39,12
+   '' [ControlType.Text] rect=531,449,258,12
+   'Expiration date:' [ControlType.Text] rect=491,461,61,11
+   'Expiration date:' [ControlType.Text] rect=491,461,60,11
+   '' [ControlType.Text] rect=552,461,237,11
+   'Version:' [ControlType.Text] rect=491,472,31,12
+   'Version:' [ControlType.Text] rect=491,472,30,12
+   '29.0.10172.0' [ControlType.Text] rect=522,472,267,12
+   '© 1983-2026 CNC Software, LLC. All Rights Reserved.' [ControlType.Text] rect=491,484,298,11
+   '© 1983-2026 CNC Software, LLC. All Rights Reserved.' [ControlType.Text] rect=491,484,207,11
+   'Checking license...' [ControlType.Text] rect=491,528,298,12
+   '' [ControlType.ProgressBar] rect=491,540,298,9
+   '' [ControlType.Image] rect=817,188,10,10
+   '' [ControlType.Button] rect=817,188,10,10
+

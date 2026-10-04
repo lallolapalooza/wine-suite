@@ -1,0 +1,24 @@
+﻿cmd=# nonce 1791043392.261137130
+$ErrorActionPreference='Continue'
+$U='http://192.168.122.1:8000/'
+$B='C:\Users\adsf\vm_mc_boot.ps1'
+curl.exe -s -o $B ($U+'vm_mc_boot.ps1')
+"boot_script_bytes=" + (Get-Item $B).Length
+"launching RunAs..."
+Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File',$B
+"runas-returned"
+Start-Sleep -Seconds 3
+"--- boot log ---"
+Get-Content 'C:\vm_mc_boot.log' -ErrorAction SilentlyContinue | Select-Object -First 25
+start=2026-10-03T09:03:14.7831198-07:00
+rc=0
+end=2026-10-03T09:03:28.0996285-07:00
+--- output ---
+boot_script_bytes=2299
+launching RunAs...
+runas-returned
+--- boot log ---
+
+2026-10-03T09:03:27.4627317-07:00 elevated=True
+2026-10-03T09:03:27.4807876-07:00 user=adsf TEMP=C:\Users\adsf\AppData\Local\Temp
+

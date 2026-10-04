@@ -1,0 +1,118 @@
+start 12:30:13 tag=direct3 prefix=/home/asdf/projects/mastercam-wine/state/work/prefix display=:2 secs=45 debug=+timestamp,+seh,+module exe=Mastercam.exe extra=''
+t=15s alive=4 win=0xc00003
+t=30s alive=4 win=0xc00003
+t=45s alive=4 win=0xc00003
+=== windows ===
+     0xc00003 (has no name): ("mastercam.exe" "mastercam.exe")  1x1+0+0  +0+0
+     0xc00002 "Default IME": ("mastercam.exe" "mastercam.exe")  1x1+0+0  +0+0
+     0x600007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x600003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+        0xc00001 "C:\Program Files\Mastercam 2027\Mastercam.exe": ("mastercam.exe" "mastercam.exe")  307x82+1+22  +646+472
+=== stderr tail ===
+226140.659:010c:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorsvc.dll"
+226140.690:010c:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 00007FFFFEF6E8E0, base 00007FFFFEF6E8D8.
+226140.690:010c:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 00006FFFFC420000 (load path (null))
+226140.690:010c:trace:module:LdrGetDllFullName module 00006FFFFC420000, name 00007FFFFEF6E8C0.
+226140.690:010c:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorsvc.dll"
+226140.691:010c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+226140.692:010c:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 00007FFFFEF6EBC0, base 00007FFFFEF6EBB8.
+226140.692:010c:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 00006FFFFC420000 (load path (null))
+226140.692:010c:trace:module:LdrGetDllFullName module 00006FFFFC420000, name 00007FFFFEF6EBA0.
+226140.692:010c:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorsvc.dll"
+226140.731:010c:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 00007FFFFEF6E960, base 00007FFFFEF6E958.
+226140.731:010c:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 00006FFFFC420000 (load path (null))
+226140.731:010c:trace:module:LdrGetDllFullName module 00006FFFFC420000, name 00007FFFFEF6E940.
+226140.731:010c:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorsvc.dll"
+226140.731:010c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+226140.772:010c:trace:module:LdrGetDllHandleEx flags 0x1, load_path 0000000000000000, dll_characteristics 0000000000000000, name 00007FFFFEF6F620, base 00007FFFFEF6F618.
+226140.772:010c:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 00006FFFFC420000 (load path (null))
+226140.772:010c:trace:module:LdrGetDllFullName module 00006FFFFC420000, name 00007FFFFEF6F600.
+226140.772:010c:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorsvc.dll"
+226140.857:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2F7D8, base 00D2F7D4.
+226140.857:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.857:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2F7C8.
+226140.857:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226140.858:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2EF44, base 00D2EF40.
+226140.858:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.858:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2EF34.
+226140.858:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226140.858:0130:trace:module:load_dll looking for L"advapi32.dll" in L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319;C:\\windows\\system32;C:\\windows\\system;C:\\windows;.;C:\\windows\\system32;C:\\windows;C:\\windows\\system32\\wbem;C:\\windows\\system32\\WindowsPowershell\\v1.0;C:\\Program Files\\dotnet\\"
+226140.858:0130:trace:module:load_dll Found L"C:\\windows\\system32\\ADVAPI32.dll" for L"advapi32.dll" at 7B2D0000, count=-1
+226140.858:0130:fixme:service:QueryServiceConfig2W flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2F588, base 00D2F584.
+226140.858:0130:trace:module:LdrGetDllHandleEx L"ntdll.dll" -> 7BB40000 (load path (null))
+Level 6 not implemented
+226140.859:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2EF44, base 00D2EF40.
+226140.859:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.859:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2EF34.
+226140.859:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226140.859:0130:fixme:service:QueryServiceConfig2W Level 6 not implemented
+226140.860:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2F008, base 00D2F004.
+226140.860:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.860:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2EFF8.
+226140.860:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226140.861:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2EF44, base 00D2EF40.
+226140.861:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.861:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2EF34.
+226140.861:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226140.861:0130:fixme:service:QueryServiceConfig2W Level 6 not implemented
+226140.862:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2EF98, base 00D2EF94.
+226140.862:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.862:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2EF88.
+226140.862:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226140.912:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2EF44, base 00D2EF40.
+226140.912:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.912:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2EF34.
+226140.912:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226140.912:0130:fixme:service:QueryServiceConfig2W Level 6 not implemented
+226140.913:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2EF98, base 00D2EF94.
+226140.913:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.913:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2EF88.
+226140.913:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226140.960:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2EF74, base 00D2EF70.
+226140.960:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.960:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2EF64.
+226140.960:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226140.960:0130:fixme:service:QueryServiceConfig2W Level 6 not implemented
+226140.998:0130:trace:module:LdrGetDllHandleEx flags 0x1, load_path 00000000, dll_characteristics 00000000, name 00D2F7D8, base 00D2F7D4.
+226140.999:0130:trace:module:LdrGetDllHandleEx L"mscorsvc.dll" -> 79770000 (load path (null))
+226140.999:0130:trace:module:LdrGetDllFullName module 79770000, name 00D2F7C8.
+226140.999:0130:trace:module:GetModuleFileNameW L"C:\\windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorsvc.dll"
+226141.505:01bc:trace:module:LdrShutdownThread ()
+226141.505:01bc:trace:module:MODULE_InitDLL (00006FFFFE6C0000 L"rpcrt4.dll",THREAD_DETACH,0000000000000000) - CALL
+226141.505:01bc:trace:module:MODULE_InitDLL (00006FFFFE6C0000,THREAD_DETACH,0000000000000000) - RETURN 1
+226141.505:01bc:trace:module:MODULE_InitDLL (00006FFFFE980000 L"ucrtbase.dll",THREAD_DETACH,0000000000000000) - CALL
+226141.505:01bc:trace:module:MODULE_InitDLL (00006FFFFE980000,THREAD_DETACH,0000000000000000) - RETURN 1
+226141.505:01bc:trace:module:MODULE_InitDLL (00006FFFFEE60000 L"msvcrt.dll",THREAD_DETACH,0000000000000000) - CALL
+226141.505:01bc:trace:module:MODULE_InitDLL (00006FFFFEE60000,THREAD_DETACH,0000000000000000) - RETURN 1
+226141.897:020c:trace:module:LdrShutdownThread ()
+226141.897:020c:trace:module:MODULE_InitDLL (00006FFFFE5B0000 L"ws2_32.dll",THREAD_DETACH,0000000000000000) - CALL
+226141.897:020c:trace:module:MODULE_InitDLL (00006FFFFE5B0000,THREAD_DETACH,0000000000000000) - RETURN 1
+226141.897:020c:trace:module:MODULE_InitDLL (00006FFFFE6C0000 L"rpcrt4.dll",THREAD_DETACH,0000000000000000) - CALL
+226141.897:020c:trace:module:MODULE_InitDLL (00006FFFFE6C0000,THREAD_DETACH,0000000000000000) - RETURN 1
+226141.897:020c:trace:module:MODULE_InitDLL (00006FFFFE980000 L"ucrtbase.dll",THREAD_DETACH,0000000000000000) - CALL
+226141.897:020c:trace:module:MODULE_InitDLL (00006FFFFE980000,THREAD_DETACH,0000000000000000) - RETURN 1
+226141.897:020c:trace:module:MODULE_InitDLL (00006FFFFEE60000 L"msvcrt.dll",THREAD_DETACH,0000000000000000) - CALL
+226141.897:020c:trace:module:MODULE_InitDLL (00006FFFFEE60000,THREAD_DETACH,0000000000000000) - RETURN 1
+226145.960:0050:trace:module:LdrShutdownThread ()
+226145.960:0050:trace:module:MODULE_InitDLL (00006FFFFE6C0000 L"rpcrt4.dll",THREAD_DETACH,0000000000000000) - CALL
+226145.960:0050:trace:module:MODULE_InitDLL (00006FFFFE6C0000,THREAD_DETACH,0000000000000000) - RETURN 1
+226145.960:0050:trace:module:MODULE_InitDLL (00006FFFFE980000 L"ucrtbase.dll",THREAD_DETACH,0000000000000000) - CALL
+226145.960:0050:trace:module:MODULE_InitDLL (00006FFFFE980000,THREAD_DETACH,0000000000000000) - RETURN 1
+226145.960:0050:trace:module:MODULE_InitDLL (00006FFFFEE60000 L"msvcrt.dll",THREAD_DETACH,0000000000000000) - CALL
+226145.960:0050:trace:module:MODULE_InitDLL (00006FFFFEE60000,THREAD_DETACH,0000000000000000) - RETURN 1
+226145.961:00cc:trace:module:LdrShutdownThread ()
+226145.961:00cc:trace:module:MODULE_InitDLL (00006FFFFE6C0000 L"rpcrt4.dll",THREAD_DETACH,0000000000000000) - CALL
+226145.961:00cc:trace:module:MODULE_InitDLL (00006FFFFE6C0000,THREAD_DETACH,0000000000000000) - RETURN 1
+226145.961:00cc:trace:module:MODULE_InitDLL (00006FFFFE980000 L"ucrtbase.dll",THREAD_DETACH,0000000000000000) - CALL
+226145.961:00cc:trace:module:MODULE_InitDLL (00006FFFFE980000,THREAD_DETACH,0000000000000000) - RETURN 1
+226145.961:00cc:trace:module:MODULE_InitDLL (00006FFFFEE60000 L"msvcrt.dll",THREAD_DETACH,0000000000000000) - CALL
+226145.961:00cc:trace:module:MODULE_InitDLL (00006FFFFEE60000,THREAD_DETACH,0000000000000000) - RETURN 1
+226147.989:01cc:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+226166.260:01cc:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+end 12:31:01

@@ -1,0 +1,39 @@
+﻿
+2026-10-03T09:44:09.8772126-07:00 elevated=True
+2026-10-03T09:44:09.9748617-07:00 freeGB=2.34
+2026-10-03T09:44:15.5909750-07:00 TREE C:\Program Files\Mastercam 2027 -> C:\vm_tree_Program_Files_Mastercam_2027.txt files=10506 MB=3649
+2026-10-03T09:44:16.9865882-07:00 PUT vm_tree_Program_Files_Mastercam_2027.txt 1312851 bytes
+2026-10-03T09:46:43.9207690-07:00 PUT vm_ver_Program_Files_Mastercam_2027.txt 92236 bytes
+2026-10-03T09:46:44.2859476-07:00 TREE C:\Program Files\Common Files\Mastercam -> C:\vm_tree_Program_Files_Common_Files_Mastercam.txt files=613 MB=127.6
+2026-10-03T09:46:44.3638447-07:00 PUT vm_tree_Program_Files_Common_Files_Mastercam.txt 108118 bytes
+2026-10-03T09:46:52.3898284-07:00 PUT vm_ver_Program_Files_Common_Files_Mastercam.txt 4476 bytes
+2026-10-03T09:46:52.4015159-07:00 absent: C:\Program Files (x86)\Common Files\Mastercam
+2026-10-03T09:46:52.4086614-07:00 absent: C:\Users\Public\Documents\Shared Mastercam 2027
+2026-10-03T09:46:52.4186390-07:00 absent: C:\ProgramData\Mastercam
+2026-10-03T09:46:52.4247418-07:00 absent: C:\ProgramData\Mastercam 2027
+2026-10-03T09:46:52.4288439-07:00 absent: C:\Program Files\Mastercam
+2026-10-03T09:46:52.4309108-07:00 absent: C:\Program Files\mcam
+2026-10-03T09:46:52.4406018-07:00 --- uninstall registry ---
+2026-10-03T09:46:53.4915633-07:00 uninstall entries: 39
+2026-10-03T09:46:53.6195059-07:00 PUT vm_uninstall_reg.txt 20329 bytes
+2026-10-03T09:46:53.6276282-07:00 --- services ---
+2026-10-03T09:46:54.2021222-07:00 PUT vm_services.txt 15558 bytes
+2026-10-03T09:46:54.2041389-07:00 --- install logs ---
+2026-10-03T09:46:58.0908241-07:00 log C:\Users\adsf\AppData\Local\Temp\mcim_10-03-26_09-03-37-505.log 25610 bytes
+2026-10-03T09:46:58.2251625-07:00 log C:\Users\adsf\AppData\Local\Temp\Licensing_Utilities_Install_10-03-26_09-21-15.log 5038144 bytes
+2026-10-03T09:46:59.5554689-07:00 log C:\Users\adsf\AppData\Local\Temp\Mastercam_2027_Install_10-03-26_09-26-25.log 8361464 bytes
+2026-10-03T09:47:00.9046523-07:00 --- shortcuts ---
+2026-10-03T09:47:01.0963550-07:00 shortcut C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Mastercam 2027
+2026-10-03T09:47:01.1004366-07:00 shortcut C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Mastercam Licensing Utilities
+2026-10-03T09:47:01.1832041-07:00 shortcut C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Mastercam 2027\Mastercam 2027.lnk
+2026-10-03T09:47:01.1887973-07:00 shortcut C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Mastercam 2027\Documentation\Mastercam Basics.lnk
+2026-10-03T09:47:01.1928699-07:00 shortcut C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Mastercam 2027\Utilities\Mastercam Launcher.lnk
+2026-10-03T09:47:01.1948850-07:00 shortcut C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Mastercam Licensing Utilities\MastercamDotCom Linking.lnk
+2026-10-03T09:47:01.2274132-07:00 desktop C:\Users\Public\Desktop\AutoCAD 2027 - English.lnk
+2026-10-03T09:47:01.2349971-07:00 desktop C:\Users\Public\Desktop\Mastercam 2027.lnk
+2026-10-03T09:47:01.2499313-07:00 desktop C:\Users\Public\Desktop\Microsoft Edge.lnk
+2026-10-03T09:47:01.2571407-07:00 desktop C:\Users\Public\Desktop\Power BI Desktop.lnk
+2026-10-03T09:47:01.2652099-07:00 desktop C:\Users\Public\Desktop\Resolume Alley.lnk
+2026-10-03T09:47:01.2710173-07:00 desktop C:\Users\Public\Desktop\Resolume Arena.lnk
+2026-10-03T09:47:01.2946409-07:00 desktop C:\Users\Public\Desktop\Resolume Wire.lnk
+2026-10-03T09:47:01.3302019-07:00 dump-done

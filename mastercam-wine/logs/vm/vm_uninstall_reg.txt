@@ -1,0 +1,312 @@
+﻿KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Mastercam 2027
+  DisplayName    = Mastercam 2027
+  DisplayVersion = 29.0.10172.0
+  Publisher      = CNC Software, LLC
+  InstallLocation= C:\Program Files\Mastercam 2027\
+  UninstallString= "C:\Program Files (x86)\InstallShield Installation Information\{F25E5DEF-DB04-4C91-A400-2CF4E3FC2989}\uninstaller.exe" -remove -runfromtemp -language:1033
+  QuietUninstall = 
+  InstallDate    =   EstimatedSize(KB)=
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Resolume Arena_is1
+  DisplayName    = Resolume Arena 7.28.0 rev 24303
+  DisplayVersion = 7.28.0.24303
+  Publisher      = Resolume
+  InstallLocation= C:\Program Files\Resolume Arena\
+  UninstallString= "C:\Program Files\Resolume Arena\unins000.exe"
+  QuietUninstall = "C:\Program Files\Resolume Arena\unins000.exe" /SILENT
+  InstallDate    = 20261002  EstimatedSize(KB)=3165951
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{11132D68-6AC6-3DE8-B032-585A4939EC6A}
+  DisplayName    = Autodesk AutoCAD 2027.1 Update
+  DisplayVersion = 26.0.118.0
+  Publisher      = Autodesk, Inc.
+  InstallLocation= C:\Program Files\Autodesk
+  UninstallString= C:\Program Files\Autodesk\AdODIS\V1\Installer.exe -i uninstall --trigger_point system -m C:\ProgramData\Autodesk\ODIS\metadata\{11132D68-6AC6-3DE8-B032-585A4939EC6A}\bundleManifest.xml -x C:\ProgramData\Autodesk\ODIS\metadata\{11132D68-6AC6-3DE8-B032-585A4939EC6A}\SetupRes\manifest.xsd --extension_manifest C:\ProgramData\Autodesk\ODIS\metadata\{11132D68-6AC6-3DE8-B032-585A4939EC6A}\setup_ext.xml --extension_manifest_xsd C:\ProgramData\Autodesk\ODIS\metadata\{11132D68-6AC6-3DE8-B032-585A4939EC6A}\SetupRes\manifest_ext.xsd
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=1929397
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1124498E-0B68-4403-B79A-5689EC80BB8F}
+  DisplayName    = Microsoft ASP.NET Core Runtime - 10.0.9 (x64)
+  DisplayVersion = 80.36.53633
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /X{1124498E-0B68-4403-B79A-5689EC80BB8F}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=29376
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1BE0093C-57AD-46B8-9781-8437664E9957}
+  DisplayName    = Microsoft .NET Host - 10.0.9 (x64)
+  DisplayVersion = 80.36.53633
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /X{1BE0093C-57AD-46B8-9781-8437664E9957}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=492
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1E59AE7A-09DE-41B7-97A1-32A5C7CEAEDB}
+  DisplayName    = Mastercam 2027 Updater
+  DisplayVersion = 29.0.10172.0
+  Publisher      = CNC Software, LLC
+  InstallLocation= C:\Program Files\Mastercam 2027 Updater\
+  UninstallString= MsiExec.exe /X{1E59AE7A-09DE-41B7-97A1-32A5C7CEAEDB}
+  QuietUninstall = 
+  InstallDate    = 20261003  EstimatedSize(KB)=22025
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{201AE4F3-3848-421F-A609-0A72B8FE631B}
+  DisplayName    = Autodesk CER
+  DisplayVersion = 7.2.5.982
+  Publisher      = Autodesk Inc.
+  InstallLocation= 
+  UninstallString= MsiExec.exe /I{201AE4F3-3848-421F-A609-0A72B8FE631B}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=53504
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{22221111-1111-1111-1111-111111111111}.sdb
+  DisplayName    = Microsoft Windows Application Compatibility Fix Database
+  DisplayVersion = 
+  Publisher      = 
+  InstallLocation= 
+  UninstallString= C:\WINDOWS\system32\sdbinst.exe -u "C:\WINDOWS\AppPatch\CustomSDB\{22221111-1111-1111-1111-111111111111}.sdb"
+  QuietUninstall = 
+  InstallDate    =   EstimatedSize(KB)=
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{28B89EEF-A101-0000-3102-CF3F3A09B77D}
+  DisplayName    = ACAD Private
+  DisplayVersion = 26.0.60.0
+  Publisher      = Autodesk
+  InstallLocation= C:\Program Files\Autodesk\AutoCAD 2027\
+  UninstallString= 
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=284
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{28B89EEF-A101-0409-2102-CF3F3A09B77D}
+  DisplayName    = AutoCAD 2027 - English
+  DisplayVersion = 26.0.60.0
+  Publisher      = Autodesk
+  InstallLocation= C:\Program Files\Autodesk\AutoCAD 2027\
+  UninstallString= 
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=9168
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{30EF9188-5AFD-4112-98DE-5C61EFD17E34}
+  DisplayName    = AutoCAD Open in Desktop
+  DisplayVersion = 1.0.30.0
+  Publisher      = Autodesk
+  InstallLocation= 
+  UninstallString= MsiExec.exe /I{30EF9188-5AFD-4112-98DE-5C61EFD17E34}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=91364
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{39F1106B-DDD4-4912-9069-D6491D1142BE}
+  DisplayName    = Microsoft .NET Runtime - 10.0.9 (x64)
+  DisplayVersion = 80.36.53633
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /X{39F1106B-DDD4-4912-9069-D6491D1142BE}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=78076
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{3b7bc56c-a839-49e5-b6ef-3f45ab825fc7}
+  DisplayName    = Microsoft Power BI Desktop (x64)
+  DisplayVersion = 2.157.1354.0
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /X{3b7bc56c-a839-49e5-b6ef-3f45ab825fc7}
+  QuietUninstall = 
+  InstallDate    = 20260923  EstimatedSize(KB)=2803264
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{4E5E212E-F881-4C74-9F1B-5B1ADCB4BB7B}
+  DisplayName    = Autodesk Genuine Service
+  DisplayVersion = 7.6.1.4
+  Publisher      = Autodesk
+  InstallLocation= C:\Program Files\Autodesk\Genuine Service\
+  UninstallString= MsiExec.exe /X{4E5E212E-F881-4C74-9F1B-5B1ADCB4BB7B}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=337016
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5C8F1BCF-6909-471A-AA01-41E61C661D27}
+  DisplayName    = Autodesk AutoCAD MCP Server
+  DisplayVersion = 26.0.460.2523
+  Publisher      = Autodesk
+  InstallLocation= 
+  UninstallString= MsiExec.exe /I{5C8F1BCF-6909-471A-AA01-41E61C661D27}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=2456
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{61B44572-8722-4DAF-8ACF-8E742D30BCC5}
+  DisplayName    = Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.50.35719
+  DisplayVersion = 14.50.35719
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /I{61B44572-8722-4DAF-8ACF-8E742D30BCC5}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=2404
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{6E3610B2-430D-4EB0-81E3-2B57E8B9DE8D}
+  DisplayName    = Bonjour
+  DisplayVersion = 3.0.0.10
+  Publisher      = Apple Inc.
+  InstallLocation= C:\Program Files (x86)\Bonjour\
+  UninstallString= MsiExec.exe /X{6E3610B2-430D-4EB0-81E3-2B57E8B9DE8D}
+  QuietUninstall = 
+  InstallDate    = 20261002  EstimatedSize(KB)=2052
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{6FCF92EF-02B6-45BB-82CE-1C0A52F3338A}
+  DisplayName    = Mastercam Licensing Utilities
+  DisplayVersion = 29.0.10172.0
+  Publisher      = CNC Software, LLC.
+  InstallLocation= C:\Program Files\Common Files\Mastercam\MastercamLicensing\
+  UninstallString= MsiExec.exe /X{6FCF92EF-02B6-45BB-82CE-1C0A52F3338A}
+  QuietUninstall = 
+  InstallDate    = 20261003  EstimatedSize(KB)=107309
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{8658A469-1448-38DD-8981-8BED78BCCF9D}
+  DisplayName    = Autodesk AutoCAD 2027 - English
+  DisplayVersion = 26.0.118.0
+  Publisher      = Autodesk, Inc.
+  InstallLocation= C:\Program Files\Autodesk
+  UninstallString= C:\Program Files\Autodesk\AdODIS\V1\Installer.exe -i uninstall --trigger_point system -m C:\ProgramData\Autodesk\ODIS\metadata\{8658A469-1448-38DD-8981-8BED78BCCF9D}\bundleManifest.xml -x C:\ProgramData\Autodesk\ODIS\metadata\{8658A469-1448-38DD-8981-8BED78BCCF9D}\SetupRes\manifest.xsd --extension_manifest C:\ProgramData\Autodesk\ODIS\metadata\{8658A469-1448-38DD-8981-8BED78BCCF9D}\setup_ext.xml --extension_manifest_xsd C:\ProgramData\Autodesk\ODIS\metadata\{8658A469-1448-38DD-8981-8BED78BCCF9D}\SetupRes\manifest_ext.xsd
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=6513080
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{946BA18E-2919-4151-B0AF-54F42D8515A3}
+  DisplayName    = Microsoft .NET Host FX Resolver - 10.0.9 (x64)
+  DisplayVersion = 80.36.53633
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /X{946BA18E-2919-4151-B0AF-54F42D8515A3}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=352
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{A3158B3E-5F28-358A-BF1A-9532D8EBC811}
+  DisplayName    = Autodesk Access
+  DisplayVersion = 2.23.0.517
+  Publisher      = Autodesk, Inc.
+  InstallLocation= C:\Program Files\Autodesk
+  UninstallString= C:\Program Files\Autodesk\AdODIS\V1\Installer.exe -i uninstall --trigger_point system -m C:\ProgramData\Autodesk\ODIS\metadata\{A3158B3E-5F28-358A-BF1A-9532D8EBC811}\pkg.access.xml -x "C:\Program Files\Autodesk\AdODIS\V1\SetupRes\manifest.xsd" --manifest_type package
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=97291
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{AECD4ED0-8A3B-41E9-92D1-6BEE0374CCAF}
+  DisplayName    = Microsoft Visual C++ 2022 X64 Additional Runtime - 14.50.35719
+  DisplayVersion = 14.50.35719
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /I{AECD4ED0-8A3B-41E9-92D1-6BEE0374CCAF}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=11864
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{B7AC6B1E-81BF-44EB-B1DA-D9F4A255984B}
+  DisplayName    = Microsoft Windows Desktop Runtime - 10.0.9 (x64)
+  DisplayVersion = 80.36.53633
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /X{B7AC6B1E-81BF-44EB-B1DA-D9F4A255984B}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=96992
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{C253C79A-FFA7-493A-BE3D-053214932BA9}
+  DisplayName    = Mastercam 2027 English Language Pack
+  DisplayVersion = 29.0.10172.0
+  Publisher      = CNC Software, LLC
+  InstallLocation= C:\Program Files\Mastercam 2027\
+  UninstallString= MsiExec.exe /X{C253C79A-FFA7-493A-BE3D-053214932BA9}
+  QuietUninstall = 
+  InstallDate    = 20261003  EstimatedSize(KB)=570633
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{E23781A6-772C-36B9-9342-7486A04A7FC0}
+  DisplayName    = Autodesk Interoperability Engine Manager
+  DisplayVersion = 1.4.0.10
+  Publisher      = Autodesk, Inc.
+  InstallLocation= C:\Program Files\Common Files\Autodesk Shared\Interoperability Engine Manager\
+  UninstallString= MsiExec.exe /X{E23781A6-772C-36B9-9342-7486A04A7FC0}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=25296
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+  DisplayName    = Mastercam 2027
+  DisplayVersion = 29.0.10172.0
+  Publisher      = CNC Software, LLC
+  InstallLocation= C:\Program Files\Mastercam 2027\
+  UninstallString= MsiExec.exe /X{E3A7A159-C187-44D3-93E8-5EF961F4E0DD}
+  QuietUninstall = 
+  InstallDate    = 20261003  EstimatedSize(KB)=3244230
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{F5234E0C-A06D-4404-8175-DCF5F9CFC337}
+  DisplayName    = CodeMeter Runtime Kit v8.40a
+  DisplayVersion = 8.40.7120.501
+  Publisher      = WIBU-SYSTEMS AG
+  InstallLocation= C:\Program Files\CodeMeter\
+  UninstallString= MsiExec.exe /I{F5234E0C-A06D-4404-8175-DCF5F9CFC337}
+  QuietUninstall = 
+  InstallDate    = 20261003  EstimatedSize(KB)=187014
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Edge
+  DisplayName    = Microsoft Edge
+  DisplayVersion = 154.0.4258.48
+  Publisher      = Microsoft Corporation
+  InstallLocation= C:\Program Files (x86)\Microsoft\Edge\Application
+  UninstallString= "C:\Program Files (x86)\Microsoft\Edge\Application\154.0.4258.48\Installer\setup.exe" --uninstall --msedge --channel=stable --system-level --verbose-logging
+  QuietUninstall = 
+  InstallDate    = 20261001  EstimatedSize(KB)=2877829
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView
+  DisplayName    = Microsoft Edge WebView2 Runtime
+  DisplayVersion = 154.0.4258.53
+  Publisher      = Microsoft Corporation
+  InstallLocation= C:\Program Files (x86)\Microsoft\EdgeWebView\Application
+  UninstallString= "C:\Program Files (x86)\Microsoft\EdgeWebView\Application\154.0.4258.53\Installer\setup.exe" --uninstall --msedgewebview --system-level --verbose-logging
+  QuietUninstall = 
+  InstallDate    = 20261002  EstimatedSize(KB)=3589106
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{0B1257AA-9D34-46E7-B27B-07DF8CD5B92C}
+  DisplayName    = Microsoft Windows Desktop Runtime 10.0.9 (x64)
+  DisplayVersion = 10.0.9.50000
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= "C:\ProgramData\Package Cache\{0B1257AA-9D34-46E7-B27B-07DF8CD5B92C}\windowsdesktop-runtime-10.0.9-win-x64.exe"  /uninstall
+  QuietUninstall = "C:\ProgramData\Package Cache\{0B1257AA-9D34-46E7-B27B-07DF8CD5B92C}\windowsdesktop-runtime-10.0.9-win-x64.exe" /uninstall /quiet
+  InstallDate    = 20260920  EstimatedSize(KB)=293866
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{0e4ccf1b-d073-4cfe-8a24-e86185719b56}
+  DisplayName    = Microsoft Visual C++ v14 Redistributable (x86) - 14.50.35719
+  DisplayVersion = 14.50.35719.0
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= "C:\ProgramData\Package Cache\{0e4ccf1b-d073-4cfe-8a24-e86185719b56}\VC_redist.x86.exe"  /uninstall
+  QuietUninstall = "C:\ProgramData\Package Cache\{0e4ccf1b-d073-4cfe-8a24-e86185719b56}\VC_redist.x86.exe" /uninstall /quiet
+  InstallDate    =   EstimatedSize(KB)=18671
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{3E7AB300-A111-46B8-BE26-16C233ADBA77}
+  DisplayName    = Autodesk App Manager
+  DisplayVersion = 3.7.0
+  Publisher      = Autodesk
+  InstallLocation= C:\Program Files (x86)\Autodesk\
+  UninstallString= MsiExec.exe /X{3E7AB300-A111-46B8-BE26-16C233ADBA77}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=6380
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{5679FACE-1620-4E71-9956-6DFB0F725C11}
+  DisplayName    = Autodesk Featured Apps
+  DisplayVersion = 3.7.0
+  Publisher      = Autodesk
+  InstallLocation= C:\Program Files (x86)\Autodesk\
+  UninstallString= MsiExec.exe /X{5679FACE-1620-4E71-9956-6DFB0F725C11}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=20964
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{5A0DFA55-3851-45BC-8B20-95EA4BF5812D}
+  DisplayName    = Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.50.35719
+  DisplayVersion = 14.50.35719
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /I{5A0DFA55-3851-45BC-8B20-95EA4BF5812D}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=2032
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{6F557253-6218-47DB-BCCE-BAFE749C190B}
+  DisplayName    = Microsoft ASP.NET Core Runtime - 10.0.9 (x64)
+  DisplayVersion = 10.0.9.36120
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= "C:\ProgramData\Package Cache\{6F557253-6218-47DB-BCCE-BAFE749C190B}\aspnetcore-runtime-10.0.9-win-x64.exe"  /uninstall
+  QuietUninstall = "C:\ProgramData\Package Cache\{6F557253-6218-47DB-BCCE-BAFE749C190B}\aspnetcore-runtime-10.0.9-win-x64.exe" /uninstall /quiet
+  InstallDate    = 20260920  EstimatedSize(KB)=50822
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{773AD50D-AAE6-4BA1-AD01-B5A38874C840}
+  DisplayName    = Microsoft Visual C++ 2022 X86 Additional Runtime - 14.50.35719
+  DisplayVersion = 14.50.35719
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= MsiExec.exe /I{773AD50D-AAE6-4BA1-AD01-B5A38874C840}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=10348
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{91ee571b-0e8a-4c65-9eaf-2e2f5fc60c00}
+  DisplayName    = Microsoft Visual C++ v14 Redistributable (x64) - 14.50.35719
+  DisplayVersion = 14.50.35719.0
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= "C:\ProgramData\Package Cache\{91ee571b-0e8a-4c65-9eaf-2e2f5fc60c00}\VC_redist.x64.exe"  /uninstall
+  QuietUninstall = "C:\ProgramData\Package Cache\{91ee571b-0e8a-4c65-9eaf-2e2f5fc60c00}\VC_redist.x64.exe" /uninstall /quiet
+  InstallDate    =   EstimatedSize(KB)=21193
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{cd9e3f41-53d3-4206-898f-b6c94c9c7fea}
+  DisplayName    = Microsoft PowerBI Desktop (x64)
+  DisplayVersion = 2.157.1354.0
+  Publisher      = Microsoft Corporation
+  InstallLocation= 
+  UninstallString= "C:\ProgramData\Package Cache\{cd9e3f41-53d3-4206-898f-b6c94c9c7fea}\PBIDesktopSetup_x64.exe"  /uninstall
+  QuietUninstall = "C:\ProgramData\Package Cache\{cd9e3f41-53d3-4206-898f-b6c94c9c7fea}\PBIDesktopSetup_x64.exe" /uninstall /quiet
+  InstallDate    =   EstimatedSize(KB)=3482928
+KEY=Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{FD439F85-AD64-B3E5-9FC5-444AE8C8AF7B}
+  DisplayName    = WPTx64
+  DisplayVersion = 10.1.19041.1
+  Publisher      = Microsoft
+  InstallLocation= 
+  UninstallString= MsiExec.exe /I{FD439F85-AD64-B3E5-9FC5-444AE8C8AF7B}
+  QuietUninstall = 
+  InstallDate    = 20260920  EstimatedSize(KB)=48292

@@ -1,0 +1,47 @@
+221346.752:0124:fixme:file:NtLockFile I/O completion on lock not implemented yet
+221350.744:0124:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+221351.823:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221351.823:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221352.512:014c:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+221352.512:014c:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+221352.515:014c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=1480000014c, oid=2
+221352.515:014c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+221352.515:014c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+221352.516:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221352.516:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221353.063:0174:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+221353.063:0174:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+221353.069:0174:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=17000000174, oid=2
+221353.069:0174:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+221353.073:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221353.073:0174:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+221353.074:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221353.653:0190:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+221353.653:0190:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+221353.657:0190:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=18c00000190, oid=2
+221353.657:0190:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+221353.658:0190:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+221353.661:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221353.661:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221354.266:01ac:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+221354.266:01ac:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+221354.274:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221354.275:0138:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+221354.275:01ac:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=1a8000001ac, oid=2
+221354.275:01ac:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+221354.277:01ac:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+221354.922:01cc:err:ole:com_get_class_object class {00020420-0000-0000-c000-000000000046} not registered
+221354.922:01cc:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x80000001
+221354.927:01cc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=1c8000001cc, oid=2
+221354.927:01cc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+221354.931:01cc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+221354.961:01e4:fixme:ver:GetCurrentPackageId (0247FF00 00000000): stub
+221654.960:0138:err:ole:get_unmarshaler_from_stream Failed to read common OBJREF header, 0
+221654.961:0138:err:msi:__wine_msi_call_dll_function Custom action (L"C:\\users\\asdf\\AppData\\Local\\Temp\\msi8BD0.tmp":"f12") caused an exception: 0xc0000005
+221654.965:01e4:err:ole:get_unmarshaler_from_stream Failed to read common OBJREF header, 0
+221654.965:01e4:err:ole:com_get_class_object no class object {00020420-0000-0000-c000-000000000046} could be created for context 0x1
+221654.965:01e4:err:ole:marshal_object Failed to create an IRpcStubBuffer from IPSFactory for {9428a859-6da5-4b68-b599-3751b6c6b281} with error 0x8003001e
+221654.965:01e4:err:ole:StdMarshalImpl_MarshalInterface Failed to create ifstub, hr 0x8003001e
+221654.965:01e4:err:ole:CoMarshalInterface Failed to marshal the interface {9428a859-6da5-4b68-b599-3751b6c6b281}, hr 0x8003001e
+221654.967:0124:err:msi:ITERATE_Actions Execution halted, action L"SetDateTimeFormat" returned 1603
+221654.975:0124:err:msi:free_package_structures failed to delete L"C:\\users\\asdf\\AppData\\Local\\Temp\\msi8BD0.tmp" (32)

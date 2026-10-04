@@ -1,0 +1,127 @@
+
+xwininfo: Window id: 0x47c (the root window) (has no name)
+
+  Root window id: 0x47c (the root window) (has no name)
+  Parent window id: 0x0 (none)
+     23 children:
+     0xe00003 (has no name): ("mastercamlauncher.exe" "mastercamlauncher.exe")  1x1+0+0  +0+0
+     0xe00002 "Default IME": ("mastercamlauncher.exe" "mastercamlauncher.exe")  1x1+0+0  +0+0
+     0x600007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x800001 (has no name): ()  1x1+0+0  +0+0
+     0x600002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x600003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600001 (has no name): ()  1x1+0+0  +0+0
+     0x486 (has no name): ()  100x100+0+0  +0+0
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x200173 (has no name): ()  1x1+0+0  +0+0
+        1 child:
+        0x200174 (has no name): ()  1x1+0+0  +1+1
+     0x200171 (has no name): ()  1x1+0+0  +0+0
+        1 child:
+        0x200172 (has no name): ()  1x1+0+0  +1+1
+     0x20016e (has no name): ()  1x1+0+0  +0+0
+        1 child:
+        0x20016f (has no name): ()  1x1+0+0  +1+1
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+        3 children:
+        0x20016d (has no name): ()  1x1+0+0  +1+1
+        0x20016c (has no name): ()  1x1+0+0  +1+1
+        0x20016b (has no name): ()  1x1+0+0  +1+1
+     0x200167 (has no name): ()  1x1+0+0  +0+0
+        2 children:
+        0x200169 (has no name): ()  1x1+0+0  +1+1
+        0x200168 (has no name): ()  1x1+0+0  +1+1
+     0x200166 (has no name): ()  1x1+0+0  +0+0
+     0x200165 (has no name): ()  1x1+0+0  +0+0
+     0x200164 (has no name): ()  1x1+0+0  +0+0
+     0x200163 (has no name): ()  1x1+0+0  +0+0
+     0x200170 (has no name): ()  1x1+0+0  +0+0
+     0x2069b1 (has no name): ()  303x105+648+450  +648+450
+        56 children:
+        0xe00001 "MastercamLauncher": ("mastercamlauncher.exe" "mastercamlauncher.exe")  301x82+1+22  +649+472
+        0x2069fd (has no name): ()  1x1+0+0  +648+450
+        0x2069fc (has no name): ()  1x1+0+0  +648+450
+        0x2069fb (has no name): ()  1x1+0+0  +648+450
+        0x2069fa (has no name): ()  1x1+0+0  +648+450
+        0x2069f9 (has no name): ()  1x1+0+0  +648+450
+        0x2069f8 (has no name): ()  1x1+0+0  +648+450
+        0x2069f7 (has no name): ()  1x1+0+0  +648+450
+        0x2069f6 (has no name): ()  1x1+0+0  +648+450
+        0x2069f5 (has no name): ()  1x1+0+0  +648+450
+        0x2069f4 (has no name): ()  1x1+0+0  +648+450
+        0x2069f3 (has no name): ()  1x1+0+0  +648+450
+        0x2069f2 (has no name): ()  1x1+0+0  +648+450
+        0x2069f1 (has no name): ()  1x1+0+0  +648+450
+        0x2069f0 (has no name): ()  1x1+0+0  +648+450
+        0x2069ef (has no name): ()  1x1+0+0  +648+450
+        0x2069ee (has no name): ()  1x1+0+0  +648+450
+        0x2069ed (has no name): ()  1x1+0+0  +648+450
+        0x2069ec (has no name): ()  1x1+0+0  +648+450
+        0x2069eb (has no name): ()  1x1+0+0  +648+450
+        0x2069ea (has no name): ()  1x1+0+0  +648+450
+        0x2069e9 (has no name): ()  1x1+0+0  +648+450
+        0x2069e8 (has no name): ()  1x1+0+0  +648+450
+        0x2069e7 (has no name): ()  1x1+0+0  +648+450
+        0x2069e6 (has no name): ()  1x1+0+0  +648+450
+        0x2069e5 (has no name): ()  1x1+0+0  +648+450
+        0x2069e4 (has no name): ()  1x1+0+0  +648+450
+        0x2069e3 (has no name): ()  1x1+0+0  +648+450
+        0x2069e2 (has no name): ()  1x1+0+0  +648+450
+        0x2069e1 (has no name): ()  1x1+0+0  +648+450
+        0x2069e0 (has no name): ()  1x1+0+0  +648+450
+        0x2069df (has no name): ()  1x1+0+0  +648+450
+        0x2069de (has no name): ()  1x1+0+0  +648+450
+        0x2069dd (has no name): ()  26x1+276+104  +924+554
+        0x2069dc (has no name): ()  1x1+0+0  +648+450
+        0x2069db (has no name): ()  1x25+302+80  +950+530
+        0x2069da (has no name): ()  26x1+1+104  +649+554
+        0x2069d9 (has no name): ()  1x1+0+0  +648+450
+        0x2069d8 (has no name): ()  1x25+0+80  +648+530
+        0x2069d7 (has no name): ()  249x1+27+104  +675+554
+        0x2069d6 (has no name): ()  1x1+0+0  +648+450
+        0x2069d1 (has no name): ()  1x1+0+0  +648+450
+           4 children:
+           0x2069d5 (has no name): ()  1x1+0+0  +648+450
+           0x2069d4 (has no name): ()  1x1+0+0  +648+450
+           0x2069d3 (has no name): ()  1x1+0+0  +648+450
+           0x2069d2 (has no name): ()  1x1+0+0  +648+450
+        0x2069c9 (has no name): ()  1x55+302+26  +950+476
+        0x2069c8 (has no name): ()  1x55+0+26  +648+476
+        0x2069c2 (has no name): ()  301x1+1+21  +649+471
+        0x2069c1 (has no name): ()  1x25+302+1  +950+451
+        0x2069c0 (has no name): ()  26x1+277+0  +925+450
+        0x2069bf (has no name): ()  26x1+0+0  +648+450
+        0x2069be (has no name): ()  251x1+26+0  +674+450
+        0x2069bd (has no name): ()  1x25+0+1  +648+451
+        0x2069bc (has no name): ()  301x20+1+1  +649+451
+           12 children:
+           0x2069d0 (has no name): ()  14x14+247+3  +896+454
+           0x2069cf (has no name): ()  16x16+4+2  +653+453
+           0x2069ce (has no name): ()  14x14+0+0  +649+451
+           0x2069cd (has no name): ()  14x14+0+0  +649+451
+           0x2069cc (has no name): ()  14x14+283+3  +932+454
+           0x2069cb (has no name): ()  14x14+265+3  +914+454
+           0x2069ca (has no name): ()  185x16+58+2  +707+453
+           0x2069c7 (has no name): ()  4x20+0+0  +649+451
+           0x2069c6 (has no name): ()  25x3+0+0  +649+451
+           0x2069c5 (has no name): ()  4x20+0+0  +649+451
+           0x2069c4 (has no name): ()  25x3+0+0  +649+451
+           0x2069c3 (has no name): ()  1x1+0+0  +649+451
+        0x2069b7 (has no name): ()  1x1+0+0  +648+450
+           2 children:
+           0x2069b9 (has no name): ()  1x1+0+0  +648+450
+           0x2069b8 (has no name): ()  1x1+0+0  +648+450
+        0x2069b6 (has no name): ()  1x1+0+0  +648+450
+           1 child:
+           0x2069bb (has no name): ()  1x1+0+0  +648+450
+        0x2069b5 (has no name): ()  1x1+0+0  +648+450
+        0x2069b4 (has no name): ()  1x1+0+0  +648+450
+           1 child:
+           0x2069ba (has no name): ()  1x1+0+0  +648+450
+        0x2069b2 (has no name): ()  301x82+1+22  +649+472
+           1 child:
+           0x2069b3 (has no name): ()  301x82+0+0  +649+472
+
