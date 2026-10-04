@@ -1,0 +1,61 @@
+i686-w64-mingw32-gcc -c -o dlls/dcomp/i386-windows/device.o dlls/dcomp/device.c -Idlls/dcomp -Iinclude -Iinclude/msvcrt -D_UCRT \
+  -D__WINESRC__ -D__WINE_PE_BUILD -Wall -fno-strict-aliasing -Wempty-body -Wignored-qualifiers \
+  -Winit-self -Wno-packed-not-aligned -Wshift-overflow=2 -Wtype-limits -Wunused-but-set-parameter \
+  -Wvla -Wwrite-strings -Wpointer-arith -Wlogical-op -ffunction-sections -Wno-misleading-indentation \
+  -fno-omit-frame-pointer -mpreferred-stack-boundary=2 -mlong-double-64 -msse2 -gdwarf-4 \
+  -Wdeclaration-after-statement -Wstrict-prototypes -Wabsolute-value -g -O2
+In file included from dlls/dcomp/device.c:38:
+dlls/dcomp/device.c: In function ‘shared_visual_target_get_root’:
+include/wine/server.h:159:57: error: ‘union generic_request’ has no member named ‘dcomp_get_shared_visual_info_request’
+  159 |         struct type##_request * const req = &__req.u.req.type##_request; \
+      |                                                         ^
+dlls/dcomp/device.c:596:5: note: in expansion of macro ‘SERVER_START_REQ’
+  596 |     SERVER_START_REQ(dcomp_get_shared_visual_info)
+      |     ^~~~~~~~~~~~~~~~
+include/wine/server.h:160:65: error: ‘union generic_reply’ has no member named ‘dcomp_get_shared_visual_info_reply’
+  160 |         const struct type##_reply * const reply = &__req.u.reply.type##_reply; \
+      |                                                                 ^
+dlls/dcomp/device.c:596:5: note: in expansion of macro ‘SERVER_START_REQ’
+  596 |     SERVER_START_REQ(dcomp_get_shared_visual_info)
+      |     ^~~~~~~~~~~~~~~~
+include/wine/server.h:162:42: error: ‘REQ_dcomp_get_shared_visual_info’ undeclared (first use in this function); did you mean ‘dcomp_get_shared_visual_info_reply’?
+  162 |         __req.u.req.request_header.req = REQ_##type; \
+      |                                          ^~~~
+dlls/dcomp/device.c:596:5: note: in expansion of macro ‘SERVER_START_REQ’
+  596 |     SERVER_START_REQ(dcomp_get_shared_visual_info)
+      |     ^~~~~~~~~~~~~~~~
+include/wine/server.h:162:42: note: each undeclared identifier is reported only once for each function it appears in
+  162 |         __req.u.req.request_header.req = REQ_##type; \
+      |                                          ^~~~
+dlls/dcomp/device.c:596:5: note: in expansion of macro ‘SERVER_START_REQ’
+  596 |     SERVER_START_REQ(dcomp_get_shared_visual_info)
+      |     ^~~~~~~~~~~~~~~~
+dlls/dcomp/device.c:598:12: error: invalid use of undefined type ‘struct dcomp_get_shared_visual_info_request’
+  598 |         req->handle = wine_server_obj_handle(shared_visual_handle);
+      |            ^~
+dlls/dcomp/device.c:600:77: error: invalid use of undefined type ‘const struct dcomp_get_shared_visual_info_reply’
+  600 |             visual = impl_from_IDCompositionVisual(wine_server_get_ptr(reply->target_root));
+      |                                                                             ^~
+dlls/dcomp/device.c: In function ‘DCompositionCreateSharedVisualHandle’:
+include/wine/server.h:159:57: error: ‘union generic_request’ has no member named ‘dcomp_create_shared_visual_request’
+  159 |         struct type##_request * const req = &__req.u.req.type##_request; \
+      |                                                         ^
+dlls/dcomp/device.c:2056:5: note: in expansion of macro ‘SERVER_START_REQ’
+ 2056 |     SERVER_START_REQ( dcomp_create_shared_visual )
+      |     ^~~~~~~~~~~~~~~~
+include/wine/server.h:160:65: error: ‘union generic_reply’ has no member named ‘dcomp_create_shared_visual_reply’
+  160 |         const struct type##_reply * const reply = &__req.u.reply.type##_reply; \
+      |                                                                 ^
+dlls/dcomp/device.c:2056:5: note: in expansion of macro ‘SERVER_START_REQ’
+ 2056 |     SERVER_START_REQ( dcomp_create_shared_visual )
+      |     ^~~~~~~~~~~~~~~~
+include/wine/server.h:162:42: error: ‘REQ_dcomp_create_shared_visual’ undeclared (first use in this function); did you mean ‘dcomp_create_shared_visual_reply’?
+  162 |         __req.u.req.request_header.req = REQ_##type; \
+      |                                          ^~~~
+dlls/dcomp/device.c:2056:5: note: in expansion of macro ‘SERVER_START_REQ’
+ 2056 |     SERVER_START_REQ( dcomp_create_shared_visual )
+      |     ^~~~~~~~~~~~~~~~
+dlls/dcomp/device.c:2059:52: error: invalid use of undefined type ‘const struct dcomp_create_shared_visual_reply’
+ 2059 |             *handle = wine_server_ptr_handle( reply->handle );
+      |                                                    ^~
+make: *** [Makefile:68124: dlls/dcomp/i386-windows/device.o] Error 1

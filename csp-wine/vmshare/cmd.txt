@@ -1,0 +1,2 @@
+# nonce 1791076981.192236670
+(Get-Process | Where-Object {$_.MainWindowTitle -ne "" -or $_.ProcessName -eq "CLIPStudio"} | Select-Object ProcessName,MainWindowTitle,@{n="MB";e={[math]::Round($_.WorkingSet64/1MB)}} | Format-Table -AutoSize | Out-String).Trim()

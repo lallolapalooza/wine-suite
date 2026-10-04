@@ -1,0 +1,26 @@
+# apitrace apihook.dll win64 pid=6540 tid=9960
+# apihook=C:\apitrace\apihook.dll
+# cfg=C:\apitrace\test.cfg
+# out=C:\apitrace\attach.log
+# patterns=12 exclusions=1 modules=6 loader_notify=1 poll_ms=200 cfg_error=-
+# unresolved_patterns=1
+# pattern: kernel32!CreateFileW@7/8448448:8 -> dll=kernel32 func=CreateFileW argc=7 mask=8448448888888888 retw=8
+# pattern: kernel32!WriteFile@5/88488:4 -> dll=kernel32 func=WriteFile argc=5 mask=8848888888888888 retw=4
+# pattern: kernel32!ReadFile@5/88488:4 -> dll=kernel32 func=ReadFile argc=5 mask=8848888888888888 retw=4
+# pattern: kernel32!CloseHandle@1/8:4 -> dll=kernel32 func=CloseHandle argc=1 mask=8888888888888888 retw=4
+# pattern: kernel32!GetModuleHandleW@1/8:8 -> dll=kernel32 func=GetModuleHandleW argc=1 mask=8888888888888888 retw=8
+# pattern: kernel32!MulDiv@3/444:4 -> dll=kernel32 func=MulDiv argc=3 mask=4448888888888888 retw=4
+# pattern: kernel32!lstrlenA@1/8:4 -> dll=kernel32 func=lstrlenA argc=1 mask=8888888888888888 retw=4
+# pattern: kernel32!GetCurrentProcessId@0:4 -> dll=kernel32 func=GetCurrentProcessId argc=0 mask=8888888888888888 retw=4
+# pattern: kernel32!GetCurrentThreadId@0:4 -> dll=kernel32 func=GetCurrentThreadId argc=0 mask=8888888888888888 retw=4
+# pattern: kernel32!DeleteFileW@1/8:4 -> dll=kernel32 func=DeleteFileW argc=1 mask=8888888888888888 retw=4
+# pattern: ~kernel32!DeleteFileW -> dll=kernel32 func=DeleteFileW argc=-1 mask=8888888888888888 retw=8 (unresolved)
+# pattern: ntdll!ThisDoesNotExist -> dll=ntdll func=ThisDoesNotExist argc=-1 mask=8888888888888888 retw=8 (unresolved)
+# unresolved: ntdll!ThisDoesNotExist
+# exclude: ~kernel32!DeleteFileW
+1 5568 KERNEL32.dll!CreateFileW (arg0=0x7ff66790a0ce, arg1=0x40000000, arg2=0x0, arg3=0x0, arg4=0x2, arg5=0x80, arg6=0x0) -> 0xb4
+2 5568 KERNEL32.dll!WriteFile (arg0=0xb4, arg1=0x7ff66790a09b, arg2=0x4, arg3=0x18275ffc50, arg4=0x0) -> 0x1
+3 5568 KERNEL32.dll!CloseHandle (arg0=0xb4) -> 0x1
+4 5568 KERNEL32.dll!CreateFileW (arg0=0x7ff66790a0ce, arg1=0x40000000, arg2=0x0, arg3=0x0, arg4=0x2, arg5=0x80, arg6=0x0) -> 0xcc
+5 5568 KERNEL32.dll!WriteFile (arg0=0xcc, arg1=0x7ff66790a09b, arg2=0x4, arg3=0x18275ffc50, arg4=0x0) -> 0x1
+6 5568 KERNEL32.dll!CloseHandle (arg0=0xcc) -> 0x1
