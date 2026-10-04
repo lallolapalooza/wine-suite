@@ -1,0 +1,89 @@
+2026-10-03 18:42:28.019  INFO 1656 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Starting application using Java 1.8.0_492 on asdf with PID 1656 (C:\Program Files (x86)\Steinberg\Download Assistant\app\Steinberg Download Assistant.jar started by adsf in C:\Program Files (x86)\Steinberg\Download Assistant\app)
+2026-10-03 18:42:28.026  INFO 1656 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : No active profile set, falling back to 1 default profile: "default"
+2026-10-03 18:42:37.740  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.d.a.i.Aria2SettingsService       : Use free port 6800 for Aria (within the configured range 6800-6850)
+2026-10-03 18:42:37.872  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.c.DownloadDirectoryServiceImpl   : Set default download subfolder to Steinberg
+2026-10-03 18:42:37.933  INFO 1656 --- [JavaFX-Launcher] n.s.elicenser.aria2j.Aria2JConnector     : Connect to aria service
+2026-10-03 18:42:38.059  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.d.a.internal.Aria2Configuration  : Aria2 Installation found. Creating Aria2Process.
+2026-10-03 18:42:38.696  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.c.SystemInformationServiceImpl   : getPid() - This JVM's name is '1656@asdf'
+2026-10-03 18:42:38.698  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.d.a.internal.Aria2Configuration  : Process parameters complete. Starting Aria process.
+2026-10-03 18:42:38.700  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.d.aria2.internal.Aria2Process    : Start Aria2: C:\Program Files (x86)\Steinberg\Download Assistant\3rd Party\optional\aria2\aria2c.exe, --no-conf=true, --enable-rpc, --rpc-listen-port=6800, --rpc-secret=d009697d-c982-4565-943a-2e74f802d8e6, --rpc-listen-all=false, --dir=C:\Users\adsf\Downloads\Steinberg, --auto-save-interval=1, --retry-wait=5, --max-concurrent-downloads=5, --max-overall-download-limit=0K, --max-tries=5, --stop-with-process=1656, --file-allocation=falloc
+2026-10-03 18:42:41.475  INFO 1656 --- [JavaFX-Launcher] .e.d.d.r.PersistedDownloadRepositoryImpl : No file with persisted downloads found.
+2026-10-03 18:42:41.737  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.common.system.WindowsOsHelper    : 
+Windows OS Information:
+- buildLabEx [registry]   : '26100.1.amd64fre.ge_release.240331-1435'
+- WinBuild [registry]     : '26200'
+- ProgramW6432 [env]      : 'C:\Program Files'
+- ProgramFiles [env]      : 'C:\Program Files (x86)'
+- ProgramFiles(x86) [env] : 'C:\Program Files (x86)'
+- Proc Arch [env]         : 'x86'
+- Proc Arch W6432 [env]   : 'AMD64'
+2026-10-03 18:42:41.885  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.common.system.WindowsOsHelper    : isWow64Process = true, processMachine = 332, nativeMachine = 34404 => isArm64OS = false
+2026-10-03 18:42:41.888  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.common.system.WindowsOsHelper    : buildLabEx contains amd64, ProgramFiles(x86) environment variable exists => isWin64OS=true
+2026-10-03 18:42:41.890  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.common.system.WindowsOsHelper    : Windows platform was determined as WIN64
+2026-10-03 18:42:41.919  INFO 1656 --- [Thread-9] n.s.e.d.d.aria2.DownloadObserverPolling  : Starting observer thread
+2026-10-03 18:42:41.932  INFO 1656 --- [Thread-9] n.s.e.d.d.aria2.DownloadObserverPolling  : Started observer scheduler
+2026-10-03 18:42:42.746  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.http.AuthorizedHttpClientImpl    : GET for net.steinberg.elicenser.download.common.LinkLookupPathFinder$Link with url https://pathfinder.mb.steinberg.net/rest/oidc-issuer
+2026-10-03 18:42:42.832  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.http.AuthorizedHttpClientImpl    : Sending http request: GET https://pathfinder.mb.steinberg.net/rest/oidc-issuer HTTP/1.1
+Content-Type: application/json
+
+
+2026-10-03 18:42:42.845  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.http.PinnedKeyStoreBuilder       : Certificate: /certificates/alphassl_ca_2027.pem found: true
+2026-10-03 18:42:42.927  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.http.PinnedKeyStoreBuilder       : Certificate: /certificates/Alpha_SSL_0083_intermediate.pem found: true
+2026-10-03 18:42:43.628  INFO 1656 --- [Thread-8] n.s.e.d.d.aria2.internal.Aria2Process    : stream: 10/03 18:42:43 [[1;32mNOTICE[0m] IPv4 RPC: listening on TCP port 6800
+2026-10-03 18:42:43.630  INFO 1656 --- [Thread-8] n.s.e.d.d.aria2.internal.Aria2Process    : stream: 10/03 18:42:43 [[1;32mNOTICE[0m] IPv6 RPC: listening on TCP port 6800
+2026-10-03 18:42:44.227  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.c.UserAgentServiceFromSystem     : getUserAgent() - User Agent: Steinberg Download Assistant/1.40.1 ({"ClientBits":"32", "OSName":"Windows 10 Enterprise", "OSVersion":"10.0 (26100.1.amd64fre.ge_release.240331-1435) x86", "OSBits":"64", "OSLanguage":"en_US", "AriaVersion":"1.37.0"}; +https://www.steinberg.net/en/extras/about.html)
+2026-10-03 18:42:44.228  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.h.AuthorizedHttpHandlerFactory   : Using user agent: Steinberg Download Assistant/1.40.1 ({"ClientBits":"32", "OSName":"Windows 10 Enterprise", "OSVersion":"10.0 (26100.1.amd64fre.ge_release.240331-1435) x86", "OSBits":"64", "OSLanguage":"en_US", "AriaVersion":"1.37.0"}; +https://www.steinberg.net/en/extras/about.html)
+2026-10-03 18:42:44.495  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.h.AuthorizedHttpHandlerFactory   : Created final HttpHandler after UserAgentService is initialized.
+2026-10-03 18:42:45.989  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.http.AuthorizedHttpClientImpl    : Received http response for https://pathfinder.mb.steinberg.net/rest/oidc-issuer: 
+ Status = 200 
+ Body = {
+  "href" : "https://iam.steinberg.net:443/am/oauth2"
+} 
+2026-10-03 18:42:46.592  INFO 1656 --- [JavaFX-Launcher] .ClientRegistrationFactoryUsingDiscovery : Resolved OIDC issuer to: https://iam.steinberg.net:443/am/oauth2
+2026-10-03 18:42:46.597  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.http.AuthorizedHttpClientImpl    : GET for net.steinberg.elicenser.download.common.LinkLookupPathFinder$Link with url https://pathfinder.mb.steinberg.net/rest/sda-redirect-uri-steinbergid
+2026-10-03 18:42:46.602  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.http.AuthorizedHttpClientImpl    : Sending http request: GET https://pathfinder.mb.steinberg.net/rest/sda-redirect-uri-steinbergid HTTP/1.1
+Content-Type: application/json
+
+
+2026-10-03 18:42:46.791  INFO 1656 --- [JavaFX-Launcher] n.s.e.d.http.AuthorizedHttpClientImpl    : Received http response for https://pathfinder.mb.steinberg.net/rest/sda-redirect-uri-steinbergid: 
+ Status = 200 
+ Body = {
+  "href" : "https://flow.steinberg.net/login/application/sda/steinbergid"
+} 
+2026-10-03 18:42:46.793  INFO 1656 --- [JavaFX-Launcher] .ClientRegistrationFactoryUsingDiscovery : Resolved OIDC redirect uri to: https://flow.steinberg.net/login/application/sda/steinbergid
+2026-10-03 18:42:48.776  INFO 1656 --- [JavaFX-Launcher] .ClientRegistrationFactoryUsingDiscovery : Successfully retrieved oidc issuer data
+2026-10-03 18:42:49.316  INFO 1656 --- [JavaFX-Launcher] o.s.boot.SpringApplication               : Started application in 24.233 seconds (JVM running for 31.971)
+2026-10-03 18:42:49.346  INFO 1656 --- [JavaFX-Launcher] s.e.d.c.ApplicationPropertiesCreatorImpl : C:\Users\adsf\AppData\Roaming\steinberg-download-assistant did not exist, therefore it was created
+2026-10-03 18:42:49.368  INFO 1656 --- [JavaFX-Launcher] s.e.d.c.ApplicationPropertiesCreatorImpl : Additional Spring config file did not exist, therefore it was created at C:\Users\adsf\AppData\Roaming\steinberg-download-assistant\application.properties
+2026-10-03 18:42:49.369  INFO 1656 --- [JavaFX-Launcher] n.s.elicenser.download.Application       : Java Version: 1.8.0_492
+2026-10-03 18:42:49.370  INFO 1656 --- [JavaFX-Launcher] n.s.elicenser.download.Application       : Java Home: C:\Program Files (x86)\Steinberg\Download Assistant\runtime
+2026-10-03 18:42:49.376  INFO 1656 --- [JavaFX Application Thread] n.s.elicenser.download.Application       : start() - Start JFX scene
+2026-10-03 18:42:49.562  INFO 1656 --- [JavaFX Application Thread] n.s.e.d.selfupdate.SelfUpdateService     : starting SelfUpdate...
+2026-10-03 18:42:49.564  INFO 1656 --- [JavaFX Application Thread] n.s.e.d.selfupdate.SelfUpdateService     : Beta keys considered for self update: 
+2026-10-03 18:42:49.566  INFO 1656 --- [JavaFX Application Thread] n.s.e.d.http.AuthorizedHttpClientImpl    : GET for net.steinberg.elicenser.download.common.LinkLookupPathFinder$Link with url https://pathfinder.mb.steinberg.net/rest/sda-selfupdate-v2
+2026-10-03 18:42:49.567  INFO 1656 --- [JavaFX Application Thread] n.s.e.d.http.AuthorizedHttpClientImpl    : Sending http request: GET https://pathfinder.mb.steinberg.net/rest/sda-selfupdate-v2 HTTP/1.1
+Content-Type: application/json
+
+
+2026-10-03 18:42:49.756  INFO 1656 --- [JavaFX Application Thread] n.s.e.d.http.AuthorizedHttpClientImpl    : Received http response for https://pathfinder.mb.steinberg.net/rest/sda-selfupdate-v2: 
+ Status = 200 
+ Body = {
+  "href" : "https://client-access-gateway.mb.steinberg.net/desktopClients/update/sda"
+} 
+2026-10-03 18:42:49.764  INFO 1656 --- [JavaFX Application Thread] n.s.e.d.http.AuthorizedHttpClientImpl    : GET for net.steinberg.elicenser.download.selfupdate.ClientUpdateInformation with url https://client-access-gateway.mb.steinberg.net/desktopClients/update/sda
+2026-10-03 18:42:49.765  INFO 1656 --- [JavaFX Application Thread] n.s.e.d.http.AuthorizedHttpClientImpl    : Sending http request: GET https://client-access-gateway.mb.steinberg.net/desktopClients/update/sda HTTP/1.1
+Content-Type: application/json
+
+
+2026-10-03 18:42:50.530  INFO 1656 --- [JavaFX Application Thread] n.s.e.d.http.AuthorizedHttpClientImpl    : Received http response for https://client-access-gateway.mb.steinberg.net/desktopClients/update/sda: 
+ Status = 200 
+ Body = {"updateRequired":false} 
+2026-10-03 18:42:50.640  INFO 1656 --- [JavaFX Application Thread] n.s.e.d.selfupdate.SelfUpdateService     : SelfUpdate completed ... there is no newer version available...
+2026-10-03 18:42:50.757  INFO 1656 --- [JavaFX Application Thread] n.s.e.download.oidc.NimbusOIDCService    : Restoring persisted authorization
+2026-10-03 18:42:50.777  WARN 1656 --- [JavaFX Application Thread] n.s.e.d.w.WindowsCredentialManagerAccess : Read received an error: com.sun.jna.LastErrorException: [1168] Element not found.
+2026-10-03 18:42:51.229  INFO 1656 --- [JavaFX Application Thread] n.s.e.download.gui.common.Styles         : Font loaded '/fonts/AkzidGroCFFBol.otf'
+2026-10-03 18:42:51.231  INFO 1656 --- [JavaFX Application Thread] n.s.e.download.gui.common.Styles         : Family: 'Akzidenz Grotesk BE Bold'
+2026-10-03 18:42:51.232  INFO 1656 --- [JavaFX Application Thread] n.s.e.download.gui.common.Styles         : Name: 'AkzidenzGroteskBE-Bold'
+2026-10-03 18:42:51.301  INFO 1656 --- [JavaFX Application Thread] n.s.e.download.gui.common.Styles         : Font loaded '/fonts/AkzidGroCFFBol.otf'
+2026-10-03 18:42:51.302  INFO 1656 --- [JavaFX Application Thread] n.s.e.download.gui.common.Styles         : Family: 'Akzidenz Grotesk BE Bold'
+2026-10-03 18:42:51.303  INFO 1656 --- [JavaFX Application Thread] n.s.e.download.gui.common.Styles         : Name: 'AkzidenzGroteskBE-Bold'
