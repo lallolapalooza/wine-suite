@@ -1,0 +1,101 @@
+{
+  "format": "omp-session-archive/v1",
+  "generatedAt": "2026-10-04T06:52:30.852Z",
+  "source": {
+    "sessionFile": "/home/asdf/.omp/agent/sessions/-projects/2026-10-04T05-46-43-799Z_01a10573-48d7-7377-855d-9e0359545d55.jsonl",
+    "sessionId": "01a10573-48d7-7377-855d-9e0359545d55",
+    "cwd": "/home/asdf/projects",
+    "title": "Implement Wine dark mode menu bar"
+  },
+  "main": {
+    "entries": 784,
+    "bytes": 2282781
+  },
+  "subagents": [],
+  "artifacts": [
+    {
+      "file": "artifacts/90.bash.log",
+      "bytes": 5370
+    },
+    {
+      "file": "artifacts/20.bash.log",
+      "bytes": 8785
+    }
+  ],
+  "agents": {
+    "count": 1,
+    "agents": [
+      {
+        "id": "Main",
+        "name": "main",
+        "kind": "main",
+        "depth": 0,
+        "model": "deepseek/deepseek-flash",
+        "hasSystemPrompt": true,
+        "ended": false
+      }
+    ]
+  },
+  "jobs": {
+    "liveAgents": [
+      "Main"
+    ],
+    "completed": 7,
+    "completedJobs": [
+      {
+        "agent": "main",
+        "entryId": "5343eb2a",
+        "at": "2026-10-04T05:59:09.258Z",
+        "label": "bg_8",
+        "status": "completed"
+      },
+      {
+        "agent": "main",
+        "entryId": "5bb8895b",
+        "at": "2026-10-04T05:59:31.140Z",
+        "label": "bg_9",
+        "status": "completed"
+      },
+      {
+        "agent": "main",
+        "entryId": "926174ea",
+        "at": "2026-10-04T05:59:44.060Z",
+        "label": "bg_10",
+        "status": "completed"
+      },
+      {
+        "agent": "main",
+        "entryId": "f2139e6f",
+        "at": "2026-10-04T06:00:35.401Z",
+        "label": "bg_14",
+        "status": "completed"
+      },
+      {
+        "agent": "main",
+        "entryId": "90ec1c20",
+        "at": "2026-10-04T06:01:10.050Z",
+        "label": "bg_13",
+        "status": "completed"
+      },
+      {
+        "agent": "main",
+        "entryId": "03d45208",
+        "at": "2026-10-04T06:25:03.427Z",
+        "label": "bg_17",
+        "status": "completed"
+      },
+      {
+        "agent": "main",
+        "entryId": "37738432",
+        "at": "2026-10-04T06:25:39.066Z",
+        "label": "bg_18",
+        "status": "completed"
+      }
+    ]
+  },
+  "totals": {
+    "files": 8,
+    "bytes": 6469073
+  },
+  "omitted": []
+}

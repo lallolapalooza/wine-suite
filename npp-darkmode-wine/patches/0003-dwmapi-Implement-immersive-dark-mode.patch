@@ -1,0 +1,48 @@
+From: omp <omp@localhost>
+Subject: [PATCH 3/3] dwmapi: Implement the DWMWA_USE_IMMERSIVE_DARK_MODE attribute
+
+Store the immersive dark mode state per window instead of ignoring it, so that
+applications using the documented DWM attribute (Notepad++ on Windows 10 2004+)
+get dark decorations and a dark menu bar.
+---
+--- a/dlls/dwmapi/dwmapi_main.c
++++ b/dlls/dwmapi/dwmapi_main.c
+@@ -101,6 +101,20 @@
+ HRESULT WINAPI DwmSetWindowAttribute(HWND hwnd, DWORD attributenum, LPCVOID attribute, DWORD size)
+ {
+     static BOOL once;
++    BOOL dark;
++
++    TRACE("(%p, %lx, %p, %lx)\n", hwnd, attributenum, attribute, size);
++
++    if (attributenum == DWMWA_USE_IMMERSIVE_DARK_MODE)
++    {
++        if (!attribute || size < sizeof(dark))
++            return E_INVALIDARG;
++        dark = *(const BOOL *)attribute;
++        /* win32u reads this property to decide whether to ask the application
++         * to draw a dark menu bar */
++        SetPropW( hwnd, L"__wine_dark_mode", dark ? (HANDLE)1 : (HANDLE)2 );
++        return S_OK;
++    }
+ 
+     if (!once++) FIXME("(%p, %lx, %p, %lx) stub\n", hwnd, attributenum, attribute, size);
+ 
+@@ -195,6 +209,17 @@
+         return E_HANDLE;
+ 
+     switch (attribute) {
++    case DWMWA_USE_IMMERSIVE_DARK_MODE:
++    {
++        BOOL *dark = pv_attribute;
++
++        if (!dark)
++            return E_INVALIDARG;
++        if (size < sizeof(*dark))
++            return E_NOT_SUFFICIENT_BUFFER;
++        *dark = GetPropW( hwnd, L"__wine_dark_mode" ) == (HANDLE)1;
++        return S_OK;
++    }
+     case DWMWA_EXTENDED_FRAME_BOUNDS:
+     {
+         RECT *rect = (RECT *)pv_attribute;
