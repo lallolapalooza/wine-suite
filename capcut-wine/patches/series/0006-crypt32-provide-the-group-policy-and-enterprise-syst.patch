@@ -1,0 +1,94 @@
+From e8bdfff084b4873ef3bd2acfd42e2724dad0db88 Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:08:42 -0500
+Subject: [PATCH 06/23] crypt32: provide the group-policy and enterprise system
+ certificate stores
+
+Windows always has the system certificate store keys, including the group-policy
+(hklm/hkcu\Software\Policies\Microsoft\SystemCertificates) and enterprise
+(hklm\Software\Microsoft\EnterpriseCertificates) ones, so a program that walks every store with
+CertOpenStore(CERT_STORE_PROV_SYSTEM_REGISTRY_W, ... | CERT_STORE_OPEN_EXISTING_FLAG, ...) finds them.
+Wine mapped the two group-policy locations but the registry keys do not exist in a prefix, and
+CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE was a FIXME stub returning NULL.  Autodesk's
+AdskLicensingSDK opens exactly these stores (LOCAL_MACHINE_GROUP_POLICY / CURRENT_USER_GROUP_POLICY /
+LOCAL_MACHINE_ENTERPRISE with 0xc000 flags) and got NULL for each under Wine.
+
+The enterprise location is now mapped to its registry path, and the group-policy/enterprise store keys
+are created on demand so that OPEN_EXISTING succeeds as it does on Windows.
+
+Verified with tools/storeprobe (CertOpenStore via P/Invoke) under Wine:
+  LM/CU GroupPolicy ROOT and LM Enterprise ROOT: NULL (err=2) -> OK
+---
+ dlls/crypt32/store.c | 33 ++++++++++++++++++++++++++++++---
+ 1 file changed, 30 insertions(+), 3 deletions(-)
+
+diff --git a/dlls/crypt32/store.c b/dlls/crypt32/store.c
+index 8625737..615b75a 100644
+--- a/dlls/crypt32/store.c
++++ b/dlls/crypt32/store.c
+@@ -37,6 +37,11 @@
+ 
+ WINE_DEFAULT_DEBUG_CHANNEL(crypt);
+ 
++/* Windows' hklm\Software\Microsoft\EnterpriseCertificates store root (wincrypt.h has no name for it) */
++static const WCHAR CERT_ENTERPRISE_SYSTEM_STORE_REGPATH[] =
++ {'S','o','f','t','w','a','r','e','\\','M','i','c','r','o','s','o','f','t','\\',
++  'E','n','t','e','r','p','r','i','s','e','C','e','r','t','i','f','i','c','a','t','e','s',0};
++
+ static const void *cert_find_context_by_context(HCERTSTORE store, const void *context)
+ {
+     BYTE hash[20];
+@@ -453,6 +458,7 @@ static WINECRYPT_CERTSTORE *CRYPT_SysRegOpenStoreW(HCRYPTPROV hCryptProv,
+     WINECRYPT_CERTSTORE *store = NULL;
+     HKEY root;
+     LPCWSTR base;
++    BOOL create_base = FALSE;
+ 
+     TRACE("(%Id, %08lx, %s)\n", hCryptProv, dwFlags,
+      debugstr_w(pvPara));
+@@ -498,21 +504,42 @@ static WINECRYPT_CERTSTORE *CRYPT_SysRegOpenStoreW(HCRYPTPROV hCryptProv,
+     case CERT_SYSTEM_STORE_CURRENT_USER_GROUP_POLICY:
+         root = HKEY_CURRENT_USER;
+         base = CERT_GROUP_POLICY_SYSTEM_STORE_REGPATH;
++        create_base = TRUE;
+         break;
+     case CERT_SYSTEM_STORE_LOCAL_MACHINE_GROUP_POLICY:
+         root = HKEY_LOCAL_MACHINE;
+         base = CERT_GROUP_POLICY_SYSTEM_STORE_REGPATH;
++        create_base = TRUE;
+         break;
+     case CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE:
+         /* hklm\Software\Microsoft\EnterpriseCertificates */
+-        FIXME("CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE, %s: stub\n",
+-         debugstr_w(storeName));
+-        return NULL;
++        root = HKEY_LOCAL_MACHINE;
++        base = CERT_ENTERPRISE_SYSTEM_STORE_REGPATH;
++        create_base = TRUE;
++        break;
+     default:
+         SetLastError(E_INVALIDARG);
+         return NULL;
+     }
+ 
++    /* Windows always has the group-policy and enterprise store keys in the registry (even when
++     * empty), so create them here too: a store opened with CERT_STORE_OPEN_EXISTING_FLAG then
++     * succeeds the way it does on Windows. */
++    if (create_base)
++    {
++        HKEY base_key;
++        DWORD disp;
++        LPWSTR createPath = CryptMemAlloc((lstrlenW(base) + lstrlenW(storeName) + 2) * sizeof(WCHAR));
++
++        if (createPath)
++        {
++            wsprintfW( createPath, L"%s\\%s", base, storeName );
++            if (!RegCreateKeyExW( root, createPath, 0, NULL, 0, KEY_ALL_ACCESS, NULL, &base_key, &disp ))
++                RegCloseKey( base_key );
++            CryptMemFree( createPath );
++        }
++    }
++
+     storePath = CryptMemAlloc((lstrlenW(base) + lstrlenW(storeName) + 2) *
+      sizeof(WCHAR));
+     if (storePath)

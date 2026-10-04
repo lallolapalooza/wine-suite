@@ -1,0 +1,35 @@
+==== stage1 Sun 10/04/2026 11:45:51.93 ==== 
+loader rc=0 
+=== dir C:\ (serial cross-check) ===
+ Volume Serial Number is 9266-18AC
+=== volprobe (no args) ===
+=== volprobe ===
+path            : C:\
+root            : C:\
+GetDriveTypeW   : 3 (FIXED)
+GetVolumePathNmW: ok=1 err=234 path="C:\"
+GetVolNameFMPW  : ok=1 err=234 name="\\?\Volume{f69f3010-1f64-4c04-a0f0-4edc48c489c2}\"
+  via volume name: ok=1 err=0 fs="NTFS" serial=926618ac flags=03e72eff
+GetVolumeInfoW(path): ok=1 err=0 fs="NTFS" serial=926618ac flags=03e72eff
+GetVolumeInfoW  : ok=1 err=0 vol="" fs="NTFS" serial=926618ac flags=03e72eff
+  flags decode   : CASE_SENSITIVE_SEARCH CASE_PRESERVED_NAMES UNICODE_ON_DISK PERSISTENT_ACLS FILE_COMPRESSION VOLUME_QUOTAS SUPPORTS_SPARSE_FILES SUPPORTS_REPARSE_POINTS SUPPORTS_OBJECT_IDS SUPPORTS_ENCRYPTION NAMED_STREAMS SUPPORTS_TRANSACTIONS SUPPORTS_HARD_LINKS SUPPORTS_EXTENDED_ATTRIBUTES SUPPORTS_OPEN_BY_FILE_ID SUPPORTS_USN_JOURNAL unknown(00002e00)
+GetDiskFreeSpEx : ok=1 err=0 avail=13608 MB total=64428 MB
+GetDiskFreeSpW  : ok=1 err=0 sec=8 bps=512 nfree=3483878 ntotal=16493823
+GetFileAttrs    : 00000016 dir=1
+CreateFileW     : ffffffffffffffff err=5
+path            : C:\users\asdf\AppData\Local\CapCut\User Data\Projects
+root            : C:\
+GetDriveTypeW   : 3 (FIXED)
+GetVolumePathNmW: ok=1 err=234 path="C:\"
+GetVolNameFMPW  : ok=1 err=234 name="\\?\Volume{f69f3010-1f64-4c04-a0f0-4edc48c489c2}\"
+  via volume name: ok=1 err=0 fs="NTFS" serial=926618ac flags=03e72eff
+GetVolumeInfoW(path): ok=0 err=123 fs="" serial=00000000 flags=00000000
+GetVolumeInfoW  : ok=1 err=0 vol="" fs="NTFS" serial=926618ac flags=03e72eff
+  flags decode   : CASE_SENSITIVE_SEARCH CASE_PRESERVED_NAMES UNICODE_ON_DISK PERSISTENT_ACLS FILE_COMPRESSION VOLUME_QUOTAS SUPPORTS_SPARSE_FILES SUPPORTS_REPARSE_POINTS SUPPORTS_OBJECT_IDS SUPPORTS_ENCRYPTION NAMED_STREAMS SUPPORTS_TRANSACTIONS SUPPORTS_HARD_LINKS SUPPORTS_EXTENDED_ATTRIBUTES SUPPORTS_OPEN_BY_FILE_ID SUPPORTS_USN_JOURNAL unknown(00002e00)
+GetDiskFreeSpEx : ok=1 err=0 avail=13608 MB total=64428 MB
+GetDiskFreeSpW  : ok=1 err=0 sec=8 bps=512 nfree=3483878 ntotal=16493823
+GetFileAttrs    : ffffffff dir=0
+CreateFileW     : ffffffffffffffff err=3
+=== end ===
+=== volprobe-rc=0 ===
+==== stage1 done rc=0 ==== 

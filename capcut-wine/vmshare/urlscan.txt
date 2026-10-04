@@ -1,0 +1,14 @@
+start=2026-10-03T22:49:10.7523644-07:00
+payload started: C:\Users\adsf\AppData\Local\app_shell_cache_562354\app_package_37889d0f29.exe size=559656336
+scanning pid 2972
+=== URLS IN MEMORY ===
+download done marker=True size=559656336
+payload final: C:\Users\adsf\AppData\Local\app_shell_cache_562354\app_package_37889d0f29.exe size=559656336
+payload sha256=E3755D1798FDEA572E4A781E5B39F759B3F2C32CC5D590E71006DF7B6F00664F
+=== DNS (relevant) ===
+mcs-normal-sg.capcutapi.com -> mcs-normal-sg.capcutapi.com.ttdns2.com
+mcs-normal-sg.capcutapi.com -> mcs-normal-sg.capcutapi.com.edgesuite.net
+mcs-normal-sg.capcutapi.com -> a349.t.akamai.net
+mcs-normal-sg.capcutapi.com -> 186.188.209.219
+mcs-normal-sg.capcutapi.com -> 186.188.209.217
+DONE

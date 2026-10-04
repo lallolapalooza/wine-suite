@@ -1,0 +1,28 @@
+=== volprobe ===
+path            : C:\
+root            : C:\
+GetDriveTypeW   : 3 (FIXED)
+GetVolumePathNmW: ok=1 err=0 path="C:\"
+GetVolNameFMPW  : ok=1 err=0 name="\\?\Volume{00000000-0000-0000-0000-000000000043}\"
+  via volume name: ok=1 err=0 fs="NTFS" serial=43000000 flags=0140008f
+GetVolumeInfoW(path): ok=1 err=0 fs="NTFS" serial=43000000 flags=0140008f
+GetVolumeInfoW  : ok=1 err=0 vol="" fs="NTFS" serial=43000000 flags=0140008f
+  flags decode   : CASE_SENSITIVE_SEARCH CASE_PRESERVED_NAMES UNICODE_ON_DISK PERSISTENT_ACLS SUPPORTS_REPARSE_POINTS SUPPORTS_HARD_LINKS SUPPORTS_OPEN_BY_FILE_ID
+GetDiskFreeSpEx : ok=1 err=0 avail=18311 MB total=217615 MB
+GetDiskFreeSpW  : ok=1 err=0 sec=8 bps=512 nfree=4687678 ntotal=55709576
+GetFileAttrs    : 00000010 dir=1
+CreateFileW     : 0000000000000034 err=0
+path            : C:\users\asdf\AppData\Local\CapCut\User Data\Projects
+root            : C:\
+GetDriveTypeW   : 3 (FIXED)
+GetVolumePathNmW: ok=1 err=0 path="C:\"
+GetVolNameFMPW  : ok=1 err=0 name="\\?\Volume{00000000-0000-0000-0000-000000000043}\"
+  via volume name: ok=1 err=0 fs="NTFS" serial=43000000 flags=0140008f
+GetVolumeInfoW(path): ok=0 err=144 fs="" serial=00000000 flags=00000000
+GetVolumeInfoW  : ok=1 err=0 vol="" fs="NTFS" serial=43000000 flags=0140008f
+  flags decode   : CASE_SENSITIVE_SEARCH CASE_PRESERVED_NAMES UNICODE_ON_DISK PERSISTENT_ACLS SUPPORTS_REPARSE_POINTS SUPPORTS_HARD_LINKS SUPPORTS_OPEN_BY_FILE_ID
+GetDiskFreeSpEx : ok=1 err=0 avail=18311 MB total=217615 MB
+GetDiskFreeSpW  : ok=1 err=0 sec=8 bps=512 nfree=4687678 ntotal=55709576
+GetFileAttrs    : 00000010 dir=1
+CreateFileW     : 0000000000000034 err=0
+=== end ===

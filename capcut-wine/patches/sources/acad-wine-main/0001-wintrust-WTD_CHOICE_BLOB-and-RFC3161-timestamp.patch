@@ -1,0 +1,135 @@
+--- a/dlls/wintrust/softpub.c
++++ b/dlls/wintrust/softpub.c
+@@ -30,6 +30,8 @@
+ 
+ WINE_DEFAULT_DEBUG_CHANNEL(wintrust);
+ 
++#define szOID_RFC3161_counterSign "1.3.6.1.4.1.311.3.3.1"
++
+ HRESULT WINAPI SoftpubDefCertInit(CRYPT_PROVIDER_DATA *data)
+ {
+     HRESULT ret = S_FALSE;
+@@ -595,6 +597,71 @@
+     return err;
+ }
+ 
++/* Assumes data->pWintrustData->pBlob exists.  Loads a signed message
++ * (PKCS#7) that is held in memory, as used by the AppX/P7x SIP through
++ * WinVerifyTrust with WTD_CHOICE_BLOB.
++ */
++static DWORD SOFTPUB_LoadBlobMessage(CRYPT_PROVIDER_DATA *data)
++{
++    WINTRUST_BLOB_INFO *blob = data->pWintrustData->pBlob;
++    const BYTE *msg;
++    DWORD len, err;
++
++    if (!blob ||
++     !WVT_IS_CBSTRUCT_GT_MEMBEROFFSET(WINTRUST_BLOB_INFO, blob->cbStruct, pbMemSignedMsg))
++        return ERROR_INVALID_PARAMETER;
++
++    data->pPDSip->gSubject = blob->gSubject;
++
++    /* When no detached signed message is supplied, Windows treats the
++     * in-memory object itself as the signed PKCS#7 message. */
++    if (blob->pbMemSignedMsg && blob->cbMemSignedMsg)
++    {
++        msg = blob->pbMemSignedMsg;
++        len = blob->cbMemSignedMsg;
++    }
++    else
++    {
++        msg = blob->pbMemObject;
++        len = blob->cbMemObject;
++    }
++    if (!msg || !len)
++        return ERROR_INVALID_PARAMETER;
++
++    /* AppX/MSIX ".p7x" buffers (WTD_CHOICE_BLOB, P7X SIP subject GUID
++     * {5598cff1-68db-4340-b57f-1cacf88c9a51}) start with the 4-byte
++     * P7X_FILE_ID magic (0x58434b50, "PKCX") before the PKCS#7
++     * ContentInfo.  Skip it, matching what msix.dll expects from the SIP
++     * (it strips sizeof(DWORD) itself before decoding). */
++    if (len >= sizeof(DWORD) && *(const DWORD *)msg == 0x58434b50)
++    {
++        msg += sizeof(DWORD);
++        len -= sizeof(DWORD);
++    }
++
++    data->dwEncoding = X509_ASN_ENCODING | PKCS_7_ASN_ENCODING;
++    data->hMsg = CryptMsgOpenToDecode(data->dwEncoding, 0, 0, data->hProv,
++     NULL, NULL);
++    if (!data->hMsg)
++        return GetLastError();
++
++    if (!CryptMsgUpdate(data->hMsg, msg, len, TRUE))
++        return GetLastError();
++
++    err = SOFTPUB_CreateStoreFromMessage(data);
++    if (err)
++        return err;
++
++    /* The inner content is only needed to verify the hash of an external
++     * object, which a memory blob does not have; failure to decode it is not
++     * fatal for the trust decision. */
++    err = SOFTPUB_DecodeInnerContent(data);
++    if (err)
++        WARN("could not decode inner content: %ld\n", err);
++
++    return ERROR_SUCCESS;
++}
++
+ HRESULT WINAPI SoftpubLoadMessage(CRYPT_PROVIDER_DATA *data)
+ {
+     DWORD err = ERROR_SUCCESS;
+@@ -615,6 +682,9 @@
+     case WTD_CHOICE_CATALOG:
+         err = SOFTPUB_LoadCatalogMessage(data);
+         break;
++    case WTD_CHOICE_BLOB:
++        err = SOFTPUB_LoadBlobMessage(data);
++        break;
+     default:
+         FIXME("unimplemented for %ld\n", data->pWintrustData->dwUnionChoice);
+         err = ERROR_INVALID_PARAMETER;
+@@ -733,6 +803,41 @@
+                 }
+             }
+         }
++        else if (!strcmp(signerInfo->UnauthAttrs.rgAttr[i].pszObjId,
++         szOID_RFC3161_counterSign))
++        {
++            const CRYPT_ATTRIBUTE *attr = &signerInfo->UnauthAttrs.rgAttr[i];
++            DWORD j;
++
++            for (j = 0; !foundTimeStamp && j < attr->cValue; j++)
++            {
++                static const DWORD encoding = X509_ASN_ENCODING |
++                 PKCS_7_ASN_ENCODING;
++                CMSG_CMS_SIGNER_INFO *tsaSignerInfo = NULL;
++                HCRYPTMSG msg;
++                DWORD size = 0;
++
++                msg = CryptMsgOpenToDecode(encoding, 0, 0, 0, NULL, NULL);
++                if (!msg)
++                    continue;
++                if (CryptMsgUpdate(msg, attr->rgValue[j].pbData,
++                 attr->rgValue[j].cbData, TRUE) &&
++                 CryptMsgGetParam(msg, CMSG_CMS_SIGNER_INFO_PARAM, 0, NULL,
++                 &size) && size)
++                {
++                    tsaSignerInfo = malloc(size);
++                    if (tsaSignerInfo && CryptMsgGetParam(msg,
++                     CMSG_CMS_SIGNER_INFO_PARAM, 0, tsaSignerInfo, &size))
++                    {
++                        /* FIXME: need to verify the timestamp token too */
++                        foundTimeStamp = WINTRUST_GetTimeFromCounterSigner(
++                         tsaSignerInfo, &time);
++                    }
++                    free(tsaSignerInfo);
++                }
++                CryptMsgClose(msg);
++            }
++        }
+     }
+     if (!foundTimeStamp)
+     {

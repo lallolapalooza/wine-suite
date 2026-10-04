@@ -1,0 +1,290 @@
+ws2_32: answer Network Location Awareness (NS_NLA) lookups
+
+Chromium's NetworkChangeNotifierWin::RecomputeCurrentConnectionType() (net/base/
+network_change_notifier_win.cc) asks the Network Location Awareness namespace whether the machine
+has a network connection at all:
+
+    query_set.dwNameSpace = NS_NLA;
+    WSALookupServiceBegin(&query_set, LUP_RETURN_ALL, &ws_handle);   /* -1, error 8 */
+    WSALookupServiceNext(ws_handle, LUP_RETURN_NAME, &length, result_buffer);
+    WSALookupServiceEnd(ws_handle);
+
+Wine implements all four entry points as stubs that fail with WSA_NOT_ENOUGH_MEMORY (8), so every
+Chromium/Electron process - including Autodesk's AdskAccessUIHost.exe - logged
+
+    ERROR:net\base\network_change_notifier_win.cc:...] WSALookupServiceBegin failed with: 8
+
+and fell back to CONNECTION_UNKNOWN (the UI host logs the same call site with error 0).  Windows
+answers these lookups from its adapter table, so do the same: WSALookupServiceBegin/Next/End now
+implement NS_NLA (a per-process lookup list; Next reports one result when GetAdaptersAddresses()
+shows a non-loopback adapter with OperStatus == IfOperStatusUp, and WSA_E_NO_MORE otherwise, which
+is exactly what Chromium turns into "connected" / "no connection").  Everything else keeps the
+previous stub behaviour, so nothing that used to fail now behaves differently.
+
+Measured with tools/nlaprobe (new probe that runs Chromium's exact three calls, and dumps the
+adapter table for context):
+
+    before: WSALookupServiceBeginW(NS_NLA) = -1 err=8 handle=0000000000000000
+    after:  WSALookupServiceBeginW(NS_NLA) = 0  handle=0x7ffffe163550
+            WSALookupServiceNextW = 0 err=0 len=136 nameSpace=15 (NS_NLA) name=Network
+            WSALookupServiceEnd   = 0
+
+and the Chromium log line disappears:
+
+    electron.exe --version            : 2 WSALookupServiceBegin error lines  ->  0
+    electron.exe --disable-gpu <app>  : 2                                      ->  0
+
+Note: the companion message in the UI host's stderr,
+"DCompositionCreateDevice3 failed: Not implemented. (0x80004001)", is a different gap and is left
+alone here: Wine's whole dcomp device API (DCompositionCreateDevice/2/3 in dlls/dcomp/device.c)
+returns E_NOTIMPL because Wine has no DirectComposition implementation, and Chromium handles the
+failure by disabling DirectComposition and using its normal presentation path.  Returning a stub
+device there would make Chromium issue DirectComposition calls that Wine cannot honour.
+--- a/dlls/ws2_32/protocol.c
++++ b/dlls/ws2_32/protocol.c
+@@ -2162,14 +2162,122 @@
+ }
+ 
+ 
++/* Only the Network Location Awareness namespace is provided: applications use it
++ * (Chromium's network change notifier, for instance) to find out whether the
++ * machine has a network connection at all.  Windows answers those queries from
++ * the same adapter information used below. */
++
++struct nla_lookup
++{
++    struct nla_lookup *next;
++    BOOL returned;  /* the single result has been returned already */
++};
++
++static struct nla_lookup *nla_lookups;
++
++static CRITICAL_SECTION nla_lookups_cs;
++static CRITICAL_SECTION_DEBUG nla_lookups_cs_debug =
++{
++    0, 0, &nla_lookups_cs,
++    { &nla_lookups_cs_debug.ProcessLocksList, &nla_lookups_cs_debug.ProcessLocksList },
++      0, 0, { (DWORD_PTR)(__FILE__ ": nla_lookups_cs") }
++};
++static CRITICAL_SECTION nla_lookups_cs = { &nla_lookups_cs_debug, -1, 0, 0, 0, 0 };
++
++static const WCHAR nla_nameW[] = L"Network";
++static const char nla_nameA[] = "Network";
++
++/* is there a network connection at all?  Like Windows, report the connection as
++ * present when an adapter other than the loopback is up. */
++static BOOL have_network_connection(void)
++{
++    IP_ADAPTER_ADDRESSES *adapters, *adapter, *tmp;
++    ULONG size = 16 * 1024, flags = GAA_FLAG_SKIP_ANYCAST | GAA_FLAG_SKIP_MULTICAST | GAA_FLAG_SKIP_DNS_SERVER;
++    DWORD err;
++    BOOL ret = TRUE;  /* assume connected when the adapters can't be queried */
++
++    if (!(adapters = malloc( size ))) return TRUE;
++    err = GetAdaptersAddresses( AF_UNSPEC, flags, NULL, adapters, &size );
++    if (err == ERROR_BUFFER_OVERFLOW && (tmp = realloc( adapters, size )))
++    {
++        adapters = tmp;
++        err = GetAdaptersAddresses( AF_UNSPEC, flags, NULL, adapters, &size );
++    }
++    if (!err)
++    {
++        ret = FALSE;
++        for (adapter = adapters; adapter; adapter = adapter->Next)
++        {
++            if (adapter->OperStatus == IfOperStatusUp && adapter->IfType != IF_TYPE_SOFTWARE_LOOPBACK)
++            {
++                ret = TRUE;
++                break;
++            }
++        }
++    }
++    free( adapters );
++    return ret;
++}
++
++static struct nla_lookup *find_nla_lookup( HANDLE lookup )
++{
++    struct nla_lookup *entry;
++
++    for (entry = nla_lookups; entry; entry = entry->next)
++        if (entry == (struct nla_lookup *)lookup) return entry;
++    return NULL;
++}
++
++/* 0: unknown handle, 1: the result was returned already, 2: first call */
++static int nla_next_state( HANDLE lookup )
++{
++    struct nla_lookup *entry;
++    int state = 0;
++
++    EnterCriticalSection( &nla_lookups_cs );
++    if ((entry = find_nla_lookup( lookup )))
++    {
++        state = entry->returned ? 1 : 2;
++        entry->returned = TRUE;
++    }
++    LeaveCriticalSection( &nla_lookups_cs );
++    return state;
++}
++
++static int nla_lookup_begin( HANDLE *lookup )
++{
++    struct nla_lookup *entry;
++
++    if (!(entry = calloc( 1, sizeof(*entry) )))
++    {
++        SetLastError( WSA_NOT_ENOUGH_MEMORY );
++        return -1;
++    }
++    EnterCriticalSection( &nla_lookups_cs );
++    entry->next = nla_lookups;
++    nla_lookups = entry;
++    LeaveCriticalSection( &nla_lookups_cs );
++    *lookup = entry;
++    return 0;
++}
++
+ /***********************************************************************
+  *      WSALookupServiceBeginA   (ws2_32.@)
+  */
+ int WINAPI WSALookupServiceBeginA( WSAQUERYSETA *query, DWORD flags, HANDLE *lookup )
+ {
+-    FIXME( "(%p %#lx %p) Stub!\n", query, flags, lookup );
+-    SetLastError( WSA_NOT_ENOUGH_MEMORY );
+-    return -1;
++    if (!query || !lookup)
++    {
++        SetLastError( WSAEINVAL );
++        return -1;
++    }
++    if (query->dwNameSpace != NS_NLA)
++    {
++        FIXME( "(%p %#lx %p) Stub!\n", query, flags, lookup );
++        SetLastError( WSA_NOT_ENOUGH_MEMORY );
++        return -1;
++    }
++    return nla_lookup_begin( lookup );
+ }
+ 
+ 
+@@ -2178,9 +2286,18 @@
+  */
+ int WINAPI WSALookupServiceBeginW( WSAQUERYSETW *query, DWORD flags, HANDLE *lookup )
+ {
+-    FIXME( "(%p %#lx %p) Stub!\n", query, flags, lookup );
+-    SetLastError( WSA_NOT_ENOUGH_MEMORY );
+-    return -1;
++    if (!query || !lookup)
++    {
++        SetLastError( WSAEINVAL );
++        return -1;
++    }
++    if (query->dwNameSpace != NS_NLA)
++    {
++        FIXME( "(%p %#lx %p) Stub!\n", query, flags, lookup );
++        SetLastError( WSA_NOT_ENOUGH_MEMORY );
++        return -1;
++    }
++    return nla_lookup_begin( lookup );
+ }
+ 
+ 
+@@ -2189,7 +2306,20 @@
+  */
+ int WINAPI WSALookupServiceEnd( HANDLE lookup )
+ {
+-    FIXME("(%p) Stub!\n", lookup );
++    struct nla_lookup *entry, **next;
++
++    if (!lookup) return 0;
++
++    EnterCriticalSection( &nla_lookups_cs );
++    for (next = &nla_lookups; (entry = *next); next = &entry->next)
++        if (entry == (struct nla_lookup *)lookup)
++        {
++            *next = entry->next;
++            break;
++        }
++    LeaveCriticalSection( &nla_lookups_cs );
++
++    free( entry );
+     return 0;
+ }
+ 
+@@ -2199,9 +2329,34 @@
+  */
+ int WINAPI WSALookupServiceNextA( HANDLE lookup, DWORD flags, DWORD *len, WSAQUERYSETA *results )
+ {
+-    FIXME( "(%p %#lx %p %p) Stub!\n", lookup, flags, len, results );
+-    SetLastError( WSA_E_NO_MORE );
+-    return -1;
++    int state = nla_next_state( lookup );
++    char *name;
++
++    if (state == 0)
++    {
++        SetLastError( WSA_INVALID_HANDLE );
++        return -1;
++    }
++    if (state == 1 || !have_network_connection())
++    {
++        SetLastError( WSA_E_NO_MORE );
++        return -1;
++    }
++    if (!len || !results || *len < sizeof(*results) + sizeof(nla_nameA))
++    {
++        if (len) *len = sizeof(*results) + sizeof(nla_nameA);
++        SetLastError( WSAEFAULT );
++        return -1;
++    }
++
++    memset( results, 0, sizeof(*results) );
++    results->dwSize     = sizeof(*results);
++    results->dwNameSpace = NS_NLA;
++    name = (char *)results + sizeof(*results);
++    memcpy( name, nla_nameA, sizeof(nla_nameA) );
++    results->lpszServiceInstanceName = name;
++    *len = sizeof(*results) + sizeof(nla_nameA);
++    return 0;
+ }
+ 
+ 
+@@ -2210,9 +2365,34 @@
+  */
+ int WINAPI WSALookupServiceNextW( HANDLE lookup, DWORD flags, DWORD *len, WSAQUERYSETW *results )
+ {
+-    FIXME( "(%p %#lx %p %p) Stub!\n", lookup, flags, len, results );
+-    SetLastError( WSA_E_NO_MORE );
+-    return -1;
++    int state = nla_next_state( lookup );
++    char *name;
++
++    if (state == 0)
++    {
++        SetLastError( WSA_INVALID_HANDLE );
++        return -1;
++    }
++    if (state == 1 || !have_network_connection())
++    {
++        SetLastError( WSA_E_NO_MORE );
++        return -1;
++    }
++    if (!len || !results || *len < sizeof(*results) + sizeof(nla_nameW))
++    {
++        if (len) *len = sizeof(*results) + sizeof(nla_nameW);
++        SetLastError( WSAEFAULT );
++        return -1;
++    }
++
++    memset( results, 0, sizeof(*results) );
++    results->dwSize      = sizeof(*results);
++    results->dwNameSpace = NS_NLA;
++    name = (char *)results + sizeof(*results);
++    memcpy( name, nla_nameW, sizeof(nla_nameW) );
++    results->lpszServiceInstanceName = (WCHAR *)name;
++    *len = sizeof(*results) + sizeof(nla_nameW);
++    return 0;
+ }
+ 
+ 

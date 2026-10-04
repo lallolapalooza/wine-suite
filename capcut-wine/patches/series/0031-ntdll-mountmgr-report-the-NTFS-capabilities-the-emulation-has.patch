@@ -1,0 +1,137 @@
+From 73d2b20ffe4d469f7e084eb1cff90c7be19f3d3c Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 13:47:16 -0500
+Subject: [PATCH] ntdll,mountmgr: report the NTFS volume capabilities the
+ emulation actually implements
+
+GetVolumeInformationW on an NTFS volume reported FILE_CASE_PRESERVED_NAMES |
+FILE_PERSISTENT_ACLS | FILE_SUPPORTS_REPARSE_POINTS | FILE_SUPPORTS_OPEN_BY_FILE_ID,
+while Windows reports 21 capability bits for the same file system.  Add the ones
+the emulation really implements and that were missing: FILE_CASE_SENSITIVE_SEARCH,
+FILE_UNICODE_ON_DISK and FILE_SUPPORTS_HARD_LINKS.  Both places that answer
+FileFsAttributeInformation are updated - ntdll for a directory handle and mountmgr
+for a drive root - because they had also drifted apart on
+FILE_SUPPORTS_REPARSE_POINTS.  The bits Windows sets for features Wine does not
+implement (compression, quotas, sparse files, object ids, encryption, transactions,
+USN journal, integrity streams, ...) are deliberately not advertised.
+
+This is a general correctness fix, not a fix for any application-specific
+behaviour.  The difference it closes was found while chasing CapCut's "Project
+saved path not found" dialog, but that dialog does not reproduce with the current
+prefix state, so nothing here should be read as having fixed it.
+
+The volume serial in the same reply is deliberately left alone.  A drive letter
+mapped to a directory has no serial on the volume to read, and the synthetic value
+Wine reports is not merely cosmetic: CapCut stores it as its "hid" machine id under
+HKCU\Software\Bytedance\CapCut, and editing that value to a different serial made
+the app re-run its first-run "Environment testing" flow (3/3 runs failed to reach
+the home screen, versus 3/3 with the original value).  Do not "improve" the serial
+to be the host filesystem's identity without re-checking that: the app keys on it.
+---
+ dlls/kernel32/tests/volume.c | 18 ++++++++++++++++++
+ dlls/mountmgr.sys/device.c   | 12 ++++++++++--
+ dlls/ntdll/tests/file.c      | 14 ++++++++++++++
+ dlls/ntdll/unix/file.c       |  9 ++++++++-
+ 4 files changed, 50 insertions(+), 3 deletions(-)
+
+diff --git a/dlls/kernel32/tests/volume.c b/dlls/kernel32/tests/volume.c
+index 8b7a705..7c3e4a2 100644
+--- a/dlls/kernel32/tests/volume.c
++++ b/dlls/kernel32/tests/volume.c
+@@ -537,6 +537,24 @@ static void test_GetVolumeInformationA(void)
+             &vol_serial_num, &max_comp_len, &fs_flags, fs_name_buf, fs_name_len);
+     ok(ret, "GetVolumeInformationA failed, root=%s, last error=%lu\n", Root_Slash, GetLastError());
+ 
++    ok(vol_serial_num != 0, "expected a non-zero volume serial\n");
++
++    /* a drive root is answered by mountmgr, and its reply must agree with the
++     * FileFsAttributeInformation one ntdll gives for a directory on that volume */
++    if (!strcmp( fs_name_buf, "NTFS" ))
++    {
++        ok(fs_flags & FILE_CASE_PRESERVED_NAMES,
++           "expected FILE_CASE_PRESERVED_NAMES to be set, got %#lx\n", fs_flags);
++        ok(fs_flags & FILE_CASE_SENSITIVE_SEARCH,
++           "expected FILE_CASE_SENSITIVE_SEARCH to be set, got %#lx\n", fs_flags);
++        ok(fs_flags & FILE_UNICODE_ON_DISK,
++           "expected FILE_UNICODE_ON_DISK to be set, got %#lx\n", fs_flags);
++        ok(fs_flags & FILE_PERSISTENT_ACLS,
++           "expected FILE_PERSISTENT_ACLS to be set, got %#lx\n", fs_flags);
++        ok(fs_flags & FILE_SUPPORTS_HARD_LINKS,
++           "expected FILE_SUPPORTS_HARD_LINKS to be set, got %#lx\n", fs_flags);
++    }
++
+     /* try again with drive letter and the "disable parsing" prefix */
+     SetLastError(0xdeadbeef);
+     ret = GetVolumeInformationA(Root_UNC, vol_name_buf, vol_name_size,
+diff --git a/dlls/mountmgr.sys/device.c b/dlls/mountmgr.sys/device.c
+index 51e3cb1..3f3863a 100644
+--- a/dlls/mountmgr.sys/device.c
++++ b/dlls/mountmgr.sys/device.c
+@@ -1782,9 +1782,17 @@ static NTSTATUS WINAPI disk_query_volume( DEVICE_OBJECT *device, IRP *irp )
+             info->MaximumComponentNameLength = 255;
+             break;
+         default:
++            /* NTFS: report the capabilities the NTFS emulation actually has.  Windows
++             * sets many more bits here (compression, quotas, object ids, encryption,
++             * transactions, USN journal, integrity streams, sparse files, ...) which
++             * Wine does not implement, so advertising them would only send
++             * applications down paths that fail.  Keep this in sync with the
++             * FileFsAttributeInformation reply in dlls/ntdll/unix/file.c. */
+             fsname = L"NTFS";
+-            info->FileSystemAttributes = FILE_CASE_PRESERVED_NAMES | FILE_PERSISTENT_ACLS |
+-                                         FILE_SUPPORTS_REPARSE_POINTS | FILE_SUPPORTS_OPEN_BY_FILE_ID;
++            info->FileSystemAttributes = FILE_CASE_SENSITIVE_SEARCH | FILE_CASE_PRESERVED_NAMES |
++                                         FILE_UNICODE_ON_DISK | FILE_PERSISTENT_ACLS |
++                                         FILE_SUPPORTS_REPARSE_POINTS | FILE_SUPPORTS_HARD_LINKS |
++                                         FILE_SUPPORTS_OPEN_BY_FILE_ID;
+             info->MaximumComponentNameLength = 255;
+             break;
+         }
+diff --git a/dlls/ntdll/tests/file.c b/dlls/ntdll/tests/file.c
+index 50df902..8f9db7c 100644
+--- a/dlls/ntdll/tests/file.c
++++ b/dlls/ntdll/tests/file.c
+@@ -4986,6 +4986,20 @@ static void test_query_attribute_information_file(void)
+     ok(ffai->FileSystemAttributes & FILE_SUPPORTS_OPEN_BY_FILE_ID,
+             "expected FILE_SUPPORTS_OPEN_BY_FILE_ID to be set, got %#lx\n", ffai->FileSystemAttributes);
+ 
++    if (ffai->FileSystemNameLength == 4 * sizeof(WCHAR) && !wcsncmp( ffai->FileSystemName, L"NTFS", 4 ))
++    {
++        ok(ffai->FileSystemAttributes & FILE_CASE_PRESERVED_NAMES,
++           "expected FILE_CASE_PRESERVED_NAMES to be set, got %#lx\n", ffai->FileSystemAttributes);
++        ok(ffai->FileSystemAttributes & FILE_CASE_SENSITIVE_SEARCH,
++           "expected FILE_CASE_SENSITIVE_SEARCH to be set, got %#lx\n", ffai->FileSystemAttributes);
++        ok(ffai->FileSystemAttributes & FILE_UNICODE_ON_DISK,
++           "expected FILE_UNICODE_ON_DISK to be set, got %#lx\n", ffai->FileSystemAttributes);
++        ok(ffai->FileSystemAttributes & FILE_PERSISTENT_ACLS,
++           "expected FILE_PERSISTENT_ACLS to be set, got %#lx\n", ffai->FileSystemAttributes);
++        ok(ffai->FileSystemAttributes & FILE_SUPPORTS_HARD_LINKS,
++           "expected FILE_SUPPORTS_HARD_LINKS to be set, got %#lx\n", ffai->FileSystemAttributes);
++    }
++
+     trace("FileSystemAttributes: %lx MaximumComponentNameLength: %lx FileSystemName: %s\n",
+           ffai->FileSystemAttributes, ffai->MaximumComponentNameLength,
+           wine_dbgstr_wn(ffai->FileSystemName, ffai->FileSystemNameLength / sizeof(WCHAR)));
+diff --git a/dlls/ntdll/unix/file.c b/dlls/ntdll/unix/file.c
+index f9db07b..5ae71c3 100644
+--- a/dlls/ntdll/unix/file.c
++++ b/dlls/ntdll/unix/file.c
+@@ -7685,7 +7685,14 @@ NTSTATUS WINAPI NtQueryVolumeInformationFile( HANDLE handle, IO_STATUS_BLOCK *io
+             memcpy(info->FileSystemName, fat32W, info->FileSystemNameLength);
+             break;
+         default:
+-            info->FileSystemAttributes = FILE_CASE_PRESERVED_NAMES | FILE_PERSISTENT_ACLS |
++            /* NTFS: report the capabilities the NTFS emulation actually has.
++             * Windows sets many more bits here (compression, quotas, object
++             * ids, encryption, transactions, USN journal, integrity streams,
++             * sparse files, ...) which Wine does not implement, so advertising
++             * them would only send applications down paths that fail. */
++            info->FileSystemAttributes = FILE_CASE_SENSITIVE_SEARCH | FILE_CASE_PRESERVED_NAMES |
++                                         FILE_UNICODE_ON_DISK | FILE_PERSISTENT_ACLS |
++                                         FILE_SUPPORTS_REPARSE_POINTS | FILE_SUPPORTS_HARD_LINKS |
+                                          FILE_SUPPORTS_OPEN_BY_FILE_ID;
+             info->MaximumComponentNameLength = 255;
+             info->FileSystemNameLength = min( sizeof(ntfsW), length - offsetof( FILE_FS_ATTRIBUTE_INFORMATION, FileSystemName ) );
+-- 
+2.53.0
+

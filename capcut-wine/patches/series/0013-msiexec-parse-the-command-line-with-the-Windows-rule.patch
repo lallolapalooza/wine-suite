@@ -1,0 +1,217 @@
+From c2cb4fc672d4faaa24533a22da5a16afc386bd08 Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:08:43 -0500
+Subject: [PATCH 13/23] msiexec: parse the command line with the Windows rules,
+ so a property value ending in a backslash survives
+
+Windows' msiexec receives its command line from the caller (or from the shell) quoted according to
+the documented rules, and the CRT turns it back into argv: quotes are delimiters and are removed,
+and a run of backslashes in front of a quote is halved, with the quote still delimiting the
+argument when their number is even and being taken literally when it is odd.  Wine's msiexec
+replaces that with its own chomp() (programs/msiexec/msiexec.c), which kept the quotes in the
+arguments it returned and had no backslash handling at all.
+
+The AutoCAD 2027 installer is what runs into this.  For every package whose install directory is
+under "C:\Program Files\..." it passes the install location with a trailing backslash, e.g.
+
+  msiexec /i ...\x64\acadprivate\acadprivate.msi /qn MSIFASTINSTALL=7 ARPSYSTEMCOMPONENT=1
+          INSTALLDIR=C:\Program Files\Autodesk\AutoCAD 2027\ REBOOT=ReallySuppress ADSK_ODIS_SETUP=1
+
+Wine's loader (build_command_line in dlls/ntdll/unix/env.c) quotes that argument and doubles the
+trailing backslash, as the Windows rules require, so the Windows command line is well-formed:
+
+  "...\msiexec.exe" /i ... "INSTALLDIR=C:\Program Files\Autodesk\AutoCAD 2027\\" /l*v ...
+
+Old chomp() turned that back into the argument
+
+  "INSTALLDIR=C:\Program Files\Autodesk\AutoCAD 2027\\"       (quotes kept, backslashes not halved)
+
+build_properties() then took the text up to the '=' as the property name (so the name carried the
+opening quote), found a value that already began with a quote and copied it verbatim, and handed
+MsiInstallProductW
+
+   ADSK_ODIS_SETUP=1 "INSTALLDIR="C:\Program Files\Autodesk\AutoCAD 2027\\""
+
+msi_parse_command_line counted an odd number of quotes, warned "unbalanced quotes", returned
+ERROR_INVALID_COMMAND_LINE and msiexec exited 103 with an MSI log that contains only its header -
+no action of the package ever ran.  The same happens without the trailing backslash (the retained
+quotes alone unbalance the property string), so every hand-run of these packages failed.
+(Refuted along the way: the warning is not about Wine treating a backslash-prefixed quote as an
+escaped quote - msi_parse_command_line only knows `"` - and the value parser is not the faulty
+part; the malformed property string was produced by msiexec itself.)
+
+Fix: chomp() now follows the Windows rules.  The callers that used to strip the quotes again
+themselves (remove_quotes() on the package name, the log file and the DLL name) are unaffected,
+because those arguments no longer carry the quotes, and the property arguments now reach
+build_properties() the way Windows' msiexec sees them.
+
+This is not the installer's own path: ODIS (install_manager) drives the packages through
+MsiInstallProductW in-process and passes the value quoted
+(`INSTALLDIR="C:\Program Files\Autodesk\AutoCAD 2027\"`), which the MSI command line parser already
+handles - that path completes with the unpatched msi.dll.  The defect is confined to msiexec's own
+argument marshalling, which is what the repair path and any hand-run of these packages uses.
+
+Verified with acadprivate.msi (ADSK_ODIS_SETUP=1 satisfies its LaunchCondition), in a licensing
+prefix so that its licensing custom actions pass:
+  wine msiexec /i pkgs/x/x64/acadprivate/acadprivate.msi /qn 'ADSK_ODIS_SETUP=1'
+               'INSTALLDIR=C:\Program Files\Autodesk\AutoCAD 2027\' /l*v msi.log
+  before: exit 103, log = header only, `warn:msi:msi_parse_command_line unbalanced quotes`
+  after:  exit 0, 93 "Action start" lines, INSTALL return value 1,
+          Property(S): INSTALLDIR = C:\Program Files\Autodesk\AutoCAD 2027\,
+          Property(S): LOCAL_INSTALLDIR = C:\Program Files\Autodesk\AutoCAD 2027, and the four
+          payload files of the package in C:\Program Files\Autodesk\AutoCAD 2027 (the fifth one,
+          MsiKeyFile_ACADLockSecuritySettings.dll, is conditioned on LOCKSECURITYSETTINGS=1,
+          which the bundle leaves at 0 - as on the Windows guest)
+No regression: without the trailing backslash and with an explicitly quoted path the property
+value is parsed identically (`INSTALLDIR = C:\Program Files\Autodesk\AutoCAD 2027`).
+---
+ programs/msiexec/msiexec.c | 121 +++++++++++++++++++------------------
+ 1 file changed, 61 insertions(+), 60 deletions(-)
+
+diff --git a/programs/msiexec/msiexec.c b/programs/msiexec/msiexec.c
+index b4fe9a7..35523cd 100644
+--- a/programs/msiexec/msiexec.c
++++ b/programs/msiexec/msiexec.c
+@@ -464,81 +464,82 @@ static int custom_action_server(const WCHAR *arg)
+ }
+ 
+ /*
+- * state machine to break up the command line properly
++ * Break up the command line into arguments, using the same rules as the Windows command
++ * line parser: arguments are separated by spaces outside of quotes, quotes delimit an
++ * argument and are not part of it, and a run of backslashes in front of a quote is halved
++ * with the quote delimiting the argument when the number of backslashes is even, and with
++ * the quote being taken literally when that number is odd.  Note that msiexec is launched
++ * by other programs (and by the shell) with a command line that was quoted according to
++ * these rules, so e.g. a trailing backslash of an argument arrives doubled and must be
++ * halved again here, or the property value would not match what the caller passed.
+  */
+-
+-enum chomp_state
+-{
+-    CS_WHITESPACE,
+-    CS_TOKEN,
+-    CS_QUOTE
+-};
+-
+ static int chomp( const WCHAR *in, WCHAR *out )
+ {
+-    enum chomp_state state = CS_TOKEN;
+-    const WCHAR *p;
+-    int count = 1;
+-    BOOL ignore;
++    const WCHAR *p = in;
++    WCHAR *q = out;
++    int count = 0, bcount = 0;
++    BOOL in_quotes = FALSE, in_arg = FALSE;
+ 
+-    for (p = in; *p; p++)
++    while (*p)
+     {
+-        ignore = TRUE;
+-        switch (state)
++        if ((*p == ' ' || *p == '\t') && !in_quotes)
+         {
+-        case CS_WHITESPACE:
+-            switch (*p)
++            while (*p == ' ' || *p == '\t') p++;
++            if (!*p) break;
++            if (in_arg)
+             {
+-            case ' ':
+-                break;
+-            case '"':
+-                state = CS_QUOTE;
+-                count++;
+-                ignore = FALSE;
+-                break;
+-            default:
++                if (q) *q++ = 0;
+                 count++;
+-                ignore = FALSE;
+-                state = CS_TOKEN;
++                in_arg = FALSE;
+             }
+-            break;
+-
+-        case CS_TOKEN:
+-            switch (*p)
++            bcount = 0;
++        }
++        else if (*p == '\\')
++        {
++            if (q) *q++ = *p;
++            bcount++;
++            p++;
++        }
++        else if (*p == '"')
++        {
++            if (bcount & 1)
+             {
+-            case '"':
+-                state = CS_QUOTE;
+-                ignore = FALSE;
+-                break;
+-            case ' ':
+-                state = CS_WHITESPACE;
+-                if (out) *out++ = 0;
+-                break;
+-            default:
+-                if (p > in && p[-1] == '"')
+-                {
+-                    if (out) *out++ = 0;
+-                    count++;
+-                }
+-                ignore = FALSE;
++                /* an odd number of backslashes: half of them followed by a literal quote */
++                if (q) { q -= bcount / 2 + 1; *q++ = *p; }
++                bcount = 0;
++                p++;
+             }
+-            break;
+-
+-        case CS_QUOTE:
+-            switch (*p)
++            else
+             {
+-            case '"':
+-                state = CS_TOKEN;
+-                ignore = FALSE;
+-                break;
+-            default:
+-                ignore = FALSE;
++                /* an even number of backslashes: half of them, the quote is a delimiter */
++                if (q) q -= bcount / 2;
++                bcount = 0;
++                p++;
++                if (in_quotes && *p == '"')
++                {
++                    /* a doubled quote inside a quoted argument is a literal quote */
++                    if (q) *q++ = *p;
++                    p++;
++                }
++                else in_quotes = !in_quotes;
+             }
+-            break;
++            in_arg = TRUE;
+         }
+-        if (!ignore && out) *out++ = *p;
++        else
++        {
++            if (q) *q++ = *p;
++            bcount = 0;
++            in_arg = TRUE;
++            p++;
++        }
++    }
++
++    if (in_arg)
++    {
++        if (q) *q++ = 0;
++        count++;
+     }
+-    if (out) *out = 0;
++    if (q) *q = 0;
+     return count;
+ }
+ 

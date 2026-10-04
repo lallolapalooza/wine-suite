@@ -1,0 +1,6 @@
+query needed=12419 err=234
+size=12419 returned=84 array=[0..4704] strings=[6356..12418] tail=1
+0xAA in gap = 0 of 1652
+entry[0] name@12402 disp@12354 ; entry[ret-1] name@6448 disp@6356
+bytes at entry[ret] (off 4704): 00 00 00 00 00 00 00 00
+first string: Windows Push Notifications User Service_e7b95

@@ -1,0 +1,3 @@
+=== dir /s /b C:\ve_detector* ===
+=== Get-ChildItem C:\ -Recurse -Filter *ve_detector* ===
+=== DONE ===

@@ -1,0 +1,200 @@
+From 7e11e1579511279ee10db4c5832d9d48d7013589 Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 12:01:35 -0500
+Subject: [PATCH] dxgi: read composition swap chain buffers that have no DDI
+ format
+
+A composition swap chain may use R8G8B8A8_UNORM (CapCut's Qt and CEF both
+create a 1440x994 premultiplied one), and wined3d cannot create a DC for
+that format, so the existing per-present compositing - which reads the back
+buffer through IDXGISurface1::GetDC - could not show such a swap chain at
+all.  Fall back to copying the back buffer into a staging texture and
+blitting it with StretchDIBits, whose DIB colour masks describe the
+channel order.  Also trace the requested composition swap chain
+description, which is the only place an app's format choice is visible.
+---
+ dlls/dxgi/factory.c   |   4 ++
+ dlls/dxgi/swapchain.c | 123 ++++++++++++++++++++++++++++++++++++++++--
+ 2 files changed, 122 insertions(+), 5 deletions(-)
+
+diff --git a/dlls/dxgi/factory.c b/dlls/dxgi/factory.c
+index 53b4271..620b53c 100644
+--- a/dlls/dxgi/factory.c
++++ b/dlls/dxgi/factory.c
+@@ -405,6 +405,10 @@ static HRESULT STDMETHODCALLTYPE dxgi_factory_CreateSwapChainForComposition(IWin
+         return DXGI_ERROR_INVALID_CALL;
+     }
+ 
++    TRACE("desc: %ux%u format %#x buffers %u effect %#x alpha %#x flags %#x (pid %lu).\n",
++            desc->Width, desc->Height, desc->Format, desc->BufferCount,
++            desc->SwapEffect, desc->AlphaMode, desc->Flags, GetCurrentProcessId());
++
+     if (!dxgi_validate_swapchain_desc(desc))
+         return DXGI_ERROR_INVALID_CALL;
+ 
+diff --git a/dlls/dxgi/swapchain.c b/dlls/dxgi/swapchain.c
+index a0f5d3e..2cc613f 100644
+--- a/dlls/dxgi/swapchain.c
++++ b/dlls/dxgi/swapchain.c
+@@ -19,6 +19,8 @@
+ 
+ #include "dxgi_private.h"
+ 
++#include <d3d11.h>
++
+ #define VKD3D_NO_VULKAN_H
+ #define VKD3D_NO_WIN32_TYPES
+ #include "wine/vulkan.h"
+@@ -236,12 +238,115 @@ void __wine_dxgi_set_composition_target(IDXGISwapChain *swapchain_iface, HWND wi
+     TRACE("Swapchain %p now composites into window %p at %d,%d.\n", swapchain, window, x, y);
+ }
+ 
++/* IDXGISurface1::GetDC only works for formats wined3d can create a DDI DC for
++ * (in practice the B8G8R8 family), but a composition swap chain is allowed to
++ * use R8G8B8A8 as well.  Read such a buffer through a staging texture instead,
++ * and let StretchDIBits' DIB colour masks deal with the channel order. */
++static BOOL d3d11_swapchain_composite_staging(struct d3d11_swapchain *swapchain, ID3D11Texture2D *back_buffer)
++{
++    struct
++    {
++        BITMAPINFOHEADER header;
++        DWORD masks[3];
++    } info;
++    D3D11_MAPPED_SUBRESOURCE mapped;
++    ID3D11DeviceContext *context = NULL;
++    ID3D11Texture2D *staging = NULL;
++    ID3D11Device *device = NULL;
++    D3D11_TEXTURE2D_DESC desc;
++    HDC dst_dc;
++    RECT rect;
++    BOOL ret = FALSE;
++    HRESULT hr;
++
++    ID3D11Texture2D_GetDesc(back_buffer, &desc);
++
++    memset(&info, 0, sizeof(info));
++    info.header.biSize = sizeof(info.header);
++    info.header.biWidth = desc.Width;
++    info.header.biHeight = -(LONG)desc.Height;  /* D3D11 rows are top-down */
++    info.header.biPlanes = 1;
++    info.header.biBitCount = 32;
++    info.header.biCompression = BI_BITFIELDS;
++    info.header.biClrUsed = 3;
++
++    switch (desc.Format)
++    {
++        case DXGI_FORMAT_R8G8B8A8_UNORM:
++        case DXGI_FORMAT_R8G8B8A8_UNORM_SRGB:
++            info.masks[0] = 0x000000ff;
++            info.masks[1] = 0x0000ff00;
++            info.masks[2] = 0x00ff0000;
++            break;
++
++        case DXGI_FORMAT_B8G8R8A8_UNORM:
++        case DXGI_FORMAT_B8G8R8A8_UNORM_SRGB:
++            info.masks[0] = 0x00ff0000;
++            info.masks[1] = 0x0000ff00;
++            info.masks[2] = 0x000000ff;
++            break;
++
++        default:
++            WARN("Unsupported composition buffer format %#x.\n", desc.Format);
++            return FALSE;
++    }
++
++    if (FAILED(hr = IWineDXGIDevice_QueryInterface(swapchain->device,
++            &IID_ID3D11Device, (void **)&device)))
++    {
++        WARN("Swap chain device is not a D3D11 device, hr %#lx.\n", hr);
++        return FALSE;
++    }
++
++    desc.Usage = D3D11_USAGE_STAGING;
++    desc.BindFlags = 0;
++    desc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
++    desc.MiscFlags = 0;
++    if (FAILED(hr = ID3D11Device_CreateTexture2D(device, &desc, NULL, &staging)))
++    {
++        WARN("Failed to create staging texture, hr %#lx.\n", hr);
++        goto done;
++    }
++    ID3D11Device_GetImmediateContext(device, &context);
++    if (!context)
++    {
++        WARN("Failed to get an immediate context.\n");
++        goto done;
++    }
++    ID3D11DeviceContext_CopyResource(context, (ID3D11Resource *)staging, (ID3D11Resource *)back_buffer);
++    if (FAILED(hr = ID3D11DeviceContext_Map(context, (ID3D11Resource *)staging, 0, D3D11_MAP_READ, 0, &mapped)))
++    {
++        WARN("Failed to map the staging texture, hr %#lx.\n", hr);
++        goto done;
++    }
++    if ((dst_dc = GetDC(swapchain->composition_window)))
++    {
++        GetClientRect(swapchain->composition_window, &rect);
++        ret = StretchDIBits(dst_dc, swapchain->composition_x, swapchain->composition_y,
++                rect.right - swapchain->composition_x, rect.bottom - swapchain->composition_y,
++                0, 0, desc.Width, desc.Height, mapped.pData,
++                (const BITMAPINFO *)&info, DIB_RGB_COLORS, SRCCOPY) != GDI_ERROR;
++        GdiFlush();
++        ReleaseDC(swapchain->composition_window, dst_dc);
++    }
++    ID3D11DeviceContext_Unmap(context, (ID3D11Resource *)staging, 0);
++
++done:
++    if (context)
++        ID3D11DeviceContext_Release(context);
++    if (staging)
++        ID3D11Texture2D_Release(staging);
++    ID3D11Device_Release(device);
++    return ret;
++}
++
+ /* Blit the buffer the application has just rendered into (buffer 0, which is
+  * what the compositor is expected to show) into the target window. */
+ static void d3d11_swapchain_composite(struct d3d11_swapchain *swapchain)
+ {
+     DXGI_SURFACE_DESC surface_desc;
+     IDXGISurface1 *surface;
++    ID3D11Texture2D *texture;
+     HDC src_dc, dst_dc;
+     HRESULT hr;
+ 
+@@ -257,11 +362,8 @@ static void d3d11_swapchain_composite(struct d3d11_swapchain *swapchain)
+         return;
+     }
+ 
+-    if (FAILED(hr = IDXGISurface1_GetDesc(surface, &surface_desc)))
+-        WARN("Failed to get the composition buffer description, hr %#lx.\n", hr);
+-    if (SUCCEEDED(hr) && FAILED(hr = IDXGISurface1_GetDC(surface, FALSE, &src_dc)))
+-        WARN("Failed to get a DC for the composition buffer, hr %#lx.\n", hr);
+-    if (SUCCEEDED(hr))
++    if (SUCCEEDED(hr = IDXGISurface1_GetDesc(surface, &surface_desc))
++            && SUCCEEDED(hr = IDXGISurface1_GetDC(surface, FALSE, &src_dc)))
+     {
+         if ((dst_dc = GetDC(swapchain->composition_window)))
+         {
+@@ -276,8 +378,19 @@ static void d3d11_swapchain_composite(struct d3d11_swapchain *swapchain)
+             ReleaseDC(swapchain->composition_window, dst_dc);
+         }
+         IDXGISurface1_ReleaseDC(surface, NULL);
++        IDXGISurface1_Release(surface);
++        return;
+     }
+     IDXGISurface1_Release(surface);
++
++    if (FAILED(hr = d3d11_swapchain_GetBuffer(&swapchain->IDXGISwapChain4_iface, 0,
++            &IID_ID3D11Texture2D, (void **)&texture)))
++    {
++        WARN("Failed to get the back buffer texture, hr %#lx.\n", hr);
++        return;
++    }
++    d3d11_swapchain_composite_staging(swapchain, texture);
++    ID3D11Texture2D_Release(texture);
+ }
+ 
+ /* IUnknown methods */
+-- 
+2.53.0
+

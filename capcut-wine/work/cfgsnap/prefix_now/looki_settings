@@ -1,0 +1,4 @@
+[General]
+LookiStateManagerKey=0
+LookiDomainKey="https://feed-api-va-us.capcutapi.com/cc/v1/workspace,https://feed-api-va-us.capcutapi.com/lv/v1//lv/v1/coordination,https://editor-api-va.capcutapi.com/lv/v2/"
+domain_related_to_looki.looki_dispatch_related.dispatch_status_domain="https://editor-api.capcutapi.com/lv/v1/custom_service/get_eentrance_allow_guest,https://heycan-api.capcutapi.com/artist/v1/aigc_effect/user_aigc_list,https://feed-api.capcutapi.com/lv/v1/pc/replicate/get_collections"
