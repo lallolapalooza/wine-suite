@@ -1,0 +1,1 @@
+1.0:0009:Call KERNEL32.CreateFileW(0x40 "x",0x10000,00000003) ret=1

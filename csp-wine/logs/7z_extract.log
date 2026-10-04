@@ -1,0 +1,69 @@
+
+7-Zip 26.00 (x64) : Copyright (c) 1999-2026 Igor Pavlov : 2026-02-12
+ 64-bit locale=en_US.UTF-8 Threads:22 OPEN_MAX:524288, ASM
+
+Scanning the drive for archives:
+1 file, 488891856 bytes (467 MiB)
+
+Extracting archive: /home/asdf/Downloads/CSP_514w_setup.exe
+--
+Path = /home/asdf/Downloads/CSP_514w_setup.exe
+Type = PE
+Physical Size = 488891856
+CPU = x86
+Characteristics = Executable 32-bit LargeAddress
+Created = 2024-12-29 04:43:55
+Headers Size = 1024
+Checksum = 488901140
+Name = setup.exe
+Image Size = 946176
+Section Alignment = 4096
+File Alignment = 512
+Code Size = 481280
+Initialized Data Size = 441856
+Uninitialized Data Size = 0
+Linker Version = 14.40
+OS Version = 5.1
+Image Version = 0.0
+Subsystem Version = 5.1
+Subsystem = Windows GUI
+DLL Characteristics = Relocated NX-Compatible GuardCF TerminalServerAware
+Stack Reserve = 1048576
+Stack Commit = 4096
+Heap Reserve = 1048576
+Heap Commit = 4096
+Virtual Address = 0x400000
+Comment = 
+{
+FileVersion: 5.1.4.0
+FileVersion: 5.1.4
+ProductVersion: 5.1.4.0
+ProductVersion: 5.1.4
+CompanyName: CELSYS
+FileDescription: InstallScript Setup Launcher Unicode
+InternalName: Setup
+LegalCopyright: Copyright (c) 2024 Flexera. All Rights Reserved.
+OriginalFilename: setup.exe
+ProductName: CLIP STUDIO PAINT
+Internal Build Number: 214356
+ISInternalVersion: 30.0.233
+ISInternalDescription: InstallScript Setup Launcher Unicode
+Data Directories: 16
+{
+index=1 name=IMPORT VA=0x8E7C8 Size=240
+index=2 name=RESOURCE VA=0x95000 Size=302072
+index=4 name=SECURITY VA=0x1D23B318 Size=12984
+index=5 name=BASERELOC VA=0xDF000 Size=28876
+index=6 name=DEBUG VA=0x837A0 Size=84
+index=9 name=TLS VA=0x83800 Size=24
+index=10 name=LOAD_CONFIG VA=0x7D588 Size=64
+index=12 name=IAT VA=0x77000 Size=1484
+index=13 name=DELAY_IMPORT VA=0x8E300 Size=192
+}
+}
+
+Everything is Ok
+
+Files: 53
+Size:       488888398
+Compressed: 488891856

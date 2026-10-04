@@ -1,0 +1,14 @@
+﻿17:08:09 ==== CSP REFERENCE INSTALL START ====
+17:08:09 media: CSP_514w_setup.exe MicrosoftEdgeWebView2RuntimeInstallerX64.exe
+17:08:09 WebView2: installing
+17:10:27 WebView2: exit=-2147219187
+17:10:27 WebView2: version=154.0.4258.53
+17:10:27 CSP: launching installer (silent attempt)
+17:10:28 CSP: pid=9644
+17:13:48 CSP: after 200s exited=True code=0
+17:13:48 CELSYS dir exists: True
+17:13:48 EXE C:\Program Files\CELSYS\CLIP STUDIO 1.5\CLIP STUDIO\CLIPStudio.exe
+17:13:48 EXE C:\Program Files\CELSYS\CLIP STUDIO 1.5\CLIP STUDIO\moveUserDataTool.exe
+17:13:48 EXE C:\Program Files\CELSYS\CLIP STUDIO 1.5\CLIP STUDIO PAINT\CLIPStudioPaint.exe
+17:13:49 EXE C:\Program Files\CELSYS\CLIP STUDIO 1.5\CLIP STUDIO PAINT\LipExt.exe
+17:13:49 ==== CSP REFERENCE INSTALL DONE ====

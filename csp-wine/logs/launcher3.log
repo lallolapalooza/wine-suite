@@ -1,0 +1,4 @@
+wine client error:0: version mismatch 963/965.
+Your wineserver binary was not upgraded correctly,
+or you have an older one somewhere in your PATH.
+Or maybe the wrong wineserver is still running?

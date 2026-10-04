@@ -1,0 +1,8 @@
+libEGL warning: DRI3 error: Could not get DRI3 device
+libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+libEGL warning: DRI3 error: Could not get DRI3 device
+libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+X connection to :20 broken (explicit kill or server shutdown).
+X connection to :20 broken (explicit kill or server shutdown).
+XIO:  fatal IO error 104 (Connection reset by peer) on X server ":20"
+      after 926 requests (919 known processed) with 0 events remaining.
