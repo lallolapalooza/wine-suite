@@ -1,0 +1,314 @@
+wine=/home/asdf/projects/tableau-wine/wine-install/bin/wine prefix=/home/asdf/projects/tableau-wine/prefix/tableau display=:11 exe=C:\Program Files\Tableau\Tableau 2026.2\bin\tableau.exe secs=100 2026-10-03T23:48:11-05:00
+app_pid=285369
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:win:RegisterPowerSettingNotification (000000000001005C,{02731015-4510-4526-99e6-e5a17ebd1aea},0): stub
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:setupapi:SetupDiOpenDeviceInterfaceW flags 0x1 not implemented
+0150:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UISettings", {00000035-0000-0000-c000-000000000046}, 00007FFFFE23EA68): semi-stub
+0150:fixme:ui:factory_QueryInterface {94ea2b94-e9cc-49e0-c0ff-ee64ca8f5b90} not implemented, returning E_NOINTERFACE.
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+libEGL warning: DRI3 error: Could not get DRI3 device
+libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+0150:fixme:d3d:wined3d_guess_card No card selector available for card vendor 0000 (using GL_RENDERER "llvmpipe (LLVM 21.1.8, 256 bits)").
+0150:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:d3d11:d3d11_device_CheckFeatureSupport Returning fake Options support data.
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 85, format_support 00007949785E433C partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 115, format_support 00007949785E4344 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 86, format_support 00007949785E434C partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 87, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 87, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 87, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 87, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 65, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 11, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 24, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 11, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 55, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 45, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 45, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 61, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 56, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 49, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 35, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 54, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 41, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 34, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 16, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 64, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 62, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 59, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 57, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 43, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 42, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 52, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 50, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 38, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 36, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 18, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 17, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 2, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 2, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 2, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 2, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 2, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 10, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 10, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 10, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 10, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 10, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 45, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 26, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 29, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 29, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 40, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 20, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 45, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 3, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 3, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 12, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 12, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 30, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 30, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 4, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 4, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 14, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 14, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 32, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 32, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 25, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 61, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 49, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 29, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 29, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 28, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 29, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 87, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 87, format_support 00007FFFFE23E840 partial-stub!
+0150:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF440190, format 103, format_support 00007FFFFE23EFE0 partial-stub!
+0150:fixme:dxgi:dxgi_resource_GetSharedHandle iface 00007949785BFC88, shared_handle 00007949787E9330 stub!
+0150:fixme:bcrypt:BCryptGenRandom ignoring selected algorithm
+0150:fixme:thread:QueryThreadCycleTime (FFFFFFFFFFFFFFFE,00007FFFFE23F8D8): stub!
+0150:fixme:bcrypt:BCryptGenRandom ignoring selected algorithm
+0150:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+01f8:fixme:ver:GetCurrentPackageId (0000794879FCFF50 0000000000000000): stub
+0208:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+020c:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0214:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0210:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0214:fixme:wbemprox:client_security_SetBlanket 00006FFFFC502030, 00007948891A66D0, 10, 0, (null), 3, 3, 0000000000000000, 0
+0208:fixme:wbemprox:client_security_SetBlanket 00006FFFFC502030, 0000794889703150, 10, 0, (null), 3, 3, 0000000000000000, 0
+0214:fixme:wbemprox:client_security_Release 00006FFFFC502030
+0208:fixme:wbemprox:client_security_Release 00006FFFFC502030
+020c:fixme:wbemprox:client_security_SetBlanket 00006FFFFC502030, 0000794978665C30, 10, 0, (null), 3, 3, 0000000000000000, 0
+020c:fixme:wbemprox:client_security_Release 00006FFFFC502030
+0210:fixme:wbemprox:client_security_SetBlanket 00006FFFFC502030, 00007949789D7630, 10, 0, (null), 3, 3, 0000000000000000, 0
+0210:fixme:wbemprox:client_security_Release 00006FFFFC502030
+020c:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+020c:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0214:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0214:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0214:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0208:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0214:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0208:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0150:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0150:fixme:wbemprox:client_security_SetBlanket 00006FFFFC502030, 000079488970D950, 10, 0, (null), 3, 3, 0000000000000000, 0
+0150:fixme:wbemprox:client_security_Release 00006FFFFC502030
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0244:fixme:bcrypt:BCryptGenRandom ignoring selected algorithm
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Regular.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Bold.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Black.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraBold.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraLight.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Light.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Medium.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-SemiBold.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Thin.ttf"
+0260:fixme:win:create_window_handle DPI context 0x22 not implemented
+0264:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Regular.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Bold.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Black.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraBold.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraLight.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Light.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Medium.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-SemiBold.ttf"
+0150:fixme:font:find_matching_face Untranslated charset 255
+0150:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Thin.ttf"
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:msg:ChangeWindowMessageFilter c06a 00000001
+0150:fixme:win:IsTouchWindow hwnd 0000000000010074, flags 00007FFFFE23F0B0 stub!
+0268:fixme:win:create_window_handle DPI context 0x22 not implemented
+026c:fixme:win:create_window_handle DPI context 0x22 not implemented
+0270:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:fixme:file:GetLongPathNameW UNC pathname L"\\\\?\\C:\\Program Files\\Tableau\\Connectors"
+0150:fixme:file:GetLongPathNameW UNC pathname L"\\\\?\\C:\\Program Files\\Tableau\\Connectors"
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:d3d:wined3d_guess_card No card selector available for card vendor 0000 (using GL_RENDERER "llvmpipe (LLVM 21.1.8, 256 bits)").
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:win:IsTouchWindow hwnd 0000000000020088, flags 00007FFFFE23EE10 stub!
+0150:fixme:dxgi:dxgi_resource_GetSharedHandle iface 000079480F4E3D38, shared_handle 000079480FCCAF20 stub!
+0150:fixme:dxgi:wined3d_bind_flags_from_dxgi_usage Unhandled DXGI usage 0x40.
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:win:IsTouchWindow hwnd 0000000000030088, flags 00007FFFFE23EEA0 stub!
+0150:fixme:dxgi:dxgi_resource_GetSharedHandle iface 000079480F8B9F98, shared_handle 000079480FCCAF20 stub!
+0150:fixme:dxgi:wined3d_bind_flags_from_dxgi_usage Unhandled DXGI usage 0x40.
+0150:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 000079480A552AE8, 16) stub
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0284:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+0150:fixme:win:RegisterSuspendResumeNotification 000000000002008A, 0: stub.
+0150:fixme:process:GetProcessMitigationPolicy (FFFFFFFFFFFFFFFF, 4, 00007FFFFE23E940, 4): stub
+0288:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:win:GetPointerDevices (00007FFFFE23E2C0 0000000000000000): partial stub
+0150:fixme:system:NtUserDisplayConfigGetDeviceInfo Unimplemented packet type 11.
+0150:fixme:combase:RoActivateInstance (000079480A78AEE0, 00007FFFFE23DF20): semi-stub
+0150:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UISettings", {00000035-0000-0000-c000-000000000046}, 00007FFFFE23DED8): semi-stub
+0150:fixme:ui:uisettings2_add_TextScaleFactorChanged iface 000079480AACD578, handler 000079480AAD1310, cookie 00006FFFE6FA1408 stub!
+0150:fixme:ui:uisettings2_get_TextScaleFactor iface 000079480AACD578, value 00007FFFFE23E100 stub!
+028c:fixme:wtsapi:WTSRegisterSessionNotification Stub 000000000001008E 0x00000000
+02ac:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+02b4:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+02bc:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:fixme:combase:RoGetActivationFactory (L"Windows.Media.ClosedCaptioning.ClosedCaptionProperties", {10aa1f84-cc30-4141-b503-5272289e0c20}, 00007FFFFE23D420): semi-stub
+0150:fixme:media:captions_get_FontSize iface 00006FFFCC704048, value 00007FFFFE23D44C semi-stub.
+0150:fixme:media:captions_get_FontEffect iface 00006FFFCC704048, value 00007FFFFE23D450 semi-stub.
+0150:fixme:media:captions_get_FontStyle iface 00006FFFCC704048, value 00007FFFFE23D448 semi-stub.
+0150:fixme:media:captions_get_FontColor iface 00006FFFCC704048, value 00007FFFFE23D454 semi-stub.
+0150:fixme:media:captions_get_FontOpacity iface 00006FFFCC704048, value 00007FFFFE23D458 semi-stub.
+0150:fixme:media:captions_get_BackgroundColor iface 00006FFFCC704048, value 00007FFFFE23D45C semi-stub.
+0150:fixme:media:captions_get_BackgroundOpacity iface 00006FFFCC704048, value 00007FFFFE23D460 semi-stub.
+0150:fixme:media:captions_get_RegionColor iface 00006FFFCC704048, value 00007FFFFE23D464 semi-stub.
+0150:fixme:media:captions_get_RegionOpacity iface 00006FFFCC704048, value 00007FFFFE23D468 semi-stub.
+02d0:fixme:ntdll:NtFilterToken flags 0x1 unsupported
+02d0:fixme:ntdll:NtFilterToken support for restricting sids not yet implemented
+02d0:fixme:advapi:SetEntriesInAclW unhandled access mode 4
+02d0:fixme:ntdll:NtSetInformationToken TokenIntegrityLevel stub!
+02d0:fixme:ntdll:NtFilterToken support for restricting sids not yet implemented
+02d0:fixme:advapi:SetEntriesInAclW unhandled access mode 4
+02d0:fixme:ntdll:NtSetInformationToken TokenIntegrityLevel stub!
+02d0:fixme:advapi:SetSecurityInfo unimplemented type 7, returning success
+02d0:fixme:sync:NtSetInformationJobObject stub: 0xa80 4 0x7947e93cef60 4
+02d0:fixme:process:GetProcessMitigationPolicy (FFFFFFFFFFFFFFFF, 5, 00006FFFE73C8AA0, 8): stub
+02d0:fixme:process:validate_proc_thread_attribute Unhandled attribute 26
+0150:fixme:combase:RoGetActivationFactory (L"Windows.Media.ClosedCaptioning.ClosedCaptionProperties", {10aa1f84-cc30-4141-b503-5272289e0c20}, 00007FFFFE23DFB0): semi-stub
+0150:fixme:media:captions_get_FontSize iface 00006FFFCC704048, value 00007FFFFE23DFDC semi-stub.
+0150:fixme:media:captions_get_FontEffect iface 00006FFFCC704048, value 00007FFFFE23DFE0 semi-stub.
+0150:fixme:media:captions_get_FontStyle iface 00006FFFCC704048, value 00007FFFFE23DFD8 semi-stub.
+0150:fixme:media:captions_get_FontColor iface 00006FFFCC704048, value 00007FFFFE23DFE4 semi-stub.
+0150:fixme:media:captions_get_FontOpacity iface 00006FFFCC704048, value 00007FFFFE23DFE8 semi-stub.
+0150:fixme:media:captions_get_BackgroundColor iface 00006FFFCC704048, value 00007FFFFE23DFEC semi-stub.
+0150:fixme:media:captions_get_BackgroundOpacity iface 00006FFFCC704048, value 00007FFFFE23DFF0 semi-stub.
+0150:fixme:media:captions_get_RegionColor iface 00006FFFCC704048, value 00007FFFFE23DFF4 semi-stub.
+0150:fixme:media:captions_get_RegionOpacity iface 00006FFFCC704048, value 00007FFFFE23DFF8 semi-stub.
+02d8:err:msg:get_server_queue_handle Cannot get server thread queue
+02d8:err:win:get_desktop_window failed to create desktop window
+02d8:err:msg:get_server_queue_handle Cannot get server thread queue
+02d8:err:win:get_desktop_window failed to create desktop window
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:win:IsTouchWindow hwnd 00000000000200A6, flags 00007FFFFE23F0E0 stub!
+0308:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+0150:fixme:combase:RoGetActivationFactory (L"Windows.Media.ClosedCaptioning.ClosedCaptionProperties", {10aa1f84-cc30-4141-b503-5272289e0c20}, 00007FFFFE23B060): semi-stub
+0150:fixme:media:captions_get_FontSize iface 00006FFFCC704048, value 00007FFFFE23B08C semi-stub.
+0150:fixme:media:captions_get_FontEffect iface 00006FFFCC704048, value 00007FFFFE23B090 semi-stub.
+0150:fixme:media:captions_get_FontStyle iface 00006FFFCC704048, value 00007FFFFE23B088 semi-stub.
+0150:fixme:media:captions_get_FontColor iface 00006FFFCC704048, value 00007FFFFE23B094 semi-stub.
+0150:fixme:media:captions_get_FontOpacity iface 00006FFFCC704048, value 00007FFFFE23B098 semi-stub.
+0150:fixme:media:captions_get_BackgroundColor iface 00006FFFCC704048, value 00007FFFFE23B09C semi-stub.
+0150:fixme:media:captions_get_BackgroundOpacity iface 00006FFFCC704048, value 00007FFFFE23B0A0 semi-stub.
+0150:fixme:media:captions_get_RegionColor iface 00006FFFCC704048, value 00007FFFFE23B0A4 semi-stub.
+0150:fixme:media:captions_get_RegionOpacity iface 00006FFFCC704048, value 00007FFFFE23B0A8 semi-stub.
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:err:winediag:getaddrinfo Failed to resolve your host name IP
+0150:fixme:win:create_window_handle DPI context 0x22 not implemented
+0150:fixme:win:IsTouchWindow hwnd 000000000003009E, flags 00007FFFFE23ED60 stub!
+02c8:fixme:winsock:setsockopt Ignoring SO_RANDOMIZE_PORT
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0290:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+[332:684:1003/234835.877:ERROR:gpu_channel_manager.cc(959)] Failed to create GLES3 context, fallback to GLES2.
+[332:684:1003/234835.877:ERROR:gpu_channel_manager.cc(970)] ContextResult::kFatalFailure: Failed to create shared context for virtualization.
+0150:fixme:win:GetPointerDevices (00007FFFFE23A6E0 0000000000000000): partial stub
+0150:fixme:system:NtUserDisplayConfigGetDeviceInfo Unimplemented packet type 11.
+0150:fixme:ui:uisettings2_get_TextScaleFactor iface 000079480AACD578, value 00007FFFFE23A520 stub!
+02c8:fixme:winsock:setsockopt Ignoring SO_RANDOMIZE_PORT
+frames=24 alive=yes

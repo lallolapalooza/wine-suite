@@ -1,0 +1,269 @@
+[0128:012C][2026-10-03T23:37:56]i001: Burn v3.14.1.8722, Windows v10.0 (Build 19045: Service Pack 0), path: C:\users\asdf\AppData\Local\Temp\{9C3BAED7-9372-498C-87C2-493F13E1BEC8}\.cr\TableauDesktop-64bit-2026-2-3.exe
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'LaunchTarget' to value '[INSTALLDIR]\bin\Tableau.exe'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DISABLEEXTENSIONS' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DISABLENETWORKEXTENSIONS' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DISABLESANDBOXEXTENSIONS' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DISABLE3PTRUSTEDEXTENSIONS' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DISABLETABTRUSTEDEXTENSIONS' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'ACTIVATE_KEY' to value 'none'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'REGISTER' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'RECLAIMLICENSE' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'TAB_PRODUCT' to value 'Desktop'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'SENDTELEMETRY' to value '1'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DONTSENDTELEMETRY' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'REPORTINGSERVER' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'SCHEDULEREPORTINTERVAL' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'AUTOSAVE' to value '1'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'AUTOUPDATE' to value '1'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'AUTOUPDATESERVER' to value 'downloads.tableau.com'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'CUSTOMSAMPLESDIR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DISCOVERPANEURL' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'ProductName' to value 'Tableau 2026.2 (20262.26.0912.1023)'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'LANGLIST' to value 'de-DEen-GBes-ESfr-CAfr-FRit-ITja-JPko-KRnl-NLpt-BRsv-SEth-THzh-CNzh-TW'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'INSTALLDIR_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'TitleFullVersion' to value 'Tableau 2026.2.3'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'REMOVEINSTALLEDAPP' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'ACCEPTEULA' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'TABLEAU_LANG' to value ' '
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'TABLEAU_LANG_STRING' to value ' '
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'USER_LANG' to value '[UserUILanguageID]'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'OS64' to value '1'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DESKTOPSHORTCUT' to value '1'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'STARTMENUSHORTCUT' to value '1'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'INSTALLDIR' to value '[ProgramFiles64Folder]Tableau\Tableau 2026.2'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'FORCEPASSIVE' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'BETA_VERSION' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'AUTOUPDATE_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'AUTOUPDATESERVER_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'AUTOSAVE_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DESKTOPSHORTCUT_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'STARTMENUSHORTCUT_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DRIVERDIR_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'ATRENABLED_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'ATRREQUESTEDDURATIONSECONDS_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'LBLM_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'ACTIVATIONSERVER_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'CRASHDUMP_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DISABLEEXTENSIONS_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DISABLENETWORKEXTENSIONS_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'SYNCHRONOUSLICENSECHECK_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'SILENTLYREGISTERUSER_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'CRASHDUMP' to value '1'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'DRIVERDIR' to value '[ProgramFiles64Folder]Tableau\Drivers'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'SKIPAPPLICATIONLAUNCH' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'ATRENABLED' to value 'notspecified'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'ATRREQUESTEDDURATIONSECONDS' to value 'notspecified'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'LBLM' to value 'notspecified'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'ACTIVATIONSERVER' to value 'notspecified'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'SYNCHRONOUSLICENSECHECK' to value 'notspecified'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'SILENTLYREGISTERUSER' to value 'notspecified'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'CONNECTORDIR_OR' to value '0'
+[0128:012C][2026-10-03T23:37:57]i000: Initializing string variable 'CONNECTORDIR' to value '[ProgramFiles64Folder]Tableau\Connectors'
+[0128:012C][2026-10-03T23:37:57]i009: Command Line: '-burn.clean.room=Z:\home\asdf\Downloads\TableauDesktop-64bit-2026-2-3.exe -burn.filehandle.attached=140 -burn.filehandle.self=144 /quiet /norestart /log C:\tableau_burn.log ACCEPTEULA=1'
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'WixBundleOriginalSource' to value 'Z:\home\asdf\Downloads\TableauDesktop-64bit-2026-2-3.exe'
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'WixBundleOriginalSourceFolder' to value 'Z:\home\asdf\Downloads\'
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'WixBundleLog' to value 'C:\tableau_burn.log'
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'VersionNT >= v6.2' evaluates to true.
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'WixBundleName' to value 'Tableau 2026.2 (20262.26.0912.1023)'
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'WixBundleManufacturer' to value 'Salesforce, Inc'
+[0128:0138][2026-10-03T23:37:57]i000: Setting string variable 'ACCEPTEULA' to value '1'
+[0128:0138][2026-10-03T23:37:57]i000: Setting string variable 'TABLEAU_LANG' to value ' '
+[0128:0138][2026-10-03T23:37:57]i000: Setting string variable 'TABLEAU_LANG_STRING' to value 'en-us'
+[0128:0138][2026-10-03T23:37:57]i000: Setting version variable 'WixBundleFileVersion' to value '26.2.1954.0'
+[0128:0138][2026-10-03T23:37:57]i000: Setting string variable 'INSTALLDIR' to value 'C:\Program Files\Tableau\Tableau 2026.2'
+[0128:0138][2026-10-03T23:37:57]i000: Passed the CPU checks.
+[0128:012C][2026-10-03T23:37:57]i100: Detect begin, 2 packages
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Tableau 2026.2\AutoUpdate'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_AU' to value 0
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'VersionNT64' evaluates to true.
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'MSSQL64_FOUND' to value 1
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Directories'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_CD' to value 0
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_AE AND ATRENABLED_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_CD AND CONNECTORDIR_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_AD AND ATRREQUESTEDDURATIONSECONDS_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_LBLM AND LBLM_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_WS AND ACTIVATIONSERVER_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_SLC AND SYNCHRONOUSLICENSECHECK_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_SRU AND SILENTLYREGISTERUSER_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_DD AND DRIVERDIR_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'VC2022_FOUND' to value '1'
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'VC2022X64_MAJ_VER' to value '14'
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'VC2022X64_MIN_VER' to value '42'
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Tableau 2026.2\Directories'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_DIR' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Tableau 2026.2\AutoUpdate'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_AUSERVER' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Tableau 2026.2\Autosave'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_AS' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Tableau 2026.2\Install'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'CU_VERSION_FOUND_DT' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Tableau 2026.2\Install'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'CU_VERSION_FOUND_SM' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\ATR'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_AE' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\ATR'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_AD' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Directories'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_DD' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Tableau 2026.2\Crashdump'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_CD' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Tableau 2026.2\Settings\Extensions'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_DE' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\ATR'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_LBLM' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Settings'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_WS' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Settings'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_SLC' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Settings'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_SRU' to value 0
+[0128:012C][2026-10-03T23:37:57]i000: Registry key not found. Key = 'SOFTWARE\Tableau\Tableau 2026.2\Settings\Extensions'
+[0128:012C][2026-10-03T23:37:57]i000: Setting numeric variable 'LM_VERSION_FOUND_AE' to value 0
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_AU AND AUTOUPDATE_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_AUSERVER AND AUTOUPDATESERVER_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_AS AND AUTOSAVE_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_DIR AND INSTALLDIR_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'CU_VERSION_FOUND_DT AND DESKTOPSHORTCUT_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'CU_VERSION_FOUND_SM AND STARTMENUSHORTCUT_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_CD AND CRASHDUMP_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_DE AND DISABLEEXTENSIONS_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i052: Condition 'LM_VERSION_FOUND_AE AND DISABLENETWORKEXTENSIONS_OR=0' evaluates to false.
+[0128:012C][2026-10-03T23:37:57]i101: Detected package: VC2022Redist, state: Absent, cached: None
+[0128:012C][2026-10-03T23:37:57]i101: Detected package: Tableau, state: Absent, cached: None
+[0128:012C][2026-10-03T23:37:57]i199: Detect complete, result: 0x0
+[0128:012C][2026-10-03T23:37:57]i200: Plan begin, 2 packages, action: Install
+[0128:012C][2026-10-03T23:37:57]i052: Condition '(NOT VC2022_FOUND) OR (VC2022X64_MAJ_VER < 14 OR (VC2022X64_MAJ_VER = 14 AND VC2022X64_MIN_VER < 44))' evaluates to true.
+[0128:012C][2026-10-03T23:37:57]w321: Skipping dependency registration on package with no dependency providers: VC2022Redist
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'WixBundleLog_VC2022Redist' to value 'C:\tableau_burn_000_VC2022Redist.log'
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'WixBundleRollbackLog_Tableau' to value 'C:\tableau_burn_001_Tableau_rollback.log'
+[0128:012C][2026-10-03T23:37:57]i000: Setting string variable 'WixBundleLog_Tableau' to value 'C:\tableau_burn_001_Tableau.log'
+[0128:012C][2026-10-03T23:37:57]i201: Planned package: VC2022Redist, state: Absent, default requested: Present, ba requested: Present, execute: Install, rollback: None, cache: Yes, uncache: No, dependency: None
+[0128:012C][2026-10-03T23:37:57]i201: Planned package: Tableau, state: Absent, default requested: Present, ba requested: Present, execute: Install, rollback: Uninstall, cache: Yes, uncache: No, dependency: Register
+[0128:012C][2026-10-03T23:37:57]i299: Plan complete, result: 0x0
+[0128:012C][2026-10-03T23:37:57]i300: Apply begin
+[0128:012C][2026-10-03T23:37:57]i010: Launching elevated engine process.
+[0128:012C][2026-10-03T23:37:57]i011: Launched elevated engine process.
+[0128:012C][2026-10-03T23:37:57]i012: Connected to elevated engine.
+[014C:0150][2026-10-03T23:37:58]i358: Pausing automatic updates.
+[014C:0150][2026-10-03T23:37:58]i359: Paused automatic updates.
+[014C:0150][2026-10-03T23:37:58]i360: Creating a system restore point.
+[014C:0150][2026-10-03T23:37:58]i361: Created a system restore point.
+[014C:0150][2026-10-03T23:37:58]i370: Session begin, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5dfaba8c-274e-499c-8107-cca21f4872b0}, options: 0x7, disable resume: No
+[014C:0150][2026-10-03T23:37:58]i000: Caching bundle from: 'C:\users\asdf\AppData\Local\Temp\{F96E1451-D60F-4E12-B3DB-A45863205875}\.be\tableau-setup-std-262-tableau-2026-2.26.0912.1023-x64.exe' to: 'C:\ProgramData\Package Cache\{5dfaba8c-274e-499c-8107-cca21f4872b0}\tableau-setup-std-262-tableau-2026-2.26.0912.1023-x64.exe'
+[014C:0150][2026-10-03T23:37:58]i320: Registering bundle dependency provider: {5dfaba8c-274e-499c-8107-cca21f4872b0}, version: 26.2.1954.0
+[014C:0150][2026-10-03T23:37:58]i371: Updating session, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5dfaba8c-274e-499c-8107-cca21f4872b0}, resume: Active, restart initiated: No, disable resume: No
+[014C:015C][2026-10-03T23:38:01]i305: Verified acquired payload: VC2022Redist at path: C:\ProgramData\Package Cache\.unverified\VC2022Redist, moving to: C:\ProgramData\Package Cache\21CE0EE54BFF57F69FAFA741025BF2F15B356405\vcredist2022_x64.exe.
+[014C:015C][2026-10-03T23:38:05]i305: Verified acquired payload: Tableau at path: C:\ProgramData\Package Cache\.unverified\Tableau, moving to: C:\ProgramData\Package Cache\{D5C4243D-E35D-4F26-A837-EDB5C3AA3739}v26.2.1954\tableau-setup-std-262-tableau-2026-2.26.0912.1023-x64.msi.
+[014C:0150][2026-10-03T23:38:05]i301: Applying execute package: VC2022Redist, action: Install, path: C:\ProgramData\Package Cache\21CE0EE54BFF57F69FAFA741025BF2F15B356405\vcredist2022_x64.exe, arguments: '"C:\ProgramData\Package Cache\21CE0EE54BFF57F69FAFA741025BF2F15B356405\vcredist2022_x64.exe" /install /quiet /norestart'
+[0128:012C][2026-10-03T23:38:07]i319: Applied execute package: VC2022Redist, result: 0x0, restart: None
+[014C:0150][2026-10-03T23:38:07]i323: Registering package dependency provider: {D5C4243D-E35D-4F26-A837-EDB5C3AA3739}, version: 26.2.1954, package: Tableau
+[014C:0150][2026-10-03T23:38:07]i301: Applying execute package: Tableau, action: Install, path: C:\ProgramData\Package Cache\{D5C4243D-E35D-4F26-A837-EDB5C3AA3739}v26.2.1954\tableau-setup-std-262-tableau-2026-2.26.0912.1023-x64.msi, arguments: ' MSIFASTINSTALL="7" INSTALLDIR="C:\Program Files\Tableau\Tableau 2026.2" ARPSYSTEMCOMPONENT="1" ACCEPTEULA="1" DRIVERDIR="C:\Program Files\Tableau\Drivers" CONNECTORDIR="C:\Program Files\Tableau\Connectors" DISABLEEXTENSIONS="0" DISABLENETWORKEXTENSIONS="0" DISABLESANDBOXEXTENSIONS="0" DISABLE3PTRUSTEDEXTENSIONS="0" DISABLETABTRUSTEDEXTENSIONS="0" SENDTELEMETRY="1" DONTSENDTELEMETRY="0" CRASHDUMP="1" DESKTOPSHORTCUT="1" STARTMENUSHORTCUT="1" REPORTINGSERVER="0" SCHEDULEREPORTINTERVAL="0" ATRENABLED="notspecified" ATRREQUESTEDDURATIONSECONDS="notspecified" LBLM="notspecified" ACTIVATIONSERVER="notspecified" SYNCHRONOUSLICENSECHECK="notspecified" SILENTLYREGISTERUSER="notspecified" RECLAIMLICENSE="0" AUTOSAVE="1" DISCOVERPANEURL="0" CUSTOMSAMPLESDIR="0" AUTOUPDATE="1" AUTOUPDATESERVER="downloads.tableau.com" ACTIVATE_KEY="none" REGISTER="0" TRANSFORMS=" " TABLEAU_LANG_STRING="en-us"'
+[0128:012C][2026-10-03T23:38:58]i319: Applied execute package: Tableau, result: 0x0, restart: None
+[014C:0150][2026-10-03T23:38:58]i325: Registering dependency: {5dfaba8c-274e-499c-8107-cca21f4872b0} on package provider: {D5C4243D-E35D-4F26-A837-EDB5C3AA3739}, package: Tableau
+[014C:0150][2026-10-03T23:38:58]i372: Session end, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5dfaba8c-274e-499c-8107-cca21f4872b0}, resume: ARP, restart: None, disable resume: No
+[014C:0150][2026-10-03T23:38:58]i371: Updating session, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{5dfaba8c-274e-499c-8107-cca21f4872b0}, resume: ARP, restart initiated: No, disable resume: No
+[0128:012C][2026-10-03T23:38:58]i399: Apply complete, result: 0x0, restart: None, ba requested restart:  No
+[0128:012C][2026-10-03T23:38:58]i500: Shutting down, exit code: 0x0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ACCEPTEULA = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ACTIVATE_KEY = none
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ACTIVATIONSERVER = notspecified
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ACTIVATIONSERVER_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ATRENABLED = notspecified
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ATRENABLED_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ATRREQUESTEDDURATIONSECONDS = notspecified
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ATRREQUESTEDDURATIONSECONDS_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: AUTOSAVE = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: AUTOSAVE_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: AUTOUPDATE = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: AUTOUPDATE_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: AUTOUPDATESERVER = downloads.tableau.com
+[0128:012C][2026-10-03T23:38:58]i410: Variable: AUTOUPDATESERVER_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: BETA_VERSION = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: CONNECTORDIR = C:\Program Files\Tableau\Connectors
+[0128:012C][2026-10-03T23:38:58]i410: Variable: CONNECTORDIR_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: CRASHDUMP = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: CRASHDUMP_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: CU_VERSION_FOUND_DT = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: CU_VERSION_FOUND_SM = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: CUSTOMSAMPLESDIR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DESKTOPSHORTCUT = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DESKTOPSHORTCUT_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DISABLE3PTRUSTEDEXTENSIONS = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DISABLEEXTENSIONS = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DISABLEEXTENSIONS_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DISABLENETWORKEXTENSIONS = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DISABLENETWORKEXTENSIONS_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DISABLESANDBOXEXTENSIONS = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DISABLETABTRUSTEDEXTENSIONS = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DISCOVERPANEURL = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DONTSENDTELEMETRY = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DRIVERDIR = C:\Program Files\Tableau\Drivers
+[0128:012C][2026-10-03T23:38:58]i410: Variable: DRIVERDIR_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: FORCEPASSIVE = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: INSTALLDIR = C:\Program Files\Tableau\Tableau 2026.2
+[0128:012C][2026-10-03T23:38:58]i410: Variable: INSTALLDIR_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LANGLIST = de-DEen-GBes-ESfr-CAfr-FRit-ITja-JPko-KRnl-NLpt-BRsv-SEth-THzh-CNzh-TW
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LaunchTarget = C:\Program Files\Tableau\Tableau 2026.2\bin\Tableau.exe
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LBLM = notspecified
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LBLM_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_AD = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_AE = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_AS = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_AU = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_AUSERVER = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_CD = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_DD = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_DE = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_DIR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_LBLM = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_SLC = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_SRU = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: LM_VERSION_FOUND_WS = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: MSSQL64_FOUND = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: OS64 = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ProductName = Tableau 2026.2 (20262.26.0912.1023)
+[0128:012C][2026-10-03T23:38:58]i410: Variable: ProgramFiles64Folder = C:\Program Files\
+[0128:012C][2026-10-03T23:38:58]i410: Variable: RECLAIMLICENSE = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: REGISTER = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: REMOVEINSTALLEDAPP = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: REPORTINGSERVER = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: SCHEDULEREPORTINTERVAL = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: SENDTELEMETRY = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: SILENTLYREGISTERUSER = notspecified
+[0128:012C][2026-10-03T23:38:58]i410: Variable: SILENTLYREGISTERUSER_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: SKIPAPPLICATIONLAUNCH = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: STARTMENUSHORTCUT = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: STARTMENUSHORTCUT_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: SYNCHRONOUSLICENSECHECK = notspecified
+[0128:012C][2026-10-03T23:38:58]i410: Variable: SYNCHRONOUSLICENSECHECK_OR = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: TAB_PRODUCT = Desktop
+[0128:012C][2026-10-03T23:38:58]i410: Variable: TABLEAU_LANG =  
+[0128:012C][2026-10-03T23:38:58]i410: Variable: TABLEAU_LANG_STRING = en-us
+[0128:012C][2026-10-03T23:38:58]i410: Variable: TitleFullVersion = Tableau 2026.2.3
+[0128:012C][2026-10-03T23:38:58]i410: Variable: USER_LANG = 1033
+[0128:012C][2026-10-03T23:38:58]i410: Variable: UserUILanguageID = 1033
+[0128:012C][2026-10-03T23:38:58]i410: Variable: VC2022_FOUND = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: VC2022X64_MAJ_VER = 14
+[0128:012C][2026-10-03T23:38:58]i410: Variable: VC2022X64_MIN_VER = 42
+[0128:012C][2026-10-03T23:38:58]i410: Variable: VersionNT = 10.0.0.0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: VersionNT64 = 10.0.0.0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleAction = 5
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleElevated = 1
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleFileVersion = 26.2.1954.0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleInstalled = 0
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleLog = C:\tableau_burn.log
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleLog_Tableau = C:\tableau_burn_001_Tableau.log
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleLog_VC2022Redist = C:\tableau_burn_000_VC2022Redist.log
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleManufacturer = Salesforce, Inc
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleName = Tableau 2026.2 (20262.26.0912.1023)
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleOriginalSource = Z:\home\asdf\Downloads\TableauDesktop-64bit-2026-2-3.exe
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleOriginalSourceFolder = Z:\home\asdf\Downloads\
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleProviderKey = {5dfaba8c-274e-499c-8107-cca21f4872b0}
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleRollbackLog_Tableau = C:\tableau_burn_001_Tableau_rollback.log
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleSourceProcessFolder = Z:\home\asdf\Downloads\
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleSourceProcessPath = Z:\home\asdf\Downloads\TableauDesktop-64bit-2026-2-3.exe
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleTag = Tableau
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleUILevel = 2
+[0128:012C][2026-10-03T23:38:58]i410: Variable: WixBundleVersion = 26.2.1954.0
+[0128:012C][2026-10-03T23:38:58]i007: Exit code: 0x0, restarting: No

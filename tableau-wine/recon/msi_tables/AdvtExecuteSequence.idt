@@ -1,0 +1,18 @@
+Action	Condition	Sequence
+s72	S255	I2
+AdvtExecuteSequence	Action
+InstallValidate		1400
+CostInitialize		800
+CostFinalize		1000
+CreateShortcuts		4500
+PublishComponents		6200
+PublishFeatures		6300
+PublishProduct		6400
+RegisterClassInfo		4600
+RegisterExtensionInfo		4700
+RegisterMIMEInfo		4900
+RegisterProgIdInfo		4800
+InstallInitialize		1500
+InstallFinalize		6600
+WindowsFolder.6A83707F_9A09_4612_953D_41606E39FFC8		1
+FontsFolder.6A83707F_9A09_4612_953D_41606E39FFC8		1

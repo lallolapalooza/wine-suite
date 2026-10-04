@@ -1,0 +1,19 @@
+﻿cmd=& { curl.exe -s -o $env:USERPROFILE\tablogs.ps1 http://192.168.122.1:8000/tablogs.ps1; & $env:USERPROFILE\tablogs.ps1 } ; "__n=53321791089567185526132"
+start=2026-10-03T21:52:48.5192248-07:00
+rc=0
+end=2026-10-03T21:52:50.5041485-07:00
+--- output ---
+zip_bytes=1326
+uploaded=1
+temp=TableauTemp:1
+--- events ---
+2026-10-03T21:19:04 [Information] MsiInstaller: Ending a Windows Installer transaction: C:\ProgramData\Package Cache\{D5C4243D-E35D-4F26-A837-EDB5C3AA3739}v26.2.1954\tableau-setup-std-262-tableau-2026-2.26.0912.1023-x64.msi. Client Process Id: 7772.
+2026-10-03T21:19:03 [Information] MsiInstaller: Windows Installer installed the product. Product Name: Tableau 2026.2 (20262.26.0912.1023). Product Version: 26.2.1954. Product Language: 1033. Manufacturer: Salesforce, Inc. Installation success or error status: 0.
+2026-10-03T21:19:03 [Information] MsiInstaller: Product: Tableau 2026.2 (20262.26.0912.1023) -- Installation completed successfully.
+2026-10-03T21:16:25 [Information] MsiInstaller: Beginning a Windows Installer transaction: C:\ProgramData\Package Cache\{D5C4243D-E35D-4F26-A837-EDB5C3AA3739}v26.2.1954\tableau-setup-std-262-tableau-2026-2.26.0912.1023-x64.msi. Client Process Id: 7772.
+2026-10-03T20:50:43 [Information] MsiInstaller: Ending a Windows Installer transaction: C:\Users\adsf\tableau.msi. Client Process Id: 5860.
+2026-10-03T20:50:42 [Information] MsiInstaller: Windows Installer installed the product. Product Name: Tableau 2026.2 (20262.26.0912.1023). Product Version: 26.2.1954. Product Language: 1033. Manufacturer: Salesforce, Inc. Installation success or error status: 0.
+2026-10-03T20:50:42 [Information] MsiInstaller: Product: Tableau 2026.2 (20262.26.0912.1023) -- Installation completed successfully.
+2026-10-03T20:46:19 [Information] MsiInstaller: Beginning a Windows Installer transaction: C:\Users\adsf\tableau.msi. Client Process Id: 5860.
+__n=53321791089567185526132
+

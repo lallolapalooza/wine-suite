@@ -1,0 +1,406 @@
+wine=/home/asdf/projects/tableau-wine/wine-install/bin/wine prefix=/home/asdf/projects/tableau-wine/prefix/tableau-inst display=:11 exe=C:\Program Files\Tableau\Tableau 2026.2\bin\tableau.exe secs=150 2026-10-03T23:48:25-05:00
+app_pid=285787
+libEGL warning: DRI3 error: Could not get DRI3 device
+libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+00dc:fixme:wineusb:query_id Unhandled ID query type 0x5.
+00dc:fixme:wineusb:query_id Unhandled ID query type 0x5.
+00dc:fixme:wineusb:query_id Unhandled ID query type 0x5.
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0088:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+0088:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0088:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE72A670, 10, 0, (null), 3, 3, 0000000000000000, 0
+0088:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0088:fixme:tbs:Tbsi_GetDeviceInfo (16, 00007FFFFF34FD40) stub
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:win:RegisterPowerSettingNotification (000000000001005C,{02731015-4510-4526-99e6-e5a17ebd1aea},0): stub
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:setupapi:SetupDiOpenDeviceInterfaceW flags 0x1 not implemented
+0024:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UISettings", {00000035-0000-0000-c000-000000000046}, 00007FFFFE23EA68): semi-stub
+0024:fixme:ui:factory_QueryInterface {94ea2b94-e9cc-49e0-c0ff-ee64ca8f5b90} not implemented, returning E_NOINTERFACE.
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+libEGL warning: DRI3 error: Could not get DRI3 device
+libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+0024:fixme:d3d:wined3d_guess_card No card selector available for card vendor 0000 (using GL_RENDERER "llvmpipe (LLVM 21.1.8, 256 bits)").
+0024:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:d3d11:d3d11_device_CheckFeatureSupport Returning fake Options support data.
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 85, format_support 000070F90FD51DCC partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 115, format_support 000070F90FD51DD4 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 86, format_support 000070F90FD51DDC partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 87, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 87, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 87, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 87, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 65, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 11, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 24, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 11, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 55, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 45, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 45, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 61, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 56, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 49, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 35, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 54, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 41, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 34, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 16, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 64, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 62, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 59, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 57, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 43, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 42, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 52, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 50, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 38, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 36, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 18, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 17, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 2, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 2, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 2, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 2, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 2, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 10, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 10, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 10, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 10, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 10, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 45, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 26, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 29, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 29, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 40, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 20, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 45, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 3, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 3, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 12, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 12, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 30, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 30, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 4, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 4, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 14, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 14, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 32, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 32, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 25, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 61, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 49, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 29, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 29, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 28, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 29, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 87, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 87, format_support 00007FFFFE23E840 partial-stub!
+0024:fixme:d3d11:d3d11_device_CheckFormatSupport iface 00007FFFFF434EC0, format 103, format_support 00007FFFFE23EFE0 partial-stub!
+0024:fixme:dxgi:dxgi_resource_GetSharedHandle iface 00007FFFFE410328, shared_handle 000070F90FF782F0 stub!
+0024:fixme:bcrypt:BCryptGenRandom ignoring selected algorithm
+0024:fixme:thread:QueryThreadCycleTime (FFFFFFFFFFFFFFFE,00007FFFFE23F8D8): stub!
+0024:fixme:bcrypt:BCryptGenRandom ignoring selected algorithm
+0024:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+01d4:fixme:ver:GetCurrentPackageId (000070F81136FF50 0000000000000000): stub
+01f0:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+01e4:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+01e8:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0094:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0094:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE743850, 10, 0, (null), 3, 3, 0000000000000000, 0
+0094:fixme:wbemprox:client_security_Release 00006FFFEC412030
+01ec:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 4100c (device=4 access=0 func=403 method=0)
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 41018 (device=4 access=0 func=406 method=0)
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 2d0c10 (device=2d access=0 func=304 method=0)
+01e4:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 000070F90FDF55C0, 10, 0, (null), 3, 3, 0000000000000000, 0
+01e4:fixme:wbemprox:client_security_Release 00006FFFEC412030
+01f0:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 000070F840F08200, 10, 0, (null), 3, 3, 0000000000000000, 0
+01f0:fixme:wbemprox:client_security_Release 00006FFFEC412030
+01e8:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 000070F910101D30, 10, 0, (null), 3, 3, 0000000000000000, 0
+01e8:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0058:fixme:mountmgr:query_property Unsupported property 0x31
+01e8:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+01ec:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 000070F840917250, 10, 0, (null), 3, 3, 0000000000000000, 0
+01ec:fixme:wbemprox:client_security_Release 00006FFFEC412030
+01e8:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0094:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+01f0:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0094:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE743850, 10, 0, (null), 3, 3, 0000000000000000, 0
+0094:fixme:wbemprox:client_security_Release 00006FFFEC412030
+01f0:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+01e4:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+01f0:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+01f0:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+01e4:fixme:wbemprox:get_system_propval returning empty array for __DERIVATION
+0024:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0024:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 000070F840A08F90, 10, 0, (null), 3, 3, 0000000000000000, 0
+0024:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0094:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0094:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE7438B0, 10, 0, (null), 3, 3, 0000000000000000, 0
+0094:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 4100c (device=4 access=0 func=403 method=0)
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 41018 (device=4 access=0 func=406 method=0)
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 2d0c10 (device=2d access=0 func=304 method=0)
+0058:fixme:mountmgr:query_property Unsupported property 0x31
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0094:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0094:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE7438B0, 10, 0, (null), 3, 3, 0000000000000000, 0
+0094:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0094:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0094:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE7438B0, 10, 0, (null), 3, 3, 0000000000000000, 0
+0094:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 4100c (device=4 access=0 func=403 method=0)
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 41018 (device=4 access=0 func=406 method=0)
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 2d0c10 (device=2d access=0 func=304 method=0)
+0058:fixme:mountmgr:query_property Unsupported property 0x31
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0094:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0094:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE7438B0, 10, 0, (null), 3, 3, 0000000000000000, 0
+0094:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0094:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0094:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE743970, 10, 0, (null), 3, 3, 0000000000000000, 0
+0094:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 4100c (device=4 access=0 func=403 method=0)
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 41018 (device=4 access=0 func=406 method=0)
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 2d0c10 (device=2d access=0 func=304 method=0)
+0058:fixme:mountmgr:query_property Unsupported property 0x31
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0094:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+0094:fixme:wbemprox:client_security_SetBlanket 00006FFFEC412030, 00007FFFFE743970, 10, 0, (null), 3, 3, 0000000000000000, 0
+0094:fixme:wbemprox:client_security_Release 00006FFFEC412030
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0220:fixme:bcrypt:BCryptGenRandom ignoring selected algorithm
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Regular.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Bold.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Black.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraBold.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraLight.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Light.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Medium.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-SemiBold.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Thin.ttf"
+023c:fixme:win:create_window_handle DPI context 0x22 not implemented
+0240:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Regular.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Bold.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Black.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraBold.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraLight.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Light.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Medium.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-SemiBold.ttf"
+0024:fixme:font:find_matching_face Untranslated charset 255
+0024:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Thin.ttf"
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:msg:ChangeWindowMessageFilter c069 00000001
+0024:fixme:win:IsTouchWindow hwnd 0000000000010074, flags 00007FFFFE23F0B0 stub!
+0244:fixme:win:create_window_handle DPI context 0x22 not implemented
+0248:fixme:win:create_window_handle DPI context 0x22 not implemented
+024c:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:d3d:wined3d_guess_card No card selector available for card vendor 0000 (using GL_RENDERER "llvmpipe (LLVM 21.1.8, 256 bits)").
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:win:IsTouchWindow hwnd 0000000000020088, flags 00007FFFFE23EE10 stub!
+0024:fixme:dxgi:dxgi_resource_GetSharedHandle iface 000070F7C6CB9F78, shared_handle 000070F7C725B7D0 stub!
+0024:fixme:dxgi:wined3d_bind_flags_from_dxgi_usage Unhandled DXGI usage 0x40.
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:win:IsTouchWindow hwnd 0000000000030088, flags 00007FFFFE23EEA0 stub!
+0024:fixme:dxgi:dxgi_resource_GetSharedHandle iface 000070F7C706D328, shared_handle 000070F7C725B7D0 stub!
+0024:fixme:dxgi:wined3d_bind_flags_from_dxgi_usage Unhandled DXGI usage 0x40.
+0024:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 000070F79D75B3E8, 16) stub
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0260:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+0024:fixme:win:RegisterSuspendResumeNotification 000000000002008A, 0: stub.
+0024:fixme:process:GetProcessMitigationPolicy (FFFFFFFFFFFFFFFF, 4, 00007FFFFE23E940, 4): stub
+0264:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:win:GetPointerDevices (00007FFFFE23E2C0 0000000000000000): partial stub
+0024:fixme:system:NtUserDisplayConfigGetDeviceInfo Unimplemented packet type 11.
+0024:fixme:combase:RoActivateInstance (000070F79D994190, 00007FFFFE23DF20): semi-stub
+0024:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UISettings", {00000035-0000-0000-c000-000000000046}, 00007FFFFE23DED8): semi-stub
+0024:fixme:ui:uisettings2_add_TextScaleFactorChanged iface 000070F79DCD24B8, handler 000070F79DCDA580, cookie 00006FFFE6C51408 stub!
+0024:fixme:ui:uisettings2_get_TextScaleFactor iface 000070F79DCD24B8, value 00007FFFFE23E100 stub!
+0268:fixme:wtsapi:WTSRegisterSessionNotification Stub 000000000001008E 0x00000000
+0288:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0290:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+0298:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:fixme:combase:RoGetActivationFactory (L"Windows.Media.ClosedCaptioning.ClosedCaptionProperties", {10aa1f84-cc30-4141-b503-5272289e0c20}, 00007FFFFE23D420): semi-stub
+0024:fixme:media:captions_get_FontSize iface 00006FFFCC2A4048, value 00007FFFFE23D44C semi-stub.
+0024:fixme:media:captions_get_FontEffect iface 00006FFFCC2A4048, value 00007FFFFE23D450 semi-stub.
+0024:fixme:media:captions_get_FontStyle iface 00006FFFCC2A4048, value 00007FFFFE23D448 semi-stub.
+0024:fixme:media:captions_get_FontColor iface 00006FFFCC2A4048, value 00007FFFFE23D454 semi-stub.
+0024:fixme:media:captions_get_FontOpacity iface 00006FFFCC2A4048, value 00007FFFFE23D458 semi-stub.
+0024:fixme:media:captions_get_BackgroundColor iface 00006FFFCC2A4048, value 00007FFFFE23D45C semi-stub.
+0024:fixme:media:captions_get_BackgroundOpacity iface 00006FFFCC2A4048, value 00007FFFFE23D460 semi-stub.
+0024:fixme:media:captions_get_RegionColor iface 00006FFFCC2A4048, value 00007FFFFE23D464 semi-stub.
+0024:fixme:media:captions_get_RegionOpacity iface 00006FFFCC2A4048, value 00007FFFFE23D468 semi-stub.
+02ac:fixme:ntdll:NtFilterToken flags 0x1 unsupported
+02ac:fixme:ntdll:NtFilterToken support for restricting sids not yet implemented
+02ac:fixme:advapi:SetEntriesInAclW unhandled access mode 4
+02ac:fixme:ntdll:NtSetInformationToken TokenIntegrityLevel stub!
+02ac:fixme:ntdll:NtFilterToken support for restricting sids not yet implemented
+02ac:fixme:advapi:SetEntriesInAclW unhandled access mode 4
+02ac:fixme:ntdll:NtSetInformationToken TokenIntegrityLevel stub!
+02ac:fixme:advapi:SetSecurityInfo unimplemented type 7, returning success
+02ac:fixme:sync:NtSetInformationJobObject stub: 0xa7c 4 0x70f78c7cef60 4
+02ac:fixme:process:GetProcessMitigationPolicy (FFFFFFFFFFFFFFFF, 5, 00006FFFE7078AA0, 8): stub
+02ac:fixme:process:validate_proc_thread_attribute Unhandled attribute 26
+0024:fixme:combase:RoGetActivationFactory (L"Windows.Media.ClosedCaptioning.ClosedCaptionProperties", {10aa1f84-cc30-4141-b503-5272289e0c20}, 00007FFFFE23DFB0): semi-stub
+0024:fixme:media:captions_get_FontSize iface 00006FFFCC2A4048, value 00007FFFFE23DFDC semi-stub.
+0024:fixme:media:captions_get_FontEffect iface 00006FFFCC2A4048, value 00007FFFFE23DFE0 semi-stub.
+0024:fixme:media:captions_get_FontStyle iface 00006FFFCC2A4048, value 00007FFFFE23DFD8 semi-stub.
+0024:fixme:media:captions_get_FontColor iface 00006FFFCC2A4048, value 00007FFFFE23DFE4 semi-stub.
+0024:fixme:media:captions_get_FontOpacity iface 00006FFFCC2A4048, value 00007FFFFE23DFE8 semi-stub.
+0024:fixme:media:captions_get_BackgroundColor iface 00006FFFCC2A4048, value 00007FFFFE23DFEC semi-stub.
+0024:fixme:media:captions_get_BackgroundOpacity iface 00006FFFCC2A4048, value 00007FFFFE23DFF0 semi-stub.
+0024:fixme:media:captions_get_RegionColor iface 00006FFFCC2A4048, value 00007FFFFE23DFF4 semi-stub.
+0024:fixme:media:captions_get_RegionOpacity iface 00006FFFCC2A4048, value 00007FFFFE23DFF8 semi-stub.
+02b4:err:msg:get_server_queue_handle Cannot get server thread queue
+02b4:err:win:get_desktop_window failed to create desktop window
+02b4:err:msg:get_server_queue_handle Cannot get server thread queue
+02b4:err:win:get_desktop_window failed to create desktop window
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:win:IsTouchWindow hwnd 00000000000300A0, flags 00007FFFFE23F0E0 stub!
+02e4:fixme:thread:NtSetInformationThread ThreadPowerThrottling stub!
+0024:fixme:combase:RoGetActivationFactory (L"Windows.Media.ClosedCaptioning.ClosedCaptionProperties", {10aa1f84-cc30-4141-b503-5272289e0c20}, 00007FFFFE23B060): semi-stub
+0024:fixme:media:captions_get_FontSize iface 00006FFFCC2A4048, value 00007FFFFE23B08C semi-stub.
+0024:fixme:media:captions_get_FontEffect iface 00006FFFCC2A4048, value 00007FFFFE23B090 semi-stub.
+0024:fixme:media:captions_get_FontStyle iface 00006FFFCC2A4048, value 00007FFFFE23B088 semi-stub.
+0024:fixme:media:captions_get_FontColor iface 00006FFFCC2A4048, value 00007FFFFE23B094 semi-stub.
+0024:fixme:media:captions_get_FontOpacity iface 00006FFFCC2A4048, value 00007FFFFE23B098 semi-stub.
+0024:fixme:media:captions_get_BackgroundColor iface 00006FFFCC2A4048, value 00007FFFFE23B09C semi-stub.
+0024:fixme:media:captions_get_BackgroundOpacity iface 00006FFFCC2A4048, value 00007FFFFE23B0A0 semi-stub.
+0024:fixme:media:captions_get_RegionColor iface 00006FFFCC2A4048, value 00007FFFFE23B0A4 semi-stub.
+0024:fixme:media:captions_get_RegionOpacity iface 00006FFFCC2A4048, value 00007FFFFE23B0A8 semi-stub.
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:err:winediag:getaddrinfo Failed to resolve your host name IP
+0024:fixme:win:create_window_handle DPI context 0x22 not implemented
+0024:fixme:win:IsTouchWindow hwnd 00000000000100A6, flags 00007FFFFE23ED60 stub!
+02a4:fixme:winsock:setsockopt Ignoring SO_RANDOMIZE_PORT
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+0270:fixme:crypt:CRYPT_RegControl CERT_STORE_CTRL_AUTO_RESYNC: stub
+[32:648:1003/234844.771:ERROR:gpu_channel_manager.cc(959)] Failed to create GLES3 context, fallback to GLES2.
+[32:648:1003/234844.771:ERROR:gpu_channel_manager.cc(970)] ContextResult::kFatalFailure: Failed to create shared context for virtualization.
+0024:fixme:win:GetPointerDevices (00007FFFFE23A6E0 0000000000000000): partial stub
+0024:fixme:system:NtUserDisplayConfigGetDeviceInfo Unimplemented packet type 11.
+0024:fixme:ui:uisettings2_get_TextScaleFactor iface 000070F79DCD24B8, value 00007FFFFE23A520 stub!
+02a4:fixme:winsock:setsockopt Ignoring SO_RANDOMIZE_PORT
+0088:fixme:tbs:Tbsi_GetDeviceInfo (16, 00007FFFFF34FD40) stub
+frames=36 alive=yes
+0220:fixme:bcrypt:BCryptGenRandom ignoring selected algorithm
+0088:fixme:tbs:Tbsi_GetDeviceInfo (16, 00007FFFFF34FD40) stub
