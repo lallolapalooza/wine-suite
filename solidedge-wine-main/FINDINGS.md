@@ -519,3 +519,21 @@ In the running application the viewport measured **0 black frames** at idle, whi
 rotating and after the rebuild, on both the software and the hardware GL paths.  The one place a
 dark viewport was seen was the first seconds of a PartViewer start-up, and it resolved to the
 normal shaded view.
+
+## M14 — bug 3 does not reproduce in the reachable modes: the X is enabled and closes the app
+
+Cropped the caption (`logs/drive/titlebar_zoom.png`, 5x of x 1450..1600) — all three glyphs,
+including the X, are the same bright white with no dimming — then clicked it:
+
+```
+$ xdotool mousemove 1586 20 click 1
+$ DISPLAY=:2 xwininfo -root -tree | grep -icE "drafting"   ->  0
+$ pgrep -c -f "Edge.exe"                                   ->  0
+```
+
+Solid Edge exited cleanly on the click, from `PartViewer` with a 3D document open.  So the greyed
+X is **not** a property of these modes; the most economical reading is that it is a *consequence*
+of bug 2 — while a command is stuck open, a frame keeps Close disabled, exactly as the user
+describes seeing it after the sketch would not close.  `docs/REPRO_RUNBOOK.md` §2 has the two
+commands to re-run that judgement (and `WINEDEBUG=+menu` for `EnableMenuItem` on `SC_CLOSE` if it
+ever does grey out).
