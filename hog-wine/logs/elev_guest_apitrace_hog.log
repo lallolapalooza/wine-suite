@@ -1,0 +1,7 @@
+﻿cmd=# nonce 1791061266.721433620
+$ProgressPreference='SilentlyContinue'; curl.exe -s -o 'C:\Users\adsf\guest_apitrace_hog.ps1' http://192.168.122.1:8000/guest_apitrace_hog.ps1; Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','C:\Users\adsf\guest_apitrace_hog.ps1'
+start=2026-10-03T14:01:07.2773896-07:00
+rc=0
+end=2026-10-03T14:01:10.5371684-07:00
+--- output ---
+

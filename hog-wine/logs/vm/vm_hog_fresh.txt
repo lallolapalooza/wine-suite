@@ -1,0 +1,5 @@
+﻿KILL launcher-win32-golden 7420
+before: {"backlightTimeout":300,"isLocked":false,"pin":1234,"portNum":6600,"startOb":true,"startProcessor":true,"startServer":true,"startVob":false,"userNum":1,"watchdogOn":true}
+after:  {"backlightTimeout":300,"isLocked":false,"pin":1234,"portNum":6600,"startOb":false,"startProcessor":false,"startServer":false,"startVob":false,"userNum":1,"watchdogOn":true}
+STARTED launcher pid=5836
+PROC launcher-win32-golden pid=5836 title='Hog Start'

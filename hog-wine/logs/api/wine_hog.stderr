@@ -1,0 +1,31 @@
+apitrace: started pid 292 (suspended): "C:\Program Files (x86)\ETC\HogPC\launcher-win32-golden.exe"
+apitrace: dll=C:\apitrace32\apihook.dll
+apitrace: cfg=C:\apitrace32\hog.cfg
+apitrace: out=C:\apitrace32\wine_hog.log
+apitrace: apihook.dll@0x69ea0000 loaded in pid 292
+0128:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+0164:fixme:setupapi:DiInstallDriverA parent 0000000000000000, inf_path "C:\\Program Files (x86)\\ETC\\HogPC\\drivers\\gadget\\gadget.inf", flags 0, reboot 00007FFFFE13FD58, stub!
+0164:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FEB0
+0128:fixme:win:RegisterPowerSettingNotification (0003006E,{02731015-4510-4526-99e6-e5a17ebd1aea},0): stub
+0128:fixme:font:find_matching_face Untranslated charset 255
+0128:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Regular.ttf"
+0128:fixme:font:find_matching_face Untranslated charset 255
+0128:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Bold.ttf"
+0128:fixme:font:find_matching_face Untranslated charset 255
+0128:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Black.ttf"
+0128:fixme:font:find_matching_face Untranslated charset 255
+0128:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraBold.ttf"
+0128:fixme:font:find_matching_face Untranslated charset 255
+0128:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraLight.ttf"
+0128:fixme:font:find_matching_face Untranslated charset 255
+0128:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Light.ttf"
+0128:fixme:font:find_matching_face Untranslated charset 255
+0128:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Medium.ttf"
+0128:fixme:font:find_matching_face Untranslated charset 255
+0128:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-SemiBold.ttf"
+0128:fixme:font:find_matching_face Untranslated charset 255
+0128:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Thin.ttf"
+0128:fixme:system:EnableNonClientDpiScaling (0004005E): stub
+apitrace: hooks installed (ready event signalled)
+apitrace: timeout 70s, terminating pid 292
+apitrace: pid 292 exited with 1

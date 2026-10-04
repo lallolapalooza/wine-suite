@@ -1,0 +1,233 @@
+﻿=== host time 2026-10-03T14:04:13
+hwnd=0x00070390 pid=704 proc=explorer vis=False hung=False fg=False class=XamlExplorerHostIslandWindow title=Task Switching
+hwnd=0x00060370 pid=704 proc=explorer vis=True hung=False fg=False class=ThumbnailDeviceHelperWnd title=
+hwnd=0x000101A4 pid=704 proc=explorer vis=False hung=False fg=False class=SystemTray_Main title=Battery Meter
+hwnd=0x000100AE pid=704 proc=explorer vis=True hung=False fg=False class=Shell_TrayWnd title=
+hwnd=0x0015023E pid=7308 proc=powershell vis=True hung=False fg=True class=ConsoleWindowClass title=Administrator: Windows PowerShell
+hwnd=0x001E0260 pid=8260 proc=powershell vis=False hung=False fg=False class=ConsoleWindowClass title=C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+hwnd=0x000A037C pid=9968 proc=powershell vis=True hung=False fg=False class=PseudoConsoleWindow title=
+hwnd=0x0009024E pid=5716 proc=WindowsTerminal vis=True hung=False fg=False class=CASCADIA_HOSTING_WINDOW_CLASS title=powershell
+hwnd=0x002E0490 pid=5836 proc=launcher-win32-golden vis=False hung=False fg=False class=Qt5151QWindow title=Hog Start
+hwnd=0x001602A8 pid=9668 proc=desktop-win32-golden vis=True hung=False fg=False class=Qt5151QWindowIcon title=Hog PC - Primary Screen
+hwnd=0x000F03FE pid=7532 proc=MoNotificationUx vis=False hung=False fg=False class=WUIconClass title=WUIconWindow
+hwnd=0x001C0160 pid=5716 proc=WindowsTerminal vis=False hung=False fg=False class=OleDdeWndClass title=DDE Server Window
+hwnd=0x00080240 pid=5716 proc=WindowsTerminal vis=False hung=False fg=False class=Windows Terminal 9d6173a7a62890a2 title=Windows Terminal
+hwnd=0x000603B0 pid=7756 proc=OneDrive.Sync.Service vis=False hung=False fg=False class=Nucleus Auth Window title=Microsoft OneDrive Sync Service
+hwnd=0x0009008E pid=5656 proc=taskhostw vis=False hung=False fg=False class=COMTASKSWINDOWCLASS title=Task Host Window
+hwnd=0x0006022C pid=6404 proc=AdskIdentityManager vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x003A02C0 pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=OleDdeWndClass title=DDE Server Window
+hwnd=0x000202A0 pid=5704 proc=OneDrive vis=False hung=False fg=False class=SkyDrive Class Name {090B42FF-7B26-4416-99B6-CB17896CF07C}-Personal title=OneDrive - Personal
+hwnd=0x00020340 pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x000102EC pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=Chrome_WidgetWin_1 title=Autodesk Access
+hwnd=0x000D0204 pid=7844 proc=AdskIdentityManager vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x00030164 pid=7808 proc=AdskAccessService vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x0004018E pid=7916 proc=SecurityHealthSystray vis=False hung=False fg=False class=SecHealth Window Class title=SecurityHealthSystray
+hwnd=0x00050104 pid=5928 proc=CrossDeviceResume vis=False hung=False fg=False class=CrossDeviceResumeWindowClass title=CrossDeviceResumeWindow
+hwnd=0x000301E8 pid=704 proc=explorer vis=False hung=False fg=False class=MS_WebcheckMonitor title=MS_WebcheckMonitor
+hwnd=0x000201DC pid=704 proc=explorer vis=False hung=False fg=False class=BluetoothNotificationAreaIconWindowClass title=BluetoothNotificationAreaIconWindowClass
+hwnd=0x000101C4 pid=704 proc=explorer vis=False hung=False fg=False class=MiracastConnectionWindow title=MiracastConnectionWindow
+hwnd=0x0001015E pid=5284 proc=ShellHost vis=False hung=False fg=False class=Windows.UI.Core.CoreWindow title=DesktopWindowXamlSource
+hwnd=0x0001013A pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x00010134 pid=704 proc=explorer vis=True hung=False fg=False class=EdgeUiInputTopWndClass title=
+hwnd=0x00010114 pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x00010112 pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x00010110 pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x0001010E pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x0007034C pid=704 proc=explorer vis=False hung=False fg=False class=Windows.UI.Core.CoreWindow title=DesktopWindowXamlSource
+hwnd=0x00010276 pid=7724 proc=AdskAccessCore vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x000100E6 pid=1336 proc=svchost vis=False hung=False fg=False class=PushNotificationsPowerManagement title=Windows Push Notifications Platform
+hwnd=0x0002001A pid=4792 proc=taskhostw vis=False hung=False fg=False class=COMTASKSWINDOWCLASS title=Task Host Window
+hwnd=0x00010042 pid=544 proc=dwm vis=False hung=False fg=False class=Dwm title=DWM Notification Window
+hwnd=0x000100D8 pid=704 proc=explorer vis=True hung=False fg=False class=Progman title=Program Manager
+hwnd=0x00070372 pid=704 proc=explorer vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x0001014A pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000B020A pid=704 proc=explorer vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x000100F8 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000101B0 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000100CE pid=704 proc=explorer vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x000100B0 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00040356 pid=2784 proc=MicrosoftStartFeedProvider vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000A04C8 pid=11104 proc=conhost vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x001602BC pid=11104 proc=conhost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x001E03AC pid=3692 proc=conhost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000603C0 pid=5716 proc=WindowsTerminal vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x000C0222 pid=5716 proc=WindowsTerminal vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x002F02BE pid=5836 proc=launcher-win32-golden vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x0022035E pid=5836 proc=launcher-win32-golden vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x0017038A pid=9668 proc=desktop-win32-golden vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000D0494 pid=7532 proc=MoNotificationUx vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00570208 pid=8232 proc=RuntimeBroker vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000503AA pid=7756 proc=OneDrive.Sync.Service vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00050430 pid=7756 proc=OneDrive.Sync.Service vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00050238 pid=6404 proc=AdskIdentityManager vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x0004025C pid=5704 proc=OneDrive vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000302B0 pid=5704 proc=OneDrive vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00020284 pid=5704 proc=OneDrive vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000202A2 pid=5704 proc=OneDrive vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00010342 pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00010322 pid=9208 proc=AdskAccessUIHost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000102FC pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x000302C6 pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000B0188 pid=7844 proc=AdskIdentityManager vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00030200 pid=7808 proc=AdskAccessService vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x0002017C pid=7916 proc=SecurityHealthSystray vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000201F4 pid=5928 proc=CrossDeviceResume vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000101BC pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000101A0 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00010278 pid=7724 proc=AdskAccessCore vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000100F4 pid=1336 proc=svchost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000100D4 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000100EC pid=704 proc=explorer vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x00020010 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+
+=== all processes (name pid cpu ws_mb responding title)
+proc pid=7724 AdskAccessCore cpu=945.9 ws=149.9MB resp=True title=''
+proc pid=7808 AdskAccessService cpu=61.7 ws=48.6MB resp=True title=''
+proc pid=4220 AdskAccessService cpu=0 ws=43.3MB resp=True title=''
+proc pid=3104 AdskAccessServiceHost cpu=0 ws=33.6MB resp=True title=''
+proc pid=9092 AdskAccessUIHost cpu=15.3 ws=50.6MB resp=True title=''
+proc pid=9208 AdskAccessUIHost cpu=12.8 ws=49MB resp=True title=''
+proc pid=6328 AdskAccessUIHost cpu=7.8 ws=76.5MB resp=True title=''
+proc pid=8672 AdskAccessUIHost cpu=266.9 ws=94.4MB resp=True title=''
+proc pid=7844 AdskIdentityManager cpu=7470.5 ws=29.8MB resp=True title=''
+proc pid=6404 AdskIdentityManager cpu=1056.6 ws=30.1MB resp=True title=''
+proc pid=3336 AggregatorHost cpu=0 ws=14.5MB resp=True title=''
+proc pid=5548 audiodg cpu=2.2 ws=15.7MB resp=True title=''
+proc pid=2940 cer_service cpu=0 ws=33.7MB resp=True title=''
+proc pid=8948 conhost cpu=0 ws=6.9MB resp=True title=''
+proc pid=11104 conhost cpu=0.1 ws=19.8MB resp=True title=''
+proc pid=3692 conhost cpu=0 ws=13.1MB resp=True title=''
+proc pid=1768 conhost cpu=0.5 ws=9.1MB resp=True title=''
+proc pid=3292 conhost cpu=0 ws=6.9MB resp=True title=''
+proc pid=8176 critical-win32-golden cpu=2.5 ws=54MB resp=True title=''
+proc pid=5928 CrossDeviceResume cpu=3.6 ws=34.5MB resp=True title=''
+proc pid=680 csrss cpu=0 ws=7.6MB resp=True title=''
+proc pid=600 csrss cpu=0 ws=6.9MB resp=True title=''
+proc pid=2316 ctfmon cpu=7.3 ws=31MB resp=True title=''
+proc pid=3416 DefenderSessionHelper cpu=0.1 ws=5.7MB resp=True title=''
+proc pid=9668 desktop-win32-golden cpu=7 ws=196.8MB resp=True title='Hog PC - Primary Screen'
+proc pid=544 dwm cpu=0 ws=116.7MB resp=True title=''
+proc pid=704 explorer cpu=128.2 ws=193.4MB resp=True title=''
+proc pid=3000 FNPLicensingService64 cpu=0 ws=11.7MB resp=True title=''
+proc pid=936 fontdrvhost cpu=0 ws=12.8MB resp=True title=''
+proc pid=924 fontdrvhost cpu=0 ws=4.7MB resp=True title=''
+proc pid=9040 GenuineService cpu=494.7 ws=23.5MB resp=True title=''
+proc pid=0 Idle cpu=0 ws=0MB resp=True title=''
+proc pid=5836 launcher-win32-golden cpu=4.5 ws=101.8MB resp=True title=''
+proc pid=816 lsass cpu=0 ws=31.9MB resp=True title=''
+proc pid=5720 mDNSResponder cpu=0 ws=9.5MB resp=True title=''
+proc pid=1744 Memory Compression cpu=0 ws=150.2MB resp=True title=''
+proc pid=5368 MicrosoftEdgeUpdate cpu=0 ws=5.7MB resp=True title=''
+proc pid=2784 MicrosoftStartFeedProvider cpu=8.2 ws=41.5MB resp=True title=''
+proc pid=3724 MidiSrv cpu=0 ws=29.3MB resp=True title=''
+proc pid=7532 MoNotificationUx cpu=0 ws=14.2MB resp=True title=''
+proc pid=3172 MpDefenderCoreService cpu=0 ws=27.7MB resp=True title=''
+proc pid=5920 msedgewebview2 cpu=12.6 ws=108.3MB resp=True title=''
+proc pid=8340 msedgewebview2 cpu=0.6 ws=18.7MB resp=True title=''
+proc pid=8564 msedgewebview2 cpu=0.9 ws=36.9MB resp=True title=''
+proc pid=1580 msedgewebview2 cpu=2.1 ws=37.9MB resp=True title=''
+proc pid=3480 msedgewebview2 cpu=0.4 ws=12.1MB resp=True title=''
+proc pid=5388 msedgewebview2 cpu=6.3 ws=81.9MB resp=True title=''
+proc pid=3136 MsMpEng cpu=0 ws=337.9MB resp=True title=''
+proc pid=4496 NisSrv cpu=0 ws=14.6MB resp=True title=''
+proc pid=5704 OneDrive cpu=24.1 ws=73.7MB resp=True title=''
+proc pid=7756 OneDrive.Sync.Service cpu=47.4 ws=19.7MB resp=True title=''
+proc pid=6048 OpenConsole cpu=3.9 ws=13.3MB resp=True title=''
+proc pid=9968 powershell cpu=61.9 ws=73.3MB resp=True title=''
+proc pid=8260 powershell cpu=0.7 ws=80.7MB resp=True title=''
+proc pid=7308 powershell cpu=0.5 ws=82MB resp=True title='Administrator: Windows PowerShell'
+proc pid=96 Registry cpu=0 ws=20.5MB resp=True title=''
+proc pid=10388 RuntimeBroker cpu=3.6 ws=25.7MB resp=True title=''
+proc pid=8232 RuntimeBroker cpu=12.8 ws=58.6MB resp=True title=''
+proc pid=8 SearchHost cpu=9.9 ws=107.2MB resp=True title=''
+proc pid=4664 SearchIndexer cpu=0 ws=38.2MB resp=True title=''
+proc pid=6628 SearchProtocolHost cpu=0 ws=16.4MB resp=True title=''
+proc pid=7952 SecurityHealthService cpu=0 ws=23MB resp=True title=''
+proc pid=7916 SecurityHealthSystray cpu=0.5 ws=12.5MB resp=True title=''
+proc pid=8136 server-win32-golden cpu=2.5 ws=75.9MB resp=True title=''
+proc pid=804 services cpu=0 ws=11.7MB resp=True title=''
+proc pid=8500 ShellExperienceHost cpu=11.3 ws=73.2MB resp=True title=''
+proc pid=5284 ShellHost cpu=4.8 ws=37.7MB resp=True title=''
+proc pid=4748 sihost cpu=40.1 ws=47.7MB resp=True title=''
+proc pid=5004 slpd cpu=0 ws=8.6MB resp=True title=''
+proc pid=452 smss cpu=0 ws=1.5MB resp=True title=''
+proc pid=2640 spoolsv cpu=0 ws=18.5MB resp=True title=''
+proc pid=3152 sshd cpu=0 ws=8.4MB resp=True title=''
+proc pid=5812 StartMenuExperienceHost cpu=44.6 ws=173.1MB resp=True title=''
+proc pid=3088 svchost cpu=0 ws=7MB resp=True title=''
+proc pid=3120 svchost cpu=0 ws=20.8MB resp=True title=''
+proc pid=2952 svchost cpu=0 ws=42.8MB resp=True title=''
+proc pid=3012 svchost cpu=0 ws=14.4MB resp=True title=''
+proc pid=3204 svchost cpu=0 ws=12.7MB resp=True title=''
+proc pid=3680 svchost cpu=0 ws=9.2MB resp=True title=''
+proc pid=3128 svchost cpu=0 ws=19.5MB resp=True title=''
+proc pid=3144 svchost cpu=0 ws=24.4MB resp=True title=''
+proc pid=2932 svchost cpu=0 ws=56.1MB resp=True title=''
+proc pid=2484 svchost cpu=0 ws=19.7MB resp=True title=''
+proc pid=2568 svchost cpu=0 ws=20.1MB resp=True title=''
+proc pid=2344 svchost cpu=0 ws=11.4MB resp=True title=''
+proc pid=2476 svchost cpu=0 ws=12.2MB resp=True title=''
+proc pid=2752 svchost cpu=0 ws=9.7MB resp=True title=''
+proc pid=2844 svchost cpu=0 ws=22.7MB resp=True title=''
+proc pid=2704 svchost cpu=0 ws=19.4MB resp=True title=''
+proc pid=2724 svchost cpu=0 ws=27.7MB resp=True title=''
+proc pid=8212 svchost cpu=0 ws=12.5MB resp=True title=''
+proc pid=8596 svchost cpu=0 ws=9.6MB resp=True title=''
+proc pid=7648 svchost cpu=0 ws=15.1MB resp=True title=''
+proc pid=7988 svchost cpu=0 ws=9.1MB resp=True title=''
+proc pid=10480 svchost cpu=0 ws=11.1MB resp=True title=''
+proc pid=10780 svchost cpu=0 ws=11.3MB resp=True title=''
+proc pid=8688 svchost cpu=0 ws=26.9MB resp=True title=''
+proc pid=10208 svchost cpu=0 ws=9.9MB resp=True title=''
+proc pid=7428 svchost cpu=0 ws=23.1MB resp=True title=''
+proc pid=4120 svchost cpu=0 ws=11.3MB resp=True title=''
+proc pid=4276 svchost cpu=0 ws=35.5MB resp=True title=''
+proc pid=3760 svchost cpu=1.6 ws=10.1MB resp=True title=''
+proc pid=3936 svchost cpu=0 ws=22.1MB resp=True title=''
+proc pid=5148 svchost cpu=2.2 ws=18.5MB resp=True title=''
+proc pid=6032 svchost cpu=3.4 ws=23.8MB resp=True title=''
+proc pid=4736 svchost cpu=0 ws=24.5MB resp=True title=''
+proc pid=5028 svchost cpu=0 ws=10MB resp=True title=''
+proc pid=1228 svchost cpu=0 ws=8.7MB resp=True title=''
+proc pid=1256 svchost cpu=0 ws=10.4MB resp=True title=''
+proc pid=1140 svchost cpu=0 ws=14.7MB resp=True title=''
+proc pid=1212 svchost cpu=0 ws=7.7MB resp=True title=''
+proc pid=1412 svchost cpu=0 ws=17.4MB resp=True title=''
+proc pid=1424 svchost cpu=0 ws=8.4MB resp=True title=''
+proc pid=1336 svchost cpu=9 ws=38.6MB resp=True title=''
+proc pid=1380 svchost cpu=0 ws=19MB resp=True title=''
+proc pid=1120 svchost cpu=0 ws=12.1MB resp=True title=''
+proc pid=932 svchost cpu=2.9 ws=20.8MB resp=True title=''
+proc pid=944 svchost cpu=0 ws=39.3MB resp=True title=''
+proc pid=368 svchost cpu=0 ws=18.1MB resp=True title=''
+proc pid=668 svchost cpu=0 ws=11.1MB resp=True title=''
+proc pid=972 svchost cpu=0 ws=15.9MB resp=True title=''
+proc pid=1096 svchost cpu=0 ws=6.7MB resp=True title=''
+proc pid=960 svchost cpu=0 ws=47.1MB resp=True title=''
+proc pid=968 svchost cpu=0 ws=19.7MB resp=True title=''
+proc pid=2008 svchost cpu=0 ws=10.3MB resp=True title=''
+proc pid=2092 svchost cpu=0 ws=14.1MB resp=True title=''
+proc pid=1944 svchost cpu=0 ws=11MB resp=True title=''
+proc pid=1964 svchost cpu=0 ws=10.6MB resp=True title=''
+proc pid=2252 svchost cpu=0 ws=10.9MB resp=True title=''
+proc pid=2296 svchost cpu=0 ws=9.6MB resp=True title=''
+proc pid=2124 svchost cpu=0 ws=10.1MB resp=True title=''
+proc pid=2164 svchost cpu=0 ws=18MB resp=True title=''
+proc pid=1932 svchost cpu=0 ws=16.1MB resp=True title=''
+proc pid=1508 svchost cpu=0 ws=10.1MB resp=True title=''
+proc pid=1532 svchost cpu=0 ws=98.3MB resp=True title=''
+proc pid=1436 svchost cpu=0 ws=13.7MB resp=True title=''
+proc pid=1492 svchost cpu=0 ws=11.7MB resp=True title=''
+proc pid=1728 svchost cpu=0 ws=12.6MB resp=True title=''
+proc pid=1776 svchost cpu=0 ws=10.5MB resp=True title=''
+proc pid=1564 svchost cpu=0 ws=7.3MB resp=True title=''
+proc pid=1668 svchost cpu=0 ws=15.5MB resp=True title=''
+proc pid=4 System cpu=0 ws=0.2MB resp=True title=''
+proc pid=5656 taskhostw cpu=5.5 ws=27.3MB resp=True title=''
+proc pid=4792 taskhostw cpu=8.1 ws=20.5MB resp=True title=''
+proc pid=7604 WidgetBoard cpu=3.6 ws=31.3MB resp=True title=''
+proc pid=8108 WidgetService cpu=4.2 ws=23.9MB resp=True title=''
+proc pid=5716 WindowsTerminal cpu=147.6 ws=80.6MB resp=True title='powershell'
+proc pid=672 wininit cpu=0 ws=9.4MB resp=True title=''
+proc pid=736 winlogon cpu=0 ws=16.1MB resp=True title=''
+proc pid=11112 WmiPrvSE cpu=0 ws=14.7MB resp=True title=''

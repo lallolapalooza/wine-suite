@@ -1,0 +1,68 @@
+win32u: paint a newly shown window's client area as part of the show
+
+Hog PC's monitor-win32-golden.exe creates its "Processor" window (Qt5151QWindow, WS_POPUP,
+0x96000000) and shows it with ShowWindow(SW_SHOWNORMAL); under Wine the window keeps a
+non-empty update region (= the whole 770x370 client) and the application pumps
+PeekMessage(NULL,0,0,PM_REMOVE) continuously, but it is never handed a WM_PAINT: BeginPaint /
+EndPaint / GetUpdateRect / InvalidateRect / UpdateWindow / RedrawWindow are all 0 in a 30 s
+IAT capture, and the window stays at the class background.  Windows runs the same exe/argv and
+gets BeginPaint + EndPaint, so its client area is painted once, as expected for a window that
+has just been shown.
+
+set_window_pos() already has a "Give newly shown windows a chance to redraw" block for exactly
+this transition, but it only calls erase_now(): that sends WM_NCPAINT / WM_ERASEBKGND (both are
+seen in the Wine window-proc capture) and leaves the client paint to the queued WM_PAINT that
+the server synthesises in get_message().  That synthesis only happens when no posted message
+(and no input) is pending - WM_PAINT has the lowest priority - so a newly shown window can stay
+unpainted forever when the application's message queue never drains.  That is what happens
+here: in a +relay capture of the monitor the outer PeekMessage(NULL,0,0,PM_REMOVE) returned a
+message 3407 times and "no message" zero times, so the server's WM_PAINT branch was never
+reached, even though the window's update region was pending the whole time (GetUpdateRgn keeps
+returning SIMPLEREGION box=(0,0)-(770,370)).  Windows delivers that first paint as part of
+showing the window, before the application's own message traffic can starve it.
+
+Fix it where the visibility transition is handled: when a window is newly shown, invalidate its
+whole client area and update it right away, instead of only erasing it.  The invalidation also
+covers the case where the server's expose pass did not leave a pending client region, and it
+matches the observable Windows behaviour (a newly shown window is fully invalid and gets its
+first WM_PAINT; subsequent paints still go through the normal queued path).
+
+Only the window being shown is touched (no RDW_ALLCHILDREN), and only on a real hidden ->
+visible transition: fixup_swp_flags() clears SWP_SHOWWINDOW when the window is already visible,
+so the condition is the same one that already guarded erase_now().
+
+--- a/dlls/win32u/window.c
++++ b/dlls/win32u/window.c
+@@ -4089,6 +4089,7 @@
+     struct window_rects old_rects, new_rects;
+     UINT orig_flags, context;
+     BOOL ret = FALSE;
++    BOOL need_update = FALSE;
+ 
+     orig_flags = winpos->flags;
+ 
+@@ -4197,6 +4198,7 @@
+                 && !(orig_flags & SWP_AGG_NOCLIENTCHANGE) && (orig_flags & SWP_SHOWWINDOW))
+         {
+             erase_now(winpos->hwnd, 0);
++            need_update = TRUE;
+         }
+     }
+ 
+@@ -4220,6 +4222,16 @@
+     if ((winpos->flags & (SWP_NOSIZE|SWP_NOMOVE|SWP_FRAMECHANGED)) != (SWP_NOSIZE|SWP_NOMOVE))
+         NtUserNotifyWinEvent( EVENT_OBJECT_LOCATIONCHANGE, winpos->hwnd, OBJID_WINDOW, 0 );
+ 
++    if (need_update)
++    {
++        /* A window that is being shown has no valid contents yet, and Windows paints it as part
++         * of the show.  Invalidate the whole client area and paint it now; the queued WM_PAINT
++         * alone is not reliable, since it is only generated when the message queue is otherwise
++         * empty and an application with a busy event loop (e.g. Qt reposting wakeup messages)
++         * may never let it be delivered, leaving the window permanently unpainted. */
++        NtUserRedrawWindow( winpos->hwnd, NULL, NULL, RDW_INVALIDATE | RDW_ERASE | RDW_UPDATENOW );
++    }
++
+     ret = TRUE;
+ done:
+     set_thread_dpi_awareness_context( context );

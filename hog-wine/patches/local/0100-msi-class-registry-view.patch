@@ -1,0 +1,102 @@
+--- a/dlls/msi/classes.c
++++ b/dlls/msi/classes.c
+@@ -689,7 +689,7 @@
+ 
+ UINT ACTION_RegisterClassInfo(MSIPACKAGE *package)
+ {
+-    REGSAM access = KEY_ALL_ACCESS;
++    REGSAM access;
+     MSIRECORD *uirow;
+     HKEY hkey, hkey2, hkey3;
+     MSICLASS *cls;
+@@ -702,14 +702,6 @@
+     if (r != ERROR_SUCCESS)
+         return r;
+ 
+-    if (package->platform == PLATFORM_INTEL)
+-        access |= KEY_WOW64_32KEY;
+-    else
+-        access |= KEY_WOW64_64KEY;
+-
+-    if (RegCreateKeyExW( HKEY_CLASSES_ROOT, L"CLSID", 0, NULL, 0, access, NULL, &hkey, NULL ))
+-        return ERROR_FUNCTION_FAILED;
+-
+     LIST_FOR_EACH_ENTRY( cls, &package->classes, MSICLASS, entry )
+     {
+         MSICOMPONENT *comp;
+@@ -750,6 +742,15 @@
+ 
+         cls->action = INSTALLSTATE_LOCAL;
+ 
++        /* The registry view is a property of the component, not of the package: a
++         * 32-bit component in a 64-bit package registers its classes under the
++         * 32-bit view (Wow6432Node). */
++        access = KEY_ALL_ACCESS;
++        if (is_wow64 || is_64bit)
++            access |= (comp->Attributes & msidbComponentAttributes64bit) ? KEY_WOW64_64KEY : KEY_WOW64_32KEY;
++        if (RegCreateKeyExW( HKEY_CLASSES_ROOT, L"CLSID", 0, NULL, 0, access, NULL, &hkey, NULL ))
++            return ERROR_FUNCTION_FAILED;
++
+         RegCreateKeyW( hkey, cls->clsid, &hkey2 );
+ 
+         if (cls->Description)
+@@ -849,14 +850,15 @@
+         MSI_RecordSetStringW( uirow, 1, cls->clsid );
+         MSI_ProcessMessage(package, INSTALLMESSAGE_ACTIONDATA, uirow);
+         msiobj_release(&uirow->hdr);
++
++        RegCloseKey(hkey);
+     }
+-    RegCloseKey(hkey);
+     return ERROR_SUCCESS;
+ }
+ 
+ UINT ACTION_UnregisterClassInfo( MSIPACKAGE *package )
+ {
+-    REGSAM access = KEY_ALL_ACCESS;
++    REGSAM access;
+     MSIRECORD *uirow;
+     MSICLASS *cls;
+     HKEY hkey, hkey2;
+@@ -869,14 +871,6 @@
+     if (r != ERROR_SUCCESS)
+         return r;
+ 
+-    if (package->platform == PLATFORM_INTEL)
+-        access |= KEY_WOW64_32KEY;
+-    else
+-        access |= KEY_WOW64_64KEY;
+-
+-    if (RegCreateKeyExW( HKEY_CLASSES_ROOT, L"CLSID", 0, NULL, 0, access, NULL, &hkey, NULL ))
+-        return ERROR_FUNCTION_FAILED;
+-
+     LIST_FOR_EACH_ENTRY( cls, &package->classes, MSICLASS, entry )
+     {
+         MSIFEATURE *feature;
+@@ -909,6 +903,15 @@
+ 
+         cls->action = INSTALLSTATE_ABSENT;
+ 
++        /* The registry view is a property of the component, not of the package (see
++         * ACTION_RegisterClassInfo).  Deleting from the wrong view removes system
++         * classes that the component never owned. */
++        access = KEY_ALL_ACCESS;
++        if (is_wow64 || is_64bit)
++            access |= (comp->Attributes & msidbComponentAttributes64bit) ? KEY_WOW64_64KEY : KEY_WOW64_32KEY;
++        if (RegCreateKeyExW( HKEY_CLASSES_ROOT, L"CLSID", 0, NULL, 0, access, NULL, &hkey, NULL ))
++            return ERROR_FUNCTION_FAILED;
++
+         res = RegDeleteTreeW( hkey, cls->clsid );
+         if (res != ERROR_SUCCESS)
+             WARN("failed to delete class key %ld\n", res);
+@@ -943,8 +946,9 @@
+         MSI_RecordSetStringW( uirow, 1, cls->clsid );
+         MSI_ProcessMessage(package, INSTALLMESSAGE_ACTIONDATA, uirow);
+         msiobj_release( &uirow->hdr );
++
++        RegCloseKey( hkey );
+     }
+-    RegCloseKey( hkey );
+     return ERROR_SUCCESS;
+ }
+ 

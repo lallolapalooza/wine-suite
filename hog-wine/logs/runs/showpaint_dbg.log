@@ -1,0 +1,588 @@
+0034:trace:win:User32InitializeImmEntryTable (19650412)
+0034:trace:win:get_desktop_window started explorer
+0034:trace:msg:NtUserWaitForInputIdle waiting for 0x64
+006c:trace:win:User32InitializeImmEntryTable (19650412)
+0074:trace:win:User32InitializeImmEntryTable (19650412)
+0074:trace:win:WIN_CreateWindowEx (null) #8001->L"#32769" ex=00000000 style=86000000 0,0 0x0 parent=0000000000000000 menu=0000000000000000 inst=0000000000000000 params=00007FFFFE23F130
+0074:trace:win:dump_window_styles style: WS_POPUP WS_CLIPSIBLINGS WS_CLIPCHILDREN
+0074:trace:win:dump_window_styles exstyle:
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"#32769", version <null>, window_name (null), style 0x86000000, x 0, y 0, cx 0, cy 0, parent (nil), menu (nil), class_instance (nil), params 0x7ffffe23f130, flags 0, instance (nil), class #8001, ansi 0
+00b4:trace:win:User32InitializeImmEntryTable (19650412)
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00008000, lparam: 7fffff1354b8
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00000007, lparam: 00000000
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00008000, lparam: 7fffff135558
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00000007, lparam: 00000000
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00008000, lparam: 7fffff135558
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00000007, lparam: 00000000
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00008000, lparam: 7fffff135558
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00000007, lparam: 00000000
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00008000, lparam: 7fffff135558
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00000007, lparam: 00000000
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00008000, lparam: 7fffff135558
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+00c8:trace:msg:BroadcastSystemMessageExW Flags: 00000000, recipients: 0000000000000000(0x0), msg: 0219, wparam: 00000007, lparam: 00000000
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000000/L"WinSta0"/00000002
+00c8:trace:msg:bcast_winsta hwinsta: 0000000000000098/L"__wineservice_winstation"/00000002
+00c8:trace:msg:bcast_desktop desktop: L"Default"
+00c8:trace:msg:bcast_desktop -->1
+00c8:trace:msg:bcast_winsta -->1
+0074:trace:win:GetProcessDefaultLayout found description L"Wine Explorer"
+0074:trace:win:get_default_window_surface hwnd 0x10020, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:apply_window_pos win 0x10020 surface (nil) -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx hwnd 0x10020 cs 0,0 0x0 { window (0,0)-(0,0), client (0,0)-(0,0), visible (0,0)-(0,0) }
+0074:trace:win:get_default_window_surface hwnd 0x10020, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:apply_window_pos win 0x10020 surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx created window 0x10020
+0074:trace:win:WIN_CreateWindowEx (null) L"Message"->L"Message" ex=00000000 style=86000000 0,0 100x100 parent=0000000000000000 menu=0000000000000000 inst=0000000000000000 params=0000000000000000
+0074:trace:win:dump_window_styles style: WS_POPUP WS_CLIPSIBLINGS WS_CLIPCHILDREN
+0074:trace:win:dump_window_styles exstyle:
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"Message", version <null>, window_name (null), style 0x86000000, x 0, y 0, cx 100, cy 100, parent (nil), menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class L"Message", ansi 0
+0074:trace:win:get_default_window_surface hwnd 0x10028, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:apply_window_pos win 0x10028 surface (nil) -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx hwnd 0x10028 cs 0,0 100x100 { window (0,0)-(100,100), client (0,0)-(100,100), visible (0,0)-(100,100) }
+0074:trace:win:get_default_window_surface hwnd 0x10028, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:apply_window_pos win 0x10028 surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx created window 0x10028
+0074:trace:win:set_window_long_internal 0x10020 -4 140003b10 W
+0074:trace:win:alloc_winproc_ptr allocated 0xffff0011 for W 0x140003b10 (18/4096 used)
+0074:trace:win:NtUserSetWindowPos hwnd 0x10020, after (nil), 0,0 (1600x1000), flags 00000040
+0074:trace:win:dump_winpos_flags flags: SWP_SHOWWINDOW
+0074:trace:win:calc_winpos hwnd 0x10020, after (nil), swp 0,0 1600x1000 flags 00001840 style 86000000 old_rects { window (0,0)-(0,0), client (0,0)-(0,0), visible (0,0)-(0,0) } new_rects { window (0,0)-(1600,1000), client (0,0)-(0,0), visible (0,0)-(0,0) }
+0074:trace:win:calc_ncsize hwnd 0x10020 old win (0,0)-(0,0) old client (0,0)-(0,0) new win (0,0)-(1600,1000) new client (0,0)-(1600,1000)
+0074:trace:win:get_default_window_surface hwnd 0x10020, surface_rect (0,0)-(1664,1024), surface 0x7fffffdaf910
+0074:trace:win:window_surface_set_clip hwnd (nil), surface 0x747cc683e8a0 (0,0)-(1,1), setting clip region 0x6040047
+0074:trace:win:apply_window_pos win 0x10020 surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:win:set_foreground_window hwnd 0x10020, mouse 0, internal 0 -> ret 1, previous (nil)
+0074:trace:win:set_active_window hwnd (nil), previous (nil), mouse 0, focus 1, new_active_thread_id 0074
+0074:trace:win:set_active_window hwnd 0x10020, previous (nil), mouse 0, focus 1, new_active_thread_id 0000
+0074:trace:win:nc_paint 0x10020 0
+0074:trace:win:NtUserGetDCEx hwnd 0x10020, clip_rgn 0x7040047, flags 00010041
+0074:trace:win:NtUserGetDCEx (0x10020,0x7040047,0x10053): returning 0x101004d (updated)
+0074:trace:win:nc_paint rect after menu (0,0)-(1600,1000)
+0074:trace:win:release_dc 0x10020 0x101004d
+0074:trace:win:NtUserSetFocus 0x10020 prev (nil)
+0074:trace:win:set_window_pos 	status flags = 1042
+0074:trace:win:NtUserRedrawWindow 0x10020 whole window flags: RDW_INVALIDATE RDW_ERASE RDW_NOCHILDREN
+0074:trace:win:NtUserClipCursor Clipping to (null)
+00e0:trace:win:alloc_winproc_ptr allocated 0xffff0012 for W 0x1400037f0 (19/4096 used)
+00e0:trace:win:WIN_CreateWindowEx (null) L"__wine_clipboard_manager"->L"__wine_clipboard_manager" ex=00000000 style=00000000 0,0 0x0 parent=FFFFFFFFFFFFFFFD menu=0000000000000000 inst=0000000000000000 params=0000000000000000
+00e0:trace:win:dump_window_styles style:
+00e0:trace:win:dump_window_styles exstyle:
+00e0:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"__wine_clipboard_manager", version <null>, window_name (null), style 0, x 0, y 0, cx 0, cy 0, parent 0xfffffffffffffffd, menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class L"__wine_clipboard_manager", ansi 0
+0074:trace:win:alloc_winproc_ptr allocated 0xffff0013 for W 0x140002e90 (20/4096 used)
+0074:trace:win:WIN_CreateWindowEx L"WineAppBar" L"WineAppBar"->L"WineAppBar" ex=00000000 style=00000000 0,0 0x0 parent=FFFFFFFFFFFFFFFD menu=0000000000000000 inst=0000000000000000 params=0000000000000000
+0074:trace:win:dump_window_styles style:
+0074:trace:win:dump_window_styles exstyle:
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"WineAppBar", version <null>, window_name L"WineAppBar", style 0, x 0, y 0, cx 0, cy 0, parent 0xfffffffffffffffd, menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class L"WineAppBar", ansi 0
+00e0:trace:win:get_min_max_info 106 106 / -3 -3 / 1612 1012 / 119 34
+00e0:trace:win:get_default_window_surface hwnd 0x1002e, surface_rect (0,0)-(128,128), surface 0x7fffff4ae4b0
+00e0:trace:win:get_default_window_surface using parent window surface
+00e0:trace:win:invalidate_dce 0x1002e parent 0x10028, old_rect (0,0)-(0,0)
+00e0:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+00e0:trace:win:apply_window_pos win 0x1002e surface (nil) -> (nil)
+00e0:trace:win:NtUserCreateWindowEx hwnd 0x1002e cs 0,0 0x0 { window (0,0)-(119,34), client (0,0)-(119,34), visible (0,0)-(119,34) }
+00e4:trace:win:alloc_winproc_ptr allocated 0xffff0014 for W 0x140004440 (21/4096 used)
+00e4:trace:win:WIN_CreateWindowEx (null) L"__wine_display_settings_restorer"->L"__wine_display_settings_restorer" ex=00000000 style=00000000 0,0 0x0 parent=FFFFFFFFFFFFFFFD menu=0000000000000000 inst=0000000000000000 params=0000000000000000
+00e4:trace:win:dump_window_styles style:
+00e4:trace:win:dump_window_styles exstyle:
+00e4:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"__wine_display_settings_restorer", version <null>, window_name (null), style 0, x 0, y 0, cx 0, cy 0, parent 0xfffffffffffffffd, menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class L"__wine_display_settings_restorer", ansi 0
+0074:trace:win:get_min_max_info 106 106 / -3 -3 / 1612 1012 / 119 34
+0074:trace:win:get_default_window_surface hwnd 0x10032, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:get_default_window_surface using parent window surface
+0074:trace:win:invalidate_dce 0x10032 parent 0x10028, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10032 surface (nil) -> (nil)
+0074:trace:win:NtUserCreateWindowEx hwnd 0x10032 cs 0,0 0x0 { window (0,0)-(119,34), client (0,0)-(119,34), visible (0,0)-(119,34) }
+0074:trace:win:set_window_text 0x10032, L"WineAppBar"
+00e4:trace:win:get_min_max_info 106 106 / -3 -3 / 1612 1012 / 119 34
+00e4:trace:win:get_default_window_surface hwnd 0x10034, surface_rect (0,0)-(128,128), surface 0x7fffff7be4b0
+00e4:trace:win:get_default_window_surface using parent window surface
+00e4:trace:win:invalidate_dce 0x10034 parent 0x10028, old_rect (0,0)-(0,0)
+00e4:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+00e4:trace:win:apply_window_pos win 0x10034 surface (nil) -> (nil)
+0074:trace:win:get_default_window_surface hwnd 0x10032, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:get_default_window_surface using parent window surface
+0074:trace:win:invalidate_dce 0x10032 parent 0x10028, old_rect (0,0)-(119,34)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10032 surface (nil) -> (nil)
+0074:trace:win:NtUserCreateWindowEx created window 0x10032
+00e4:trace:win:NtUserCreateWindowEx hwnd 0x10034 cs 0,0 0x0 { window (0,0)-(119,34), client (0,0)-(119,34), visible (0,0)-(119,34) }
+00e4:trace:win:set_window_text 0x10034, (null)
+0074:trace:win:alloc_winproc_ptr allocated 0xffff0015 for W 0x140009b10 (22/4096 used)
+0074:trace:win:alloc_winproc_ptr allocated 0xffff0016 for W 0x14000c100 (23/4096 used)
+00e4:trace:win:get_default_window_surface hwnd 0x10034, surface_rect (0,0)-(128,128), surface 0x7fffff7be4b0
+00e4:trace:win:get_default_window_surface using parent window surface
+00e4:trace:win:invalidate_dce 0x10034 parent 0x10028, old_rect (0,0)-(119,34)
+00e4:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+00e4:trace:win:apply_window_pos win 0x10034 surface (nil) -> (nil)
+0074:trace:win:WIN_CreateWindowEx L"" L"Shell_TrayWnd"->L"Shell_TrayWnd" ex=00000000 style=00c80000 -2147483648,-2147483648 166x52 parent=0000000000000000 menu=0000000000000000 inst=0000000000000000 params=0000000000000000
+0074:trace:win:dump_window_styles style: WS_CAPTION WS_SYSMENU
+00e4:trace:win:NtUserCreateWindowEx created window 0x10034
+0074:trace:win:dump_window_styles exstyle:
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"Shell_TrayWnd", version <null>, window_name L"", style 0xc80000, x 2147483648, y 2147483648, cx 166, cy 52, parent (nil), menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class L"Shell_TrayWnd", ansi 0
+0034:trace:msg:NtUserWaitForInputIdle finished
+0034:trace:msg:send_inter_thread_message hwnd 0x10020 msg 0 (WM_NULL) wp 0 lp 0
+0074:trace:win:get_min_max_info 1606 1006 / -3 -3 / 1612 1012 / 119 34
+0074:trace:win:get_default_window_surface hwnd 0x1003c, surface_rect (0,0)-(256,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x1003c parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x1003c surface (nil) -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx hwnd 0x1003c cs 0,0 166x52 { window (0,0)-(166,52), client (0,0)-(166,52), visible (0,0)-(166,52) }
+0074:trace:win:set_window_text 0x1003c, L""
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"IME", version <null>, window_name L"Default IME", style 0x8c000000, x 0, y 0, cx 1, cy 1, parent (nil), menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class (null), ansi 0
+0074:trace:win:get_default_window_surface hwnd 0x10042, surface_rect (0,0)-(128,128), surface 0x7fffffdaf2a0
+0074:trace:win:invalidate_dce 0x10042 parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10042 surface (nil) -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx hwnd 0x10042 cs 0,0 1x1 { window (0,0)-(1,1), client (0,0)-(1,1), visible (0,0)-(1,1) }
+0074:trace:win:set_window_text 0x10042, L"Default IME"
+0074:trace:win:get_default_window_surface hwnd 0x10042, surface_rect (0,0)-(128,128), surface 0x7fffffdaf2a0
+0074:trace:win:invalidate_dce 0x10042 parent 0x10020, old_rect (0,0)-(1,1)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10042 surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:msg:RegisterWindowMessageW L"MSIMEService"
+0074:trace:msg:RegisterWindowMessageW L"MSIMEReconvertOptions"
+0074:trace:msg:RegisterWindowMessageW L"MSIMEMouseOperation"
+0074:trace:msg:RegisterWindowMessageW L"MSIMEReconvertRequest"
+0074:trace:msg:RegisterWindowMessageW L"MSIMEReconvert"
+0074:trace:msg:RegisterWindowMessageW L"MSIMEQueryPosition"
+0074:trace:msg:RegisterWindowMessageW L"MSIMEDocumentFeed"
+0074:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 10042
+0074:trace:win:NtUserCreateWindowEx created window 0x10042
+0074:trace:win:NtUserCreateWindowEx register IME window for 0x1003c
+0074:trace:win:get_visible_rect hwnd 0x1003c, rects { window (0,0)-(166,52), client (3,29)-(163,49), visible (0,0)-(166,52) }, style 0x4c80000, ex_style 0x100 -> visible_rect (3,29)-(163,49)
+0074:trace:win:get_default_window_surface hwnd 0x1003c, surface_rect (0,0)-(256,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x1003c parent 0x10020, old_rect (0,0)-(166,52)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x1003c surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 1003c
+00e0:trace:win:get_default_window_surface hwnd 0x1002e, surface_rect (0,0)-(128,128), surface 0x7fffff4ae4b0
+0074:trace:win:NtUserCreateWindowEx created window 0x1003c
+00e0:trace:win:get_default_window_surface using parent window surface
+00e0:trace:win:invalidate_dce 0x1002e parent 0x10028, old_rect (0,0)-(119,34)
+00e0:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+00e0:trace:win:apply_window_pos win 0x1002e surface (nil) -> (nil)
+0074:trace:win:show_window hwnd=0x1003c, cmd=0, was_visible 0
+00e0:trace:win:NtUserCreateWindowEx created window 0x1002e
+00e0:trace:msg:peek_message got type 6 msg 31d (WM_CLIPBOARDUPDATE) hwnd 0x1002e wp 0 lp 0
+0074:trace:win:alloc_winproc_ptr allocated 0xffff0017 for W 0x6ffffd74f1c0 (24/4096 used)
+0074:trace:win:WIN_CreateWindowEx (null) L"WineDdeEventClass"->L"WineDdeEventClass" ex=00000000 style=80000000 0,0 0x0 parent=0000000000000000 menu=0000000000000000 inst=0000000000000000 params=0000000000000000
+0074:trace:win:dump_window_styles style: WS_POPUP
+0074:trace:win:dump_window_styles exstyle:
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"WineDdeEventClass", version <null>, window_name (null), style 0x80000000, x 0, y 0, cx 0, cy 0, parent (nil), menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class L"WineDdeEventClass", ansi 0
+0074:trace:win:get_default_window_surface hwnd 0x10044, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x10044 parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10044 surface (nil) -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx hwnd 0x10044 cs 0,0 0x0 { window (0,0)-(0,0), client (0,0)-(0,0), visible (0,0)-(0,0) }
+0074:trace:win:set_window_text 0x10044, (null)
+0074:trace:win:NtUserCreateWindowEx register IME window for 0x10044
+0074:trace:win:get_default_window_surface hwnd 0x10044, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x10044 parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10044 surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 10044
+0074:trace:win:NtUserCreateWindowEx created window 0x10044
+0074:trace:win:set_window_long_internal 0x10044 0 7ffffe84b890 W
+0074:trace:msg:NtUserPostMessage hwnd 0x10044 msg 600 (WM_USER+512) wp c020 lp c021
+0074:trace:win:alloc_winproc_ptr allocated 0xffff0018 for W 0x6ffffd752530 (25/4096 used)
+0074:trace:win:WIN_CreateWindowEx (null) L"WineDdeServerName"->L"WineDdeServerName" ex=00000000 style=80000000 0,0 0x0 parent=0000000000000000 menu=0000000000000000 inst=0000000000000000 params=0000000000000000
+0074:trace:win:dump_window_styles style: WS_POPUP
+0074:trace:win:dump_window_styles exstyle:
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"WineDdeServerName", version <null>, window_name (null), style 0x80000000, x 0, y 0, cx 0, cy 0, parent (nil), menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class L"WineDdeServerName", ansi 0
+0074:trace:win:get_default_window_surface hwnd 0x10046, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x10046 parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10046 surface (nil) -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx hwnd 0x10046 cs 0,0 0x0 { window (0,0)-(0,0), client (0,0)-(0,0), visible (0,0)-(0,0) }
+0074:trace:win:set_window_text 0x10046, (null)
+0074:trace:win:NtUserCreateWindowEx register IME window for 0x10046
+0074:trace:win:get_default_window_surface hwnd 0x10046, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x10046 parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10046 surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 10046
+0074:trace:win:NtUserCreateWindowEx created window 0x10046
+0074:trace:win:set_window_long_internal 0x10046 0 7ffffe84b890 W
+0074:trace:win:set_window_long_internal 0x10046 8 7ffffe84e8d0 W
+0074:trace:msg:NtUserPostMessage hwnd 0x10044 msg 600 (WM_USER+512) wp c022 lp c023
+0074:trace:win:alloc_winproc_ptr reusing 0xffff0018 for 0x6ffffd752530
+0074:trace:win:WIN_CreateWindowEx (null) L"WineDdeServerName"->L"WineDdeServerName" ex=00000000 style=80000000 0,0 0x0 parent=0000000000000000 menu=0000000000000000 inst=0000000000000000 params=0000000000000000
+0074:trace:win:dump_window_styles style: WS_POPUP
+0074:trace:win:dump_window_styles exstyle:
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"WineDdeServerName", version <null>, window_name (null), style 0x80000000, x 0, y 0, cx 0, cy 0, parent (nil), menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class L"WineDdeServerName", ansi 0
+0074:trace:win:get_default_window_surface hwnd 0x10048, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x10048 parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10048 surface (nil) -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx hwnd 0x10048 cs 0,0 0x0 { window (0,0)-(0,0), client (0,0)-(0,0), visible (0,0)-(0,0) }
+0074:trace:win:set_window_text 0x10048, (null)
+0074:trace:win:NtUserCreateWindowEx register IME window for 0x10048
+0074:trace:win:get_default_window_surface hwnd 0x10048, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x10048 parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x10048 surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 10048
+0074:trace:win:NtUserCreateWindowEx created window 0x10048
+0074:trace:win:set_window_long_internal 0x10048 0 7ffffe84b890 W
+0074:trace:win:set_window_long_internal 0x10048 8 7ffffe84e930 W
+0074:trace:msg:NtUserPostMessage hwnd 0x10044 msg 600 (WM_USER+512) wp c024 lp c025
+0074:trace:win:alloc_winproc_ptr reusing 0xffff0018 for 0x6ffffd752530
+0074:trace:win:WIN_CreateWindowEx (null) L"WineDdeServerName"->L"WineDdeServerName" ex=00000000 style=80000000 0,0 0x0 parent=0000000000000000 menu=0000000000000000 inst=0000000000000000 params=0000000000000000
+0074:trace:win:dump_window_styles style: WS_POPUP
+0074:trace:win:dump_window_styles exstyle:
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"WineDdeServerName", version <null>, window_name (null), style 0x80000000, x 0, y 0, cx 0, cy 0, parent (nil), menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class L"WineDdeServerName", ansi 0
+0074:trace:win:get_default_window_surface hwnd 0x1004a, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x1004a parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x1004a surface (nil) -> 0x747cc683e8a0
+0074:trace:win:NtUserCreateWindowEx hwnd 0x1004a cs 0,0 0x0 { window (0,0)-(0,0), client (0,0)-(0,0), visible (0,0)-(0,0) }
+0074:trace:win:set_window_text 0x1004a, (null)
+0074:trace:win:NtUserCreateWindowEx register IME window for 0x1004a
+0074:trace:win:get_default_window_surface hwnd 0x1004a, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:invalidate_dce 0x1004a parent 0x10020, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x1004a surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 1004a
+0074:trace:win:NtUserCreateWindowEx created window 0x1004a
+0074:trace:win:set_window_long_internal 0x1004a 0 7ffffe84b890 W
+0074:trace:win:set_window_long_internal 0x1004a 8 7ffffe84e990 W
+0074:trace:win:alloc_winproc_ptr allocated 0xffff0019 for W 0x6ffffe009d50 (26/4096 used)
+0074:trace:win:WIN_CreateWindowEx (null) L"OleMainThreadWndClass"->L"OleMainThreadWndClass" ex=00000000 style=00000000 0,0 0x0 parent=FFFFFFFFFFFFFFFD menu=0000000000000000 inst=00006FFFFDFF0000 params=0000000000000000
+0074:trace:win:dump_window_styles style:
+0074:trace:win:dump_window_styles exstyle:
+0074:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"OleMainThreadWndClass", version <null>, window_name (null), style 0, x 0, y 0, cx 0, cy 0, parent 0xfffffffffffffffd, menu (nil), class_instance 0x6ffffdff0000, params (nil), flags 0, instance 0x6ffffdff0000, class L"OleMainThreadWndClass", ansi 0
+0074:trace:win:get_min_max_info 106 106 / -3 -3 / 1612 1012 / 119 34
+0074:trace:win:get_default_window_surface hwnd 0x1004c, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:get_default_window_surface using parent window surface
+0074:trace:win:invalidate_dce 0x1004c parent 0x10028, old_rect (0,0)-(0,0)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x1004c surface (nil) -> (nil)
+0074:trace:win:NtUserCreateWindowEx hwnd 0x1004c cs 0,0 0x0 { window (0,0)-(119,34), client (0,0)-(119,34), visible (0,0)-(119,34) }
+0074:trace:win:set_window_text 0x1004c, (null)
+0074:trace:win:get_default_window_surface hwnd 0x1004c, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0074:trace:win:get_default_window_surface using parent window surface
+0074:trace:win:invalidate_dce 0x1004c parent 0x10028, old_rect (0,0)-(119,34)
+0074:trace:win:invalidate_dce 0x101004d: hwnd 0x10020 dcx 00000013 Cache 
+0074:trace:win:apply_window_pos win 0x1004c surface (nil) -> (nil)
+0074:trace:win:NtUserCreateWindowEx created window 0x1004c
+0074:trace:win:NtUserSetWindowPos hwnd 0x10020, after 0x1, 0,0 (0x0), flags 00000013
+0074:trace:win:dump_winpos_flags flags: SWP_NOSIZE SWP_NOMOVE SWP_NOACTIVATE
+0074:trace:win:calc_winpos hwnd 0x10020, after 0x1, swp 0,0 0x0 flags 00001813 style 96000000 old_rects { window (0,0)-(1600,1000), client (0,0)-(1600,1000), visible (0,0)-(1600,1000) } new_rects { window (0,0)-(1600,1000), client (0,0)-(1600,1000), visible (0,0)-(1600,1000) }
+0074:trace:win:get_default_window_surface hwnd 0x10020, surface_rect (0,0)-(1664,1024), surface 0x7fffffdaf850
+0074:trace:win:apply_window_pos win 0x10020 surface 0x747cc683e8a0 -> 0x747cc683e8a0
+0074:trace:win:NtUserGetDCEx hwnd 0x10020, clip_rgn 0x40040051, flags 00010080
+0074:trace:win:NtUserGetDCEx (0x10020,0x40040051,0x10098): returning 0x4010055 (updated)
+0074:trace:win:release_dc 0x10020 0x4010055
+0074:trace:win:set_window_pos 	status flags = 1803
+0074:trace:msg:NtUserPostMessage hwnd 0x1003c msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) wp 0 lp 0
+0074:trace:msg:peek_message got type 5 msg 0 (WM_NULL) hwnd 0x10020 wp 0 lp 0
+0074:trace:msg:peek_message got type 6 msg 80001ff0 (WM_WINE_CLIPCURSOR) hwnd 0x10020 wp 10 lp 0
+0074:trace:win:process_wine_clipcursor hwnd 0x10020, flags 0x10, reset 0
+0074:trace:msg:peek_message got type 6 msg 80001ff0 (WM_WINE_CLIPCURSOR) hwnd 0x10020 wp 10 lp 0
+0074:trace:win:process_wine_clipcursor hwnd 0x10020, flags 0x10, reset 0
+0074:trace:msg:peek_message got type 6 msg 80001ff0 (WM_WINE_CLIPCURSOR) hwnd 0x10020 wp 10 lp 0
+0074:trace:win:process_wine_clipcursor hwnd 0x10020, flags 0x10, reset 0
+0034:trace:msg:retrieve_reply hwnd 0x10020 msg 0 (WM_NULL) wp 0 lp 0 got reply 0 (err=0)
+0074:trace:msg:peek_message got type 6 msg 80001ff0 (WM_WINE_CLIPCURSOR) hwnd 0x10020 wp 10 lp 0
+0074:trace:win:process_wine_clipcursor hwnd 0x10020, flags 0x10, reset 0
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 10042
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 1003c
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 10044
+0074:trace:msg:peek_message got type 6 msg 600 (WM_USER+512) hwnd 0x10044 wp c020 lp c021
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 10046
+0074:trace:msg:peek_message got type 6 msg 600 (WM_USER+512) hwnd 0x10044 wp c022 lp c023
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 10048
+0074:trace:msg:peek_message got type 6 msg 600 (WM_USER+512) hwnd 0x10044 wp c024 lp c025
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 1004a
+0074:trace:msg:peek_message got type 6 msg 80001ff0 (WM_WINE_CLIPCURSOR) hwnd 0x10020 wp 10 lp 0
+0074:trace:win:process_wine_clipcursor hwnd 0x10020, flags 0x10, reset 0
+0074:trace:msg:peek_message got type 6 msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) hwnd 0x1003c wp 0 lp 0
+0034:trace:win:alloc_winproc_ptr allocated 0xffff0011 for W 0x6ffffe009d50 (18/4096 used)
+0034:trace:win:WIN_CreateWindowEx (null) L"OleMainThreadWndClass"->L"OleMainThreadWndClass" ex=00000000 style=00000000 0,0 0x0 parent=FFFFFFFFFFFFFFFD menu=0000000000000000 inst=00006FFFFDFF0000 params=0000000000000000
+0034:trace:win:dump_window_styles style:
+0034:trace:win:dump_window_styles exstyle:
+0034:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"OleMainThreadWndClass", version <null>, window_name (null), style 0, x 0, y 0, cx 0, cy 0, parent 0xfffffffffffffffd, menu (nil), class_instance 0x6ffffdff0000, params (nil), flags 0, instance 0x6ffffdff0000, class L"OleMainThreadWndClass", ansi 0
+0034:trace:win:get_min_max_info 106 106 / -3 -3 / 1612 1012 / 119 34
+0034:trace:win:get_default_window_surface hwnd 0x10052, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0034:trace:win:get_default_window_surface using parent window surface
+0034:trace:win:invalidate_dce 0x10052 parent 0x10028, old_rect (0,0)-(0,0)
+0034:trace:win:apply_window_pos win 0x10052 surface (nil) -> (nil)
+0034:trace:win:NtUserCreateWindowEx hwnd 0x10052 cs 0,0 0x0 { window (0,0)-(119,34), client (0,0)-(119,34), visible (0,0)-(119,34) }
+0034:trace:win:set_window_text 0x10052, (null)
+0034:trace:win:get_default_window_surface hwnd 0x10052, surface_rect (0,0)-(128,128), surface 0x7fffffdaf730
+0034:trace:win:get_default_window_surface using parent window surface
+0034:trace:win:invalidate_dce 0x10052 parent 0x10028, old_rect (0,0)-(119,34)
+0034:trace:win:apply_window_pos win 0x10052 surface (nil) -> (nil)
+0034:trace:win:NtUserCreateWindowEx created window 0x10052
+002c:trace:win:User32InitializeImmEntryTable (19650412)
+0034:trace:win:user_destroy_window (0x10052)
+0034:trace:win:destroy_window 0x10052
+0034:trace:win:free_window_handle 
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10028 wp 2 lp 10052
+0024:trace:win:User32InitializeImmEntryTable (19650412)
+011c:trace:win:User32InitializeImmEntryTable (19650412)
+011c:trace:msg:send_inter_thread_message hwnd 0x10020 msg 0 (WM_NULL) wp 0 lp 0
+0074:trace:msg:peek_message got type 5 msg 0 (WM_NULL) hwnd 0x10020 wp 0 lp 0
+011c:trace:msg:retrieve_reply hwnd 0x10020 msg 0 (WM_NULL) wp 0 lp 0 got reply 0 (err=0)
+011c:trace:win:alloc_winproc_ptr allocated 0xffff0011 for W 0x401620 (18/4096 used)
+011c:trace:win:WIN_CreateWindowEx L"monitor-win32-golden" L"SP_Qt5151QWindow"->L"SP_Qt5151QWindow" ex=00000000 style=86cf0000 633,360 648x514 parent=00000000 menu=00000000 inst=00400000 params=00000000
+011c:trace:win:dump_window_styles style: WS_POPUP WS_CLIPSIBLINGS WS_CLIPCHILDREN WS_CAPTION WS_SYSMENU WS_THICKFRAME WS_MINIMIZEBOX WS_MAXIMIZEBOX
+011c:trace:win:dump_window_styles exstyle:
+011c:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"SP_Qt5151QWindow", version <null>, window_name L"monitor-win32-golden", style 0x86cf0000, x 633, y 360, cx 648, cy 514, parent (nil), menu (nil), class_instance 0x400000, params (nil), flags 0, instance 0x400000, class L"SP_Qt5151QWindow", ansi 0
+011c:trace:win:get_min_max_info 1608 1008 / -4 -4 / 1612 1012 / 119 34
+011c:trace:win:get_default_window_surface hwnd 0x2004e, surface_rect (0,0)-(768,640), surface 0x7fffffdaf730
+011c:trace:win:invalidate_dce 0x2004e parent 0x10020, old_rect (0,0)-(0,0)
+011c:trace:win:apply_window_pos win 0x2004e surface (nil) -> 0x77117c43e8a0
+011c:trace:win:window_from_point scope 0x10020 (632,359) returning 0x10020
+011c:trace:win:NtUserCreateWindowEx hwnd 0x2004e cs 633,360 648x514 { window (633,360)-(1281,874), client (633,360)-(1281,874), visible (633,360)-(1281,874) }
+011c:trace:win:set_window_text 0x2004e, L"monitor-win32-golden"
+011c:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"IME", version <null>, window_name L"Default IME", style 0x8c000000, x 0, y 0, cx 1, cy 1, parent (nil), menu (nil), class_instance (nil), params (nil), flags 0, instance (nil), class (null), ansi 0
+011c:trace:win:get_default_window_surface hwnd 0x1005a, surface_rect (0,0)-(128,128), surface 0x7fffffdaf2a0
+011c:trace:win:invalidate_dce 0x1005a parent 0x10020, old_rect (0,0)-(0,0)
+011c:trace:win:apply_window_pos win 0x1005a surface (nil) -> 0x77117c43e8a0
+011c:trace:win:NtUserCreateWindowEx hwnd 0x1005a cs 0,0 1x1 { window (0,0)-(1,1), client (0,0)-(1,1), visible (0,0)-(1,1) }
+011c:trace:win:set_window_text 0x1005a, L"Default IME"
+011c:trace:win:get_default_window_surface hwnd 0x1005a, surface_rect (0,0)-(128,128), surface 0x7fffffdaf2a0
+011c:trace:win:invalidate_dce 0x1005a parent 0x10020, old_rect (0,0)-(1,1)
+011c:trace:win:apply_window_pos win 0x1005a surface 0x77117c43e8a0 -> 0x77117c43e8a0
+011c:trace:msg:RegisterWindowMessageW L"MSIMEService"
+011c:trace:msg:RegisterWindowMessageW L"MSIMEReconvertOptions"
+011c:trace:msg:RegisterWindowMessageW L"MSIMEMouseOperation"
+011c:trace:msg:RegisterWindowMessageW L"MSIMEReconvertRequest"
+011c:trace:msg:RegisterWindowMessageW L"MSIMEReconvert"
+011c:trace:msg:RegisterWindowMessageW L"MSIMEQueryPosition"
+011c:trace:msg:RegisterWindowMessageW L"MSIMEDocumentFeed"
+011c:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 1005a
+011c:trace:win:NtUserCreateWindowEx created window 0x1005a
+011c:trace:win:NtUserCreateWindowEx register IME window for 0x2004e
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 1005a
+011c:trace:win:get_visible_rect hwnd 0x2004e, rects { window (633,360)-(1281,874), client (637,390)-(1277,870), visible (633,360)-(1281,874) }, style 0x86cf0000, ex_style 0x100 -> visible_rect (637,390)-(1277,870)
+011c:trace:win:get_default_window_surface hwnd 0x2004e, surface_rect (0,0)-(640,512), surface 0x7fffffdaf730
+011c:trace:win:invalidate_dce 0x2004e parent 0x10020, old_rect (633,360)-(1281,874)
+011c:trace:win:apply_window_pos win 0x2004e surface 0x77117c43e8a0 -> 0x77117c43e8a0
+011c:trace:win:window_from_point scope 0x10020 (632,359) returning 0x10020
+011c:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 2004e
+011c:trace:win:NtUserCreateWindowEx created window 0x2004e
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 2004e
+011c:trace:win:WIN_CreateWindowEx L"Processor" L"SP_Qt5151QWindow"->L"SP_Qt5151QWindow" ex=00000000 style=86000000 575,415 770x370 parent=0002004E menu=00000000 inst=00400000 params=00000000
+011c:trace:win:dump_window_styles style: WS_POPUP WS_CLIPSIBLINGS WS_CLIPCHILDREN
+011c:trace:win:dump_window_styles exstyle:
+011c:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"SP_Qt5151QWindow", version <null>, window_name L"Processor", style 0x86000000, x 575, y 415, cx 770, cy 370, parent 0x2004e, menu (nil), class_instance 0x400000, params (nil), flags 0, instance 0x400000, class L"SP_Qt5151QWindow", ansi 0
+011c:trace:win:get_default_window_surface hwnd 0x1005c, surface_rect (0,0)-(896,384), surface 0x7fffffdaf730
+011c:trace:win:invalidate_dce 0x1005c parent 0x10020, old_rect (0,0)-(0,0)
+011c:trace:win:apply_window_pos win 0x1005c surface (nil) -> 0x77117c43e8a0
+011c:trace:win:NtUserCreateWindowEx hwnd 0x1005c cs 575,415 770x370 { window (575,415)-(1345,785), client (575,415)-(1345,785), visible (575,415)-(1345,785) }
+011c:trace:win:set_window_text 0x1005c, L"Processor"
+011c:trace:win:NtUserCreateWindowEx register IME window for 0x1005c
+011c:trace:win:get_default_window_surface hwnd 0x1005c, surface_rect (0,0)-(896,384), surface 0x7fffffdaf730
+011c:trace:win:invalidate_dce 0x1005c parent 0x10020, old_rect (575,415)-(1345,785)
+011c:trace:win:apply_window_pos win 0x1005c surface 0x77117c43e8a0 -> 0x77117c43e8a0
+011c:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 1005c
+011c:trace:win:NtUserCreateWindowEx created window 0x1005c
+011c:trace:win:GetWindowRect hwnd 0002004E (633,360)-(1281,874)
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 1005c
+A(owner)   hwnd=0002004e vis=0 parent=00000000 owner=00000000 style=0x86cf0000 update=0 rect=(633,360)-(1281,874)
+011c:trace:win:GetWindowRect hwnd 0001005C (575,415)-(1345,785)
+B(before) hwnd=0001005c vis=0 parent=0002004e owner=0002004e style=0x86000000 update=0 rect=(575,415)-(1345,785)
+011c:trace:win:show_window hwnd=0x1005c, cmd=1, was_visible 0
+011c:trace:win:NtUserSetWindowPos hwnd 0x1005c, after (nil), 0,0 (0x0), flags 00000043
+011c:trace:win:dump_winpos_flags flags: SWP_NOSIZE SWP_NOMOVE SWP_SHOWWINDOW
+011c:trace:win:calc_winpos hwnd 0x1005c, after (nil), swp 0,0 0x0 flags 00001843 style 86000000 old_rects { window (575,415)-(1345,785), client (575,415)-(1345,785), visible (575,415)-(1345,785) } new_rects { window (575,415)-(1345,785), client (575,415)-(1345,785), visible (575,415)-(1345,785) }
+011c:trace:win:swp_owner_popups (0x1005c) after = (nil)
+011c:trace:win:get_default_window_surface hwnd 0x1005c, surface_rect (0,0)-(896,384), surface 0x7fffffdaf880
+011c:trace:win:NtUserGetDCEx hwnd 0x1005c, clip_rgn (nil), flags 00000003
+011c:trace:win:NtUserGetDCEx (0x1005c,(nil),0x13): returning 0x23010041 (updated)
+011c:trace:win:release_dc 0x1005c 0x23010041
+011c:trace:win:window_surface_create created surface 0x55555c601200 for hwnd 0x1005c rect (0,0)-(896,384)
+011c:trace:win:window_surface_set_clip hwnd 0x1005c, surface 0x55555c601200 (0,0)-(896,384), setting clip region 0x2040044
+011c:trace:win:invalidate_dce 0x1005c parent 0x10020, old_rect (575,415)-(1345,785)
+011c:trace:win:invalidate_dce 0x23010041: hwnd 0x1005c dcx 00000013 Cache 
+011c:trace:win:make_dc_dirty purged 0x23010041 hwnd 0x1005c
+011c:trace:win:apply_window_pos win 0x1005c surface 0x77117c43e8a0 -> 0x55555c601200
+011c:trace:win:set_foreground_window hwnd 0x1005c, mouse 0, internal 0 -> ret 1, previous (nil)
+011c:trace:win:set_active_window hwnd 0x1005c, previous (nil), mouse 0, focus 1, new_active_thread_id 0000
+0074:trace:msg:peek_message got type 6 msg 80001ff0 (WM_WINE_CLIPCURSOR) hwnd 0x10020 wp 10 lp 0
+0074:trace:win:process_wine_clipcursor hwnd 0x10020, flags 0x10, reset 0
+011c:trace:win:nc_paint 0x1005c 4
+011c:trace:win:NtUserGetDCEx hwnd 0x1005c, clip_rgn 0x7040044, flags 00010041
+011c:trace:win:NtUserGetDCEx (0x1005c,0x7040044,0x10053): returning 0x23010041 (updated)
+011c:trace:win:nc_paint rect after menu (0,0)-(770,370)
+011c:trace:win:release_dc 0x1005c 0x23010041
+011c:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 86 lp 1005c
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 86 lp 1005c
+011c:trace:win:NtUserSetFocus 0x1005c prev (nil)
+011c:trace:win:alloc_winproc_ptr allocated 0xffff0012 for W 0x79f9af80 (19/4096 used)
+011c:trace:win:WIN_CreateWindowEx (null) L"OleMainThreadWndClass"->L"OleMainThreadWndClass" ex=00000000 style=00000000 0,0 0x0 parent=FFFFFFFD menu=00000000 inst=79F80000 params=00000000
+011c:trace:win:dump_window_styles style:
+011c:trace:win:dump_window_styles exstyle:
+011c:trace:win:NtUserCreateWindowEx ex_style 0, class_name L"OleMainThreadWndClass", version <null>, window_name (null), style 0, x 0, y 0, cx 0, cy 0, parent 0xfffffffffffffffd, menu (nil), class_instance 0x79f80000, params (nil), flags 0, instance 0x79f80000, class L"OleMainThreadWndClass", ansi 0
+011c:trace:win:get_min_max_info 106 106 / -3 -3 / 1612 1012 / 119 34
+011c:trace:win:get_default_window_surface hwnd 0x10060, surface_rect (0,0)-(128,128), surface 0x7fffffdadeb0
+011c:trace:win:get_default_window_surface using parent window surface
+011c:trace:win:invalidate_dce 0x10060 parent 0x10028, old_rect (0,0)-(0,0)
+011c:trace:win:invalidate_dce 0x23010041: hwnd 0x1005c dcx 00000013 Cache 
+011c:trace:win:apply_window_pos win 0x10060 surface (nil) -> (nil)
+011c:trace:win:NtUserCreateWindowEx hwnd 0x10060 cs 0,0 0x0 { window (0,0)-(119,34), client (0,0)-(119,34), visible (0,0)-(119,34) }
+011c:trace:win:set_window_text 0x10060, (null)
+011c:trace:win:get_default_window_surface hwnd 0x10060, surface_rect (0,0)-(128,128), surface 0x7fffffdadeb0
+011c:trace:win:get_default_window_surface using parent window surface
+011c:trace:win:invalidate_dce 0x10060 parent 0x10028, old_rect (0,0)-(119,34)
+011c:trace:win:invalidate_dce 0x23010041: hwnd 0x1005c dcx 00000013 Cache 
+011c:trace:win:apply_window_pos win 0x10060 surface (nil) -> (nil)
+011c:trace:win:NtUserCreateWindowEx created window 0x10060
+011c:trace:win:alloc_winproc_ptr allocated 0xffff0013 for W 0x7a52e2f0 (20/4096 used)
+011c:trace:win:WIN_CreateWindowEx (null) L"Wine IME"->L"Wine IME" ex=00000080 style=80000000 0,0 1x1 parent=0001005A menu=00000000 inst=7A520000 params=00000000
+011c:trace:win:dump_window_styles style: WS_POPUP
+011c:trace:win:dump_window_styles exstyle: WS_EX_TOOLWINDOW
+011c:trace:win:NtUserCreateWindowEx ex_style 0x80, class_name L"Wine IME", version <null>, window_name (null), style 0x80000000, x 0, y 0, cx 1, cy 1, parent 0x1005a, menu (nil), class_instance 0x7a520000, params (nil), flags 0, instance 0x7a520000, class L"Wine IME", ansi 0
+011c:trace:win:get_default_window_surface hwnd 0x10066, surface_rect (0,0)-(128,128), surface 0x7fffffdad1f0
+011c:trace:win:invalidate_dce 0x10066 parent 0x10020, old_rect (0,0)-(0,0)
+011c:trace:win:invalidate_dce 0x23010041: hwnd 0x1005c dcx 00000013 Cache 
+011c:trace:win:apply_window_pos win 0x10066 surface (nil) -> 0x77117c43e8a0
+011c:trace:win:NtUserCreateWindowEx hwnd 0x10066 cs 0,0 1x1 { window (0,0)-(1,1), client (0,0)-(1,1), visible (0,0)-(1,1) }
+011c:trace:win:set_window_text 0x10066, (null)
+011c:trace:win:get_default_window_surface hwnd 0x10066, surface_rect (0,0)-(128,128), surface 0x7fffffdad1f0
+011c:trace:win:invalidate_dce 0x10066 parent 0x10020, old_rect (0,0)-(1,1)
+011c:trace:win:invalidate_dce 0x23010041: hwnd 0x1005c dcx 00000013 Cache 
+011c:trace:win:apply_window_pos win 0x10066 surface 0x77117c43e8a0 -> 0x77117c43e8a0
+011c:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 1 lp 10066
+011c:trace:win:NtUserCreateWindowEx created window 0x10066
+011c:trace:win:NtUserSetWindowPos hwnd 0x10066, after 0x1, 0,0 (0x0), flags 00000013
+011c:trace:win:dump_winpos_flags flags: SWP_NOSIZE SWP_NOMOVE SWP_NOACTIVATE
+011c:trace:win:calc_winpos hwnd 0x10066, after 0x1, swp 0,0 0x0 flags 00001813 style 84000000 old_rects { window (0,0)-(1,1), client (0,0)-(1,1), visible (0,0)-(1,1) } new_rects { window (0,0)-(1,1), client (0,0)-(1,1), visible (0,0)-(1,1) }
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 1 lp 10066
+011c:trace:win:swp_owner_popups (0x10066) after = 0x1
+011c:trace:win:get_default_window_surface hwnd 0x10066, surface_rect (0,0)-(128,128), surface 0x7fffffdad3d0
+011c:trace:win:invalidate_dce 0x10066 parent 0x10020, old_rect (0,0)-(1,1)
+011c:trace:win:invalidate_dce 0x23010041: hwnd 0x1005c dcx 00000013 Cache 
+011c:trace:win:apply_window_pos win 0x10066 surface 0x77117c43e8a0 -> 0x77117c43e8a0
+011c:trace:win:set_window_pos 	status flags = 1803
+011c:trace:win:set_window_long_internal 0x10066 0 10058 W
+011c:trace:win:set_window_long_internal 0x10066 0 10058 W
+011c:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 86 lp 1005c
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 86 lp 1005c
+011c:trace:win:nc_paint 0x1005c 4
+011c:trace:win:NtUserGetDCEx hwnd 0x1005c, clip_rgn 0x1f040044, flags 00010041
+011c:trace:win:NtUserGetDCEx found valid 0x23010041 hwnd 0x1005c, flags 00000013
+011c:trace:win:NtUserGetDCEx (0x1005c,0x1f040044,0x10053): returning 0x23010041 (updated)
+011c:trace:win:nc_paint rect after menu (0,0)-(770,370)
+011c:trace:win:release_dc 0x1005c 0x23010041
+011c:trace:msg:NtUserPostMessage hwnd 0x10020 msg 210 (WM_PARENTNOTIFY) wp 85 lp 1005c
+011c:trace:win:NtUserGetDCEx hwnd 0x1005c, clip_rgn 0x504004d, flags 00010080
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 85 lp 1005c
+011c:trace:win:NtUserGetDCEx (0x1005c,0x504004d,0x10098): returning 0x20010044 (updated)
+011c:trace:win:release_dc 0x1005c 0x20010044
+011c:trace:win:set_window_pos 	status flags = 1847
+011c:trace:msg:NtUserPostMessage hwnd 0x2004e msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) wp 0 lp 0
+011c:trace:msg:NtUserPostMessage hwnd 0x1005c msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) wp 0 lp 0
+011c:trace:msg:NtUserPostMessage hwnd 0x1005c msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) wp 0 lp 0
+011c:trace:win:window_surface_flush Flushing hwnd 0x1005c, surface 0x55555c601200 (0,0)-(896,384), bounds (0,0)-(770,370), dirty (0,0)-(776,370)
+011c:trace:win:accum_mouse_motion Keeping pos (643,579), flags 0x8001, data 0, time 241493694 (0 raw frames)
+011c:trace:win:get_async_keyboard_state (0x7fffffdaf1d0)
+011c:trace:msg:NtUserPostMessage hwnd 0x1005c msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) wp 0 lp 0
+011c:trace:win:get_async_keyboard_state (0x7fffffdaf1d0)
+011c:trace:msg:NtUserPostMessage hwnd 0x1005c msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) wp 0 lp 0
+011c:trace:win:send_mouse_motion Sending pos (643,579), flags 0x8001, data 0, time 241493694 (0 raw frames)
+0074:trace:msg:NtUserPostMessage hwnd 0x1005c msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) wp 0 lp 0
+011c:trace:msg:peek_message got type 7 msg 80001ff1 (WM_WINE_SETCURSOR) hwnd 0x1005c wp 1005c lp 0
+00e0:trace:msg:NtUserPostMessage hwnd 0x1005c msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) wp 0 lp 0
+011c:trace:msg:peek_message dropping msg 80001ff1
+011c:trace:msg:peek_message got type 6 msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) hwnd 0x2004e wp 0 lp 0
+011c:trace:msg:peek_message got type 6 msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) hwnd 0x1005c wp 0 lp 0
+011c:trace:msg:peek_message got type 6 msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) hwnd 0x1005c wp 0 lp 0
+011c:trace:msg:peek_message got type 6 msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) hwnd 0x1005c wp 0 lp 0
+011c:trace:msg:peek_message got type 6 msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) hwnd 0x1005c wp 0 lp 0
+011c:trace:msg:peek_message got type 6 msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) hwnd 0x1005c wp 0 lp 0
+011c:trace:msg:peek_message got type 6 msg 8000000a (WM_WINE_WINDOW_STATE_CHANGED) hwnd 0x1005c wp 0 lp 0
+011c:trace:msg:peek_message got type 7 msg 200 (WM_MOUSEMOVE) hwnd 0x1005c wp 0 lp 0
+011c:trace:win:handle_nc_hit_test hwnd 0x1005c pt 643,579
+011c:trace:win:window_from_point scope 0x1005c (643,579) returning 0x1005c
+011c:trace:msg:peek_message got type 6 msg f (WM_PAINT) hwnd 0x1005c wp 0 lp 0
+011c:trace:win:NtUserGetDCEx hwnd 0x1005c, clip_rgn 0x704004d, flags 00010080
+011c:trace:win:NtUserGetDCEx found valid 0x20010044 hwnd 0x1005c, flags 0000001a
+011c:trace:win:NtUserGetDCEx (0x1005c,0x704004d,0x10098): returning 0x20010044 (updated)
+011c:trace:win:NtUserBeginPaint hdc = 0x20010044 box = ((0,0)-(770,370)), fErase = 0
+011c:trace:win:release_dc 0x1005c 0x20010044
+011c:trace:win:GetWindowRect hwnd 0002004E (633,360)-(1281,874)
+A(after)   hwnd=0002004e vis=0 parent=00000000 owner=00000000 style=0x86cf0000 update=0 rect=(633,360)-(1281,874)
+011c:trace:win:GetWindowRect hwnd 0001005C (575,415)-(1345,785)
+B(after)  hwnd=0001005c vis=1 parent=0002004e owner=0002004e style=0x96000000 update=0 rect=(575,415)-(1345,785)
+RESULT paints=1 erases=1
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 2 lp 2004e
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 2 lp 1005a
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 2 lp 1005c
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10028 wp 2 lp 10060
+0074:trace:msg:peek_message got type 6 msg 210 (WM_PARENTNOTIFY) hwnd 0x10020 wp 2 lp 10066
+0074:trace:msg:peek_message got type 6 msg 10 (WM_CLOSE) hwnd 0x10020 wp 0 lp 0
+0074:trace:msg:peek_message got type 6 msg 12 (WM_QUIT) hwnd (nil) wp 0 lp 0
+0074:trace:msg:NtUserPostMessage hwnd 0x10044 msg 601 (WM_USER+513) wp c024 lp c025
+0074:trace:win:user_destroy_window (0x1004a)
+0074:trace:win:destroy_window 0x1004a
+0074:trace:win:free_window_handle 
+0074:trace:msg:NtUserPostMessage hwnd 0x10044 msg 601 (WM_USER+513) wp c022 lp c023
+0074:trace:win:user_destroy_window (0x10048)
+0074:trace:win:destroy_window 0x10048
+0074:trace:win:free_window_handle 
+0074:trace:msg:NtUserPostMessage hwnd 0x10044 msg 601 (WM_USER+513) wp c020 lp c021
+0074:trace:win:user_destroy_window (0x10046)
+0074:trace:win:destroy_window 0x10046
+0074:trace:win:free_window_handle 
+0074:trace:win:user_destroy_window (0x10044)
+0074:trace:win:destroy_window 0x10044
+0074:trace:win:free_window_handle 
+0120:fixme:rpc:handle_bind_error unexpected status value 1765

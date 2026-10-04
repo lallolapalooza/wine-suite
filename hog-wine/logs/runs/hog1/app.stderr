@@ -1,0 +1,23 @@
+0120:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+0150:fixme:setupapi:DiInstallDriverA parent 0000000000000000, inf_path "C:\\Program Files (x86)\\ETC\\HogPC\\drivers\\gadget\\gadget.inf", flags 0, reboot 00007FFFFE13FD58, stub!
+0150:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FEB0
+0120:fixme:win:RegisterPowerSettingNotification (0003006E,{02731015-4510-4526-99e6-e5a17ebd1aea},0): stub
+0120:fixme:font:find_matching_face Untranslated charset 255
+0120:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Regular.ttf"
+0120:fixme:font:find_matching_face Untranslated charset 255
+0120:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Bold.ttf"
+0120:fixme:font:find_matching_face Untranslated charset 255
+0120:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Black.ttf"
+0120:fixme:font:find_matching_face Untranslated charset 255
+0120:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraBold.ttf"
+0120:fixme:font:find_matching_face Untranslated charset 255
+0120:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraLight.ttf"
+0120:fixme:font:find_matching_face Untranslated charset 255
+0120:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Light.ttf"
+0120:fixme:font:find_matching_face Untranslated charset 255
+0120:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Medium.ttf"
+0120:fixme:font:find_matching_face Untranslated charset 255
+0120:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-SemiBold.ttf"
+0120:fixme:font:find_matching_face Untranslated charset 255
+0120:fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[0] = 00000000 file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Thin.ttf"
+0120:fixme:system:EnableNonClientDpiScaling (0004005E): stub
