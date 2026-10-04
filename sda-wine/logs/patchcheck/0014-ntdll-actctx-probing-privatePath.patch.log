@@ -1,0 +1,8 @@
+patching file dlls/kernel32/tests/actctx.c
+patching file dlls/ntdll/actctx.c
+Hunk #2 succeeded at 3331 (offset 2 lines).
+Hunk #3 succeeded at 3564 (offset 2 lines).
+Hunk #4 succeeded at 3735 (offset 2 lines).
+Hunk #5 succeeded at 5576 (offset 2 lines).
+Hunk #6 succeeded at 5649 (offset 2 lines).
+Hunk #7 succeeded at 5789 (offset 2 lines).

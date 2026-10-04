@@ -1,0 +1,11 @@
+--- a/loader/wine.inf.in
++++ b/loader/wine.inf.in
+@@ -1143,6 +1143,8 @@
+ HKLM,%CurrentVersionNT%,"CurrentBuildNumber",2,"19045"
+ HKLM,%CurrentVersionNT%,"UBR",0x10003,5796
+ HKLM,%CurrentVersionNT%,"CurrentType",2,"Multiprocessor Free"
++HKLM,%CurrentVersionNT%,"BuildLab",2,"19045.vb_release.191206-1406"
++HKLM,%CurrentVersionNT%,"BuildLabEx",2,"19045.1.amd64fre.vb_release.191206-1406"
+ HKLM,%CurrentVersionNT%,"DigitalProductId",1,00,00,00,00,00,00,00,00,00,00,00,\
+ 00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+ 00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\

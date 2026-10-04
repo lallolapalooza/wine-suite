@@ -1,0 +1,2 @@
+# nonce 1791078207.565447228
+$p = Get-ChildItem "$env:LOCALAPPDATA\Steinberg Download Assistant\logs" | Sort-Object LastWriteTime -Descending | Select-Object -First 1; curl.exe -s -T $p.FullName http://192.168.122.1:8000/win_sda_app.log; "uploaded " + $p.Name

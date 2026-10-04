@@ -1,0 +1,160 @@
+user32: [DEBUG ONLY - not part of any fix] dump the licence-error caller and record
+
+Instrumentation used to find the AutoCAD licence-error chain (FINDINGS MILESTONE 24s/24x):
+- LoadStringW/LoadStringA print `LOADSTR25429 ...` plus a stack backtrace when resource id 25429 (the
+  "License manager is not functioning..." string in acadres.dll) is loaded, and dump acad.exe's error
+  record at 0x14050edb8 (flag byte, six string pointers, u32 status at +0x10) to C:\licrec.txt.
+  Every address is validated with VirtualQuery: this hook runs during early loader init in every process
+  that loads that string, and an unguarded read faults (observed as an execute fault at 0xBD8B8).
+- MessageBoxIndirectW prints `LICMSGBOX ...` plus the text and a backtrace when the message contains
+  "License manager".
+
+Do not ship this build: it prints/records internal state of the running applications.
+--- a/dlls/user32/resource.c
++++ b/dlls/user32/resource.c
+@@ -20,6 +20,7 @@
+  */
+ 
+ #include <stdarg.h>
++#include <stdio.h>
+ 
+ #include "windef.h"
+ #include "winbase.h"
+@@ -146,6 +147,61 @@
+ /**********************************************************************
+  *	LoadStringW		(USER32.@)
+  */
++extern USHORT WINAPI RtlCaptureStackBackTrace( ULONG skip, ULONG count, void **trace, ULONG *hash );
++
++/* project debug: print who loads the "License manager is not functioning" string (id 25429) */
++static void dump_lic_string_caller( UINT resource_id, const char *which )
++{
++    void *frames[64];
++    USHORT i, n;
++
++    if (resource_id != 25429) return;
++    n = RtlCaptureStackBackTrace( 0, 64, frames, NULL );
++    fprintf( stderr, "LOADSTR25429 %s pid=%lu %u frames\n", which, GetCurrentProcessId(), n );
++    for (i = 0; i < n; i++) fprintf( stderr, "LOADSTR25429  #%u %p\n", i, frames[i] );
++
++    /* project debug: acad.exe records the licence failure in DAT_14050edb8 (flag, u32 status at
++     * +0x10, six string pointers at +0x08 and +0x18..+0x38).  Write it to a file (stderr is shared
++     * with Wine's relay output and would interleave), and only when every address we touch is
++     * committed - this hook runs during early loader init in every process that loads the string. */
++    {
++        const unsigned char *image = (const unsigned char *)0x140000000;
++        const unsigned char *rec = (const unsigned char *)0x14050edb8;
++        MEMORY_BASIC_INFORMATION mbi;
++
++        if (VirtualQuery( image, &mbi, sizeof(mbi) ) == sizeof(mbi) && mbi.State == MEM_COMMIT &&
++            image[0] == 'M' && image[1] == 'Z' &&
++            VirtualQuery( rec, &mbi, sizeof(mbi) ) == sizeof(mbi) && mbi.State == MEM_COMMIT &&
++            !(mbi.Protect & (PAGE_NOACCESS | PAGE_GUARD)))
++        {
++            const unsigned int status = *(const unsigned int *)(rec + 0x10);
++            const unsigned int offs[6] = { 0x08, 0x18, 0x20, 0x28, 0x30, 0x38 };
++            MEMORY_BASIC_INFORMATION mbi2;
++            FILE *f = fopen( "C:\\licrec.txt", "a" );
++
++            if (f)
++            {
++                fprintf( f, "LICREC pid=%lu flag=%u status=%u code=%u\n", GetCurrentProcessId(), rec[0],
++                         status, status >= 30000 ? status - 30000 : status );
++                for (i = 0; i < 6; i++)
++                {
++                    const void *p = *(const void *const *)(rec + offs[i]);
++
++                    if ((uintptr_t)p > 0x10000 &&
++                        VirtualQuery( p, &mbi2, sizeof(mbi2) ) == sizeof(mbi2) && mbi2.State == MEM_COMMIT &&
++                        !(mbi2.Protect & (PAGE_NOACCESS | PAGE_GUARD)))
++                        fprintf( f, "LICREC  +%#x %s\n", offs[i], (const char *)p );
++                    else
++                        fprintf( f, "LICREC  +%#x (unreadable)\n", offs[i] );
++                }
++                fclose( f );
++            }
++            fprintf( stderr, "LICREC pid=%lu flag=%u status=%u\n", GetCurrentProcessId(), rec[0], status );
++        }
++    }
++    fflush( stderr );
++}
++
+ INT WINAPI DECLSPEC_HOTPATCH LoadStringW( HINSTANCE instance, UINT resource_id,
+                             LPWSTR buffer, INT buflen )
+ {
+@@ -155,6 +211,8 @@
+     int string_num;
+     int i;
+ 
++    dump_lic_string_caller( resource_id, "W" );
++
+     TRACE("instance = %p, id = %04x, buffer = %p, length = %d\n",
+           instance, resource_id, buffer, buflen);
+ 
+@@ -199,6 +257,8 @@
+ {
+     HGLOBAL hmem;
+     HRSRC hrsrc;
++
++    dump_lic_string_caller( resource_id, "A" );
+     DWORD retval = 0;
+ 
+     TRACE("instance = %p, id = %04x, buffer = %p, length = %d\n",
+--- a/dlls/user32/msgbox.c
++++ b/dlls/user32/msgbox.c
+@@ -21,6 +21,8 @@
+ 
+ #include <stdarg.h>
+ #include <string.h>
++#include <stdio.h>
++#include <wchar.h>
+ 
+ #include "windef.h"
+ #include "winbase.h"
+@@ -31,6 +33,8 @@
+ #include "resources.h"
+ #include "wine/debug.h"
+ 
++extern USHORT WINAPI RtlCaptureStackBackTrace( ULONG skip, ULONG count, void **trace, ULONG *hash );
++
+ WINE_DEFAULT_DEBUG_CHANNEL(dialog);
+ WINE_DECLARE_DEBUG_CHANNEL(msgbox);
+ 
+@@ -517,6 +521,37 @@
+  */
+ INT WINAPI MessageBoxIndirectW( LPMSGBOXPARAMSW msgbox )
+ {
++    /* project debug: report who shows the "License manager is not functioning" message box */
++    if (msgbox && msgbox->lpszText && !IS_INTRESOURCE(msgbox->lpszText))
++    {
++        WCHAR buf[512];
++        void *frames[64];
++        USHORT i, n;
++
++        lstrcpynW( buf, msgbox->lpszText, 511 );
++        if (wcsstr( buf, L"License manager" ) || wcsstr( buf, L"license manager" ))
++        {
++            fprintf( stderr, "LICMSGBOX pid=%lu text=%ls\n", GetCurrentProcessId(), buf );
++            n = RtlCaptureStackBackTrace( 0, 64, frames, NULL );
++            for (i = 0; i < n; i++)
++            {
++                HMODULE mod = NULL;
++                char name[MAX_PATH] = "?";
++
++                if (GetModuleHandleExA( GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
++                                        GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
++                                        (LPCSTR)frames[i], &mod ))
++                {
++                    GetModuleFileNameA( mod, name, sizeof(name) );
++                    fprintf( stderr, "LICMSGBOX  #%u %p %s+%#llx\n", i, frames[i], name,
++                             (unsigned long long)((const char *)frames[i] - (const char *)mod) );
++                }
++                else
++                    fprintf( stderr, "LICMSGBOX  #%u %p <unknown>\n", i, frames[i] );
++            }
++            fflush( stderr );
++        }
++    }
+     LPVOID tmplate;
+     HRSRC hRes;
+     int ret;
