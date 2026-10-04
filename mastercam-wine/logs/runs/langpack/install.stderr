@@ -1,0 +1,969 @@
+006c:fixme:seh:WerGetFlags (FFFFFFFFFFFFFFFF, 000000000024FD98) stub
+006c:fixme:seh:WerSetFlags (32) stub
+006c:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,000000000024FD10,000000000024FD20) stub!
+00a0:err:secur32:start_samss Failed to start SamSs service
+00a0:err:secur32:load_auth_packages Failed to get security packages list: 80090304
+0074:err:ole:start_rpcss Failed to start RpcSs service
+00a0:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,00007FFFFE13F260,00006FFFFA729AB8) stub!
+00d8:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007FFFFECFFF50
+00dc:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007FFFFEF0FF50
+00e8:fixme:advapi:RegisterEventSourceA ((null),"CodeMeter Runtime Server"): stub
+00e8:fixme:advapi:RegisterEventSourceW (L"",L"CodeMeter Runtime Server"): stub
+00e8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000200,0000000000000000,0x0000,0x00000000,0000785ACCCEFD48,0000000000000000): stub
+00e8:fixme:ntdll:enum_firmware_info info_class SYSTEM_FIRMWARE_TABLE_INFORMATION provider 41435049
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0104:fixme:seh:WerSetFlags (2) stub
+0104:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+0110:fixme:process:SetProcessShutdownParameters (00000380, 00000000): partial stub.
+0110:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 00006FFFFC3625B7, 28) stub
+0110:fixme:ver:GetCurrentPackageId (00007FFFFEF6EB50 0000000000000000): stub
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+011c:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+00e8:fixme:iphlpapi:NotifyIpInterfaceChange (family 0, callback 0000000140A1B120, context 0000000142F6F240, init_notify 0, handle 0000785ACCCEF1B8): stub
+0120:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 0000785ACCBDFF50
+0120:fixme:wtsapi:WTSWaitSystemEvent Stub 0000000000000000 0x7fffffff 0000785ACCBDFF04
+00e8:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+00e8:fixme:tape:BackupRead (0000000000000114, 0000785ACCCEF270, 20, 0000785ACCCEF2C4, 0, 0, 0000785ACCCEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 0000000000000000, 0, 0000000000000000, 1, 0, 0000785ACCCEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 0000785ACCCEF270, 20, 0000785ACCCEF2C4, 0, 0, 0000785ACCCEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 0000000000000000, 0, 0000000000000000, 1, 0, 0000785ACCCEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 0000785ACCCEF270, 20, 0000785ACCCEF2C4, 0, 0, 0000785ACCCEF2B0)
+00e8:fixme:tape:BackupRead (0000000000000114, 0000000000000000, 0, 0000000000000000, 1, 0, 0000785ACCCEF2B0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+011c:fixme:seh:WerSetFlags (2) stub
+011c:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+0138:fixme:process:SetProcessShutdownParameters (00000380, 00000000): partial stub.
+00e8:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+00e8:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+00e8:fixme:netapi32:DsEnumerateDomainTrustsA ((null), 0x0008, 0000785ACCCEF5C8, 0000785ACCCEF5C4): stub
+00e8:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+00e8:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000080, 0000785ACCCEF4C8): semi-stub
+00e8:fixme:security:GetWindowsAccountDomainSid (0000785ACCCEE220 00007FFFFE7A2068 0000785ACCCEE21C): semi-stub
+0138:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 79103241, 28) stub
+0138:fixme:ver:GetCurrentPackageId (00D2ECBC 00000000): stub
+00e8:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000011, 0000785ACCCEF4C8): semi-stub
+00e8:fixme:security:GetWindowsAccountDomainSid (0000785ACCCEE220 00007FFFFE7A26D8 0000785ACCCEE21C): semi-stub
+00e8:fixme:netapi32:DsEnumerateDomainTrustsW ((null), 0x003f, 0000785ACCCEF0D8, 0000785ACCCEEF90): stub
+0148:err:service:device_notify_proc failed to open RPC handle, error 1722
+00e8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,0000785ACCCEF858,0000000000000000): stub
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+00e8:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+00e8:fixme:wbemprox:wbem_locator_ConnectServer unsupported flags
+00e8:fixme:wbemprox:client_security_SetBlanket 00006FFFFBEB2030, 00007FFFFF5FC580, 10, 0, (null), 3, 3, 0000000000000000, 0
+00e8:fixme:wbemprox:client_security_Release 00006FFFFBEB2030
+00e8:fixme:wbemprox:enum_class_object_Next timeout not supported
+00e8:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 0000785ACCCE9B18): stub
+00e8:fixme:advapi:OpenEventLogW ((null),L"System") stub
+00e8:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF65B590,0x00010000,0000785ACCCE9814,0000785ACCCE981C) stub
+00e8:fixme:advapi:OpenEventLogW ((null),L"Applications") stub
+00e8:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF66B5A0,0x00010000,0000785ACCCE9814,0000785ACCCE981C) stub
+00e8:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+00e8:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+00e8:fixme:security:GetWindowsAccountDomainSid (0000785ACCCE8DE0 00007FFFFE7A2D48 0000785ACCCE8DDC): semi-stub
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+01cc:fixme:ole:CoInitializeSecurity 0026EB50, -1, 00000000, 00000000, 6, 2, 00000000, 8192, 00000000 stub
+00e8:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 0000785ACCCE9FB8): stub
+01ec:fixme:ole:CoInitializeSecurity 0026EB50, -1, 00000000, 00000000, 6, 2, 00000000, 8192, 00000000 stub
+01fc:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,0000785ACC11D618,0000000000000000): stub
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+01fc:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,0000785ACC11D618,0000000000000000): stub
+01fc:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,0000785ACC11D618,0000000000000000): stub
+01fc:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,0000785ACC11D618,0000000000000000): stub
+01fc:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 0000785ACC11A198): stub
+01ec:fixme:file:NtLockFile I/O completion on lock not implemented yet
+0208:fixme:file:NtLockFile I/O completion on lock not implemented yet
+0208:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0230:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=22c00000230, oid=2
+0230:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0230:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0258:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=25400000258, oid=2
+0258:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0258:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0278:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=27400000278, oid=2
+0278:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0278:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0298:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=29400000298, oid=2
+0298:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0298:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+02b8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2b4000002b8, oid=2
+02b8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+02b8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+02d4:fixme:ver:GetCurrentPackageId (0227FF00 00000000): stub
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0110:fixme:service:QueryServiceConfig2W Level 6 not implemented
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0138:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0138:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0138:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0138:fixme:service:QueryServiceConfig2W Level 6 not implemented
+0138:fixme:service:QueryServiceConfig2W Level 6 not implemented
+02f8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2f4000002f8, oid=2
+02f8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+02f8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0318:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=31400000318, oid=2
+0318:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0318:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0338:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=33400000338, oid=2
+0338:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0338:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+021c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0358:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=35400000358, oid=2
+0358:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0358:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+02dc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2d8000002dc, oid=2
+02dc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+02dc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0380:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=37c00000380, oid=2
+0380:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0380:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03a0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=39c000003a0, oid=2
+03a0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03a0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03c0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3bc000003c0, oid=2
+03c0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03c0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3dc000003e0, oid=2
+03e0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03e0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0400:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3fc00000400, oid=2
+0400:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0400:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+041c:fixme:ver:GetCurrentPackageId (0248FF00 00000000): stub
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0440:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=43c00000440, oid=2
+0440:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0440:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0460:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=45c00000460, oid=2
+0460:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0460:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0480:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=47c00000480, oid=2
+0480:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0480:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0378:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04a0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=49c000004a0, oid=2
+04a0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+04a0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0424:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=42000000424, oid=2
+0424:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0424:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04d0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4cc000004d0, oid=2
+04d0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+04d0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04f0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4ec000004f0, oid=2
+04f0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+04f0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+01fc:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+0510:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=50c00000510, oid=2
+0510:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0510:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0530:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=52c00000530, oid=2
+0530:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0530:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0550:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=54c00000550, oid=2
+0550:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0550:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+056c:fixme:ver:GetCurrentPackageId (0248FF00 00000000): stub
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0590:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=58c00000590, oid=2
+0590:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0590:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+05b0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5ac000005b0, oid=2
+05b0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+05b0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+05d0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5cc000005d0, oid=2
+05d0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+05d0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04c8:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+05f0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5ec000005f0, oid=2
+05f0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+05f0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0574:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=57000000574, oid=2
+0574:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0574:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0618:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=61400000618, oid=2
+0618:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0618:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0638:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=63400000638, oid=2
+0638:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0638:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0658:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=65400000658, oid=2
+0658:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0658:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0678:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=67400000678, oid=2
+0678:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0678:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0698:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=69400000698, oid=2
+0698:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0698:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+06b4:fixme:ver:GetCurrentPackageId (0248FF00 00000000): stub
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+06d8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=6d4000006d8, oid=2
+06d8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+06d8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+06f8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=6f4000006f8, oid=2
+06f8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+06f8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0718:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=71400000718, oid=2
+0718:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0718:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0610:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0738:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=73400000738, oid=2
+0738:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0738:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+06bc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=6b8000006bc, oid=2
+06bc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+06bc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+077c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7780000077c, oid=2
+077c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+077c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+079c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7980000079c, oid=2
+079c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+079c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+07bc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7b8000007bc, oid=2
+07bc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+07bc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+07dc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7d8000007dc, oid=2
+07dc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+07dc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+07fc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7f8000007fc, oid=2
+07fc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+07fc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0818:fixme:ver:GetCurrentPackageId (0268FF00 00000000): stub
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+00d0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=1c0000000d0, oid=2
+00d0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+00d0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0238:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=23400000238, oid=2
+0238:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0238:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0260:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=25c00000260, oid=2
+0260:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0260:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0774:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+027c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=28c0000027c, oid=2
+027c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+027c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0034:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=81c00000034, oid=2
+0034:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0034:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0298:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2a000000298, oid=2
+0298:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0298:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+02b8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2c0000002b8, oid=2
+02b8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+02b8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+02f8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=300000002f8, oid=2
+02f8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+02f8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0318:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=32000000318, oid=2
+0318:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0318:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0338:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=34000000338, oid=2
+0338:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0338:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0360:fixme:ver:GetCurrentPackageId (0268FF00 00000000): stub
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+02e8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2dc000002e8, oid=2
+02e8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+02e8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0384:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=39400000384, oid=2
+0384:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0384:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03a4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3b4000003a4, oid=2
+03a4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03a4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+029c:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03c4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3d4000003c4, oid=2
+03c4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03c4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0364:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=35800000364, oid=2
+0364:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0364:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3e8000003e0, oid=2
+03e0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03e0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0400:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=40800000400, oid=2
+0400:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0400:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0440:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=44800000440, oid=2
+0440:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0440:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0460:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=46800000460, oid=2
+0460:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0460:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0480:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=48800000480, oid=2
+0480:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0480:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04a8:fixme:ver:GetCurrentPackageId (0268FF00 00000000): stub
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0430:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=42400000430, oid=2
+0430:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0430:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04e8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4e0000004e8, oid=2
+04e8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+04e8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0508:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=50000000508, oid=2
+0508:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0508:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0528:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=52000000528, oid=2
+0528:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0528:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04ac:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4a0000004ac, oid=2
+04ac:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+04ac:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0534:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=54400000534, oid=2
+0534:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0534:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0554:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=56400000554, oid=2
+0554:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0554:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+01fc:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+0594:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5a400000594, oid=2
+0594:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0594:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+05b4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5c4000005b4, oid=2
+05b4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+05b4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+05d4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=5e4000005d4, oid=2
+05d4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+05d4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0600:fixme:ver:GetCurrentPackageId (0365FF00 00000000): stub
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0588:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=58400000588, oid=2
+0588:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0588:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0570:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4c400000570, oid=2
+0570:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0570:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0614:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=62400000614, oid=2
+0614:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0614:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0540:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0634:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=64400000634, oid=2
+0634:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0634:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0540:err:ole:NDRCContextBinding invalid handle 01E5EF78
+00e4:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000201,0000000000000000,0x0000,0x00000000,0000785ACD27FD28,0000000000000000): stub
+00a0:fixme:wtsapi:WTSWaitSystemEvent Stub 0000000000000000 0x80000000 00007FFFFE13FBA4
+0604:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=60800000604, oid=2
+0604:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0604:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+00a0:err:ole:CoUninitialize Mismatched CoUninitialize
+00a0:err:ole:CoUninitialize Mismatched CoUninitialize
+00a0:fixme:advapi:DeregisterEventSource (00000000CAFE4242) stub
+00a0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FEB0
+00a0:fixme:powrprof:PowerUnregisterSuspendResumeNotification (00000000DEADBEEF) stub!
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"POWER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"HOLDER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MACHINE"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTENT"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTROL"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-GMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-LMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-MMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-RMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-WMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"PostText"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"TECH"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"Z2G"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"collision"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"config"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"emcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-defaults"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-materials"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mtmd"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-operations"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"tooldb"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"transfer"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"POWER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"HOLDER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MACHINE"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTENT"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTROL"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-GMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-LMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-MMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-RMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-WMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"PostText"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"TECH"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"Z2G"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"collision"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"config"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"emcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-defaults"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-materials"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mtmd"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-operations"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"tooldb"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"transfer"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"POWER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"HOLDER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MACHINE"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTENT"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTROL"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-GMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-LMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-MMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-RMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-WMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"PostText"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"TECH"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"Z2G"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"collision"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"config"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"emcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-defaults"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-materials"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mtmd"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-operations"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"tooldb"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"transfer"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"POWER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"HOLDER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MACHINE"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTENT"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTROL"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-GMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-LMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-MMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-RMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-WMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"PostText"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"TECH"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"Z2G"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"collision"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"config"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"emcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-defaults"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-materials"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mtmd"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-operations"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"tooldb"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"transfer"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"POWER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"HOLDER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MACHINE"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTENT"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTROL"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-GMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-LMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-MMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-RMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-WMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"PostText"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"TECH"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"Z2G"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"collision"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"config"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"emcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-defaults"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-materials"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mtmd"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-operations"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"tooldb"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"transfer"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"POWER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"HOLDER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MACHINE"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTENT"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTROL"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-GMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-LMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-MMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-RMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-WMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"PostText"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"TECH"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"Z2G"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"collision"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"config"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"emcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-defaults"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-materials"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mtmd"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-operations"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"tooldb"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"transfer"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"POWER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"HOLDER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MACHINE"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTENT"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTROL"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-GMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-LMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-MMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-RMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-WMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"PostText"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"TECH"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"Z2G"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"collision"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"config"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"emcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-defaults"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-materials"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mtmd"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-operations"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"tooldb"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"transfer"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"POWER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"HOLDER"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MACHINE"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTENT"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-CONTROL"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-GMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-LMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-MMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-RMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"MCAM-WMD"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"PostText"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"TECH"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"Z2G"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"collision"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"config"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"emcam"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-defaults"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-materials"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mtmd"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-operations"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"tooldb"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"transfer"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-emcx"
+0208:err:msi:iterate_load_verb Verb unable to find loaded extension L"mcam-mcx"
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0704:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=6f800000704, oid=2
+0704:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0704:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0748:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=71400000748, oid=2
+0748:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0748:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+06cc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=734000006cc, oid=2
+06cc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+06cc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+060c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=6100000060c, oid=2
+060c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+060c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+078c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7540000078c, oid=2
+078c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+078c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+07ac:fixme:ver:GetCurrentPackageId (0248FF00 00000000): stub
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+07d4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7cc000007d4, oid=2
+07d4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+07d4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+07f0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7ec000007f0, oid=2
+07f0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+07f0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0814:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=80c00000814, oid=2
+0814:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0814:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0700:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+024c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2440000024c, oid=2
+024c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+024c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+regsvr32: Successfully registered DLL 'C:\Program Files\Common Files\Mastercam\mcdescr.dll'
+regsvr32: Successfully registered DLL 'C:\Program Files\Common Files\Mastercam\MCShellTooltipHandler.dll'
+07b0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=7b4000007b0, oid=2
+07b0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+07b0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0258:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=28800000258, oid=2
+0258:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0258:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0280:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2a800000280, oid=2
+0280:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0280:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0034:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=c400000034, oid=2
+0034:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0034:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+02cc:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2bc000002cc, oid=2
+02cc:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+02cc:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+030c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=2fc0000030c, oid=2
+030c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+030c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+031c:fixme:ver:GetCurrentPackageId (0365FF00 00000000): stub
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+033c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=34c0000033c, oid=2
+033c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+033c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+036c:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=35c0000036c, oid=2
+036c:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+036c:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0390:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=39800000390, oid=2
+0390:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0390:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0290:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03b0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=3b8000003b0, oid=2
+03b0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03b0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0290:err:ole:NDRCContextBinding invalid handle 024FA180
+03a8:err:secur32:start_samss Failed to start SamSs service
+03a8:err:secur32:load_auth_packages Failed to get security packages list: 80090304
+03a8:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,00007FFFFE13F260,00006FFFF7179AB8) stub!
+03ac:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007FFFFECFFF50
+03f0:fixme:advapi:RegisterEventSourceA ((null),"CodeMeter Runtime Server"): stub
+03f0:fixme:advapi:RegisterEventSourceW (L"",L"CodeMeter Runtime Server"): stub
+03f0:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000200,0000000000000000,0x0000,0x00000000,00007BE6603DFD48,0000000000000000): stub
+03f0:fixme:ntdll:enum_firmware_info info_class SYSTEM_FIRMWARE_TABLE_INFORMATION provider 41435049
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+03f0:fixme:iphlpapi:NotifyIpInterfaceChange (family 0, callback 0000000140A1B120, context 0000000142F6F240, init_notify 0, handle 00007BE6603DF1B8): stub
+03c4:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007BE66016FF50
+03c4:fixme:wtsapi:WTSWaitSystemEvent Stub 0000000000000000 0x7fffffff 00007BE66016FF04
+03f0:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+03f0:fixme:tape:BackupRead (0000000000000120, 00007BE6603DF270, 20, 00007BE6603DF2C4, 0, 0, 00007BE6603DF2B0)
+03f0:fixme:tape:BackupRead (0000000000000120, 0000000000000000, 0, 0000000000000000, 1, 0, 00007BE6603DF2B0)
+03f0:fixme:tape:BackupRead (0000000000000120, 00007BE6603DF270, 20, 00007BE6603DF2C4, 0, 0, 00007BE6603DF2B0)
+03f0:fixme:tape:BackupRead (0000000000000120, 0000000000000000, 0, 0000000000000000, 1, 0, 00007BE6603DF2B0)
+03f0:fixme:tape:BackupRead (0000000000000120, 00007BE6603DF270, 20, 00007BE6603DF2C4, 0, 0, 00007BE6603DF2B0)
+03f0:fixme:tape:BackupRead (0000000000000120, 0000000000000000, 0, 0000000000000000, 1, 0, 00007BE6603DF2B0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+03f0:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+03f0:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+03f0:fixme:netapi32:DsEnumerateDomainTrustsA ((null), 0x0008, 00007BE6603DF5C8, 00007BE6603DF5C4): stub
+03f0:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+03f0:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000080, 00007BE6603DF4C8): semi-stub
+03f0:fixme:security:GetWindowsAccountDomainSid (00007BE6603DE220 00007FFFFE7A2068 00007BE6603DE21C): semi-stub
+03f0:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000011, 00007BE6603DF4C8): semi-stub
+03f0:fixme:security:GetWindowsAccountDomainSid (00007BE6603DE220 00007FFFFE7A26D8 00007BE6603DE21C): semi-stub
+03f0:fixme:netapi32:DsEnumerateDomainTrustsW ((null), 0x003f, 00007BE6603DF0D8, 00007BE6603DEF90): stub
+03f0:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007BE6603DF858,0000000000000000): stub
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+03f0:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+03f0:fixme:wbemprox:wbem_locator_ConnectServer unsupported flags
+03f0:fixme:wbemprox:client_security_SetBlanket 00006FFFF9D32030, 00007FFFFF5FC210, 10, 0, (null), 3, 3, 0000000000000000, 0
+03f0:fixme:wbemprox:client_security_Release 00006FFFF9D32030
+03f0:fixme:wbemprox:enum_class_object_Next timeout not supported
+03f0:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 00007BE6603D9B18): stub
+03f0:fixme:advapi:OpenEventLogW ((null),L"System") stub
+03f0:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF673910,0x00010000,00007BE6603D9814,00007BE6603D981C) stub
+03f0:fixme:advapi:OpenEventLogW ((null),L"Applications") stub
+03f0:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF683920,0x00010000,00007BE6603D9814,00007BE6603D981C) stub
+03f0:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+03f0:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+03f0:fixme:security:GetWindowsAccountDomainSid (00007BE6603D8DE0 00007FFFFE7A2D48 00007BE6603D8DDC): semi-stub
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+03f0:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 00007BE6603D9FB8): stub
+0360:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007BE64B5AD618,0000000000000000): stub
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+0360:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007BE64B5AD618,0000000000000000): stub
+0360:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007BE64B5AD618,0000000000000000): stub
+0360:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,00007BE64B5AD618,0000000000000000): stub
+0360:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 00007BE64B5AA198): stub
+0304:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=32c00000304, oid=2
+0304:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0304:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e8:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=410000003e8, oid=2
+03e8:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03e8:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0360:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+0408:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=45000000408, oid=2
+0408:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0408:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0448:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=47000000448, oid=2
+0448:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0448:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0468:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=49000000468, oid=2
+0468:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0468:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0488:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4b000000488, oid=2
+0488:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0488:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+0374:fixme:ver:GetCurrentPackageId (0248FF00 00000000): stub
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+04e0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4d8000004e0, oid=2
+04e0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+04e0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0500:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4f800000500, oid=2
+0500:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0500:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0520:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=51800000520, oid=2
+0520:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+0520:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e0:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+03e4:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=4a8000003e4, oid=2
+03e4:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+03e4:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+04d0:err:ole:std_release_marshal_data could not map object ID to stub manager, oxid=424000004d0, oid=2
+04d0:err:ole:CoReleaseMarshalData StdMarshal ReleaseMarshalData failed with error 0x8001011d
+04d0:fixme:kernelbase:AppPolicyGetProcessTerminationMethod FFFFFFFFFFFFFFFA, 00007FFFFE13FE80
+06dc:err:menubuilder:InvokeShellLinker failed to extract icon from L"C:\\Program Files\\Mastercam 2027\\documentation\\en\\MPPostDebuggerUG.pdf"
+0674:err:menubuilder:InvokeShellLinker failed to extract icon from L"C:\\Program Files\\Mastercam 2027\\documentation\\en\\AdministratorGuide\\default.htm"
+0678:err:menubuilder:InvokeShellLinker failed to extract icon from L"C:\\Program Files\\Mastercam 2027\\documentation\\en\\MastercamBasics\\Default.htm"
+01ec:fixme:ver:GetCurrentPackageId (0026FEA4 00000000): stub
+01cc:fixme:ver:GetCurrentPackageId (0026FEA4 00000000): stub
+02e4:err:service:device_notify_proc failed to get event, error 1726

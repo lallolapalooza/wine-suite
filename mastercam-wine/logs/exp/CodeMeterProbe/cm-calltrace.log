@@ -1,0 +1,38 @@
+00a4:err:service:device_notify_proc failed to open RPC handle, error 1722
+00a0:err:secur32:start_samss Failed to start SamSs service
+00a0:err:secur32:load_auth_packages Failed to get security packages list: 80090304
+0088:err:ole:start_rpcss Failed to start RpcSs service
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00a0:trace:advapi:ConvertStringSecurityDescriptorToSecurityDescriptorA "S:(ML;;NW;;;LW)", 1, 00007FFFFE13F828, 0000000000000000
+00d4:warn:advapi:LsaOpenPolicy ((null),00007005AEEEEBC0,0x00000001,00007005AEEEE3B0) stub
+00d4:warn:advapi:LsaClose (000000000000CAFE) stub
+00d4:warn:advapi:LsaOpenPolicy ((null),00007005AEEEEBC0,0x00000001,00007005AEEEE3B0) stub
+00d4:warn:advapi:LsaClose (000000000000CAFE) stub
+00d4:warn:advapi:LsaOpenPolicy ((null),00007005AEEE8E70,0x02000000,00007005AEEE8EA0) stub
+00d4:warn:advapi:LsaClose (000000000000CAFE) stub
+0088:err:ole:start_rpcss Failed to start RpcSs service
+003c:err:service:process_send_start_message service L"CmWebAdmin.exe" failed to start
+003c:fixme:service:scmdatabase_autostart_services Auto-start service L"CmWebAdmin.exe" failed to start: 1053
+01d0:err:sc:wmain failed to start service 1056

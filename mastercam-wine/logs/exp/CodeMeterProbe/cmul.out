@@ -1,0 +1,10 @@
+setting console output to utf8 failed (12)
+Setting console to UTF8 Failed (12)
+cmu.exe - CodeMeter Universal Support Tool.
+Version 8.40a of 2025-Oct-01(Build 7120) for Win64
+Copyright (C) 2007-2025 by WIBU-SYSTEMS AG. All rights reserved.
+
+List all locally connected CmContainers:
+Result: 0 CmContainer(s) listed.
+Resetting console codepage failed (12)
+Resetting console to UTF8 failed (12)

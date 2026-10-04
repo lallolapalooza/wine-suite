@@ -1,0 +1,6 @@
+01c0:trace:service:OpenSCManagerW (null) (null) 0xf003f
+01c0:trace:service:OpenServiceW 00007FFFFE26BF20 L"sessprobe" 0x10
+01c0:trace:service:StartServiceW 00007FFFFE26BF60 0 00007FFFFE26BAD8
+01c0:err:sc:wmain failed to start service 1053
+01c0:trace:service:CloseServiceHandle 00007FFFFE26BF60
+01c0:trace:service:CloseServiceHandle 00007FFFFE26BF20

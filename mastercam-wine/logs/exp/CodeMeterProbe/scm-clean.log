@@ -1,0 +1,13 @@
+02d8:trace:service:OpenSCManagerW (null) (null) 0xf003f
+02d8:trace:service:OpenServiceW 00007FFFFE26BFD0 L"CmWebAdmin.exe" 0x4
+02d8:trace:service:QueryServiceStatus 00007FFFFE26C010 00007FFFFE23FD90
+02d8:trace:service:QueryServiceStatusEx 00007FFFFE26C010 0 00007FFFFE23FCE0 36 00007FFFFE23FCDC
+02d8:trace:service:CloseServiceHandle 00007FFFFE26C010
+02d8:trace:service:CloseServiceHandle 00007FFFFE26BFD0
+SERVICE_NAME: CmWebAdmin.exe
+        TYPE               : 10  WIN32_OWN_PROCESS
+        STATE              : 4  RUNNING
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0

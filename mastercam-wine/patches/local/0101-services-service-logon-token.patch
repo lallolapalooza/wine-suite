@@ -1,0 +1,113 @@
+wineserver: give processes started by the service manager a service logon token
+
+Wine's SCM starts a service process with the ordinary interactive user token, so the token
+of e.g. CmWebAdmin.exe (CodeMeter) still contains the INTERACTIVE well-known SID S-1-5-4 and
+does not contain the SERVICE SID S-1-5-6.  On Windows processes started by the service
+manager get a *service logon* token instead: S-1-5-4 is absent and S-1-5-6 is present and
+enabled.  golang.org/x/sys/windows/svc.IsAnInteractiveSession() (used indirectly by
+github.com/kardianos/service) therefore reported "interactive" for the service, the Go
+process ran in console mode and never called StartServiceCtrlDispatcherW(), so the SCM hit
+process_send_start_message L"CmWebAdmin.exe" failed to start (1053) and the MSI rolled back.
+
+Measured token groups of the service process before this change (agent CodeMeterProbe):
+  S-1-1-0, S-1-2-0, S-1-5-4(INTERACTIVE), S-1-5-11, S-1-5-21-0-0-0-513, S-1-5-32-544,
+  S-1-5-32-545, S-1-5-5-0-0
+  -> INTERACTIVE=1, SERVICE(S-1-5-6)=0
+
+Services.exe is put in session 0 by 0004-services-session-0.patch (and its children inherit
+session 0), so a child whose parent has session id 0 is a service the SCM started; such a
+child now gets the service-logon transformation on its duplicated token.  An explicit token
+handle passed to NtCreateProcess/NtCreateUserProcess is used as-is.
+
+Also raise the SCM's service control pipe timeout to 30 s, matching Windows; this only helps
+verbose/slow-starting services and does not fix a service that never connects at all.
+
+--- a/server/token.c
++++ b/server/token.c
+@@ -78,6 +78,7 @@
+ 
+ static const struct sid local_sid = { SID_REVISION, 1, SECURITY_LOCAL_SID_AUTHORITY, { SECURITY_LOCAL_RID } };
+ static const struct sid interactive_sid = { SID_REVISION, 1, SECURITY_NT_AUTHORITY, { SECURITY_INTERACTIVE_RID } };
++static const struct sid service_sid = { SID_REVISION, 1, SECURITY_NT_AUTHORITY, { SECURITY_SERVICE_RID } };
+ static const struct sid anonymous_logon_sid = { SID_REVISION, 1, SECURITY_NT_AUTHORITY, { SECURITY_ANONYMOUS_LOGON_RID } };
+ static const struct sid authenticated_user_sid = { SID_REVISION, 1, SECURITY_NT_AUTHORITY, { SECURITY_AUTHENTICATED_USER_RID } };
+ static const struct sid high_label_sid = { SID_REVISION, 1, SECURITY_MANDATORY_LABEL_AUTHORITY, { SECURITY_MANDATORY_HIGH_RID } };
+@@ -1077,6 +1078,43 @@
+     return token->session_id;
+ }
+ 
++/* Turn a token into a service logon token, as used for processes started by the service
++ * manager: the INTERACTIVE well-known SID (S-1-5-4) is absent and the SERVICE SID
++ * (S-1-5-6) is present and enabled.  golang.org/x/sys/windows/svc.IsAnInteractiveSession()
++ * (and thus github.com/kardianos/service) relies on exactly this difference. */
++void token_make_service_logon( struct token *token )
++{
++    struct group *group, *next;
++    int modified = 0;
++
++    /* remove the interactive group */
++    LIST_FOR_EACH_ENTRY_SAFE( group, next, &token->groups, struct group, entry )
++    {
++        if (!equal_sid( &group->sid, &interactive_sid )) continue;
++        list_remove( &group->entry );
++        free( group );
++        modified = 1;
++        break;
++    }
++
++    /* add the service group, unless it is already present */
++    LIST_FOR_EACH_ENTRY( group, &token->groups, struct group, entry )
++        if (equal_sid( &group->sid, &service_sid )) goto done;
++
++    group = mem_alloc( offsetof( struct group, sid.sub_auth[service_sid.sub_count] ));
++    if (group)
++    {
++        group->attrs = SE_GROUP_ENABLED | SE_GROUP_ENABLED_BY_DEFAULT | SE_GROUP_MANDATORY;
++        copy_sid( &group->sid, &service_sid );
++        list_add_tail( &token->groups, &group->entry );
++        modified = 1;
++    }
++
++done:
++    /* mark as modified */
++    if (modified) allocate_luid( &token->modified_id );
++}
++
+ int check_object_access(struct token *token, struct object *obj, unsigned int *access)
+ {
+     struct generic_map mapping;
+--- a/server/security.h
++++ b/server/security.h
+@@ -75,6 +75,7 @@
+ extern const struct sid *token_get_owner( struct token *token );
+ extern const struct sid *token_get_primary_group( struct token *token );
+ extern unsigned int token_get_session_id( struct token *token );
++extern void token_make_service_logon( struct token *token );
+ extern int token_sid_present( struct token *token, const struct sid *sid, int deny );
+ 
+ static inline struct ace *ace_first( const struct acl *acl )
+--- a/server/process.c
++++ b/server/process.c
+@@ -694,6 +694,11 @@
+     /* a process started by a session-0 process (the service manager or one of the services it
+      * started) runs in session 0 as well, like on Windows */
+     process->session_id = (parent && !parent->session_id) ? 0 : token_get_session_id( process->token );
++    /* processes started by the service manager also get a service logon token, i.e. no
++     * INTERACTIVE group and a SERVICE group; without this a Go service never calls
++     * StartServiceCtrlDispatcherW() and the SCM times it out.  An explicit token handle
++     * passed by the caller is used as-is. */
++    if (parent && !parent->session_id && !token) token_make_service_logon( process->token );
+ 
+     set_fd_events( process->msg_fd, POLLIN );  /* start listening to events */
+     return process;
+--- a/programs/services/services.c
++++ b/programs/services/services.c
+@@ -41,7 +41,7 @@
+ 
+ struct scmdatabase *active_database;
+ 
+-DWORD service_pipe_timeout = 10000;
++DWORD service_pipe_timeout = 30000;
+ DWORD service_kill_timeout = 60000;
+ static DWORD default_preshutdown_timeout = 180000;
+ static DWORD autostart_delay = 120000;

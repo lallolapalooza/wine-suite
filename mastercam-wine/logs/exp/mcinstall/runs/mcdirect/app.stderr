@@ -1,0 +1,1151 @@
+225124.627:002c:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225124.653:0034:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225124.658:003c:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225124.690:0048:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225124.725:006c:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225124.816:0074:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225124.893:006c:fixme:seh:WerGetFlags (FFFFFFFFFFFFFFFF, 000000000024FD98) stub
+225124.893:006c:fixme:seh:WerSetFlags (32) stub
+225124.894:006c:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,000000000024FD10,000000000024FD20) stub!
+225124.933:00a0:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225124.975:00a0:trace:seh:dispatch_exception code=6ba (RPC_S_SERVER_UNAVAILABLE) flags=0 addr=00006FFFFF3AB49E
+225124.975:00a0:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=00007ffffe13da80 rbp=0000000000000000 eflags=00000202
+225124.975:00a0:trace:seh:dispatch_exception rax=00006fffff3ab450 rbx=00007ffffe13e930 rcx=00007ffffe13daa0 rdx=0000000000000000
+225124.975:00a0:trace:seh:dispatch_exception rsi=0000000000000000 rdi=00007ffffe258140  r8=0000000000000000  r9=0000000000000000
+225124.975:00a0:trace:seh:dispatch_exception r10=0000000000000080 r11=0000000000000030 r12=00007ffffe13dc38 r13=0000000000000003
+225124.975:00a0:trace:seh:dispatch_exception r14=0000000000000000 r15=00007ffffe13dc40 mxcsr=00001f80 cs=0033 ss=002b
+225124.975:00a0:trace:seh:call_seh_handlers calling TEB handler 00006FFFFE6F7740 (rec=00007FFFFE13DAA0 frame=00007FFFFE13DCC0 context=00007FFFFE13D5A0 dispatch=00007FFFFE13CE70) sp=7ffffe13e640
+225124.975:00a0:trace:seh:call_seh_handlers TEB handler at 00006FFFFE6F7740 returned 1
+225124.975:00a0:trace:seh:call_seh_handlers calling TEB handler 00006FFFFA807600 (rec=00007FFFFE13DAA0 frame=00007FFFFE13F1D0 context=00007FFFFE13D5A0 dispatch=00007FFFFE13CE70) sp=7ffffe13f350
+225124.975:00a0:trace:seh:RtlUnwindEx code=6ba flags=2 end_frame=00007FFFFE13F1D0 target_ip=00006FFFFA801F1A
+225124.975:00a0:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=00007ffffe13c160 rbp=00007ffffe13c830 eflags=00000206
+225124.975:00a0:trace:seh:RtlUnwindEx rax=00007ffffe02a000 rbx=00007ffffe13daa0 rcx=00007ffffe13c830 rdx=00006ffffa801f1a
+225124.975:00a0:trace:seh:RtlUnwindEx rsi=00007ffffe13c830 rdi=00007ffffe13f1d0  r8=00007ffffe13daa0  r9=00006ffffa811980
+225124.975:00a0:trace:seh:RtlUnwindEx r10=0000000000014470 r11=0000000000000202 r12=00007ffffe13c2d0 r13=00007ffffe02a000
+225124.975:00a0:trace:seh:RtlUnwindEx r14=00007ffffe13f1d0 r15=00007ffffe13dcc0 mxcsr=00001f80 cs=0033 ss=002b
+225124.975:00a0:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFE6F7740 (rec=00007FFFFE13DAA0, frame=00007FFFFE13DCC0 context=00007FFFFE13C830, dispatch=00007FFFFE13C1E0)
+225124.975:00a0:trace:seh:RtlUnwindEx handler at 00006FFFFE6F7740 returned 1
+225124.975:00a0:trace:seh:RtlRestoreContext returning to 00006FFFFA801F1A stack 00007FFFFE13F150
+225125.134:0074:trace:seh:dispatch_exception code=6ba (RPC_S_SERVER_UNAVAILABLE) flags=0 addr=00006FFFFF3AB49E
+225125.134:0074:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=00007ffffe23d680 rbp=0000000000000000 eflags=00000202
+225125.134:0074:trace:seh:dispatch_exception rax=00006fffff3ab450 rbx=00007ffffe23e530 rcx=00007ffffe23d6a0 rdx=0000000000000000
+225125.134:0074:trace:seh:dispatch_exception rsi=0000000000000064 rdi=00007ffffe851770  r8=0000000000000000  r9=0000000000000000
+225125.134:0074:trace:seh:dispatch_exception r10=00007ffffe851ea0 r11=0000000000000010 r12=00007ffffe23d838 r13=0000000000000005
+225125.134:0074:trace:seh:dispatch_exception r14=0000000000000000 r15=00007ffffe23d840 mxcsr=00001f80 cs=0033 ss=002b
+225125.134:0074:trace:seh:call_seh_handlers calling TEB handler 00006FFFFE6F7740 (rec=00007FFFFE23D6A0 frame=00007FFFFE23D8C0 context=00007FFFFE23D1A0 dispatch=00007FFFFE23CA70) sp=7ffffe23e240
+225125.134:0074:trace:seh:call_seh_handlers TEB handler at 00006FFFFE6F7740 returned 1
+225125.134:0074:trace:seh:call_seh_handlers calling TEB handler 00006FFFFE006A90 (rec=00007FFFFE23D6A0 frame=00007FFFFE23EDB0 context=00007FFFFE23D1A0 dispatch=00007FFFFE23CA70) sp=7ffffe23ef00
+225125.134:0074:trace:seh:RtlUnwindEx code=6ba flags=2 end_frame=00007FFFFE23EDB0 target_ip=00006FFFFDFF4E1A
+225125.134:0074:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=00007ffffe23bd60 rbp=00007ffffe23c430 eflags=00000206
+225125.134:0074:trace:seh:RtlUnwindEx rax=00007ffffe02a000 rbx=00007ffffe23d6a0 rcx=00007ffffe23c430 rdx=00006ffffdff4e1a
+225125.134:0074:trace:seh:RtlUnwindEx rsi=00007ffffe23c430 rdi=00007ffffe23edb0  r8=00007ffffe23d6a0  r9=00006ffffe016c10
+225125.134:0074:trace:seh:RtlUnwindEx r10=0000000000000000 r11=00007b951a4d4740 r12=00007ffffe23bed0 r13=00007ffffe02a000
+225125.134:0074:trace:seh:RtlUnwindEx r14=00007ffffe23edb0 r15=00007ffffe23d8c0 mxcsr=00001f80 cs=0033 ss=002b
+225125.134:0074:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFE6F7740 (rec=00007FFFFE23D6A0, frame=00007FFFFE23D8C0 context=00007FFFFE23C430, dispatch=00007FFFFE23BDE0)
+225125.134:0074:trace:seh:RtlUnwindEx handler at 00006FFFFE6F7740 returned 1
+225125.134:0074:trace:seh:RtlRestoreContext returning to 00006FFFFDFF4E1A stack 00007FFFFE23ED60
+225127.991:00a0:err:secur32:start_samss Failed to start SamSs service
+225127.992:00a0:err:secur32:load_auth_packages Failed to get security packages list: 80090304
+225128.149:0074:err:ole:start_rpcss Failed to start RpcSs service
+225128.288:00a0:fixme:powrprof:PowerRegisterSuspendResumeNotification (0x00000002,00007FFFFE13F260,00006FFFFA6F9AB8) stub!
+225128.294:00e0:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 00007FFFFEF0FF50
+225129.016:00ec:fixme:advapi:RegisterEventSourceA ((null),"CodeMeter Runtime Server"): stub
+225129.016:00ec:fixme:advapi:RegisterEventSourceW (L"",L"CodeMeter Runtime Server"): stub
+225129.016:00ec:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000200,0000000000000000,0x0000,0x00000000,000070492A7DFD48,0000000000000000): stub
+225129.016:00ec:fixme:ntdll:enum_firmware_info info_class SYSTEM_FIRMWARE_TABLE_INFORMATION provider 41435049
+225129.016:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.016:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.016:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DEEC8
+225129.016:00ec:trace:seh:dispatch_exception  info[2]=0000000142BA92C0
+225129.016:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.016:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7ded30 rbp=000070492a7def20 eflags=00000206
+225129.016:00ec:trace:seh:dispatch_exception rax=000070492a7ded70 rbx=0000000142ba92c0 rcx=000070492a7ded50 rdx=0000000000000001
+225129.016:00ec:trace:seh:dispatch_exception rsi=000070492a7dee58 rdi=000070492a7ded90  r8=0000000000000004  r9=000070492a7dee38
+225129.017:00ec:trace:seh:dispatch_exception r10=0000000000000080 r11=0000000000000030 r12=0000000000000001 r13=000000014288df90
+225129.017:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000000000001 mxcsr=00001f80 cs=0033 ss=002b
+225129.017:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DED50, frame=70492a7deea0 context=000070492A7DE850, dispatch=000070492A7DE120)
+225129.017:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.017:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DED50, frame=70492a7defe0 context=000070492A7DE850, dispatch=000070492A7DE120)
+225129.017:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.017:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DED50, frame=70492a7df080 context=000070492A7DE850, dispatch=000070492A7DE120)
+225129.017:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DF080 target_ip=0000000141F1BC2C
+225129.017:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.017:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7dde58
+225129.017:00ec:trace:seh:RtlUnwindEx  info[2]=0000000141f1c4a0
+225129.017:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000006
+225129.017:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7de850
+225129.017:00ec:trace:seh:RtlUnwindEx  info[5]=0000000142b08658
+225129.017:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7ded50
+225129.017:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.017:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.017:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.017:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.017:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.017:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.017:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.017:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.017:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dd620 rbp=000070492a7de250 eflags=00000202
+225129.017:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7ddcf0 rcx=000070492a7de250 rdx=0000000141f1bc2c
+225129.017:00ec:trace:seh:RtlUnwindEx rsi=000070492a7de250 rdi=0000000000000006  r8=000070492a7ddcf0  r9=0000000000000000
+225129.017:00ec:trace:seh:RtlUnwindEx r10=000070492a7de120 r11=000070492a7de070 r12=000070492a7dd790 r13=0000000142b08658
+225129.017:00ec:trace:seh:RtlUnwindEx r14=000070492a7df080 r15=0000000000000000 mxcsr=00001f80 cs=0033 ss=002b
+225129.017:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DDCF0, frame=70492a7ddcc0 context=000070492A7DE250, dispatch=000070492A7DD6A0)
+225129.017:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.017:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DDCF0, frame=70492a7dde50 context=000070492A7DE250, dispatch=000070492A7DD6A0)
+225129.017:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.017:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DDCF0, frame=70492a7deea0 context=000070492A7DE250, dispatch=000070492A7DD6A0)
+225129.017:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.017:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DDCF0, frame=70492a7defe0 context=000070492A7DE250, dispatch=000070492A7DD6A0)
+225129.017:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.017:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DDCF0, frame=70492a7df080 context=000070492A7DE250, dispatch=000070492A7DD6A0)
+225129.017:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.017:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DDCF0)
+225129.017:00ec:trace:seh:RtlRestoreContext returning to 0000000141F1BCBF stack 000070492A7DF080
+225129.018:00f4:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225129.019:0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+225129.031:0108:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225129.176:0108:fixme:seh:WerSetFlags (2) stub
+225129.176:0108:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+225129.184:0114:fixme:process:SetProcessShutdownParameters (00000380, 00000000): partial stub.
+225129.189:0114:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 00006FFFFC3625B7, 28) stub
+225129.190:0120:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225129.192:0114:fixme:ver:GetCurrentPackageId (00007FFFFEF6EB50 0000000000000000): stub
+225129.216:0120:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+225129.219:0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+225129.220:00ec:trace:seh:dispatch_exception code=c000001d (EXCEPTION_ILLEGAL_INSTRUCTION) flags=0 addr=0000000142706D4B
+225129.220:00ec:trace:seh:dispatch_exception rip=0000000142706d4b rsp=000070492a7de210 rbp=000070492a7de240 eflags=00010206
+225129.220:00ec:trace:seh:dispatch_exception rax=0000000000000001 rbx=0000000142f33990 rcx=000070492a7decf0 rdx=00000001427084e0
+225129.220:00ec:trace:seh:dispatch_exception rsi=000070492a7de701 rdi=00000000000004d4  r8=000070492a7de1d8  r9=000000001d684b1d
+225129.220:00ec:trace:seh:dispatch_exception r10=0000000000000030 r11=000070492a7de7b0 r12=0000000000000348 r13=00000000000000a8
+225129.220:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.220:00ec:trace:seh:call_seh_handlers calling handler 00000001426AF210 (rec=000070492A7DDFF0, frame=70492a7de220 context=000070492A7DDB00, dispatch=000070492A7DD3F0)
+225129.220:00ec:trace:seh:RtlUnwindEx code=c000001d flags=2 end_frame=000070492A7DE220 target_ip=0000000142648675
+225129.220:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcc30 rbp=000070492a7dd520 eflags=00000206
+225129.220:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7ddff0 rcx=000070492a7dd520 rdx=0000000142648675
+225129.220:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd520 rdi=0000000000000000  r8=000070492a7ddff0  r9=00000000c000001d
+225129.220:00ec:trace:seh:RtlUnwindEx r10=0000000140000000 r11=00000001426ae35d r12=000070492a7dcda0 r13=000070492a7de220
+225129.220:00ec:trace:seh:RtlUnwindEx r14=000070492a7de220 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 00000001426AF210 (rec=000070492A7DDFF0, frame=70492a7de220 context=000070492A7DD520, dispatch=000070492A7DCCB0)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 00000001426AF210 returned 1
+225129.220:00ec:trace:seh:RtlRestoreContext returning to 0000000142648675 stack 000070492A7DE220
+225129.220:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.220:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.220:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DE2B0
+225129.220:00ec:trace:seh:dispatch_exception  info[2]=0000000142BACAB8
+225129.220:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.220:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7de120 rbp=000070492a7de310 eflags=00000202
+225129.220:00ec:trace:seh:dispatch_exception rax=000070492a7de160 rbx=0000000142bacab8 rcx=000070492a7de140 rdx=0000000000000001
+225129.220:00ec:trace:seh:dispatch_exception rsi=000070492a7de248 rdi=000070492a7de180  r8=0000000000000004  r9=000070492a7de228
+225129.220:00ec:trace:seh:dispatch_exception r10=0000000140000000 r11=00000001426ae349 r12=0000000000000348 r13=00000000000000a8
+225129.220:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.220:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE140, frame=70492a7de290 context=000070492A7DDC40, dispatch=000070492A7DD510)
+225129.220:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.220:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE140, frame=70492a7decd0 context=000070492A7DDC40, dispatch=000070492A7DD510)
+225129.220:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DECD0 target_ip=000000014263D4A3
+225129.220:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.220:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7dd248
+225129.220:00ec:trace:seh:RtlUnwindEx  info[2]=000000014263d5c0
+225129.220:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7ddc40
+225129.220:00ec:trace:seh:RtlUnwindEx  info[5]=0000000142bab3f8
+225129.220:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7de140
+225129.220:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.220:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dca10 rbp=000070492a7dd640 eflags=00000202
+225129.220:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7dd0e0 rcx=000070492a7dd640 rdx=000000014263d4a3
+225129.220:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd640 rdi=0000000000000000  r8=000070492a7dd0e0  r9=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx r10=000070492a7dd510 r11=000070492a7dd460 r12=000070492a7dcb80 r13=0000000142bab3f8
+225129.220:00ec:trace:seh:RtlUnwindEx r14=000070492a7decd0 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD0E0, frame=70492a7dd0b0 context=000070492A7DD640, dispatch=000070492A7DCA90)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD0E0, frame=70492a7dd240 context=000070492A7DD640, dispatch=000070492A7DCA90)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD0E0, frame=70492a7de290 context=000070492A7DD640, dispatch=000070492A7DCA90)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD0E0, frame=70492a7decd0 context=000070492A7DD640, dispatch=000070492A7DCA90)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.220:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DD0E0)
+225129.220:00ec:trace:seh:RtlRestoreContext returning to 000000014263D519 stack 000070492A7DECD0
+225129.220:00ec:trace:seh:dispatch_exception code=c0000096 (EXCEPTION_PRIV_INSTRUCTION) flags=0 addr=0000000142706D40
+225129.220:00ec:trace:seh:dispatch_exception rip=0000000142706d40 rsp=000070492a7de1c0 rbp=000070492a7de220 eflags=00010202
+225129.220:00ec:trace:seh:dispatch_exception rax=00000000564d5868 rbx=0000000142f33990 rcx=000070492a7dec0a rdx=0000000142705658
+225129.220:00ec:trace:seh:dispatch_exception rsi=000070492a7decd8 rdi=00000000000004d4  r8=000070492a7de1b8  r9=000000001d684b1d
+225129.220:00ec:trace:seh:dispatch_exception r10=0000000000000030 r11=000070492a7de790 r12=0000000000000348 r13=00000000000000a8
+225129.220:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.220:00ec:trace:seh:call_seh_handlers calling handler 00000001426AF210 (rec=000070492A7DDFB0, frame=70492a7de200 context=000070492A7DDAC0, dispatch=000070492A7DD3B0)
+225129.220:00ec:trace:seh:RtlUnwindEx code=c0000096 flags=2 end_frame=000070492A7DE200 target_ip=0000000142648675
+225129.220:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcbf0 rbp=000070492a7dd4e0 eflags=00000206
+225129.220:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7ddfb0 rcx=000070492a7dd4e0 rdx=0000000142648675
+225129.220:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd4e0 rdi=0000000000000000  r8=000070492a7ddfb0  r9=00000000c0000096
+225129.220:00ec:trace:seh:RtlUnwindEx r10=0000000140000000 r11=00000001426ae35d r12=000070492a7dcd60 r13=000070492a7de200
+225129.220:00ec:trace:seh:RtlUnwindEx r14=000070492a7de200 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 00000001426AF210 (rec=000070492A7DDFB0, frame=70492a7de200 context=000070492A7DD4E0, dispatch=000070492A7DCC70)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 00000001426AF210 returned 1
+225129.220:00ec:trace:seh:RtlRestoreContext returning to 0000000142648675 stack 000070492A7DE200
+225129.220:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.220:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.220:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DE290
+225129.220:00ec:trace:seh:dispatch_exception  info[2]=0000000142BACAB8
+225129.220:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.220:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7de100 rbp=000070492a7de2f0 eflags=00000206
+225129.220:00ec:trace:seh:dispatch_exception rax=000070492a7de140 rbx=0000000142bacab8 rcx=000070492a7de120 rdx=0000000000000001
+225129.220:00ec:trace:seh:dispatch_exception rsi=000070492a7de228 rdi=000070492a7de160  r8=0000000000000004  r9=000070492a7de208
+225129.220:00ec:trace:seh:dispatch_exception r10=0000000140000000 r11=00000001426ae349 r12=0000000000000348 r13=00000000000000a8
+225129.220:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.220:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE120, frame=70492a7de270 context=000070492A7DDC20, dispatch=000070492A7DD4F0)
+225129.220:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.220:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE120, frame=70492a7decb0 context=000070492A7DDC20, dispatch=000070492A7DD4F0)
+225129.220:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DECB0 target_ip=000000014263D701
+225129.220:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.220:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7dd228
+225129.220:00ec:trace:seh:RtlUnwindEx  info[2]=000000014263d7d0
+225129.220:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7ddc20
+225129.220:00ec:trace:seh:RtlUnwindEx  info[5]=0000000142bab4ac
+225129.220:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7de120
+225129.220:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.220:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dc9f0 rbp=000070492a7dd620 eflags=00000206
+225129.220:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7dd0c0 rcx=000070492a7dd620 rdx=000000014263d701
+225129.220:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd620 rdi=0000000000000000  r8=000070492a7dd0c0  r9=0000000000000000
+225129.220:00ec:trace:seh:RtlUnwindEx r10=000070492a7dd4f0 r11=000070492a7dd440 r12=000070492a7dcb60 r13=0000000142bab4ac
+225129.220:00ec:trace:seh:RtlUnwindEx r14=000070492a7decb0 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD0C0, frame=70492a7dd090 context=000070492A7DD620, dispatch=000070492A7DCA70)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD0C0, frame=70492a7dd220 context=000070492A7DD620, dispatch=000070492A7DCA70)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD0C0, frame=70492a7de270 context=000070492A7DD620, dispatch=000070492A7DCA70)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.220:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD0C0, frame=70492a7decb0 context=000070492A7DD620, dispatch=000070492A7DCA70)
+225129.220:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.220:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DD0C0)
+225129.220:00ec:trace:seh:RtlRestoreContext returning to 000000014263D742 stack 000070492A7DECB0
+225129.222:00ec:trace:seh:dispatch_exception code=c000001d (EXCEPTION_ILLEGAL_INSTRUCTION) flags=0 addr=0000000142706D4B
+225129.222:00ec:trace:seh:dispatch_exception rip=0000000142706d4b rsp=000070492a7de540 rbp=000070492a7de570 eflags=00010202
+225129.222:00ec:trace:seh:dispatch_exception rax=0000000000000001 rbx=0000000142f33990 rcx=000070492a7df020 rdx=00000001427084e0
+225129.222:00ec:trace:seh:dispatch_exception rsi=000070492a7dea01 rdi=00000000000004d4  r8=000070492a7de508  r9=000000001d684b1d
+225129.222:00ec:trace:seh:dispatch_exception r10=0000000000000030 r11=000070492a7deae0 r12=0000000000000348 r13=00000000000000a8
+225129.222:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.222:00ec:trace:seh:call_seh_handlers calling handler 00000001426AF210 (rec=000070492A7DE330, frame=70492a7de550 context=000070492A7DDE40, dispatch=000070492A7DD730)
+225129.222:00ec:trace:seh:RtlUnwindEx code=c000001d flags=2 end_frame=000070492A7DE550 target_ip=0000000142648675
+225129.222:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcf70 rbp=000070492a7dd860 eflags=00000202
+225129.222:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7de330 rcx=000070492a7dd860 rdx=0000000142648675
+225129.222:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd860 rdi=0000000000000000  r8=000070492a7de330  r9=00000000c000001d
+225129.222:00ec:trace:seh:RtlUnwindEx r10=0000000140000000 r11=00000001426ae35d r12=000070492a7dd0e0 r13=000070492a7de550
+225129.222:00ec:trace:seh:RtlUnwindEx r14=000070492a7de550 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 00000001426AF210 (rec=000070492A7DE330, frame=70492a7de550 context=000070492A7DD860, dispatch=000070492A7DCFF0)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 00000001426AF210 returned 1
+225129.222:00ec:trace:seh:RtlRestoreContext returning to 0000000142648675 stack 000070492A7DE550
+225129.222:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.222:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.222:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DE5E0
+225129.222:00ec:trace:seh:dispatch_exception  info[2]=0000000142BACAB8
+225129.222:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.222:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7de450 rbp=000070492a7de640 eflags=00000206
+225129.222:00ec:trace:seh:dispatch_exception rax=000070492a7de490 rbx=0000000142bacab8 rcx=000070492a7de470 rdx=0000000000000001
+225129.222:00ec:trace:seh:dispatch_exception rsi=000070492a7de578 rdi=000070492a7de4b0  r8=0000000000000004  r9=000070492a7de558
+225129.222:00ec:trace:seh:dispatch_exception r10=0000000140000000 r11=00000001426ae35d r12=0000000000000348 r13=00000000000000a8
+225129.222:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.222:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE470, frame=70492a7de5c0 context=000070492A7DDF70, dispatch=000070492A7DD840)
+225129.222:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.222:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE470, frame=70492a7df000 context=000070492A7DDF70, dispatch=000070492A7DD840)
+225129.222:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DF000 target_ip=000000014263D4A3
+225129.222:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.222:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7dd578
+225129.222:00ec:trace:seh:RtlUnwindEx  info[2]=000000014263d5c0
+225129.222:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7ddf70
+225129.222:00ec:trace:seh:RtlUnwindEx  info[5]=0000000142bab3f8
+225129.222:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7de470
+225129.222:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.222:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcd40 rbp=000070492a7dd970 eflags=00000202
+225129.222:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7dd410 rcx=000070492a7dd970 rdx=000000014263d4a3
+225129.222:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd970 rdi=0000000000000000  r8=000070492a7dd410  r9=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx r10=000070492a7dd840 r11=000070492a7dd790 r12=000070492a7dceb0 r13=0000000142bab3f8
+225129.222:00ec:trace:seh:RtlUnwindEx r14=000070492a7df000 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD410, frame=70492a7dd3e0 context=000070492A7DD970, dispatch=000070492A7DCDC0)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD410, frame=70492a7dd570 context=000070492A7DD970, dispatch=000070492A7DCDC0)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD410, frame=70492a7de5c0 context=000070492A7DD970, dispatch=000070492A7DCDC0)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD410, frame=70492a7df000 context=000070492A7DD970, dispatch=000070492A7DCDC0)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.222:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DD410)
+225129.222:00ec:trace:seh:RtlRestoreContext returning to 000000014263D519 stack 000070492A7DF000
+225129.222:00ec:trace:seh:dispatch_exception code=c0000096 (EXCEPTION_PRIV_INSTRUCTION) flags=0 addr=0000000142706D40
+225129.222:00ec:trace:seh:dispatch_exception rip=0000000142706d40 rsp=000070492a7de4f0 rbp=000070492a7de550 eflags=00010206
+225129.222:00ec:trace:seh:dispatch_exception rax=00000000564d5868 rbx=0000000142f33990 rcx=000070492a7df00a rdx=0000000142705658
+225129.222:00ec:trace:seh:dispatch_exception rsi=000070492a7df008 rdi=00000000000004d4  r8=000070492a7de4e8  r9=000000001d684b1d
+225129.222:00ec:trace:seh:dispatch_exception r10=0000000000000030 r11=000070492a7deac0 r12=0000000000000348 r13=00000000000000a8
+225129.222:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.222:00ec:trace:seh:call_seh_handlers calling handler 00000001426AF210 (rec=000070492A7DE2B0, frame=70492a7de530 context=000070492A7DDDC0, dispatch=000070492A7DD6B0)
+225129.222:00ec:trace:seh:RtlUnwindEx code=c0000096 flags=2 end_frame=000070492A7DE530 target_ip=0000000142648675
+225129.222:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcef0 rbp=000070492a7dd7e0 eflags=00000206
+225129.222:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7de2b0 rcx=000070492a7dd7e0 rdx=0000000142648675
+225129.222:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd7e0 rdi=0000000000000000  r8=000070492a7de2b0  r9=00000000c0000096
+225129.222:00ec:trace:seh:RtlUnwindEx r10=0000000140000000 r11=00000001426ae35d r12=000070492a7dd060 r13=000070492a7de530
+225129.222:00ec:trace:seh:RtlUnwindEx r14=000070492a7de530 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 00000001426AF210 (rec=000070492A7DE2B0, frame=70492a7de530 context=000070492A7DD7E0, dispatch=000070492A7DCF70)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 00000001426AF210 returned 1
+225129.222:00ec:trace:seh:RtlRestoreContext returning to 0000000142648675 stack 000070492A7DE530
+225129.222:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.222:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.222:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DE5C0
+225129.222:00ec:trace:seh:dispatch_exception  info[2]=0000000142BACAB8
+225129.222:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.222:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7de430 rbp=000070492a7de620 eflags=00000206
+225129.222:00ec:trace:seh:dispatch_exception rax=000070492a7de470 rbx=0000000142bacab8 rcx=000070492a7de450 rdx=0000000000000001
+225129.222:00ec:trace:seh:dispatch_exception rsi=000070492a7de558 rdi=000070492a7de490  r8=0000000000000004  r9=000070492a7de538
+225129.222:00ec:trace:seh:dispatch_exception r10=0000000140000000 r11=00000001426ae35d r12=0000000000000348 r13=00000000000000a8
+225129.222:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.222:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE450, frame=70492a7de5a0 context=000070492A7DDF50, dispatch=000070492A7DD820)
+225129.222:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.222:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE450, frame=70492a7defe0 context=000070492A7DDF50, dispatch=000070492A7DD820)
+225129.222:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DEFE0 target_ip=000000014263D701
+225129.222:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.222:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7dd558
+225129.222:00ec:trace:seh:RtlUnwindEx  info[2]=000000014263d7d0
+225129.222:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7ddf50
+225129.222:00ec:trace:seh:RtlUnwindEx  info[5]=0000000142bab4ac
+225129.222:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7de450
+225129.222:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.222:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcd20 rbp=000070492a7dd950 eflags=00000202
+225129.222:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7dd3f0 rcx=000070492a7dd950 rdx=000000014263d701
+225129.222:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd950 rdi=0000000000000000  r8=000070492a7dd3f0  r9=0000000000000000
+225129.222:00ec:trace:seh:RtlUnwindEx r10=000070492a7dd820 r11=000070492a7dd770 r12=000070492a7dce90 r13=0000000142bab4ac
+225129.222:00ec:trace:seh:RtlUnwindEx r14=000070492a7defe0 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD3F0, frame=70492a7dd3c0 context=000070492A7DD950, dispatch=000070492A7DCDA0)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD3F0, frame=70492a7dd550 context=000070492A7DD950, dispatch=000070492A7DCDA0)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD3F0, frame=70492a7de5a0 context=000070492A7DD950, dispatch=000070492A7DCDA0)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.222:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD3F0, frame=70492a7defe0 context=000070492A7DD950, dispatch=000070492A7DCDA0)
+225129.222:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.222:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DD3F0)
+225129.222:00ec:trace:seh:RtlRestoreContext returning to 000000014263D742 stack 000070492A7DEFE0
+225129.246:00ec:fixme:iphlpapi:NotifyIpInterfaceChange (family 0, callback 0000000140A1B120, context 0000000142F6F240, init_notify 0, handle 000070492A7DF1B8): stub
+225129.247:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.247:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.247:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DF828
+225129.247:00ec:trace:seh:dispatch_exception  info[2]=0000000142906F00
+225129.247:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.247:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7df690 rbp=000070492a7df880 eflags=00000206
+225129.247:00ec:trace:seh:dispatch_exception rax=000070492a7df6d0 rbx=0000000142906f00 rcx=000070492a7df6b0 rdx=0000000000000001
+225129.247:00ec:trace:seh:dispatch_exception rsi=000070492a7df7b8 rdi=000070492a7df6f0  r8=0000000000000004  r9=000070492a7df798
+225129.247:00ec:trace:seh:dispatch_exception r10=0000000000000080 r11=0000000000000030 r12=0000000142718898 r13=00000001427163a8
+225129.247:00ec:trace:seh:dispatch_exception r14=0000000000000001 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.247:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DF6B0, frame=70492a7df800 context=000070492A7DF1B0, dispatch=000070492A7DEA80)
+225129.247:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DF800 target_ip=00000001403E6441
+225129.247:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.247:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7de7b8
+225129.247:00ec:trace:seh:RtlUnwindEx  info[2]=00000001403e6450
+225129.247:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000000
+225129.247:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7df1b0
+225129.247:00ec:trace:seh:RtlUnwindEx  info[5]=00000001429088fc
+225129.247:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7df6b0
+225129.247:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.247:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.247:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.247:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.247:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.247:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.247:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.247:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.247:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7ddf80 rbp=000070492a7debb0 eflags=00000202
+225129.247:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7de650 rcx=000070492a7debb0 rdx=00000001403e6441
+225129.247:00ec:trace:seh:RtlUnwindEx rsi=000070492a7debb0 rdi=0000000000000000  r8=000070492a7de650  r9=0000000000000000
+225129.247:00ec:trace:seh:RtlUnwindEx r10=000070492a7dea80 r11=000070492a7de9d0 r12=000070492a7de0f0 r13=00000001429088fc
+225129.247:00ec:trace:seh:RtlUnwindEx r14=000070492a7df800 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.247:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DE650, frame=70492a7de620 context=000070492A7DEBB0, dispatch=000070492A7DE000)
+225129.247:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.247:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DE650, frame=70492a7de7b0 context=000070492A7DEBB0, dispatch=000070492A7DE000)
+225129.247:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.247:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DE650, frame=70492a7df800 context=000070492A7DEBB0, dispatch=000070492A7DE000)
+225129.247:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.247:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DE650)
+225129.247:00ec:trace:seh:RtlRestoreContext returning to 00000001403E6416 stack 000070492A7DF800
+225129.248:0124:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 000070492A6CFF50
+225129.248:0124:fixme:wtsapi:WTSWaitSystemEvent Stub 0000000000000000 0x7fffffff 000070492A6CFF04
+225129.249:00ec:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+225129.328:00ec:fixme:tape:BackupRead (0000000000000114, 000070492A7DF270, 20, 000070492A7DF2C4, 0, 0, 000070492A7DF2B0)
+225129.328:00ec:fixme:tape:BackupRead (0000000000000114, 0000000000000000, 0, 0000000000000000, 1, 0, 000070492A7DF2B0)
+225129.329:00ec:fixme:tape:BackupRead (0000000000000114, 000070492A7DF270, 20, 000070492A7DF2C4, 0, 0, 000070492A7DF2B0)
+225129.329:00ec:fixme:tape:BackupRead (0000000000000114, 0000000000000000, 0, 0000000000000000, 1, 0, 000070492A7DF2B0)
+225129.329:00ec:fixme:tape:BackupRead (0000000000000114, 000070492A7DF270, 20, 000070492A7DF2C4, 0, 0, 000070492A7DF2B0)
+225129.329:00ec:fixme:tape:BackupRead (0000000000000114, 0000000000000000, 0, 0000000000000000, 1, 0, 000070492A7DF2B0)
+225129.330:00ec:trace:seh:dispatch_exception code=c000001d (EXCEPTION_ILLEGAL_INSTRUCTION) flags=0 addr=0000000142706D4B
+225129.330:00ec:trace:seh:dispatch_exception rip=0000000142706d4b rsp=000070492a7de2c0 rbp=000070492a7de2f0 eflags=00010206
+225129.330:00ec:trace:seh:dispatch_exception rax=0000000000000001 rbx=0000000142f33990 rcx=000070492a7deda0 rdx=00000001427084e0
+225129.330:00ec:trace:seh:dispatch_exception rsi=000070492a7de801 rdi=00000000000004d4  r8=000070492a7de288  r9=000000001d684b1d
+225129.330:00ec:trace:seh:dispatch_exception r10=0000000000000030 r11=000070492a7de860 r12=0000000000000348 r13=00000000000000a8
+225129.330:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.330:00ec:trace:seh:call_seh_handlers calling handler 00000001426AF210 (rec=000070492A7DE0B0, frame=70492a7de2d0 context=000070492A7DDBC0, dispatch=000070492A7DD4B0)
+225129.330:00ec:trace:seh:RtlUnwindEx code=c000001d flags=2 end_frame=000070492A7DE2D0 target_ip=0000000142648675
+225129.330:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dccf0 rbp=000070492a7dd5e0 eflags=00000206
+225129.330:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7de0b0 rcx=000070492a7dd5e0 rdx=0000000142648675
+225129.330:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd5e0 rdi=0000000000000000  r8=000070492a7de0b0  r9=00000000c000001d
+225129.330:00ec:trace:seh:RtlUnwindEx r10=0000000140000000 r11=00000001426ae35d r12=000070492a7dce60 r13=000070492a7de2d0
+225129.330:00ec:trace:seh:RtlUnwindEx r14=000070492a7de2d0 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 00000001426AF210 (rec=000070492A7DE0B0, frame=70492a7de2d0 context=000070492A7DD5E0, dispatch=000070492A7DCD70)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 00000001426AF210 returned 1
+225129.330:00ec:trace:seh:RtlRestoreContext returning to 0000000142648675 stack 000070492A7DE2D0
+225129.330:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.330:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.330:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DE360
+225129.330:00ec:trace:seh:dispatch_exception  info[2]=0000000142BACAB8
+225129.330:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.330:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7de1d0 rbp=000070492a7de3c0 eflags=00000202
+225129.330:00ec:trace:seh:dispatch_exception rax=000070492a7de210 rbx=0000000142bacab8 rcx=000070492a7de1f0 rdx=0000000000000001
+225129.330:00ec:trace:seh:dispatch_exception rsi=000070492a7de2f8 rdi=000070492a7de230  r8=0000000000000004  r9=000070492a7de2d8
+225129.330:00ec:trace:seh:dispatch_exception r10=0000000140000000 r11=00000001426ae35d r12=0000000000000348 r13=00000000000000a8
+225129.330:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.330:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE1F0, frame=70492a7de340 context=000070492A7DDCF0, dispatch=000070492A7DD5C0)
+225129.330:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.330:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE1F0, frame=70492a7ded80 context=000070492A7DDCF0, dispatch=000070492A7DD5C0)
+225129.330:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DED80 target_ip=000000014263D4A3
+225129.330:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.330:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7dd2f8
+225129.330:00ec:trace:seh:RtlUnwindEx  info[2]=000000014263d5c0
+225129.330:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7ddcf0
+225129.330:00ec:trace:seh:RtlUnwindEx  info[5]=0000000142bab3f8
+225129.330:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7de1f0
+225129.330:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.330:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcac0 rbp=000070492a7dd6f0 eflags=00000206
+225129.330:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7dd190 rcx=000070492a7dd6f0 rdx=000000014263d4a3
+225129.330:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd6f0 rdi=0000000000000000  r8=000070492a7dd190  r9=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx r10=000070492a7dd5c0 r11=000070492a7dd510 r12=000070492a7dcc30 r13=0000000142bab3f8
+225129.330:00ec:trace:seh:RtlUnwindEx r14=000070492a7ded80 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD190, frame=70492a7dd160 context=000070492A7DD6F0, dispatch=000070492A7DCB40)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD190, frame=70492a7dd2f0 context=000070492A7DD6F0, dispatch=000070492A7DCB40)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD190, frame=70492a7de340 context=000070492A7DD6F0, dispatch=000070492A7DCB40)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD190, frame=70492a7ded80 context=000070492A7DD6F0, dispatch=000070492A7DCB40)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.330:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DD190)
+225129.330:00ec:trace:seh:RtlRestoreContext returning to 000000014263D519 stack 000070492A7DED80
+225129.330:00ec:trace:seh:dispatch_exception code=c0000096 (EXCEPTION_PRIV_INSTRUCTION) flags=0 addr=0000000142706D40
+225129.330:00ec:trace:seh:dispatch_exception rip=0000000142706d40 rsp=000070492a7de270 rbp=000070492a7de2d0 eflags=00010202
+225129.330:00ec:trace:seh:dispatch_exception rax=00000000564d5868 rbx=0000000142f33990 rcx=000070492a7ded0a rdx=0000000142705658
+225129.330:00ec:trace:seh:dispatch_exception rsi=000070492a7ded88 rdi=00000000000004d4  r8=000070492a7de268  r9=000000001d684b1d
+225129.330:00ec:trace:seh:dispatch_exception r10=0000000000000030 r11=000070492a7de840 r12=0000000000000348 r13=00000000000000a8
+225129.330:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.330:00ec:trace:seh:call_seh_handlers calling handler 00000001426AF210 (rec=000070492A7DE030, frame=70492a7de2b0 context=000070492A7DDB40, dispatch=000070492A7DD430)
+225129.330:00ec:trace:seh:RtlUnwindEx code=c0000096 flags=2 end_frame=000070492A7DE2B0 target_ip=0000000142648675
+225129.330:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcc70 rbp=000070492a7dd560 eflags=00000202
+225129.330:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7de030 rcx=000070492a7dd560 rdx=0000000142648675
+225129.330:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd560 rdi=0000000000000000  r8=000070492a7de030  r9=00000000c0000096
+225129.330:00ec:trace:seh:RtlUnwindEx r10=0000000140000000 r11=00000001426ae35d r12=000070492a7dcde0 r13=000070492a7de2b0
+225129.330:00ec:trace:seh:RtlUnwindEx r14=000070492a7de2b0 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 00000001426AF210 (rec=000070492A7DE030, frame=70492a7de2b0 context=000070492A7DD560, dispatch=000070492A7DCCF0)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 00000001426AF210 returned 1
+225129.330:00ec:trace:seh:RtlRestoreContext returning to 0000000142648675 stack 000070492A7DE2B0
+225129.330:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.330:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.330:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DE340
+225129.330:00ec:trace:seh:dispatch_exception  info[2]=0000000142BACAB8
+225129.330:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.330:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7de1b0 rbp=000070492a7de3a0 eflags=00000202
+225129.330:00ec:trace:seh:dispatch_exception rax=000070492a7de1f0 rbx=0000000142bacab8 rcx=000070492a7de1d0 rdx=0000000000000001
+225129.330:00ec:trace:seh:dispatch_exception rsi=000070492a7de2d8 rdi=000070492a7de210  r8=0000000000000004  r9=000070492a7de2b8
+225129.330:00ec:trace:seh:dispatch_exception r10=0000000140000000 r11=00000001426ae35d r12=0000000000000348 r13=00000000000000a8
+225129.330:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.330:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE1D0, frame=70492a7de320 context=000070492A7DDCD0, dispatch=000070492A7DD5A0)
+225129.330:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.330:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE1D0, frame=70492a7ded60 context=000070492A7DDCD0, dispatch=000070492A7DD5A0)
+225129.330:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DED60 target_ip=000000014263D701
+225129.330:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.330:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7dd2d8
+225129.330:00ec:trace:seh:RtlUnwindEx  info[2]=000000014263d7d0
+225129.330:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7ddcd0
+225129.330:00ec:trace:seh:RtlUnwindEx  info[5]=0000000142bab4ac
+225129.330:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7de1d0
+225129.330:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.330:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcaa0 rbp=000070492a7dd6d0 eflags=00000206
+225129.330:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7dd170 rcx=000070492a7dd6d0 rdx=000000014263d701
+225129.330:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd6d0 rdi=0000000000000000  r8=000070492a7dd170  r9=0000000000000000
+225129.330:00ec:trace:seh:RtlUnwindEx r10=000070492a7dd5a0 r11=000070492a7dd4f0 r12=000070492a7dcc10 r13=0000000142bab4ac
+225129.330:00ec:trace:seh:RtlUnwindEx r14=000070492a7ded60 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD170, frame=70492a7dd140 context=000070492A7DD6D0, dispatch=000070492A7DCB20)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD170, frame=70492a7dd2d0 context=000070492A7DD6D0, dispatch=000070492A7DCB20)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD170, frame=70492a7de320 context=000070492A7DD6D0, dispatch=000070492A7DCB20)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.330:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD170, frame=70492a7ded60 context=000070492A7DD6D0, dispatch=000070492A7DCB20)
+225129.330:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.330:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DD170)
+225129.330:00ec:trace:seh:RtlRestoreContext returning to 000000014263D742 stack 000070492A7DED60
+225129.334:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.335:0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+225129.336:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.336:0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+225129.337:00ec:trace:seh:dispatch_exception code=c000001d (EXCEPTION_ILLEGAL_INSTRUCTION) flags=0 addr=0000000142706D4B
+225129.337:00ec:trace:seh:dispatch_exception rip=0000000142706d4b rsp=000070492a7de260 rbp=000070492a7de290 eflags=00010202
+225129.337:00ec:trace:seh:dispatch_exception rax=0000000000000001 rbx=0000000142f33990 rcx=000070492a7ded40 rdx=00000001427084e0
+225129.337:00ec:trace:seh:dispatch_exception rsi=000070492a7de801 rdi=00000000000004d4  r8=000070492a7de228  r9=000000001d684b1d
+225129.337:00ec:trace:seh:dispatch_exception r10=0000000000000030 r11=000070492a7de800 r12=0000000000000348 r13=00000000000000a8
+225129.337:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.337:00ec:trace:seh:call_seh_handlers calling handler 00000001426AF210 (rec=000070492A7DE030, frame=70492a7de270 context=000070492A7DDB40, dispatch=000070492A7DD430)
+225129.337:00ec:trace:seh:RtlUnwindEx code=c000001d flags=2 end_frame=000070492A7DE270 target_ip=0000000142648675
+225129.337:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcc70 rbp=000070492a7dd560 eflags=00000202
+225129.337:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7de030 rcx=000070492a7dd560 rdx=0000000142648675
+225129.337:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd560 rdi=0000000000000000  r8=000070492a7de030  r9=00000000c000001d
+225129.337:00ec:trace:seh:RtlUnwindEx r10=0000000140000000 r11=00000001426ae35d r12=000070492a7dcde0 r13=000070492a7de270
+225129.337:00ec:trace:seh:RtlUnwindEx r14=000070492a7de270 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 00000001426AF210 (rec=000070492A7DE030, frame=70492a7de270 context=000070492A7DD560, dispatch=000070492A7DCCF0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 00000001426AF210 returned 1
+225129.337:00ec:trace:seh:RtlRestoreContext returning to 0000000142648675 stack 000070492A7DE270
+225129.337:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.337:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.337:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DE300
+225129.337:00ec:trace:seh:dispatch_exception  info[2]=0000000142BACAB8
+225129.337:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.337:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7de170 rbp=000070492a7de360 eflags=00000202
+225129.337:00ec:trace:seh:dispatch_exception rax=000070492a7de1b0 rbx=0000000142bacab8 rcx=000070492a7de190 rdx=0000000000000001
+225129.337:00ec:trace:seh:dispatch_exception rsi=000070492a7de298 rdi=000070492a7de1d0  r8=0000000000000004  r9=000070492a7de278
+225129.337:00ec:trace:seh:dispatch_exception r10=0000000140000000 r11=00000001426ae35d r12=0000000000000348 r13=00000000000000a8
+225129.337:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.337:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE190, frame=70492a7de2e0 context=000070492A7DDC90, dispatch=000070492A7DD560)
+225129.337:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.337:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE190, frame=70492a7ded20 context=000070492A7DDC90, dispatch=000070492A7DD560)
+225129.337:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DED20 target_ip=000000014263D4A3
+225129.337:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.337:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7dd298
+225129.337:00ec:trace:seh:RtlUnwindEx  info[2]=000000014263d5c0
+225129.337:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7ddc90
+225129.337:00ec:trace:seh:RtlUnwindEx  info[5]=0000000142bab3f8
+225129.337:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7de190
+225129.337:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.337:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dca60 rbp=000070492a7dd690 eflags=00000206
+225129.337:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7dd130 rcx=000070492a7dd690 rdx=000000014263d4a3
+225129.337:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd690 rdi=0000000000000000  r8=000070492a7dd130  r9=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx r10=000070492a7dd560 r11=000070492a7dd4b0 r12=000070492a7dcbd0 r13=0000000142bab3f8
+225129.337:00ec:trace:seh:RtlUnwindEx r14=000070492a7ded20 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD130, frame=70492a7dd100 context=000070492A7DD690, dispatch=000070492A7DCAE0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD130, frame=70492a7dd290 context=000070492A7DD690, dispatch=000070492A7DCAE0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD130, frame=70492a7de2e0 context=000070492A7DD690, dispatch=000070492A7DCAE0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD130, frame=70492a7ded20 context=000070492A7DD690, dispatch=000070492A7DCAE0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.337:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DD130)
+225129.337:00ec:trace:seh:RtlRestoreContext returning to 000000014263D519 stack 000070492A7DED20
+225129.337:00ec:trace:seh:dispatch_exception code=c0000096 (EXCEPTION_PRIV_INSTRUCTION) flags=0 addr=0000000142706D40
+225129.337:00ec:trace:seh:dispatch_exception rip=0000000142706d40 rsp=000070492a7de210 rbp=000070492a7de270 eflags=00010202
+225129.337:00ec:trace:seh:dispatch_exception rax=00000000564d5868 rbx=0000000142f33990 rcx=000070492a7ded0a rdx=0000000142705658
+225129.337:00ec:trace:seh:dispatch_exception rsi=000070492a7ded28 rdi=00000000000004d4  r8=000070492a7de208  r9=000000001d684b1d
+225129.337:00ec:trace:seh:dispatch_exception r10=0000000000000030 r11=000070492a7de7e0 r12=0000000000000348 r13=00000000000000a8
+225129.337:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.337:00ec:trace:seh:call_seh_handlers calling handler 00000001426AF210 (rec=000070492A7DDFF0, frame=70492a7de250 context=000070492A7DDB00, dispatch=000070492A7DD3F0)
+225129.337:00ec:trace:seh:RtlUnwindEx code=c0000096 flags=2 end_frame=000070492A7DE250 target_ip=0000000142648675
+225129.337:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dcc30 rbp=000070492a7dd520 eflags=00000206
+225129.337:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7ddff0 rcx=000070492a7dd520 rdx=0000000142648675
+225129.337:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd520 rdi=0000000000000000  r8=000070492a7ddff0  r9=00000000c0000096
+225129.337:00ec:trace:seh:RtlUnwindEx r10=0000000140000000 r11=00000001426ae35d r12=000070492a7dcda0 r13=000070492a7de250
+225129.337:00ec:trace:seh:RtlUnwindEx r14=000070492a7de250 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 00000001426AF210 (rec=000070492A7DDFF0, frame=70492a7de250 context=000070492A7DD520, dispatch=000070492A7DCCB0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 00000001426AF210 returned 1
+225129.337:00ec:trace:seh:RtlRestoreContext returning to 0000000142648675 stack 000070492A7DE250
+225129.337:00ec:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225129.337:00ec:trace:seh:dispatch_exception  info[0]=0000000019930520
+225129.337:00ec:trace:seh:dispatch_exception  info[1]=000070492A7DE2E0
+225129.337:00ec:trace:seh:dispatch_exception  info[2]=0000000142BACAB8
+225129.337:00ec:trace:seh:dispatch_exception  info[3]=0000000140000000
+225129.337:00ec:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000070492a7de150 rbp=000070492a7de340 eflags=00000206
+225129.337:00ec:trace:seh:dispatch_exception rax=000070492a7de190 rbx=0000000142bacab8 rcx=000070492a7de170 rdx=0000000000000001
+225129.337:00ec:trace:seh:dispatch_exception rsi=000070492a7de278 rdi=000070492a7de1b0  r8=0000000000000004  r9=000070492a7de258
+225129.337:00ec:trace:seh:dispatch_exception r10=0000000140000000 r11=00000001426ae35d r12=0000000000000348 r13=00000000000000a8
+225129.337:00ec:trace:seh:dispatch_exception r14=0000000000000000 r15=0000000142f33760 mxcsr=00001fa0 cs=0033 ss=002b
+225129.337:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE170, frame=70492a7de2c0 context=000070492A7DDC70, dispatch=000070492A7DD540)
+225129.337:00ec:trace:seh:call_seh_handlers handler at 00000001426ADB70 returned 1
+225129.337:00ec:trace:seh:call_seh_handlers calling handler 00000001426ADB70 (rec=000070492A7DE170, frame=70492a7ded00 context=000070492A7DDC70, dispatch=000070492A7DD540)
+225129.337:00ec:trace:seh:RtlUnwindEx code=80000029 flags=3 end_frame=000070492A7DED00 target_ip=000000014263D701
+225129.337:00ec:trace:seh:RtlUnwindEx  info[0]=00000001426b1c30
+225129.337:00ec:trace:seh:RtlUnwindEx  info[1]=000070492a7dd278
+225129.337:00ec:trace:seh:RtlUnwindEx  info[2]=000000014263d7d0
+225129.337:00ec:trace:seh:RtlUnwindEx  info[3]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[4]=000070492a7ddc70
+225129.337:00ec:trace:seh:RtlUnwindEx  info[5]=0000000142bab4ac
+225129.337:00ec:trace:seh:RtlUnwindEx  info[6]=000070492a7de170
+225129.337:00ec:trace:seh:RtlUnwindEx  info[7]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[8]=0000000019930520
+225129.337:00ec:trace:seh:RtlUnwindEx  info[9]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[10]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[11]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[12]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[13]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx  info[14]=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000070492a7dca40 rbp=000070492a7dd670 eflags=00000202
+225129.337:00ec:trace:seh:RtlUnwindEx rax=00007ffffe01b000 rbx=000070492a7dd110 rcx=000070492a7dd670 rdx=000000014263d701
+225129.337:00ec:trace:seh:RtlUnwindEx rsi=000070492a7dd670 rdi=0000000000000000  r8=000070492a7dd110  r9=0000000000000000
+225129.337:00ec:trace:seh:RtlUnwindEx r10=000070492a7dd540 r11=000070492a7dd490 r12=000070492a7dcbb0 r13=0000000142bab4ac
+225129.337:00ec:trace:seh:RtlUnwindEx r14=000070492a7ded00 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD110, frame=70492a7dd0e0 context=000070492A7DD670, dispatch=000070492A7DCAC0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 0000000142706DA4 (rec=000070492A7DD110, frame=70492a7dd270 context=000070492A7DD670, dispatch=000070492A7DCAC0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 0000000142706DA4 returned 1
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD110, frame=70492a7de2c0 context=000070492A7DD670, dispatch=000070492A7DCAC0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.337:00ec:trace:seh:RtlUnwindEx calling handler 00000001426ADB70 (rec=000070492A7DD110, frame=70492a7ded00 context=000070492A7DD670, dispatch=000070492A7DCAC0)
+225129.337:00ec:trace:seh:RtlUnwindEx handler 00000001426ADB70 returned 1
+225129.337:00ec:trace:seh:RtlRestoreContext calling consolidate callback 00000001426B1C30 (rec=000070492A7DD110)
+225129.337:00ec:trace:seh:RtlRestoreContext returning to 000000014263D742 stack 000070492A7DED00
+225129.344:0120:fixme:seh:WerSetFlags (2) stub
+225129.344:0120:fixme:heap:RtlSetHeapInformation HEAP_INFORMATION_CLASS 1 not implemented!
+225129.360:013c:fixme:process:SetProcessShutdownParameters (00000380, 00000000): partial stub.
+225129.367:00ec:fixme:ntdll:NtSystemDebugControl (7, (nil), 0, (nil), 0, (nil)), stub
+225129.368:013c:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 79103241, 28) stub
+225129.368:0148:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225129.369:00ec:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+225129.369:00ec:fixme:netapi32:DsEnumerateDomainTrustsA ((null), 0x0008, 000070492A7DF5C8, 000070492A7DF5C4): stub
+225129.369:00ec:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+225129.369:00ec:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000080, 000070492A7DF4C8): semi-stub
+225129.369:00ec:fixme:security:GetWindowsAccountDomainSid (000070492A7DE220 00007FFFFE7A2068 000070492A7DE21C): semi-stub
+225129.377:013c:fixme:ver:GetCurrentPackageId (00D2ECBC 00000000): stub
+225129.388:00ec:fixme:netapi32:DsGetDcNameW ((null), (null), (null), (null), 00000011, 000070492A7DF4C8): semi-stub
+225129.388:00ec:fixme:security:GetWindowsAccountDomainSid (000070492A7DE220 00007FFFFE7A26D8 000070492A7DE21C): semi-stub
+225129.401:00ec:fixme:netapi32:DsEnumerateDomainTrustsW ((null), 0x003f, 000070492A7DF0D8, 000070492A7DEF90): stub
+225129.453:014c:trace:seh:dispatch_exception code=6ba (RPC_S_SERVER_UNAVAILABLE) flags=0 addr=00006FFFFF3AB49E
+225129.453:014c:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=0000704929fae410 rbp=0000000000000000 eflags=00000202
+225129.453:014c:trace:seh:dispatch_exception rax=00006fffff3ab450 rbx=0000704929faf2c0 rcx=0000704929fae430 rdx=0000000000000000
+225129.453:014c:trace:seh:dispatch_exception rsi=0000000000000000 rdi=00007fffff656000  r8=0000000000000000  r9=0000000000000000
+225129.453:014c:trace:seh:dispatch_exception r10=0000000000000080 r11=0000000000000030 r12=0000704929fae5c8 r13=0000000000000001
+225129.453:014c:trace:seh:dispatch_exception r14=0000000000000000 r15=0000704929fae5d0 mxcsr=00001f80 cs=0033 ss=002b
+225129.453:014c:trace:seh:call_seh_handlers calling TEB handler 00006FFFFE6F7740 (rec=0000704929FAE430 frame=0000704929FAE650 context=0000704929FADF30 dispatch=0000704929FAD800) sp=704929faefd0
+225129.453:014c:trace:seh:call_seh_handlers TEB handler at 00006FFFFE6F7740 returned 1
+225129.453:014c:trace:seh:call_seh_handlers calling TEB handler 00006FFFFEDC9370 (rec=0000704929FAE430 frame=0000704929FAFBB0 context=0000704929FADF30 dispatch=0000704929FAD800) sp=704929faff80
+225129.453:014c:trace:seh:RtlUnwindEx code=6ba flags=2 end_frame=0000704929FAFBB0 target_ip=00006FFFFEDC322A
+225129.453:014c:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=0000704929facaf0 rbp=0000704929fad1c0 eflags=00000206
+225129.453:014c:trace:seh:RtlUnwindEx rax=00007ffffe00c000 rbx=0000704929fae430 rcx=0000704929fad1c0 rdx=00006ffffedc322a
+225129.453:014c:trace:seh:RtlUnwindEx rsi=0000704929fad1c0 rdi=0000704929fafbb0  r8=0000704929fae430  r9=00006ffffedce8b0
+225129.453:014c:trace:seh:RtlUnwindEx r10=0000000000010130 r11=000000010065f6c0 r12=0000704929facc60 r13=00007ffffe00c000
+225129.453:014c:trace:seh:RtlUnwindEx r14=0000704929fafbb0 r15=0000704929fae650 mxcsr=00001f80 cs=0033 ss=002b
+225129.453:014c:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFE6F7740 (rec=0000704929FAE430, frame=0000704929FAE650 context=0000704929FAD1C0, dispatch=0000704929FACB70)
+225129.453:014c:trace:seh:RtlUnwindEx handler at 00006FFFFE6F7740 returned 1
+225129.453:014c:trace:seh:RtlRestoreContext returning to 00006FFFFEDC322A stack 0000704929FAFAD0
+225129.453:014c:err:service:device_notify_proc failed to open RPC handle, error 1722
+225129.455:00ec:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,000070492A7DF858,0000000000000000): stub
+225129.458:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.458:0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+225129.460:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.461:0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+225129.484:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.485:0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+225129.489:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.490:0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+225129.492:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.492:0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+225129.493:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.493:0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+225129.494:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.494:0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+225129.495:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.496:0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+225129.511:00ec:fixme:ole:CoInitializeSecurity 0000000000000000, -1, 0000000000000000, 0000000000000000, 0, 3, 0000000000000000, 0, 0000000000000000 stub
+225129.511:00ec:fixme:wbemprox:wbem_locator_ConnectServer unsupported flags
+225129.511:00ec:fixme:wbemprox:client_security_SetBlanket 00006FFFFBEB2030, 00007FFFFF5FB9E0, 10, 0, (null), 3, 3, 0000000000000000, 0
+225129.511:00ec:fixme:wbemprox:client_security_Release 00006FFFFBEB2030
+225129.512:00ec:fixme:wbemprox:enum_class_object_Next timeout not supported
+225129.514:00ec:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 000070492A7D9B18): stub
+225129.518:00ec:fixme:advapi:OpenEventLogW ((null),L"System") stub
+225129.519:00ec:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF65D220,0x00010000,000070492A7D9814,000070492A7D981C) stub
+225129.519:00ec:fixme:advapi:OpenEventLogW ((null),L"Applications") stub
+225129.519:00ec:fixme:advapi:ReadEventLogA (00000000CAFE4242,0x00000009,0x00000000,00007FFFFF66D230,0x00010000,000070492A7D9814,000070492A7D981C) stub
+225129.520:00ec:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+225129.520:00ec:fixme:advapi:CloseEventLog (00000000CAFE4242) stub
+225129.530:00ec:fixme:security:GetWindowsAccountDomainSid (000070492A7D8DE0 00007FFFFE7A2D48 000070492A7D8DDC): semi-stub
+225129.541:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.543:0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+225129.548:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225129.549:0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+225129.550:0168:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225129.751:0074:trace:seh:dispatch_exception code=6ba (RPC_S_SERVER_UNAVAILABLE) flags=0 addr=00006FFFFF3AB49E
+225129.751:0074:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=00007ffffe23d400 rbp=0000000000000000 eflags=00000206
+225129.751:0074:trace:seh:dispatch_exception rax=00006fffff3ab450 rbx=00007ffffe23e2b0 rcx=00007ffffe23d420 rdx=0000000000000000
+225129.751:0074:trace:seh:dispatch_exception rsi=0000000000000004 rdi=00007ffffe851770  r8=0000000000000000  r9=0000000000000000
+225129.751:0074:trace:seh:dispatch_exception r10=0000000000000080 r11=0000000000000030 r12=00007ffffe23d5b8 r13=0000000000000002
+225129.751:0074:trace:seh:dispatch_exception r14=0000000000000000 r15=00007ffffe23d5c0 mxcsr=00001f80 cs=0033 ss=002b
+225129.751:0074:trace:seh:call_seh_handlers calling TEB handler 00006FFFFE6F7740 (rec=00007FFFFE23D420 frame=00007FFFFE23D640 context=00007FFFFE23CF20 dispatch=00007FFFFE23C7F0) sp=7ffffe23dfc0
+225129.751:0074:trace:seh:call_seh_handlers TEB handler at 00006FFFFE6F7740 returned 1
+225129.751:0074:trace:seh:call_seh_handlers calling TEB handler 00006FFFFE006A90 (rec=00007FFFFE23D420 frame=00007FFFFE23EB00 context=00007FFFFE23CF20 dispatch=00007FFFFE23C7F0) sp=7ffffe23ec50
+225129.751:0074:trace:seh:RtlUnwindEx code=6ba flags=2 end_frame=00007FFFFE23EB00 target_ip=00006FFFFDFF4E1A
+225129.751:0074:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=00007ffffe23bae0 rbp=00007ffffe23c1b0 eflags=00000202
+225129.751:0074:trace:seh:RtlUnwindEx rax=00007ffffe02a000 rbx=00007ffffe23d420 rcx=00007ffffe23c1b0 rdx=00006ffffdff4e1a
+225129.751:0074:trace:seh:RtlUnwindEx rsi=00007ffffe23c1b0 rdi=00007ffffe23eb00  r8=00007ffffe23d420  r9=00006ffffe016c10
+225129.751:0074:trace:seh:RtlUnwindEx r10=0000000000000000 r11=00007b951a4d4740 r12=00007ffffe23bc50 r13=00007ffffe02a000
+225129.751:0074:trace:seh:RtlUnwindEx r14=00007ffffe23eb00 r15=00007ffffe23d640 mxcsr=00001f80 cs=0033 ss=002b
+225129.751:0074:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFE6F7740 (rec=00007FFFFE23D420, frame=00007FFFFE23D640 context=00007FFFFE23C1B0, dispatch=00007FFFFE23BB60)
+225129.751:0074:trace:seh:RtlUnwindEx handler at 00006FFFFE6F7740 returned 1
+225129.751:0074:trace:seh:RtlRestoreContext returning to 00006FFFFDFF4E1A stack 00007FFFFE23EAC0
+225129.770:019c:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225129.968:0024:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225130.054:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225130.055:0058:fixme:mountmgr:disk_ioctl Unsupported ioctl 74080 (device=7 access=1 func=20 method=0)
+225130.566:00ec:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 000070492A7D9FB8): stub
+225130.842:01d8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,0000704929C7D618,0000000000000000): stub
+225130.845:0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+225130.861:0058:fixme:mountmgr:disk_ioctl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS semi-stub.
+225130.861:0058:fixme:mountmgr:query_property Faking StorageDeviceProperty data
+225130.866:01d8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,0000704929C7D618,0000000000000000): stub
+225130.866:01d8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,0000704929C7D618,0000000000000000): stub
+225130.877:01d8:fixme:advapi:ReportEventA (00000000CAFE4242,0x0004,0x0000,0x41000204,0000000000000000,0x0000,0x00000000,0000704929C7D618,0000000000000000): stub
+225130.889:01d8:fixme:seh:EnumDeviceDrivers (0000000000000000, 0, 0000704929C7A198): stub
+225131.115:01e4:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225131.790:0024:warn:seh:OutputDebugStringW L"Mastercam HMM v12.1.34\n"
+225131.790:0024:warn:seh:dispatch_exception L"Mastercam HMM v12.1.34\n"
+225131.790:0024:trace:seh:dispatch_exception code=4001000a (DBG_PRINTEXCEPTION_WIDE_C) flags=0 addr=00006FFFFF39D842
+225131.790:0024:trace:seh:dispatch_exception  info[0]=0000000000000018
+225131.790:0024:trace:seh:dispatch_exception  info[1]=000000000170A6C8
+225131.790:0024:trace:seh:dispatch_exception  info[2]=0000000000000018
+225131.790:0024:trace:seh:dispatch_exception  info[3]=000000000170E450
+225131.790:0024:trace:seh:dispatch_exception rip=00006fffff39d842 rsp=000000000024ef10 rbp=000000000024f1a8 eflags=00000202
+225131.790:0024:trace:seh:dispatch_exception rax=0000000000000018 rbx=000000000170a6c8 rcx=000000000024ef60 rdx=00006fffff3ab450
+225131.790:0024:trace:seh:dispatch_exception rsi=000000000003a000 rdi=000000000170e450  r8=0000000000000017  r9=000000000170a6c8
+225131.790:0024:trace:seh:dispatch_exception r10=000000000170e450 r11=0000000000000000 r12=00006ffffea10128 r13=00006ffffea1013f
+225131.790:0024:trace:seh:dispatch_exception r14=0000000107bd0000 r15=0000000140000000 mxcsr=00001fa0 cs=0033 ss=002b
+225131.790:0024:trace:seh:call_seh_handlers calling TEB handler 00006FFFFF3D3EA0 (rec=000000000024EF60 frame=000000000024F000 context=000000000024EA30 dispatch=000000000024E300) sp=24f150
+225131.790:0024:trace:seh:RtlUnwindEx code=4001000a flags=2 end_frame=000000000024F000 target_ip=00006FFFFF36F63A
+225131.790:0024:trace:seh:RtlUnwindEx  info[0]=0000000000000018
+225131.790:0024:trace:seh:RtlUnwindEx  info[1]=000000000170a6c8
+225131.790:0024:trace:seh:RtlUnwindEx  info[2]=0000000000000018
+225131.790:0024:trace:seh:RtlUnwindEx  info[3]=000000000170e450
+225131.790:0024:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000000000024d5f0 rbp=000000000024dcc0 eflags=00000206
+225131.790:0024:trace:seh:RtlUnwindEx rax=000000000003a000 rbx=000000000024ef60 rcx=000000000024dcc0 rdx=00006fffff36f63a
+225131.790:0024:trace:seh:RtlUnwindEx rsi=000000000024dcc0 rdi=000000000024f000  r8=000000000024ef60  r9=00006fffff3e5b70
+225131.790:0024:trace:seh:RtlUnwindEx r10=0000000000000000 r11=0000000000000202 r12=000000000024d760 r13=000000000003a000
+225131.790:0024:trace:seh:RtlUnwindEx r14=000000000024f000 r15=000000000024f000 mxcsr=00001fa0 cs=0033 ss=002b
+225131.790:0024:trace:seh:RtlRestoreContext returning to 00006FFFFF36F63A stack 000000000024EF10
+225131.790:0024:warn:seh:OutputDebugStringA "Mastercam HMM v12.1.34\n"
+225131.790:0024:warn:seh:dispatch_exception "Mastercam HMM v12.1.34\n"
+225131.790:0024:trace:seh:dispatch_exception code=40010006 (DBG_PRINTEXCEPTION_C) flags=0 addr=00006FFFFF39D47F
+225131.790:0024:trace:seh:dispatch_exception  info[0]=0000000000000018
+225131.790:0024:trace:seh:dispatch_exception  info[1]=000000000170E450
+225131.790:0024:trace:seh:dispatch_exception rip=00006fffff39d47f rsp=000000000024ecc0 rbp=000000000024f1a8 eflags=00000206
+225131.790:0024:trace:seh:dispatch_exception rax=000000000170e450 rbx=000000000003a000 rcx=000000000024ed00 rdx=000000000024eda0
+225131.790:0024:trace:seh:dispatch_exception rsi=00006fffff3ab450 rdi=00006fffff3d3ea0  r8=0000000000000000  r9=0000000000000000
+225131.790:0024:trace:seh:dispatch_exception r10=0000000000000000 r11=0000000000000202 r12=00006ffffea10128 r13=00006ffffea1013f
+225131.790:0024:trace:seh:dispatch_exception r14=0000000107bd0000 r15=0000000140000000 mxcsr=00001fa0 cs=0033 ss=002b
+225131.790:0024:trace:seh:call_seh_handlers calling TEB handler 00006FFFFF3D3EA0 (rec=000000000024ED00 frame=000000000024EDA0 context=000000000024E7E0 dispatch=000000000024E0B0) sp=24ef10
+225131.790:0024:trace:seh:RtlUnwindEx code=40010006 flags=2 end_frame=000000000024EDA0 target_ip=00006FFFFF36F63A
+225131.790:0024:trace:seh:RtlUnwindEx  info[0]=0000000000000018
+225131.790:0024:trace:seh:RtlUnwindEx  info[1]=000000000170e450
+225131.790:0024:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000000000024d3a0 rbp=000000000024da70 eflags=00000206
+225131.790:0024:trace:seh:RtlUnwindEx rax=000000000003a000 rbx=000000000024ed00 rcx=000000000024da70 rdx=00006fffff36f63a
+225131.790:0024:trace:seh:RtlUnwindEx rsi=000000000024da70 rdi=000000000024eda0  r8=000000000024ed00  r9=00006fffff3e5b70
+225131.790:0024:trace:seh:RtlUnwindEx r10=0000000000000000 r11=0000000000000202 r12=000000000024d510 r13=000000000003a000
+225131.790:0024:trace:seh:RtlUnwindEx r14=000000000024eda0 r15=000000000024eda0 mxcsr=00001fa0 cs=0033 ss=002b
+225131.790:0024:trace:seh:RtlRestoreContext returning to 00006FFFFF36F63A stack 000000000024ECC0
+225131.796:0024:trace:seh:__std_exception_copy (000000000024F070 000000000024F010)
+225131.796:0024:trace:seh:__std_exception_copy (000000000024F010 00000000017A68B0)
+225131.796:0024:trace:seh:__std_exception_destroy (000000000024F010)
+225131.796:0024:trace:seh:__std_exception_destroy (000000000024F070)
+225131.796:0024:trace:seh:__std_exception_copy (000000000024F070 000000000024F010)
+225131.796:0024:trace:seh:__std_exception_copy (000000000024F010 00000000017A6910)
+225131.796:0024:trace:seh:__std_exception_destroy (000000000024F010)
+225131.796:0024:trace:seh:__std_exception_destroy (000000000024F070)
+225131.801:0024:fixme:ntdll:EtwEventSetInformation (deadbeef, 2, 00006FFFFC3625B7, 28) stub
+225131.802:0024:fixme:ver:GetCurrentPackageId (000000000024DCD0 0000000000000000): stub
+225131.814:0024:fixme:advapi:GetCurrentHwProfileW (000000000024F1D0)
+225131.817:0024:trace:seh:dispatch_exception code=6ba (RPC_S_SERVER_UNAVAILABLE) flags=0 addr=00006FFFFF3AB49E
+225131.817:0024:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000000000024d180 rbp=0000000000000000 eflags=00000202
+225131.817:0024:trace:seh:dispatch_exception rax=00006fffff3ab450 rbx=000000000024e030 rcx=000000000024d1a0 rdx=0000000000000000
+225131.817:0024:trace:seh:dispatch_exception rsi=0000000000000000 rdi=00000000017d5600  r8=0000000000000000  r9=0000000000000000
+225131.817:0024:trace:seh:dispatch_exception r10=0000000000000080 r11=0000000000000030 r12=000000000024d338 r13=0000000000000003
+225131.817:0024:trace:seh:dispatch_exception r14=0000000000000000 r15=000000000024d340 mxcsr=00001fa0 cs=0033 ss=002b
+225131.817:0024:trace:seh:call_seh_handlers calling TEB handler 00006FFFFE6F7740 (rec=000000000024D1A0 frame=000000000024D3C0 context=000000000024CCA0 dispatch=000000000024C570) sp=24dd40
+225131.817:0024:trace:seh:call_seh_handlers TEB handler at 00006FFFFE6F7740 returned 1
+225131.817:0024:trace:seh:call_seh_handlers calling TEB handler 00006FFFFA807600 (rec=000000000024D1A0 frame=000000000024E8D0 context=000000000024CCA0 dispatch=000000000024C570) sp=24ea50
+225131.817:0024:trace:seh:RtlUnwindEx code=6ba flags=2 end_frame=000000000024E8D0 target_ip=00006FFFFA801F1A
+225131.817:0024:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000000000024b860 rbp=000000000024bf30 eflags=00000206
+225131.817:0024:trace:seh:RtlUnwindEx rax=000000000003a000 rbx=000000000024d1a0 rcx=000000000024bf30 rdx=00006ffffa801f1a
+225131.817:0024:trace:seh:RtlUnwindEx rsi=000000000024bf30 rdi=000000000024e8d0  r8=000000000024d1a0  r9=00006ffffa811980
+225131.817:0024:trace:seh:RtlUnwindEx r10=0000000000014470 r11=0000000000000202 r12=000000000024b9d0 r13=000000000003a000
+225131.817:0024:trace:seh:RtlUnwindEx r14=000000000024e8d0 r15=000000000024d3c0 mxcsr=00001fa0 cs=0033 ss=002b
+225131.817:0024:trace:seh:RtlUnwindEx calling TEB handler 00006FFFFE6F7740 (rec=000000000024D1A0, frame=000000000024D3C0 context=000000000024BF30, dispatch=000000000024B8E0)
+225131.817:0024:trace:seh:RtlUnwindEx handler at 00006FFFFE6F7740 returned 1
+225131.817:0024:trace:seh:RtlRestoreContext returning to 00006FFFFA801F1A stack 000000000024E850
+225131.824:0200:trace:seh:libc_addr_cb found signal trampoline in /usr/lib/x86_64-linux-gnu/libc.so.6
+225131.852:0024:trace:seh:__std_exception_copy (000000000024E3B8 000000000024E438)
+225131.852:0024:trace:seh:dispatch_exception code=e06d7363 (EXCEPTION_WINE_CXX_EXCEPTION) flags=1 addr=00006FFFFF3AB49E
+225131.852:0024:trace:seh:dispatch_exception  info[0]=0000000019930520
+225131.852:0024:trace:seh:dispatch_exception  info[1]=000000000024E430
+225131.852:0024:trace:seh:dispatch_exception  info[2]=00006FFFF76440B8
+225131.852:0024:trace:seh:dispatch_exception  info[3]=00006FFFF7630000
+225131.852:0024:trace:seh:dispatch_exception rip=00006fffff3ab49e rsp=000000000024e290 rbp=00000000000000e0 eflags=00000206
+225131.852:0024:trace:seh:dispatch_exception rax=000000000024e2d0 rbx=00006fffff9eff04 rcx=000000000024e2b0 rdx=0000000000000001
+225131.852:0024:trace:seh:dispatch_exception rsi=000000000024e3c0 rdi=000000000024e2f0  r8=0000000000000004  r9=000000000024e3a0
+225131.852:0024:trace:seh:dispatch_exception r10=0000000000000030 r11=0000000000000000 r12=0000000000000000 r13=000000000024edb8
+225131.852:0024:trace:seh:dispatch_exception r14=000000000024e548 r15=0000000000000000 mxcsr=00001fa0 cs=0033 ss=002b
+225131.852:0024:trace:seh:call_seh_handlers calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e3e0 context=000000000024DDB0, dispatch=000000000024D680)
+225131.852:0024:trace:seh:call_seh_handlers handler at 00006FFFF763C1CC returned 1
+225131.852:0024:trace:seh:call_seh_handlers calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e4a0 context=000000000024DDB0, dispatch=000000000024D680)
+225131.852:0024:trace:seh:call_seh_handlers handler at 00006FFFF763C1CC returned 1
+225131.852:0024:trace:seh:call_seh_handlers calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e5b0 context=000000000024DDB0, dispatch=000000000024D680)
+225131.852:0024:trace:seh:call_seh_handlers handler at 00006FFFF763C1CC returned 1
+225131.852:0024:trace:seh:call_seh_handlers calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e7c0 context=000000000024DDB0, dispatch=000000000024D680)
+225131.852:0024:trace:seh:call_seh_handlers handler at 00006FFFF763C1CC returned 1
+225131.852:0024:trace:seh:call_seh_handlers calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e9d0 context=000000000024DDB0, dispatch=000000000024D680)
+225131.852:0024:trace:seh:call_seh_handlers handler at 00006FFFF763C1CC returned 1
+225131.852:0024:trace:seh:call_seh_handlers calling handler 000000010E9DB62C (rec=000000000024E2B0, frame=24ed80 context=000000000024DDB0, dispatch=000000000024D680)
+225131.852:0024:trace:seh:call_seh_handlers handler at 000000010E9DB62C returned 1
+225131.852:0024:trace:seh:call_seh_handlers calling handler 000000010EA01EB1 (rec=000000000024E2B0, frame=24ef20 context=000000000024DDB0, dispatch=000000000024D680)
+225131.852:0024:trace:seh:_XcptFilter (e06d7363,000000000024D570)
+225131.852:0024:trace:seh:call_seh_handlers handler at 000000010EA01EB1 returned 1
+225131.852:0024:trace:seh:call_seh_handlers calling TEB handler 00006FFFFFC0A330 (rec=000000000024E2B0 frame=000000000024F0B0 context=000000000024DDB0 dispatch=000000000024D680) sp=24f200
+225131.852:0024:trace:seh:RtlUnwindEx code=e06d7363 flags=3 end_frame=000000000024F0B0 target_ip=00006FFFFFBD352A
+225131.852:0024:trace:seh:RtlUnwindEx  info[0]=0000000019930520
+225131.852:0024:trace:seh:RtlUnwindEx  info[1]=000000000024e430
+225131.852:0024:trace:seh:RtlUnwindEx  info[2]=00006ffff76440b8
+225131.852:0024:trace:seh:RtlUnwindEx  info[3]=00006ffff7630000
+225131.852:0024:trace:seh:RtlUnwindEx rip=00006fffffbf9de5 rsp=000000000024c990 rbp=000000000024d060 eflags=00000206
+225131.852:0024:trace:seh:RtlUnwindEx rax=000000000003a000 rbx=000000000024e2b0 rcx=000000000024d060 rdx=00006fffffbd352a
+225131.852:0024:trace:seh:RtlUnwindEx rsi=000000000024d060 rdi=0000000000000000  r8=000000000024e2b0  r9=00006fffffc352a0
+225131.852:0024:trace:seh:RtlUnwindEx r10=0000000000000000 r11=0000000000000202 r12=000000000024cb00 r13=000000000003a000
+225131.852:0024:trace:seh:RtlUnwindEx r14=000000000024f0b0 r15=000000000024f0b0 mxcsr=00001fa0 cs=0033 ss=002b
+225131.852:0024:trace:seh:RtlUnwindEx calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e3e0 context=000000000024D060, dispatch=000000000024CA10)
+225131.852:0024:trace:seh:__CxxFrameHandler4 000000000024E2B0 24e3e0 000000000024D060 000000000024CA10
+225131.852:0024:trace:seh:validate_cxx_function_descr4 header 0x8
+225131.852:0024:trace:seh:validate_cxx_function_descr4 basic block transformations flags: 0x0
+225131.852:0024:trace:seh:validate_cxx_function_descr4 unwind table: 0x12b7a(00006FFFF7642B7A) 1
+225131.852:0024:trace:seh:validate_cxx_function_descr4     0 (00006FFFF7642B7A): type 0x3 prev 0000000000000000 func 0xc650 object 0x0
+225131.852:0024:trace:seh:validate_cxx_function_descr4 try table: 0x0(00006FFFF7630000) 0
+225131.852:0024:trace:seh:validate_cxx_function_descr4 ipmap: 0x12b80(00006FFFF7642B80) 2
+225131.852:0024:trace:seh:validate_cxx_function_descr4     0: ip offset 0x0 (00006FFFF7633660) state -1
+225131.852:0024:trace:seh:validate_cxx_function_descr4     1: ip offset 0x2b (00006FFFF763368B) state 0
+225131.852:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.852:0024:trace:seh:ip_to_state4 6ffff76338a5 -> state 0
+225131.852:0024:trace:seh:cxx_local_unwind4 current level: 0, last level: -1
+225131.852:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF763C650 object: 000000000024E3E0
+225131.852:0024:trace:seh:RtlUnwindEx handler 00006FFFF763C1CC returned 1
+225131.852:0024:trace:seh:RtlUnwindEx calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e4a0 context=000000000024D060, dispatch=000000000024CA10)
+225131.852:0024:trace:seh:__CxxFrameHandler4 000000000024E2B0 24e4a0 000000000024D060 000000000024CA10
+225131.852:0024:trace:seh:validate_cxx_function_descr4 header 0x8
+225131.852:0024:trace:seh:validate_cxx_function_descr4 basic block transformations flags: 0x0
+225131.852:0024:trace:seh:validate_cxx_function_descr4 unwind table: 0x12bb2(00006FFFF7642BB2) 10
+225131.852:0024:trace:seh:validate_cxx_function_descr4     0 (00006FFFF7642BB2): type 0x3 prev 0000000000000000 func 0xc680 object 0x0
+225131.852:0024:trace:seh:validate_cxx_function_descr4     1 (00006FFFF7642BB7): type 0x3 prev 00006FFFF7642BB2 func 0xc6a9 object 0x0
+225131.852:0024:trace:seh:validate_cxx_function_descr4     2 (00006FFFF7642BBC): type 0x3 prev 00006FFFF7642BB7 func 0xc6d2 object 0x0
+225131.852:0024:trace:seh:validate_cxx_function_descr4     3 (00006FFFF7642BC1): type 0x1 prev 00006FFFF7642BBC func 0x1560 object 0x40
+225131.852:0024:trace:seh:validate_cxx_function_descr4     4 (00006FFFF7642BC7): type 0x1 prev 00006FFFF7642BB7 func 0x1560 object 0x40
+225131.852:0024:trace:seh:validate_cxx_function_descr4     5 (00006FFFF7642BCD): type 0x1 prev 00006FFFF7642BB2 func 0x1560 object 0x40
+225131.852:0024:trace:seh:validate_cxx_function_descr4     6 (00006FFFF7642BD3): type 0x1 prev 00006FFFF7642BCD func 0x34f0 object 0x38
+225131.852:0024:trace:seh:validate_cxx_function_descr4     7 (00006FFFF7642BD9): type 0x1 prev 00006FFFF7642BD3 func 0x1560 object 0x88
+225131.852:0024:trace:seh:validate_cxx_function_descr4     8 (00006FFFF7642BE0): type 0x1 prev 00006FFFF7642BD9 func 0x1560 object 0xa8
+225131.852:0024:trace:seh:validate_cxx_function_descr4     9 (00006FFFF7642BE7): type 0x1 prev 00006FFFF7642BE0 func 0x1560 object 0x60
+225131.852:0024:trace:seh:validate_cxx_function_descr4 try table: 0x0(00006FFFF7630000) 0
+225131.852:0024:trace:seh:validate_cxx_function_descr4 ipmap: 0x12bee(00006FFFF7642BEE) 16
+225131.852:0024:trace:seh:validate_cxx_function_descr4     0: ip offset 0x0 (00006FFFF76338B0) state -1
+225131.852:0024:trace:seh:validate_cxx_function_descr4     1: ip offset 0x32 (00006FFFF76338E2) state 0
+225131.852:0024:trace:seh:validate_cxx_function_descr4     2: ip offset 0x61 (00006FFFF7633943) state 1
+225131.852:0024:trace:seh:validate_cxx_function_descr4     3: ip offset 0x7 (00006FFFF763394A) state 0
+225131.852:0024:trace:seh:validate_cxx_function_descr4     4: ip offset 0xd (00006FFFF7633957) state 2
+225131.852:0024:trace:seh:validate_cxx_function_descr4     5: ip offset 0x15 (00006FFFF763396C) state 4
+225131.852:0024:trace:seh:validate_cxx_function_descr4     6: ip offset 0x6f (00006FFFF76339DB) state 5
+225131.852:0024:trace:seh:validate_cxx_function_descr4     7: ip offset 0x79 (00006FFFF7633A54) state 6
+225131.852:0024:trace:seh:validate_cxx_function_descr4     8: ip offset 0x24 (00006FFFF7633A78) state 7
+225131.852:0024:trace:seh:validate_cxx_function_descr4     9: ip offset 0xd (00006FFFF7633A85) state 8
+225131.852:0024:trace:seh:validate_cxx_function_descr4     10: ip offset 0x16 (00006FFFF7633A9B) state 9
+225131.852:0024:trace:seh:validate_cxx_function_descr4     11: ip offset 0xc (00006FFFF7633AA7) state 8
+225131.852:0024:trace:seh:validate_cxx_function_descr4     12: ip offset 0x5c (00006FFFF7633B03) state 7
+225131.852:0024:trace:seh:validate_cxx_function_descr4     13: ip offset 0x5c (00006FFFF7633B5F) state 6
+225131.852:0024:trace:seh:validate_cxx_function_descr4     14: ip offset 0x5c (00006FFFF7633BBB) state 5
+225131.852:0024:trace:seh:validate_cxx_function_descr4     15: ip offset 0x13 (00006FFFF7633BCE) state 0
+225131.852:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.852:0024:trace:seh:ip_to_state4 6ffff7633a9a -> state 8
+225131.852:0024:trace:seh:cxx_local_unwind4 current level: 8, last level: -1
+225131.852:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024E548
+225131.852:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024E528
+225131.852:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF76334F0 object: 000000000024E4D8
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024E4E0
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF763C680 object: 000000000024E4A0
+225131.853:0024:trace:seh:RtlUnwindEx handler 00006FFFF763C1CC returned 1
+225131.853:0024:trace:seh:RtlUnwindEx calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e5b0 context=000000000024D060, dispatch=000000000024CA10)
+225131.853:0024:trace:seh:__CxxFrameHandler4 000000000024E2B0 24e5b0 000000000024D060 000000000024CA10
+225131.853:0024:trace:seh:validate_cxx_function_descr4 header 0x8
+225131.853:0024:trace:seh:validate_cxx_function_descr4 basic block transformations flags: 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 unwind table: 0x12c42(00006FFFF7642C42) 16
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0 (00006FFFF7642C42): type 0x3 prev 0000000000000000 func 0xc740 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1 (00006FFFF7642C47): type 0x1 prev 00006FFFF7642C42 func 0x1560 object 0xa8
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2 (00006FFFF7642C4E): type 0x3 prev 00006FFFF7642C47 func 0xc775 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     3 (00006FFFF7642C53): type 0x3 prev 00006FFFF7642C4E func 0xc79b object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     4 (00006FFFF7642C58): type 0x1 prev 00006FFFF7642C53 func 0x1560 object 0x60
+225131.853:0024:trace:seh:validate_cxx_function_descr4     5 (00006FFFF7642C5E): type 0x1 prev 00006FFFF7642C4E func 0x1560 object 0x60
+225131.853:0024:trace:seh:validate_cxx_function_descr4     6 (00006FFFF7642C64): type 0x1 prev 00006FFFF7642C47 func 0x1560 object 0x60
+225131.853:0024:trace:seh:validate_cxx_function_descr4     7 (00006FFFF7642C6A): type 0x1 prev 00006FFFF7642C64 func 0x1560 object 0x38
+225131.853:0024:trace:seh:validate_cxx_function_descr4     8 (00006FFFF7642C70): type 0x3 prev 00006FFFF7642C64 func 0xc7dc object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     9 (00006FFFF7642C75): type 0x3 prev 00006FFFF7642C70 func 0xc80d object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     10 (00006FFFF7642C7A): type 0x2 prev 00006FFFF7642C75 func 0xa9dc object 0x58
+225131.853:0024:trace:seh:validate_cxx_function_descr4     11 (00006FFFF7642C80): type 0x3 prev 00006FFFF7642C75 func 0xc82d object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     12 (00006FFFF7642C85): type 0x1 prev 00006FFFF7642C64 func 0x41b0 object 0xd0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     13 (00006FFFF7642C8D): type 0x3 prev 00006FFFF7642C85 func 0xc849 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     14 (00006FFFF7642C92): type 0x3 prev 00006FFFF7642C64 func 0xc86f object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     15 (00006FFFF7642C98): type 0x3 prev 00006FFFF7642C92 func 0xc888 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 try table: 0x0(00006FFFF7630000) 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 ipmap: 0x12c9e(00006FFFF7642C9E) 21
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0: ip offset 0x0 (00006FFFF7633C50) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1: ip offset 0x3d (00006FFFF7633C8D) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2: ip offset 0x51 (00006FFFF7633CDE) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     3: ip offset 0x33 (00006FFFF7633D11) state 2
+225131.853:0024:trace:seh:validate_cxx_function_descr4     4: ip offset 0x7 (00006FFFF7633D18) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     5: ip offset 0xd (00006FFFF7633D25) state 3
+225131.853:0024:trace:seh:validate_cxx_function_descr4     6: ip offset 0x17 (00006FFFF7633D3C) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     7: ip offset 0x70 (00006FFFF7633DAC) state 6
+225131.853:0024:trace:seh:validate_cxx_function_descr4     8: ip offset 0x81 (00006FFFF7633E2D) state 7
+225131.853:0024:trace:seh:validate_cxx_function_descr4     9: ip offset 0x84 (00006FFFF7633EB1) state 6
+225131.853:0024:trace:seh:validate_cxx_function_descr4     10: ip offset 0x87 (00006FFFF7633F38) state 8
+225131.853:0024:trace:seh:validate_cxx_function_descr4     11: ip offset 0x1c (00006FFFF7633F54) state 9
+225131.853:0024:trace:seh:validate_cxx_function_descr4     12: ip offset 0x3a (00006FFFF7633F8E) state 10
+225131.853:0024:trace:seh:validate_cxx_function_descr4     13: ip offset 0x16 (00006FFFF7633FA4) state 12
+225131.853:0024:trace:seh:validate_cxx_function_descr4     14: ip offset 0x44 (00006FFFF7633FE8) state 13
+225131.853:0024:trace:seh:validate_cxx_function_descr4     15: ip offset 0x29 (00006FFFF7634011) state 12
+225131.853:0024:trace:seh:validate_cxx_function_descr4     16: ip offset 0x60 (00006FFFF7634071) state 6
+225131.853:0024:trace:seh:validate_cxx_function_descr4     17: ip offset 0x28 (00006FFFF7634099) state 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     18: ip offset 0xa (00006FFFF76340A3) state 6
+225131.853:0024:trace:seh:validate_cxx_function_descr4     19: ip offset 0x15 (00006FFFF76340B8) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     20: ip offset 0x60 (00006FFFF7634118) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.853:0024:trace:seh:ip_to_state4 6ffff7633e2a -> state 6
+225131.853:0024:trace:seh:cxx_local_unwind4 current level: 6, last level: -1
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024E610
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024E658
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF763C740 object: 000000000024E5B0
+225131.853:0024:trace:seh:RtlUnwindEx handler 00006FFFF763C1CC returned 1
+225131.853:0024:trace:seh:RtlUnwindEx calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e7c0 context=000000000024D060, dispatch=000000000024CA10)
+225131.853:0024:trace:seh:__CxxFrameHandler4 000000000024E2B0 24e7c0 000000000024D060 000000000024CA10
+225131.853:0024:trace:seh:validate_cxx_function_descr4 header 0x8
+225131.853:0024:trace:seh:validate_cxx_function_descr4 basic block transformations flags: 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 unwind table: 0x12e56(00006FFFF7642E56) 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0 (00006FFFF7642E56): type 0x3 prev 0000000000000000 func 0xcbb0 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1 (00006FFFF7642E5B): type 0x3 prev 00006FFFF7642E56 func 0xcbd6 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2 (00006FFFF7642E60): type 0x1 prev 00006FFFF7642E5B func 0x1560 object 0x60
+225131.853:0024:trace:seh:validate_cxx_function_descr4     3 (00006FFFF7642E66): type 0x1 prev 00006FFFF7642E56 func 0x1560 object 0x60
+225131.853:0024:trace:seh:validate_cxx_function_descr4     4 (00006FFFF7642E6C): type 0x1 prev 0000000000000000 func 0x1560 object 0x60
+225131.853:0024:trace:seh:validate_cxx_function_descr4     5 (00006FFFF7642E72): type 0x1 prev 00006FFFF7642E6C func 0x1560 object 0xa0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     6 (00006FFFF7642E79): type 0x3 prev 00006FFFF7642E72 func 0xcc17 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     7 (00006FFFF7642E7E): type 0x3 prev 00006FFFF7642E79 func 0xcc48 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     8 (00006FFFF7642E83): type 0x2 prev 00006FFFF7642E7E func 0xa9dc object 0x58
+225131.853:0024:trace:seh:validate_cxx_function_descr4     9 (00006FFFF7642E89): type 0x3 prev 00006FFFF7642E7E func 0xcc68 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     10 (00006FFFF7642E8E): type 0x1 prev 00006FFFF7642E72 func 0x41b0 object 0xc0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     11 (00006FFFF7642E95): type 0x3 prev 00006FFFF7642E8E func 0xcc84 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     12 (00006FFFF7642E9A): type 0x3 prev 00006FFFF7642E72 func 0xccaa object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     13 (00006FFFF7642EA0): type 0x3 prev 00006FFFF7642E9A func 0xccc3 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 try table: 0x0(00006FFFF7630000) 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 ipmap: 0x12ea6(00006FFFF7642EA6) 18
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0: ip offset 0x0 (00006FFFF7634D10) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1: ip offset 0x7e (00006FFFF7634D8E) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2: ip offset 0x7 (00006FFFF7634D95) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     3: ip offset 0xd (00006FFFF7634DA2) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     4: ip offset 0x17 (00006FFFF7634DB9) state 3
+225131.853:0024:trace:seh:validate_cxx_function_descr4     5: ip offset 0x70 (00006FFFF7634E29) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     6: ip offset 0x8e (00006FFFF7634EB7) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     7: ip offset 0x27 (00006FFFF7634EDE) state 6
+225131.853:0024:trace:seh:validate_cxx_function_descr4     8: ip offset 0x1c (00006FFFF7634EFA) state 7
+225131.853:0024:trace:seh:validate_cxx_function_descr4     9: ip offset 0x3a (00006FFFF7634F34) state 8
+225131.853:0024:trace:seh:validate_cxx_function_descr4     10: ip offset 0x16 (00006FFFF7634F4A) state 10
+225131.853:0024:trace:seh:validate_cxx_function_descr4     11: ip offset 0x36 (00006FFFF7634F80) state 11
+225131.853:0024:trace:seh:validate_cxx_function_descr4     12: ip offset 0x36 (00006FFFF7634FB6) state 10
+225131.853:0024:trace:seh:validate_cxx_function_descr4     13: ip offset 0x6b (00006FFFF7635021) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     14: ip offset 0x28 (00006FFFF7635049) state 12
+225131.853:0024:trace:seh:validate_cxx_function_descr4     15: ip offset 0xa (00006FFFF7635053) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     16: ip offset 0x15 (00006FFFF7635068) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     17: ip offset 0x64 (00006FFFF76350CC) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.853:0024:trace:seh:ip_to_state4 6ffff7634eb6 -> state 4
+225131.853:0024:trace:seh:cxx_local_unwind4 current level: 4, last level: -1
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024E820
+225131.853:0024:trace:seh:RtlUnwindEx handler 00006FFFF763C1CC returned 1
+225131.853:0024:trace:seh:RtlUnwindEx calling handler 00006FFFF763C1CC (rec=000000000024E2B0, frame=24e9d0 context=000000000024D060, dispatch=000000000024CA10)
+225131.853:0024:trace:seh:__CxxFrameHandler4 000000000024E2B0 24e9d0 000000000024D060 000000000024CA10
+225131.853:0024:trace:seh:validate_cxx_function_descr4 header 0x8
+225131.853:0024:trace:seh:validate_cxx_function_descr4 basic block transformations flags: 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 unwind table: 0x12d2e(00006FFFF7642D2E) 26
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0 (00006FFFF7642D2E): type 0x1 prev 0000000000000000 func 0x1560 object 0xd8
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1 (00006FFFF7642D35): type 0x1 prev 00006FFFF7642D2E func 0x1560 object 0x118
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2 (00006FFFF7642D3C): type 0x3 prev 00006FFFF7642D35 func 0xc8e8 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     3 (00006FFFF7642D41): type 0x3 prev 00006FFFF7642D3C func 0xc90e object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     4 (00006FFFF7642D46): type 0x1 prev 00006FFFF7642D35 func 0x3470 object 0xf8
+225131.853:0024:trace:seh:validate_cxx_function_descr4     5 (00006FFFF7642D4D): type 0x3 prev 00006FFFF7642D46 func 0xc940 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     6 (00006FFFF7642D52): type 0x3 prev 00006FFFF7642D4D func 0xc966 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     7 (00006FFFF7642D57): type 0x3 prev 00006FFFF7642D52 func 0xc98c object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     8 (00006FFFF7642D5C): type 0x3 prev 00006FFFF7642D4D func 0xc9b2 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     9 (00006FFFF7642D61): type 0x1 prev 00006FFFF7642D46 func 0x1560 object 0x38
+225131.853:0024:trace:seh:validate_cxx_function_descr4     10 (00006FFFF7642D67): type 0x3 prev 00006FFFF7642D46 func 0xc9e9 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     11 (00006FFFF7642D6D): type 0x3 prev 00006FFFF7642D46 func 0xca14 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     12 (00006FFFF7642D73): type 0x3 prev 00006FFFF7642D6D func 0xca3f object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     13 (00006FFFF7642D78): type 0x1 prev 00006FFFF7642D46 func 0x3470 object 0x80
+225131.853:0024:trace:seh:validate_cxx_function_descr4     14 (00006FFFF7642D80): type 0x3 prev 00006FFFF7642D78 func 0xca76 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     15 (00006FFFF7642D85): type 0x3 prev 00006FFFF7642D80 func 0xcaa1 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     16 (00006FFFF7642D8A): type 0x3 prev 00006FFFF7642D85 func 0xcacc object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     17 (00006FFFF7642D8F): type 0x3 prev 00006FFFF7642D80 func 0xcaf7 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     18 (00006FFFF7642D94): type 0x1 prev 00006FFFF7642D78 func 0x1560 object 0x38
+225131.853:0024:trace:seh:validate_cxx_function_descr4     19 (00006FFFF7642D9A): type 0x1 prev 00006FFFF7642D46 func 0x1560 object 0x80
+225131.853:0024:trace:seh:validate_cxx_function_descr4     20 (00006FFFF7642DA2): type 0x3 prev 00006FFFF7642D46 func 0xcb3a object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     21 (00006FFFF7642DA8): type 0x3 prev 00006FFFF7642DA2 func 0xcb60 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     22 (00006FFFF7642DAD): type 0x1 prev 00006FFFF7642DA8 func 0x1560 object 0x58
+225131.853:0024:trace:seh:validate_cxx_function_descr4     23 (00006FFFF7642DB3): type 0x1 prev 00006FFFF7642DA2 func 0x1560 object 0x58
+225131.853:0024:trace:seh:validate_cxx_function_descr4     24 (00006FFFF7642DB9): type 0x1 prev 00006FFFF7642D46 func 0x1560 object 0x58
+225131.853:0024:trace:seh:validate_cxx_function_descr4     25 (00006FFFF7642DC0): type 0x1 prev 00006FFFF7642D35 func 0x1560 object 0xf8
+225131.853:0024:trace:seh:validate_cxx_function_descr4 try table: 0x0(00006FFFF7630000) 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 ipmap: 0x12dc9(00006FFFF7642DC9) 41
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0: ip offset 0x0 (00006FFFF7634220) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1: ip offset 0x86 (00006FFFF76342A6) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2: ip offset 0x32 (00006FFFF76342D8) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     3: ip offset 0x9 (00006FFFF76342E1) state 2
+225131.853:0024:trace:seh:validate_cxx_function_descr4     4: ip offset 0xe (00006FFFF76342EF) state 3
+225131.853:0024:trace:seh:validate_cxx_function_descr4     5: ip offset 0x2b (00006FFFF763431A) state 2
+225131.853:0024:trace:seh:validate_cxx_function_descr4     6: ip offset 0x7 (00006FFFF7634321) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     7: ip offset 0x7 (00006FFFF7634328) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     8: ip offset 0x88 (00006FFFF76343B0) state 11
+225131.853:0024:trace:seh:validate_cxx_function_descr4     9: ip offset 0xe (00006FFFF76343BE) state 12
+225131.853:0024:trace:seh:validate_cxx_function_descr4     10: ip offset 0x32 (00006FFFF76343F0) state 11
+225131.853:0024:trace:seh:validate_cxx_function_descr4     11: ip offset 0x8 (00006FFFF76343F8) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     12: ip offset 0x8 (00006FFFF7634400) state 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     13: ip offset 0x79 (00006FFFF7634479) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     14: ip offset 0x14 (00006FFFF763448D) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     15: ip offset 0x6e (00006FFFF76344FB) state 7
+225131.853:0024:trace:seh:validate_cxx_function_descr4     16: ip offset 0x33 (00006FFFF763452E) state 6
+225131.853:0024:trace:seh:validate_cxx_function_descr4     17: ip offset 0x7 (00006FFFF7634535) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     18: ip offset 0xe (00006FFFF7634543) state 8
+225131.853:0024:trace:seh:validate_cxx_function_descr4     19: ip offset 0xa1 (00006FFFF76345E4) state 5
+225131.853:0024:trace:seh:validate_cxx_function_descr4     20: ip offset 0x13 (00006FFFF76345F7) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     21: ip offset 0xeb (00006FFFF76346E2) state 10
+225131.853:0024:trace:seh:validate_cxx_function_descr4     22: ip offset 0x9f (00006FFFF7634781) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     23: ip offset 0x19 (00006FFFF763479A) state 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     24: ip offset 0x31 (00006FFFF76347CB) state 16
+225131.853:0024:trace:seh:validate_cxx_function_descr4     25: ip offset 0x32 (00006FFFF76347FD) state 15
+225131.853:0024:trace:seh:validate_cxx_function_descr4     26: ip offset 0x8 (00006FFFF7634805) state 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     27: ip offset 0x10 (00006FFFF7634815) state 17
+225131.853:0024:trace:seh:validate_cxx_function_descr4     28: ip offset 0xa8 (00006FFFF76348BD) state 14
+225131.853:0024:trace:seh:validate_cxx_function_descr4     29: ip offset 0x14 (00006FFFF76348D1) state 13
+225131.853:0024:trace:seh:validate_cxx_function_descr4     30: ip offset 0x60 (00006FFFF7634931) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     31: ip offset 0x90 (00006FFFF76349C1) state 20
+225131.853:0024:trace:seh:validate_cxx_function_descr4     32: ip offset 0x5 (00006FFFF76349C6) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     33: ip offset 0xd (00006FFFF76349D3) state 21
+225131.853:0024:trace:seh:validate_cxx_function_descr4     34: ip offset 0x15 (00006FFFF76349E8) state 23
+225131.853:0024:trace:seh:validate_cxx_function_descr4     35: ip offset 0x69 (00006FFFF7634A51) state 24
+225131.853:0024:trace:seh:validate_cxx_function_descr4     36: ip offset 0xfc (00006FFFF7634B4D) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4     37: ip offset 0x60 (00006FFFF7634BAD) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     38: ip offset 0x5c (00006FFFF7634C09) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     39: ip offset 0x5c (00006FFFF7634C65) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     40: ip offset 0x98 (00006FFFF7634CFD) state 4
+225131.853:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.853:0024:trace:seh:ip_to_state4 6ffff7634ae2 -> state 24
+225131.853:0024:trace:seh:cxx_local_unwind4 current level: 24, last level: -1
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024EA28
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7633470 object: 000000000024EAC8
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024EAE8
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 00006FFFF7631560 object: 000000000024EAA8
+225131.853:0024:trace:seh:RtlUnwindEx handler 00006FFFF763C1CC returned 1
+225131.853:0024:trace:seh:RtlUnwindEx calling handler 000000010E9DB62C (rec=000000000024E2B0, frame=24ed80 context=000000000024D060, dispatch=000000000024CA10)
+225131.853:0024:trace:seh:__CxxFrameHandler4 000000000024E2B0 24ed80 000000000024D060 000000000024CA10
+225131.853:0024:trace:seh:validate_cxx_function_descr4 header 0x8
+225131.853:0024:trace:seh:validate_cxx_function_descr4 basic block transformations flags: 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 unwind table: 0xb0fe5a(000000010EE2FE5A) 3
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0 (000000010EE2FE5A): type 0x1 prev 0000000000000000 func 0x6b48fd object 0x30
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1 (000000010EE2FE60): type 0x1 prev 000000010EE2FE5A func 0x9040 object 0x58
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2 (000000010EE2FE66): type 0x1 prev 000000010EE2FE60 func 0x9040 object 0x38
+225131.853:0024:trace:seh:validate_cxx_function_descr4 try table: 0x0(000000010E320000) 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 ipmap: 0xb0fe6d(000000010EE2FE6D) 7
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0: ip offset 0x0 (000000010E633650) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1: ip offset 0x32 (000000010E633682) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2: ip offset 0x29 (000000010E6336AB) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     3: ip offset 0x26 (000000010E6336D1) state 2
+225131.853:0024:trace:seh:validate_cxx_function_descr4     4: ip offset 0x23 (000000010E6336F4) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     5: ip offset 0x6b (000000010E63375F) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     6: ip offset 0x83 (000000010E6337E2) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.853:0024:trace:seh:ip_to_state4 10e6336ed -> state 2
+225131.853:0024:trace:seh:cxx_local_unwind4 current level: 2, last level: -1
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010E329040 object: 000000000024EDB8
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010E329040 object: 000000000024EDD8
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010E9D48FD object: 000000000024EDB0
+225131.853:0024:trace:seh:RtlUnwindEx handler 000000010E9DB62C returned 1
+225131.853:0024:trace:seh:RtlUnwindEx calling handler 000000010EA01E5D (rec=000000000024E2B0, frame=24ee10 context=000000000024D060, dispatch=000000000024CA10)
+225131.853:0024:trace:seh:__CxxFrameHandler4 000000000024E2B0 24ee10 000000000024D060 000000000024CA10
+225131.853:0024:trace:seh:validate_cxx_function_descr4 header 0x8
+225131.853:0024:trace:seh:validate_cxx_function_descr4 basic block transformations flags: 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 unwind table: 0xb0fb12(000000010EE2FB12) 2
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0 (000000010EE2FB12): type 0x3 prev 0000000000000000 func 0x7b1cd0 object 0x0
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1 (000000010EE2FB17): type 0x1 prev 000000010EE2FB12 func 0x6ba65d object 0x50
+225131.853:0024:trace:seh:validate_cxx_function_descr4 try table: 0x0(000000010E320000) 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 ipmap: 0xb0fb1e(000000010EE2FB1E) 3
+225131.853:0024:trace:seh:validate_cxx_function_descr4     0: ip offset 0x0 (000000010E6335B0) state -1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     1: ip offset 0x28 (000000010E6335D8) state 1
+225131.853:0024:trace:seh:validate_cxx_function_descr4     2: ip offset 0x4f (000000010E633627) state 0
+225131.853:0024:trace:seh:validate_cxx_function_descr4 establisher frame: 0
+225131.853:0024:trace:seh:ip_to_state4 10e6335e9 -> state 1
+225131.853:0024:trace:seh:cxx_local_unwind4 current level: 1, last level: -1
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010E9DA65D object: 000000000024EE60
+225131.853:0024:trace:seh:cxx_local_unwind4 handler: 000000010EAD1CD0 object: 000000000024EE10
+225131.853:0024:trace:seh:RtlUnwindEx handler 000000010EA01E5D returned 1
+225131.853:0024:trace:seh:RtlUnwindEx calling handler 000000010EA01EB1 (rec=000000000024E2B0, frame=24eef0 context=000000000024D060, dispatch=000000000024CA10)
+225131.853:0024:trace:seh:RtlUnwindEx handler 000000010EA01EB1 returned 1
+225131.853:0024:trace:seh:RtlRestoreContext returning to 00006FFFFFBD352A stack 000000000024EFC0
+225131.853:0024:err:module:loader_init "MCTool.dll" failed to initialize, aborting
+225131.853:0024:err:module:loader_init Initializing dlls for L"C:\\Program Files\\Mastercam 2027\\Mastercam.exe" failed, status e06d7363
+225135.467:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.469:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.470:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.506:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.537:0114:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.682:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.683:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.685:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.734:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented
+225135.772:013c:fixme:service:QueryServiceConfig2W Level 6 not implemented

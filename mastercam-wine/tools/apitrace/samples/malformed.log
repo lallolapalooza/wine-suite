@@ -1,0 +1,13 @@
+this is not a log line at all
+Call with no parens
+12345.678:0009:Call KERNEL32.CreateFileW(0012ab30 "unterminated
+::::::
+\0\0\0 binary garbage \xff\xfe
+0x
+0xZZZZ
+1 9 KERNEL32!ReadFile (arg0=0x40 -> 
+12345.679:0009:Ret  KERNEL32.CreateFileW() retval=
+<p>html-ish</p>
+short:1:Call
+12345.680:0009:Call KERNEL32.ReadFile(00000040,0061fe80) ret=7f02
+12345.681:0009:Ret  KERNEL32.ReadFile() retval=00000001 ret=7f02
