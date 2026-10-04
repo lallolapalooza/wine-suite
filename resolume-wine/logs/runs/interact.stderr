@@ -1,0 +1,39 @@
+01c8:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFF354AF8): semi-stub
+01c8:fixme:win:RegisterTouchWindow hwnd 000000000002005A, flags 0 stub!
+01c8:fixme:msg:ChangeWindowMessageFilterEx 000000000002005A 233 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 000000000002005A 4a 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 000000000002005A 49 1 0000000000000000
+01c8:err:ole:com_get_class_object class {aa509086-5ca9-4c25-8f95-589d3c07b48a} not registered
+01c8:err:ole:com_get_class_object class {aa509086-5ca9-4c25-8f95-589d3c07b48a} not registered
+01c8:err:ole:create_server class {aa509086-5ca9-4c25-8f95-589d3c07b48a} not registered
+01c8:fixme:ole:com_get_class_object CLSCTX_REMOTE_SERVER not supported
+01c8:err:ole:com_get_class_object no class object {aa509086-5ca9-4c25-8f95-589d3c07b48a} could be created for context 0x17
+01c8:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFF359C68): semi-stub
+01c8:fixme:win:RegisterTouchWindow hwnd 0000000000030050, flags 0 stub!
+01c8:fixme:msg:ChangeWindowMessageFilterEx 0000000000030050 233 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 0000000000030050 4a 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 0000000000030050 49 1 0000000000000000
+01c8:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+01c8:fixme:win:RegisterSuspendResumeNotification 0000000000030050, 0: stub.
+01fc:fixme:dxgi:dxgi_output_WaitForVBlank iface 00007FFFFF357ED0 stub!
+01c8:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFF497E78): semi-stub
+01c8:fixme:win:RegisterTouchWindow hwnd 0000000000030068, flags 0 stub!
+01c8:fixme:msg:ChangeWindowMessageFilterEx 0000000000030068 233 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 0000000000030068 4a 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 0000000000030068 49 1 0000000000000000
+01c8:fixme:win:RegisterSuspendResumeNotification 0000000000030068, 0: stub.
+01c8:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFF4981E8): semi-stub
+01c8:fixme:win:RegisterTouchWindow hwnd 000000000002006E, flags 0 stub!
+01c8:fixme:msg:ChangeWindowMessageFilterEx 000000000002006E 233 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 000000000002006E 4a 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 000000000002006E 49 1 0000000000000000
+01c8:fixme:win:RegisterSuspendResumeNotification 000000000002006E, 0: stub.
+01c8:fixme:combase:RoGetActivationFactory (L"Windows.UI.ViewManagement.UIViewSettings", {3694dbf9-8f68-44be-8ff5-195c98ede8a6}, 00007FFFFF498558): semi-stub
+01c8:fixme:win:RegisterTouchWindow hwnd 000000000002005E, flags 0 stub!
+01c8:fixme:msg:ChangeWindowMessageFilterEx 000000000002005E 233 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 000000000002005E 4a 1 0000000000000000
+01c8:fixme:msg:ChangeWindowMessageFilterEx 000000000002005E 49 1 0000000000000000
+01c8:fixme:win:RegisterSuspendResumeNotification 000000000002005E, 0: stub.
+01c8:fixme:win:RegisterSuspendResumeNotification 000000000002005A, 0: stub.
+0248:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
+0248:fixme:cryptasn:CryptDecodeObjectEx Unsupported decoder for lpszStructType 1.3.6.1.4.1.311.2.1.4
