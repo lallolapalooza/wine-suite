@@ -1,0 +1,4 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Wine\Debug]
+"RelayInclude"="user32.PeekMessageW;user32.GetMessageW;user32.MsgWaitForMultipleObjectsEx;user32.MsgWaitForMultipleObjects;user32.WaitMessage;user32.DispatchMessageW"

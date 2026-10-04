@@ -1,0 +1,17 @@
+
+7-Zip 26.00 (x64) : Copyright (c) 1999-2026 Igor Pavlov : 2026-02-12
+ 64-bit locale=en_US.UTF-8 Threads:22 OPEN_MAX:524288, ASM
+
+Scanning the drive for archives:
+1 file, 363261314 bytes (347 MiB)
+
+Extracting archive: /home/asdf/Downloads/Hog_PC_5.2.1.31.zip
+--
+Path = /home/asdf/Downloads/Hog_PC_5.2.1.31.zip
+Type = zip
+Physical Size = 363261314
+
+Everything is Ok
+
+Size:       365039616
+Compressed: 363261314

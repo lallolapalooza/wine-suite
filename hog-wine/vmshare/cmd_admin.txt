@@ -1,0 +1,2 @@
+# nonce 1791063437.688189821
+hostname; (Get-Date).ToString(); (Get-Process *win32-golden* -ErrorAction SilentlyContinue | Select-Object -ExpandProperty ProcessName) -join ","

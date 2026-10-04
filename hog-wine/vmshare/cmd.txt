@@ -1,0 +1,2 @@
+# nonce 1791063497.827600899
+$ProgressPreference='SilentlyContinue'; curl.exe -s -o 'C:\Users\adsf\guest_monitor_hog.ps1' http://192.168.122.1:8000/guest_monitor_hog.ps1; Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','C:\Users\adsf\guest_monitor_hog.ps1'

@@ -1,0 +1,58 @@
+
+xwininfo: Window id: 0x47c (the root window) (has no name)
+
+  Root window id: 0x47c (the root window) (has no name)
+  Parent window id: 0x0 (none)
+     38 children:
+     0x1800018 (has no name): ()  1x1+0+0  +0+0
+     0x1200007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1200006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1200005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1200004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1600001 (has no name): ()  1x1+0+0  +0+0
+     0x1200002 (has no name): ("explorer.exe" "explorer.exe")  160x20+70+61  +70+61
+     0x1200003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1200001 (has no name): ()  1x1+0+0  +0+0
+     0x1400018 (has no name): ()  1x1+0+0  +0+0
+     0xc00007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xc00006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xc00005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xc00004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xe00001 (has no name): ()  1x1+0+0  +0+0
+     0xc00002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0xc00003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xc00001 (has no name): ()  1x1+0+0  +0+0
+     0x600007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x800001 (has no name): ()  1x1+0+0  +0+0
+     0x600002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x600003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600001 (has no name): ()  1x1+0+0  +0+0
+     0x486 (has no name): ()  100x100+0+0  +0+0
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x200173 (has no name): ()  1x1+0+0  +0+0
+        1 child:
+        0x200174 (has no name): ()  1x1+0+0  +1+1
+     0x200171 (has no name): ()  1x1+0+0  +0+0
+        1 child:
+        0x200172 (has no name): ()  1x1+0+0  +1+1
+     0x20016e (has no name): ()  1x1+0+0  +0+0
+        1 child:
+        0x20016f (has no name): ()  1x1+0+0  +1+1
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+        3 children:
+        0x20016d (has no name): ()  1x1+0+0  +1+1
+        0x20016c (has no name): ()  1x1+0+0  +1+1
+        0x20016b (has no name): ()  1x1+0+0  +1+1
+     0x200167 (has no name): ()  1x1+0+0  +0+0
+        2 children:
+        0x200169 (has no name): ()  1x1+0+0  +1+1
+        0x200168 (has no name): ()  1x1+0+0  +1+1
+     0x200166 (has no name): ()  1x1+0+0  +0+0
+     0x200165 (has no name): ()  1x1+0+0  +0+0
+     0x200164 (has no name): ()  1x1+0+0  +0+0
+     0x200163 (has no name): ()  1x1+0+0  +0+0
+     0x200170 (has no name): ()  1x1+0+0  +0+0
+

@@ -1,0 +1,8 @@
+== elev launch log (/home/asdf/projects/hog-wine/logs/elev_guest_monitor_hog.log) ==
+cat: /home/asdf/projects/hog-wine/logs/elev_guest_monitor_hog.log: input file is output file
+Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','C:\Users\adsf\guest_monitor_hog.ps1'
+start=2026-10-03T14:38:19.0462725-07:00
+rc=0
+end=2026-10-03T14:38:21.4366192-07:00
+--- output ---
+

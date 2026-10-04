@@ -1,0 +1,2893 @@
+################################################################
+### role=launcher   wine=wine_hog.log  win=win_hog.log
+################################################################
+# A = /home/asdf/projects/hog-wine/logs/api/win_hog.log  (5737 calls)
+# B = /home/asdf/projects/hog-wine/logs/api/wine_hog.log  (61405 calls)
+
+== call sequences in A not in B (2157) ==
+  kernel32.dll!initializecriticalsection(PTR) x2
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x3
+  kernel32.dll!setthreadpriority(0x41c,0x0)
+  kernel32.dll!resumethread(0x41c)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR) x2
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!createfilew(PTR,PTR,0x3,PTR,0x3,0x80,0x0)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  advapi32.dll!gettokeninformation(PTR,0x19,PTR,0x100,PTR)
+  advapi32.dll!getsidsubauthoritycount(PTR)
+  advapi32.dll!getsidsubauthority(PTR,0x0)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x4
+  kernel32.dll!createsemaphorea(PTR,0x1,PTR,PTR)
+  ole32.dll!cotaskmemfree(PTR)
+  ntdll.dll!ntquerysysteminformation(0x2c,PTR,0xac,0x0)
+  ntdll.dll!rtlgetversion(PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR) x4
+  ntdll.dll!ntquerysysteminformation(0xb6,PTR,0x38,0x0)
+  ntdll.dll!rtlgetversion(PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR) x8
+  kernel32.dll!createmutexa(0x0,0x0,PTR)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x104)
+  ntdll.dll!rtlgetversion(PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x2
+  user32.dll!getwindowlongw(PTR,PTR) x6
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  user32.dll!getwindowlongw(PTR,PTR) x2
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!setwindowshookexw(0x3,PTR,0x0,0x26ac)
+  user32.dll!getwindowlongw(PTR,PTR) x6
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x2
+  user32.dll!registerwindowmessagew(PTR) x2
+  ntdll.dll!rtlgetversion(PTR) x3
+  ntdll.dll!ntquerysysteminformation(0xb6,PTR,0x38,0x0)
+  ntdll.dll!ntquerysysteminformation(0x23,PTR,0x2,0x0)
+  ntdll.dll!rtlgetversion(PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0xb6,PTR,0x38,0x0)
+  ntdll.dll!rtlgetversion(PTR) x7
+  ntdll.dll!ntquerysysteminformation(0xa4,PTR,0x20,0x0)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  ntdll.dll!ntquerysysteminformation(0xa4,PTR,0x20,0x0)
+  ntdll.dll!rtlgetversion(PTR)
+  kernel32.dll!isprocessorfeaturepresent(0xa)
+  kernel32.dll!initializecriticalsectionex(PTR,0xfa0,0x0)
+  kernel32.dll!virtualprotect(PTR,0x80,0x2,PTR)
+  kernel32.dll!initializecriticalsectionex(PTR,0xfa0,0x0) x15
+  kernel32.dll!getprocessheap()
+  kernel32.dll!loadlibraryexw(PTR,0x0,0x800)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!virtualprotect(PTR,0x80,0x4,PTR)
+  kernel32.dll!virtualprotect(PTR,0x80,0x2,PTR)
+  kernel32.dll!initializecriticalsectionex(PTR,0xfa0,0x0) x64
+  kernel32.dll!getcommandlinew()
+  kernel32.dll!getacp()
+  kernel32.dll!loadlibraryexw(PTR,0x0,0x800)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!virtualprotect(PTR,0x80,0x4,PTR)
+  kernel32.dll!virtualprotect(PTR,0x80,0x2,PTR)
+  kernel32.dll!initializecriticalsectionex(PTR,0xfa0,0x0) x3
+  kernel32.dll!initializecriticalsectionandspincount(PTR,0xfa0)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x2
+  kernel32.dll!isprocessorfeaturepresent(0xa)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x105)
+  kernel32.dll!loadlibraryexw(PTR,0x0,0x800)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!virtualprotect(PTR,0x80,0x4,PTR)
+  kernel32.dll!virtualprotect(PTR,0x80,0x2,PTR)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,0x0) x2
+  mpr.dll!wnetgetconnectionw(PTR,0x0,PTR) x3
+  kernel32.dll!waitforsingleobject(0x670,0x2710)
+  user32.dll!getwindowlongw(PTR,PTR) x9
+  user32.dll!setwindowlongw(PTR,PTR,0x0)
+  kernel32.dll!initonceexecuteonce(PTR,PTR,PTR,0x0)
+  kernel32.dll!releasemutex(0x670)
+  kernel32.dll!waitforsingleobject(0x670,PTR)
+  kernel32.dll!releasemutex(0x670)
+  kernel32.dll!waitforsingleobject(0x670,PTR)
+  kernel32.dll!releasemutex(0x670)
+  kernel32.dll!waitforsingleobject(0x670,PTR)
+  kernel32.dll!releasemutex(0x670)
+  kernel32.dll!waitforsingleobject(0x670,PTR)
+  kernel32.dll!releasemutex(0x670)
+  kernel32.dll!waitforsingleobject(0x670,PTR)
+  kernel32.dll!releasemutex(0x670)
+  kernel32.dll!waitforsingleobject(0x670,PTR)
+  kernel32.dll!releasemutex(0x670)
+  kernel32.dll!waitforsingleobject(0x670,PTR)
+  kernel32.dll!releasemutex(0x670)
+  kernel32.dll!createfilemappingw(0x45c,0x0,0x2,0x0,0x0,0x0)
+  kernel32.dll!mapviewoffile(0x47c,0x4,0x0,0x0,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x6
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x2
+  user32.dll!registerwindowmessagew(PTR) x2
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x6
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x6
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!getmonitorinfow(PTR,PTR)
+  advapi32.dll!gettokeninformation(0x45c,0x1,0x0,0x0,PTR)
+  advapi32.dll!gettokeninformation(0x45c,0x1,PTR,0x24,PTR)
+  userenv.dll!getuserprofiledirectoryw(0x45c,0x0,PTR)
+  userenv.dll!getuserprofiledirectoryw(0x45c,PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x6
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!setwindowshookexw(0x3,PTR,0x0,0x20b8)
+  kernel32.dll!getprocessheap() x3
+  kernel32.dll!createmutexw(PTR,0x0,PTR)
+  kernel32.dll!getprocessheap() x2
+  kernel32.dll!createmutexw(PTR,0x0,PTR)
+  kernel32.dll!getprocessheap() x5
+  kernel32.dll!getnativesysteminfo(PTR)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  gdi32.dll!deletedc(PTR)
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  user32.dll!getsystemmetrics(0x50)
+  kernel32.dll!initializesrwlock(PTR) x2
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!loadlibraryexw(PTR,0x0,0x8)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  user32.dll!enumdisplaymonitors(0x0,0x0,PTR,PTR)
+  kernel32.dll!loadlibraryexw(PTR,0x0,0x0)
+  kernel32.dll!getprocaddress(PTR,PTR) x2
+  kernel32.dll!freelibrary(PTR)
+  user32.dll!enumdisplaymonitors(0x0,0x0,PTR,PTR) x2
+  kernel32.dll!loadlibrarya(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x3
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!gettickcount()
+  kernel32.dll!freelibrary(PTR)
+  kernel32.dll!getmodulehandlea(PTR)
+  kernel32.dll!freelibrary(PTR)
+  kernel32.dll!deletecriticalsection(PTR)
+  gdi32.dll!deletedc(PTR)
+  kernel32.dll!deletecriticalsection(PTR)
+  kernel32.dll!loadlibrarya(PTR)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,0x0) x2
+  kernel32.dll!getmodulehandlea(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x3
+  kernel32.dll!getversionexw(PTR)
+  ntdll.dll!rtlgetversion(PTR)
+  kernel32.dll!virtualalloc(0x0,PTR,PTR,0x4)
+  kernel32.dll!initializecriticalsection(PTR) x4
+  user32.dll!getsystemmetrics(0x50)
+  kernel32.dll!verifyversioninfow(PTR,0x3,0x1b)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!getprocaddress(PTR,PTR) x4
+  kernel32.dll!getmodulehandlew(0x0)
+  user32.dll!createwindowexw(0x0,PTR,PTR,0x0,0x0,0x0,0x280,0x1e0,0x0,0x0,PTR,0x0)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x6
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x2
+  user32.dll!registerwindowmessagew(PTR) x10
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!getwindowlongw(PTR,PTR) x6
+  user32.dll!getthreaddesktop(0x20b8)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!setwindowpos(PTR,0x0,0x0,0x0,0x280,0x1e0,0x417)
+  gdi32.dll!choosepixelformat(PTR,PTR)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  kernel32.dll!acquiresrwlockexclusive(PTR) x2
+  kernel32.dll!getprocessheap()
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR) x2
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!getcurrentprocessid()
+  kernel32.dll!waitforsingleobjectex(0x690,PTR,0x0)
+  kernel32.dll!opensemaphorew(PTR,0x0,PTR)
+  kernel32.dll!waitforsingleobject(0x538,0x0)
+  kernel32.dll!releasesemaphore(0x538,0x1,PTR)
+  kernel32.dll!releasesemaphore(0x538,0x1,0x0)
+  kernel32.dll!releasemutex(0x690)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR) x2
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!releasesrwlockexclusive(PTR) x2
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!loadlibraryexw(PTR,0x0,0x8)
+  kernel32.dll!getprocessheap()
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  advapi32.dll!regopenkeyexw(0x690,PTR,0x0,PTR,PTR)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!setpixelformat(PTR,0x2,PTR)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  kernel32.dll!getcurrentprocessid()
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!getsystemmetrics(0x50)
+  gdi32.dll!getdevicecaps(PTR,0x8)
+  gdi32.dll!getdevicecaps(PTR,0xa)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!initializecriticalsection(PTR)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getdevicecaps(PTR,0x2) x2
+  gdi32.dll!getdevicecaps(PTR,0xe)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x2)
+  gdi32.dll!createcompatiblebitmap(PTR,0x1,0x1)
+  gdi32.dll!getpixelformat(PTR)
+  gdi32.dll!describepixelformat(PTR,0x2,0x28,PTR)
+  ... 1757 more
+
+== call sequences in B not in A (48283) ==
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  kernel32.dll!initializecriticalsection(PTR) x5
+  kernel32.dll!setthreadpriority(0xc8,0x0)
+  kernel32.dll!resumethread(0xc8)
+  kernel32.dll!initializesrwlock(PTR)
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!createsemaphorea(PTR,0x1,PTR,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!createfilew(PTR,PTR,0x3,PTR,0x3,0x80,0x0)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  advapi32.dll!gettokeninformation(PTR,0x19,PTR,0x100,PTR)
+  advapi32.dll!getsidsubauthoritycount(PTR)
+  advapi32.dll!getsidsubauthority(PTR,0x0)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0xf0,PTR,0x0,0x1,PTR,0x38)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR) x3
+  ole32.dll!cotaskmemfree(PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x2,PTR,0x138,0x0)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0xf0,PTR,0x0,0x1,PTR,0x1e)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR) x2
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!createmutexa(0x0,0x0,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x104)
+  kernel32.dll!createfilew(PTR,PTR,0x3,PTR,0x3,0x1,0x0)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!expandenvironmentstringsw(PTR,0x0,0x0)
+  kernel32.dll!expandenvironmentstringsw(PTR,PTR,0x36)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR) x2
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,0x0)
+  kernel32.dll!getfileattributesw(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  user32.dll!setwindowshookexw(0x3,PTR,0x0,0x15c)
+  kernel32.dll!waitforsingleobject(0x108,0x2710)
+  kernel32.dll!releasemutex(0xfc)
+  kernel32.dll!waitforsingleobject(0xfc,PTR)
+  kernel32.dll!releasemutex(0xfc)
+  kernel32.dll!waitforsingleobject(0xfc,PTR)
+  kernel32.dll!releasemutex(0xfc)
+  kernel32.dll!waitforsingleobject(0xfc,PTR)
+  kernel32.dll!releasemutex(0xfc)
+  kernel32.dll!waitforsingleobject(0xfc,PTR)
+  kernel32.dll!releasemutex(0xfc)
+  kernel32.dll!waitforsingleobject(0xfc,PTR)
+  kernel32.dll!releasemutex(0xfc)
+  kernel32.dll!waitforsingleobject(0xfc,PTR)
+  kernel32.dll!releasemutex(0xfc)
+  kernel32.dll!waitforsingleobject(0xfc,PTR)
+  kernel32.dll!releasemutex(0xfc)
+  kernel32.dll!createfilemappingw(0xf4,0x0,0x2,0x0,0x0,0x0)
+  kernel32.dll!mapviewoffile(0x104,0x4,0x0,0x0,PTR)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  kernel32.dll!initonceexecuteonce(PTR,PTR,0x0,0x0)
+  user32.dll!createwindowexw(0x0,PTR,0x0,0x0,0x0,0x0,0x0,0x0,PTR,0x0,PTR,0x0)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x10
+  kernel32.dll!getmodulehandlew(0x0) x2
+  user32.dll!createwindowexw(0x0,PTR,PTR,0x0,PTR,PTR,PTR,PTR,PTR,0x0,PTR,0x0)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  kernel32.dll!initonceexecuteonce(PTR,PTR,0x0,0x0)
+  user32.dll!createwindowexw(0x0,PTR,PTR,0x0,0x0,0x0,0x0,0x0,PTR,0x0,PTR,0x0)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  user32.dll!destroywindow(PTR)
+  user32.dll!defwindowprocw(PTR,0x2,0x0,0x0)
+  user32.dll!defwindowprocw(PTR,0x82,0x0,0x0)
+  user32.dll!getmonitorinfow(0x1,PTR)
+  advapi32.dll!gettokeninformation(0xf4,0x1,0x0,0x0,PTR)
+  advapi32.dll!gettokeninformation(0xf4,0x1,PTR,0x24,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  userenv.dll!getuserprofiledirectoryw(0xf4,0x0,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  advapi32.dll!gettokeninformation(0xf4,0x1,0x0,0x0,PTR)
+  advapi32.dll!gettokeninformation(0xf4,0x1,PTR,0x24,PTR)
+  kernel32.dll!getcomputernamew(PTR,PTR) x2
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!expandenvironmentstringsw(PTR,0x0,0x0)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!expandenvironmentstringsw(PTR,0x0,0x0)
+  kernel32.dll!expandenvironmentstringsw(PTR,PTR,0x9)
+  userenv.dll!getuserprofiledirectoryw(0xf4,PTR,PTR)
+  advapi32.dll!gettokeninformation(0xf4,0x1,0x0,0x0,PTR)
+  advapi32.dll!gettokeninformation(0xf4,0x1,PTR,0x24,PTR)
+  kernel32.dll!getcomputernamew(PTR,PTR) x2
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!expandenvironmentstringsw(PTR,0x0,0x0)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!expandenvironmentstringsw(PTR,0x0,0x0)
+  kernel32.dll!expandenvironmentstringsw(PTR,PTR,0x9)
+  user32.dll!setwindowshookexw(0x3,PTR,0x0,0x128)
+  user32.dll!enumdisplaydevicesw(0x0,0x0,PTR,0x0) x2
+  user32.dll!enumdisplaydevicesw(0x0,0x1,PTR,0x0)
+  kernel32.dll!getmodulehandlea(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x338
+  opengl32.dll!wglgetcurrentdc()
+  user32.dll!createwindowexa(0x0,PTR,PTR,PTR,0xa,0xa,0xa,0xa,0x0,0x0,0x0,0x0)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!registerwindowmessagew(PTR) x7
+  user32.dll!defwindowprocw(PTR,0x5,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x3,0x0,0x0)
+  gdi32.dll!choosepixelformat(PTR,PTR)
+  gdi32.dll!describepixelformat(PTR,0x67,0x28,PTR)
+  gdi32.dll!setpixelformat(PTR,0x67,PTR)
+  opengl32.dll!wglcreatecontext(PTR)
+  kernel32.dll!initializesrwlock(PTR) x14
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  opengl32.dll!wglmakecurrent(PTR,PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!initializesrwlock(PTR) x14
+  opengl32.dll!wglmakecurrent(PTR,PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wgldeletecontext(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  ... 47883 more
+
+== per-function call counts ==
+function                                                 A       B   delta
+user32.dll!peekmessagew                                395   13398  +13003
+kernel32.dll!queryperformancecounter                   412    6092   +5680
+kernel32.dll!acquiresrwlockshared                       46    6130   +6084
+kernel32.dll!releasesrwlockshared                       46    6130   +6084
+user32.dll!getwindowlongw                              385    4495   +4110
+user32.dll!callnexthookex                              164    4482   +4318
+user32.dll!dispatchmessagew                            155    4478   +4323
+user32.dll!translatemessage                            155    4478   +4323
+kernel32.dll!acquiresrwlockexclusive                    86    1437   +1351
+kernel32.dll!releasesrwlockexclusive                    86    1437   +1351
+opengl32.dll!wglgetprocaddress                           0    1156   +1156
+kernel32.dll!getprocaddress                            137     837    +700
+kernel32.dll!deviceiocontrol                             0     919    +919
+kernel32.dll!waitforsingleobject                       250     497    +247
+kernel32.dll!getprocessheap                            289     304     +15
+kernel32.dll!initializecriticalsection                 260     301     +41
+ws2_32.dll!wsaenumnetworkevents                         40     514    +474
+kernel32.dll!sleep                                      23     398    +375
+kernel32.dll!releasesemaphore                          206     208      +2
+kernel32.dll!getfullpathnamew                          189     191      +2
+kernel32.dll!resetevent                                 18     335    +317
+kernel32.dll!getfileattributesexw                      172     173      +1
+kernel32.dll!deletecriticalsection                     148     193     +45
+ws2_32.dll!wsaeventselect                               22     259    +237
+kernel32.dll!writefile                                 136     136      +0
+kernel32.dll!getcurrentprocessid                       122     135     +13
+advapi32.dll!regopenkeyexw                              70     156     +86
+gdi32.dll!getstockobject                                72     141     +69
+iphlpapi.dll!getadaptersinfo                            38     172    +134
+gdi32.dll!getdevicecaps                                188      11    -177
+user32.dll!defwindowprocw                               67     101     +34
+gdi32.dll!createcompatibledc                            46      90     +44
+gdi32.dll!deletedc                                      47      89     +42
+kernel32.dll!initializesrwlock                           4     131    +127
+user32.dll!systemparametersinfow                       120      15    -105
+gdi32.dll!createdibsection                              41      80     +39
+kernel32.dll!openprocess                                56      60      +4
+kernel32.dll!getmodulehandlew                           45      70     +25
+psapi.dll!enumprocessmodules                            55      59      +4
+psapi.dll!getmodulebasenamew                            55      59      +4
+kernel32.dll!createeventw                               15      88     +73
+ntdll.dll!ntquerysysteminformation                      67      34     -33
+kernel32.dll!initializecriticalsectionex                87      11     -76
+kernel32.dll!createfilew                                36      52     +16
+advapi32.dll!regsetvalueexw                             12      51     +39
+kernel32.dll!isprocessorfeaturepresent                  29      27      -2
+setupapi.dll!setupdienumdeviceinterfaces                25      29      +4
+kernel32.dll!getmodulefilenamew                         26      25      -1
+kernel32.dll!releasemutex                               25      26      +1
+kernel32.dll!loadlibraryw                               23      24      +1
+kernel32.dll!createsemaphorea                           23      23      +0
+setupapi.dll!setupdidestroydeviceinfolist               21      21      +0
+user32.dll!settimer                                     18      23      +5
+kernel32.dll!mapviewoffile                              14      24     +10
+kernel32.dll!setfilepointerex                           19      19      +0
+kernel32.dll!findnextfilew                              18      18      +0
+kernel32.dll!createfilemappingw                         12      22     +10
+kernel32.dll!getmodulehandleexw                         14      20      +6
+kernel32.dll!unmapviewoffile                            12      22     +10
+advapi32.dll!regcreatekeyexw                             0      32     +32
+kernel32.dll!initializecriticalsectionandspincount      16      15      -1
+kernel32.dll!getsysteminfo                              15      15      +0
+user32.dll!getsystemmetrics                             18      12      -6
+user32.dll!killtimer                                    13      15      +2
+user32.dll!setwindowlongw                               23       5     -18
+user32.dll!registerwindowmessagew                       18       8     -10
+kernel32.dll!getcurrentprocess                          12      13      +1
+kernel32.dll!resumethread                               11      14      +3
+setupapi.dll!setupdigetdeviceinterfacedetailw            8      16      +8
+gdi32.dll!createcompatiblebitmap                        17       5     -12
+user32.dll!createwindowexw                               9      13      +4
+cfgmgr32.dll!cm_get_device_interface_list_sizew          0      21     +21
+user32.dll!postmessagew                                 12       8      -4
+ntdll.dll!rtlgetversion                                 16       1     -15
+kernel32.dll!getsystemtime                               4      12      +8
+user32.dll!getkeyboardlayout                             4      12      +8
+user32.dll!sendmessagew                                  4      10      +6
+kernel32.dll!getfileattributesw                          3      10      +7
+kernel32.dll!createeventa                                6       6      +0
+kernel32.dll!getfilesizeex                               1      11     +10
+kernel32.dll!setendoffile                                6       6      +0
+kernel32.dll!createthread                                2       9      +7
+advapi32.dll!gettokeninformation                         3       7      +4
+advapi32.dll!regopenkeyexa                               5       5      +0
+user32.dll!enumdisplaymonitors                           7       3      -4
+kernel32.dll!freelibrary                                 7       2      -5
+kernel32.dll!openthread                                  3       6      +3
+cfgmgr32.dll!cm_locate_devnodew                          0       8      +8
+hid.dll!hidd_getattributes                               0       8      +8
+hid.dll!hidd_gethidguid                                  4       4      +0
+kernel32.dll!createdirectoryw                            0       8      +8
+kernel32.dll!expandenvironmentstringsw                   0       8      +8
+kernel32.dll!findclose                                   4       4      +0
+kernel32.dll!getmodulehandlea                            4       4      +0
+kernel32.dll!loadlibrarya                                5       3      -2
+kernel32.dll!loadlibraryexw                              7       1      -6
+ole32.dll!cocreateguid                                   4       4      +0
+ole32.dll!cotaskmemfree                                  4       4      +0
+setupapi.dll!setupdigetclassdevsw                        4       4      +0
+shell32.dll!shgetfolderpathw                             4       4      +0
+user32.dll!destroywindow                                 2       6      +4
+kernel32.dll!virtualprotect                              7       0      -7
+advapi32.dll!openprocesstoken                            3       3      +0
+gdi32.dll!setpixelformat                                 1       5      +4
+kernel32.dll!createfilemappinga                          3       3      +0
+kernel32.dll!findfirstfileexw                            3       3      +0
+kernel32.dll!getcurrentthread                            3       3      +0
+kernel32.dll!initonceexecuteonce                         2       4      +2
+kernel32.dll!setevent                                    1       5      +4
+opengl32.dll!wglmakecurrent                              0       6      +6
+user32.dll!enumdisplaydevicesw                           0       6      +6
+user32.dll!getthreaddesktop                              6       0      -6
+gdi32.dll!choosepixelformat                              1       4      +3
+kernel32.dll!createfilea                                 2       3      +1
+kernel32.dll!createmutexw                                3       2      -1
+kernel32.dll!getversionexw                               2       3      +1
+cfgmgr32.dll!cm_get_device_interface_listw               0       4      +4
+gdi32.dll!describepixelformat                            1       3      +2
+kernel32.dll!createmutexa                                2       2      +0
+kernel32.dll!flushfilebuffers                            2       2      +0
+kernel32.dll!getcomputernamew                            0       4      +4
+kernel32.dll!getenvironmentvariablew                     2       2      +0
+kernel32.dll!gettemppathw                                2       2      +0
+kernel32.dll!getthreadpriority                           2       2      +0
+kernel32.dll!globalmemorystatusex                        1       3      +2
+kernel32.dll!queryperformancefrequency                   2       2      +0
+kernel32.dll!setthreadpriority                           2       2      +0
+kernel32.dll!virtualalloc                                3       1      -2
+ntdll.dll!ntflushbuffersfile                             2       2      +0
+opengl32.dll!wgldeletecontext                            0       4      +4
+opengl32.dll!wglgetcurrentdc                             0       4      +4
+shell32.dll!shgetknownfolderpath                         2       2      +0
+user32.dll!getkeyboardlayoutlist                         2       2      +0
+user32.dll!getmonitorinfow                               1       3      +2
+user32.dll!setwindowshookexw                             2       2      +0
+user32.dll!setwindowtextw                                2       2      +0
+userenv.dll!getuserprofiledirectoryw                     2       2      +0
+kernel32.dll!getcommandlinew                             2       1      -1
+kernel32.dll!waitformultipleobjectsex                    0       3      +3
+mpr.dll!wnetgetconnectionw                               3       0      -3
+user32.dll!getforegroundwindow                           2       1      -1
+advapi32.dll!allocateandinitializesid                    1       1      +0
+advapi32.dll!getsidsubauthority                          1       1      +0
+advapi32.dll!getsidsubauthoritycount                     1       1      +0
+dwmapi.dll!dwmiscompositionenabled                       1       1      +0
+gdi32.dll!createdcw                                      1       1      +0
+gdi32.dll!getpixelformat                                 2       0      -2
+kernel32.dll!deletefilew                                 1       1      +0
+kernel32.dll!getdrivetypew                               1       1      +0
+kernel32.dll!getlocaltime                                1       1      +0
+kernel32.dll!getnativesysteminfo                         2       0      -2
+kernel32.dll!getsystemtimeasfiletime                     0       2      +2
+kernel32.dll!gettickcount                                2       0      -2
+kernel32.dll!mapviewoffileex                             1       1      +0
+kernel32.dll!movefileexw                                 1       1      +0
+kernel32.dll!waitformultipleobjects                      1       1      +0
+ole32.dll!oleinitialize                                  1       1      +0
+opengl32.dll!wglcreatecontext                            0       2      +2
+shell32.dll!commandlinetoargvw                           1       1      +0
+user32.dll!beginpaint                                    1       1      +0
+user32.dll!createwindowexa                               0       2      +2
+user32.dll!endpaint                                      1       1      +0
+user32.dll!getmessagew                                   1       1      +0
+user32.dll!registerpowersettingnotification              1       1      +0
+user32.dll!setwindowpos                                  1       1      +0
+user32.dll!showwindow                                    1       1      +0
+version.dll!getfileversioninfosizew                      1       1      +0
+version.dll!getfileversioninfow                          1       1      +0
+version.dll!verqueryvaluew                               1       1      +0
+winmm.dll!timebeginperiod                                1       1      +0
+winmm.dll!timegetdevcaps                                 1       1      +0
+kernel32.dll!getacp                                      1       0      -1
+kernel32.dll!opensemaphorew                              1       0      -1
+kernel32.dll!verifyversioninfow                          1       0      -1
+kernel32.dll!waitforsingleobjectex                       1       0      -1
+
+################################################################
+### role=_server   wine=wine_hog_server.log  win=win_hog_server.log
+################################################################
+# A = /home/asdf/projects/hog-wine/logs/api/win_hog_server.log  (3452 calls)
+# B = /home/asdf/projects/hog-wine/logs/api/wine_hog_server.log  (32519 calls)
+
+== call sequences in A not in B (2445) ==
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!initonceexecuteonce(PTR,PTR,PTR,0x0)
+  kernel32.dll!resetevent(0x528)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!sleep(0x3)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!sleep(0xf5)
+  iphlpapi.dll!getadaptersinfo(0x0,PTR)
+  kernel32.dll!getprocessheap()
+  iphlpapi.dll!getadaptersinfo(PTR,PTR)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!createeventw(0x0,0x0,0x0,0x0)
+  kernel32.dll!getprocessheap() x2
+  kernel32.dll!sleep(0x3e8)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xf2)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4c8,0x4bc,PTR)
+  ws2_32.dll!wsaeventselect(0x4c8,0x4bc,0x1)
+  kernel32.dll!waitforsingleobject(0x4bc,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!sleep(0x6)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xfa)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xf1)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!sleep(0x8)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xfa)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  iphlpapi.dll!getadaptersinfo(0x0,PTR)
+  kernel32.dll!getprocessheap()
+  iphlpapi.dll!getadaptersinfo(PTR,PTR)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!createeventw(0x0,0x0,0x0,0x0)
+  kernel32.dll!getprocessheap() x2
+  kernel32.dll!sleep(0x3e8)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xf0)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!sleep(0x8)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xf9)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!sleep(0xf1)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!sleep(0x8)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xf9)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  iphlpapi.dll!getadaptersinfo(0x0,PTR)
+  kernel32.dll!getprocessheap()
+  iphlpapi.dll!getadaptersinfo(PTR,PTR)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!createeventw(0x0,0x0,0x0,0x0)
+  kernel32.dll!getprocessheap() x2
+  kernel32.dll!sleep(0x3e8)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xef)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!sleep(0xa)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xf9)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xee)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!sleep(0xb)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  kernel32.dll!resetevent(0x528)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x4
+  kernel32.dll!sleep(0xf9)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  iphlpapi.dll!getadaptersinfo(0x0,PTR)
+  kernel32.dll!getprocessheap()
+  iphlpapi.dll!getadaptersinfo(PTR,PTR)
+  kernel32.dll!getprocessheap()
+  kernel32.dll!createeventw(0x0,0x0,0x0,0x0)
+  kernel32.dll!getprocessheap() x2
+  kernel32.dll!sleep(0x3e8)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ws2_32.dll!wsaeventselect(0x4f8,0x4f4,0x1)
+  kernel32.dll!waitforsingleobject(0x4f4,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x4f8,0x4f4,PTR)
+  ... 2045 more
+
+== call sequences in B not in A (21117) ==
+  kernel32.dll!initonceexecuteonce(PTR,PTR,PTR,0x0)
+  kernel32.dll!isprocessorfeaturepresent(0xa)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  kernel32.dll!initializecriticalsectionandspincount(PTR,0xfa0)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x2
+  kernel32.dll!initializecriticalsectionandspincount(PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!getsysteminfo(PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  kernel32.dll!getsysteminfo(PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!createsemaphorea(PTR,0x1,PTR,PTR)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!initializesrwlock(PTR)
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x3
+  kernel32.dll!getcurrentthread()
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createsemaphorea(PTR,0x1,PTR,PTR)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x3
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x6
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  winmm.dll!timegetdevcaps(PTR,0x8)
+  winmm.dll!timebeginperiod(0x1)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR) x4
+  kernel32.dll!globalmemorystatusex(PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x2,PTR,0x138,0x0)
+  kernel32.dll!getversionexw(PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR) x8
+  kernel32.dll!initializecriticalsection(PTR)
+  shell32.dll!shgetfolderpathw(0x0,0x801a,0x0,0x0,PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0xf4,PTR,0x0,0x1,PTR,0x3c)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!createdirectoryw(PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!waitforsingleobject(0xf4,PTR) x10
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!queryperformancefrequency(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xf8,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xf8,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  shell32.dll!shgetfolderpathw(0x0,0x8023,0x0,0x0,PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0xfc,PTR,0x0,0x1,PTR,0x1e)
+  kernel32.dll!createdirectoryw(PTR,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  shell32.dll!shgetfolderpathw(0x0,0x8005,0x0,0x0,PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0xfc,PTR,0x0,0x1,PTR,0x30)
+  kernel32.dll!createdirectoryw(PTR,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!createdirectoryw(PTR,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x104)
+  kernel32.dll!createdirectoryw(PTR,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!createdirectoryw(PTR,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  shell32.dll!shgetfolderpathw(0x0,0x803b,0x0,0x0,PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x104)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!gettemppathw(0x104,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!gettemppathw(0x104,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!createdirectoryw(PTR,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!createdirectoryw(PTR,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0xfc,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0xfc,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x104)
+  iphlpapi.dll!getadaptersinfo(0x0,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!createfilew(PTR,0x0,0x3,0x0,0x3,0x0,0x0)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,PTR,PTR,0x0)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,0xb04,PTR,0x0)
+  kernel32.dll!getprocessheap()
+  iphlpapi.dll!getadaptersinfo(PTR,PTR)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,PTR,PTR,0x0)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,0xb04,PTR,0x0)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,0xc04,PTR,0x0)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x30,PTR,0x8,PTR,0x0) x4
+  kernel32.dll!getprocessheap()
+  iphlpapi.dll!getadaptersinfo(0x0,PTR)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,PTR,PTR,0x0)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,0xb04,PTR,0x0)
+  kernel32.dll!getprocessheap()
+  iphlpapi.dll!getadaptersinfo(PTR,PTR)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,PTR,PTR,0x0)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,0xb04,PTR,0x0)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x38,PTR,0xc04,PTR,0x0)
+  kernel32.dll!deviceiocontrol(0xfc,PTR,PTR,0x30,PTR,0x8,PTR,0x0) x4
+  kernel32.dll!getprocessheap()
+  kernel32.dll!queryperformancefrequency(PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  shell32.dll!shgetknownfolderpath(PTR,0x4000,0x0,PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0x100,PTR,0x0,0x1,PTR,0x3c)
+  ole32.dll!cotaskmemfree(PTR)
+  shell32.dll!shgetknownfolderpath(PTR,0x4000,0x0,PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0x100,PTR,0x0,0x1,PTR,0x1e)
+  ole32.dll!cotaskmemfree(PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR) x5
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!createfilew(PTR,PTR,0x3,PTR,0x3,0x80,0x0)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR) x3
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR) x3
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR) x3
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0x100,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0x100,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0x100,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0x100,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0x100,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0x100,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0x100,PTR,0x4,PTR)
+  psapi.dll!getmodulebasenamew(0x100,PTR,PTR,0x100)
+  kernel32.dll!waitforsingleobject(0xf4,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xf4,0x1,0x0)
+  kernel32.dll!getmodulehandleexw(0x6,PTR,PTR)
+  kernel32.dll!getmodulefilenamew(PTR,PTR,0x1000)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x1000)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR) x2
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!createfilew(PTR,PTR,0x3,PTR,0x3,0x80,0x0)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  advapi32.dll!gettokeninformation(PTR,0x19,PTR,0x100,PTR)
+  advapi32.dll!getsidsubauthoritycount(PTR)
+  advapi32.dll!getsidsubauthority(PTR,0x0)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0x100,PTR,0x0,0x1,PTR,0x38)
+  ole32.dll!cotaskmemfree(PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0x100,PTR,0x0,0x1,PTR,0x1e)
+  ole32.dll!cotaskmemfree(PTR)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x105)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!createsemaphorea(PTR,0x1,PTR,PTR)
+  kernel32.dll!createeventw(0x0,0x0,0x0,0x0)
+  kernel32.dll!createeventw(0x0,0x1,0x0,0x0)
+  kernel32.dll!createfilemappinga(PTR,0x0,0x4,0x0,0x8f8,PTR)
+  kernel32.dll!mapviewoffile(0x110,0x2,0x0,0x0,0x0)
+  kernel32.dll!waitforsingleobject(0x100,PTR)
+  kernel32.dll!getcurrentprocessid()
+  kernel32.dll!releasesemaphore(0x100,0x1,0x0)
+  kernel32.dll!getcurrentprocessid()
+  kernel32.dll!waitforsingleobject(0x100,PTR)
+  kernel32.dll!getcurrentprocessid()
+  kernel32.dll!releasesemaphore(0x100,0x1,0x0)
+  kernel32.dll!getmodulehandleexw(0x4,PTR,PTR)
+  kernel32.dll!createthread(0x0,0x0,PTR,PTR,0x4,PTR)
+  kernel32.dll!resumethread(0x114)
+  kernel32.dll!createfilemappinga(PTR,0x0,0x4,0x0,0x38,PTR)
+  kernel32.dll!mapviewoffile(0x118,0x2,0x0,0x0,0x0)
+  kernel32.dll!waitforsingleobject(0xcc,PTR)
+  kernel32.dll!getcurrentprocessid()
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xcc,0x1,0x0)
+  kernel32.dll!getcurrentprocessid()
+  kernel32.dll!gettemppathw(0x104,PTR)
+  kernel32.dll!getcurrentthread()
+  kernel32.dll!getcurrentprocess()
+  kernel32.dll!getcurrentthread()
+  kernel32.dll!getcurrentprocess()
+  kernel32.dll!getfileattributesw(PTR)
+  kernel32.dll!createeventw(0x0,0x0,0x0,0x0)
+  kernel32.dll!createthread(0x0,0x0,PTR,0x0,0x0,PTR)
+  kernel32.dll!getfileattributesw(PTR)
+  kernel32.dll!createfilew(PTR,PTR,0x3,PTR,0x2,0x80,0x0)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x105)
+  kernel32.dll!writefile(0x128,PTR,0x2000,PTR,0x0)
+  kernel32.dll!writefile(0x128,PTR,0x5b8,PTR,0x0)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x105)
+  version.dll!getfileversioninfosizew(PTR,0x0)
+  version.dll!getfileversioninfow(PTR,0x0,0x5bc,PTR)
+  version.dll!verqueryvaluew(PTR,PTR,PTR,PTR)
+  kernel32.dll!createfilew(PTR,PTR,0x3,PTR,0x3,0x1,0x0)
+  kernel32.dll!getmodulehandlew(0x0)
+  kernel32.dll!waitformultipleobjects(0x2,PTR,0x0,PTR)
+  kernel32.dll!deletefilew(PTR)
+  kernel32.dll!getmodulehandlew(0x0)
+  user32.dll!createwindowexw(0x0,PTR,PTR,0x0,0x0,0x0,0x0,0x0,PTR,0x0,PTR,0x0)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getcurrentprocessid() x2
+  kernel32.dll!openprocess(0x410,0x0,0x1a4)
+  psapi.dll!enumprocessmodules(0x124,PTR,0x4,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!setwindowshookexw(0x3,PTR,0x0,0x1d8)
+  ... 20717 more
+
+== per-function call counts ==
+function                                                 A       B   delta
+kernel32.dll!queryperformancecounter                  1448   13134  +11686
+ws2_32.dll!wsaenumnetworkevents                        773    3358   +2585
+kernel32.dll!waitforsingleobject                       387    1902   +1515
+ws2_32.dll!wsaeventselect                              387    1726   +1339
+kernel32.dll!getfileattributesexw                        0    1614   +1614
+kernel32.dll!lockfileex                                  0    1584   +1584
+kernel32.dll!unlockfileex                                0    1584   +1584
+ntdll.dll!ntlockfile                                     0    1584   +1584
+ntdll.dll!ntunlockfile                                   0    1584   +1584
+ws2_32.dll!wsasend                                       0    1045   +1045
+kernel32.dll!deviceiocontrol                             0     583    +583
+kernel32.dll!sleep                                     159     282    +123
+kernel32.dll!resetevent                                136     234     +98
+kernel32.dll!initializecriticalsection                   0     362    +362
+kernel32.dll!getprocessheap                             92     198    +106
+kernel32.dll!getcurrentprocessid                         0     196    +196
+iphlpapi.dll!getadaptersinfo                            46     110     +64
+kernel32.dll!writefile                                   0     149    +149
+kernel32.dll!createeventw                               23      96     +73
+kernel32.dll!releasesemaphore                            0     118    +118
+kernel32.dll!getfullpathnamew                            0     101    +101
+kernel32.dll!openprocess                                 0      95     +95
+psapi.dll!enumprocessmodules                             0      95     +95
+psapi.dll!getmodulebasenamew                             0      95     +95
+kernel32.dll!createfilew                                 0      84     +84
+kernel32.dll!getsystemtime                               0      62     +62
+kernel32.dll!setfilepointerex                            0      40     +40
+kernel32.dll!deletecriticalsection                       0      36     +36
+kernel32.dll!getprocaddress                              0      33     +33
+kernel32.dll!resumethread                                0      32     +32
+kernel32.dll!createthread                                0      29     +29
+kernel32.dll!getmodulehandleexw                          0      29     +29
+kernel32.dll!initonceexecuteonce                         1      20     +19
+user32.dll!peekmessagew                                  0      21     +21
+kernel32.dll!flushfilebuffers                            0      18     +18
+ntdll.dll!ntflushbuffersfile                             0      18     +18
+kernel32.dll!getmodulehandlew                            0      17     +17
+kernel32.dll!getfileattributesw                          0      14     +14
+kernel32.dll!getmodulefilenamew                          0      13     +13
+advapi32.dll!regopenkeyexw                               0      12     +12
+kernel32.dll!createdirectoryw                            0      11     +11
+ntdll.dll!ntquerysysteminformation                       0      10     +10
+kernel32.dll!createsemaphorea                            0       9      +9
+advapi32.dll!regcreatekeyexw                             0       8      +8
+kernel32.dll!deletefilew                                 0       8      +8
+kernel32.dll!getcurrentprocess                           0       8      +8
+kernel32.dll!releasemutex                                0       8      +8
+user32.dll!callnexthookex                                0       8      +8
+user32.dll!killtimer                                     0       8      +8
+user32.dll!postmessagew                                  0       8      +8
+user32.dll!settimer                                      0       8      +8
+advapi32.dll!regsetvalueexw                              0       7      +7
+kernel32.dll!createeventa                                0       6      +6
+user32.dll!defwindowprocw                                0       6      +6
+user32.dll!getwindowlongw                                0       6      +6
+kernel32.dll!getcurrentthread                            0       4      +4
+kernel32.dll!getsysteminfo                               0       4      +4
+kernel32.dll!loadlibraryw                                0       4      +4
+kernel32.dll!openthread                                  0       4      +4
+ole32.dll!cotaskmemfree                                  0       4      +4
+shell32.dll!shgetfolderpathw                             0       4      +4
+kernel32.dll!findnextfilew                               0       3      +3
+kernel32.dll!gettemppathw                                0       3      +3
+kernel32.dll!initializecriticalsectionandspincount       0       3      +3
+kernel32.dll!initializecriticalsectionex                 0       3      +3
+kernel32.dll!isprocessorfeaturepresent                   0       3      +3
+kernel32.dll!mapviewoffile                               0       3      +3
+kernel32.dll!queryperformancefrequency                   0       3      +3
+kernel32.dll!setendoffile                                0       3      +3
+kernel32.dll!setevent                                    0       3      +3
+kernel32.dll!setthreadpriority                           0       3      +3
+kernel32.dll!createfilemappinga                          0       2      +2
+kernel32.dll!findclose                                   0       2      +2
+kernel32.dll!getcommandlinew                             0       2      +2
+kernel32.dll!getenvironmentvariablew                     0       2      +2
+shell32.dll!commandlinetoargvw                           0       2      +2
+shell32.dll!shgetknownfolderpath                         0       2      +2
+user32.dll!createwindowexw                               0       2      +2
+user32.dll!setwindowlongw                                0       2      +2
+user32.dll!setwindowshookexw                             0       2      +2
+advapi32.dll!getsidsubauthority                          0       1      +1
+advapi32.dll!getsidsubauthoritycount                     0       1      +1
+advapi32.dll!gettokeninformation                         0       1      +1
+kernel32.dll!createfilemappingw                          0       1      +1
+kernel32.dll!createmutexw                                0       1      +1
+kernel32.dll!findfirstfileexw                            0       1      +1
+kernel32.dll!findfirstfilew                              0       1      +1
+kernel32.dll!freelibrary                                 0       1      +1
+kernel32.dll!getthreadpriority                           0       1      +1
+kernel32.dll!gettickcount                                0       1      +1
+kernel32.dll!getversionexw                               0       1      +1
+kernel32.dll!globalmemorystatusex                        0       1      +1
+kernel32.dll!initializesrwlock                           0       1      +1
+kernel32.dll!unmapviewoffile                             0       1      +1
+kernel32.dll!virtualalloc                                0       1      +1
+kernel32.dll!waitformultipleobjects                      0       1      +1
+version.dll!getfileversioninfosizew                      0       1      +1
+version.dll!getfileversioninfow                          0       1      +1
+version.dll!verqueryvaluew                               0       1      +1
+winmm.dll!timebeginperiod                                0       1      +1
+winmm.dll!timegetdevcaps                                 0       1      +1
+
+################################################################
+### role=_desktop   wine=wine_hog_desktop.log  win=win_hog_desktop.log
+################################################################
+# A = /home/asdf/projects/hog-wine/logs/api/win_hog_desktop.log  (69563 calls)
+# B = /home/asdf/projects/hog-wine/logs/api/wine_hog_desktop.log  (55649 calls)
+
+== call sequences in A not in B (39928) ==
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x3
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!waitforsingleobject(0x430,PTR) x10
+  kernel32.dll!releasesemaphore(0x430,0x1,0x0) x10
+  kernel32.dll!waitforsingleobject(0x434,PTR) x10
+  kernel32.dll!releasesemaphore(0x434,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x85c,PTR)
+  kernel32.dll!releasesemaphore(0x85c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x3
+  kernel32.dll!waitforsingleobject(0x68c,0x0)
+  kernel32.dll!waitforsingleobject(0x678,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x678,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0x67c,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x67c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  kernel32.dll!waitforsingleobject(0xac8,0x0)
+  kernel32.dll!waitforsingleobject(0xabc,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xabc,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0xac0,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xac0,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getlocaltime(PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x3
+  kernel32.dll!waitforsingleobject(0x68c,0x0)
+  kernel32.dll!waitforsingleobject(0x678,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x678,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0x67c,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x67c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!waitforsingleobject(0x430,PTR) x10
+  kernel32.dll!releasesemaphore(0x430,0x1,0x0) x10
+  kernel32.dll!waitforsingleobject(0x434,PTR) x10
+  kernel32.dll!releasesemaphore(0x434,0x1,0x0) x10
+  kernel32.dll!waitforsingleobject(0x85c,PTR)
+  kernel32.dll!releasesemaphore(0x85c,0x1,0x0)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x2
+  kernel32.dll!waitforsingleobject(0xac8,0x0)
+  kernel32.dll!waitforsingleobject(0xabc,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xabc,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0xac0,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xac0,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  kernel32.dll!getprocessheap() x2
+  kernel32.dll!initonceexecuteonce(PTR,PTR,PTR,0x0)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x3
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x3
+  kernel32.dll!waitforsingleobject(0x68c,0x0)
+  kernel32.dll!waitforsingleobject(0x678,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x678,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0x67c,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x67c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  kernel32.dll!waitforsingleobject(0xac8,0x0)
+  kernel32.dll!waitforsingleobject(0xabc,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xabc,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0xac0,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xac0,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x430,PTR) x10
+  kernel32.dll!releasesemaphore(0x430,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x434,PTR) x10
+  kernel32.dll!releasesemaphore(0x434,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x85c,PTR)
+  kernel32.dll!releasesemaphore(0x85c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x3
+  kernel32.dll!resetevent(0x580)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!sleep(0x65)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x4
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x2
+  kernel32.dll!waitforsingleobject(0x68c,0x0)
+  kernel32.dll!waitforsingleobject(0x678,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x678,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0x67c,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x67c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  kernel32.dll!waitforsingleobject(0xac8,0x0)
+  kernel32.dll!waitforsingleobject(0xabc,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xabc,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0xac0,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xac0,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x54c,0x548,PTR)
+  ws2_32.dll!wsaeventselect(0x54c,0x548,0x1)
+  kernel32.dll!waitforsingleobject(0x548,PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x430,PTR) x10
+  kernel32.dll!releasesemaphore(0x430,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x434,PTR) x10
+  kernel32.dll!releasesemaphore(0x434,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x85c,PTR)
+  kernel32.dll!releasesemaphore(0x85c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x3
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x2
+  kernel32.dll!waitforsingleobject(0x68c,0x0)
+  kernel32.dll!waitforsingleobject(0x678,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x678,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0x67c,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!waitforsingleobject(0xac8,0x0)
+  kernel32.dll!waitforsingleobject(0xabc,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xabc,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0xac0,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xac0,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  kernel32.dll!releasesemaphore(0x67c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!getlocaltime(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x430,PTR) x10
+  kernel32.dll!releasesemaphore(0x430,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x434,PTR) x10
+  kernel32.dll!releasesemaphore(0x434,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x85c,PTR)
+  kernel32.dll!releasesemaphore(0x85c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x3
+  ws2_32.dll!wsaenumnetworkevents(0x54c,0x548,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x54c,0x548,PTR)
+  ws2_32.dll!wsaeventselect(0x54c,0x548,0x1)
+  kernel32.dll!waitforsingleobject(0x548,PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x54c,0x548,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x54c,0x548,PTR)
+  ws2_32.dll!wsaeventselect(0x54c,0x548,0x1)
+  kernel32.dll!waitforsingleobject(0x548,PTR)
+  kernel32.dll!resetevent(0x580)
+  kernel32.dll!queryperformancecounter(PTR)
+  ws2_32.dll!wsaenumnetworkevents(0x54c,0x548,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  ws2_32.dll!wsaenumnetworkevents(0x54c,0x548,PTR)
+  ws2_32.dll!wsaeventselect(0x54c,0x548,0x1)
+  kernel32.dll!waitforsingleobject(0x548,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!sleep(0xfa)
+  kernel32.dll!waitforsingleobject(0x68c,0x0)
+  kernel32.dll!waitforsingleobject(0x678,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x678,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0x67c,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x67c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  kernel32.dll!waitforsingleobject(0xac8,0x0)
+  kernel32.dll!waitforsingleobject(0xabc,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xabc,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0xac0,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xac0,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x4
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x430,PTR) x10
+  kernel32.dll!releasesemaphore(0x430,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x434,PTR) x10
+  kernel32.dll!releasesemaphore(0x434,0x1,0x0) x10
+  kernel32.dll!queryperformancecounter(PTR) x2
+  kernel32.dll!waitforsingleobject(0x85c,PTR)
+  kernel32.dll!releasesemaphore(0x85c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x3
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1) x2
+  kernel32.dll!waitforsingleobject(0xac8,0x0)
+  kernel32.dll!waitforsingleobject(0xabc,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xabc,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0xac0,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0xac0,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  kernel32.dll!waitforsingleobject(0x68c,0x0)
+  kernel32.dll!waitforsingleobject(0x678,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x678,0x1,0x0)
+  kernel32.dll!waitforsingleobject(0x67c,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  kernel32.dll!releasesemaphore(0x67c,0x1,0x0)
+  kernel32.dll!queryperformancecounter(PTR) x3
+  kernel32.dll!sleep(0x28)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  user32.dll!getwindowlongw(PTR,PTR)
+  kernel32.dll!queryperformancecounter(PTR)
+  user32.dll!peekmessagew(PTR,0x0,0x0,0x0,0x1)
+  user32.dll!callnexthookex(0x0,0x0,0x1,PTR)
+  user32.dll!translatemessage(PTR)
+  user32.dll!dispatchmessagew(PTR)
+  ... 39528 more
+
+== call sequences in B not in A (35429) ==
+  kernel32.dll!initonceexecuteonce(PTR,PTR,PTR,0x0)
+  kernel32.dll!isprocessorfeaturepresent(0xa)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  kernel32.dll!initializecriticalsectionandspincount(PTR,0xfa0)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x2
+  kernel32.dll!initializecriticalsectionandspincount(PTR,0x0)
+  kernel32.dll!getcurrentthread()
+  kernel32.dll!getsysteminfo(PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  kernel32.dll!getsysteminfo(PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createsemaphorea(PTR,0x1,PTR,PTR)
+  kernel32.dll!initializecriticalsection(PTR) x6
+  kernel32.dll!initializesrwlock(PTR)
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x5
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createsemaphorea(PTR,0x1,PTR,PTR)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x2
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!createsemaphorea(PTR,0xa,PTR,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x3
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR) x5
+  kernel32.dll!createeventa(PTR,0x1,0x0,0x0)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  kernel32.dll!initializecriticalsection(PTR)
+  kernel32.dll!getcommandlinew()
+  shell32.dll!commandlinetoargvw(PTR,PTR)
+  kernel32.dll!initializecriticalsection(PTR)
+  winmm.dll!timegetdevcaps(PTR,0x8)
+  winmm.dll!timebeginperiod(0x1)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR) x4
+  kernel32.dll!globalmemorystatusex(PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x2,PTR,0x138,0x0)
+  kernel32.dll!getversionexw(PTR)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR) x8
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x105) x2
+  version.dll!getfileversioninfosizew(PTR,0x0)
+  version.dll!getfileversioninfow(PTR,0x0,0x5bc,PTR)
+  version.dll!verqueryvaluew(PTR,PTR,PTR,PTR)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x105)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getmodulehandleexw(0x6,PTR,PTR)
+  kernel32.dll!getmodulefilenamew(PTR,PTR,0x1000)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x1000)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR) x2
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!findfirstfileexw(PTR,0x1,PTR,0x0,0x0,0x2)
+  kernel32.dll!createmutexw(0x0,0x1,0x0)
+  kernel32.dll!virtualalloc(0x0,PTR,0x3000,0x40)
+  kernel32.dll!releasemutex(0xe8)
+  kernel32.dll!waitforsingleobject(0xe8,PTR)
+  kernel32.dll!releasemutex(0xe8)
+  kernel32.dll!waitforsingleobject(0xe8,PTR)
+  kernel32.dll!releasemutex(0xe8)
+  kernel32.dll!waitforsingleobject(0xe8,PTR)
+  kernel32.dll!releasemutex(0xe8)
+  kernel32.dll!waitforsingleobject(0xe8,PTR)
+  kernel32.dll!releasemutex(0xe8)
+  kernel32.dll!findnextfilew(PTR,PTR) x3
+  kernel32.dll!findclose(PTR)
+  kernel32.dll!waitforsingleobject(0xe8,PTR)
+  kernel32.dll!releasemutex(0xe8)
+  kernel32.dll!waitforsingleobject(0xe8,PTR)
+  kernel32.dll!releasemutex(0xe8)
+  kernel32.dll!waitforsingleobject(0xe8,PTR)
+  kernel32.dll!releasemutex(0xe8)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!createfilew(PTR,PTR,0x3,PTR,0x3,0x80,0x0)
+  kernel32.dll!createfilemappingw(0xe4,0x0,0x2,0x0,0x0,0x0)
+  kernel32.dll!getsysteminfo(PTR)
+  ntdll.dll!ntquerysysteminformation(0x0,PTR,0x2c,0x0)
+  ntdll.dll!ntquerysysteminformation(0x1,PTR,0xc,0x0)
+  kernel32.dll!mapviewoffile(0xec,0x4,0x0,0x0,PTR)
+  kernel32.dll!unmapviewoffile(PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!isprocessorfeaturepresent(0xa)
+  kernel32.dll!initializecriticalsectionandspincount(PTR,0xfa0)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x2
+  kernel32.dll!isprocessorfeaturepresent(0xa)
+  kernel32.dll!getmodulefilenamew(PTR,PTR,0x104)
+  kernel32.dll!getmodulehandleexw(0x5,PTR,PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  user32.dll!getkeyboardlayout(0x0)
+  ole32.dll!oleinitialize(0x0)
+  kernel32.dll!initializecriticalsectionex(PTR,0x0,PTR)
+  kernel32.dll!initonceexecuteonce(PTR,PTR,0x0,0x0)
+  user32.dll!createwindowexw(0x0,PTR,0x0,0x0,0x0,0x0,0x0,0x0,PTR,0x0,PTR,0x0)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x5
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x11
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x6
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x3
+  gdi32.dll!getdevicecaps(PTR,0x5a)
+  user32.dll!getkeyboardlayoutlist(0x0,0x0)
+  user32.dll!getkeyboardlayoutlist(0x1,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  user32.dll!systemparametersinfow(0x42,0x0,PTR,0x0)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x10
+  kernel32.dll!getmodulehandlew(0x0)
+  kernel32.dll!getmodulehandleexw(0x6,PTR,PTR)
+  kernel32.dll!getmodulefilenamew(PTR,PTR,0x1000)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getmodulefilenamew(0x0,PTR,0x1000)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR) x2
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!createfilew(PTR,PTR,0x3,PTR,0x3,0x80,0x0)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  advapi32.dll!gettokeninformation(PTR,0x19,PTR,0x100,PTR)
+  advapi32.dll!getsidsubauthoritycount(PTR)
+  advapi32.dll!getsidsubauthority(PTR,0x0)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0xe4,PTR,0x0,0x1,PTR,0x38)
+  ole32.dll!cotaskmemfree(PTR)
+  advapi32.dll!regcreatekeyexw(PTR,PTR,0x0,0x0,0x0,PTR,0x0,PTR,PTR)
+  advapi32.dll!regsetvalueexw(0xe4,PTR,0x0,0x1,PTR,0x1e)
+  ole32.dll!cotaskmemfree(PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getmodulehandlew(0x0)
+  user32.dll!createwindowexw(0x0,PTR,PTR,0x0,PTR,PTR,PTR,PTR,PTR,0x0,PTR,0x0)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  kernel32.dll!initonceexecuteonce(PTR,PTR,0x0,0x0)
+  user32.dll!createwindowexw(0x0,PTR,PTR,0x0,0x0,0x0,0x0,0x0,PTR,0x0,PTR,0x0)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  user32.dll!destroywindow(PTR)
+  user32.dll!defwindowprocw(PTR,0x2,0x0,0x0)
+  user32.dll!defwindowprocw(PTR,0x82,0x0,0x0)
+  user32.dll!getsystemmetrics(0x5e)
+  kernel32.dll!getmodulehandlew(0x0) x2
+  user32.dll!createwindowexw(0x0,PTR,PTR,0x0,PTR,PTR,PTR,PTR,PTR,0x0,PTR,0x0)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  user32.dll!registerpowersettingnotification(PTR,PTR,0x0)
+  kernel32.dll!getmodulehandlew(0x0) x2
+  user32.dll!createwindowexw(0x0,PTR,PTR,0x0,PTR,PTR,PTR,PTR,PTR,0x0,PTR,0x0)
+  user32.dll!defwindowprocw(PTR,0x24,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x1,0x0,PTR)
+  user32.dll!enumdisplaymonitors(0x0,0x0,PTR,PTR)
+  user32.dll!getmonitorinfow(0x1,PTR)
+  gdi32.dll!createdcw(PTR,0x0,0x0,0x0)
+  gdi32.dll!getdevicecaps(PTR,0xc)
+  gdi32.dll!getdevicecaps(PTR,0x6)
+  gdi32.dll!getdevicecaps(PTR,0x4)
+  gdi32.dll!getdevicecaps(PTR,0x74)
+  gdi32.dll!deletedc(PTR)
+  kernel32.dll!getcurrentprocess()
+  advapi32.dll!openprocesstoken(PTR,0x8,PTR)
+  advapi32.dll!gettokeninformation(0xe4,0x1,0x0,0x0,PTR)
+  advapi32.dll!gettokeninformation(0xe4,0x1,PTR,0x24,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  advapi32.dll!openprocesstoken(PTR,PTR,PTR)
+  advapi32.dll!allocateandinitializesid(PTR,0x1,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,PTR)
+  kernel32.dll!getcurrentprocess()
+  advapi32.dll!openprocesstoken(PTR,0x8,PTR)
+  userenv.dll!getuserprofiledirectoryw(0xe4,0x0,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  advapi32.dll!gettokeninformation(0xe4,0x1,0x0,0x0,PTR)
+  advapi32.dll!gettokeninformation(0xe4,0x1,PTR,0x24,PTR)
+  kernel32.dll!getcomputernamew(PTR,PTR) x2
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!expandenvironmentstringsw(PTR,0x0,0x0)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!expandenvironmentstringsw(PTR,0x0,0x0)
+  kernel32.dll!expandenvironmentstringsw(PTR,PTR,0x9)
+  userenv.dll!getuserprofiledirectoryw(0xe4,PTR,PTR)
+  advapi32.dll!gettokeninformation(0xe4,0x1,0x0,0x0,PTR)
+  advapi32.dll!gettokeninformation(0xe4,0x1,PTR,0x24,PTR)
+  kernel32.dll!getcomputernamew(PTR,PTR) x2
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!expandenvironmentstringsw(PTR,0x0,0x0)
+  advapi32.dll!regopenkeyexw(PTR,PTR,0x0,PTR,PTR)
+  kernel32.dll!expandenvironmentstringsw(PTR,0x0,0x0)
+  kernel32.dll!expandenvironmentstringsw(PTR,PTR,0x9)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  kernel32.dll!getfullpathnamew(PTR,0x104,PTR,PTR)
+  kernel32.dll!getfileattributesexw(PTR,0x0,PTR)
+  user32.dll!systemparametersinfow(0x1022,0x0,PTR,0x0) x2
+  user32.dll!systemparametersinfow(0x1f,0x5c,PTR,0x0)
+  gdi32.dll!getstockobject(0x11)
+  user32.dll!getsystemmetrics(0x31)
+  user32.dll!getsystemmetrics(0xb)
+  user32.dll!systemparametersinfow(0x200c,0x0,PTR,0x0)
+  kernel32.dll!getmodulehandlew(0x0) x2
+  user32.dll!createwindowexw(0x0,PTR,PTR,0x0,0x0,0x0,0x0,0x0,PTR,0x0,PTR,0x0)
+  user32.dll!setwindowlongw(PTR,PTR,PTR)
+  user32.dll!setwindowshookexw(0x3,PTR,0x0,0x214)
+  user32.dll!registerwindowmessagew(PTR)
+  user32.dll!getkeyboardlayout(0x0)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  user32.dll!enumdisplaydevicesw(0x0,0x0,PTR,0x0) x2
+  user32.dll!enumdisplaydevicesw(0x0,0x1,PTR,0x0)
+  kernel32.dll!getmodulehandlea(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR) x338
+  opengl32.dll!wglgetcurrentdc()
+  user32.dll!createwindowexa(0x0,PTR,PTR,PTR,0xa,0xa,0xa,0xa,0x0,0x0,0x0,0x0)
+  user32.dll!defwindowprocw(PTR,0x81,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x83,0x0,PTR)
+  user32.dll!registerwindowmessagew(PTR) x7
+  user32.dll!defwindowprocw(PTR,0x5,0x0,PTR)
+  user32.dll!defwindowprocw(PTR,0x3,0x0,0x0)
+  gdi32.dll!choosepixelformat(PTR,PTR)
+  kernel32.dll!loadlibraryw(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  kernel32.dll!getmodulehandlew(PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  gdi32.dll!describepixelformat(PTR,0x67,0x28,PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  gdi32.dll!setpixelformat(PTR,0x67,PTR)
+  kernel32.dll!getprocaddress(PTR,PTR)
+  opengl32.dll!wglcreatecontext(PTR)
+  kernel32.dll!initializesrwlock(PTR) x14
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  opengl32.dll!wglmakecurrent(PTR,PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!initializesrwlock(PTR) x14
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  opengl32.dll!wglmakecurrent(PTR,PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wgldeletecontext(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!acquiresrwlockexclusive(PTR)
+  kernel32.dll!releasesrwlockexclusive(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  kernel32.dll!acquiresrwlockshared(PTR)
+  kernel32.dll!releasesrwlockshared(PTR)
+  opengl32.dll!wglgetprocaddress(PTR)
+  ... 35029 more
+
+== per-function call counts ==
+function                                                 A       B   delta
+kernel32.dll!queryperformancecounter                 13816   18752   +4936
+kernel32.dll!waitforsingleobject                     14040    3657  -10383
+kernel32.dll!releasesemaphore                        12543     843  -11700
+user32.dll!peekmessagew                               9709    2082   -7627
+user32.dll!callnexthookex                             4283    1028   -3255
+ws2_32.dll!wsaenumnetworkevents                        777    3913   +3136
+user32.dll!dispatchmessagew                           4281     391   -3890
+user32.dll!translatemessage                           4281     391   -3890
+user32.dll!getwindowlongw                             2934     391   -2543
+kernel32.dll!acquiresrwlockshared                        0    3205   +3205
+kernel32.dll!releasesrwlockshared                        0    3205   +3205
+ws2_32.dll!wsaeventselect                              391    1967   +1576
+kernel32.dll!initializecriticalsection                   0    2197   +2197
+kernel32.dll!deletecriticalsection                      18    2129   +2111
+kernel32.dll!getcurrentprocessid                       748     878    +130
+kernel32.dll!sleep                                    1267     235   -1032
+kernel32.dll!deviceiocontrol                             0    1321   +1321
+ws2_32.dll!wsasend                                       0    1045   +1045
+user32.dll!settimer                                     26     731    +705
+user32.dll!killtimer                                    26     729    +703
+user32.dll!postmessagew                                  5     717    +712
+opengl32.dll!wglgetprocaddress                           0     578    +578
+kernel32.dll!getprocaddress                              6     540    +534
+kernel32.dll!getprocessheap                             96     418    +322
+kernel32.dll!openprocess                                 0     437    +437
+psapi.dll!enumprocessmodules                             0     437    +437
+psapi.dll!getmodulebasenamew                             0     437    +437
+iphlpapi.dll!getadaptersinfo                            46     258    +212
+kernel32.dll!createeventw                               23     262    +239
+kernel32.dll!resetevent                                138     133      -5
+kernel32.dll!resumethread                                0     199    +199
+kernel32.dll!getfullpathnamew                            0     157    +157
+kernel32.dll!setevent                                    0     153    +153
+kernel32.dll!getmodulehandleexw                          0     141    +141
+kernel32.dll!getmodulehandlew                            0     138    +138
+kernel32.dll!createthread                                0     137    +137
+kernel32.dll!initonceexecuteonce                         1     134    +133
+kernel32.dll!getcurrentprocess                           0     109    +109
+kernel32.dll!acquiresrwlockexclusive                     0      98     +98
+kernel32.dll!getlocaltime                               98       0     -98
+kernel32.dll!openthread                                  0      98     +98
+kernel32.dll!releasesrwlockexclusive                     0      98     +98
+kernel32.dll!getfileattributesexw                        0      91     +91
+kernel32.dll!initializesrwlock                           0      71     +71
+kernel32.dll!wakeconditionvariable                       0      70     +70
+kernel32.dll!sleepconditionvariablecs                    0      67     +67
+user32.dll!defwindowprocw                                1      50     +49
+winmm.dll!timekillevent                                  2      35     +33
+winmm.dll!timesetevent                                   2      35     +33
+kernel32.dll!setthreadpriority                           0      35     +35
+kernel32.dll!createfilew                                 0      29     +29
+kernel32.dll!createdirectoryw                            0      27     +27
+kernel32.dll!createeventa                                0      25     +25
+kernel32.dll!getfileattributesw                          0      24     +24
+kernel32.dll!releasemutex                                0      24     +24
+advapi32.dll!regopenkeyexw                               0      17     +17
+ntdll.dll!ntquerysysteminformation                       2      14     +12
+kernel32.dll!getmodulefilenamew                          0      14     +14
+kernel32.dll!loadlibraryw                                1      11     +10
+user32.dll!systemparametersinfow                         0      12     +12
+kernel32.dll!createsemaphorea                            0      11     +11
+kernel32.dll!findnextfilew                               0       9      +9
+user32.dll!createwindowexw                               0       9      +9
+advapi32.dll!regcreatekeyexw                             0       8      +8
+user32.dll!registerwindowmessagew                        0       8      +8
+advapi32.dll!gettokeninformation                         0       7      +7
+advapi32.dll!regsetvalueexw                              0       7      +7
+kernel32.dll!isprocessorfeaturepresent                   0       7      +7
+advapi32.dll!regopenkeyexa                               0       6      +6
+kernel32.dll!expandenvironmentstringsw                   0       6      +6
+kernel32.dll!getsysteminfo                               0       6      +6
+gdi32.dll!getdevicecaps                                  0       5      +5
+kernel32.dll!findclose                                   0       5      +5
+kernel32.dll!getcurrentthread                            0       5      +5
+kernel32.dll!initializecriticalsectionandspincount       0       5      +5
+kernel32.dll!mapviewoffile                               0       5      +5
+user32.dll!destroywindow                                 0       5      +5
+gdi32.dll!setpixelformat                                 0       4      +4
+kernel32.dll!getcomputernamew                            0       4      +4
+kernel32.dll!initializecriticalsectionex                 0       4      +4
+ole32.dll!cotaskmemfree                                  0       4      +4
+shell32.dll!shgetfolderpathw                             0       4      +4
+user32.dll!getsystemmetrics                              0       4      +4
+advapi32.dll!openprocesstoken                            0       3      +3
+gdi32.dll!choosepixelformat                              0       3      +3
+kernel32.dll!createfilemappinga                          0       3      +3
+kernel32.dll!createfilemappingw                          0       3      +3
+kernel32.dll!findfirstfileexw                            0       3      +3
+kernel32.dll!gettemppathw                                0       3      +3
+kernel32.dll!unmapviewoffile                             0       3      +3
+opengl32.dll!wglmakecurrent                              0       3      +3
+user32.dll!enumdisplaydevicesw                           0       3      +3
+gdi32.dll!describepixelformat                            0       2      +2
+kernel32.dll!createfilea                                 0       2      +2
+kernel32.dll!getenvironmentvariablew                     0       2      +2
+kernel32.dll!getmodulehandlea                            0       2      +2
+kernel32.dll!getversionexw                               0       2      +2
+kernel32.dll!globalmemorystatusex                        0       2      +2
+kernel32.dll!loadlibrarya                                0       2      +2
+kernel32.dll!queryperformancefrequency                   0       2      +2
+kernel32.dll!writefile                                   0       2      +2
+ole32.dll!cocreateguid                                   0       2      +2
+opengl32.dll!wgldeletecontext                            0       2      +2
+opengl32.dll!wglgetcurrentdc                             0       2      +2
+shell32.dll!shgetknownfolderpath                         0       2      +2
+user32.dll!enumdisplaymonitors                           0       2      +2
+user32.dll!getforegroundwindow                           2       0      -2
+user32.dll!getkeyboardlayout                             0       2      +2
+user32.dll!getkeyboardlayoutlist                         0       2      +2
+user32.dll!getmonitorinfow                               0       2      +2
+userenv.dll!getuserprofiledirectoryw                     0       2      +2
+advapi32.dll!allocateandinitializesid                    0       1      +1
+advapi32.dll!getsidsubauthority                          0       1      +1
+advapi32.dll!getsidsubauthoritycount                     0       1      +1
+gdi32.dll!createdcw                                      0       1      +1
+gdi32.dll!deletedc                                       0       1      +1
+gdi32.dll!getstockobject                                 0       1      +1
+kernel32.dll!createmutexa                                0       1      +1
+kernel32.dll!createmutexw                                0       1      +1
+kernel32.dll!deletefilew                                 0       1      +1
+kernel32.dll!freelibrary                                 0       1      +1
+kernel32.dll!getcommandlinew                             0       1      +1
+kernel32.dll!getfilesizeex                               0       1      +1
+kernel32.dll!getsystemtimeasfiletime                     0       1      +1
+kernel32.dll!mapviewoffileex                             0       1      +1
+kernel32.dll!virtualalloc                                0       1      +1
+kernel32.dll!waitformultipleobjects                      0       1      +1
+ole32.dll!oleinitialize                                  0       1      +1
+opengl32.dll!wglcreatecontext                            0       1      +1
+shell32.dll!commandlinetoargvw                           0       1      +1
+user32.dll!createwindowexa                               0       1      +1
+user32.dll!registerpowersettingnotification              0       1      +1
+user32.dll!setwindowlongw                                0       1      +1
+user32.dll!setwindowshookexw                             0       1      +1
+version.dll!getfileversioninfosizew                      0       1      +1
+version.dll!getfileversioninfow                          0       1      +1
+version.dll!verqueryvaluew                               0       1      +1
+winmm.dll!timebeginperiod                                0       1      +1
+winmm.dll!timegetdevcaps                                 0       1      +1
+
+################################################################
+### relay errors: wine_hog_launcher
+################################################################
+0160 user32!RegisterPowerSettingNotification(PTR,PTR,0x0) -> 0xdeadbeef [NTSTATUS]
+0160 hid!HidD_GetHidGuid(PTR) -> 0xffffffff [NTSTATUS]
+
+== err:/fixme: message summary (15 distinct, 23 total) ==
+      9  fixme:font:find_matching_face Untranslated charset #
+      1  fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+      1  fixme:setupapi:DiInstallDriverA parent #, inf_path "C:\\Program Files (x86)\\ETC\\HogPC\\drivers\\gadget\\gadget.inf", flags #, reboot #, stub!
+      1  fixme:kernelbase:AppPolicyGetProcessTerminationMethod #, #
+      1  fixme:win:RegisterPowerSettingNotification (#,{#-#-#-99e6-#},#): stub
+      1  fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[#] = # file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Regular.ttf"
+      1  fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[#] = # file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Bold.ttf"
+      1  fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[#] = # file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Black.ttf"
+      1  fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[#] = # file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraBold.ttf"
+      1  fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[#] = # file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-ExtraLight.ttf"
+      1  fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[#] = # file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Light.ttf"
+      1  fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[#] = # file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Medium.ttf"
+      1  fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[#] = # file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-SemiBold.ttf"
+      1  fixme:font:get_nearest_charset returning DEFAULT_CHARSET face->fs.fsCsb[#] = # file = L"\\??\\Z:\\usr\\share\\fonts\\truetype\\noto\\NotoKufiArabic-Thin.ttf"
+      1  fixme:system:EnableNonClientDpiScaling (#): stub
+# total failing calls: 2
+
+################################################################
+### relay errors: wine_hog_server
+################################################################
+
+== err:/fixme: message summary (2 distinct, 2 total) ==
+      1  fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+      1  fixme:file:NtLockFile I/O completion on lock not implemented yet
+# total failing calls: 0
+

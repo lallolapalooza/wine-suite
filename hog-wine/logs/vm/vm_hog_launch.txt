@@ -1,0 +1,91 @@
+﻿=== hog launch: launcher-win32-golden.exe  at 2026-10-03T13:44:30
+FREE_GB=3.161
+KILL launcher-win32-golden pid=8932
+EXE_EXISTS=True
+=== launching ===
+PID=4540 start=2026-10-03T13:44:33
+=== windows after 25s ===
+hwnd=0x00070390 pid=704 proc=explorer vis=False hung=False fg=False class=XamlExplorerHostIslandWindow title=Task Switching
+hwnd=0x00060370 pid=704 proc=explorer vis=True hung=False fg=False class=ThumbnailDeviceHelperWnd title=
+hwnd=0x000101A4 pid=704 proc=explorer vis=False hung=False fg=False class=SystemTray_Main title=Battery Meter
+hwnd=0x000100AE pid=704 proc=explorer vis=True hung=False fg=False class=Shell_TrayWnd title=
+hwnd=0x0013022A pid=4540 proc=launcher-win32-golden vis=True hung=False fg=True class=Qt5151QWindow title=Hog Start
+hwnd=0x000A037C pid=9968 proc=powershell vis=True hung=False fg=False class=PseudoConsoleWindow title=
+hwnd=0x0009024E pid=5716 proc=WindowsTerminal vis=True hung=False fg=False class=CASCADIA_HOSTING_WINDOW_CLASS title=powershell
+hwnd=0x001A02B4 pid=8464 proc=powershell vis=True hung=False fg=False class=ConsoleWindowClass title=Administrator: Windows PowerShell
+hwnd=0x000F03FE pid=7532 proc=MoNotificationUx vis=False hung=False fg=False class=WUIconClass title=WUIconWindow
+hwnd=0x001C0160 pid=5716 proc=WindowsTerminal vis=False hung=False fg=False class=OleDdeWndClass title=DDE Server Window
+hwnd=0x00760422 pid=704 proc=explorer vis=True hung=False fg=False class=#32770 title=Run
+hwnd=0x00080240 pid=5716 proc=WindowsTerminal vis=False hung=False fg=False class=Windows Terminal 9d6173a7a62890a2 title=Windows Terminal
+hwnd=0x000603B0 pid=7756 proc=OneDrive.Sync.Service vis=False hung=False fg=False class=Nucleus Auth Window title=Microsoft OneDrive Sync Service
+hwnd=0x0009008E pid=5656 proc=taskhostw vis=False hung=False fg=False class=COMTASKSWINDOWCLASS title=Task Host Window
+hwnd=0x0006022C pid=6404 proc=AdskIdentityManager vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x003A02C0 pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=OleDdeWndClass title=DDE Server Window
+hwnd=0x000202A0 pid=5704 proc=OneDrive vis=False hung=False fg=False class=SkyDrive Class Name {090B42FF-7B26-4416-99B6-CB17896CF07C}-Personal title=OneDrive - Personal
+hwnd=0x00020340 pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x000102EC pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=Chrome_WidgetWin_1 title=Autodesk Access
+hwnd=0x000D0204 pid=7844 proc=AdskIdentityManager vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x00030164 pid=7808 proc=AdskAccessService vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x0004018E pid=7916 proc=SecurityHealthSystray vis=False hung=False fg=False class=SecHealth Window Class title=SecurityHealthSystray
+hwnd=0x00050104 pid=5928 proc=CrossDeviceResume vis=False hung=False fg=False class=CrossDeviceResumeWindowClass title=CrossDeviceResumeWindow
+hwnd=0x000301E8 pid=704 proc=explorer vis=False hung=False fg=False class=MS_WebcheckMonitor title=MS_WebcheckMonitor
+hwnd=0x000201DC pid=704 proc=explorer vis=False hung=False fg=False class=BluetoothNotificationAreaIconWindowClass title=BluetoothNotificationAreaIconWindowClass
+hwnd=0x000101C4 pid=704 proc=explorer vis=False hung=False fg=False class=MiracastConnectionWindow title=MiracastConnectionWindow
+hwnd=0x0001015E pid=5284 proc=ShellHost vis=False hung=False fg=False class=Windows.UI.Core.CoreWindow title=DesktopWindowXamlSource
+hwnd=0x0001013A pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x00010134 pid=704 proc=explorer vis=True hung=False fg=False class=EdgeUiInputTopWndClass title=
+hwnd=0x00010114 pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x00010112 pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x00010110 pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x0001010E pid=704 proc=explorer vis=True hung=False fg=False class=DummyDWMListenerWindow title=
+hwnd=0x0007034C pid=704 proc=explorer vis=False hung=False fg=False class=Windows.UI.Core.CoreWindow title=DesktopWindowXamlSource
+hwnd=0x00010276 pid=7724 proc=AdskAccessCore vis=False hung=False fg=False class=adpsdknotification title=NotificationWindowHelper
+hwnd=0x000100E6 pid=1336 proc=svchost vis=False hung=False fg=False class=PushNotificationsPowerManagement title=Windows Push Notifications Platform
+hwnd=0x0002001A pid=4792 proc=taskhostw vis=False hung=False fg=False class=COMTASKSWINDOWCLASS title=Task Host Window
+hwnd=0x00010042 pid=544 proc=dwm vis=False hung=False fg=False class=Dwm title=DWM Notification Window
+hwnd=0x000100D8 pid=704 proc=explorer vis=True hung=False fg=False class=Progman title=Program Manager
+hwnd=0x00070372 pid=704 proc=explorer vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x0001014A pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000101B0 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000100CE pid=704 proc=explorer vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x000100B0 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00040356 pid=2784 proc=MicrosoftStartFeedProvider vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x001B01DE pid=4540 proc=launcher-win32-golden vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x0013005E pid=4540 proc=launcher-win32-golden vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000603C0 pid=5716 proc=WindowsTerminal vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x000C0222 pid=5716 proc=WindowsTerminal vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x001C0266 pid=8580 proc=conhost vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x00C8034A pid=8580 proc=conhost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000D0494 pid=7532 proc=MoNotificationUx vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000F0260 pid=704 proc=explorer vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x00410434 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000B020A pid=704 proc=explorer vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x000100F8 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00570208 pid=8232 proc=RuntimeBroker vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000503AA pid=7756 proc=OneDrive.Sync.Service vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00050430 pid=7756 proc=OneDrive.Sync.Service vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00050238 pid=6404 proc=AdskIdentityManager vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x0004025C pid=5704 proc=OneDrive vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000302B0 pid=5704 proc=OneDrive vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00020284 pid=5704 proc=OneDrive vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000202A2 pid=5704 proc=OneDrive vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00010342 pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00010322 pid=9208 proc=AdskAccessUIHost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000102FC pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x000302C6 pid=8672 proc=AdskAccessUIHost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000B0188 pid=7844 proc=AdskIdentityManager vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00030200 pid=7808 proc=AdskAccessService vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x0002017C pid=7916 proc=SecurityHealthSystray vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000201F4 pid=5928 proc=CrossDeviceResume vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000101BC pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000101A0 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x00010278 pid=7724 proc=AdskAccessCore vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000100F4 pid=1336 proc=svchost vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000100D4 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+hwnd=0x000100EC pid=704 proc=explorer vis=False hung=False fg=False class=MSCTFIME UI title=MSCTFIME UI
+hwnd=0x00020010 pid=704 proc=explorer vis=False hung=False fg=False class=IME title=Default IME
+=== processes under install root / named golden ===
+proc pid=4540 launcher-win32-golden cpu=1.8 ws=96.7MB resp=True title='Hog Start' path=C:\Program Files (x86)\ETC\HogPC\launcher-win32-golden.exe started=10/3/2026 1:44:33 PM
+=== cpu/gpu ===
+wmic_video=Microsoft Basic Display Adapter|10.0.26100.1
+FREE_AFTER_GB=3.161

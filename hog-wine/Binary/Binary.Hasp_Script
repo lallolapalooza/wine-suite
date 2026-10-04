@@ -1,0 +1,26 @@
+' This script is used to install the Sentinal (HASP) service
+
+'Author: Patrick Hutchinson
+'Date : 02/21/2019
+
+'handle errors encountered
+On Error Resume Next
+
+Function Install_Hasp()
+	' Application folder
+	Dim app
+	app = "HogPC"
+
+	' Installation directory
+	Dim installDir
+	installDir = "C:\Program Files (x86)\ETC\" & app
+	
+	' Verify that the installation directory exists
+	Set objFSO = CreateObject("Scripting.FileSystemObject")
+	If Not objFSO.FolderExists(installDir) Then
+	    installDir = "C:\Program Files\ETC\" & app
+	End If
+
+	Set objShell = CreateObject("Shell.Application")
+	objShell.ShellExecute "haspdinst.exe", "-i -kp -nomsg", installDir, "runas", 0
+End Function

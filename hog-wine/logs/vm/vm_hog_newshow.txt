@@ -1,0 +1,8 @@
+﻿looking for 'Hog Start' window / 'New Show' button
+win found pid=5836 offscreen=False
+no 'New Show' button element
+--- after ---
+WINDOW 'Administrator: Windows PowerShell' class='ConsoleWindowClass' pid=11104 rect=(47,0)-(1280,752)
+WINDOW 'Hog Start' class='ShowConnectWindow' pid=5836 rect=(244,231)-(1036,569)
+WINDOW 'powershell' class='CASCADIA_HOSTING_WINDOW_CLASS' pid=5716 rect=(148,156)-(1277,791)
+PROC launcher-win32-golden pid=5836 title='Hog Start'

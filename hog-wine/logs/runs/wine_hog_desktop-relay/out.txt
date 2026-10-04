@@ -1,0 +1,158 @@
+start 15:46:41 tag=wine_hog_desktop-relay prefix=/home/asdf/projects/hog-wine/state/work/prefix display=:2 secs=18 debug=+timestamp,+relay,+err exe=desktop-win32-golden.exe cwd=Program Files (x86)/ETC/HogPC
+t=10s alive=5 win=none
+=== windows ===
+     0x1200007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1200006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1200005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1200004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1200002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x1200003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xc00008 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x1400003 (has no name): ("notepad.exe" "notepad.exe")  1x1+0+0  +0+0
+     0x1400002 "Default IME": ("notepad.exe" "notepad.exe")  1x1+0+0  +0+0
+     0xc00007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xc00006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xc00005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xc00004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0xc00002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0xc00003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600007 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600006 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600005 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600004 (has no name): ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x600002 (has no name): ("explorer.exe" "explorer.exe")  160x20+3+29  +3+29
+     0x600003 "Default IME": ("explorer.exe" "explorer.exe")  1x1+0+0  +0+0
+     0x20011f "Openbox": ("" (none))  1x1+-100+-100  +-100+-100
+     0x20016a (has no name): ("OPENBOX_FOCUS_CYCLE_POPUP" "OPENBOX_FOCUS_CYCLE_POPUP")  1x1+0+0  +0+0
+        0x1400001 "Untitled - Notepad": ("notepad.exe" "notepad.exe")  942x678+1+22  +4+30
+=== stderr tail ===
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21378 ret=6f5cc691
+237926.990:0130:Call ucrtbase.strcpy(05f21378,049c7bcc "Reserved") ret=6f5cc6a7
+237926.990:0130:Ret  ucrtbase.strcpy() retval=05f21378 ret=6f5cc6a7
+237926.990:0130:Call ucrtbase.strcmp(0485453b "RTL_HEAP_PARAMETERS",6f5e4e84 "WCHAR") ret=6f59d076
+237926.990:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f59d076
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000010) ret=6f5cc573
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21398 ret=6f5cc573
+237926.990:0130:Call ucrtbase.strlen(0485453b "RTL_HEAP_PARAMETERS") ret=6f5cc674
+237926.990:0130:Ret  ucrtbase.strlen() retval=00000013 ret=6f5cc674
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000014) ret=6f5cc691
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f213b8 ret=6f5cc691
+237926.990:0130:Call ucrtbase.strcpy(05f213b8,0485453b "RTL_HEAP_PARAMETERS") ret=6f5cc6a7
+237926.990:0130:Ret  ucrtbase.strcpy() retval=05f213b8 ret=6f5cc6a7
+237926.990:0130:Call ucrtbase.strlen(04854558 "_DEBUG_BUFFER") ret=6f59b9a7
+237926.990:0130:Ret  ucrtbase.strlen() retval=0000000d ret=6f59b9a7
+237926.990:0130:Call ucrtbase.memcpy(063e2e3a,04854558,0000000e) ret=6f59b9d0
+237926.990:0130:Ret  ucrtbase.memcpy() retval=063e2e3a ret=6f59b9d0
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,0000002c) ret=6f5cc573
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f16fb8 ret=6f5cc573
+237926.990:0130:Call ucrtbase.strlen(063e2e3a "_DEBUG_BUFFER") ret=6f5cc674
+237926.990:0130:Ret  ucrtbase.strlen() retval=0000000d ret=6f5cc674
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,0000000e) ret=6f5cc691
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f213d8 ret=6f5cc691
+237926.990:0130:Call ucrtbase.strcpy(05f213d8,063e2e3a "_DEBUG_BUFFER") ret=6f5cc6a7
+237926.990:0130:Ret  ucrtbase.strcpy() retval=05f213d8 ret=6f5cc6a7
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000028) ret=6f5cc573
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f210c0 ret=6f5cc573
+237926.990:0130:Call ucrtbase.strlen(049c7c58 "SectionHandle") ret=6f5cc674
+237926.990:0130:Ret  ucrtbase.strlen() retval=0000000d ret=6f5cc674
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,0000000e) ret=6f5cc691
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f213f8 ret=6f5cc691
+237926.990:0130:Call ucrtbase.strcpy(05f213f8,049c7c58 "SectionHandle") ret=6f5cc6a7
+237926.990:0130:Ret  ucrtbase.strcpy() retval=05f213f8 ret=6f5cc6a7
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000004) ret=6f5d9465
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21418 ret=6f5d9465
+237926.990:0130:Call ucrtbase.strcmp(05f213f8 "SectionHandle",0485457e "SectionBase") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000028) ret=6f5cc573
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f210f0 ret=6f5cc573
+237926.990:0130:Call ucrtbase.strlen(0485457e "SectionBase") ret=6f5cc674
+237926.990:0130:Ret  ucrtbase.strlen() retval=0000000b ret=6f5cc674
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,0000000c) ret=6f5cc691
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21438 ret=6f5cc691
+237926.990:0130:Call ucrtbase.strcpy(05f21438,0485457e "SectionBase") ret=6f5cc6a7
+237926.990:0130:Ret  ucrtbase.strcpy() retval=05f21438 ret=6f5cc6a7
+237926.990:0130:Call ntdll.RtlReAllocateHeap(04710000,00000000,05f21418,00000008) ret=6f5d9276
+237926.990:0130:Ret  ntdll.RtlReAllocateHeap() retval=05f21458 ret=6f5d9276
+237926.990:0130:Call ucrtbase.strcmp(05f213f8 "SectionHandle",04854594 "RemoteSectionBase") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21438 "SectionBase",04854594 "RemoteSectionBase") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000028) ret=6f5cc573
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21120 ret=6f5cc573
+237926.990:0130:Call ucrtbase.strlen(04854594 "RemoteSectionBase") ret=6f5cc674
+237926.990:0130:Ret  ucrtbase.strlen() retval=00000011 ret=6f5cc674
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000012) ret=6f5cc691
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21418 ret=6f5cc691
+237926.990:0130:Call ucrtbase.strcpy(05f21418,04854594 "RemoteSectionBase") ret=6f5cc6a7
+237926.990:0130:Ret  ucrtbase.strcpy() retval=05f21418 ret=6f5cc6a7
+237926.990:0130:Call ntdll.RtlReAllocateHeap(04710000,00000000,05f21458,00000010) ret=6f5d9276
+237926.990:0130:Ret  ntdll.RtlReAllocateHeap() retval=05f21478 ret=6f5d9276
+237926.990:0130:Call ucrtbase.strcmp(05f213f8 "SectionHandle",048545b0 "SectionBaseDelta") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21438 "SectionBase",048545b0 "SectionBaseDelta") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21418 "RemoteSectionBase",048545b0 "SectionBaseDelta") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f5d4977
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000028) ret=6f5cc573
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21150 ret=6f5cc573
+237926.990:0130:Call ucrtbase.strlen(048545b0 "SectionBaseDelta") ret=6f5cc674
+237926.990:0130:Ret  ucrtbase.strlen() retval=00000010 ret=6f5cc674
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000011) ret=6f5cc691
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21458 ret=6f5cc691
+237926.990:0130:Call ucrtbase.strcpy(05f21458,048545b0 "SectionBaseDelta") ret=6f5cc6a7
+237926.990:0130:Ret  ucrtbase.strcpy() retval=05f21458 ret=6f5cc6a7
+237926.990:0130:Call ucrtbase.strcmp(05f213f8 "SectionHandle",048545cb "EventPairHandle") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21438 "SectionBase",048545cb "EventPairHandle") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21418 "RemoteSectionBase",048545cb "EventPairHandle") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21458 "SectionBaseDelta",048545cb "EventPairHandle") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000028) ret=6f5cc573
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21180 ret=6f5cc573
+237926.990:0130:Call ucrtbase.strlen(048545cb "EventPairHandle") ret=6f5cc674
+237926.990:0130:Ret  ucrtbase.strlen() retval=0000000f ret=6f5cc674
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000010) ret=6f5cc691
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21498 ret=6f5cc691
+237926.990:0130:Call ucrtbase.strcpy(05f21498,048545cb "EventPairHandle") ret=6f5cc6a7
+237926.990:0130:Ret  ucrtbase.strcpy() retval=05f21498 ret=6f5cc6a7
+237926.990:0130:Call ntdll.RtlReAllocateHeap(04710000,00000000,05f21478,00000020) ret=6f5d9276
+237926.990:0130:Ret  ntdll.RtlReAllocateHeap() retval=05f211b0 ret=6f5d9276
+237926.990:0130:Call ucrtbase.strcmp(05f213f8 "SectionHandle",048545e5 "Unknown") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21438 "SectionBase",048545e5 "Unknown") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21418 "RemoteSectionBase",048545e5 "Unknown") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21458 "SectionBaseDelta",048545e5 "Unknown") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f5d4977
+237926.990:0130:Call ucrtbase.strcmp(05f21498 "EventPairHandle",048545e5 "Unknown") ret=6f5d4977
+237926.990:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f5d4977
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000028) ret=6f5cc573
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f211e0 ret=6f5cc573
+237926.990:0130:Call ucrtbase.strlen(048545e5 "Unknown") ret=6f5cc674
+237926.990:0130:Ret  ucrtbase.strlen() retval=00000007 ret=6f5cc674
+237926.990:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000008) ret=6f5cc691
+237926.990:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21478 ret=6f5cc691
+237926.990:0130:Call ucrtbase.strcpy(05f21478,048545e5 "Unknown") ret=6f5cc6a7
+237927.006:0130:Ret  ucrtbase.strcpy() retval=05f21478 ret=6f5cc6a7
+237927.006:0130:Call ucrtbase.strcmp(05f213f8 "SectionHandle",048545f7 "RemoteThreadHandle") ret=6f5d4977
+237927.006:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237927.006:0130:Call ucrtbase.strcmp(05f21438 "SectionBase",048545f7 "RemoteThreadHandle") ret=6f5d4977
+237927.006:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237927.006:0130:Call ucrtbase.strcmp(05f21418 "RemoteSectionBase",048545f7 "RemoteThreadHandle") ret=6f5d4977
+237927.006:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f5d4977
+237927.006:0130:Call ucrtbase.strcmp(05f21458 "SectionBaseDelta",048545f7 "RemoteThreadHandle") ret=6f5d4977
+237927.006:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237927.006:0130:Call ucrtbase.strcmp(05f21498 "EventPairHandle",048545f7 "RemoteThreadHandle") ret=6f5d4977
+237927.006:0130:Ret  ucrtbase.strcmp() retval=ffffffff ret=6f5d4977
+237927.006:0130:Call ucrtbase.strcmp(05f21478 "Unknown",048545f7 "RemoteThreadHandle") ret=6f5d4977
+237927.006:0130:Ret  ucrtbase.strcmp() retval=00000001 ret=6f5d4977
+237927.006:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000028) ret=6f5cc573
+237927.006:0130:Ret  ntdll.RtlAllocateHeap() retval=05f21210 ret=6f5cc573
+237927.006:0130:Call ucrtbase.strlen(048545f7 "RemoteThreadHandle") ret=6f5cc674
+237927.006:0130:Ret  ucrtbase.strlen() retval=00000012 ret=6f5cc674
+237927.006:0130:Call ntdll.RtlAllocateHeap(04710000,00000000,00000013) ret=6f5cc691
+237927.006:0130:Ret  ntdll.RtlAllocateHeap() retval=05f214b8 ret=6f5cc691
+end 15:46:53
