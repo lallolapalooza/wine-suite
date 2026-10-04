@@ -12,14 +12,27 @@ Siemens software is not redistributed here. The media comes from the user's own 
 `Solid_Edge_X_Web_Installer_2026.exe`; `tools/dl_media.sh` and `FINDINGS.md` M1 record how its
 payload is obtained, because the web installer's own download host no longer resolves.
 
+**Status, honestly.** Two Wine defects found on the path the user's own log points down are fixed,
+built, installed and verified — `patches/local/0023` (the `dwmapi` line, `fixme:…attribute 14 not
+implemented`, gone) and `patches/local/0024` (UIA conditioned tree navigation no longer answers
+`E_NOTIMPL`, which was making .NET's `TreeWalker` throw `NotImplementedException`).  Solid Edge 2026
+installs and runs: its WebView2 start page renders, it opens a 2D Drafting document, and it opens a
+3D part with a working OpenGL viewport.  **Bugs 1 (the flickering viewport) and 3 (the greyed X) do
+not reproduce in the modes this installer can still license** — the licence it obtains is 2D
+Drafting + 3D *viewer* only, and 「Close Sketch」 is a Part/Sketch-environment command, so the site of
+bugs 1 and 2 is out of reach and **no fix is claimed for them**.  `FINDINGS.md` M13 has the
+licensing evidence, M10 and M14 the measurements that rule out the candidates in reach, and
+`docs/REPRO_RUNBOOK.md` is the ready-made procedure for the moment a 3D licence exists.  The user's
+prompts are published verbatim in `PROMPTS.md`.
+
 This is not upstream-ready: no upstream MR was opened and the work is AI-assisted.
 
 ## Layout
 
 | path | what it is |
 |---|---|
-| `wine-11.18/` | pristine Wine 11.18 source + the patch series (what gets built) |
-| `wine/wine-11.18/` | the build tree (copy of the above; configure/make output) |
+| `wine-11.18/` | **pristine** Wine 11.18 (the `dl.winehq.org` tarball), unpatched — the base the series applies to |
+| `wine/wine-11.18/` | **the patched tree**: pristine + `patches/series/*` + `patches/local/*`, configured and built |
 | `wine-install/` | `make install` output; `wine-install/bin/wine` |
 | `patches/series/` | the consolidated series, `0001`..`0022`, applied to pristine Wine |
 | `patches/local/` | this project's own patches, numbered from `0023` |

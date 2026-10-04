@@ -1,9 +1,0 @@
-05:08:17.463598971 window 0xe00001 -> 0xe00001  rect 758x522+421+252  display :2
-05:08:17.475779702 --- 5 action lines
-05:08:17.483791992 NOTE select-activation-code
-/home/asdf/projects/solidedge-wine-main/logs/drive/lic_radio_activation/lic_start.png 758x522 mean=170.5 dark=0.277 verdict=CONTENT
-05:08:18.100708754 3 click 42 362
-clicked window 0xe00001 at +42+362 -> display 463,614  (window 758x522 at 421,252)
-05:08:18.543526790 4 wait 1
-/home/asdf/projects/solidedge-wine-main/logs/drive/lic_radio_activation/lic_activation_selected.png 758x522 mean=168.6 dark=0.277 verdict=CONTENT
-05:08:20.417308011 done
