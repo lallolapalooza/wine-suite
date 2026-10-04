@@ -1,0 +1,8 @@
+Condition	Description
+s255	l255
+LaunchCondition	Condition
+Privileged	Setup has detected that you do not have sufficient privileges to install [ProductName]. Please log on as an administrator and run the setup again.
+WindowsBuild >= 9200	Unable to install [ProductName] on current system configuration.  You must be running Windows 8, Windows Server 2012 or above.
+D2D1_FOUND OR WindowsBuild > 6002	Unable to install [ProductName] on current system configuration.  A Platform Update must be installed.  See http://support.microsoft.com/kb/2117917 for details.
+ACCEPTEULA = "1" OR UILevel = 5 OR Installed OR OEM = "1"	To accept the End User License Agreement (EULA), add ACCEPTEULA=1 to your command-line to continue the /quiet, /silent, or /passive install process.
+NOT NEWERFOUND	A newer version of the product is already installed on this system.

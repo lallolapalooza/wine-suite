@@ -1,0 +1,13 @@
+Action	Condition	Sequence
+s72	S255	I2
+AdminExecuteSequence	Action
+InstallValidate		1400
+InstallFiles		4000
+InstallAdminPackage		3900
+FileCost		900
+CostInitialize		800
+CostFinalize		1000
+InstallInitialize		1500
+InstallFinalize		6600
+WindowsFolder.6A83707F_9A09_4612_953D_41606E39FFC8		1
+FontsFolder.6A83707F_9A09_4612_953D_41606E39FFC8		1

@@ -1,0 +1,173 @@
+Dialog_	Control_	Event	Argument	Condition	Ordering
+s72	s50	s50	s255	S255	I2
+ControlEvent	Dialog_	Control_	Event	Argument	Condition
+FatalErrorDlg	Finish	EndDialog	Exit	1	1
+UserExitDlg	Finish	EndDialog	Exit	1	1
+ExitDlg	Finish	EndDialog	Return	1	1
+PrepareDlg	Cancel	SpawnDialog	CancelDlg	1	1
+AdminWelcomeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+AdminWelcomeDlg	Next	NewDialog	AdminInstallPointDlg	ShowUserRegistrationDlg <> 1	1
+AdminWelcomeDlg	Next	[InstallMode]	Server Image	1	2
+ProgressDlg	Cancel	SpawnDialog	CancelDlg	1	1
+ErrorDlg	N	EndDialog	ErrorNo	1	1
+ErrorDlg	Y	EndDialog	ErrorYes	1	1
+ErrorDlg	A	EndDialog	ErrorAbort	1	1
+ErrorDlg	C	EndDialog	ErrorCancel	1	1
+ErrorDlg	I	EndDialog	ErrorIgnore	1	1
+ErrorDlg	O	EndDialog	ErrorOk	1	1
+ErrorDlg	R	EndDialog	ErrorRetry	1	1
+FilesInUse	Retry	EndDialog	Retry	1	1
+FilesInUse	Exit	EndDialog	Exit	1	1
+FilesInUse	Ignore	EndDialog	Ignore	1	1
+MsiRMFilesInUse	OK	EndDialog	Return	1	1
+MsiRMFilesInUse	OK	RMShutdownAndRestart	0	WixUIRMOption~="UseRM"	2
+MsiRMFilesInUse	Cancel	EndDialog	Exit	1	1
+CancelDlg	No	EndDialog	Return	1	1
+CancelDlg	Yes	EndDialog	Exit	1	1
+AdminInstallPointDlg	Cancel	SpawnDialog	CancelDlg	1	1
+AdminInstallPointDlg	Back	NewDialog	AdminWelcomeDlg	ShowUserRegistrationDlg <> 1	1
+AdminInstallPointDlg	Next	NewDialog	VerifyReadyDlg	OutOfNoRbDiskSpace <> 1	2
+AdminInstallPointDlg	Next	SetTargetPath	TARGETDIR	1	1
+AdminInstallPointDlg	Browse	SpawnDialog	AdminBrowseDlg	1	1
+VerifyReadyDlg	Cancel	SpawnDialog	CancelDlg	1	1
+VerifyReadyDlg	Back	NewDialog	CustomizeDlg	InstallMode = "Change" OR (InstallMode = "Custom" AND ShowShortcutDlg <> 1)	1
+VerifyReadyDlg	Back	NewDialog	MaintenanceTypeDlg	InstallMode = "Repair"	3
+VerifyReadyDlg	Back	NewDialog	SetupTypeDlg	InstallMode = "Typical" AND TYPICALONLY <> 1	4
+VerifyReadyDlg	Back	NewDialog	LicenseAgreementDlg	InstallMode = "Typical" AND TYPICALONLY = 1 AND ShowLicenseAgreementDlg = 1	6
+VerifyReadyDlg	Back	NewDialog	WelcomeDlg	InstallMode = "Typical" AND TYPICALONLY = 1 AND ShowLicenseAgreementDlg <> 1	5
+VerifyReadyDlg	Back	NewDialog	ShortcutDlg	InstallMode = "Custom" AND ShowShortcutDlg = 1	2
+VerifyReadyDlg	Install	EndDialog	Return	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"	1
+VerifyReadyDlg	Install	EndDialog	Return	OutOfDiskSpace <> 1	2
+VerifyReadyDlg	Install	SpawnDialog	OutOfDiskDlg	(OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST="F")	3
+VerifyReadyDlg	Install	SpawnDialog	OutOfRbDiskDlg	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST="P" OR NOT PROMPTROLLBACKCOST)	4
+VerifyReadyDlg	Install	EnableRollback	False	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"	5
+OutOfDiskDlg	OK	EndDialog	Return	1	1
+OutOfRbDiskDlg	No	EndDialog	Return	1	1
+OutOfRbDiskDlg	Yes	EndDialog	Return	1	1
+OutOfRbDiskDlg	Yes	EnableRollback	False	1	2
+CustomizeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+CustomizeDlg	Back	NewDialog	MaintenanceTypeDlg	InstallMode = "Change" and NOT PATCH	1
+CustomizeDlg	Back	NewDialog	PatchWelcomeDlg	InstallMode = "Change" and PATCH	2
+CustomizeDlg	Back	NewDialog	SetupTypeDlg	InstallMode = "Custom" AND CUSTOMONLY <> 1	3
+CustomizeDlg	Back	NewDialog	LicenseAgreementDlg	InstallMode = "Custom" AND CUSTOMONLY = 1	4
+CustomizeDlg	Next	NewDialog	VerifyReadyDlg	Installed OR ShowShortcutDlg <> 1	3
+CustomizeDlg	Next	NewDialog	OutOfDiskDlg	OutOfNoRbDiskSpace = 1	1
+CustomizeDlg	Next	NewDialog	ShortcutDlg	NOT Installed AND ShowShortcutDlg = 1	2
+CustomizeDlg	Browse	SelectionBrowse	BrowseDlg	1	1
+CustomizeDlg	Reset	[INSTALLDIR]	[Original_INSTALLDIR]	1	1
+CustomizeDlg	Reset	Reset	0	1	3
+CustomizeDlg	Reset	SetTargetPath	INSTALLDIR	1	2
+CustomizeDlg	DiskCost	SpawnDialog	DiskCostDlg	1	1
+BrowseDlg	Up	DirectoryListUp	0	1	1
+BrowseDlg	OK	EndDialog	Return	1	1
+BrowseDlg	OK	SetTargetPath	[_BrowseProperty]	1	2
+BrowseDlg	Cancel	Reset	0	1	1
+BrowseDlg	Cancel	EndDialog	Return	1	2
+BrowseDlg	NewFolder	DirectoryListNew	0	1	1
+DiskCostDlg	OK	EndDialog	Return	1	1
+MaintenanceTypeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+MaintenanceTypeDlg	Back	NewDialog	MaintenanceWelcomeDlg	1	1
+MaintenanceTypeDlg	Next	NewDialog	CustomizeDlg	MAINTENANCETYPE="Modify"	3
+MaintenanceTypeDlg	Next	NewDialog	VerifyRepairDlg	MAINTENANCETYPE="Repair"	1
+MaintenanceTypeDlg	Next	NewDialog	VerifyRemoveDlg	MAINTENANCETYPE="Remove"	5
+MaintenanceTypeDlg	Next	[InstallMode]	Remove	MAINTENANCETYPE="Remove"	6
+MaintenanceTypeDlg	Next	[InstallMode]	Repair	MAINTENANCETYPE="Repair"	2
+MaintenanceTypeDlg	Next	[InstallMode]	Change	MAINTENANCETYPE="Modify"	4
+VerifyRepairDlg	Cancel	SpawnDialog	CancelDlg	1	1
+VerifyRepairDlg	Back	NewDialog	MaintenanceTypeDlg	1	1
+VerifyRepairDlg	Back	NewDialog	SingleStepMaintenanceTypeDlg	SingleStepInstall = "true"	2
+VerifyRepairDlg	Repair	EndDialog	Return	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"	1
+VerifyRepairDlg	Repair	EndDialog	Return	OutOfDiskSpace <> 1	2
+VerifyRepairDlg	Repair	SpawnDialog	OutOfDiskDlg	(OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST="F")	3
+VerifyRepairDlg	Repair	SpawnDialog	OutOfRbDiskDlg	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST="P" OR NOT PROMPTROLLBACKCOST)	4
+VerifyRepairDlg	Repair	EnableRollback	False	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"	5
+VerifyRepairDlg	Repair	Reinstall	All	OutOfDiskSpace <> 1	6
+VerifyRepairDlg	Repair	ReinstallMode	ecmus	OutOfDiskSpace <> 1	7
+SingleStepMaintenanceTypeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+SingleStepMaintenanceTypeDlg	Cancel	[UserCancel]	true	1	2
+SingleStepMaintenanceTypeDlg	Next	EndDialog	Return	SINGLESTEPMAINTENANCETYPE="Repair"	2
+SingleStepMaintenanceTypeDlg	Next	SpawnDialog	VerifyRemovePopupDlg	SINGLESTEPMAINTENANCETYPE="Remove"	6
+SingleStepMaintenanceTypeDlg	Next	[InstallMode]	Remove	SINGLESTEPMAINTENANCETYPE="Remove"	7
+SingleStepMaintenanceTypeDlg	Next	[InstallMode]	Repair	SINGLESTEPMAINTENANCETYPE="Repair"	3
+SingleStepMaintenanceTypeDlg	Next	Reinstall	All	SINGLESTEPMAINTENANCETYPE="Repair"	4
+SingleStepMaintenanceTypeDlg	Next	ReinstallMode	ecmus	SINGLESTEPMAINTENANCETYPE="Repair"	5
+SingleStepMaintenanceTypeDlg	Next	[UserCancel]	false	1	1
+VerifyRemovePopupDlg	No	EndDialog	Return	1	1
+VerifyRemovePopupDlg	Yes	Remove	All	1	1
+VerifyRemovePopupDlg	Yes	EndDialog	Ignore	1	2
+VerifyRemoveDlg	Remove	Remove	All	OutOfDiskSpace <> 1	1
+VerifyRemoveDlg	Remove	EndDialog	Return	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"	2
+VerifyRemoveDlg	Remove	EndDialog	Return	OutOfDiskSpace <> 1	3
+VerifyRemoveDlg	Remove	SpawnDialog	OutOfDiskDlg	(OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST="F")	4
+VerifyRemoveDlg	Remove	SpawnDialog	OutOfRbDiskDlg	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST="P" OR NOT PROMPTROLLBACKCOST)	5
+VerifyRemoveDlg	Remove	EnableRollback	False	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"	6
+VerifyRemoveDlg	Cancel	SpawnDialog	CancelDlg	1	1
+VerifyRemoveDlg	Back	NewDialog	MaintenanceTypeDlg	NOT ARPNOMODIFY	1
+VerifyRemoveDlg	Back	NewDialog	SingleStepMaintenanceTypeDlg	SingleStepInstall = "true"	3
+VerifyRemoveDlg	Back	NewDialog	MaintenanceWelcomeDlg	ARPNOMODIFY = 1	2
+MaintenanceWelcomeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+MaintenanceWelcomeDlg	Next	NewDialog	MaintenanceTypeDlg	NOT ARPNOMODIFY	1
+MaintenanceWelcomeDlg	Next	NewDialog	VerifyRemoveDlg	ARPNOMODIFY = 1	3
+MaintenanceWelcomeDlg	Next	[InstallMode]	Remove	ARPNOMODIFY = 1	4
+MaintenanceWelcomeDlg	Next	SpawnWaitDialog	WaitForCostingDlg	CostingComplete = 1	2
+WaitForCostingDlg	Return	EndDialog	Exit	1	1
+PatchWelcomeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+PatchWelcomeDlg	Next	NewDialog	CustomizeDlg	1	1
+PatchWelcomeDlg	Next	[InstallMode]	Change	1	2
+PatchWelcomeDlg	Next	SpawnWaitDialog	WaitForCostingDlg	CostingComplete = 1	4
+PatchWelcomeDlg	Next	[LAUNCHPRODUCT]	0	1	3
+SetupTypeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+SetupTypeDlg	Back	NewDialog	LicenseAgreementDlg	ShowLicenseAgreementDlg = 1	1
+SetupTypeDlg	Back	NewDialog	WelcomeDlg	ShowLicenseAgreementDlg <> 1	2
+SetupTypeDlg	Next	NewDialog	VerifyReadyDlg	SETUPTYPE="Typical" OR TYPICALONLY = 1	1
+SetupTypeDlg	Next	NewDialog	CustomizeDlg	SETUPTYPE="Custom" OR CUSTOMONLY = 1	4
+SetupTypeDlg	Next	[InstallMode]	Typical	SETUPTYPE="Typical" OR TYPICALONLY = 1	2
+SetupTypeDlg	Next	[InstallMode]	Custom	SETUPTYPE="Custom" OR CUSTOMONLY = 1	5
+SetupTypeDlg	Next	SetInstallLevel	3	SETUPTYPE="Typical" OR TYPICALONLY = 1	3
+LicenseAgreementDlg	Cancel	SpawnDialog	CancelDlg	1	1
+LicenseAgreementDlg	Back	NewDialog	WelcomeDlg	1	1
+LicenseAgreementDlg	Next	NewDialog	VerifyReadyDlg	IAgree = "Yes" AND TYPICALONLY = 1	3
+LicenseAgreementDlg	Next	NewDialog	CustomizeDlg	IAgree = "Yes" AND CUSTOMONLY = 1	6
+LicenseAgreementDlg	Next	NewDialog	SetupTypeDlg	IAgree = "Yes" AND TYPICALONLY <> 1 AND CUSTOMONLY <> 1	1
+LicenseAgreementDlg	Next	[InstallMode]	Typical	IAgree = "Yes" AND TYPICALONLY = 1	4
+LicenseAgreementDlg	Next	[InstallMode]	Custom	IAgree = "Yes" AND CUSTOMONLY = 1	7
+LicenseAgreementDlg	Next	SpawnWaitDialog	WaitForCostingDlg	CostingComplete = 1	2
+LicenseAgreementDlg	Next	SetInstallLevel	3	IAgree = "Yes" AND TYPICALONLY = 1	5
+WelcomeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+WelcomeDlg	Next	NewDialog	VerifyReadyDlg	ShowLicenseAgreementDlg <> 1	2
+WelcomeDlg	Next	NewDialog	LicenseAgreementDlg	ShowLicenseAgreementDlg = 1	1
+ShortcutDlg	Cancel	SpawnDialog	CancelDlg	1	1
+ShortcutDlg	Back	NewDialog	CustomizeDlg	InstallMode = "Custom" OR InstallMode = "Change"	1
+ShortcutDlg	Back	NewDialog	MaintenanceTypeDlg	InstallMode = "Repair"	2
+ShortcutDlg	Back	NewDialog	SetupTypeDlg	InstallMode = "Typical" OR InstallMode = "Complete"	3
+ShortcutDlg	Next	NewDialog	VerifyReadyDlg	1	1
+AdminBrowseDlg	Up	DirectoryListUp	0	1	1
+AdminBrowseDlg	OK	EndDialog	Return	1	1
+AdminBrowseDlg	OK	SetTargetPath	TARGETDIR	1	2
+AdminBrowseDlg	Cancel	Reset	0	1	1
+AdminBrowseDlg	Cancel	EndDialog	Return	1	2
+AdminBrowseDlg	NewFolder	DirectoryListNew	0	1	1
+SingleStepUserExitDlg	Finish	EndDialog	Exit	1	1
+SingleStepInstallDlg	Cancel	SpawnDialog	CancelDlg	1	1
+SingleStepInstallDlg	Cancel	[UserCancel]	true	1	2
+SingleStepInstallDlg	Install	EndDialog	Return	1	2
+SingleStepInstallDlg	Install	[UserCancel]	false	1	1
+SingleStepInstallDlg	Customize	NewDialog	SingleStepCustomizeDlg	1	2
+SingleStepInstallDlg	Customize	[UserCancel]	false	1	1
+SingleStepInstallDlg	ViewLicense	SpawnDialog	LicensePopupDlg	1	1
+SingleStepCustomizeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+SingleStepCustomizeDlg	Cancel	[UserCancel]	true	1	2
+SingleStepCustomizeDlg	Back	[INSTALLDIR]	[Original_INSTALLDIR]	1	2
+SingleStepCustomizeDlg	Back	NewDialog	SingleStepInstallDlg	1	1
+SingleStepCustomizeDlg	Back	SetTargetPath	INSTALLDIR	1	3
+SingleStepCustomizeDlg	Browse	SelectionBrowse	BrowseDlg	1	1
+SingleStepCustomizeDlg	Install	EndDialog	Return	1	2
+SingleStepCustomizeDlg	Install	[UserCancel]	false	1	1
+LicensePopupDlg	OK	EndDialog	Return	1	1
+ResumeDlg	Cancel	SpawnDialog	CancelDlg	1	1
+ResumeDlg	Install	EndDialog	Return	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"	1
+ResumeDlg	Install	EndDialog	Return	OutOfDiskSpace <> 1	2
+ResumeDlg	Install	SpawnDialog	OutOfDiskDlg	(OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST="F")	3
+ResumeDlg	Install	EnableRollback	False	OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"	5
+ResumeDlg	Install	SpawnWaitDialog	WaitForCostingDlg	CostingComplete = 1	4
+SingleStepProgressDlg	Cancel	SpawnDialog	CancelDlg	1	1
