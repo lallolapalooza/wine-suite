@@ -1,0 +1,4 @@
+[General]
+openLog=false
+allowMultipleOpen=false
+needFeedbackMessageCache=false

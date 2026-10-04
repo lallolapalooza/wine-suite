@@ -1,0 +1,1415 @@
+From: CapCut-on-Wine project
+Subject: wbemdisp: implement the SWbemDateTime (ISWbemDateTime) scripting object
+
+SYMPTOM
+  CapCut PC logs, immediately followed by whatever component asked for the class:
+
+      err:ole:com_get_class_object class {47dfbe54-cf76-11d3-b38f-00105a1f473a} not registered
+      err:ole:com_get_class_object no class object {47dfbe54-cf76-11d3-b38f-00105a1f473a}
+      could be created for context 0x1
+
+  {47DFBE54-CF76-11D3-B38F-00105A1F473A} is CLSID_SWbemDateTime (WbemScripting.SWbemDateTime,
+  IID_ISWbemDateTime {5E97458A-CF77-11D3-B38F-00105A1F473A}, wbemdisp.dll / wbemdisp.tlb) -- the
+  WMI scripting helper that converts the CIM DATETIME string (yyyymmddHHMMSS.mmmmmm+UUU) to and
+  from VT_DATE and FILETIME.  Wine implements the rest of the WMI scripting objects (SWbemLocator,
+  SWbemServices, SWbemObject, SWbemObjectSet, ...) but not this one, so any
+  CoCreateInstance(CLSID_SWbemDateTime) fails with REGDB_E_CLASSNOTREG.
+
+CLASSIFICATION
+  GENERAL WINE GAP FOUND WHILE MAKING CAPCUT RUN, NOT A CAPCUT-EXCLUSIVE HACK.  The class is
+  absent from every Wine version (searched wine-11.18, our patched tree and /opt/wine-staging: no
+  CLSID, no interface, no symbol), and any WMI-scripting consumer hits the same
+  REGDB_E_CLASSNOTREG.  It is therefore part of the shared series, not of patches/local/.
+
+CHANGE
+  * include/wbemdisp.idl: add interface ISWbemDateTime (the full Microsoft surface: Value,
+    Year/YearSpecified, Month/MonthSpecified, Day/DaySpecified, Hours/HoursSpecified,
+    Minutes/MinutesSpecified, Seconds/SecondsSpecified, Microseconds/MicrosecondsSpecified,
+    UTC/UTCSpecified, IsInterval, and GetVarDate/SetVarDate/GetFileTime/SetFileTime) and
+    coclass SWbemDateTime, so widl registers the CLSID/ProgID and builds the typelib entry the
+    object's IDispatch implementation needs.
+  * dlls/wbemdisp/datetime.c: new file implementing the object and the conversions:
+      - the object stores the timestamp components plus the CIM offset and the '*' specified
+        flags; the internal instant is (components - offset), rendered in UTC or local time;
+      - Value <-> components round trip, including interval form
+        (ddddddddHHMMSS.mmmmmm:000, the leading 8 digits are the day count) and '*' wildcards
+        for fields whose *Specified flag is FALSE;
+      - GetVarDate/SetVarDate (VARIANT DATE), GetFileTime/SetFileTime (FILETIME as a decimal
+        BSTR), both honouring the local/UTC flag through the machine time zone;
+      - error codes measured on Windows: WBEM_E_INVALID_SYNTAX (0x80041021) for a malformed or
+        out-of-range-for-conversion value, WBEM_E_VALUE_OUT_OF_RANGE (0x8004102b) for an
+        out-of-range component assignment, WBEM_E_FAILED (0x80041001) for GetVarDate/GetFileTime
+        on an interval or with unspecified components.
+  * dlls/wbemdisp/main.c, wbemdisp_private.h, locator.c: wire the new CLSID into DllGetClassObject
+    and share the existing typelib helper (get_typeinfo) with the new object.
+  * dlls/wbemdisp/tests/wbemdisp.c: cover create-via-CoCreateInstance, Value<->VT_DATE for a UTC
+    and an offset timestamp, IsInterval, interval parsing/building, GetFileTime/SetFileTime round
+    trip, and malformed input.
+
+  Conversions were measured against Windows 11 (build 26200, time zone Pacific) running the real
+  wbemdisp.dll:  Value "20000120195632.000000-480" -> GetVarDate(false) 2000-01-21 03:56:32 UTC,
+  GetVarDate(true) 2000-01-20 19:56:32 local;  interval GetVarDate/GetFileTime -> 0x80041001;
+  put_Value("garbage") -> 0x80041021 leaving the object unchanged;  put_Month(13) -> 0x8004102b.
+
+diff --git a/dlls/wbemdisp/Makefile.in b/dlls/wbemdisp/Makefile.in
+index 9f1b330..25f7d5f 100644
+--- a/dlls/wbemdisp/Makefile.in
++++ b/dlls/wbemdisp/Makefile.in
+@@ -4,6 +4,7 @@ IMPORTS   = oleaut32 ole32
+ EXTRADLLFLAGS = -Wb,--prefer-native
+ 
+ SOURCES = \
++	datetime.c \
+ 	locator.c \
+ 	main.c \
+ 	wbemdisp_classes.idl \
+diff --git a/dlls/wbemdisp/datetime.c b/dlls/wbemdisp/datetime.c
+new file mode 100644
+index 0000000..96a6e60
+--- /dev/null
++++ b/dlls/wbemdisp/datetime.c
+@@ -0,0 +1,825 @@
++/*
++ * SWbemDateTime
++ *
++ * Copyright 2026 the Wine project authors
++ *
++ * This library is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU Lesser General Public
++ * License as published by the Free Software Foundation; either
++ * version 2.1 of the License, or (at your option) any later version.
++ *
++ * This library is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++ * Lesser General Public License for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public
++ * License along with this library; if not, write to the Free Software
++ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
++ */
++
++#define COBJMACROS
++
++#include <stdarg.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <wchar.h>
++
++#include "windef.h"
++#include "winbase.h"
++#include "objbase.h"
++#include "oleauto.h"
++#include "wbemcli.h"
++#include "wbemdisp.h"
++
++#include "wine/debug.h"
++#include "wbemdisp_private.h"
++
++WINE_DEFAULT_DEBUG_CHANNEL(wbemdisp);
++
++/* the CIM datetime string is 25 characters long: yyyymmddHHMMSS.mmmmmm+UUU   */
++/* an interval replaces the leading date with a day count and the UTC offset  */
++/* sign with a colon: ddddddddHHMMSS.mmmmmm:000                               */
++#define DATETIME_LEN 25
++#define TICKS_PER_MINUTE 600000000LL /* 60 * 1000 * 10000 */
++
++struct datetime
++{
++    ISWbemDateTime ISWbemDateTime_iface;
++    LONG refs;
++
++    LONG year, month, day, hours, minutes, seconds, microseconds;
++    LONG utc; /* offset in minutes */
++    BOOL year_specified, month_specified, day_specified, hours_specified;
++    BOOL minutes_specified, seconds_specified, microseconds_specified, utc_specified;
++
++    BOOL is_interval;
++};
++
++static inline struct datetime *impl_from_ISWbemDateTime( ISWbemDateTime *iface )
++{
++    return CONTAINING_RECORD( iface, struct datetime, ISWbemDateTime_iface );
++}
++
++/* format a fixed width, zero padded decimal field, or a run of '*' wildcards */
++static void put_field( WCHAR *dst, int width, LONG value, BOOL specified )
++{
++    int i;
++
++    if (!specified)
++    {
++        for (i = 0; i < width; i++) dst[i] = '*';
++        return;
++    }
++    for (i = width - 1; i >= 0; i--)
++    {
++        dst[i] = '0' + value % 10;
++        value /= 10;
++    }
++}
++
++static BOOL all_specified( const struct datetime *dt )
++{
++    return dt->year_specified && dt->month_specified && dt->day_specified &&
++           dt->hours_specified && dt->minutes_specified && dt->seconds_specified &&
++           dt->microseconds_specified && dt->utc_specified;
++}
++
++/* convert the stored components to a FILETIME, treating them as UTC */
++static BOOL components_to_filetime( const struct datetime *dt, ULONGLONG *ret )
++{
++    SYSTEMTIME st;
++    FILETIME ft;
++
++    st.wYear = dt->year;
++    st.wMonth = dt->month;
++    st.wDay = dt->day;
++    st.wHour = dt->hours;
++    st.wMinute = dt->minutes;
++    st.wSecond = dt->seconds;
++    st.wMilliseconds = dt->microseconds / 1000;
++
++    if (!SystemTimeToFileTime( &st, &ft )) return FALSE;
++
++    *ret = ((ULONGLONG)ft.dwHighDateTime << 32) | ft.dwLowDateTime;
++    *ret += (dt->microseconds % 1000) * 10;
++    return TRUE;
++}
++
++static void apply_offset( ULONGLONG *ft, LONG utc )
++{
++    *ft -= (LONGLONG)utc * TICKS_PER_MINUTE;
++}
++
++static BOOL localize_filetime( ULONGLONG in, ULONGLONG *out )
++{
++    FILETIME ft, local;
++
++    ft.dwLowDateTime = (DWORD)in;
++    ft.dwHighDateTime = (DWORD)(in >> 32);
++    if (!FileTimeToLocalFileTime( &ft, &local )) return FALSE;
++    *out = ((ULONGLONG)local.dwHighDateTime << 32) | local.dwLowDateTime;
++    return TRUE;
++}
++
++static BOOL filetime_to_systemtime( ULONGLONG ft, SYSTEMTIME *st )
++{
++    FILETIME file;
++
++    file.dwLowDateTime = (DWORD)ft;
++    file.dwHighDateTime = (DWORD)(ft >> 32);
++    return FileTimeToSystemTime( &file, st );
++}
++
++/* number of minutes that 'local' is ahead of UTC, including daylight saving */
++static BOOL components_to_ticks( const SYSTEMTIME *st, ULONGLONG *ret )
++{
++    FILETIME ft;
++
++    if (!SystemTimeToFileTime( st, &ft )) return FALSE;
++    *ret = ((ULONGLONG)ft.dwHighDateTime << 32) | ft.dwLowDateTime;
++    return TRUE;
++}
++
++static LONG local_offset( const SYSTEMTIME *local )
++{
++    SYSTEMTIME utc;
++    ULONGLONG l, u;
++
++    if (!TzSpecificLocalTimeToSystemTime( NULL, local, &utc )) return 0;
++    if (!components_to_ticks( local, &l ) || !components_to_ticks( &utc, &u )) return 0;
++    return (LONGLONG)(l - u) / TICKS_PER_MINUTE;
++}
++
++static void filetime_to_decstr( ULONGLONG value, WCHAR *buf )
++{
++    WCHAR tmp[21];
++    int i, n = 0;
++
++    if (!value)
++    {
++        buf[0] = '0';
++        buf[1] = 0;
++        return;
++    }
++    while (value)
++    {
++        tmp[n++] = '0' + value % 10;
++        value /= 10;
++    }
++    for (i = 0; i < n; i++) buf[i] = tmp[n - 1 - i];
++    buf[n] = 0;
++}
++
++static BOOL parse_decstr( const WCHAR *str, ULONGLONG *ret )
++{
++    ULONGLONG value = 0;
++    unsigned int i;
++
++    for (i = 0; str[i]; i++)
++    {
++        ULONGLONG digit;
++
++        if (str[i] < '0' || str[i] > '9') return FALSE;
++        digit = str[i] - '0';
++        if (value > (~(ULONGLONG)0 - digit) / 10) return FALSE;
++        value = value * 10 + digit;
++    }
++    *ret = value;
++    return TRUE;
++}
++
++/* a field is either all digits or all '*' wildcards */
++static BOOL parse_field( const WCHAR *str, int len, BOOL *specified, LONG *value )
++{
++    BOOL digits = TRUE, stars = TRUE;
++    LONG v = 0;
++    int i;
++
++    for (i = 0; i < len; i++)
++    {
++        if (str[i] == '*') digits = FALSE;
++        else if (str[i] >= '0' && str[i] <= '9') stars = FALSE;
++        else return FALSE;
++    }
++    if (digits)
++    {
++        for (i = 0; i < len; i++) v = v * 10 + (str[i] - '0');
++        *specified = TRUE;
++        *value = v;
++        return TRUE;
++    }
++    if (stars)
++    {
++        *specified = FALSE;
++        *value = 0;
++        return TRUE;
++    }
++    return FALSE;
++}
++
++static HRESULT put_value( struct datetime *dt, const WCHAR *str )
++{
++    BOOL yspec, mspec, dspec, hspec, mispec, sspec, uspec, utcspec = TRUE;
++    LONG year, month, day, hours, minutes, seconds, microseconds, utc;
++    BOOL interval;
++
++    TRACE( "%s\n", debugstr_w(str) );
++
++    if (!str || wcslen( str ) != DATETIME_LEN || str[14] != '.')
++        return WBEM_E_INVALID_SYNTAX;
++
++    if (str[21] == ':') interval = TRUE;
++    else if (str[21] == '+' || str[21] == '-') interval = FALSE;
++    else return WBEM_E_INVALID_SYNTAX;
++
++    if (interval)
++    {
++        if (!parse_field( str, 8, &dspec, &day )) return WBEM_E_INVALID_SYNTAX;
++        year = dt->year;
++        month = dt->month;
++        yspec = dt->year_specified;
++        mspec = dt->month_specified;
++        utc = 0;
++        utcspec = TRUE;
++    }
++    else
++    {
++        if (!parse_field( str, 4, &yspec, &year )) return WBEM_E_INVALID_SYNTAX;
++        if (!parse_field( str + 4, 2, &mspec, &month )) return WBEM_E_INVALID_SYNTAX;
++        if (!parse_field( str + 6, 2, &dspec, &day )) return WBEM_E_INVALID_SYNTAX;
++        if (!parse_field( str + 22, 3, &utcspec, &utc )) return WBEM_E_INVALID_SYNTAX;
++        if (str[21] == '-') utc = -utc;
++    }
++    if (!parse_field( str + 8, 2, &hspec, &hours )) return WBEM_E_INVALID_SYNTAX;
++    if (!parse_field( str + 10, 2, &mispec, &minutes )) return WBEM_E_INVALID_SYNTAX;
++    if (!parse_field( str + 12, 2, &sspec, &seconds )) return WBEM_E_INVALID_SYNTAX;
++    if (!parse_field( str + 15, 6, &uspec, &microseconds )) return WBEM_E_INVALID_SYNTAX;
++
++    dt->year = year;
++    dt->month = month;
++    dt->day = day;
++    dt->hours = hours;
++    dt->minutes = minutes;
++    dt->seconds = seconds;
++    dt->microseconds = microseconds;
++    dt->utc = utc;
++    dt->year_specified = yspec;
++    dt->month_specified = mspec;
++    dt->day_specified = dspec;
++    dt->hours_specified = hspec;
++    dt->minutes_specified = mispec;
++    dt->seconds_specified = sspec;
++    dt->microseconds_specified = uspec;
++    dt->utc_specified = utcspec;
++    dt->is_interval = interval;
++    return S_OK;
++}
++
++static ULONG WINAPI datetime_AddRef( ISWbemDateTime *iface )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    return InterlockedIncrement( &dt->refs );
++}
++
++static ULONG WINAPI datetime_Release( ISWbemDateTime *iface )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    LONG refs = InterlockedDecrement( &dt->refs );
++    if (!refs)
++    {
++        TRACE( "destroying %p\n", dt );
++        free( dt );
++    }
++    return refs;
++}
++
++static HRESULT WINAPI datetime_QueryInterface( ISWbemDateTime *iface, REFIID riid, void **obj )
++{
++    TRACE( "%p, %s, %p\n", iface, debugstr_guid(riid), obj );
++
++    if (IsEqualGUID( riid, &IID_IUnknown ) || IsEqualGUID( riid, &IID_IDispatch ) ||
++        IsEqualGUID( riid, &IID_ISWbemDateTime ))
++    {
++        *obj = iface;
++        ISWbemDateTime_AddRef( iface );
++        return S_OK;
++    }
++    *obj = NULL;
++    return E_NOINTERFACE;
++}
++
++static HRESULT WINAPI datetime_GetTypeInfoCount( ISWbemDateTime *iface, UINT *count )
++{
++    TRACE( "%p, %p\n", iface, count );
++    *count = 1;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_GetTypeInfo( ISWbemDateTime *iface, UINT index, LCID lcid, ITypeInfo **info )
++{
++    TRACE( "%p, %u, %#lx, %p\n", iface, index, lcid, info );
++    return get_typeinfo( ISWbemDateTime_tid, info );
++}
++
++static HRESULT WINAPI datetime_GetIDsOfNames( ISWbemDateTime *iface, REFIID riid, LPOLESTR *names,
++                                              UINT count, LCID lcid, DISPID *dispid )
++{
++    ITypeInfo *typeinfo;
++    HRESULT hr;
++
++    TRACE( "%p, %s, %p, %u, %#lx, %p\n", iface, debugstr_guid(riid), names, count, lcid, dispid );
++
++    if (!names || !count || !dispid) return E_INVALIDARG;
++
++    hr = get_typeinfo( ISWbemDateTime_tid, &typeinfo );
++    if (SUCCEEDED(hr))
++    {
++        hr = ITypeInfo_GetIDsOfNames( typeinfo, names, count, dispid );
++        ITypeInfo_Release( typeinfo );
++    }
++    return hr;
++}
++
++static HRESULT WINAPI datetime_Invoke( ISWbemDateTime *iface, DISPID member, REFIID riid, LCID lcid,
++                                       WORD flags, DISPPARAMS *params, VARIANT *result,
++                                       EXCEPINFO *excep_info, UINT *arg_err )
++{
++    ITypeInfo *typeinfo;
++    HRESULT hr;
++
++    TRACE( "%p, %ld, %s, %#lx, %#x, %p, %p, %p, %p\n", iface, member, debugstr_guid(riid), lcid,
++           flags, params, result, excep_info, arg_err );
++
++    hr = get_typeinfo( ISWbemDateTime_tid, &typeinfo );
++    if (SUCCEEDED(hr))
++    {
++        hr = ITypeInfo_Invoke( typeinfo, iface, member, flags, params, result, excep_info, arg_err );
++        ITypeInfo_Release( typeinfo );
++    }
++    return hr;
++}
++
++static HRESULT WINAPI datetime_get_Value( ISWbemDateTime *iface, BSTR *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    WCHAR buf[DATETIME_LEN + 1];
++
++    TRACE( "%p, %p\n", dt, value );
++
++    if (dt->is_interval)
++    {
++        put_field( buf, 8, dt->day, dt->day_specified );
++        put_field( buf + 8, 2, dt->hours, dt->hours_specified );
++        put_field( buf + 10, 2, dt->minutes, dt->minutes_specified );
++        put_field( buf + 12, 2, dt->seconds, dt->seconds_specified );
++        buf[14] = '.';
++        put_field( buf + 15, 6, dt->microseconds, dt->microseconds_specified );
++        buf[21] = ':';
++        put_field( buf + 22, 3, 0, TRUE );
++    }
++    else
++    {
++        put_field( buf, 4, dt->year, dt->year_specified );
++        put_field( buf + 4, 2, dt->month, dt->month_specified );
++        put_field( buf + 6, 2, dt->day, dt->day_specified );
++        put_field( buf + 8, 2, dt->hours, dt->hours_specified );
++        put_field( buf + 10, 2, dt->minutes, dt->minutes_specified );
++        put_field( buf + 12, 2, dt->seconds, dt->seconds_specified );
++        buf[14] = '.';
++        put_field( buf + 15, 6, dt->microseconds, dt->microseconds_specified );
++        buf[21] = dt->utc < 0 ? '-' : '+';
++        put_field( buf + 22, 3, abs( dt->utc ), dt->utc_specified );
++    }
++    buf[DATETIME_LEN] = 0;
++
++    if (!(*value = SysAllocString( buf ))) return E_OUTOFMEMORY;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_Value( ISWbemDateTime *iface, BSTR value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++
++    TRACE( "%p, %s\n", dt, debugstr_w(value) );
++
++    return put_value( dt, value );
++}
++
++static HRESULT WINAPI datetime_get_Year( ISWbemDateTime *iface, LONG *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->year;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_Year( ISWbemDateTime *iface, LONG value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    if (value < 0 || value > 9999) return WBEM_E_VALUE_OUT_OF_RANGE;
++    dt->year = value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_YearSpecified( ISWbemDateTime *iface, VARIANT_BOOL *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->year_specified ? VARIANT_TRUE : VARIANT_FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_YearSpecified( ISWbemDateTime *iface, VARIANT_BOOL value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    dt->year_specified = !!value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_Month( ISWbemDateTime *iface, LONG *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->month;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_Month( ISWbemDateTime *iface, LONG value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    if (value < 1 || value > 12) return WBEM_E_VALUE_OUT_OF_RANGE;
++    dt->month = value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_MonthSpecified( ISWbemDateTime *iface, VARIANT_BOOL *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->month_specified ? VARIANT_TRUE : VARIANT_FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_MonthSpecified( ISWbemDateTime *iface, VARIANT_BOOL value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    dt->month_specified = !!value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_Day( ISWbemDateTime *iface, LONG *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->day;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_Day( ISWbemDateTime *iface, LONG value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    if (dt->is_interval)
++    {
++        if (value < 0 || value > 99999999) return WBEM_E_VALUE_OUT_OF_RANGE;
++    }
++    else if (value < 1 || value > 31) return WBEM_E_VALUE_OUT_OF_RANGE;
++    dt->day = value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_DaySpecified( ISWbemDateTime *iface, VARIANT_BOOL *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->day_specified ? VARIANT_TRUE : VARIANT_FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_DaySpecified( ISWbemDateTime *iface, VARIANT_BOOL value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    dt->day_specified = !!value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_Hours( ISWbemDateTime *iface, LONG *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->hours;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_Hours( ISWbemDateTime *iface, LONG value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    if (value < 0 || value > 23) return WBEM_E_VALUE_OUT_OF_RANGE;
++    dt->hours = value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_HoursSpecified( ISWbemDateTime *iface, VARIANT_BOOL *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->hours_specified ? VARIANT_TRUE : VARIANT_FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_HoursSpecified( ISWbemDateTime *iface, VARIANT_BOOL value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    dt->hours_specified = !!value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_Minutes( ISWbemDateTime *iface, LONG *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->minutes;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_Minutes( ISWbemDateTime *iface, LONG value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    if (value < 0 || value > 59) return WBEM_E_VALUE_OUT_OF_RANGE;
++    dt->minutes = value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_MinutesSpecified( ISWbemDateTime *iface, VARIANT_BOOL *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->minutes_specified ? VARIANT_TRUE : VARIANT_FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_MinutesSpecified( ISWbemDateTime *iface, VARIANT_BOOL value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    dt->minutes_specified = !!value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_Seconds( ISWbemDateTime *iface, LONG *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->seconds;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_Seconds( ISWbemDateTime *iface, LONG value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    if (value < 0 || value > 59) return WBEM_E_VALUE_OUT_OF_RANGE;
++    dt->seconds = value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_SecondsSpecified( ISWbemDateTime *iface, VARIANT_BOOL *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->seconds_specified ? VARIANT_TRUE : VARIANT_FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_SecondsSpecified( ISWbemDateTime *iface, VARIANT_BOOL value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    dt->seconds_specified = !!value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_Microseconds( ISWbemDateTime *iface, LONG *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->microseconds;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_Microseconds( ISWbemDateTime *iface, LONG value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    if (value < 0 || value > 999999) return WBEM_E_VALUE_OUT_OF_RANGE;
++    dt->microseconds = value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_MicrosecondsSpecified( ISWbemDateTime *iface, VARIANT_BOOL *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->microseconds_specified ? VARIANT_TRUE : VARIANT_FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_MicrosecondsSpecified( ISWbemDateTime *iface, VARIANT_BOOL value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    dt->microseconds_specified = !!value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_UTC( ISWbemDateTime *iface, LONG *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->utc;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_UTC( ISWbemDateTime *iface, LONG value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    if (value < -1440 || value > 1440) return WBEM_E_VALUE_OUT_OF_RANGE;
++    dt->utc = value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_UTCSpecified( ISWbemDateTime *iface, VARIANT_BOOL *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->utc_specified ? VARIANT_TRUE : VARIANT_FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_UTCSpecified( ISWbemDateTime *iface, VARIANT_BOOL value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    dt->utc_specified = !!value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_get_IsInterval( ISWbemDateTime *iface, VARIANT_BOOL *value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    *value = dt->is_interval ? VARIANT_TRUE : VARIANT_FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_put_IsInterval( ISWbemDateTime *iface, VARIANT_BOOL value )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    dt->is_interval = !!value;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_GetVarDate( ISWbemDateTime *iface, VARIANT_BOOL local, DATE *ret )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    SYSTEMTIME st;
++    ULONGLONG ft;
++
++    TRACE( "%p, %d, %p\n", dt, local, ret );
++
++    if (dt->is_interval) return WBEM_E_FAILED;
++    if (!all_specified( dt )) return WBEM_E_FAILED;
++    if (!components_to_filetime( dt, &ft )) return WBEM_E_INVALID_SYNTAX;
++
++    apply_offset( &ft, dt->utc );
++    if (local && !localize_filetime( ft, &ft )) return WBEM_E_FAILED;
++    if (!filetime_to_systemtime( ft, &st )) return WBEM_E_INVALID_SYNTAX;
++    if (!SystemTimeToVariantTime( &st, ret )) return WBEM_E_INVALID_SYNTAX;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_SetVarDate( ISWbemDateTime *iface, DATE date, VARIANT_BOOL local )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    SYSTEMTIME st;
++
++    TRACE( "%p, %f, %d\n", dt, date, local );
++
++    if (!VariantTimeToSystemTime( date, &st )) return WBEM_E_INVALID_SYNTAX;
++
++    dt->year = st.wYear;
++    dt->month = st.wMonth;
++    dt->day = st.wDay;
++    dt->hours = st.wHour;
++    dt->minutes = st.wMinute;
++    dt->seconds = st.wSecond;
++    dt->microseconds = st.wMilliseconds * 1000;
++    dt->utc = local ? local_offset( &st ) : 0;
++    dt->year_specified = dt->month_specified = dt->day_specified = TRUE;
++    dt->hours_specified = dt->minutes_specified = dt->seconds_specified = TRUE;
++    dt->microseconds_specified = dt->utc_specified = TRUE;
++    dt->is_interval = FALSE;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_GetFileTime( ISWbemDateTime *iface, VARIANT_BOOL local, BSTR *ret )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    WCHAR buf[21];
++    ULONGLONG ft;
++
++    TRACE( "%p, %d, %p\n", dt, local, ret );
++
++    if (dt->is_interval) return WBEM_E_FAILED;
++    if (!all_specified( dt )) return WBEM_E_FAILED;
++    if (!components_to_filetime( dt, &ft )) return WBEM_E_INVALID_SYNTAX;
++
++    apply_offset( &ft, dt->utc );
++    if (local && !localize_filetime( ft, &ft )) return WBEM_E_FAILED;
++    filetime_to_decstr( ft, buf );
++
++    if (!(*ret = SysAllocString( buf ))) return E_OUTOFMEMORY;
++    return S_OK;
++}
++
++static HRESULT WINAPI datetime_SetFileTime( ISWbemDateTime *iface, BSTR str, VARIANT_BOOL local )
++{
++    struct datetime *dt = impl_from_ISWbemDateTime( iface );
++    SYSTEMTIME st;
++    ULONGLONG ft;
++
++    TRACE( "%p, %s, %d\n", dt, debugstr_w(str), local );
++
++    if (!parse_decstr( str, &ft )) return WBEM_E_INVALID_SYNTAX;
++    if (!filetime_to_systemtime( ft, &st )) return WBEM_E_INVALID_SYNTAX;
++
++    dt->year = st.wYear;
++    dt->month = st.wMonth;
++    dt->day = st.wDay;
++    dt->hours = st.wHour;
++    dt->minutes = st.wMinute;
++    dt->seconds = st.wSecond;
++    dt->microseconds = st.wMilliseconds * 1000;
++    dt->utc = local ? local_offset( &st ) : 0;
++    dt->year_specified = dt->month_specified = dt->day_specified = TRUE;
++    dt->hours_specified = dt->minutes_specified = dt->seconds_specified = TRUE;
++    dt->microseconds_specified = dt->utc_specified = TRUE;
++    dt->is_interval = FALSE;
++    return S_OK;
++}
++
++static const ISWbemDateTimeVtbl datetime_vtbl =
++{
++    datetime_QueryInterface,
++    datetime_AddRef,
++    datetime_Release,
++    datetime_GetTypeInfoCount,
++    datetime_GetTypeInfo,
++    datetime_GetIDsOfNames,
++    datetime_Invoke,
++    datetime_get_Value,
++    datetime_put_Value,
++    datetime_get_Year,
++    datetime_put_Year,
++    datetime_get_YearSpecified,
++    datetime_put_YearSpecified,
++    datetime_get_Month,
++    datetime_put_Month,
++    datetime_get_MonthSpecified,
++    datetime_put_MonthSpecified,
++    datetime_get_Day,
++    datetime_put_Day,
++    datetime_get_DaySpecified,
++    datetime_put_DaySpecified,
++    datetime_get_Hours,
++    datetime_put_Hours,
++    datetime_get_HoursSpecified,
++    datetime_put_HoursSpecified,
++    datetime_get_Minutes,
++    datetime_put_Minutes,
++    datetime_get_MinutesSpecified,
++    datetime_put_MinutesSpecified,
++    datetime_get_Seconds,
++    datetime_put_Seconds,
++    datetime_get_SecondsSpecified,
++    datetime_put_SecondsSpecified,
++    datetime_get_Microseconds,
++    datetime_put_Microseconds,
++    datetime_get_MicrosecondsSpecified,
++    datetime_put_MicrosecondsSpecified,
++    datetime_get_UTC,
++    datetime_put_UTC,
++    datetime_get_UTCSpecified,
++    datetime_put_UTCSpecified,
++    datetime_get_IsInterval,
++    datetime_put_IsInterval,
++    datetime_GetVarDate,
++    datetime_SetVarDate,
++    datetime_GetFileTime,
++    datetime_SetFileTime
++};
++
++HRESULT SWbemDateTime_create( LPVOID *obj )
++{
++    struct datetime *dt;
++
++    TRACE( "%p\n", obj );
++
++    if (!(dt = malloc( sizeof(*dt) ))) return E_OUTOFMEMORY;
++    dt->ISWbemDateTime_iface.lpVtbl = &datetime_vtbl;
++    dt->refs = 1;
++
++    dt->year = 0;
++    dt->month = 1;
++    dt->day = 1;
++    dt->hours = 0;
++    dt->minutes = 0;
++    dt->seconds = 0;
++    dt->microseconds = 0;
++    dt->utc = 0;
++    dt->year_specified = dt->month_specified = dt->day_specified = TRUE;
++    dt->hours_specified = dt->minutes_specified = dt->seconds_specified = TRUE;
++    dt->microseconds_specified = dt->utc_specified = TRUE;
++    dt->is_interval = FALSE;
++
++    *obj = &dt->ISWbemDateTime_iface;
++    TRACE( "returning iface %p\n", *obj );
++    return S_OK;
++}
+diff --git a/dlls/wbemdisp/locator.c b/dlls/wbemdisp/locator.c
+index 8cb9634..d43966e 100644
+--- a/dlls/wbemdisp/locator.c
++++ b/dlls/wbemdisp/locator.c
+@@ -66,24 +66,6 @@ static HRESULT SWbemObject_create( struct services *, IWbemClassObject *, ISWbem
+ static HRESULT SWbemObjectPath_create( IWbemClassObject *, ISWbemObjectPath ** );
+ static HRESULT SWbemQualifierSet_create( ISWbemQualifierSet ** );
+ 
+-enum type_id
+-{
+-    ISWbemLocator_tid,
+-    ISWbemObject_tid,
+-    ISWbemObjectSet_tid,
+-    ISWbemProperty_tid,
+-    ISWbemPropertySet_tid,
+-    ISWbemServices_tid,
+-    ISWbemSecurity_tid,
+-    ISWbemNamedValueSet_tid,
+-    ISWbemNamedValue_tid,
+-    ISWbemMethodSet_tid,
+-    ISWbemMethod_tid,
+-    ISWbemObjectPath_tid,
+-    ISWbemQualifierSet_tid,
+-    last_tid
+-};
+-
+ static ITypeLib *wbemdisp_typelib;
+ static ITypeInfo *wbemdisp_typeinfo[last_tid];
+ 
+@@ -102,9 +84,10 @@ static REFIID wbemdisp_tid_id[] =
+     &IID_ISWbemMethod,
+     &IID_ISWbemObjectPath,
+     &IID_ISWbemQualifierSet,
++    &IID_ISWbemDateTime,
+ };
+ 
+-static HRESULT get_typeinfo( enum type_id tid, ITypeInfo **ret )
++HRESULT get_typeinfo( enum type_id tid, ITypeInfo **ret )
+ {
+     HRESULT hr;
+ 
+diff --git a/dlls/wbemdisp/main.c b/dlls/wbemdisp/main.c
+index 5bc3900..8c23818 100644
+--- a/dlls/wbemdisp/main.c
++++ b/dlls/wbemdisp/main.c
+@@ -261,6 +261,7 @@ static const struct IClassFactoryVtbl factory_vtbl =
+ 
+ static struct factory swbem_locator_cf = { { &factory_vtbl }, SWbemLocator_create };
+ static struct factory swbem_namedvalueset_cf = { { &factory_vtbl }, SWbemNamedValueSet_create };
++static struct factory swbem_datetime_cf = { { &factory_vtbl }, SWbemDateTime_create };
+ static struct factory winmgmts_cf = { { &factory_vtbl }, WinMGMTS_create };
+ 
+ HRESULT WINAPI DllGetClassObject( REFCLSID rclsid, REFIID iid, LPVOID *obj )
+@@ -275,6 +276,8 @@ HRESULT WINAPI DllGetClassObject( REFCLSID rclsid, REFIID iid, LPVOID *obj )
+         cf = &winmgmts_cf.IClassFactory_iface;
+     else if (IsEqualGUID( rclsid, &CLSID_SWbemNamedValueSet ))
+         cf = &swbem_namedvalueset_cf.IClassFactory_iface;
++    else if (IsEqualGUID( rclsid, &CLSID_SWbemDateTime ))
++        cf = &swbem_datetime_cf.IClassFactory_iface;
+     else
+         return CLASS_E_CLASSNOTAVAILABLE;
+ 
+diff --git a/dlls/wbemdisp/tests/wbemdisp.c b/dlls/wbemdisp/tests/wbemdisp.c
+index 498e603..8897193 100644
+--- a/dlls/wbemdisp/tests/wbemdisp.c
++++ b/dlls/wbemdisp/tests/wbemdisp.c
+@@ -19,9 +19,11 @@
+ #define COBJMACROS
+ 
+ #include <stdio.h>
++#include <wchar.h>
+ #include "windows.h"
+ #include "initguid.h"
+ #include "objidl.h"
++#include "oleauto.h"
+ #include "wbemdisp.h"
+ #include "wbemcli.h"
+ #include "wine/test.h"
+@@ -634,6 +636,191 @@ todo_wine {
+     ISWbemNamedValueSet_Release(set);
+ }
+ 
++static void test_datetime(void)
++{
++    static const WCHAR value1[] = L"20000120195632.000000+000";
++    static const WCHAR value2[] = L"20000120195632.000000-480";
++    static const WCHAR value3[] = L"00000100010003.000000:000";
++    SYSTEMTIME st;
++    ISWbemDateTime *dt, *dt2;
++    IUnknown *unk;
++    BSTR str, str2;
++    DATE date, expected;
++    VARIANT_BOOL b;
++    ULONGLONG v;
++    FILETIME ft;
++    WCHAR buf[32];
++    LONG l;
++    HRESULT hr;
++
++    hr = CoCreateInstance( &CLSID_SWbemDateTime, NULL, CLSCTX_INPROC_SERVER,
++                           &IID_ISWbemDateTime, (void **)&dt );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    if (!dt) return;
++
++    hr = ISWbemDateTime_QueryInterface( dt, &IID_IDispatch, (void **)&unk );
++    ok( hr == S_OK, "QueryInterface(IDispatch) got %#lx\n", hr );
++    if (unk) IUnknown_Release( unk );
++
++    hr = ISWbemDateTime_QueryInterface( dt, &IID_ISWbemDateTime, (void **)&unk );
++    ok( hr == S_OK, "QueryInterface(ISWbemDateTime) got %#lx\n", hr );
++    if (unk) IUnknown_Release( unk );
++
++    /* Value <-> VT_DATE round trip */
++    str = SysAllocString( value1 );
++    hr = ISWbemDateTime_put_Value( dt, str );
++    SysFreeString( str );
++    ok( hr == S_OK, "got %#lx\n", hr );
++
++    str = NULL;
++    hr = ISWbemDateTime_get_Value( dt, &str );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    ok( !wcscmp( str, value1 ), "got %s\n", wine_dbgstr_w( str ) );
++    SysFreeString( str );
++
++    memset( &st, 0, sizeof(st) );
++    st.wYear = 2000; st.wMonth = 1; st.wDay = 20;
++    st.wHour = 19; st.wMinute = 56; st.wSecond = 32;
++    hr = SystemTimeToVariantTime( &st, &expected );
++    ok( hr, "SystemTimeToVariantTime failed\n" );
++
++    date = 0.0;
++    hr = ISWbemDateTime_GetVarDate( dt, VARIANT_FALSE, &date );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    ok( date > expected - 1e-7 && date < expected + 1e-7, "got %f expected %f\n", date, expected );
++
++    hr = ISWbemDateTime_SetVarDate( dt, expected, VARIANT_FALSE );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    str = NULL;
++    hr = ISWbemDateTime_get_Value( dt, &str );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    ok( !wcscmp( str, value1 ), "got %s\n", wine_dbgstr_w( str ) );
++    SysFreeString( str );
++
++    /* an explicit UTC offset: the Value holds the local wall clock plus the offset */
++    str = SysAllocString( value2 );
++    hr = ISWbemDateTime_put_Value( dt, str );
++    SysFreeString( str );
++    ok( hr == S_OK, "got %#lx\n", hr );
++
++    l = 0xdeadbeef;
++    hr = ISWbemDateTime_get_UTC( dt, &l );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    ok( l == -480, "got %ld\n", l );
++
++    memset( &st, 0, sizeof(st) );
++    st.wYear = 2000; st.wMonth = 1; st.wDay = 21;
++    st.wHour = 3; st.wMinute = 56; st.wSecond = 32;
++    hr = SystemTimeToVariantTime( &st, &expected );
++    ok( hr, "SystemTimeToVariantTime failed\n" );
++
++    date = 0.0;
++    hr = ISWbemDateTime_GetVarDate( dt, VARIANT_FALSE, &date );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    ok( date > expected - 1e-7 && date < expected + 1e-7, "got %f expected %f\n", date, expected );
++
++    /* FILETIME round trip, UTC interpretation */
++    hr = SystemTimeToFileTime( &st, &ft );
++    ok( hr, "SystemTimeToFileTime failed\n" );
++    v = ((ULONGLONG)ft.dwHighDateTime << 32) | ft.dwLowDateTime;
++    swprintf( buf, ARRAY_SIZE(buf), L"%I64u", v );
++
++    str = NULL;
++    hr = ISWbemDateTime_GetFileTime( dt, VARIANT_FALSE, &str );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    ok( !wcscmp( str, buf ), "got %s expected %s\n", wine_dbgstr_w( str ), wine_dbgstr_w( buf ) );
++
++    hr = CoCreateInstance( &CLSID_SWbemDateTime, NULL, CLSCTX_INPROC_SERVER,
++                           &IID_ISWbemDateTime, (void **)&dt2 );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    if (dt2)
++    {
++        str2 = NULL;
++        hr = ISWbemDateTime_SetFileTime( dt2, str, VARIANT_FALSE );
++        ok( hr == S_OK, "got %#lx\n", hr );
++        hr = ISWbemDateTime_GetFileTime( dt2, VARIANT_FALSE, &str2 );
++        ok( hr == S_OK, "got %#lx\n", hr );
++        ok( !wcscmp( str2, buf ), "got %s expected %s\n", wine_dbgstr_w( str2 ), wine_dbgstr_w( buf ) );
++        SysFreeString( str2 );
++        ISWbemDateTime_Release( dt2 );
++    }
++    SysFreeString( str );
++
++    /* interval */
++    str = SysAllocString( value3 );
++    hr = ISWbemDateTime_put_Value( dt, str );
++    SysFreeString( str );
++    ok( hr == S_OK, "got %#lx\n", hr );
++
++    b = VARIANT_FALSE;
++    hr = ISWbemDateTime_get_IsInterval( dt, &b );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    ok( b == VARIANT_TRUE, "got %d\n", b );
++
++    l = 0;
++    ISWbemDateTime_get_Day( dt, &l );
++    ok( l == 100, "got %ld\n", l );
++    l = 0;
++    ISWbemDateTime_get_Hours( dt, &l );
++    ok( l == 1, "got %ld\n", l );
++    l = 0;
++    ISWbemDateTime_get_Seconds( dt, &l );
++    ok( l == 3, "got %ld\n", l );
++
++    hr = ISWbemDateTime_GetVarDate( dt, VARIANT_FALSE, &date );
++    ok( hr == WBEM_E_FAILED, "got %#lx\n", hr );
++    hr = ISWbemDateTime_GetFileTime( dt, VARIANT_FALSE, &str );
++    ok( hr == WBEM_E_FAILED, "got %#lx\n", hr );
++
++    str = NULL;
++    hr = ISWbemDateTime_get_Value( dt, &str );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    ok( !wcscmp( str, value3 ), "got %s\n", wine_dbgstr_w( str ) );
++    SysFreeString( str );
++
++    /* build the same interval from its components */
++    hr = CoCreateInstance( &CLSID_SWbemDateTime, NULL, CLSCTX_INPROC_SERVER,
++                           &IID_ISWbemDateTime, (void **)&dt2 );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    if (dt2)
++    {
++        ISWbemDateTime_put_IsInterval( dt2, VARIANT_TRUE );
++        ISWbemDateTime_put_Day( dt2, 100 );
++        ISWbemDateTime_put_Hours( dt2, 1 );
++        ISWbemDateTime_put_Seconds( dt2, 3 );
++        str = NULL;
++        hr = ISWbemDateTime_get_Value( dt2, &str );
++        ok( hr == S_OK, "got %#lx\n", hr );
++        ok( !wcscmp( str, value3 ), "got %s\n", wine_dbgstr_w( str ) );
++        SysFreeString( str );
++        ISWbemDateTime_Release( dt2 );
++    }
++
++    /* malformed input leaves the object unchanged */
++    str = SysAllocString( L"garbage" );
++    hr = ISWbemDateTime_put_Value( dt, str );
++    SysFreeString( str );
++    ok( hr == WBEM_E_INVALID_SYNTAX, "got %#lx\n", hr );
++
++    str = SysAllocString( L"20000120195632.000000" ); /* no UTC offset */
++    hr = ISWbemDateTime_put_Value( dt, str );
++    SysFreeString( str );
++    ok( hr == WBEM_E_INVALID_SYNTAX, "got %#lx\n", hr );
++
++    str = NULL;
++    hr = ISWbemDateTime_get_Value( dt, &str );
++    ok( hr == S_OK, "got %#lx\n", hr );
++    ok( !wcscmp( str, value3 ), "got %s\n", wine_dbgstr_w( str ) );
++    SysFreeString( str );
++
++    str = SysAllocString( L"abc" );
++    hr = ISWbemDateTime_SetFileTime( dt, str, VARIANT_FALSE );
++    SysFreeString( str );
++    ok( hr == WBEM_E_INVALID_SYNTAX, "got %#lx\n", hr );
++
++    ISWbemDateTime_Release( dt );
++}
++
+ START_TEST(wbemdisp)
+ {
+     CoInitialize( NULL );
+@@ -641,6 +828,7 @@ START_TEST(wbemdisp)
+     test_ParseDisplayName();
+     test_locator();
+     test_namedvalueset();
++    test_datetime();
+ 
+     CoUninitialize();
+ }
+diff --git a/dlls/wbemdisp/wbemdisp_private.h b/dlls/wbemdisp/wbemdisp_private.h
+index eada396..504fc44 100644
+--- a/dlls/wbemdisp/wbemdisp_private.h
++++ b/dlls/wbemdisp/wbemdisp_private.h
+@@ -18,3 +18,25 @@
+ 
+ HRESULT SWbemLocator_create(LPVOID *);
+ HRESULT SWbemNamedValueSet_create(void **);
++HRESULT SWbemDateTime_create(LPVOID *);
++
++enum type_id
++{
++    ISWbemLocator_tid,
++    ISWbemObject_tid,
++    ISWbemObjectSet_tid,
++    ISWbemProperty_tid,
++    ISWbemPropertySet_tid,
++    ISWbemServices_tid,
++    ISWbemSecurity_tid,
++    ISWbemNamedValueSet_tid,
++    ISWbemNamedValue_tid,
++    ISWbemMethodSet_tid,
++    ISWbemMethod_tid,
++    ISWbemObjectPath_tid,
++    ISWbemQualifierSet_tid,
++    ISWbemDateTime_tid,
++    last_tid
++};
++
++HRESULT get_typeinfo( enum type_id tid, ITypeInfo **ret );
+diff --git a/include/wbemdisp.idl b/include/wbemdisp.idl
+index 7182a14..9a0b5ca 100644
+--- a/include/wbemdisp.idl
++++ b/include/wbemdisp.idl
+@@ -52,6 +52,7 @@ interface ISWbemQualifier;
+ interface ISWbemQualifierSet;
+ interface ISWbemSecurity;
+ interface ISWbemServices;
++interface ISWbemDateTime;
+ 
+ typedef
+ [
+@@ -1322,6 +1323,182 @@ interface ISWbemServices : IDispatch
+         [out, retval] ISWbemSecurity **objWbemSecurity);
+ }
+ 
++[
++    object,
++    local,
++    uuid(5e97458a-cf77-11d3-b38f-00105a1f473a),
++    dual,
++    hidden,
++    oleautomation,
++    pointer_default(unique)
++]
++interface ISWbemDateTime : IDispatch
++{
++    [ id(0), propget ]
++    HRESULT Value(
++        [out, retval] BSTR *strValue);
++
++    [ id(0), propput ]
++    HRESULT Value(
++        [in] BSTR strValue);
++
++    [ id(1), propget ]
++    HRESULT Year(
++        [out, retval] long *iYear);
++
++    [ id(1), propput ]
++    HRESULT Year(
++        [in] long iYear);
++
++    [ id(2), propget ]
++    HRESULT YearSpecified(
++        [out, retval] VARIANT_BOOL *bYearSpecified);
++
++    [ id(2), propput ]
++    HRESULT YearSpecified(
++        [in] VARIANT_BOOL bYearSpecified);
++
++    [ id(3), propget ]
++    HRESULT Month(
++        [out, retval] long *iMonth);
++
++    [ id(3), propput ]
++    HRESULT Month(
++        [in] long iMonth);
++
++    [ id(4), propget ]
++    HRESULT MonthSpecified(
++        [out, retval] VARIANT_BOOL *bMonthSpecified);
++
++    [ id(4), propput ]
++    HRESULT MonthSpecified(
++        [in] VARIANT_BOOL bMonthSpecified);
++
++    [ id(5), propget ]
++    HRESULT Day(
++        [out, retval] long *iDay);
++
++    [ id(5), propput ]
++    HRESULT Day(
++        [in] long iDay);
++
++    [ id(6), propget ]
++    HRESULT DaySpecified(
++        [out, retval] VARIANT_BOOL *bDaySpecified);
++
++    [ id(6), propput ]
++    HRESULT DaySpecified(
++        [in] VARIANT_BOOL bDaySpecified);
++
++    [ id(7), propget ]
++    HRESULT Hours(
++        [out, retval] long *iHours);
++
++    [ id(7), propput ]
++    HRESULT Hours(
++        [in] long iHours);
++
++    [ id(8), propget ]
++    HRESULT HoursSpecified(
++        [out, retval] VARIANT_BOOL *bHoursSpecified);
++
++    [ id(8), propput ]
++    HRESULT HoursSpecified(
++        [in] VARIANT_BOOL bHoursSpecified);
++
++    [ id(9), propget ]
++    HRESULT Minutes(
++        [out, retval] long *iMinutes);
++
++    [ id(9), propput ]
++    HRESULT Minutes(
++        [in] long iMinutes);
++
++    [ id(10), propget ]
++    HRESULT MinutesSpecified(
++        [out, retval] VARIANT_BOOL *bMinutesSpecified);
++
++    [ id(10), propput ]
++    HRESULT MinutesSpecified(
++        [in] VARIANT_BOOL bMinutesSpecified);
++
++    [ id(11), propget ]
++    HRESULT Seconds(
++        [out, retval] long *iSeconds);
++
++    [ id(11), propput ]
++    HRESULT Seconds(
++        [in] long iSeconds);
++
++    [ id(12), propget ]
++    HRESULT SecondsSpecified(
++        [out, retval] VARIANT_BOOL *bSecondsSpecified);
++
++    [ id(12), propput ]
++    HRESULT SecondsSpecified(
++        [in] VARIANT_BOOL bSecondsSpecified);
++
++    [ id(13), propget ]
++    HRESULT Microseconds(
++        [out, retval] long *iMicroseconds);
++
++    [ id(13), propput ]
++    HRESULT Microseconds(
++        [in] long iMicroseconds);
++
++    [ id(14), propget ]
++    HRESULT MicrosecondsSpecified(
++        [out, retval] VARIANT_BOOL *bMicrosecondsSpecified);
++
++    [ id(14), propput ]
++    HRESULT MicrosecondsSpecified(
++        [in] VARIANT_BOOL bMicrosecondsSpecified);
++
++    [ id(15), propget ]
++    HRESULT UTC(
++        [out, retval] long *iUTC);
++
++    [ id(15), propput ]
++    HRESULT UTC(
++        [in] long iUTC);
++
++    [ id(16), propget ]
++    HRESULT UTCSpecified(
++        [out, retval] VARIANT_BOOL *bUTCSpecified);
++
++    [ id(16), propput ]
++    HRESULT UTCSpecified(
++        [in] VARIANT_BOOL bUTCSpecified);
++
++    [ id(17), propget ]
++    HRESULT IsInterval(
++        [out, retval] VARIANT_BOOL *bIsInterval);
++
++    [ id(17), propput ]
++    HRESULT IsInterval(
++        [in] VARIANT_BOOL bIsInterval);
++
++    [ id(18) ]
++    HRESULT GetVarDate(
++        [in, defaultvalue(-1)] VARIANT_BOOL bIsLocal,
++        [out, retval] DATE *dVarDate);
++
++    [ id(19) ]
++    HRESULT SetVarDate(
++        [in] DATE dVarDate,
++        [in, defaultvalue(-1)] VARIANT_BOOL bIsLocal);
++
++    [ id(20) ]
++    HRESULT GetFileTime(
++        [in, defaultvalue(-1)] VARIANT_BOOL bIsLocal,
++        [out, retval] BSTR *strFileTime);
++
++    [ id(21) ]
++    HRESULT SetFileTime(
++        [in] BSTR strFileTime,
++        [in, defaultvalue(-1)] VARIANT_BOOL bIsLocal);
++}
++
+ [
+     threading(apartment),
+     uuid(76a64158-cb41-11d1-8b02-00600806d9b6),
+@@ -1344,4 +1521,15 @@ coclass SWbemNamedValueSet
+     interface ISWbemNamedValueSet;
+ }
+ 
++[
++    threading(apartment),
++    uuid(47dfbe54-cf76-11d3-b38f-00105a1f473a),
++    progid("WbemScripting.SWbemDateTime.1"),
++    vi_progid("WbemScripting.SWbemDateTime")
++]
++coclass SWbemDateTime
++{
++    interface ISWbemDateTime;
++}
++
+ } /* WbemScripting */

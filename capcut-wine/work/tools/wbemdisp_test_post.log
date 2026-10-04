@@ -1,0 +1,16 @@
+wine: failed to start L"\\??\\C:\\windows\\syswow64\\rundll32.exe": c0000135
+wbemdisp.c:352: Test marked todo: got 0
+wbemdisp.c:478: Test marked todo: got 0
+wbemdisp.c:479: Test marked todo: got 6
+wbemdisp.c:583: Test marked todo: Unexpected hr 0x80004001.
+wbemdisp.c:588: Test marked todo: Unexpected hr 0x80004001.
+wbemdisp.c:589: Test marked todo: Unexpected value 0.
+wbemdisp.c:609: Test marked todo: Unexpected hr 0x80004001.
+wbemdisp.c:610: Test marked todo: Unexpected count 0.
+wbemdisp.c:614: Test marked todo: Unexpected hr 0x80004001.
+wbemdisp.c:619: Test marked todo: Unexpected hr 0x80004001.
+wbemdisp.c:620: Test marked todo: Unexpected count 1.
+wbemdisp.c:625: Test marked todo: Unexpected hr 0x80004001.
+wbemdisp.c:630: Test marked todo: Unexpected hr 0x80004001.
+wbemdisp.c:631: Test marked todo: Unexpected count 0.
+0020:wbemdisp: 267 tests executed (14 marked as todo, 0 as flaky, 0 failures), 0 skipped.

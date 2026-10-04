@@ -1,0 +1,43 @@
+From 0fb37f2c24a92ded2da8fb87b11c39a22c39aaa1 Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:08:43 -0500
+Subject: [PATCH 11/23] winex11: ignore BadWindow/BadDrawable X errors on every
+ display connection
+
+Wine's error_handler() forwards errors it does not recognise to Xlib's default handler, which
+terminates the process.  ignore_error() already tolerates BadWindow/BadDrawable/BadGC, but only when
+the error arrives on gdi_display; operations issued on a per-thread X connection therefore kill the
+application.  That is what happens to AutoCAD 2027 once it gets past its branding step: acad.exe died
+within ~30 s of start-up, with the whole of its output being
+
+  X Error of failed request:  BadWindow (invalid Window parameter)
+  Major opcode of failed request:  10 (X_UnmapWindow)
+  Resource id in failed request:  0xc00003
+
+On Windows an operation on a window that has already been destroyed simply fails, so ignore these
+errors on any connection, exactly as the driver already does for gdi_display and the clipboard
+display.
+---
+ dlls/winex11.drv/x11drv_main.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/dlls/winex11.drv/x11drv_main.c b/dlls/winex11.drv/x11drv_main.c
+index b14d4d1..d05c107 100644
+--- a/dlls/winex11.drv/x11drv_main.c
++++ b/dlls/winex11.drv/x11drv_main.c
+@@ -226,6 +226,15 @@ static inline BOOL ignore_error( Display *display, XErrorEvent *event )
+         }
+ #endif
+     }
++
++    /* Operations on a window or drawable that the application has already destroyed are a race
++     * that cannot be prevented: on Windows they simply fail, but Xlib's default error handler
++     * terminates the process.  The gdi display case above covers the main connection; other
++     * connections (per-thread displays, e.g. when unmapping a destroyed window while clipping
++     * the cursor) hit the default handler and kill the app, which is what happens to AutoCAD's
++     * start-up once it gets past its branding step.  Ignore these everywhere. */
++    if (event->error_code == BadWindow || event->error_code == BadDrawable) return TRUE;
++
+     return FALSE;
+ }
+ 

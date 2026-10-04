@@ -1,0 +1,21 @@
+wine: failed to start L"\\??\\C:\\windows\\syswow64\\rundll32.exe": c0000135
+0024:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+[ ok ] D3D11CreateDevice(HARDWARE)                (00000000)
+       feature level 11_0
+[ ok ] QueryInterface(IDXGIDevice)                (00000000)
+[ ok ] IDXGIDevice::GetAdapter                    (00000000)
+       adapter: "Intel(R) HD Graphics 4000" vendor=8086 device=0162 subsystem=00000000 vram=1536 MB
+[ ok ] IDXGIAdapter::GetParent(IDXGIFactory2)     (00000000)
+0024:fixme:d3d:wined3d_swapchain_init Unimplemented swap effect 0x2.
+[ ok ] CreateSwapChainForHwnd(FLIP_DISCARD)       (00000000)
+[ ok ] hwnd presented 30 frames
+[ ok ] DCompositionCreateDevice(NULL)             (00000000)
+[ ok ] QueryInterface(IDCompositionVisual2)       (00000000)
+0024:fixme:dxgi:wined3d_swapchain_desc_from_dxgi Ignoring alpha mode 0x1.
+0024:fixme:d3d:wined3d_swapchain_init Unimplemented swap effect 0x2.
+[ ok ] CreateSwapChainForComposition             
+0144:err:d3d:wined3d_context_gl_set_pixel_format wglSetPixelFormatWINE failed to set pixel format 101 on device context 0000000000000000.
+[ ok ] dcomp BGRA8 pixel                          window shows RGB(230,51,13)
+0024:fixme:dxgi:wined3d_swapchain_desc_from_dxgi Ignoring alpha mode 0x1.
+0024:fixme:d3d:wined3d_swapchain_init Unimplemented swap effect 0x2.
+[ ok ] CreateSwapChainForComposition             

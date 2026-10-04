@@ -1,0 +1,1 @@
+CoCreateInstance(CLSID_SWbemDateTime) -> 80040154

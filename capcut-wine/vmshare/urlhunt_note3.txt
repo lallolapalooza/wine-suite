@@ -1,0 +1,32 @@
+start=2026-10-03T22:51:19.2495891-07:00
+t=0s payload app_package_37889d0f29.exe size=559656336
+dumping pid 4540 at t=0s (payload size 559656336)
+dump ok=True size=124142421
+=== DNS ===
+lf16-beecdn.ibytedtos.com -> 186.188.209.185
+editor-api-sg.capcutapi.com -> 186.188.209.168
+pc-mon-v2-boot.capcutapi.com -> 200.75.200.218
+mcs-v2-boot.capcutapi.com -> 200.75.200.210
+mcs-normal-sg.capcutapi.com -> 186.188.209.219
+editor-api-v2-boot.capcutapi.com -> 200.75.200.217
+=== installer log ===
+20261003-22:51:20:648 [4540:7380] - succeed to initialize dpi helper
+20261003-22:51:20:648 [4540:7380] - succeed to set dpi aware
+20261003-22:51:20:809 [4540:7380] - [PathExists]: PATH:C:\Users\adsf\AppData\Local\CapCut\Apps (E:1)
+20261003-22:51:20:810 [4540:7380] - current installed directory name: Apps
+20261003-22:51:20:811 [4540:7380] - RegexMatch str=Apps regex=^[0-9][0-9.]*$ ret=0
+20261003-22:51:20:812 [4540:7380] - [PathIsAvailable]: PATH:C:\Users\adsf\AppData\Local\CapCut\Apps (A:1)
+20261003-22:51:20:814 [4540:7380] - [SetDirValue]: PATH=C:\Users\adsf\AppData\Local\CapCut\Apps
+20261003-22:51:20:858 [4540:9656] - capcutpc_0
+20261003-22:51:20:858 [4540:9656] - en_US
+20261003-22:51:20:885 [4540:9656] - exe file path: C:\Users\adsf\capcut_setup.exe
+20261003-22:51:21:090 [4540:9656] - pe tag whole length is 149
+20261003-22:51:21:090 [4540:9656] - tag prefix mismatch
+20261003-22:51:21:106 [4540:9656] - app shell 2406132677
+20261003-22:51:21:110 [4540:9656] - app shell: report= 0, shelllog= 0
+20261003-22:51:22:340 [4540:0284] - OnDRSdkResult: did=2406132677
+20261003-22:51:22:356 [4540:7380] - [IsWindows10OrGreaterImpl]: Windows10OrGreater= 1
+20261003-22:51:22:356 [4540:7380] - [IsInstallationOfServiceAllowed]: FALSE
+20261003-22:51:29:612 [4540:1076] - Downloader error, code: 5 , msg: app updater download package error
+20261003-22:51:29:613 [4540:7380] - [CapCutReportInstallsStatus] STATUS:1, CODE:5, MSG:app updater download package error
+DONE

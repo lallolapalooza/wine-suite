@@ -1,0 +1,39 @@
+sizeof(ENUM_SERVICE_STATUS_PROCESSA)=56
+sizeof(ENUM_SERVICE_STATUSA)=48
+SC_ENUM_PROCESS_INFO=0 SERVICE_WIN32=0x30 SERVICE_ACTIVE=1
+OpenSCManagerA -> 00000207b1692e60 err=0
+QUERY  ok=0 err=234 needed=12419 returned=0 resume=0
+FILL   sz=12419 ok=1 err=0 needed=0 returned=84 resume=0
+  [0] Appinfo                  | Application Information          | type=00000030 state=4 ctrl=00000081 pid=972
+  [1] AudioEndpointBuilder     | Windows Audio Endpoint Builder   | type=00000030 state=4 ctrl=000000c1 pid=1964
+  [2] Audiosrv                 | Windows Audio                    | type=00000010 state=4 ctrl=000000c1 pid=2164
+  [3] BDESVC                   | BitLocker Drive Encryption Service | type=00000030 state=4 ctrl=00000081 pid=1256
+  [4] BFE                      | Base Filtering Engine            | type=00000020 state=4 ctrl=00000041 pid=2724
+  [5] BrokerInfrastructure     | Background Tasks Infrastructure Service | type=00000020 state=4 ctrl=000010c0 pid=944
+  [6] camsvc                   | Capability Access Manager Service | type=00000030 state=4 ctrl=00000085 pid=3128
+  [7] CDPSvc                   | Connected Devices Platform Service | type=00000030 state=4 ctrl=000000c1 pid=3936
+  [8] CoreMessagingRegistrar   | CoreMessaging                    | type=00000020 state=4 ctrl=00000000 pid=1212
+  [9] CryptSvc                 | Cryptographic Services           | type=00000010 state=4 ctrl=00000085 pid=2844
+  [10] DcomLaunch               | DCOM Server Process Launcher     | type=00000020 state=4 ctrl=00000080 pid=944
+  [11] Dhcp                     | DHCP Client                      | type=00000030 state=4 ctrl=00000005 pid=2124
+array bytes=4704 (0x1260); string pointer offsets:
+  [0] name_off=12402 display_off=12354
+  [1] name_off=12312 display_off=12250
+  [2] name_off=12232 display_off=12204
+  [3] name_off=12190 display_off=12120
+  [4] name_off=12112 display_off=12068
+  [5] name_off=12026 display_off=11946
+  [6] name_off=11932 display_off=11864
+  [7] name_off=11850 display_off=11780
+  [8] name_off=11734 display_off=11706
+  [9] name_off=11688 display_off=11642
+  [10] name_off=11620 display_off=11562
+  [11] name_off=11552 display_off=11528
+string block = [6356 (0x18d4) .. 12410 (0x307a)]  [buffer sz=12419]
+entry[returned] at offset 4704 (0x1260):
+  00001260: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+  00001270: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+  00001280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+  00001290: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+  as qword: 0000000000000000  as string: ''
+  first zero qword at/after entries: offset 4704 (0x1260), 0 bytes past entries

@@ -1,0 +1,125 @@
+From fff4ac8a2c1252e2a37169494648c097487baccb Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 12:01:30 -0500
+Subject: [PATCH] d3d11: only advertise GDI compatibility for formats that
+ support it
+
+D3D11 only allows D3D11_RESOURCE_MISC_GDI_COMPATIBLE on B8G8R8 formats, but
+dxgi's composition swap chains ask wined3d for a GET_DC capable back buffer
+for every format, so wrapping an R8G8B8A8 back buffer in a D3D11 texture
+failed with E_INVALIDARG and CreateSwapChainForComposition failed with it.
+Only set the flag when the descriptor is one D3D11 accepts it for; the
+wined3d texture stays GET_DC capable, which is what IDXGISurface1::GetDC
+needs.
+
+Found with CapCut, whose Qt/CEF layers create an R8G8B8A8 premultiplied
+composition swap chain.  Covered by dxgi's
+test_create_swapchain_for_composition.
+---
+ dlls/d3d11/device.c    | 13 +++++++++-
+ dlls/dxgi/tests/dxgi.c | 58 ++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 70 insertions(+), 1 deletion(-)
+
+diff --git a/dlls/d3d11/device.c b/dlls/d3d11/device.c
+index 10ef8c3..c4f74ff 100644
+--- a/dlls/d3d11/device.c
++++ b/dlls/d3d11/device.c
+@@ -8042,7 +8042,18 @@ static HRESULT STDMETHODCALLTYPE dxgi_device_parent_register_swapchain_texture(I
+ 
+     if (texture_flags & WINED3D_TEXTURE_CREATE_GET_DC)
+     {
+-        desc.MiscFlags |= D3D11_RESOURCE_MISC_GDI_COMPATIBLE;
++        /* Being GDI capable at the wined3d level is not the same as being
++         * GDI compatible at the D3D11 level: D3D11 only allows
++         * D3D11_RESOURCE_MISC_GDI_COMPATIBLE on B8G8R8A8 formats, while a
++         * composition swap chain may legitimately use R8G8B8A8. Wine's dxgi
++         * asks wined3d for GET_DC capability on composition swap chains so
++         * that the compositor can read the back buffer with
++         * IDXGISurface1::GetDC; the texture keeps that capability either way,
++         * so only advertise the flag where it is valid. */
++        if (desc.Format == DXGI_FORMAT_B8G8R8A8_UNORM
++                || desc.Format == DXGI_FORMAT_B8G8R8A8_TYPELESS
++                || desc.Format == DXGI_FORMAT_B8G8R8A8_UNORM_SRGB)
++            desc.MiscFlags |= D3D11_RESOURCE_MISC_GDI_COMPATIBLE;
+         texture_flags &= ~WINED3D_TEXTURE_CREATE_GET_DC;
+     }
+ 
+diff --git a/dlls/dxgi/tests/dxgi.c b/dlls/dxgi/tests/dxgi.c
+index 59ed17f..8fc6f66 100644
+--- a/dlls/dxgi/tests/dxgi.c
++++ b/dlls/dxgi/tests/dxgi.c
+@@ -5073,6 +5073,63 @@ static void test_swapchain_resize(IUnknown *device, BOOL is_d3d12)
+     ok(refcount == !is_d3d12, "Got unexpected refcount %lu.\n", refcount);
+ }
+ 
++/* A composition swap chain is not GDI compatible: D3D11 only accepts
++ * D3D11_RESOURCE_MISC_GDI_COMPATIBLE for B8G8R8 formats, while a composition
++ * swap chain is allowed to use R8G8B8A8.  Creating one must therefore succeed
++ * without the flag. */
++static void test_create_swapchain_for_composition(IUnknown *device, BOOL is_d3d12)
++{
++    DXGI_SWAP_CHAIN_DESC1 desc;
++    IDXGISwapChain1 *swapchain;
++    IDXGIFactory2 *factory;
++    IDXGIAdapter *adapter;
++    IDXGIDevice *dxgi_device;
++    IDXGISurface *surface;
++    ULONG refcount;
++    HRESULT hr;
++
++    if (is_d3d12)
++    {
++        skip("D3D12 has no composition swap chain in this test.\n");
++        return;
++    }
++
++    hr = IUnknown_QueryInterface(device, &IID_IDXGIDevice, (void **)&dxgi_device);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    hr = IDXGIDevice_GetAdapter(dxgi_device, &adapter);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    hr = IDXGIAdapter_GetParent(adapter, &IID_IDXGIFactory2, (void **)&factory);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++
++    memset(&desc, 0, sizeof(desc));
++    desc.Width = 64;
++    desc.Height = 64;
++    desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
++    desc.SampleDesc.Count = 1;
++    desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
++    desc.BufferCount = 2;
++    desc.Scaling = DXGI_SCALING_STRETCH;
++    desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
++    desc.AlphaMode = DXGI_ALPHA_MODE_PREMULTIPLIED;
++
++    swapchain = NULL;
++    hr = IDXGIFactory2_CreateSwapChainForComposition(factory, device, &desc, NULL, &swapchain);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    if (SUCCEEDED(hr))
++    {
++        hr = IDXGISwapChain1_GetBuffer(swapchain, 0, &IID_IDXGISurface, (void **)&surface);
++        ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++        if (SUCCEEDED(hr))
++            IDXGISurface_Release(surface);
++        refcount = IDXGISwapChain1_Release(swapchain);
++        ok(!refcount, "IDXGISwapChain1 has %lu references left.\n", refcount);
++    }
++
++    IDXGIFactory2_Release(factory);
++    IDXGIAdapter_Release(adapter);
++    IDXGIDevice_Release(dxgi_device);
++}
++
+ static void test_swapchain_parameters(void)
+ {
+     DXGI_USAGE usage, expected_usage, broken_usage;
+@@ -9098,6 +9155,7 @@ START_TEST(dxgi)
+     test_swapchain_parameters();
+     test_swapchain_window_styles();
+     run_on_d3d10(test_create_swapchain);
++    run_on_d3d10(test_create_swapchain_for_composition);
+     run_on_d3d10(test_set_fullscreen);
+     run_on_d3d10(test_resize_target);
+     run_on_d3d10(test_resize_fullscreen);
+-- 
+2.53.0
+

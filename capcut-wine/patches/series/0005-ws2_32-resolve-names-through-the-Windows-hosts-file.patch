@@ -1,0 +1,114 @@
+From d70c5d35cc223449b5e03055579fb259cb8d046f Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:08:41 -0500
+Subject: [PATCH 05/23] ws2_32: resolve names through the Windows hosts file
+
+Windows' name resolution consults C:\windows\system32\drivers\etc\hosts before DNS, but Wine's
+resolver (ws2_32/unixlib.c -> the Unix getaddrinfo) only reads the Unix /etc/hosts, so entries an
+installer writes into the Windows hosts file are ignored.  Autodesk's licensing/UI depends on one of
+them: "127.0.0.1 installed-components.autodesk" (the WebView2-hosted licensing UI lives on that
+hostname and the AdskLicensingSDK resolves it with ws2_32 getaddrinfo - under Wine that lookup
+returned WSAHOST_NOT_FOUND and the licence flow failed).
+
+do_getaddrinfo() now looks the node up in the Windows hosts file first and, on a hit, resolves the
+listed address as a numeric host (AI_NUMERICHOST); everything else is untouched.
+
+Verified with tools/dnsprobe under Wine: "installed-components.autodesk -> 127.0.0.1" (the host
+resolver still returns NXDOMAIN) while real names (prd.autocad.com) still resolve via DNS.
+---
+ dlls/ws2_32/protocol.c | 75 +++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 74 insertions(+), 1 deletion(-)
+
+diff --git a/dlls/ws2_32/protocol.c b/dlls/ws2_32/protocol.c
+index cdc01a8..740fa02 100644
+--- a/dlls/ws2_32/protocol.c
++++ b/dlls/ws2_32/protocol.c
+@@ -45,14 +45,87 @@ static char *get_fqdn(void)
+     return ret;
+ }
+ 
++/* Windows resolves names through C:\windows\system32\drivers\etc\hosts before asking DNS, but Wine's
++ * Unix resolver only ever reads the Unix /etc/hosts, so entries written by an installer (e.g. the
++ * "installed-components.autodesk" entry Autodesk's licensing/UI relies on) were ignored.  Look the
++ * name up in the Windows hosts file and return the first address listed for it. */
++static BOOL lookup_windows_hosts( const char *name, char *addr, int addr_len )
++{
++    static const WCHAR hostsW[] = L"C:\\windows\\system32\\drivers\\etc\\hosts";
++    char buf[8192], *p;
++    HANDLE file;
++    DWORD len = 0;
++    BOOL found = FALSE;
++
++    if (!name || !*name) return FALSE;
++    file = CreateFileW( hostsW, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING,
++                        FILE_ATTRIBUTE_NORMAL, NULL );
++    if (file == INVALID_HANDLE_VALUE) return FALSE;
++    if (!ReadFile( file, buf, sizeof(buf) - 1, &len, NULL )) len = 0;
++    CloseHandle( file );
++    buf[len] = 0;
++
++    for (p = buf; *p && !found; )
++    {
++        char *line = p, *end, *hash;
++
++        while (*p && *p != '\n') p++;
++        if (*p) *p++ = 0;
++        if ((hash = strchr( line, '#' ))) *hash = 0;
++        for (end = line + strlen(line); end > line && strchr( " \t\r", end[-1] ); ) *--end = 0;
++        while (*line == ' ' || *line == '\t') line++;
++        if (!*line) continue;
++
++        end = line;                                  /* first token: the address */
++        while (*end && *end != ' ' && *end != '\t') end++;
++        if (!*end) continue;
++        *end++ = 0;
++        while (*end)
++        {
++            char *nend = end;                        /* remaining tokens: names/aliases */
++
++            while (*nend && *nend != ' ' && *nend != '\t') nend++;
++            if (nend - end == (int)strlen( name ) && !strncasecmp( end, name, nend - end ))
++            {
++                lstrcpynA( addr, line, addr_len );
++                found = TRUE;
++                break;
++            }
++            end = nend;
++            while (*end == ' ' || *end == '\t') end++;
++        }
++    }
++    return found;
++}
++
+ /* call Unix getaddrinfo, allocating a large enough buffer */
+ static int do_getaddrinfo( const char *node, const char *service,
+                            const struct addrinfo *hints, struct addrinfo **info )
+ {
++    char hosts_addr[64];
++    struct addrinfo hosts_hints;
+     unsigned int size = 1024;
+-    struct getaddrinfo_params params = { node, service, hints, NULL, &size };
++    struct getaddrinfo_params params;
+     int ret;
+ 
++    params.service = service;
++    params.info = NULL;
++    params.size = &size;
++
++    if (lookup_windows_hosts( node, hosts_addr, sizeof(hosts_addr) ))
++    {
++        if (hints) hosts_hints = *hints;
++        else memset( &hosts_hints, 0, sizeof(hosts_hints) );
++        hosts_hints.ai_flags |= AI_NUMERICHOST;
++        params.node = hosts_addr;
++        params.hints = &hosts_hints;
++    }
++    else
++    {
++        params.node = node;
++        params.hints = hints;
++    }
++
+     for (;;)
+     {
+         if (!(params.info = malloc( size )))

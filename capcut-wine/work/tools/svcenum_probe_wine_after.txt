@@ -1,0 +1,25 @@
+sizeof(ENUM_SERVICE_STATUS_PROCESSA)=56
+sizeof(ENUM_SERVICE_STATUSA)=48
+SC_ENUM_PROCESS_INFO=0 SERVICE_WIN32=0x30 SERVICE_ACTIVE=1
+OpenSCManagerA -> 00007ffffe2679b0 err=0
+QUERY  ok=0 err=234 needed=968 returned=0 resume=0
+FILL   sz=968 ok=1 err=0 needed=0 returned=5 resume=0
+  [0] Eventlog                 | Event Log                        | type=00000020 state=4 ctrl=00000005 pid=136
+  [1] PlugPlay                 | Plug and Play Service            | type=00000020 state=4 ctrl=00000005 pid=104
+  [2] RpcSs                    | Remote Procedure Call (RPC)      | type=00000020 state=4 ctrl=00000005 pid=244
+  [3] Winedevice1              | Winedevice1                      | type=00000010 state=4 ctrl=00000005 pid=68
+  [4] Winedevice2              | Winedevice2                      | type=00000010 state=4 ctrl=00000005 pid=160
+array bytes=280 (0x118); string pointer offsets:
+  [0] name_off=836 display_off=845
+  [1] name_off=855 display_off=864
+  [2] name_off=886 display_off=892
+  [3] name_off=920 display_off=932
+  [4] name_off=944 display_off=956
+string block = [836 (0x344) .. 968 (0x3c8)]  [buffer sz=968]
+entry[returned] at offset 280 (0x118):
+  00000118: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+  00000128: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+  00000138: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+  00000148: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+  as qword: 0000000000000000  as string: ''
+  first zero qword at/after entries: offset 280 (0x118), 0 bytes past entries

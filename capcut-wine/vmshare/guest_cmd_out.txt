@@ -1,0 +1,8 @@
+﻿cmd=& { Start-Process cmd.exe -Verb RunAs -ErrorAction SilentlyContinue; "elev_requested" } ; "__n=272731791086096520108991"
+start=2026-10-03T20:54:58.8193976-07:00
+rc=0
+end=2026-10-04T10:22:03.0583130-07:00
+--- output ---
+elev_requested
+__n=272731791086096520108991
+

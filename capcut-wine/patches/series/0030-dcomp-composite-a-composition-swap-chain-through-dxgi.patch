@@ -1,0 +1,252 @@
+From ba18ed42ac000a7fee24d3908461070cd7889b4d Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 12:32:55 -0500
+Subject: [PATCH] dcomp: composite a composition swap chain through dxgi,
+ including R8G8B8A8
+
+dcomp's compositing blitted the swap chain's back buffer with
+IDXGISurface1::GetDC + StretchBlt, which cannot read R8G8B8A8 because
+wined3d has no DDI format for it, so every frame logged "Blit of content
+... returned 0" and "not a blittable composition swapchain".  R8G8B8A8 is
+the normal case, not an edge case: CapCut's Qt 6 D3D11 RHI creates a
+1440x994 premultiplied FLIP_DISCARD composition swap chain for its main
+window, and that window stayed uniformly white.
+
+Route the commit's blit through dxgi with a new private
+__wine_dxgi_composite_swapchain, which points the swap chain at the target
+window and shows the current buffer using the same readback as the
+per-present compositing - including the staging-texture path series/0029
+added for formats wined3d has no DDI DC for.  No second composition engine
+is introduced.
+
+Ordering made this hard to see: Qt presents and then commits, and the
+per-present compositing only runs once a commit has set the composition
+window, so a scene that presents one frame and then goes static showed
+nothing.  Measured on the failing run: 1 present, 0 composites, white
+window; on a passing run of the same build: 1079 presents, painted.
+
+Also unlink a target from its device's target list when released;
+list_remove() was missing, leaving a dangling entry that a later target
+allocation reused, corrupting the list and looping in the next commit.
+---
+ dlls/dcomp/device.c      |  3 ---
+ dlls/dcomp/target.c      | 48 +++++++++++++---------------------------
+ dlls/dxgi/dxgi.spec      |  1 +
+ dlls/dxgi/dxgi_private.h |  1 +
+ dlls/dxgi/swapchain.c    | 41 ++++++++++++++++++++++++++++------
+ 5 files changed, 51 insertions(+), 43 deletions(-)
+
+diff --git a/dlls/dcomp/device.c b/dlls/dcomp/device.c
+index d23f831..71d7d95 100644
+--- a/dlls/dcomp/device.c
++++ b/dlls/dcomp/device.c
+@@ -532,10 +532,7 @@ static ULONG dcomp_device_release(struct dcomp_device *device)
+         struct dcomp_target *target, *next;
+ 
+         LIST_FOR_EACH_ENTRY_SAFE(target, next, &device->targets, struct dcomp_target, entry)
+-        {
+-            list_remove(&target->entry);
+             IDCompositionTarget_Release(&target->iface);
+-        }
+         if (device->rendering_device) IUnknown_Release(device->rendering_device);
+         free(device);
+     }
+diff --git a/dlls/dcomp/target.c b/dlls/dcomp/target.c
+index b616905..e3efb2d 100644
+--- a/dlls/dcomp/target.c
++++ b/dlls/dcomp/target.c
+@@ -74,6 +74,7 @@ static ULONG STDMETHODCALLTYPE dcomp_target_Release(IDCompositionTarget *iface)
+ 
+     if (!refcount)
+     {
++        list_remove(&target->entry);
+         if (target->root) IDCompositionVisual_Release(target->root);
+         free(target);
+     }
+@@ -102,13 +103,15 @@ static const IDCompositionTargetVtbl dcomp_target_vtbl =
+     dcomp_target_SetRoot,
+ };
+ 
+-/* Wine's dxgi exposes this privately so that a compositor can tell a
+- * composition swapchain where to show its frames. */
+-typedef void (CDECL *set_composition_target_fn)(IDXGISwapChain *swapchain, HWND window, int x, int y);
++/* Wine's dxgi exposes this privately: pointing a composition swapchain at a
++ * window and showing the buffer the application just rendered into is dxgi's
++ * job, because only dxgi can read back a buffer whose format wined3d has no DDI
++ * DC for (R8G8B8A8, which is the format Qt's D3D11 RHI composites through). */
++typedef BOOL (CDECL *composite_swapchain_fn)(IDXGISwapChain *swapchain, HWND window, int x, int y);
+ 
+-static set_composition_target_fn get_set_composition_target(void)
++static composite_swapchain_fn get_composite_swapchain(void)
+ {
+-    static set_composition_target_fn fn;
++    static composite_swapchain_fn fn;
+     static BOOL looked_up;
+     HMODULE module;
+ 
+@@ -116,48 +119,27 @@ static set_composition_target_fn get_set_composition_target(void)
+     {
+         looked_up = TRUE;
+         if ((module = GetModuleHandleW(L"dxgi.dll")))
+-            fn = (set_composition_target_fn)GetProcAddress(module, "__wine_dxgi_set_composition_target");
++            fn = (composite_swapchain_fn)GetProcAddress(module, "__wine_dxgi_composite_swapchain");
+         if (!fn)
+             WARN("dxgi does not support composition targets.\n");
+     }
+     return fn;
+ }
+ 
+-/* Blit a composition swapchain's current buffer into the target window. */
++/* Show a composition swapchain's current buffer in the target window. */
+ static BOOL dcomp_target_blit_swapchain(struct dcomp_target *target, IUnknown *content, int offset_x, int offset_y)
+ {
+-    DXGI_SURFACE_DESC surface_desc;
+-    set_composition_target_fn set_target;
++    composite_swapchain_fn composite;
+     IDXGISwapChain *swapchain;
+-    IDXGISurface1 *surface;
+-    RECT rect;
+-    HDC src_dc, dst_dc;
+     BOOL ret = FALSE;
+ 
+     if (FAILED(IUnknown_QueryInterface(content, &IID_IDXGISwapChain, (void **)&swapchain)))
+         return FALSE;
+ 
+-    /* From now on the swapchain presents its frames into the target window. */
+-    if ((set_target = get_set_composition_target()))
+-        set_target(swapchain, target->hwnd, offset_x, offset_y);
+-
+-    if (SUCCEEDED(IDXGISwapChain_GetBuffer(swapchain, 0, &IID_IDXGISurface1, (void **)&surface)))
+-    {
+-        if (SUCCEEDED(IDXGISurface1_GetDesc(surface, &surface_desc))
+-                && SUCCEEDED(IDXGISurface1_GetDC(surface, FALSE, &src_dc)))
+-        {
+-            GetClientRect(target->hwnd, &rect);
+-            if ((dst_dc = GetDC(target->hwnd)))
+-            {
+-                ret = StretchBlt(dst_dc, offset_x, offset_y, rect.right - offset_x, rect.bottom - offset_y,
+-                        src_dc, 0, 0, surface_desc.Width, surface_desc.Height, SRCCOPY);
+-                GdiFlush();
+-                ReleaseDC(target->hwnd, dst_dc);
+-            }
+-            IDXGISurface1_ReleaseDC(surface, NULL);
+-        }
+-        IDXGISurface1_Release(surface);
+-    }
++    /* From now on the swapchain also presents its frames into the target
++     * window, so a Present without a following Commit still shows. */
++    if ((composite = get_composite_swapchain()))
++        ret = composite(swapchain, target->hwnd, offset_x, offset_y);
+     IDXGISwapChain_Release(swapchain);
+ 
+     TRACE("Blit of content %p to hwnd %p, offset %d,%d returned %d.\n",
+diff --git a/dlls/dxgi/dxgi.spec b/dlls/dxgi/dxgi.spec
+index 0156142..23e77dc 100644
+--- a/dlls/dxgi/dxgi.spec
++++ b/dlls/dxgi/dxgi.spec
+@@ -5,3 +5,4 @@
+ @ stdcall DXGID3D10RegisterLayers(ptr long)
+ @ stdcall DXGIGetDebugInterface1(long ptr ptr)
+ @ cdecl -private __wine_dxgi_set_composition_target(ptr ptr long long)
++@ cdecl -private __wine_dxgi_composite_swapchain(ptr ptr long long)
+diff --git a/dlls/dxgi/dxgi_private.h b/dlls/dxgi/dxgi_private.h
+index 793ac72..f7275bd 100644
+--- a/dlls/dxgi/dxgi_private.h
++++ b/dlls/dxgi/dxgi_private.h
+@@ -199,6 +199,7 @@ HRESULT d3d11_swapchain_init(struct d3d11_swapchain *swapchain, struct dxgi_devi
+         struct wined3d_swapchain_desc *desc, const DXGI_SWAP_CHAIN_FULLSCREEN_DESC *fullscreen_desc);
+ void d3d11_swapchain_set_hidden_window(IDXGISwapChain1 *swapchain, HWND window);
+ void __wine_dxgi_set_composition_target(IDXGISwapChain *swapchain, HWND window, int x, int y);
++BOOL __wine_dxgi_composite_swapchain(IDXGISwapChain *swapchain, HWND window, int x, int y);
+ 
+ HRESULT d3d12_swapchain_create(IWineDXGIFactory *factory, ID3D12CommandQueue *queue, HWND window,
+         const DXGI_SWAP_CHAIN_DESC1 *swapchain_desc, const DXGI_SWAP_CHAIN_FULLSCREEN_DESC *fullscreen_desc,
+diff --git a/dlls/dxgi/swapchain.c b/dlls/dxgi/swapchain.c
+index 2cc613f..464ff0e 100644
+--- a/dlls/dxgi/swapchain.c
++++ b/dlls/dxgi/swapchain.c
+@@ -341,17 +341,19 @@ done:
+ }
+ 
+ /* Blit the buffer the application has just rendered into (buffer 0, which is
+- * what the compositor is expected to show) into the target window. */
+-static void d3d11_swapchain_composite(struct d3d11_swapchain *swapchain)
++ * what the compositor is expected to show) into the target window.  Returns
++ * whether the buffer reached the window. */
++static BOOL d3d11_swapchain_composite(struct d3d11_swapchain *swapchain)
+ {
+     DXGI_SURFACE_DESC surface_desc;
+     IDXGISurface1 *surface;
+     ID3D11Texture2D *texture;
+     HDC src_dc, dst_dc;
++    BOOL ret = FALSE;
+     HRESULT hr;
+ 
+     if (!swapchain->composition_window)
+-        return;
++        return FALSE;
+ 
+     TRACE("Compositing swapchain %p into window %p.\n", swapchain, swapchain->composition_window);
+ 
+@@ -359,7 +361,7 @@ static void d3d11_swapchain_composite(struct d3d11_swapchain *swapchain)
+             &IID_IDXGISurface1, (void **)&surface)))
+     {
+         WARN("Failed to get buffer for compositing, hr %#lx.\n", hr);
+-        return;
++        return FALSE;
+     }
+ 
+     if (SUCCEEDED(hr = IDXGISurface1_GetDesc(surface, &surface_desc))
+@@ -376,10 +378,11 @@ static void d3d11_swapchain_composite(struct d3d11_swapchain *swapchain)
+                     src_dc, 0, 0, surface_desc.Width, surface_desc.Height, SRCCOPY);
+             GdiFlush();
+             ReleaseDC(swapchain->composition_window, dst_dc);
++            ret = TRUE;
+         }
+         IDXGISurface1_ReleaseDC(surface, NULL);
+         IDXGISurface1_Release(surface);
+-        return;
++        return ret;
+     }
+     IDXGISurface1_Release(surface);
+ 
+@@ -387,10 +390,34 @@ static void d3d11_swapchain_composite(struct d3d11_swapchain *swapchain)
+             &IID_ID3D11Texture2D, (void **)&texture)))
+     {
+         WARN("Failed to get the back buffer texture, hr %#lx.\n", hr);
+-        return;
++        return FALSE;
+     }
+-    d3d11_swapchain_composite_staging(swapchain, texture);
++    ret = d3d11_swapchain_composite_staging(swapchain, texture);
+     ID3D11Texture2D_Release(texture);
++    return ret;
++}
++
++/* Wine's dcomp exposes this privately so that a compositor can both point a
++ * composition swapchain at a window and immediately show the buffer the
++ * application rendered into.  Unlike the window-system blit in dcomp this runs
++ * through the D3D11 device, so formats that wined3d cannot create a DDI DC for
++ * (R8G8B8A8, which is what Qt's RHI composites) are read back through a
++ * staging texture. */
++BOOL __wine_dxgi_composite_swapchain(IDXGISwapChain *swapchain_iface, HWND window, int x, int y)
++{
++    struct d3d11_swapchain *swapchain;
++
++    if (!swapchain_iface)
++        return FALSE;
++
++    swapchain = d3d11_swapchain_from_IDXGISwapChain4((IDXGISwapChain4 *)swapchain_iface);
++    swapchain->composition_window = window;
++    swapchain->composition_x = x;
++    swapchain->composition_y = y;
++
++    TRACE("Swapchain %p now composites into window %p at %d,%d.\n", swapchain, window, x, y);
++
++    return d3d11_swapchain_composite(swapchain);
+ }
+ 
+ /* IUnknown methods */
+-- 
+2.53.0
+

@@ -1,0 +1,26 @@
+libEGL warning: DRI3 error: Could not get DRI3 device
+libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+libEGL warning: DRI3 error: Could not get DRI3 device
+libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+0024:fixme:d3d:wined3d_guess_card No card selector available for card vendor 0000 (using GL_RENDERER "llvmpipe (LLVM 21.1.8, 256 bits)").
+0024:fixme:ntdll:NtQuerySystemInformation info_class SYSTEM_PERFORMANCE_INFORMATION
+[ ok ] D3D11CreateDevice(HARDWARE)                (00000000)
+       feature level 11_0
+[ ok ] QueryInterface(IDXGIDevice)                (00000000)
+[ ok ] IDXGIDevice::GetAdapter                    (00000000)
+       adapter: "NVIDIA GeForce GTX 470" vendor=10de device=06cd subsystem=00000000 vram=22976 MB
+[ ok ] IDXGIAdapter::GetParent(IDXGIFactory2)     (00000000)
+0024:fixme:d3d:wined3d_swapchain_init Unimplemented swap effect 0x2.
+[ ok ] CreateSwapChainForHwnd(FLIP_DISCARD)       (00000000)
+[ ok ] hwnd presented 30 frames
+[ ok ] DCompositionCreateDevice(NULL)             (00000000)
+[ ok ] QueryInterface(IDCompositionVisual2)       (00000000)
+0024:fixme:dxgi:wined3d_swapchain_desc_from_dxgi Ignoring alpha mode 0x1.
+0024:fixme:d3d:wined3d_swapchain_init Unimplemented swap effect 0x2.
+[ ok ] CreateSwapChainForComposition             
+[ ok ] dcomp BGRA8 pixel                          window shows RGB(230,51,13)
+0024:fixme:dxgi:wined3d_swapchain_desc_from_dxgi Ignoring alpha mode 0x1.
+0024:fixme:d3d:wined3d_swapchain_init Unimplemented swap effect 0x2.
+[ ok ] CreateSwapChainForComposition             
+[ ok ] dcomp RGBA8 pixel                          window shows RGB(13,51,230)
+RESULT: ALL PATHS OK (0 failures)

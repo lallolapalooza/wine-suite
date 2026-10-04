@@ -1,0 +1,6 @@
+query needed=968 err=234
+size=968 returned=5 array=[0..280] strings=[280..544] tail=424
+0xAA in gap = 0 of 0
+entry[0] name@280 disp@298 ; entry[ret-1] name@496 disp@520
+bytes at entry[ret] (off 280): 45 00 76 00 65 00 6e 00
+first string: Winedevice2

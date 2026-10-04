@@ -1,0 +1,102 @@
+﻿cmd=curl.exe -s -o C:\Users\adsf\facts.ps1 http://192.168.122.1:8000/facts.ps1; powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\adsf\facts.ps1
+start=2026-10-03T22:36:00.6387835-07:00
+rc=0
+end=2026-10-03T22:36:18.1306023-07:00
+--- output ---
+=== 1. ve_detector matches ===
+
+=== 2. VEAngle listing ===
+
+Name           Length
+----           ------
+libEGL.dll     220072
+libGLESv2.dll 5672360
+
+
+
+=== 2c. all libEGL/libGLESv2 in install ===
+
+FullName                                                                  Length
+--------                                                                  ------
+C:\Users\adsf\AppData\Local\CapCut\Apps\9.5.0.4050\cef\libEGL.dll         486824
+C:\Users\adsf\AppData\Local\CapCut\Apps\9.5.0.4050\cef\libGLESv2.dll     7657896
+C:\Users\adsf\AppData\Local\CapCut\Apps\9.5.0.4050\VEAngle\libEGL.dll     220072
+C:\Users\adsf\AppData\Local\CapCut\Apps\9.5.0.4050\VEAngle\libGLESv2.dll 5672360
+
+
+
+=== 3. VeDetector log EGL/GLES/AGFX/GPDevice/ve_detector ===
+=== 4. CapCut procs ===
+
+
+Name            : CapCut
+Id              : 808
+MainWindowTitle : 
+StartTime       : 10/3/2026 10:18:52 PM
+
+Name            : CapCut
+Id              : 2096
+MainWindowTitle : 
+StartTime       : 10/3/2026 10:18:51 PM
+
+Name            : CapCut
+Id              : 2496
+MainWindowTitle : CapCut
+StartTime       : 10/3/2026 10:17:41 PM
+
+Name            : CapCut
+Id              : 6372
+MainWindowTitle : 
+StartTime       : 10/3/2026 10:18:51 PM
+
+Name            : CapCut
+Id              : 7376
+MainWindowTitle : 
+StartTime       : 10/3/2026 10:18:55 PM
+
+Name            : CapCut
+Id              : 8936
+MainWindowTitle : 
+StartTime       : 10/3/2026 10:25:02 PM
+
+Name            : CapCut
+Id              : 11124
+MainWindowTitle : 
+StartTime       : 10/3/2026 10:17:55 PM
+
+
+
+=== 6. main window title ===
+
+
+Id              : 808
+MainWindowTitle : 
+Responding      : True
+
+Id              : 2096
+MainWindowTitle : 
+Responding      : True
+
+Id              : 2496
+MainWindowTitle : CapCut
+Responding      : True
+
+Id              : 6372
+MainWindowTitle : 
+Responding      : True
+
+Id              : 7376
+MainWindowTitle : 
+Responding      : True
+
+Id              : 8936
+MainWindowTitle : 
+Responding      : True
+
+Id              : 11124
+MainWindowTitle : 
+Responding      : True
+
+
+
+DONE

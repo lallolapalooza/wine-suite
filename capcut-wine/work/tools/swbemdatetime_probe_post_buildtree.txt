@@ -1,0 +1,35 @@
+CoCreateInstance(CLSID_SWbemDateTime) -> 00000000 (S_OK)
+QueryInterface(IID_IDispatch) -> 00000000
+-- normal timestamp (UTC) --
+  put_Value hr=00000000
+  value: hr=00000000 value=20000120195632.000000+000
+  Year=2000
+  Month=1
+  Day=20
+  Hours=19
+  UTC=0
+  GetVarDate(false) hr=00000000
+    -> date = 2000-01-20 19:56:32.000 (raw 36545.830925926)
+  GetFileTime(false) hr=00000000 value=125928717920000000
+-- timestamp with -480 offset --
+  put_Value hr=00000000
+  UTC=-480
+  GetVarDate(false) hr=00000000 (UTC instant)
+    -> date = 2000-01-21 03:56:32.000 (raw 36546.164259259)
+  GetFileTime(false) hr=00000000 value=125929005920000000
+  SetFileTime(value,false) hr=00000000
+  GetFileTime again hr=00000000 value=125929005920000000 roundtrip=OK
+-- SetVarDate round trip --
+  SetVarDate hr=00000000
+  value: hr=00000000 value=20000120195632.000000+000
+-- interval --
+  put_Value hr=00000000
+  value: hr=00000000 value=00000100010003.000000:000
+  IsInterval=-1
+  Day=100
+  Hours=1
+  Seconds=3
+  GetVarDate(false) on interval hr=80041001 (expect 80041001)
+-- malformed --
+  put_Value("garbage") hr=80041021 (expect 80041021)
+  value unchanged?: hr=00000000 value=00000100010003.000000:000
