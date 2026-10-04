@@ -1,0 +1,27 @@
+﻿cmd=# nonce 1791054028.441170947
+Get-Process -Name "ETC_EosFamily_v3.3.10.28" -ErrorAction SilentlyContinue | Select-Object Id,ProcessName,StartTime,MainWindowTitle,Responding | Format-Table -AutoSize | Out-String
+Get-Process -Name "ETC_EosFamily_v3.3.10.28" -ErrorAction SilentlyContinue | Stop-Process -Force
+Start-Sleep 3
+"after: " + ((Get-Process -Name "ETC_EosFamily_v3.3.10.28" -ErrorAction SilentlyContinue | Measure-Object).Count)
+"--- all suspicious processes:"; Get-Process | Where-Object { $_.ProcessName -match "Eos|ETC|Augment|apitrace|Setup" } | Select-Object Id,ProcessName | Out-String
+start=2026-10-03T12:00:28.3649796-07:00
+rc=0
+end=2026-10-03T12:00:31.4887341-07:00
+--- output ---
+
+  Id ProcessName              StartTime             MainWindowTitle              Responding
+  -- -----------              ---------             ---------------              ----------
+9084 ETC_EosFamily_v3.3.10.28 10/3/2026 11:56:07 AM Eos Family v3 Software Setup       True
+
+
+
+after: 1
+--- all suspicious processes:
+
+  Id ProcessName             
+  -- -----------             
+9084 ETC_EosFamily_v3.3.10.28
+
+
+
+
