@@ -1,6 +1,0 @@
-query needed=968 err=234
-size=968 returned=5 array=[0..280] strings=[704..968] tail=0
-0xAA in gap = 0 of 424
-entry[0] name@704 disp@722 ; entry[ret-1] name@920 disp@944
-bytes at entry[ret] (off 280): 00 00 00 00 00 00 00 00
-first string: Winedevice2

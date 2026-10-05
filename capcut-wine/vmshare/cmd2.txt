@@ -1,1 +1,0 @@
-curl.exe -s -o C:\Users\adsf\facts.ps1 http://192.168.122.1:8000/facts.ps1; powershell -NoProfile -ExecutionPolicy Bypass -File C:\Users\adsf\facts.ps1
