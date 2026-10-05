@@ -1,5 +1,0 @@
-1 9 KERNEL32!CreateFileW (arg0=0x12ab30, arg1="C:\\Users\\Public\\arena.cfg", arg2=0x80000000, arg3=0x3, arg4=0x0, arg5=0x3, arg6=0x80, arg7=0x0) -> 0x40
-2 9 ntdll!RtlDosPathNameToNtPathName_U_WithStatus (arg0=0x12ab30, arg1="C:\\Users\\Public\\arena.cfg", arg2=0x61fe00, arg3=0x0, arg4=0x0) -> 0x0
-3 9 KERNEL32!ReadFile (arg0=0x40, arg1=0x61fe80, arg2=0x400, arg3=0x61fe7c, arg4=0x0) -> 0x1
-4 9 KERNEL32!GetLastError () -> 0x0
-5 9 user32!MessageBoxW (arg0=0x0, arg1="Arena", arg2="hello, world", arg3=0x10) -> 0x1
