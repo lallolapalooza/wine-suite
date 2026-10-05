@@ -1,3 +1,0 @@
-/home/asdf/projects/mastercam-wine/tools/install_corefonts.sh: line 48: RW_TMP: unbound variable
-no font source found: put the TTFs in state/tmp/fonts/ or a corefonts.zip in vmshare/
-(see the FONT SOURCE note at the top of this script)

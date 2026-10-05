@@ -1,2 +1,0 @@
-# nonce 1791059174.793657582
-echo GUEST_ALIVE; hostname

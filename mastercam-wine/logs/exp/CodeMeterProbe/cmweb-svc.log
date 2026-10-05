@@ -1,6 +1,0 @@
-0254:trace:service:OpenSCManagerW (null) (null) 0xf003f
-0254:trace:service:OpenServiceW 00007FFFFE26BFD0 L"CmWebAdmin.exe" 0x10
-0254:trace:service:StartServiceW 00007FFFFE26C010 0 00007FFFFE26BB08
-0254:err:sc:wmain failed to start service 1056
-0254:trace:service:CloseServiceHandle 00007FFFFE26C010
-0254:trace:service:CloseServiceHandle 00007FFFFE26BFD0

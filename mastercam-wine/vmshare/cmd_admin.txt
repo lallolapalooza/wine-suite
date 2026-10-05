@@ -1,2 +1,0 @@
-# nonce 1791048972.003901973
-reg query "HKLM\SOFTWARE\CNC Software\Mastercam 2027" /v ApplicationLocaleName; reg query "HKLM\SOFTWARE\CNC Software\Mastercam 2027" 2>&1 | Select-Object -First 20
