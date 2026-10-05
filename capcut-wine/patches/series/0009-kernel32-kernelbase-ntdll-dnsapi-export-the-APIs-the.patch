@@ -1,0 +1,230 @@
+From 3b61e96504d6ffaf6b00405b9474271cca77870f Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:08:42 -0500
+Subject: [PATCH 09/23] kernel32/kernelbase/ntdll/dnsapi: export the APIs the
+ licensing and browser stacks probe for
+
+A relay capture of AutoCAD's licensing/identity stack (plus Edge/WebView2) showed several
+GetProcAddress lookups that fail only because Wine does not export the symbol that Windows provides:
+
+  kernelbase!FlsGetValue2                       (57x, msedge_elf/msedgewebview2/msedge)
+  kernel32!IsUserCetAvailableInEnvironment      (4x, msedge)
+  kernel32!GetProcessUserModeExceptionPolicy    (1x, acad.exe)
+  kernel32!SetProcessUserModeExceptionPolicy    (1x, acad.exe)
+  ntdll!RtlAreLongPathsEnabled                  (1x, AcPal.dll)
+  dnsapi!DnsIsZtEnabled                         (1x, msedge)
+
+FlsGetValue2 behaves like FlsGetValue (the two policy entry points were `# @ stub` placeholders in
+kernel32's spec, so they were not exported at all).  RtlAreLongPathsEnabled reports the
+LongPathsEnabled registry policy as on Windows, and DnsIsZtEnabled /
+IsUserCetAvailableInEnvironment report the feature as unavailable.
+
+Verified with tools/expprobe under Wine: all six names resolve through GetProcAddress and
+RtlAreLongPathsEnabled() returns FALSE (the documented value with the policy absent).
+---
+ dlls/dnsapi/dnsapi.spec         |  1 +
+ dlls/dnsapi/query.c             | 10 ++++++++++
+ dlls/kernel32/kernel32.spec     |  6 ++++--
+ dlls/kernelbase/kernelbase.spec |  4 ++++
+ dlls/kernelbase/process.c       | 34 +++++++++++++++++++++++++++++++++
+ dlls/kernelbase/thread.c        | 13 +++++++++++++
+ dlls/ntdll/ntdll.spec           |  1 +
+ dlls/ntdll/path.c               | 27 ++++++++++++++++++++++++++
+ 8 files changed, 94 insertions(+), 2 deletions(-)
+
+diff --git a/dlls/dnsapi/dnsapi.spec b/dlls/dnsapi/dnsapi.spec
+index f4c6af5..8f6bf57 100644
+--- a/dlls/dnsapi/dnsapi.spec
++++ b/dlls/dnsapi/dnsapi.spec
+@@ -78,6 +78,7 @@
+ @ stub DnsNameCopyAllocate
+ @ stub DnsNotifyResolver
+ @ stdcall DnsQuery_A(str long long ptr ptr ptr)
++@ stdcall DnsIsZtEnabled()
+ @ stdcall DnsQueryConfig(long long wstr ptr ptr ptr)
+ @ stdcall DnsQueryEx(ptr ptr ptr)
+ @ stdcall DnsQuery_UTF8(str long long ptr ptr ptr)
+diff --git a/dlls/dnsapi/query.c b/dlls/dnsapi/query.c
+index a28d98f..9cb0143 100644
+--- a/dlls/dnsapi/query.c
++++ b/dlls/dnsapi/query.c
+@@ -442,3 +442,13 @@ DNS_STATUS WINAPI DnsQueryConfig( DNS_CONFIG_TYPE config, DWORD flag, const WCHA
+     }
+     return ret;
+ }
++
++/***********************************************************************
++ *           DnsIsZtEnabled   (dnsapi.@)
++ *
++ * "Zero Trust DNS" is a Windows 11 feature (DnsIsZtEnabled); Chromium/Edge probe for it.
++ */
++BOOL WINAPI DnsIsZtEnabled( void )
++{
++    return FALSE;
++}
+diff --git a/dlls/kernel32/kernel32.spec b/dlls/kernel32/kernel32.spec
+index 49bdaa8..d8f4215 100644
+--- a/dlls/kernel32/kernel32.spec
++++ b/dlls/kernel32/kernel32.spec
+@@ -524,9 +524,11 @@
+ @ stdcall -import FlsAlloc(ptr)
+ @ stdcall -import FlsFree(long)
+ @ stdcall -import FlsGetValue(long)
++@ stdcall -import FlsGetValue2(long)
+ @ stdcall -import FlsSetValue(long ptr)
+ @ stdcall -import FlushConsoleInputBuffer(long)
+ @ stdcall -import FlushFileBuffers(long)
++@ stdcall -import IsUserCetAvailableInEnvironment(long)
+ @ stdcall -import FlushInstructionCache(long long long)
+ @ stdcall FlushProcessWriteBuffers() NTDLL.NtFlushProcessWriteBuffers
+ @ stdcall -import FlushViewOfFile(ptr long)
+@@ -815,7 +817,7 @@
+ @ stdcall -import GetProcessShutdownParameters(ptr ptr)
+ # @ stub GetProcessorSystemCycleTime
+ @ stdcall -import GetProcessTimes(long ptr ptr ptr ptr)
+-# @ stub GetProcessUserModeExceptionPolicy
++@ stdcall -import GetProcessUserModeExceptionPolicy(ptr)
+ @ stdcall -import GetProcessVersion(long)
+ @ stdcall GetProcessWorkingSetSize(long ptr ptr)
+ @ stdcall -import GetProcessWorkingSetSizeEx(long ptr ptr ptr)
+@@ -1479,7 +1481,7 @@
+ @ stdcall -import SetProcessPreferredUILanguages(long ptr ptr)
+ @ stdcall -import SetProcessPriorityBoost(long long)
+ @ stdcall -import SetProcessShutdownParameters(long long)
+-# @ stub SetProcessUserModeExceptionPolicy
++@ stdcall -import SetProcessUserModeExceptionPolicy(long)
+ @ stdcall SetProcessWorkingSetSize(long long long)
+ @ stdcall -import SetProcessWorkingSetSizeEx(long long long long)
+ @ stdcall SetSearchPathMode(long)
+diff --git a/dlls/kernelbase/kernelbase.spec b/dlls/kernelbase/kernelbase.spec
+index 97e3897..7f21d92 100644
+--- a/dlls/kernelbase/kernelbase.spec
++++ b/dlls/kernelbase/kernelbase.spec
+@@ -388,6 +388,7 @@
+ @ stdcall FlsAlloc(ptr)
+ @ stdcall FlsFree(long)
+ @ stdcall FlsGetValue(long)
++@ stdcall FlsGetValue2(long)
+ @ stdcall FlsSetValue(long ptr)
+ @ stdcall FlushConsoleInputBuffer(long)
+ @ stdcall FlushFileBuffers(long)
+@@ -1830,3 +1831,6 @@
+ @ stdcall lstrlenW(wstr) KERNELBASE_lstrlenW
+ # @ stub time
+ # @ stub wprintf
++@ stdcall GetProcessUserModeExceptionPolicy(ptr)
++@ stdcall SetProcessUserModeExceptionPolicy(long)
++@ stdcall IsUserCetAvailableInEnvironment(long)
+diff --git a/dlls/kernelbase/process.c b/dlls/kernelbase/process.c
+index 25b3f4f..fc92c5b 100644
+--- a/dlls/kernelbase/process.c
++++ b/dlls/kernelbase/process.c
+@@ -1935,3 +1935,37 @@ DWORD WINAPI PssCaptureSnapshot( HANDLE hprocess, PSS_CAPTURE_FLAGS flags, DWORD
+     FIXME( "(%p %u %lu %p)\n", hprocess , flags, ctx_flags, handle );
+     return ERROR_NOT_FOUND;
+ }
++
++static ULONG user_mode_exception_policy;
++
++/***********************************************************************
++ *           GetProcessUserModeExceptionPolicy   (kernelbase.@)
++ */
++BOOL WINAPI DECLSPEC_HOTPATCH GetProcessUserModeExceptionPolicy( ULONG *flags )
++{
++    if (!flags)
++    {
++        SetLastError( ERROR_INVALID_PARAMETER );
++        return FALSE;
++    }
++    *flags = user_mode_exception_policy;
++    return TRUE;
++}
++
++/***********************************************************************
++ *           SetProcessUserModeExceptionPolicy   (kernelbase.@)
++ */
++BOOL WINAPI DECLSPEC_HOTPATCH SetProcessUserModeExceptionPolicy( ULONG flags )
++{
++    user_mode_exception_policy = flags;
++    return TRUE;
++}
++
++/***********************************************************************
++ *           IsUserCetAvailableInEnvironment   (kernelbase.@)
++ */
++BOOL WINAPI DECLSPEC_HOTPATCH IsUserCetAvailableInEnvironment( ULONG env )
++{
++    /* Wine provides no CET-enabled environment (USER_CET_ENVIRONMENT_*) */
++    return FALSE;
++}
+diff --git a/dlls/kernelbase/thread.c b/dlls/kernelbase/thread.c
+index 92ef073..c7aa1f7 100644
+--- a/dlls/kernelbase/thread.c
++++ b/dlls/kernelbase/thread.c
+@@ -1271,6 +1271,19 @@ PVOID WINAPI DECLSPEC_HOTPATCH FlsGetValue( DWORD index )
+ }
+ 
+ 
++/***********************************************************************
++ *           FlsGetValue2   (kernelbase.@)
++ */
++PVOID WINAPI DECLSPEC_HOTPATCH FlsGetValue2( DWORD index )
++{
++    void *data;
++
++    /* undocumented kernel32 export present since Windows 8, used by several runtimes
++     * (Chromium/Edge check for it through GetProcAddress); behaves like FlsGetValue */
++    if (!set_ntstatus( RtlFlsGetValue( index, &data ))) return NULL;
++    SetLastError( ERROR_SUCCESS );
++    return data;
++}
+ /***********************************************************************
+  *           FlsSetValue   (kernelbase.@)
+  */
+diff --git a/dlls/ntdll/ntdll.spec b/dlls/ntdll/ntdll.spec
+index 2c66313..882e8a7 100644
+--- a/dlls/ntdll/ntdll.spec
++++ b/dlls/ntdll/ntdll.spec
+@@ -518,6 +518,7 @@
+ @ stdcall RtlAllocateAndInitializeSid (ptr long long long long long long long long long ptr)
+ @ stdcall RtlAllocateHandle(ptr ptr)
+ @ stdcall RtlAllocateHeap(long long long)
++@ stdcall RtlAreLongPathsEnabled()
+ @ stdcall RtlAnsiCharToUnicodeChar(ptr)
+ @ stdcall RtlAnsiStringToUnicodeSize(ptr)
+ @ stdcall RtlAnsiStringToUnicodeString(ptr ptr long)
+diff --git a/dlls/ntdll/path.c b/dlls/ntdll/path.c
+index aaa1585..6cb2dce 100644
+--- a/dlls/ntdll/path.c
++++ b/dlls/ntdll/path.c
+@@ -1060,3 +1060,30 @@ NTSTATUS WINAPI RtlSetCurrentDirectory_U(const UNICODE_STRING* dir)
+     if (old_handle) NtClose( old_handle );
+     return nts;
+ }
++
++/***********************************************************************
++ *           RtlAreLongPathsEnabled   (NTDLL.@)
++ *
++ * Windows reports whether long paths are enabled for the process, which it takes from the
++ * LongPathsEnabled registry policy; several runtimes (and AcPal) probe for this export.
++ */
++BOOLEAN WINAPI RtlAreLongPathsEnabled(void)
++{
++    static const WCHAR file_system_key[] =
++        L"\\Registry\\Machine\\SYSTEM\\CurrentControlSet\\Control\\FileSystem";
++    static const WCHAR long_paths_value[] = L"LongPathsEnabled";
++    RTL_QUERY_REGISTRY_TABLE table[2];
++    ULONG enabled = 0;
++
++    memset( table, 0, sizeof(table) );
++    table[0].Flags = RTL_QUERY_REGISTRY_DIRECT;
++    table[0].Name = long_paths_value;
++    table[0].EntryContext = &enabled;
++    table[0].DefaultType = REG_DWORD;
++    table[0].DefaultData = &enabled;
++    table[0].DefaultLength = sizeof(enabled);
++
++    if (RtlQueryRegistryValues( RTL_REGISTRY_ABSOLUTE, file_system_key, table, NULL, NULL ))
++        return FALSE;
++    return enabled != 0;
++}

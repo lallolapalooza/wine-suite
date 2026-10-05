@@ -1,0 +1,298 @@
+From: CapCut-on-Wine project
+Subject: advapi32/sechost: place EnumServicesStatusEx strings at the end of the caller's buffer
+
+SYMPTOM
+  A CapCut 9.5.0.4050 run that has already rendered its home screen dies at
+  t ~= 98-130 s with, from the crashpad dump:
+
+      EXCEPTION_ACCESS_VIOLATION (0xc0000005), ExceptionAddress 0x6fffc3619943
+      = metasecml.dll + 0x29943
+
+  metasecml.dll is CapCut's VMProtect-packed security/telemetry module, so the
+  instruction cannot be read from disk -- but crashpad stores memory around the
+  faulting RIP and the whole thread context, so it can be disassembled straight
+  out of the dump:
+
+      6fffc3619935: mov  %rax,%r8
+      6fffc3619940: inc  %r8
+      6fffc3619943: cmpb $0x0,(%rdx,%r8,1)      <-- fault
+      6fffc3619948: jne  0x6fffc3619940
+
+  i.e. an inline strlen() of the C string at RDX.  The faulting context is
+  RDX = 0x676f6c746e657645 ("Eventlog" -- the *characters* of a service name)
+  and R8 = 0, so the "pointer" is the service-name text itself.  Walking the
+  faulting thread's stack back (RET at rsp+0x1b8 = metasecml+0x265fa) and the
+  +relay log of the same thread identifies the function: it is the one that
+  calls OpenSCManagerA and then EnumServicesStatusExA twice (relay lines
+  ret=6fffc36197da / 6fffc3619868 / 6fffc36198e2), and the buffer it passes is
+  exactly the object the faulting loop walks (the faulting R14 equals the
+  relay-logged buffer argument).
+
+ANALYSIS
+  That function enumerates the services with
+
+      OpenSCManagerA( NULL, NULL, SC_MANAGER_ENUMERATE_SERVICE )
+      EnumServicesStatusExA( scm, SC_ENUM_PROCESS_INFO, SERVICE_WIN32,
+                             SERVICE_ACTIVE, NULL, 0, &needed, &returned, ... )
+      EnumServicesStatusExA( scm, ..., buffer, needed, ... )
+
+  and then walks the returned array of ENUM_SERVICE_STATUS_PROCESSA with a
+  0x38 stride until an entry's lpServiceName or lpDisplayName is NULL:
+
+      if (!e->lpServiceName || !e->lpDisplayName) break;
+      push_back( std::string(e->lpServiceName) );
+
+  Windows anchors the strings at the END of the caller's buffer and zeroes the
+  space between the array of structures and that string block, so the entry
+  right after the last returned service is { NULL, NULL, ... } and the walk
+  stops.  Wine packed the strings immediately after the array, so
+  entry[returned] was the first service name -- a non-NULL "pointer" holding
+  the characters "Eventlog" -- and the strlen() dereferenced it.
+
+MEASURED (identical calls on the Windows 11 guest and in Wine; the probes are
+work/tools/svcenum_probe.c and svcenumw_probe.c, buffer pre-filled with 0xAA so
+every byte the API writes is visible)
+
+  EnumServicesStatusExA, SERVICE_WIN32/SERVICE_ACTIVE, size == needed
+
+  | observation                           | Wine before         | Wine after          | Windows 11          |
+  |---------------------------------------|---------------------|---------------------|---------------------|
+  | entry[returned].lpServiceName         | 0x676f6c746e657645  | 0000000000000000    | 0000000000000000    |
+  |                                       | ("Eventlog")        |                     |                     |
+  | string block (byte offsets in buffer) | [280 .. 412]        | [836 .. 968]        | [6596 .. 12912]     |
+  |                                       | right after array   | buffer end (968)    | buffer end (12920)  |
+  | zeroed bytes between array and strings| 0                   | 556                 | 1724                |
+  | buffer size == 'needed'               | 968                 | 968                 | 12920 (87 services) |
+
+  The Windows string offsets shift by exactly the change in buffer size (+512 and
+  +8192 were measured), i.e. Windows anchors the block to the end of the buffer;
+  Wine after the patch does the same.  Windows also zeroes the whole gap: the
+  probe pre-filled the buffer with 0xAA and every byte between the array and the
+  strings came back zero.
+
+  EnumServicesStatusExW behaves the same way on Windows (strings end exactly at
+  `size`, gap zeroed, entry[returned] zero); Wine packed them after the array.
+
+CLASSIFICATION
+  GENERAL WINE GAP FOUND WHILE MAKING CAPCUT RUN, NOT A CAPCUT-EXCLUSIVE HACK.
+  The buffer layout is part of the API contract ("an array of
+  ENUM_SERVICE_STATUS_PROCESS structures, followed by the strings"), Windows
+  really does anchor the string block to the end of the caller's buffer and zero
+  the space after the array, and any caller that stops iterating on a NULL entry
+  misbehaves on Wine for every input.  The patch therefore lives in the shared
+  series, not in patches/local/.
+
+CHANGE
+  * dlls/sechost/service.c, EnumServicesStatusExW(): after the "does it fit"
+    check, compute the string-block offset as size - string_bytes instead of
+    count * sizeof(entry), and zero the space between the array and the strings
+    before copying them.
+  * dlls/advapi32/service.c, EnumServicesStatusExA(): same layout for the ANSI
+    strings (a pre-pass measures the ANSI string bytes with
+    WideCharToMultiByte(..., NULL, 0) so the block can be anchored at the end),
+    plus a proper ERROR_INSUFFICIENT_BUFFER when the caller's buffer cannot hold
+    array + strings (the old code underflowed `n` and could write past the
+    buffer).
+  * dlls/advapi32/tests/service.c: test_enum_svc_ex() now also runs both the A
+    and the W call into a deliberately oversized buffer and asserts the whole
+    layout -- the entry right after the last returned service must be NULL, the
+    space up to the string block must be zeroed, and the string block must be
+    anchored at the end of the buffer.  Without the fix that is 6 failures
+    (three per call: no gap, no NULL entry, block not anchored); with it,
+    769 tests executed / 0 failures.
+
+  The non-Ex EnumServicesStatusW/A wrappers lay their own strings out from the
+  start; they were not measured against Windows and are not touched here.
+
+diff --git a/dlls/advapi32/service.c b/dlls/advapi32/service.c
+index bcf92d7..53d4c46 100644
+--- a/dlls/advapi32/service.c
++++ b/dlls/advapi32/service.c
+@@ -293,7 +293,7 @@ EnumServicesStatusExA( SC_HANDLE hmngr, SC_ENUM_TYPE level, DWORD type, DWORD st
+     ENUM_SERVICE_STATUS_PROCESSA *services = (ENUM_SERVICE_STATUS_PROCESSA *)buffer;
+     ENUM_SERVICE_STATUS_PROCESSW *servicesW = NULL;
+     WCHAR *groupW = NULL;
+-    DWORD sz, n;
++    DWORD sz, n, total;
+     char *p;
+ 
+     TRACE("%p %u 0x%lx 0x%lx %p %lu %p %p %p %s\n", hmngr, level, type, state, buffer,
+@@ -321,7 +321,24 @@ EnumServicesStatusExA( SC_HANDLE hmngr, SC_ENUM_TYPE level, DWORD type, DWORD st
+                                  needed, returned, resume_handle, groupW );
+     if (!ret) goto done;
+ 
+-    p = (char *)services + *returned * sizeof(ENUM_SERVICE_STATUS_PROCESSA);
++    /* Windows anchors the strings at the end of the caller's buffer and zeroes
++     * the space right after the array of structures, so that a caller which
++     * walks the array until a NULL entry stops there. */
++    for (i = 0, total = 0; i < *returned; i++)
++    {
++        total += WideCharToMultiByte( CP_ACP, 0, servicesW[i].lpServiceName, -1, NULL, 0, NULL, NULL );
++        if (servicesW[i].lpDisplayName)
++            total += WideCharToMultiByte( CP_ACP, 0, servicesW[i].lpDisplayName, -1, NULL, 0, NULL, NULL );
++    }
++    if (*returned * sizeof(ENUM_SERVICE_STATUS_PROCESSA) >= size ||
++        total > size - *returned * sizeof(ENUM_SERVICE_STATUS_PROCESSA))
++    {
++        SetLastError( ERROR_INSUFFICIENT_BUFFER );
++        goto done;
++    }
++    p = (char *)services + size - total;
++    memset( (char *)services + *returned * sizeof(ENUM_SERVICE_STATUS_PROCESSA), 0,
++            (p - (char *)services) - *returned * sizeof(ENUM_SERVICE_STATUS_PROCESSA) );
+     n = size - (p - (char *)services);
+     ret = FALSE;
+     for (i = 0; i < *returned; i++)
+diff --git a/dlls/advapi32/tests/service.c b/dlls/advapi32/tests/service.c
+index 33ff25d..2db74f7 100644
+--- a/dlls/advapi32/tests/service.c
++++ b/dlls/advapi32/tests/service.c
+@@ -1545,6 +1545,29 @@ retry:
+     return alldone;
+ }
+ 
++/* Windows anchors the enumerated service strings at the end of the caller's
++ * buffer and zeroes the space between the array of structures and the strings.
++ * A caller that walks the array until a NULL entry (as CapCut's metasecml.dll
++ * does) therefore stops right after the last service; Wine used to pack the
++ * strings immediately after the array, so that walk ran into the strings.
++ * strstart/strend are the first byte and the end of the string block. */
++static void check_enum_services_layout( const BYTE *buf, DWORD size, DWORD returned,
++                                        DWORD entry_size, DWORD strstart, DWORD strend )
++{
++    DWORD arrend = returned * entry_size, i;
++
++    ok( strstart > arrend, "expected a gap between the array of structures and the strings\n" );
++    ok( arrend + entry_size <= size, "no room for a NULL entry after the array\n" );
++    ok( *(const void **)(buf + arrend) == NULL,
++        "expected a NULL entry right after the last returned service\n" );
++    for (i = arrend; i < strstart; i++)
++        if (buf[i]) break;
++    ok( i == strstart, "expected the space after the array to be zeroed, byte %lu is %#x\n",
++        i, buf[i] );
++    ok( size - strend <= entry_size, "expected the strings anchored at the end of the buffer, "
++        "%lu of %lu bytes left over\n", size - strend, size );
++}
++
+ static BOOL test_enum_svc_ex(int attempt)
+ {
+     SC_HANDLE scm_handle;
+@@ -1553,8 +1576,10 @@ static BOOL test_enum_svc_ex(int attempt)
+     DWORD neededA, returnedA;
+     DWORD tempneeded, tempreturned, missing;
+     DWORD servicecountactive, servicecountinactive;
++    DWORD strstart, strend;
+     ENUM_SERVICE_STATUSW *services;
+     ENUM_SERVICE_STATUS_PROCESSW *exservices;
++    ENUM_SERVICE_STATUS_PROCESSA *aservices;
+     UINT i;
+ 
+     /* More or less the same for EnumServicesStatusExA */
+@@ -1776,6 +1801,89 @@ static BOOL test_enum_svc_ex(int attempt)
+     /* Store the number of returned services */
+     tempreturned = returned;
+ 
++    /* Windows anchors the enumerated strings at the end of the caller's buffer
++     * and zeroes the space between the array of structures and the strings, so
++     * a caller that walks the array until a NULL entry (CapCut's metasecml.dll
++     * does exactly this) stops right after the last service.  A deliberately
++     * oversized buffer makes both the anchor and the zeroed gap non-trivial.
++     * This is checked for the A call CapCut uses and for the W call; Wine used
++     * to pack the strings right after the array, so entry[returned] held the
++     * first service name and the walk ran into it. */
++    exservices = malloc(tempneeded + 0x2000);
++    bufsize = tempneeded + 0x2000;
++    needed = 0xdeadbeef;
++    returned = 0xdeadbeef;
++    SetLastError(0xdeadbeef);
++    ret = pEnumServicesStatusExW(scm_handle, 0, SERVICE_WIN32, SERVICE_STATE_ALL,
++                                 (BYTE *)exservices, bufsize, &needed, &returned, NULL, NULL);
++    if (ret)
++    {
++        strstart = ~0u; strend = 0;
++        for (i = 0; i < returned; i++)
++        {
++            DWORD o;
++            if (exservices[i].lpServiceName)
++            {
++                o = (BYTE *)exservices[i].lpServiceName - (BYTE *)exservices;
++                if (o < strstart) strstart = o;
++                o += (lstrlenW(exservices[i].lpServiceName) + 1) * sizeof(WCHAR);
++                if (o > strend) strend = o;
++            }
++            if (exservices[i].lpDisplayName)
++            {
++                o = (BYTE *)exservices[i].lpDisplayName - (BYTE *)exservices;
++                if (o < strstart) strstart = o;
++                o += (lstrlenW(exservices[i].lpDisplayName) + 1) * sizeof(WCHAR);
++                if (o > strend) strend = o;
++            }
++        }
++        check_enum_services_layout( (BYTE *)exservices, bufsize, returned,
++                                    sizeof(ENUM_SERVICE_STATUS_PROCESSW), strstart, strend );
++    }
++    free(exservices);
++    if (!ret && GetLastError() == ERROR_MORE_DATA && attempt)
++        goto retry; /* service start race condition */
++    ok(ret, "Expected success, got error %lu\n", GetLastError());
++    ok(needed == 0, "Expected needed buffer to be 0 as we are done\n");
++    ok(returned == tempreturned, "Expected the same number of service from this function\n");
++
++    aservices = malloc(tempneeded + 0x2000);
++    bufsize = tempneeded + 0x2000;
++    needed = 0xdeadbeef;
++    returned = 0xdeadbeef;
++    SetLastError(0xdeadbeef);
++    ret = pEnumServicesStatusExA(scm_handle, 0, SERVICE_WIN32, SERVICE_STATE_ALL,
++                                 (BYTE *)aservices, bufsize, &needed, &returned, NULL, NULL);
++    if (ret)
++    {
++        strstart = ~0u; strend = 0;
++        for (i = 0; i < returned; i++)
++        {
++            DWORD o;
++            if (aservices[i].lpServiceName)
++            {
++                o = (BYTE *)aservices[i].lpServiceName - (BYTE *)aservices;
++                if (o < strstart) strstart = o;
++                o += strlen(aservices[i].lpServiceName) + 1;
++                if (o > strend) strend = o;
++            }
++            if (aservices[i].lpDisplayName)
++            {
++                o = (BYTE *)aservices[i].lpDisplayName - (BYTE *)aservices;
++                if (o < strstart) strstart = o;
++                o += strlen(aservices[i].lpDisplayName) + 1;
++                if (o > strend) strend = o;
++            }
++        }
++        check_enum_services_layout( (BYTE *)aservices, bufsize, returned,
++                                    sizeof(ENUM_SERVICE_STATUS_PROCESSA), strstart, strend );
++    }
++    free(aservices);
++    if (!ret && GetLastError() == ERROR_MORE_DATA && attempt)
++        goto retry; /* service start race condition */
++    ok(ret, "Expected success, got error %lu\n", GetLastError());
++    ok(needed == 0, "Expected needed buffer to be 0 as we are done\n");
++
+     /* Allocate less than the needed bytes and don't specify a resume handle.
+      * More than one service will be missing because of the space needed for
+      * the strings.
+diff --git a/dlls/sechost/service.c b/dlls/sechost/service.c
+index f05fd2d..7052f64 100644
+--- a/dlls/sechost/service.c
++++ b/dlls/sechost/service.c
+@@ -1200,7 +1200,12 @@ BOOL WINAPI DECLSPEC_HOTPATCH EnumServicesStatusExW( SC_HANDLE manager, SC_ENUM_
+         return FALSE;
+     }
+ 
+-    offset = count * sizeof(*services);
++    /* Windows anchors the strings at the end of the caller's buffer and leaves
++     * the space right after the array zeroed, so a caller that walks the array
++     * until a NULL entry stops there instead of running into the strings. */
++    offset = size - (total_size - count * sizeof(*services));
++    memset( (char *)services + count * sizeof(*services), 0,
++            offset - count * sizeof(*services) );
+     entry = (struct enum_service_status_process *)buf;
+     for (i = 0; i < count; i++)
+     {

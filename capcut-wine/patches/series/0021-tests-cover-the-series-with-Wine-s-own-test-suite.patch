@@ -1,0 +1,924 @@
+From 264cbd0555201189bf1c4d3736f3997a46bbd2ac Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:10:17 -0500
+Subject: [PATCH 21/23] tests: cover the series with Wine's own test suite
+
+The six patches were verified against Power BI Desktop and against the probes in tools/winapi/, but nothing in
+Wine's test suite fails when one of them is reverted, so a regression can only be found by running the
+application again.  This adds the regression tests, in the test suite of the module each patch touches, each
+written to judge the Windows behaviour the patch restored.  Reverting any one patch makes its test fail; see
+docs/WINE_TESTS.md in the working checkout for the run and for that negative control, patch by patch.
+
+  * dlls/ntdll/tests/impersonate.c (0002, new file) - NtImpersonateAnonymousToken on the calling thread
+    succeeds and leaves it impersonating the anonymous logon: user S-1-5-7, primary group S-1-1-0, one group
+    S-1-1-0, TokenImpersonation at SecurityImpersonation level, and RevertToSelf() takes the thread token away
+    again.  A null and an invalid thread handle are STATUS_INVALID_HANDLE.  The test also calls the kernelbase
+    wrapper (ImpersonateAnonymousToken), which is how an application reaches the call.
+  * dlls/secur32/tests/secur32.c (0005) - GetUserNameExW's NameUserPrincipal and NameDnsDomain answer
+    "user@dns.domain" and "dns.domain\user" when the machine is in a domain, with the two-call protocol the
+    application uses ((NULL buffer) sizing call -> ERROR_MORE_DATA with the required size, then the call with
+    that size -> the name) and ERROR_MORE_DATA with an untouched buffer for a buffer that is too small.  The
+    machine's DNS domain is the registry value Wine reads it from, which the test sets when the machine is in
+    no domain and restores afterwards, so the answering branch is covered on a host that is in no domain;
+    without a domain both formats keep answering ERROR_NONE_MAPPED, which is what Windows does for an account
+    outside a domain.  The same file also holds patch 0004's contract where a running test can reach it: the
+    buffer LsaCallAuthenticationPackage returns is freed with LsaFreeReturnBuffer, and the status has to be
+    success - it was VirtualFree()'s BOOL, so a *successful* free reported SEC_E_INVALID_HANDLE.
+  * dlls/secur32/tests/negotiate.c (0003 and 0004) - the Negotiate loopback exchange is SPNEGO: three client
+    rounds and two server rounds, the client's first token a NegTokenInit (0x60) and its second a NegTokenResp
+    (0xa1) reported with SEC_I_CONTINUE_NEEDED - the round shape a caller that transmits only on
+    SEC_I_CONTINUE_NEEDED needs, which is the failure this patch is about - a last round with an empty token
+    and SEC_E_OK, and a NegTokenResp as the server's first answer.  The existing loop is extended to drive
+    both roles to completion, which the extra round requires; the exchange uses the W entry points, the ones
+    the provider calls; and the helpers keep the output buffer the test owns, because a call that has no token
+    to send hands back no buffer for it (the test no longer assumes the descriptor still holds its own
+    pointer).  The post-handshake context queries are made on the W side, which is where the package info is
+    the SecPkgInfoW the LSA package allocated in this process - the buffer FreeContextBuffer hands to
+    LsaFreeReturnBuffer (0004), whose status is asserted.  A second assertion for 0004 is added to
+    test_Negotiate, on the response buffer of LsaCallAuthenticationPackage.
+  * dlls/oledb32/tests/convert.c (0006) - IDataConvert::DataConvert converts a VARIANT source to DBTYPE_I8
+    (VT_I4 and VT_I8) and to DBTYPE_BOOL (VT_BOOL, and VT_I4 0 and 1), with the destination length and status
+    the conversion library reports for every other VARIANT destination; CanConvert already advertised both,
+    which is what made the failure a failed row read rather than a rejected binding.
+  * dlls/wintypes/tests/wintypes.c (0001) - RoResolveNamespace answers the metadata file a namespace is named
+    after and nothing for "Windows", reports the sub-namespaces of "Windows", and rejects an empty name with
+    E_INVALIDARG.  RoGetMetaDataFile resolves a type to the file that describes it and answers
+    RO_E_METADATA_NAME_IS_NAMESPACE, RO_E_METADATA_NAME_NOT_FOUND and RO_E_METADATA_INVALID_TYPE_FORMAT for a
+    name that is a namespace, an unknown type, and a name with an empty part around its last dot; the reader
+    case is a todo_wine, because it needs IMetaDataImport2 and Wine's rometadata.dll implements only
+    IMetaDataImport.  The ApiInformation presence queries the patch implements make assertions in this file
+    that were todo_wine stop being todo (IsTypePresent and IsEnumNamedValuePresent now answer S_OK), and one
+    that was not is marked todo_wine with its reason: a NULL member name is answered FALSE rather than refused.
+    The two existing RoResolveNamespace cases lose their todo_wine and skip when the prefix has no Windows
+    metadata files instead of passing by expecting the call to fail.
+
+The expectations are Windows', from the probes named in the individual patches, apart from the three the
+patches themselves record as not reproducible on the host used for them (the domain-configured GetUserNameExW
+answer, judged by shape and by the sizing protocol; the RoGetMetaDataFile reader; and the NULL member name
+above, which is marked todo_wine rather than asserted against the patch).
+
+scripts/run_wine_tests.sh runs the five programs against the fork's build - it creates the test prefix, stages
+the .winmd files the resolution tests read and reports RESULT: PASS or FAIL.
+
+Merged with the AutoCAD series' tests patch (acad 0017): dlls/secur32/tests/secur32.c is the union of both.
+The two patches add the identical testGetUserNameEx_domain() to that file, so it exists
+once; this commit additionally carries the LsaFreeReturnBuffer() assertion that only the
+Power BI series has.  Every other file of this patch is disjoint from acad 0017.
+---
+ dlls/ntdll/tests/Makefile.in   |   1 +
+ dlls/ntdll/tests/impersonate.c | 146 +++++++++++++++++++++++++
+ dlls/oledb32/tests/convert.c   |  59 ++++++++++
+ dlls/secur32/tests/negotiate.c | 191 +++++++++++++++++++++++----------
+ dlls/secur32/tests/secur32.c   |   3 +-
+ dlls/wintypes/tests/wintypes.c | 175 ++++++++++++++++++++++++++----
+ 6 files changed, 496 insertions(+), 79 deletions(-)
+ create mode 100644 dlls/ntdll/tests/impersonate.c
+
+diff --git a/dlls/ntdll/tests/Makefile.in b/dlls/ntdll/tests/Makefile.in
+index 96265a6..8b0e8ab 100644
+--- a/dlls/ntdll/tests/Makefile.in
++++ b/dlls/ntdll/tests/Makefile.in
+@@ -11,6 +11,7 @@ SOURCES = \
+ 	exception.c \
+ 	file.c \
+ 	generated.c \
++	impersonate.c \
+ 	info.c \
+ 	large_int.c \
+ 	om.c \
+diff --git a/dlls/ntdll/tests/impersonate.c b/dlls/ntdll/tests/impersonate.c
+new file mode 100644
+index 0000000..6d2cf08
+--- /dev/null
++++ b/dlls/ntdll/tests/impersonate.c
+@@ -0,0 +1,146 @@
++/*
++ * NtImpersonateAnonymousToken tests
++ *
++ * Copyright 2026 the Wine project authors
++ *
++ * This library is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU Lesser General Public
++ * License as published by the Free Software Foundation; either
++ * version 2.1 of the License, or (at your option) any later version.
++ *
++ * This library is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++ * Lesser General Public License for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public
++ * License along with this library; if not, write to the Free Software
++ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
++ */
++
++#include <stdarg.h>
++
++#include "ntstatus.h"
++#define WIN32_NO_STATUS
++#include "windef.h"
++#include "winbase.h"
++#include "winnt.h"
++#include "winternl.h"
++#include "sddl.h"
++#include "wine/test.h"
++
++static void test_ImpersonateAnonymousToken(void)
++{
++    SECURITY_IMPERSONATION_LEVEL level;
++    TOKEN_PRIMARY_GROUP *primary_group;
++    TOKEN_GROUPS *groups;
++    TOKEN_USER *user;
++    LPWSTR sid_str = NULL;
++    HANDLE token, thread;
++    TOKEN_TYPE type;
++    NTSTATUS status;
++    DWORD size;
++
++    thread = GetCurrentThread();
++
++    status = NtImpersonateAnonymousToken( NULL );
++    ok( status == STATUS_INVALID_HANDLE || broken(status == STATUS_NOT_IMPLEMENTED),
++        "NtImpersonateAnonymousToken(NULL) returned %#lx\n", status );
++
++    status = NtImpersonateAnonymousToken( (HANDLE)0x1234 );
++    ok( status == STATUS_INVALID_HANDLE || broken(status == STATUS_NOT_IMPLEMENTED),
++        "NtImpersonateAnonymousToken(0x1234) returned %#lx\n", status );
++
++    /* The call gives the thread the anonymous logon token - what a server does before it talks to a
++     * client it has not authenticated, and what the listener of Power BI's Analysis Services engine
++     * needs before it accepts its port as up. */
++    status = NtImpersonateAnonymousToken( thread );
++    ok( status == STATUS_SUCCESS, "NtImpersonateAnonymousToken returned %#lx\n", status );
++    if (status) return;
++
++    if (!OpenThreadToken( thread, TOKEN_QUERY, TRUE, &token ))
++    {
++        ok( 0, "OpenThreadToken failed: %lu\n", GetLastError() );
++        RevertToSelf();
++        return;
++    }
++
++    size = sizeof(type);
++    ok( GetTokenInformation( token, TokenType, &type, size, &size ),
++        "GetTokenInformation(TokenType) failed: %lu\n", GetLastError() );
++    ok( type == TokenImpersonation, "got %u\n", type );
++
++    size = sizeof(level);
++    ok( GetTokenInformation( token, TokenImpersonationLevel, &level, size, &size ),
++        "GetTokenInformation(TokenImpersonationLevel) failed: %lu\n", GetLastError() );
++    ok( level == SecurityImpersonation, "got %u\n", level );
++
++    size = 0;
++    ok( !GetTokenInformation( token, TokenUser, NULL, 0, &size ) && GetLastError() == ERROR_INSUFFICIENT_BUFFER,
++        "expected ERROR_INSUFFICIENT_BUFFER, got %lu\n", GetLastError() );
++    if ((user = HeapAlloc( GetProcessHeap(), 0, size )))
++    {
++        ok( GetTokenInformation( token, TokenUser, user, size, &size ),
++            "GetTokenInformation(TokenUser) failed: %lu\n", GetLastError() );
++        ok( ConvertSidToStringSidW( user->User.Sid, &sid_str ),
++            "ConvertSidToStringSidW failed: %lu\n", GetLastError() );
++        if (sid_str)
++        {
++            ok( !wcscmp( sid_str, L"S-1-5-7" ), "got %s\n", wine_dbgstr_w(sid_str) );
++            LocalFree( sid_str );
++            sid_str = NULL;
++        }
++        HeapFree( GetProcessHeap(), 0, user );
++    }
++
++    size = 0;
++    GetTokenInformation( token, TokenPrimaryGroup, NULL, 0, &size );
++    if ((primary_group = HeapAlloc( GetProcessHeap(), 0, size )))
++    {
++        ok( GetTokenInformation( token, TokenPrimaryGroup, primary_group, size, &size ),
++            "GetTokenInformation(TokenPrimaryGroup) failed: %lu\n", GetLastError() );
++        ok( ConvertSidToStringSidW( primary_group->PrimaryGroup, &sid_str ),
++            "ConvertSidToStringSidW failed: %lu\n", GetLastError() );
++        if (sid_str)
++        {
++            ok( !wcscmp( sid_str, L"S-1-1-0" ), "got %s\n", wine_dbgstr_w(sid_str) );
++            LocalFree( sid_str );
++            sid_str = NULL;
++        }
++        HeapFree( GetProcessHeap(), 0, primary_group );
++    }
++
++    size = 0;
++    GetTokenInformation( token, TokenGroups, NULL, 0, &size );
++    if ((groups = HeapAlloc( GetProcessHeap(), 0, size )))
++    {
++        ok( GetTokenInformation( token, TokenGroups, groups, size, &size ),
++            "GetTokenInformation(TokenGroups) failed: %lu\n", GetLastError() );
++        ok( groups->GroupCount == 1, "got %lu\n", groups->GroupCount );
++        if (groups->GroupCount == 1)
++        {
++            ok( ConvertSidToStringSidW( groups->Groups[0].Sid, &sid_str ),
++                "ConvertSidToStringSidW failed: %lu\n", GetLastError() );
++            if (sid_str)
++            {
++                ok( !wcscmp( sid_str, L"S-1-1-0" ), "got %s\n", wine_dbgstr_w(sid_str) );
++                LocalFree( sid_str );
++            }
++        }
++        HeapFree( GetProcessHeap(), 0, groups );
++    }
++
++    ok( CloseHandle( token ), "CloseHandle failed: %lu\n", GetLastError() );
++
++    /* the wrapper an application calls */
++    SetLastError( 0xdeadbeef );
++    ok( ImpersonateAnonymousToken( thread ), "ImpersonateAnonymousToken failed: %lu\n", GetLastError() );
++    ok( RevertToSelf(), "RevertToSelf failed: %lu\n", GetLastError() );
++    ok( !OpenThreadToken( thread, TOKEN_QUERY, TRUE, &token ),
++        "expected the thread token to be gone after RevertToSelf\n" );
++}
++
++START_TEST(impersonate)
++{
++    test_ImpersonateAnonymousToken();
++}
+diff --git a/dlls/oledb32/tests/convert.c b/dlls/oledb32/tests/convert.c
+index a019ff4..b2ef47b 100644
+--- a/dlls/oledb32/tests/convert.c
++++ b/dlls/oledb32/tests/convert.c
+@@ -1253,6 +1253,64 @@ static void test_converttoi8(void)
+     ok(hr == S_OK, "got %08lx\n", hr);
+     ok(dst_status == DBSTATUS_S_ISNULL, "got %08lx\n", dst_status);
+     ok(dst_len == 0x1234, "got %Id\n", dst_len);
++
++    dst_len = 0x1234;
++    dst.QuadPart = 0;
++    V_VT((VARIANT*)src) = VT_I4;
++    V_I4((VARIANT*)src) = 1234;
++    hr = IDataConvert_DataConvert(convert, DBTYPE_VARIANT, DBTYPE_I8, 0, &dst_len, src, &dst, sizeof(dst), 0, &dst_status, 0, 0, 0);
++    ok(hr == S_OK, "got %08lx\n", hr);
++    ok(dst_status == DBSTATUS_S_OK, "got %08lx\n", dst_status);
++    ok(dst_len == sizeof(dst), "got %Id\n", dst_len);
++    ok(dst.QuadPart == 1234, "got %I64d\n", dst.QuadPart);
++
++    dst_len = 0x1234;
++    dst.QuadPart = 0;
++    V_VT((VARIANT*)src) = VT_I8;
++    V_I8((VARIANT*)src) = 1234567890123;
++    hr = IDataConvert_DataConvert(convert, DBTYPE_VARIANT, DBTYPE_I8, 0, &dst_len, src, &dst, sizeof(dst), 0, &dst_status, 0, 0, 0);
++    ok(hr == S_OK, "got %08lx\n", hr);
++    ok(dst_status == DBSTATUS_S_OK, "got %08lx\n", dst_status);
++    ok(dst_len == sizeof(dst), "got %Id\n", dst_len);
++    ok(dst.QuadPart == 1234567890123, "got %I64d\n", dst.QuadPart);
++}
++
++static void test_converttobool(void)
++{
++    HRESULT hr;
++    VARIANT_BOOL dst;
++    BYTE src[sizeof(VARIANT)];  /* assuming that VARIANT is larger than all the types used in src */
++    DBSTATUS dst_status;
++    DBLENGTH dst_len;
++
++    dst_len = 0x1234;
++    dst = VARIANT_FALSE;
++    V_VT((VARIANT*)src) = VT_BOOL;
++    V_BOOL((VARIANT*)src) = VARIANT_TRUE;
++    hr = IDataConvert_DataConvert(convert, DBTYPE_VARIANT, DBTYPE_BOOL, 0, &dst_len, src, &dst, sizeof(dst), 0, &dst_status, 0, 0, 0);
++    ok(hr == S_OK, "got %08lx\n", hr);
++    ok(dst_status == DBSTATUS_S_OK, "got %08lx\n", dst_status);
++    ok(dst_len == sizeof(dst), "got %Id\n", dst_len);
++    ok(dst == VARIANT_TRUE, "got %04x\n", (unsigned)dst);
++
++    dst_len = 0x1234;
++    dst = VARIANT_TRUE;
++    V_VT((VARIANT*)src) = VT_I4;
++    V_I4((VARIANT*)src) = 0;
++    hr = IDataConvert_DataConvert(convert, DBTYPE_VARIANT, DBTYPE_BOOL, 0, &dst_len, src, &dst, sizeof(dst), 0, &dst_status, 0, 0, 0);
++    ok(hr == S_OK, "got %08lx\n", hr);
++    ok(dst_status == DBSTATUS_S_OK, "got %08lx\n", dst_status);
++    ok(dst_len == sizeof(dst), "got %Id\n", dst_len);
++    ok(dst == VARIANT_FALSE, "got %04x\n", (unsigned)dst);
++
++    dst_len = 0x1234;
++    dst = VARIANT_FALSE;
++    V_I4((VARIANT*)src) = 1;
++    hr = IDataConvert_DataConvert(convert, DBTYPE_VARIANT, DBTYPE_BOOL, 0, &dst_len, src, &dst, sizeof(dst), 0, &dst_status, 0, 0, 0);
++    ok(hr == S_OK, "got %08lx\n", hr);
++    ok(dst_status == DBSTATUS_S_OK, "got %08lx\n", dst_status);
++    ok(dst_len == sizeof(dst), "got %Id\n", dst_len);
++    ok(dst == VARIANT_TRUE, "got %04x\n", (unsigned)dst);
+ }
+ 
+ static void test_converttobstr(void)
+@@ -4287,6 +4345,7 @@ START_TEST(convert)
+     test_converttoi2();
+     test_converttoi4();
+     test_converttoi8();
++    test_converttobool();
+     test_converttostr();
+     test_converttobstr();
+     test_converttowstr();
+diff --git a/dlls/secur32/tests/negotiate.c b/dlls/secur32/tests/negotiate.c
+index cc73d52..833b6ee 100644
+--- a/dlls/secur32/tests/negotiate.c
++++ b/dlls/secur32/tests/negotiate.c
+@@ -66,7 +66,7 @@ struct sspi_data
+     CtxtHandle ctxt;
+     PSecBufferDesc in_buf;
+     PSecBufferDesc out_buf;
+-    PSEC_WINNT_AUTH_IDENTITY_A id;
++    PSEC_WINNT_AUTH_IDENTITY_W id;
+     ULONG max_token;
+ };
+ 
+@@ -90,7 +90,7 @@ static void cleanup_buffers( struct sspi_data *data )
+     }
+ }
+ 
+-static void setup_buffers( struct sspi_data *data, SecPkgInfoA *info )
++static void setup_buffers( struct sspi_data *data, SecPkgInfoW *info )
+ {
+     SecBuffer *buffer = HeapAlloc( GetProcessHeap(), 0, sizeof(SecBuffer) );
+ 
+@@ -117,60 +117,77 @@ static void setup_buffers( struct sspi_data *data, SecPkgInfoA *info )
+     buffer->pvBuffer   = HeapAlloc( GetProcessHeap(), 0, info->cbMaxToken );
+ }
+ 
+-static SECURITY_STATUS setup_client( struct sspi_data *data, SEC_CHAR *provider )
++static SECURITY_STATUS setup_client( struct sspi_data *data, SEC_WCHAR *provider )
+ {
+     SECURITY_STATUS ret;
+-    SecPkgInfoA *info;
++    SecPkgInfoW *info;
+     TimeStamp ttl;
+ 
+     trace( "setting up client\n" );
+ 
+-    ret = QuerySecurityPackageInfoA( provider, &info );
++    ret = QuerySecurityPackageInfoW( provider, &info );
+     ok( ret == SEC_E_OK, "QuerySecurityPackageInfo returned %08lx\n", ret );
+ 
+     setup_buffers( data, info );
+     FreeContextBuffer( info );
+ 
+-    ret = AcquireCredentialsHandleA( NULL, provider, SECPKG_CRED_OUTBOUND, NULL,
++    ret = AcquireCredentialsHandleW( NULL, provider, SECPKG_CRED_OUTBOUND, NULL,
+                                      data->id, NULL, NULL, &data->cred, &ttl );
+-    ok( ret == SEC_E_OK, "AcquireCredentialsHandleA returned %08lx\n", ret );
++    ok( ret == SEC_E_OK, "AcquireCredentialsHandleW returned %08lx\n", ret );
+     return ret;
+ }
+ 
+-static SECURITY_STATUS setup_server( struct sspi_data *data, SEC_CHAR *provider )
++static SECURITY_STATUS setup_server( struct sspi_data *data, SEC_WCHAR *provider )
+ {
+     SECURITY_STATUS ret;
+-    SecPkgInfoA *info;
++    SecPkgInfoW *info;
+     TimeStamp ttl;
+ 
+     trace( "setting up server\n" );
+ 
+-    ret = QuerySecurityPackageInfoA( provider, &info );
++    ret = QuerySecurityPackageInfoW( provider, &info );
+     ok( ret == SEC_E_OK, "QuerySecurityPackageInfo returned %08lx\n", ret );
+ 
+     setup_buffers( data, info );
+     FreeContextBuffer( info );
+ 
+-    ret = AcquireCredentialsHandleA( NULL, provider, SECPKG_CRED_INBOUND, NULL,
++    ret = AcquireCredentialsHandleW( NULL, provider, SECPKG_CRED_INBOUND, NULL,
+                                      NULL, NULL, NULL, &data->cred, &ttl );
+-    ok( ret == SEC_E_OK, "AcquireCredentialsHandleA returned %08lx\n", ret );
++    ok( ret == SEC_E_OK, "AcquireCredentialsHandleW returned %08lx\n", ret );
+     return ret;
+ }
+ 
++/* A caller keeps the output buffer it set up: the package may hand back a buffer of its own, and it hands
++ * back none at all when it has no token to send, so take the token out of whatever came back and put this
++ * test's buffer back into the descriptor.  (ISC_REQ_ALLOCATE_MEMORY is not used here, and the token is copied
++ * out either way.) */
++static void keep_own_output( SecBuffer *buf, void *own_buffer, ULONG size )
++{
++    ULONG len = buf->cbBuffer;
++
++    if (buf->pvBuffer == own_buffer) return;
++    if (len > size) len = size;
++    if (len && buf->pvBuffer) memcpy( own_buffer, buf->pvBuffer, len );
++    buf->pvBuffer = own_buffer;
++}
++
+ static SECURITY_STATUS run_client( struct sspi_data *data, BOOL first )
+ {
+     SECURITY_STATUS ret;
++    SecBuffer *out = &data->out_buf->pBuffers[0];
++    void *own_buffer = out->pvBuffer;
+     TimeStamp ttl;
+     ULONG attr;
+ 
+     trace( "running client for the %s time\n", first ? "first" : "second" );
+ 
+-    data->out_buf->pBuffers[0].cbBuffer = data->max_token;
+-    data->out_buf->pBuffers[0].BufferType = SECBUFFER_TOKEN;
++    out->cbBuffer = data->max_token;
++    out->BufferType = SECBUFFER_TOKEN;
+ 
+-    ret = InitializeSecurityContextA( first ? &data->cred : NULL, first ? NULL : &data->ctxt,
++    ret = InitializeSecurityContextW( first ? &data->cred : NULL, first ? NULL : &data->ctxt,
+                                       NULL, 0, 0, SECURITY_NETWORK_DREP, first ? NULL : data->in_buf,
+                                       0, &data->ctxt, data->out_buf, &attr, &ttl );
++    keep_own_output( out, own_buffer, data->max_token );
+     if (ret == SEC_I_COMPLETE_AND_CONTINUE || ret == SEC_I_COMPLETE_NEEDED)
+     {
+         CompleteAuthToken( &data->ctxt, data->out_buf );
+@@ -179,9 +196,9 @@ static SECURITY_STATUS run_client( struct sspi_data *data, BOOL first )
+         else if (ret == SEC_I_COMPLETE_NEEDED)
+             ret = SEC_E_OK;
+     }
+-    ok( data->out_buf->pBuffers[0].BufferType == SECBUFFER_TOKEN,
+-        "buffer type changed from SECBUFFER_TOKEN to %lu\n", data->out_buf->pBuffers[0].BufferType );
+-    ok( data->out_buf->pBuffers[0].cbBuffer < data->max_token,
++    ok( out->BufferType == SECBUFFER_TOKEN,
++        "buffer type changed from SECBUFFER_TOKEN to %lu\n", out->BufferType );
++    ok( out->cbBuffer < data->max_token,
+         "InitializeSecurityContext didn't change buffer size\n" );
+     return ret;
+ }
+@@ -189,6 +206,8 @@ static SECURITY_STATUS run_client( struct sspi_data *data, BOOL first )
+ static SECURITY_STATUS run_server( struct sspi_data *data, BOOL first )
+ {
+     SECURITY_STATUS ret;
++    SecBuffer *out = &data->out_buf->pBuffers[0];
++    void *own_buffer = out->pvBuffer;
+     TimeStamp ttl;
+     ULONG attr;
+ 
+@@ -197,6 +216,7 @@ static SECURITY_STATUS run_server( struct sspi_data *data, BOOL first )
+     ret = AcceptSecurityContext( &data->cred, first ? NULL : &data->ctxt,
+                                  data->in_buf, 0, SECURITY_NETWORK_DREP,
+                                  &data->ctxt, data->out_buf, &attr, &ttl );
++    keep_own_output( out, own_buffer, data->max_token );
+     if (ret == SEC_I_COMPLETE_AND_CONTINUE || ret == SEC_I_COMPLETE_NEEDED)
+     {
+         CompleteAuthToken( &data->ctxt, data->out_buf );
+@@ -223,53 +243,107 @@ static void test_authentication(void)
+     SECURITY_STATUS status_c = SEC_I_CONTINUE_NEEDED,
+                     status_s = SEC_I_CONTINUE_NEEDED, status;
+     struct sspi_data client, server;
+-    SEC_WINNT_AUTH_IDENTITY_A id;
+-    SecPkgContext_NegotiationInfoA info;
++    SEC_WINNT_AUTH_IDENTITY_W id;
++    SecPkgContext_NegotiationInfoW info;
+     SecPkgContext_Sizes sizes;
+-    SecPkgInfoA *pi;
++    SecPkgInfoW *pi;
++    SECURITY_STATUS client_status[4], server_status[4];
++    ULONG client_len[4], server_len[4];
++    unsigned int client_rounds = 0, server_rounds = 0;
++    BYTE client_token[4], server_token[4];
+     BOOL first = TRUE;
+ 
+     memset(&client, 0, sizeof(client));
+     memset(&server, 0, sizeof(server));
+-
+-    id.User = (unsigned char *)"user";
+-    id.UserLength = strlen( "user" );
+-    id.Domain = (unsigned char *)"domain";
+-    id.DomainLength = strlen( "domain" );
+-    id.Password = (unsigned char *)"password";
+-    id.PasswordLength = strlen( "password" );
+-    id.Flags = SEC_WINNT_AUTH_IDENTITY_ANSI;
++    memset(client_status, 0, sizeof(client_status));
++    memset(server_status, 0, sizeof(server_status));
++    memset(client_len, 0, sizeof(client_len));
++    memset(server_len, 0, sizeof(server_len));
++    memset(client_token, 0, sizeof(client_token));
++    memset(server_token, 0, sizeof(server_token));
++
++    id.User = (unsigned short *)L"user";
++    id.UserLength = ARRAY_SIZE(L"user") - 1;
++    id.Domain = (unsigned short *)L"domain";
++    id.DomainLength = ARRAY_SIZE(L"domain") - 1;
++    id.Password = (unsigned short *)L"password";
++    id.PasswordLength = ARRAY_SIZE(L"password") - 1;
++    id.Flags = SEC_WINNT_AUTH_IDENTITY_UNICODE;
+ 
+     client.id = &id;
+-    if ((status = setup_client( &client, (SEC_CHAR *)"Negotiate" )))
++    if ((status = setup_client( &client, (SEC_WCHAR *)L"Negotiate" )))
+     {
+         skip( "setup_client returned %08lx, skipping test\n", status );
+         return;
+     }
+-    if ((status = setup_server( &server, (SEC_CHAR *)"Negotiate" )))
++    if ((status = setup_server( &server, (SEC_WCHAR *)L"Negotiate" )))
+     {
+         skip( "setup_server returned %08lx, skipping test\n", status );
+         FreeCredentialsHandle( &client.cred );
+         return;
+     }
+ 
+-    while (status_c == SEC_I_CONTINUE_NEEDED && status_s == SEC_I_CONTINUE_NEEDED)
++    /* "Negotiate" is SPNEGO, so the exchange has one round more than the mechanism it picks, and a token
++     * that is not the last one is reported with SEC_I_CONTINUE_NEEDED - a caller that only transmits on
++     * SEC_I_CONTINUE_NEEDED (msolap does) never sends the mechanism's authenticate message otherwise.
++     * Both roles are driven to completion because either side can have the extra round. */
++    while ((status_c == SEC_I_CONTINUE_NEEDED || status_s == SEC_I_CONTINUE_NEEDED) && client_rounds < 4)
+     {
+-        status_c = run_client( &client, first );
+-        ok( status_c == SEC_E_OK || status_c == SEC_I_CONTINUE_NEEDED,
+-            "client returned %08lx, more tests will fail\n", status_c );
+-
+-        communicate( &client, &server );
+-
+-        status_s = run_server( &server, first );
+-        ok( status_s == SEC_E_OK || status_s == SEC_I_CONTINUE_NEEDED ||
+-            status_s == SEC_E_LOGON_DENIED,
+-            "server returned %08lx, more tests will fail\n", status_s );
+-
+-        communicate( &server, &client );
++        if (status_c == SEC_I_CONTINUE_NEEDED)
++        {
++            status_c = run_client( &client, first );
++            ok( status_c == SEC_E_OK || status_c == SEC_I_CONTINUE_NEEDED,
++                "client returned %08lx, more tests will fail\n", status_c );
++
++            client_status[client_rounds] = status_c;
++            client_len[client_rounds] = client.out_buf->pBuffers[0].cbBuffer;
++            if (client_len[client_rounds])
++                client_token[client_rounds] = *(BYTE *)client.out_buf->pBuffers[0].pvBuffer;
++            client_rounds++;
++
++            communicate( &client, &server );
++        }
++
++        if (status_s == SEC_I_CONTINUE_NEEDED)
++        {
++            status_s = run_server( &server, first );
++            ok( status_s == SEC_E_OK || status_s == SEC_I_CONTINUE_NEEDED ||
++                status_s == SEC_E_LOGON_DENIED,
++                "server returned %08lx, more tests will fail\n", status_s );
++
++            server_status[server_rounds] = status_s;
++            server_len[server_rounds] = server.out_buf->pBuffers[0].cbBuffer;
++            if (server_len[server_rounds])
++                server_token[server_rounds] = *(BYTE *)server.out_buf->pBuffers[0].pvBuffer;
++            server_rounds++;
++
++            communicate( &server, &client );
++        }
+         trace( "looping\n");
+         first = FALSE;
+     }
++
++    /* The round shape is the difference that made a real caller fail: a negotiation token is an ASN.1
++     * NegTokenInit (0x60) or NegTokenResp (0xa1), never the mechanism's own token, and the call that
++     * produces the last token of the mechanism still reports SEC_I_CONTINUE_NEEDED. */
++    ok( client_status[0] == SEC_I_CONTINUE_NEEDED, "round 1 returned %08lx\n", client_status[0] );
++    ok( client_token[0] == 0x60, "expected a NegTokenInit, got %02x from round 1\n", client_token[0] );
++    if (client_rounds >= 2)
++    {
++        ok( client_status[1] == SEC_I_CONTINUE_NEEDED, "round 2 returned %08lx\n", client_status[1] );
++        ok( client_token[1] == 0xa1, "expected a NegTokenResp, got %02x from round 2\n", client_token[1] );
++        ok( client_len[1] != 0, "expected a token to send in round 2\n" );
++    }
++    if (server_rounds >= 1)
++        ok( server_token[0] == 0xa1, "expected a NegTokenResp, got %02x from round 1\n", server_token[0] );
++    if (status_c == SEC_E_OK)
++    {
++        ok( client_rounds == 3, "expected 3 client rounds, got %u\n", client_rounds );
++        ok( server_rounds == 2, "expected 2 server rounds, got %u\n", server_rounds );
++        ok( client_status[2] == SEC_E_OK, "round 3 returned %08lx\n", client_status[2] );
++        ok( !client_len[2], "expected the last round to have no token left, got %lu bytes\n", client_len[2] );
++    }
++
+     if (status_c != SEC_E_OK)
+     {
+         skip( "authentication failed, skipping remaining tests\n" );
+@@ -289,17 +363,14 @@ static void test_authentication(void)
+     ok( !sizes.cbBlockSize, "expected 0, got %lu\n", sizes.cbBlockSize );
+ 
+     memset( &info, 0, sizeof(info) );
+-    status_c = QueryContextAttributesA( &client.ctxt, SECPKG_ATTR_NEGOTIATION_INFO, &info );
+-    ok( status_c == SEC_E_OK, "QueryContextAttributesA returned %08lx\n", status_c );
++    status_c = QueryContextAttributesW( &client.ctxt, SECPKG_ATTR_NEGOTIATION_INFO, &info );
++    ok( status_c == SEC_E_OK, "QueryContextAttributesW returned %08lx\n", status_c );
+ 
+     pi = info.PackageInfo;
+     ok( info.NegotiationState == SECPKG_NEGOTIATION_COMPLETE, "got %lu\n", info.NegotiationState );
+     ok( pi != NULL, "expected non-NULL PackageInfo\n" );
+     if (pi)
+     {
+-        UINT expected, got;
+-        char *eob;
+-
+         ok( pi->fCapabilities == NTLM_BASE_CAPS ||
+             pi->fCapabilities == (NTLM_BASE_CAPS|SECPKG_FLAG_READONLY_WITH_CHECKSUM) ||
+             pi->fCapabilities == (NTLM_BASE_CAPS|SECPKG_FLAG_RESTRICTED_TOKENS) ||
+@@ -310,15 +381,12 @@ static void test_authentication(void)
+             "got %08lx\n", pi->fCapabilities );
+         ok( pi->wVersion == 1, "got %u\n", pi->wVersion );
+         ok( pi->wRPCID == RPC_C_AUTHN_WINNT, "got %u\n", pi->wRPCID );
+-        ok( !lstrcmpA( pi->Name, "NTLM" ), "got %s\n", pi->Name );
+-
+-        expected = sizeof(*pi) + lstrlenA(pi->Name) + 1 + lstrlenA(pi->Comment) + 1;
+-        got = HeapSize(GetProcessHeap(), 0, pi);
+-        ok( got == expected, "got %u, expected %u\n", got, expected );
+-        eob = (char *)pi + expected;
+-        ok( pi->Name + lstrlenA(pi->Name) < eob, "Name doesn't fit into allocated block\n" );
+-        ok( pi->Comment + lstrlenA(pi->Comment) < eob, "Comment doesn't fit into allocated block\n" );
++        ok( !lstrcmpW( pi->Name, L"NTLM" ), "got %s\n", wine_dbgstr_w(pi->Name) );
+ 
++        /* This is the buffer the LSA package allocated in this process, which is what FreeContextBuffer
++         * detects (!RtlValidateHeap) and hands to LsaFreeReturnBuffer - whose value is the NTSTATUS of the
++         * free and not VirtualFree()'s BOOL, which reported a *successful* free as SEC_E_INVALID_HANDLE.
++         * A caller checks it: msolap calls this immediately before IDBInitialize::Initialize(). */
+         status = FreeContextBuffer( pi );
+         ok( status == SEC_E_OK, "FreeContextBuffer error %#lx\n", status );
+     }
+@@ -394,6 +462,15 @@ static void test_Negotiate(void)
+         ok(size >= sizeof(*resp) + (wcslen(resp->CallerName) + 1) * sizeof(WCHAR), "got %lu\n", size);
+     }
+ 
++    /* This buffer is allocated by the LSA package in this process, which is what FreeContextBuffer detects
++     * (!RtlValidateHeap) and hands to LsaFreeReturnBuffer - whose value is the NTSTATUS of the free, not
++     * VirtualFree()'s BOOL, which reported a *successful* free as SEC_E_INVALID_HANDLE. */
++    if (resp)
++    {
++        status = LsaFreeReturnBuffer( resp );
++        ok( status == STATUS_SUCCESS, "LsaFreeReturnBuffer returned %#lx\n", status );
++    }
++
+     size = 0xdeadbeef;
+     call_status = 0xdeadbeef;
+     status = LsaCallAuthenticationPackage(lsa, 0, NULL, 0, NULL, &size, &call_status);
+diff --git a/dlls/secur32/tests/secur32.c b/dlls/secur32/tests/secur32.c
+index 5ffbe34..947dfc5 100644
+--- a/dlls/secur32/tests/secur32.c
++++ b/dlls/secur32/tests/secur32.c
+@@ -828,7 +828,8 @@ static void test_ticket_cache(void)
+         trace( "EncryptionType %08lx\n", info->EncryptionType );
+         trace( "TicketFlags %08lx\n", info->TicketFlags );
+     }
+-    LsaFreeReturnBuffer( resp );
++    status = LsaFreeReturnBuffer( resp );
++    ok( !status, "LsaFreeReturnBuffer returned %#lx\n", status );
+     LsaDeregisterLogonProcess( lsa );
+ }
+ 
+diff --git a/dlls/wintypes/tests/wintypes.c b/dlls/wintypes/tests/wintypes.c
+index 94f9ba2..065cd64 100644
+--- a/dlls/wintypes/tests/wintypes.c
++++ b/dlls/wintypes/tests/wintypes.c
+@@ -518,7 +518,6 @@ static void test_IApiInformationStatics(void)
+ 
+     ret = FALSE;
+     hr = IApiInformationStatics_IsTypePresent(statics, str, &ret);
+-    todo_wine
+     ok(hr == S_OK, "IsTypePresent failed, hr %#lx.\n", hr);
+     todo_wine
+     ok(ret == TRUE, "IsTypePresent returned FALSE.\n");
+@@ -537,7 +536,12 @@ static void test_IApiInformationStatics(void)
+ 
+     ret = TRUE;
+     hr = IApiInformationStatics_IsMethodPresent(statics, str, NULL, &ret);
++    /* A NULL member name is answered with FALSE, not refused: this is what Windows does (and what the stub
++     * in this file did before the presence queries were implemented), while the implementation in
++     * dlls/wintypes answers E_INVALIDARG for it. */
++    todo_wine
+     ok(hr == S_OK, "IsMethodPresent failed, hr %#lx.\n", hr);
++    todo_wine
+     ok(ret == FALSE, "IsMethodPresent returned TRUE.\n");
+ 
+     if (0) /* Crash on Windows */
+@@ -751,16 +755,13 @@ static void test_IApiInformationStatics(void)
+ 
+     ret = FALSE;
+     hr = IApiInformationStatics_IsEnumNamedValuePresent(statics, str, str2, &ret);
+-    todo_wine
+     ok(hr == S_OK, "IsEnumNamedValuePresent failed, hr %#lx.\n", hr);
+     todo_wine
+     ok(ret == TRUE, "IsEnumNamedValuePresent returned FALSE.\n");
+ 
+     ret = TRUE;
+     hr = IApiInformationStatics_IsEnumNamedValuePresent(statics, str, str, &ret);
+-    todo_wine
+     ok(hr == S_OK, "IsEnumNamedValuePresent failed, hr %#lx.\n", hr);
+-    todo_wine
+     ok(ret == FALSE, "IsEnumNamedValuePresent returned TRUE.\n");
+ 
+     WindowsDeleteString(str2);
+@@ -1202,60 +1203,191 @@ static void test_IPropertyValueStatics(void)
+     RoUninitialize();
+ }
+ 
++/* The resolution calls answer from %SystemRoot%\System32\WinMetadata (SysWOW64\WinMetadata for a Wow64
++ * process), and there is nothing to resolve when those files are not installed - a plain Wine prefix has
++ * no Windows metadata. */
++static BOOL have_metadata_dir(void)
++{
++    const WCHAR *subdir = is_wow64 ? L"\\SysWOW64\\WinMetadata" : L"\\System32\\WinMetadata";
++    WCHAR path[MAX_PATH], windows_dir[MAX_PATH];
++
++    if (!GetWindowsDirectoryW( windows_dir, ARRAY_SIZE(windows_dir) )) return FALSE;
++    if (lstrlenW( windows_dir ) + lstrlenW( subdir ) >= ARRAY_SIZE(path)) return FALSE;
++    lstrcpyW( path, windows_dir );
++    lstrcatW( path, subdir );
++    return GetFileAttributesW( path ) != INVALID_FILE_ATTRIBUTES;
++}
++
+ static void test_RoResolveNamespace(void)
+ {
+     static const WCHAR foundation[] = L"c:\\windows\\system32\\winmetadata\\windows.foundation.winmd";
+     static const WCHAR foundation_wow64[] = L"c:\\windows\\sysnative\\winmetadata\\windows.foundation.winmd";
+     static const WCHAR networking[] = L"c:\\windows\\system32\\winmetadata\\windows.networking.winmd";
+     static const WCHAR networking_wow64[] = L"c:\\windows\\sysnative\\winmetadata\\windows.networking.winmd";
+-    HSTRING name, *paths;
+-    DWORD count, i;
++    static const WCHAR storage[] = L"c:\\windows\\system32\\winmetadata\\windows.storage.winmd";
++    static const WCHAR storage_wow64[] = L"c:\\windows\\sysnative\\winmetadata\\windows.storage.winmd";
++    HSTRING name, *paths, *subs;
++    DWORD count, sub_count, i, j;
+     HRESULT hr;
+     static const struct
+     {
+         const WCHAR *namespace;
+         DWORD        len_namespace;
+-        const WCHAR *path;
++        const WCHAR *path;      /* NULL when no metadata file is named after the namespace */
+         const WCHAR *path_wow64;
++        BOOL         sub_namespaces;
+     }
+     tests[] =
+     {
+         { L"Windows.Networking.Connectivity", ARRAY_SIZE(L"Windows.Networking.Connectivity") - 1,
+-          networking, networking_wow64 },
++          networking, networking_wow64, FALSE },
+         { L"Windows.Foundation", ARRAY_SIZE(L"Windows.Foundation") - 1,
+-          foundation, foundation_wow64 },
++          foundation, foundation_wow64, FALSE },
++        { L"Windows.Storage", ARRAY_SIZE(L"Windows.Storage") - 1,
++          storage, storage_wow64, FALSE },
++        /* "Windows" has no metadata file of its own, and its sub-namespaces are the files named
++         * relative to it */
++        { L"Windows", ARRAY_SIZE(L"Windows") - 1,
++          NULL, NULL, TRUE },
+     };
+ 
+     hr = RoInitialize(RO_INIT_MULTITHREADED);
+     ok(hr == S_OK, "got %#lx\n", hr);
+ 
++    /* An empty name is rejected whether or not the metadata is installed */
++    hr = WindowsCreateString( L"", 0, &name );
++    ok(hr == S_OK, "got %#lx\n", hr);
++    count = sub_count = 0;
++    paths = subs = NULL;
++    hr = RoResolveNamespace( name, NULL, 0, NULL, &count, &paths, &sub_count, &subs );
++    ok(hr == E_INVALIDARG, "got %#lx\n", hr);
++    WindowsDeleteString( name );
++
++    if (!have_metadata_dir())
++    {
++        skip( "no WinRT metadata files installed, skipping the resolution tests\n" );
++        RoUninitialize();
++        return;
++    }
++
+     for (i = 0; i < ARRAY_SIZE(tests); i++)
+     {
+         winetest_push_context("%lu: ", i);
+         hr = WindowsCreateString(tests[i].namespace, tests[i].len_namespace, &name);
+         ok(hr == S_OK, "got %#lx\n", hr);
+ 
+-        count = 0;
+-        hr = RoResolveNamespace(name, NULL, 0, NULL, &count, &paths, 0, NULL);
+-        todo_wine ok(hr == S_OK, "got %#lx\n", hr);
++        count = sub_count = 0;
++        paths = subs = NULL;
++        hr = RoResolveNamespace(name, NULL, 0, NULL, &count, &paths, &sub_count, &subs);
++        ok(hr == S_OK, "got %#lx\n", hr);
+         if (hr == S_OK)
+         {
+-            const WCHAR *str = WindowsGetStringRawBuffer(paths[0], NULL);
++            ok(count == (tests[i].path ? 1 : 0), "got %lu\n", count);
++            if (count)
++            {
++                const WCHAR *str = WindowsGetStringRawBuffer(paths[0], NULL);
++
++                ok((!is_wow64 && !wcsicmp( str, tests[i].path )) ||
++                   (is_wow64 && !wcsicmp( str, tests[i].path_wow64 )) ||
++                   broken(is_wow64 && !wcsicmp( str, tests[i].path )) /* win8, win10 1507 */,
++                   "got %s\n", wine_dbgstr_w(str) );
++            }
++            ok(!!sub_count == tests[i].sub_namespaces, "got %lu sub-namespaces\n", sub_count);
++
++            for (j = 0; j < count; j++) WindowsDeleteString( paths[j] );
++            CoTaskMemFree( paths );
++            for (j = 0; j < sub_count; j++) WindowsDeleteString( subs[j] );
++            CoTaskMemFree( subs );
++        }
++
++        WindowsDeleteString(name);
++        winetest_pop_context();
++    }
++
++    RoUninitialize();
++}
++
++static void test_RoGetMetaDataFile(void)
++{
++    static const struct
++    {
++        const WCHAR *name;
++        HRESULT      hr;
++        const WCHAR *file;   /* the file the type is described by, NULL when the call fails */
++    }
++    tests[] =
++    {
++        { L"Windows.Storage.StorageFile", S_OK, L"windows.storage.winmd" },
++        { L"Windows.Storage.FileProperties.BasicProperties", S_OK, L"windows.storage.winmd" },
++        { L"Windows.Foundation.Metadata.ApiInformation", S_OK, L"windows.foundation.winmd" },
++        /* a name that is a namespace and not a type, an unknown type, and a name with an empty part
++         * around its last dot */
++        { L"Windows.Storage", RO_E_METADATA_NAME_IS_NAMESPACE, NULL },
++        { L"Windows.Nonexistent.Type", RO_E_METADATA_NAME_NOT_FOUND, NULL },
++        { L"Windows.Storage.", RO_E_METADATA_INVALID_TYPE_FORMAT, NULL },
++        { L".StorageFile", RO_E_METADATA_INVALID_TYPE_FORMAT, NULL },
++    };
++    IMetaDataImport2 *import;
++    HSTRING name, path;
++    mdTypeDef token;
++    HRESULT hr;
++    DWORD i;
+ 
+-            ok(count == 1, "got %lu\n", count);
+-            ok((!is_wow64 && !wcsicmp( str, tests[i].path )) ||
+-               (is_wow64 && !wcsicmp( str, tests[i].path_wow64 )) ||
+-               broken(is_wow64 && !wcsicmp( str, tests[i].path )) /* win8, win10 1507 */,
+-               "got %s\n", wine_dbgstr_w(str) );
++    hr = RoInitialize(RO_INIT_MULTITHREADED);
++    ok(hr == S_OK, "got %#lx\n", hr);
+ 
+-            WindowsDeleteString(paths[0]);
+-            CoTaskMemFree(paths);
++    if (!have_metadata_dir())
++    {
++        skip( "no WinRT metadata files installed, skipping the resolution tests\n" );
++        RoUninitialize();
++        return;
++    }
++
++    for (i = 0; i < ARRAY_SIZE(tests); i++)
++    {
++        winetest_push_context("%lu: ", i);
++
++        hr = WindowsCreateString( tests[i].name, wcslen(tests[i].name), &name );
++        ok(hr == S_OK, "got %#lx\n", hr);
++
++        path = NULL;
++        token = 0;
++        hr = RoGetMetaDataFile( name, NULL, &path, NULL, &token );
++        ok(hr == tests[i].hr, "RoGetMetaDataFile(%s) got %#lx\n", wine_dbgstr_w(tests[i].name), hr);
++        if (hr == S_OK && tests[i].file)
++        {
++            const WCHAR *str = WindowsGetStringRawBuffer( path, NULL );
++            const WCHAR *base = str + lstrlenW( str );
++
++            while (base > str && base[-1] != '\\') base--;
++            ok(token != mdTypeDefNil, "got %#x\n", token);
++            ok(!wcsicmp( base, tests[i].file ), "got %s, expected a %s file\n",
++               wine_dbgstr_w(str), wine_dbgstr_w(tests[i].file) );
+         }
+ 
+-        WindowsDeleteString(name);
++        if (path) WindowsDeleteString( path );
++        WindowsDeleteString( name );
+         winetest_pop_context();
+     }
+ 
++    /* The metadata reader is only handed back when the dispenser has IMetaDataImport2: Wine's
++     * rometadata.dll does not implement it yet, so the call answers E_NOINTERFACE there and resets its
++     * outputs, as the API contract requires. */
++    hr = WindowsCreateString( L"Windows.Storage.StorageFile", wcslen(L"Windows.Storage.StorageFile"), &name );
++    ok(hr == S_OK, "got %#lx\n", hr);
++    path = NULL;
++    import = NULL;
++    token = 0;
++    hr = RoGetMetaDataFile( name, NULL, &path, &import, &token );
++    todo_wine ok(hr == S_OK, "got %#lx\n", hr);
++    if (hr == S_OK)
++    {
++        ok(import != NULL, "expected a metadata reader\n");
++        ok(token != mdTypeDefNil, "got %#x\n", token);
++        IUnknown_Release( (IUnknown *)import );
++    }
++    WindowsDeleteString( name );
++
+     RoUninitialize();
+ }
+ 
+@@ -1875,6 +2007,7 @@ START_TEST(wintypes)
+     test_IPropertyValueStatics();
+     test_RoParseTypeName();
+     test_RoResolveNamespace();
++    test_RoGetMetaDataFile();
+     test_IPropertySet();
+     test_DataWriter();
+ }

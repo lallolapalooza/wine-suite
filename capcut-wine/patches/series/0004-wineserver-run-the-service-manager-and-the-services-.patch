@@ -1,0 +1,89 @@
+From 9ea7483c9beaf953acfdf1ab61b39b8205795a85 Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:08:41 -0500
+Subject: [PATCH 04/23] wineserver: run the service manager and the services it
+ starts in session 0
+
+golang.org/x/sys/windows/svc.IsWindowsService() - used by github.com/kardianos/service, and by
+extension by Autodesk's Go AdskLicensingService - reports "not a service" unless *both* the parent
+process's session id is 0 and its image is services.exe.  Wine had no session-0 process at all:
+server/process.h hard-codes default_session_id = 1 and every token was created with it, so
+services.exe and each service it started reported session 1.  kardianos/service therefore set
+interactive = true and windowsService.Run() never called svc.Run(): the process never connected to
+the SCM control pipe, the SCM timed it out (ERROR_SERVICE_REQUEST_TIMEOUT, sc start returning 1053)
+and killed it, so AdskLicensingService was never RUNNING and AutoCAD's SDK saw no license manager.
+
+Measured in the AutoCAD prefix with tools/svcprobe (which performs exactly the two queries above):
+  before: services.exe session=1, rpcss.exe session=1   -> IsWindowsService() false
+  after:  services.exe session=0, rpcss.exe session=0   -> IsWindowsService() true
+and `sc start AdskLicensingService` now reports STATE 4 RUNNING with the service listening on the
+address from AdskLicensingService.data (127.0.0.1:33733).
+
+Note: the process session id is fixed here (that is what IsWindowsService() reads); the token's
+session id (TokenSessionId) is still 1, as before.
+---
+ server/mapping.c | 27 +++++++++++++++++++++++++++
+ server/process.c |  4 +++-
+ 2 files changed, 30 insertions(+), 1 deletion(-)
+
+diff --git a/server/mapping.c b/server/mapping.c
+index 7446c70..9c3404c 100644
+--- a/server/mapping.c
++++ b/server/mapping.c
+@@ -412,6 +412,27 @@ static int generate_dll_event( struct thread *thread, int code, struct memory_vi
+     return 1;
+ }
+ 
++/* check if the main image is the service manager (services.exe) */
++static int is_services_exe( const struct unicode_str *name )
++{
++    static const WCHAR services[] = {'s','e','r','v','i','c','e','s','.','e','x','e'};
++    const unsigned int len = name->len / sizeof(WCHAR);
++    const unsigned int size = sizeof(services) / sizeof(services[0]);
++    const WCHAR *str = name->str;
++    unsigned int i;
++
++    if (len <= size || str[len - size - 1] != '\\') return 0;
++    str += len - size;
++    for (i = 0; i < size; i++)
++    {
++        WCHAR c = str[i];
++
++        if (c >= 'A' && c <= 'Z') c += 'a' - 'A';
++        if (c != services[i]) return 0;
++    }
++    return 1;
++}
++
+ /* add a view to the process list */
+ /* return 1 if this is the main exe view */
+ static int add_process_view( struct thread *thread, struct memory_view *view )
+@@ -431,7 +452,13 @@ static int add_process_view( struct thread *thread, struct memory_view *view )
+             free( process->image );
+             process->image = NULL;
+             if (get_view_nt_name( view, &name ) && (process->image = memdup( name.str, name.len )))
++            {
+                 process->imagelen = name.len;
++                /* The service manager runs in session 0 on Windows, and so does everything it
++                 * starts; golang.org/x/sys/windows/svc.IsWindowsService() (used by e.g.
++                 * github.com/kardianos/service) checks the parent's session id. */
++                if (is_services_exe( &name )) process->session_id = 0;
++            }
+             process->image_info = view->image;
+             list_add_head( &process->views, &view->entry );
+             return 1;
+diff --git a/server/process.c b/server/process.c
+index f1a8c06..da826f0 100644
+--- a/server/process.c
++++ b/server/process.c
+@@ -691,7 +691,9 @@ struct process *create_process( int fd, struct process *parent, unsigned int fla
+         process->affinity = parent->affinity;
+     }
+     if (!process->handles || !process->token) goto error;
+-    process->session_id = token_get_session_id( process->token );
++    /* a process started by a session-0 process (the service manager or one of the services it
++     * started) runs in session 0 as well, like on Windows */
++    process->session_id = (parent && !parent->session_id) ? 0 : token_get_session_id( process->token );
+ 
+     set_fd_events( process->msg_fd, POLLIN );  /* start listening to events */
+     return process;

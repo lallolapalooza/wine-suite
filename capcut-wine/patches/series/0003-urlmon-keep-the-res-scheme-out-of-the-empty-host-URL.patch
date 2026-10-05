@@ -1,0 +1,41 @@
+From 00a9e4221654042c2bd716f28ecb434eb8fe715e Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:08:41 -0500
+Subject: [PATCH 03/23] urlmon: keep the "res" scheme out of the empty-host
+ URLZONE_INVALID rule
+
+MapUrlToZone() feeds WPF's MS.Internal.SecurityHelper.MapUrlToZoneWrapper, which throws
+SecurityException("The URI specified is invalid.") whenever the returned zone is negative.
+AutoCAD 2027's WPF control dictionaries reference images as
+"res:///%25prodname%25btn.xmx/$10/$RCDATA_16_COLOR"; Windows 11 26200 maps that URL to
+URLZONE_INTERNET (3), while Wine's get_zone_from_domains() special-cases every hierarchical
+scheme - including the Wine-only URL_SCHEME_RES - that has an empty host to URLZONE_INVALID.
+Every dictionary containing such an image then fails to load: the ribbon loses its control
+styles and RibbonContent.mRibbonControls stays empty, so AcMgdStatusBar's status-bar item
+lookups raise the modal ".NET Assertion Failed - Failed to get status bar item with key
+AcSb*" dialog and the UI stops painting.
+
+Windows only applies the "hierarchical scheme needs a host" rule to the schemes it really
+treats as hierarchical, so excluding URL_SCHEME_RES lets the URL fall through to the
+ProtocolDefaults lookup, which defaults to URLZONE_INTERNET exactly like Windows.
+
+Measured with tools/zonetest on both OSes (same binary, .NET 10.0.9):
+  res:///%25prodname%25btn.xmx/$10/$RCDATA_16_COLOR   Windows 3   Wine 0xffffffff -> 3 (patched)
+  res://acadbtn.xmx/$10/$RCDATA_16_COLOR              Windows 3   Wine 3
+  pack://application:,,,/AcWindows;component/...      Windows 3   Wine 3
+---
+ dlls/urlmon/sec_mgr.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/dlls/urlmon/sec_mgr.c b/dlls/urlmon/sec_mgr.c
+index 21f1b9e..8ad4b86 100644
+--- a/dlls/urlmon/sec_mgr.c
++++ b/dlls/urlmon/sec_mgr.c
+@@ -450,6 +450,7 @@ static HRESULT get_zone_from_domains(IUri *uri, DWORD *zone)
+      * assigns URLZONE_INVALID to the zone.
+      */
+     if((scheme_type != URL_SCHEME_UNKNOWN && scheme_type != URL_SCHEME_FILE)
++        && scheme_type != URL_SCHEME_RES
+         && is_hierarchical_scheme(scheme_type) && !*host) {
+         *zone = URLZONE_INVALID;
+ 

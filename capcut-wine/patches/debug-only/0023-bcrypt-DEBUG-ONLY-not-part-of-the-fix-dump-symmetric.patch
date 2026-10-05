@@ -1,0 +1,53 @@
+From aa9b009998ee8d54e6033285d002ad9d1e72fc44 Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:11:17 -0500
+Subject: [PATCH 23/23] bcrypt: [DEBUG ONLY - not part of the fix] dump
+ symmetric keys and plaintext
+
+Instrumentation used to decode the AdskLicensingSDK "ENCODEDv2" log lines: it prints every
+BCryptGenerateSymmetricKey secret and every BCryptEncrypt input (IV + plaintext) to stderr, which is
+how the SDK's fixed AES-256-CBC key/IV were recovered (see FINDINGS MILESTONE 24p and
+tools/adlsdklog.py).  Do NOT ship this build; it prints secrets.
+---
+ dlls/bcrypt/bcrypt_main.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/dlls/bcrypt/bcrypt_main.c b/dlls/bcrypt/bcrypt_main.c
+index b812068..07ae0e4 100644
+--- a/dlls/bcrypt/bcrypt_main.c
++++ b/dlls/bcrypt/bcrypt_main.c
+@@ -1741,6 +1741,14 @@ NTSTATUS WINAPI BCryptGenerateSymmetricKey( BCRYPT_ALG_HANDLE handle, BCRYPT_KEY
+     TRACE( "%p, %p, %p, %lu, %p, %lu, %#lx\n", handle, ret_handle, object, object_len, secret, secret_len, flags );
+     if (object) FIXME( "ignoring object buffer\n" );
+ 
++    if (secret && secret_len)   /* project debug: what key does the caller install? */
++    {
++        ULONG bcryptdump_i;
++        fprintf( stderr, "BCRYPTDUMP symkey len=%lu key=", secret_len );
++        for (bcryptdump_i = 0; bcryptdump_i < secret_len; bcryptdump_i++) fprintf( stderr, "%02x", secret[bcryptdump_i] );
++        fprintf( stderr, "\n" );
++    }
++
+     if (!alg) return STATUS_INVALID_HANDLE;
+ 
+     if ((status = generate_symmetric_key( alg, secret, secret_len, &key ))) return status;
+@@ -2312,6 +2320,19 @@ NTSTATUS WINAPI BCryptEncrypt( BCRYPT_KEY_HANDLE handle, UCHAR *input, ULONG inp
+ 
+     if (!key) return STATUS_INVALID_HANDLE;
+ 
++    if (is_symmetric_key( key ) && input && input_len)   /* project debug: SDK log crypto */
++    {
++        ULONG bcryptdump_i;
++        fprintf( stderr, "BCRYPTDUMP encrypt len=%lu iv_len=%lu flags=%#lx iv=", input_len, iv_len, flags );
++        for (bcryptdump_i = 0; iv && bcryptdump_i < iv_len; bcryptdump_i++) fprintf( stderr, "%02x", iv[bcryptdump_i] );
++        fprintf( stderr, "\nBCRYPTDUMP plaintext_hex=" );
++        for (bcryptdump_i = 0; bcryptdump_i < input_len; bcryptdump_i++) fprintf( stderr, "%02x", input[bcryptdump_i] );
++        fprintf( stderr, "\nBCRYPTDUMP plaintext_ascii=" );
++        for (bcryptdump_i = 0; bcryptdump_i < input_len; bcryptdump_i++)
++            fputc( (input[bcryptdump_i] >= 32 && input[bcryptdump_i] < 127) ? input[bcryptdump_i] : '.', stderr );
++        fprintf( stderr, "\n" );
++    }
++
+     if (is_symmetric_key( key ))
+     {
+         if (flags & ~BCRYPT_BLOCK_PADDING)

@@ -1,0 +1,675 @@
+ntdll/actctx: honour <probing privatePath="..."> from the application configuration file
+
+Windows resolves native (non-.NET) side-by-side assemblies through the
+<configuration><windows><assemblyBinding><probing privatePath="..."/> element of
+<exe>.config, a documented feature since Windows 7 / Server 2008 R2 ("Application
+configuration files", sbscs).  Wine's native SxS loader never read that file, so any
+application shipping its dependencies in a private subdirectory listed by privatePath
+failed to start with STATUS_DLL_NOT_FOUND (c0000135).
+
+The Autodesk 2027 installers are such applications.  The ODIS bootstrap Setup.exe
+(PE32+ x86-64, Autodesk Setup 2.24.0.9) declares the dependent assemblies odis.bs.win
+and odis.bs.wx in its embedded manifest, ships them in ODIS\odis.bs.win and
+ODIS\odis.bs.wx, and points at them with
+
+  <configuration><windows>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <probing privatePath="ODIS"/>
+    </assemblyBinding>
+  </windows></configuration>
+
+Loaded by Wine, the three imports (wxmsw332u_core_vc_x64_custom.dll, wxbase332u_vc_x64_custom.dll,
+AdHttpLib.dll) were not found and the installer could not start at all:
+
+  fixme:actctx:parse_depend_manifests Could not find dependent assembly L"odis.bs.win" (1.0.0.0)
+  err:module:import_dll Library wxmsw332u_core_vc_x64_custom.dll ... not found
+  err:module:loader_init Importing dlls for ... Setup.exe failed, status c0000135
+
+This change reads <exe>.config (the extension is replaced for a <x>.manifest source, so
+exe.manifest -> exe.config, and appended otherwise, so exe.exe -> exe.exe.config), parses
+the <probing privatePath> value and probes <appdir>\<privatePath>[\<assembly-name>\] -
+and the same relative to the root manifest's directory - for the missing assembly, in the
+same order the existing lookup uses.
+
+Verified on this fork (wine-11.18 + patches 0001..0015):
+  * raw Autodesk_Revit/AutoCAD ODIS Setup.exe from pristine media now starts
+    (WINEDEBUG=+actctx shows "probing private path L\"ODIS\"", bootstrap UI appears,
+    0 loader errors, no c0000135);
+  * "wine kernel32_test.exe actctx": 3298 tests, 0 failures, with the new
+    test_private_path covering a config-file-driven private assembly including the
+    LoadLibrary redirection.
+
+The change is upstream Wine merge request !10753 ("ntdll/actctx: Add privatePath probing
+functions in SxS loader", Bolan Chen), still open/unmerged; its test suite also passes on
+real Windows (Wine CI win10-21h2 jobs: kernel32:actctx 3505 assertions, 0 failures), which
+is the ground truth for the element naming and probing order reproduced here.
+
+--- a/dlls/kernel32/tests/actctx.c
++++ b/dlls/kernel32/tests/actctx.c
+@@ -609,6 +609,15 @@ static const char builtin_dll_manifest[] =
+ "   </dependency>"
+ "</assembly>";
+ 
++static const char private_path_config[] =
++"<configuration>"
++"  <windows>"
++"    <assemblyBinding xmlns=\"urn:schemas-microsoft-com:asm.v1\">"
++"      <probing privatePath=\"private_path\"/>"
++"    </assemblyBinding>"
++"</windows>"
++"</configuration>";    
++
+ static const char empty_assembly_manifest[] =
+ "<assembly xmlns=\"urn:schemas-microsoft-com:asm.v1\" manifestVersion=\"1.0\" />";
+ 
+@@ -3650,6 +3659,8 @@ typedef struct
+     char path_tmp[MAX_PATH];
+     char path_lang[MAX_PATH];
+     char path_dll[MAX_PATH + 11];
++    char path_private[MAX_PATH];
++    char path_config_exe[MAX_PATH + 11];
+     char path_manifest_exe[MAX_PATH + 12];
+     char path_manifest_dll[MAX_PATH + 16];
+     ACTCTXA context;
+@@ -3660,8 +3671,9 @@ typedef struct
+ } sxs_info;
+ 
+ static void fill_sxs_paths(sxs_info *info, const char *temp, const char *path_dll, const char *exe_manifest,
+-                           const char *dll_manifest, const char *lang)
++                           const char *dll_manifest, const char *lang, const char *private_path)
+ {
++    const char *target;
+     strcat(info->path_tmp, temp);
+     strcat(info->path_tmp, "\\");
+     CreateDirectoryA(info->path_tmp, NULL);
+@@ -3673,21 +3685,35 @@ static void fill_sxs_paths(sxs_info *info, const char *temp, const char *path_dl
+     }
+     else info->path_lang[0] = 0;
+ 
+-    sprintf(info->path_dll, "%s%s", lang ? info->path_lang : info->path_tmp, "sxs_dll.dll");
++    if (private_path) {
++        sprintf( info->path_config_exe, "%s%s", info->path_tmp, "exe.config" );
++        create_manifest_file( info->path_config_exe, private_path_config, -1, NULL, NULL );
++
++        sprintf( info->path_private, "%s%s\\", info->path_tmp, private_path );
++        CreateDirectoryA( info->path_private, NULL );
++        target = info->path_private;
++    }
++    else
++    {
++        info->path_config_exe[0] = 0;
++        info->path_private[0] = 0;
++        target = lang ? info->path_lang : info->path_tmp;
++    }
++    sprintf(info->path_dll, "%s%s", target, "sxs_dll.dll");
+     extract_resource(path_dll, "TESTDLL", info->path_dll);
+ 
+     sprintf(info->path_manifest_exe, "%s%s", info->path_tmp, "exe.manifest");
+     create_manifest_file(info->path_manifest_exe, exe_manifest, -1, NULL, NULL);
+ 
+-    sprintf(info->path_manifest_dll, "%s%s", lang ? info->path_lang : info->path_tmp, "sxs_dll.manifest");
++    sprintf(info->path_manifest_dll, "%s%s", target, "sxs_dll.manifest");
+     create_manifest_file(info->path_manifest_dll, dll_manifest, -1, NULL, NULL);
+ }
+ 
+ static void fill_sxs_info(sxs_info *info, const char *temp, const char *path_dll, const char *exe_manifest,
+-                          const char *dll_manifest, BOOL do_load)
++                          const char *dll_manifest, const char *private_path, BOOL do_load)
+ {
+     GetTempPathA(MAX_PATH, info->path_tmp);
+-    fill_sxs_paths( info, temp, path_dll, exe_manifest, dll_manifest, NULL );
++    fill_sxs_paths( info, temp, path_dll, exe_manifest, dll_manifest, NULL, private_path );
+     info->context.cbSize = sizeof(ACTCTXA);
+     info->context.lpSource = info->path_manifest_exe;
+     info->context.lpAssemblyDirectory = info->path_tmp;
+@@ -3735,11 +3761,22 @@ static void clean_sxs_info(sxs_info *info)
+         BOOL ret = RemoveDirectoryA(info->path_lang);
+         ok(ret, "RemoveDirectoryA failed for %s: %ld\n", info->path_lang, GetLastError());
+     }
++    if (*info->path_config_exe)
++    {
++        BOOL ret = DeleteFileA(info->path_config_exe);
++        ok(ret, "DeleteFileA failed for %s, %ld\n", info->path_config_exe, GetLastError());
++    }
++    if (*info->path_private)
++    {
++        BOOL ret = RemoveDirectoryA(info->path_private);
++        ok(ret, "RemoveDirectoryA failed for %s: %ld\n", info->path_private, GetLastError());
++    }
+     if (*info->path_tmp)
+     {
+         BOOL ret = RemoveDirectoryA(info->path_tmp);
+         ok(ret, "RemoveDirectoryA failed for %s: %ld\n", info->path_tmp, GetLastError());
+     }
++
+ }
+ 
+ static void get_application_directory(char *buffer, int buffer_size)
+@@ -3757,8 +3794,8 @@ static void test_two_dlls_at_same_time(void)
+     sxs_info dll_2;
+     char path1[MAX_PATH], path2[MAX_PATH];
+ 
+-    fill_sxs_info(&dll_1, "1", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, TRUE);
+-    fill_sxs_info(&dll_2, "2", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, TRUE);
++    fill_sxs_info(&dll_1, "1", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, NULL, TRUE);
++    fill_sxs_info(&dll_2, "2", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, NULL, TRUE);
+ 
+     ok(dll_1.module != dll_2.module, "Libraries are the same\n");
+     dll_1.get_path(path1, sizeof(path1));
+@@ -3792,7 +3829,7 @@ static void test_one_sxs_and_one_local_1(void)
+     module = LoadLibraryA(path_dll_local);
+     get_path = (void *)GetProcAddress(module, "get_path");
+ 
+-    fill_sxs_info(&dll, "1", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, TRUE);
++    fill_sxs_info(&dll, "1", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, NULL, TRUE);
+     ok(dll.module != module, "Libraries are the same\n");
+     dll.get_path(path1, sizeof(path1));
+     ok(strcmp(path1, dll.path_dll) == 0, "Got '%s', expected '%s'\n", path1, dll.path_dll);
+@@ -3826,7 +3863,7 @@ static void test_one_sxs_and_one_local_2(void)
+     sprintf(path_dll_local, "%s%s", path_application, "sxs_dll.dll");
+     extract_resource("dummy.dll", "TESTDLL", path_dll_local);
+ 
+-    fill_sxs_info(&dll, "1", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, TRUE);
++    fill_sxs_info(&dll, "1", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, NULL, TRUE);
+     module = LoadLibraryA(path_dll_local);
+     get_path = (void *)GetProcAddress(module, "get_path");
+ 
+@@ -3889,7 +3926,7 @@ static void test_one_with_sxs_and_GetModuleHandleA(void)
+     module = LoadLibraryA(path_dll_local);
+     check_redirected_flag(module, FALSE);
+ 
+-    fill_sxs_info(&dll, "1", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, FALSE);
++    fill_sxs_info(&dll, "1", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, NULL, FALSE);
+     success = ActivateActCtx(dll.handle_context, &dll.cookie);
+     ok(success, "ActivateActCtx failed: %ld\n", GetLastError());
+ 
+@@ -4000,7 +4037,7 @@ static void test_manifest_lang(void)
+     /* tmp path without language prefix */
+ 
+     GetTempPathA(MAX_PATH, dll.path_tmp);
+-    fill_sxs_paths( &dll, "1", "dummy.dll", two_dll_manifest_exe_fr, two_dll_manifest_dll_fr, NULL );
++    fill_sxs_paths( &dll, "1", "dummy.dll", two_dll_manifest_exe_fr, two_dll_manifest_dll_fr, NULL, NULL );
+ 
+     dll.context.cbSize = sizeof(ACTCTXA);
+     dll.context.lpSource = dll.path_manifest_exe;
+@@ -4016,7 +4053,7 @@ static void test_manifest_lang(void)
+     /* tmp path with language prefix */
+ 
+     GetTempPathA(MAX_PATH, dll.path_tmp);
+-    fill_sxs_paths( &dll, "1", "dummy.dll", two_dll_manifest_exe_fr, two_dll_manifest_dll_fr, "fr-FR" );
++    fill_sxs_paths( &dll, "1", "dummy.dll", two_dll_manifest_exe_fr, two_dll_manifest_dll_fr, "fr-FR", NULL );
+ 
+     dll.context.cbSize = sizeof(ACTCTXA);
+     dll.context.lpSource = dll.path_manifest_exe;
+@@ -4085,6 +4122,32 @@ static void test_manifest_lang(void)
+     clean_sxs_info( &dll );
+ }
+ 
++static void test_private_path(void)
++{
++    sxs_info dll;
++    char path[MAX_PATH];
++    BOOL ret;
++
++    fill_sxs_info(&dll, "1", "dummy.dll", two_dll_manifest_exe, two_dll_manifest_dll, "private_path", FALSE);
++
++    ret = ActivateActCtx(dll.handle_context, &dll.cookie);
++    ok(ret, "ActivateActCtx failed: %lu\n", GetLastError());
++
++    dll.module = LoadLibraryA("sxs_dll.dll");
++    ok(dll.module != NULL, "LoadLibraryA failed: %lu\n", GetLastError());
++
++    dll.get_path = (void *)GetProcAddress(dll.module, "get_path");
++    ok(dll.get_path != NULL, "GetProcAddress failed\n");
++
++    dll.get_path(path, sizeof(path));
++    ok(!strcmp(path, dll.path_dll), "Got '%s', expected '%s'", path, dll.path_dll);
++
++    DeactivateActCtx(0, dll.cookie);
++
++    if (dll.module) FreeLibrary(dll.module);
++    clean_sxs_info(&dll);
++}
++
+ struct manifest_res_spec
+ {
+     const char *name;
+@@ -4524,6 +4587,9 @@ static void run_sxs_test(int run)
+     case 6:
+        test_manifest_lang();
+        break;
++    case 7:
++       test_private_path();
++       break;
+     }
+ }
+ 
+@@ -4808,5 +4874,5 @@ START_TEST(actctx)
+     test_settings();
+     test_RtlQueryInformationActiveActivationContext();
+     test_RtlActivateActivationContextUnsafeFast();
+-    for (int i = 1; i <= 6; i++) run_child_process_two_dll(i);
++    for (int i = 1; i <= 7; i++) run_child_process_two_dll(i);
+ }
+--- a/dlls/ntdll/actctx.c
++++ b/dlls/ntdll/actctx.c
+@@ -27,6 +27,9 @@
+ #include <stdlib.h>
+ 
+ #include "ntstatus.h"
++#include "windef.h"
++#include "winbase.h"
++#include "winnt.h"
+ #include "winternl.h"
+ #include "ddk/ntddk.h"
+ #include "ddk/wdm.h"
+@@ -3326,6 +3329,197 @@ static NTSTATUS lookup_winsxs(struct actctx_loader* acl, struct assembly_identit
+     return io.Status;
+ }
+ 
++static void parse_probing_elem( xmlbuf_t *xmlbuf, const struct xml_elem *parent, WCHAR **private_path )
++{
++    struct xml_attr attr;
++    BOOL end = FALSE;
++
++    while (next_xml_attr( xmlbuf, &attr, &end ))
++    {
++        if (xml_attr_cmp( &attr, L"privatePath" ))
++        {
++            if (!*private_path && !(*private_path = xmlstrdupW( &attr.value )))
++                set_error( xmlbuf );
++        } else if (!is_xmlns_attr( &attr ))
++            WARN( "unknown config attr %s\n", debugstr_xml_attr( &attr ) );
++    }
++
++    if (!end) parse_expect_end_elem( xmlbuf, parent );
++}
++
++static void parse_assembly_binding_elem( xmlbuf_t *xmlbuf, const struct xml_elem *parent, WCHAR **private_path )
++{
++    struct xml_attr attr;
++    struct xml_elem elem;
++    BOOL end = FALSE;
++
++    while (next_xml_attr( xmlbuf, &attr, &end ));
++    if (end) return;
++
++    while (next_xml_elem( xmlbuf, &elem, parent ))
++    {
++        if (xml_elem_cmp( &elem, L"probing", asmv1W ))
++            parse_probing_elem( xmlbuf, &elem, private_path );
++        else
++            parse_unknown_elem( xmlbuf, &elem );
++    }
++}
++
++static void parse_windows_elem( xmlbuf_t *xmlbuf, const struct xml_elem *parent, WCHAR **private_path )
++{
++    struct xml_attr attr;
++    struct xml_elem elem;
++    BOOL end = FALSE;
++
++    while (next_xml_attr( xmlbuf, &attr, &end ));
++    if (end) return;
++
++    while (next_xml_elem( xmlbuf, &elem, parent ))
++    {
++        if (xml_elem_cmp( &elem, L"assemblyBinding", asmv1W ))
++            parse_assembly_binding_elem( xmlbuf, &elem, private_path );
++        else
++            parse_unknown_elem( xmlbuf, &elem );
++    }
++}
++
++
++static NTSTATUS parse_config_file( xmlbuf_t *xmlbuf, WCHAR **private_path )
++{
++    struct xml_elem elem;
++    struct xml_elem parent = {};
++    struct xml_elem configuration_root = {};
++    BOOL end = FALSE;
++
++    xmlbuf->error = FALSE;
++    xmlbuf->ns_pos = 0;
++    *private_path = NULL;
++
++    
++    if (!next_xml_elem( xmlbuf, &elem, &parent )) return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++
++    if (xmlstr_cmp( &elem.name, L"?xml" ) &&
++        (!parse_xml_header( xmlbuf ) || !next_xml_elem(xmlbuf, &elem, &parent)))
++        return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++
++    if (!xmlstr_cmp( &elem.name, L"configuration" ) || elem.ns.len)
++    {
++        FIXME( "root element is %s, expected <configuration>", debugstr_xml_elem( &elem ) );
++        return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++    }
++
++    parse_expect_no_attr( xmlbuf, &end );
++
++    configuration_root = elem;
++    if (!end)
++    {
++        while (next_xml_elem( xmlbuf, &elem, &configuration_root ))
++        {
++            if (xmlstr_cmp( &elem.name, L"windows" ) && !elem.ns.len)
++                parse_windows_elem( xmlbuf, &elem, private_path );
++            else
++                parse_unknown_elem( xmlbuf, &elem );
++        }
++    }
++
++    if (xmlbuf->error) return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++    if (next_xml_elem( xmlbuf, &elem, &parent )) return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++    if (xmlbuf->ptr != xmlbuf->end) return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++
++    return STATUS_SUCCESS;
++}
++
++static NTSTATUS open_config_file( LPCWSTR filename, HANDLE file, WCHAR **private_path )
++{
++    FILE_END_OF_FILE_INFORMATION info;
++    IO_STATUS_BLOCK io;
++    HANDLE              mapping;
++    OBJECT_ATTRIBUTES   attr;
++    LARGE_INTEGER       size;
++    LARGE_INTEGER       offset;
++    NTSTATUS            status;
++    SIZE_T              count;
++    INT                 buffer_len;
++    void               *base;
++    xmlbuf_t            xmlbuf;
++    int                 unicode_tests;
++
++    TRACE( "loading config file %s\n", debugstr_w(filename) );
++
++    InitializeObjectAttributes( &attr, NULL, OBJ_CASE_INSENSITIVE, 0, NULL );
++    size.QuadPart = 0;
++    status = NtCreateSection( &mapping, STANDARD_RIGHTS_REQUIRED | SECTION_QUERY | SECTION_MAP_READ,
++                              &attr, &size, PAGE_READONLY, SEC_COMMIT, file );
++    if (status != STATUS_SUCCESS) return status;
++
++    offset.QuadPart = 0;
++    count = 0;
++    base = NULL;
++    status = NtMapViewOfSection( mapping, GetCurrentProcess(), &base, 0, 0, &offset,
++                                 &count, ViewShare, 0, PAGE_READONLY );
++    NtClose( mapping );
++    if (status != STATUS_SUCCESS) return status;
++
++    status = NtQueryInformationFile( file, &io, &info, sizeof(info), FileEndOfFileInformation );
++    if (status == STATUS_SUCCESS)
++    {
++        if (info.EndOfFile.QuadPart > INT_MAX)
++        {
++            /* the config file seems to be malformed, ignore */
++            status = STATUS_SXS_ASSEMBLY_NOT_FOUND;
++            goto done;
++        }
++        buffer_len = info.EndOfFile.QuadPart;
++        unicode_tests = IS_TEXT_UNICODE_SIGNATURE | IS_TEXT_UNICODE_REVERSE_SIGNATURE;
++        if (RtlIsTextUnicode( base, buffer_len, &unicode_tests ))
++        {
++            xmlbuf.ptr = base;
++            xmlbuf.end = xmlbuf.ptr + buffer_len / sizeof(WCHAR);
++            status = parse_config_file( &xmlbuf, private_path );
++        }
++        else if (unicode_tests & IS_TEXT_UNICODE_REVERSE_SIGNATURE)
++        {
++            const WCHAR *buf = base;
++            WCHAR *new_buff;
++            unsigned int i;
++
++            if (!(new_buff = RtlAllocateHeap( GetProcessHeap(), 0, buffer_len )))
++            {
++                status = STATUS_NO_MEMORY;
++                goto done;
++            }
++            for (i = 0; i < buffer_len / sizeof(WCHAR); i++)
++                new_buff[i] = RtlUshortByteSwap( buf[i] );
++            xmlbuf.ptr = new_buff;
++            xmlbuf.end = xmlbuf.ptr + buffer_len / sizeof(WCHAR);
++            status = parse_config_file( &xmlbuf, private_path );
++            RtlFreeHeap( GetProcessHeap(), 0, new_buff );
++        }
++        else
++        {
++            DWORD len;
++            WCHAR *new_buff;
++
++            /* let's assume utf-8 for now */
++            RtlUTF8ToUnicodeN( NULL, 0, &len, base, buffer_len );
++            if (!(new_buff = RtlAllocateHeap( GetProcessHeap(), 0, len )))
++            {
++                status = STATUS_NO_MEMORY;
++                goto done;
++            }
++            RtlUTF8ToUnicodeN( new_buff, len, &len, base, buffer_len );
++            xmlbuf.ptr = new_buff;
++            xmlbuf.end = xmlbuf.ptr + len / sizeof(WCHAR);
++            status = parse_config_file( &xmlbuf, private_path );
++            RtlFreeHeap( GetProcessHeap(), 0, new_buff );
++        }
++    }
++    done:
++    NtUnmapViewOfSection( GetCurrentProcess(), base );
++    return status;
++}
++
++
+ static NTSTATUS open_manifest_file( struct actctx_loader *acl, struct assembly_identity *ai,
+                                     const WCHAR *lang, const WCHAR *directory, WCHAR *buffer, DWORD len )
+ {
+@@ -3368,6 +3562,122 @@ done:
+     return status;
+ }
+ 
++static NTSTATUS probe_private_path( struct actctx_loader *acl, struct assembly_identity *ai )
++{
++    DWORD total;
++    DWORD len;
++    HANDLE file;
++    UNICODE_STRING nameW;
++    WCHAR *manifest_dir = NULL;
++    WCHAR *private_path = NULL;
++    WCHAR *directory = NULL;
++    WCHAR *buffer = NULL;
++    WCHAR *path = NULL;
++    const WCHAR *lang = ai->language;
++    NTSTATUS status;
++
++    if (acl->actctx->config.type != ACTIVATION_CONTEXT_PATH_TYPE_WIN32_FILE)
++        return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++
++    nameW.Buffer = NULL;
++    if (!RtlDosPathNameToNtPathName_U( acl->actctx->config.info, &nameW, NULL, NULL ))
++        return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++
++    status = open_nt_file( &file, &nameW );
++    RtlFreeUnicodeString( &nameW );
++    if (status) return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++
++    status = open_config_file( acl->actctx->config.info, file, &private_path );
++    NtClose( file );
++
++    if ( status != STATUS_SUCCESS )
++    {
++        RtlFreeHeap( GetProcessHeap(), 0, private_path );
++        return status;
++    }
++
++    if (!private_path) return STATUS_SXS_ASSEMBLY_NOT_FOUND;
++
++    TRACE( "got privatePath %s from %s\n", debugstr_w( private_path ),
++           debugstr_w( acl->actctx->config.info ) );
++
++    if (!lang || !wcsicmp( lang, L"neutral" ) || !wcscmp( lang, L"*")) lang = L"";
++    
++    len = max( RtlGetFullPathName_U( acl->actctx->assemblies->manifest.info, 0, NULL, NULL ) / sizeof(WCHAR),
++                 wcslen( acl->actctx->appdir.info ) );
++    total = len + 2 * wcslen( private_path ) + 2 * wcslen( ai->name ) + wcslen( lang ) + 12;
++
++    if (!(buffer = RtlAllocateHeap( GetProcessHeap(), 0, total * sizeof(WCHAR) )))
++    {
++        RtlFreeHeap( GetProcessHeap(), 0, private_path );
++        return STATUS_NO_MEMORY;
++    }
++    if(!(manifest_dir = RtlAllocateHeap( GetProcessHeap(), 0, total * sizeof(WCHAR) )))
++    {
++        RtlFreeHeap( GetProcessHeap(), 0, private_path );
++        RtlFreeHeap( GetProcessHeap(), 0, buffer );
++        return STATUS_NO_MEMORY;
++    }
++
++    if (!(directory = build_assembly_dir( ai )))
++    {
++        RtlFreeHeap( GetProcessHeap(), 0, buffer );
++        RtlFreeHeap( GetProcessHeap(), 0, private_path );
++        RtlFreeHeap( GetProcessHeap(), 0, manifest_dir );
++        return STATUS_NO_MEMORY;
++    }
++
++    status = STATUS_SXS_ASSEMBLY_NOT_FOUND;
++    path = private_path;
++
++    while (*path)
++    {
++        WCHAR *p = NULL;
++        WCHAR *end = wcschr( path, ';' );
++        SIZE_T path_len = end ? end - path : wcslen( path );
++        if (path_len)
++        {
++            /* follow the same lookup order in lookup_assembly */
++            /* but insert privatePath in between */
++            p = buffer + swprintf( buffer, total, L"%s%.*s", acl->actctx->appdir.info,
++                      (int)path_len, path);
++            if (p > buffer && p[-1] != '\\') *p++ = '\\';
++            *p = 0;
++            status = open_manifest_file( acl, ai, lang, directory, buffer, total );
++            if (status != STATUS_SXS_ASSEMBLY_NOT_FOUND) break;
++            swprintf( buffer, total, L"%s%.*s\\%s\\", acl->actctx->appdir.info,
++                      (int)path_len, path, ai->name );
++            status = open_manifest_file( acl, ai, lang, directory, buffer, total );
++            if (status != STATUS_SXS_ASSEMBLY_NOT_FOUND) break;
++
++            if (RtlGetFullPathName_U( acl->actctx->assemblies->manifest.info, len * sizeof(WCHAR), manifest_dir, &p ))
++            {
++                *p = 0;
++                p = buffer + swprintf( buffer, total, L"%s%.*s", manifest_dir,
++                                       (int)path_len, path);
++                if (p > buffer && p[-1] != '\\') *p++ = '\\';
++                *p = 0; 
++                status = open_manifest_file( acl, ai, lang, directory, buffer, total );
++                if (status != STATUS_SXS_ASSEMBLY_NOT_FOUND) break;
++                swprintf( buffer, total, L"%s%.*s\\%s\\", manifest_dir,
++                          (int)path_len, path, ai->name );
++
++                status = open_manifest_file( acl, ai, lang, directory, buffer, total );
++                if (status != STATUS_SXS_ASSEMBLY_NOT_FOUND) break;
++            }
++        }
++        if (!end) break;
++        path = end + 1;
++    }
++
++    RtlFreeHeap( GetProcessHeap(), 0, buffer);
++    RtlFreeHeap( GetProcessHeap(), 0, directory );
++    RtlFreeHeap( GetProcessHeap(), 0, private_path );
++    RtlFreeHeap( GetProcessHeap(), 0, manifest_dir );
++    return status;
++}
++
++
+ static NTSTATUS lookup_assembly(struct actctx_loader* acl,
+                                 struct assembly_identity* ai)
+ {
+@@ -3423,6 +3733,8 @@ static NTSTATUS lookup_assembly(struct actctx_loader* acl,
+         swprintf( p, total - (p - buffer), L"%s\\", ai->name );
+         status = open_manifest_file( acl, ai, lang, directory, buffer, total );
+     }
++ 
++    if ((status = probe_private_path( acl, ai )) != STATUS_SXS_ASSEMBLY_NOT_FOUND) goto done;
+ 
+ done:
+     RtlFreeHeap( GetProcessHeap(), 0, directory );
+@@ -5262,6 +5574,62 @@ static const WCHAR *find_app_settings( ACTIVATION_CONTEXT *actctx, const WCHAR *
+     return NULL;
+ }
+ 
++static NTSTATUS probe_config_path( ACTIVATION_CONTEXT *actctx )
++{
++    struct assembly *root;
++    WCHAR *path;
++    UNICODE_STRING nt_name;
++    HANDLE file;
++    size_t len;
++    static const WCHAR manifest_ext[] = L".manifest";
++    static const WCHAR config_ext[] = L".config";
++    size_t manifest_ext_len = ARRAY_SIZE(manifest_ext) - 1;
++    size_t config_ext_len = ARRAY_SIZE(config_ext) - 1;
++    
++    if (!actctx->num_assemblies) return STATUS_SUCCESS;
++
++    root = &actctx->assemblies[0];
++    if (root->manifest.type != ACTIVATION_CONTEXT_PATH_TYPE_WIN32_FILE || !root->manifest.info)
++        return STATUS_SUCCESS;
++
++    len = wcslen( root->manifest.info );
++    if (len > manifest_ext_len &&
++        !wcsicmp( root->manifest.info + len - manifest_ext_len, manifest_ext ))
++    {
++        if (!(path = RtlAllocateHeap( GetProcessHeap(), 0, (len - manifest_ext_len + config_ext_len + 1) * sizeof(WCHAR) ))) return STATUS_NO_MEMORY;
++
++        memcpy( path, root->manifest.info, (len - manifest_ext_len) * sizeof(WCHAR) );
++        memcpy( path + len - manifest_ext_len, config_ext, (config_ext_len + 1) * sizeof(WCHAR) );
++    }
++    else
++    {
++        if (!(path = RtlAllocateHeap( GetProcessHeap(), 0, (len + config_ext_len + 1) * sizeof(WCHAR) ))) return STATUS_NO_MEMORY;
++
++        memcpy( path, root->manifest.info, len * sizeof(WCHAR) );
++        memcpy( path + len, config_ext, (config_ext_len + 1) * sizeof(WCHAR) );
++    }
++
++    if (!RtlDosPathNameToNtPathName_U( path, &nt_name, NULL, NULL ))
++    {
++        RtlFreeHeap( GetProcessHeap(), 0, path );
++        return STATUS_SUCCESS;
++    }
++
++    if (!open_nt_file( &file, &nt_name ))
++    {
++        NtClose( file );
++        actctx->config.info = path;
++        actctx->config.type = ACTIVATION_CONTEXT_PATH_TYPE_WIN32_FILE;
++    }
++    else
++    {
++        RtlFreeHeap( GetProcessHeap(), 0, path );
++    }
++
++    RtlFreeUnicodeString( &nt_name );
++    return STATUS_SUCCESS;
++}
++
+ /* initialize the activation context for the current process */
+ void actctx_init(void)
+ {
+@@ -5279,7 +5647,6 @@ void actctx_init(void)
+     NtCurrentTeb()->Peb->ActivationContextData = process_actctx;
+ }
+ 
+-
+ /***********************************************************************
+  * RtlCreateActivationContext (NTDLL.@)
+  *
+@@ -5420,6 +5787,8 @@ NTSTATUS WINAPI RtlCreateActivationContext( ACTIVATION_CONTEXT **new_actctx, con
+     if (file) NtClose( file );
+     RtlFreeUnicodeString( &nameW );
+ 
++    if (status == STATUS_SUCCESS) status = probe_config_path(actctx);
++    
+     if (status == STATUS_SUCCESS) status = parse_depend_manifests(&acl);
+     free_depend_manifests( &acl );
+ 
