@@ -1,2 +1,0 @@
-wine=/home/asdf/projects/tableau-wine/wine-install/bin/wine prefix=/home/asdf/projects/tableau-wine/prefix/tableau exe=C:\Program Files\Tableau\Tableau 2026.2\bin\tableau.com channels=err+all,fixme-all,seh 2026-10-03T23:28:52-05:00
-rc=53 (124 = timeout reached, i.e. the app was still alive)

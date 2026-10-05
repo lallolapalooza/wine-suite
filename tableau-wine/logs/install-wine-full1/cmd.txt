@@ -1,3 +1,0 @@
-== wine wine-11.18 prefix=/home/asdf/projects/tableau-wine/prefix/tableau-inst 2026-10-03T23:47:10-05:00
-installer=/home/asdf/Downloads/TableauDesktop-64bit-2026-2-3.exe
-wine_exit=0

