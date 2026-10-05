@@ -1,5 +1,9 @@
 # ETC Eos Family v3.3.10.28 on Wine
 
+ETC and Eos are trademarks of Electronic Theatre Controls, Inc. This repository is not associated with, affiliated with, supported nor endorsed by Electronic Theatre Controls, Inc. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
+No ETC software is redistributed here. The install media must come from your own ETC download; the scripts take it from `$EW_MEDIA` (see `env.sh`).
+
 `ETC_EosFamily_v3.3.10.28.exe` (Electronic Theatre Controls, "Eos Family v3 Software" — the Eos lighting
 console / ETCnomad offline editor) under a locally built, patched **Wine 11.18**, with the Windows
 reference taken from the libvirt guest `win11`.

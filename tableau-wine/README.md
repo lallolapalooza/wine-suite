@@ -1,5 +1,9 @@
 # Tableau Desktop 2026.2.3 on Wine
 
+Tableau is a registered trademark of Salesforce, Inc. This repository is not associated with, affiliated with, supported nor endorsed by Salesforce, Inc. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
+No Salesforce or Tableau software is redistributed here. The install media must come from your own Tableau download or licence account; the scripts take it from `$APP_EXE` (see `env.sh`).
+
 Make `/home/asdf/Downloads/TableauDesktop-64bit-2026-2-3.exe` (Tableau Desktop 2026.2.3, 64-bit;
 743 872 856 B) install and open under Wine 11.18 "like on Windows".
 

@@ -1,5 +1,9 @@
 # CLIP STUDIO PAINT 5.1.4 on Linux with a locally built, patched Wine
 
+CLIP STUDIO PAINT is a registered trademark of CELSYS, Inc. This repository is not associated with, affiliated with, supported nor endorsed by CELSYS, Inc. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
+No CELSYS software is redistributed here. The install media must come from your own CLIP STUDIO PAINT download; the scripts take it from `$CSP_SETUP` or `$CSP_MEDIA` (see `env.sh`).
+
 Subject: `/home/asdf/Downloads/CSP_514w_setup.exe` (CELSYS CLIP STUDIO PAINT 5.1.4.0,
 InstallShield InstallScript launcher, 32-bit, 488 MB) on **Wine 11.18** built from source with the
 AutoCAD-on-Wine + Power BI-on-Wine patch series and the wine-staging DirectComposition patch set.

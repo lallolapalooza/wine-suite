@@ -1,5 +1,9 @@
 # Steinberg Download Assistant 1.40.1 on Linux with a locally built, patched Wine
 
+Steinberg and Steinberg Download Assistant are registered trademarks of Steinberg Media Technologies GmbH. This repository is not associated with, affiliated with, supported nor endorsed by Steinberg Media Technologies GmbH. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
+No Steinberg software is redistributed here. The install media must come from your own Steinberg account; the scripts take it from `$SDA_MEDIA` (see `env.sh`).
+
 Subject: `/home/asdf/Downloads/Steinberg_Download_Assistant_1.40.1_Installer_win.exe`
 (Steinberg Download Assistant 1.40.1, BitRock/VMware InstallBuilder 26.5.1 self-extracting
 installer, PE32, 125 MiB) on **Wine 11.18 built from source** with the AutoCAD-on-Wine +

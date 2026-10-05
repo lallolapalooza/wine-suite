@@ -1,5 +1,9 @@
 # Mastercam 2027 on Wine
 
+Mastercam is a registered trademark of CNC Software, LLC. This repository is not associated with, affiliated with, supported nor endorsed by CNC Software, LLC. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
+No Mastercam software is redistributed here. The install media must come from your own Mastercam download; the scripts take it from `$MCW_MEDIA` (see `env.sh`).
+
 `mastercam2027-web.exe` (CNC Software, **Mastercam 2027**, 29.0.10172.0) under a locally built, patched
 **Wine 11.18**, on this host, with the Windows reference taken from the libvirt guest `win11`.
 

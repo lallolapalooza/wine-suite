@@ -1,5 +1,9 @@
 # Hog PC 5.2.1.31 on Wine
 
+Hog and Hog PC are trademarks of Electronic Theatre Controls, Inc. (High End Systems). This repository is not associated with, affiliated with, supported nor endorsed by Electronic Theatre Controls, Inc. or High End Systems. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
+No High End Systems or ETC software is redistributed here. The install media must come from your own vendor download; the scripts take it from `$HW_MEDIA` (see `env.sh`).
+
 `Hog_PC_5.2.1.31.msi` (**High End Systems / ETC**, "Hog PC" — the Hog lighting-console PC software)
 under a locally built, patched **Wine 11.18**, with the Windows reference taken from the libvirt guest
 `win11`.

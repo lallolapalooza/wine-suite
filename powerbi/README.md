@@ -1,5 +1,7 @@
 # Running Power BI Desktop on Linux with Wine
 
+Power BI is a registered trademark of Microsoft Corporation. This repository is not associated with, affiliated with, supported nor endorsed by Microsoft Corporation. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
 This folder is self-contained enough to install and run Power BI Desktop on Linux: the Wine source with the
 patches applied, the patches themselves, the scripts, and these instructions.
 
