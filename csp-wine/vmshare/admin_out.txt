@@ -1,6 +1,0 @@
-﻿cmd=# nonce 1791072488.691294273
-$u="http://192.168.122.1:8000/"; curl.exe -s -o C:\seref\install_csp.ps1 ($u+"install_csp.ps1"); Start-Process powershell -ArgumentList "-NoProfile","-ExecutionPolicy","Bypass","-File","C:\seref\install_csp.ps1" -WindowStyle Hidden; "STARTED-CSP-INSTALL"
-rc=0
---- output ---
-STARTED-CSP-INSTALL
-

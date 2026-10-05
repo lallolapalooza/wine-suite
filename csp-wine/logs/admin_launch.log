@@ -1,8 +1,0 @@
-﻿cmd=# nonce 1791069619.021039810
-$u="http://192.168.122.1:8000/"; New-Item -ItemType Directory -Force -Path C:\seref | Out-Null; curl.exe -s -o C:\seref\vm_admin.ps1 ($u+"vm_admin.ps1"); Start-Process powershell -Verb RunAs -ArgumentList "-NoProfile","-ExecutionPolicy","Bypass","-WindowStyle","Hidden","-File","C:\seref\vm_admin.ps1"; "LAUNCHED"
-start=2026-10-03T16:20:21.8989496-07:00
-rc=0
-end=2026-10-03T16:20:31.5352753-07:00
---- output ---
-LAUNCHED
-
