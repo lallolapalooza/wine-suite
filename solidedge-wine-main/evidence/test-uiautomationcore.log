@@ -1,0 +1,235 @@
+# 2026-10-01 05:52:14  module=uiautomationcore  bin=/home/asdf/projects/solidedge-wine-main/wine/wine-11.18/dlls/uiautomationcore/tests/x86_64-windows/uiautomationcore_test.exe  args=
+# wine: wine-11.18
+0024:err:ole:com_get_class_object apartment not initialised
+0158:err:ole:com_get_class_object apartment not initialised
+0024:fixme:uiautomation:uia_get_providers_for_hwnd Override provider callback currently unimplemented.
+0024:fixme:uiautomation:default_uia_provider_callback Default ProviderType_NonClientArea provider unimplemented.
+uiautomation.c:6580: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:6616: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:6647: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:6679: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:7222: Test marked todo: 1: expected Provider_get_FragmentRoot
+uiautomation.c:7539: Test marked todo: failed to get provider string for L"Nonclient"
+0184:fixme:uiautomation:uia_get_providers_for_hwnd Override provider callback currently unimplemented.
+0184:fixme:uiautomation:default_uia_provider_callback Default ProviderType_NonClientArea provider unimplemented.
+0184:err:ole:com_get_class_object apartment not initialised
+uiautomation.c:8280: Test marked todo: Unexpected hr 0x800401f0.
+uiautomation.c:8303: Test marked todo: failed to get provider string for L"Annotation"
+uiautomation.c:8305: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:8329: Test marked todo: failed to get provider string for L"Annotation"
+uiautomation.c:8331: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:8367: Test marked todo: failed to get provider string for L"Annotation"
+uiautomation.c:8373: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:8411: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:8473: Test marked todo: Unexpected hr 0x800401f0
+uiautomation.c:7940: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:7958: Test marked todo: Expected method call on separate thread
+uiautomation.c:8044: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:8115: Test marked todo: failed to get provider string for L"Nonclient"
+01c4:fixme:uiautomation:uia_get_providers_for_hwnd Override provider callback currently unimplemented.
+01c4:fixme:uiautomation:default_uia_provider_callback Default ProviderType_NonClientArea provider unimplemented.
+uiautomation.c:7869: Test marked todo: failed to get provider string for L"Nonclient"
+01c0:uiautomation: 17 tests executed (1 marked as todo, 0 as flaky, 0 failures), 0 skipped.
+0180:uiautomation: 172 tests executed (13 marked as todo, 0 as flaky, 0 failures), 0 skipped.
+01ec:fixme:uiautomation:uia_get_providers_for_hwnd Override provider callback currently unimplemented.
+uiautomation.c:9100: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:9105: Test marked todo: expected prov_callback_parent_proxy
+uiautomation.c:9122: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:9127: Test marked todo: expected prov_callback_parent_proxy
+uiautomation.c:9155: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:9160: Test marked todo: expected prov_callback_parent_proxy
+uiautomation.c:9194: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:9199: Test marked todo: expected prov_callback_parent_proxy
+uiautomation.c:9209: Test marked todo: reg_prov_cb3: 0: expected Provider_proxy2_GetOverrideProviderForHwnd, got Provider_proxy_Navigate
+uiautomation.c:9237: Test marked todo: Unexpected refcnt 1
+uiautomation.c:9238: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:9243: Test marked todo: expected prov_callback_parent_proxy
+uiautomation.c:9248: Test marked todo: failed to get provider string for L"Override"
+uiautomation.c:9249: Test marked todo: unexpected parent link provider L"Main"
+uiautomation.c:9254: Test marked todo: reg_prov_cb4: 0: expected Provider_proxy2_GetOverrideProviderForHwnd, got Provider_proxy_Navigate
+uiautomation.c:9254: Test marked todo: reg_prov_cb4: 3: expected Provider_override_Navigate, got Provider_proxy_Navigate
+uiautomation.c:9254: Test marked todo: reg_prov_cb4: 11: expected Provider_override_GetPropertyValue, got Provider_proxy_GetPropertyValue
+uiautomation.c:9281: Test marked todo: reg_prov_cb6: 0: expected Provider_override_GetPropertyValue, got Provider_proxy_GetPropertyValue
+uiautomation.c:9289: Test marked todo: reg_prov_cb7: 0: expected Provider_override_GetPropertyValue, got Provider_proxy_GetPropertyValue
+uiautomation.c:9298: Test marked todo: reg_prov_cb8: 0: expected Provider_override_GetPropertyValue, got Provider_proxy_GetPropertyValue
+uiautomation.c:9306: Test marked todo: reg_prov_cb9: 0: expected Provider_override_GetPropertyValue, got Provider_proxy_GetPropertyValue
+01ec:err:ole:com_get_class_object apartment not initialised
+uiautomation.c:9332: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:9337: Test marked todo: expected prov_callback_parent_proxy
+uiautomation.c:9338: Test marked todo: reg_prov_cb10: 0: expected Provider_proxy2_GetOverrideProviderForHwnd, got Provider_proxy_Navigate
+uiautomation.c:9338: Test marked todo: reg_prov_cb10: 3: expected Provider_override_Navigate, got Provider_proxy_Navigate
+uiautomation.c:9358: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:9362: Test marked todo: expected prov_callback_parent_proxy
+uiautomation.c:9372: Test marked todo: reg_prov_cb11: 6: expected Provider_proxy2_GetOverrideProviderForHwnd, got Provider_Navigate
+uiautomation.c:9395: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:9399: Test marked todo: expected prov_callback_parent_proxy
+uiautomation.c:9409: Test marked todo: reg_prov_cb12: 6: expected Provider2_get_ProviderOptions, got Provider_Navigate
+uiautomation.c:9409: Test marked todo: reg_prov_cb12: 8: expected Provider2_get_HostRawElementProvider, got Provider_Navigate
+uiautomation.c:9409: Test marked todo: reg_prov_cb12: 9: expected Provider2_Navigate, got Provider_Navigate
+uiautomation.c:9409: Test marked todo: reg_prov_cb12: 10: expected Provider2_get_ProviderOptions, got Provider_Navigate
+uiautomation.c:9409: Test marked todo: reg_prov_cb12: 12: expected Provider_proxy2_GetOverrideProviderForHwnd, got Provider_Navigate
+uiautomation.c:9433: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:9441: Test marked todo: failed to get provider string for L"Override"
+uiautomation.c:9442: Test marked todo: unexpected parent link provider L"Main"
+uiautomation.c:9447: Test marked todo: reg_prov_cb13: 6: expected Provider2_get_ProviderOptions, got Provider_Navigate
+uiautomation.c:9447: Test marked todo: reg_prov_cb13: 8: expected Provider2_get_HostRawElementProvider, got Provider_Navigate
+uiautomation.c:9447: Test marked todo: reg_prov_cb13: 9: expected Provider2_Navigate, got Provider_Navigate
+uiautomation.c:9447: Test marked todo: reg_prov_cb13: 10: expected Provider2_get_ProviderOptions, got Provider_Navigate
+01e8:uiautomation: 192 tests executed (42 marked as todo, 0 as flaky, 0 failures), 0 skipped.
+0024:fixme:uiautomation:UiaGetUpdatedCache Unsupported cache request scope 0x2
+uiautomation.c:9866: Test marked todo: Unexpected hr 0x80004001.
+uiautomation.c:9867: Test marked todo: out_req == NULL
+uiautomation.c:9868: Test marked todo: tree_struct == NULL
+uiautomation.c:9869: Test marked todo: Unexpected refcnt 1
+uiautomation.c:9870: Test marked todo: Unexpected refcnt 1
+uiautomation.c:10054: Test marked todo: 1: expected Provider_GetPropertyValue, got Provider_Navigate
+uiautomation.c:10140: Test marked todo: 1: expected Provider_GetPropertyValue, got Provider_Navigate
+uiautomation.c:10787: Test marked todo: nav_seq4: 3: expected Provider_hwnd_GetPropertyValue, got Provider_hwnd_get_HostRawElementProvider
+uiautomation.c:10929: Test marked todo: nav_seq9: 18: expected Provider_child2_Navigate
+uiautomation.c:10929: Test marked todo: nav_seq9: 19: expected Provider_get_ProviderOptions
+uiautomation.c:10929: Test marked todo: nav_seq9: 21: expected Provider_get_HostRawElementProvider
+uiautomation.c:10929: Test marked todo: nav_seq9: 22: expected Provider_get_ProviderOptions
+uiautomation.c:10929: Test marked todo: nav_seq9: 24: expected Provider_get_HostRawElementProvider
+uiautomation.c:10929: Test marked todo: nav_seq9: 25: expected Provider_Navigate
+uiautomation.c:10929: Test marked todo: nav_seq9: 26: expected Provider_get_ProviderOptions
+uiautomation.c:10929: Test marked todo: nav_seq9: 27: expected Provider_get_ProviderOptions
+uiautomation.c:10929: Test marked todo: nav_seq9: 29: expected Provider_Navigate
+uiautomation.c:10929: Test marked todo: nav_seq9: 30: expected Provider_nc_Navigate
+uiautomation.c:10929: Test marked todo: nav_seq9: 31: expected Provider_hwnd_Navigate
+uiautomation.c:10932: Test marked todo: expected prov_callback_nonclient 2 times (got 1)
+uiautomation.c:10933: Test marked todo: expected prov_callback_base_hwnd 2 times (got 1)
+uiautomation.c:10934: Test marked todo: expected winproc_GETOBJECT_UiaRoot 2 times (got 1)
+uiautomation.c:10998: Test marked todo: nav_seq11: 2: expected Provider_hwnd_child_GetPropertyValue, got Provider_hwnd_child_get_HostRawElementProvider
+0024:fixme:uiautomation:uia_cache_request_put_TreeScope Unimplemented TreeScope 0x2
+uiautomation.c:13186: Test marked todo: Unexpected hr 0x80004001.
+uiautomation.c:13191: Test marked todo: Unexpected scope 0x1
+0024:fixme:uiautomation:uia_cache_request_put_AutomationElementMode AutomationElementMode_None unsupported
+uiautomation.c:13278: Test marked todo: Unexpected hr 0x80004001.
+uiautomation.c:13283: Test marked todo: Unexpected element mode 0x1
+uiautomation.c:12390: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:14598: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:14598: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:14598: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:14598: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:14598: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:14600: Test marked todo: expected winproc_GETOBJECT_UiaRoot 2 times (got 1)
+uiautomation.c:14598: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:14600: Test marked todo: expected winproc_GETOBJECT_UiaRoot 2 times (got 1)
+uiautomation.c:14598: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:14598: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:14793: Test marked todo: expected prov_callback_proxy 1 times (got 0)
+uiautomation.c:14796: Test marked todo: expected winproc_GETOBJECT_UiaRoot 1 times (got 0)
+uiautomation.c:14796: Test marked todo: expected winproc_GETOBJECT_UiaRoot 1 times (got 0)
+uiautomation.c:14818: Test marked todo: expected winproc_GETOBJECT_UiaRoot at least 2 time(s) (got 0)
+uiautomation.c:14818: Test marked todo: expected winproc_GETOBJECT_UiaRoot at least 2 time(s) (got 0)
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0400:fixme:uiautomation:msaa_provider_GetPropertyValue Unimplemented propertyId 30016
+uiautomation.c:16017: Test marked todo: expected Accessible_QI_IAccIdentity
+uiautomation.c:16018: Test marked todo: expected Accessible_get_accParent
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0400:fixme:uiautomation:msaa_provider_GetPropertyValue Unimplemented propertyId 30020
+0400:fixme:uiautomation:msaa_provider_GetPropertyValue Unimplemented propertyId 30016
+uiautomation.c:16052: Test marked todo: expected Accessible_QI_IAccIdentity at least 3 time(s) (got 0)
+uiautomation.c:16053: Test marked todo: expected Accessible_get_accParent at least 2 time(s) (got 0)
+uiautomation.c:16057: Test marked todo: expected Accessible_child2_QI_IAccIdentity
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0400:fixme:uiautomation:msaa_provider_GetPropertyValue Unimplemented propertyId 30016
+uiautomation.c:16094: Test marked todo: expected Accessible_QI_IAccIdentity at least 2 time(s) (got 0)
+uiautomation.c:16095: Test marked todo: expected Accessible_get_accParent
+uiautomation.c:16099: Test marked todo: expected Accessible_child2_QI_IAccIdentity
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0400:fixme:uiautomation:msaa_provider_GetPropertyValue Unimplemented propertyId 30020
+0400:fixme:uiautomation:msaa_provider_GetPropertyValue Unimplemented propertyId 30016
+uiautomation.c:16128: Test marked todo: expected Accessible_QI_IAccIdentity
+uiautomation.c:16130: Test marked todo: expected Accessible_child2_QI_IAccIdentity
+uiautomation.c:16599: Test marked todo: default_hwnd_prov_props_seq: 13: expected Provider_get_ProviderOptions, got Provider_nc_GetPropertyValue
+uiautomation.c:16599: Test marked todo: default_hwnd_prov_props_seq: 15: expected Provider_nc_get_ProviderOptions
+uiautomation.c:16500: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:16679: Test marked todo: expected winproc_GETOBJECT_UiaRoot 2 times (got 1)
+uiautomation.c:16679: Test marked todo: expected winproc_GETOBJECT_UiaRoot 2 times (got 1)
+0024:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+0024:fixme:uiautomation:msaa_provider_GetPropertyValue Unimplemented propertyId 30020
+uiautomation.c:16500: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+uiautomation.c:16770: Test marked todo: expected Accessible_QI_IAccIdentity
+uiautomation.c:16771: Test marked todo: expected Accessible_get_accParent
+uiautomation.c:16779: Test marked todo: failed to get provider string for L"Nonclient"
+uiautomation.c:16808: Test marked todo: expected winproc_GETOBJECT_UiaRoot
+uiautomation.c:16814: Test marked todo: unexpected parent link provider L"Main"
+uiautomation.c:16815: Test marked todo: failed to get provider string for L"Annotation"
+uiautomation.c:16933: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:16933: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:16933: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:16935: Test marked todo: expected winproc_GETOBJECT_UiaRoot 2 times (got 1)
+uiautomation.c:16933: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+0024:fixme:uiautomation:UiaRaiseAutomationEvent No event info structure for event id 1
+uiautomation.c:17938: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+0560:fixme:uiautomation:uia_get_providers_for_hwnd Override provider callback currently unimplemented.
+uiautomation.c:17331: Test marked todo: expected prov_callback_proxy
+uiautomation.c:17354: Test marked todo: expected prov_callback_proxy
+uiautomation.c:17442: Test marked todo: expected prov_callback_proxy 2 times (got 1)
+uiautomation.c:17472: Test marked todo: expected prov_callback_proxy
+055c:uiautomation: 147 tests executed (4 marked as todo, 0 as flaky, 0 failures), 0 skipped.
+uiautomation.c:14815: Test marked todo: expected prov_callback_proxy at least 1 time(s) (got 0)
+uiautomation.c:18279: Test marked todo: win_event_handler_seq: 0: expected Provider_proxy_GetOverrideProviderForHwnd, got Provider_nc2_Navigate
+uiautomation.c:14815: Test marked todo: expected prov_callback_proxy at least 1 time(s) (got 0)
+uiautomation.c:14818: Test marked todo: expected winproc_GETOBJECT_UiaRoot at least 1 time(s) (got 0)
+uiautomation.c:14818: Test marked todo: expected winproc_GETOBJECT_UiaRoot at least 1 time(s) (got 0)
+uiautomation.c:14815: Test marked todo: expected prov_callback_proxy at least 1 time(s) (got 0)
+uiautomation.c:14818: Test marked todo: expected winproc_GETOBJECT_UiaRoot at least 2 time(s) (got 0)
+06bc:fixme:oleacc:find_class_data unhandled window class: L"#32769"
+uiautomation.c:14793: Test marked todo: expected prov_callback_proxy 1 times (got 0)
+uiautomation.c:14796: Test marked todo: expected winproc_GETOBJECT_UiaRoot 1 times (got 0)
+06f0:fixme:uiautomation:msaa_provider_GetPropertyValue Unimplemented propertyId 30020
+06f0:fixme:uiautomation:msaa_provider_GetPropertyValue Unimplemented propertyId 30020
+06f0:fixme:uiautomation:msaa_fragment_GetRuntimeId 00007FFFFE8D97A8, 0000750BA14DFA60: stub!
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+uiautomation.c:5567: Test marked todo: expected Accessible2_QI_IAccIdentity
+uiautomation.c:5568: Test marked todo: expected Accessible2_get_accParent
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+uiautomation.c:5650: Test marked todo: expected Accessible2_QI_IAccIdentity
+uiautomation.c:5651: Test marked todo: expected Accessible2_get_accParent
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+uiautomation.c:5698: Test marked todo: expected Accessible2_QI_IAccIdentity
+uiautomation.c:5699: Test marked todo: expected Accessible2_get_accParent
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+uiautomation.c:5745: Test marked todo: expected Accessible2_QI_IAccIdentity
+uiautomation.c:5746: Test marked todo: expected Accessible2_get_accParent
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+uiautomation.c:5789: Test marked todo: expected Accessible2_QI_IAccIdentity
+uiautomation.c:5790: Test marked todo: expected Accessible2_get_accParent
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+uiautomation.c:4653: Test marked todo: expected Accessible2_QI_IAccIdentity
+uiautomation.c:4654: Test marked todo: expected Accessible2_get_accParent
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+uiautomation.c:4837: Test marked todo: expected Accessible2_QI_IAccIdentity
+uiautomation.c:4838: Test marked todo: expected Accessible2_get_accParent
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+uiautomation.c:4484: Test marked todo: expected Accessible2_QI_IAccIdentity
+uiautomation.c:4485: Test marked todo: expected Accessible2_get_accParent
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:oleacc:LresultFromObject unsupported wParam = ffffffff
+0024:fixme:uiautomation:msaa_winevent_handler_RespondToWinEvent WinEvent 32780 currently unimplemented
+uiautomation.c:3717: Test marked todo: Unexpected hr 0x80004001.
+uiautomation.c:3718: Test marked todo: Unexpected prop_change_elprov 0000000000000000
+uiautomation.c:3719: Test marked todo: Unexpected prop_change_prop_id 0
+uiautomation.c:3721: Test marked todo: Unexpected prop_change_value vt 0
+uiautomation.c:3726: Test marked todo: expected ProxyEventSink_AddAutomationPropertyChangedEvent
+uiautomation.c:3727: Test marked todo: expected Accessible_get_accName
+0024:fixme:uiautomation:msaa_winevent_handler_RespondToWinEvent WinEvent 32772 currently unimplemented
+uiautomation.c:3736: Test marked todo: Unexpected hr 0x80004001.
+uiautomation.c:3737: Test marked todo: Unexpected structure_change_elprov 0000000000000000
+uiautomation.c:3739: Test marked todo: Unexpected structure_change_type 0
+uiautomation.c:3742: Test marked todo: expected winproc_GETOBJECT_CLIENT
+uiautomation.c:3743: Test marked todo: expected ProxyEventSink_AddStructureChangedEvent
+0020:uiautomation: 8187 tests executed (113 marked as todo, 0 as flaky, 0 failures), 0 skipped.
+# exit=0
