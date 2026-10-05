@@ -1,0 +1,24 @@
+api	dll	file	line	body
+AllowSetForegroundWindow	user32	dlls/user32/win.c	779	return TRUE;
+CertFindChainInStore	crypt32	dlls/crypt32/chain.c	3002	FIXME("(%p, %08lx, %08lx, %ld, %p, %p): stub\n", store, certEncodingType, findFlags, findType, findPara, prevChainContext); return NULL;
+ChangeWindowMessageFilterEx	user32	dlls/user32/message.c	1215	FIXME( "%p %x %ld %p\n", hwnd, message, action, changefilter ); return TRUE;
+CreateAppContainerProfile	userenv	dlls/userenv/userenv_main.c	690	FIXME("(%s, %s, %s, %p, %ld, %p): stub\n", debugstr_w(container_name), debugstr_w(display_name), debugstr_w(description), capabilities, capability_count, contai
+D3DPERF_GetStatus	d3d9	dlls/d3d9/d3d9_main.c	244	FIXME("(void) : stub\n"); return 0;
+D3DPERF_SetMarker	d3d9	dlls/d3d9/d3d9_main.c	271	FIXME("color 0x%08lx, name %s stub!\n", color, debugstr_w(name));
+DCompositionCreateDevice	dcomp	dlls/dcomp/device.c	28	FIXME("%p, %s, %p.\n", dxgi_device, debugstr_guid(iid), device); return E_NOTIMPL;
+DwmEnableBlurBehindWindow	dwmapi	dlls/dwmapi/dwmapi_main.c	163	FIXME("%p %p\n", hWnd, pBlurBuf); return E_NOTIMPL;
+GdiDllInitialize	gdi32	dlls/gdi32/objects.c	1092	FIXME( "stub\n" ); return TRUE;
+GetColorSpace	gdi32	dlls/gdi32/objects.c	730	FIXME( "stub\n" ); return 0;
+ImmReleaseContext	imm32	dlls/imm32/imm.c	2350	TRACE( "hwnd %p, himc %p\n", hwnd, himc ); return TRUE;
+IsTouchWindow	user32	dlls/user32/input.c	667	FIXME( "hwnd %p, flags %p stub!\n", hwnd, flags ); return FALSE;
+NetShareEnum	netapi32	dlls/netapi32/netapi32.c	388	FIXME("Stub (%s %ld %p %ld %p %p %p)\n", debugstr_w(servername), level, bufptr, prefmaxlen, entriesread, totalentries, resume_handle); return ERROR_NOT_SUPPORTE
+ProcessTrace	sechost	dlls/sechost/trace.c	134	FIXME("%p %lu %p %p: stub\n", handles, count, start_time, end_time); return ERROR_CALL_NOT_IMPLEMENTED;
+RegisterTouchWindow	user32	dlls/user32/input.c	676	FIXME( "hwnd %p, flags %#lx stub!\n", hwnd, flags ); return TRUE;
+SetDisplayAutoRotationPreferences	user32	dlls/user32/sysparams.c	1009	FIXME("(%d): stub\n", orientation); return TRUE;
+Shell_NotifyIconGetRect	shell32	dlls/shell32/systray.c	299	FIXME("stub (%p) (%p)\n", identifier, icon_location); return E_NOTIMPL;
+UiaClientsAreListening	uiautomationcore	dlls/uiautomationcore/uia_main.c	265	TRACE("()\n"); return TRUE;
+UiaRaiseAutomationPropertyChangedEvent	uiautomationcore	dlls/uiautomationcore/uia_main.c	304	FIXME("(%p, %d, %s, %s): stub\n", provider, id, debugstr_variant(&old), debugstr_variant(&new)); return S_OK;
+UiaRaiseNotificationEvent	uiautomationcore	dlls/uiautomationcore/uia_main.c	343	FIXME("(%p, %d, %d, %s, %s): stub\n", provider, notification_kind, notification_processing, debugstr_w(display_str), debugstr_w(activity_id)); return S_OK;
+UnregisterPowerSettingNotification	user32	dlls/user32/misc.c	419	FIXME("(%p): stub\n", handle); return TRUE;
+UnregisterTouchWindow	user32	dlls/user32/input.c	685	FIXME( "hwnd %p stub!\n", hwnd ); return TRUE;
+UserHandleGrantAccess	user32	dlls/user32/misc.c	401	FIXME("(%p,%p,%d): stub\n", handle, job, grant); return TRUE;
