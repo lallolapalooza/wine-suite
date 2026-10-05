@@ -1,0 +1,1601 @@
+tests: cover the patch series with Wine's own test suite
+
+One regression test per patch that changes Wine code, in that module's dlls/<module>/tests/
+suite and wired into START_TEST, so that reverting the patch makes the test fail.  The patches
+themselves are not modified; this patch only adds the tests.  Each test was run against the
+patched and the pristine code of its module and the failing assertions are the ones the patch
+is about (see tools/run_wine_tests.sh).
+
+Modules: advapi32 kernelbase (0002), crypt32 (0007), dnsapi/kernel32/ntdll (0010),
+kernel32 (0008), ntdll (0009), secur32 (0014), urlmon (0003), wintrust (0001), ws2_32 (0006, 0012).
+Also covers the Revit-only extra 0102 (dlls/dxgi/tests/dxgi.c).
+--- a/dlls/advapi32/tests/registry.c
++++ b/dlls/advapi32/tests/registry.c
+@@ -1734,6 +1734,202 @@
+     delete_dir(hivefilepath);
+ }
+ 
++/* A minimal binary (regf) hive: Wine's RegSaveKey() only writes the text
++ * "WINE REGISTRY Version 2" format, so the file is built by hand.  Wine's
++ * RegLoadAppKey() reader takes the cell and field offsets below. */
++#define REGF_HBIN_OFF         0x1000
++#define REGF_HBIN_SIZE        0x1000
++
++/* cell offsets, relative to the start of the hbins */
++#define REGF_ROOT_NK          0x20
++#define REGF_ROOT_VALUES      0x78
++#define REGF_ROOT_VALUE       0x80
++#define REGF_SUBKEY_LIST      0xa0
++#define REGF_SUBKEY_NK        0xb0
++#define REGF_SUBKEY_VALUES    0x108
++#define REGF_SUBKEY_VALUE     0x110
++#define REGF_SUBKEY_DATA      0x130
++
++#define REGF_TEST_DWORD       0x12345678
++#define REGF_TEST_STRING      "hello"
++
++/* offset in the file of a field inside a cell */
++#define REGF_FIELD(cell,field) (REGF_HBIN_OFF + (cell) + (field))
++
++static void regf_put_u16(BYTE *buf, DWORD off, USHORT val)
++{
++    memcpy(buf + off, &val, sizeof(val));
++}
++
++static void regf_put_u32(BYTE *buf, DWORD off, DWORD val)
++{
++    memcpy(buf + off, &val, sizeof(val));
++}
++
++/* build a hive whose root key has an inline REG_DWORD value "Count" and a
++ * single subkey "Sub" holding a REG_SZ value "Label" */
++static void build_regf_hive(BYTE *buf)
++{
++    static const WCHAR test_string[] = L"hello";
++
++    memset(buf, 0, REGF_HBIN_OFF + REGF_HBIN_SIZE);
++
++    /* base block */
++    memcpy(buf, "regf", 4);
++    regf_put_u32(buf, 0x14, 1);                          /* version major */
++    regf_put_u32(buf, 0x18, 3);                          /* version minor */
++    regf_put_u32(buf, 0x1c, 0);                          /* primary file */
++    regf_put_u32(buf, 0x24, REGF_ROOT_NK);               /* root cell offset */
++    regf_put_u32(buf, 0x28, REGF_HBIN_SIZE);             /* size of the hbins */
++
++    /* hbin header */
++    memcpy(buf + REGF_HBIN_OFF, "hbin", 4);
++    regf_put_u32(buf, REGF_HBIN_OFF + 0x08, REGF_HBIN_SIZE);
++
++    /* root key */
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_NK, 0x00), 0xffffffa8);   /* -0x58 */
++    memcpy(buf + REGF_FIELD(REGF_ROOT_NK, 0x04), "nk", 2);
++    regf_put_u16(buf, REGF_FIELD(REGF_ROOT_NK, 0x06), 0x20);        /* KEY_COMP_NAME */
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_NK, 0x18), 1);           /* subkey count */
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_NK, 0x20), REGF_SUBKEY_LIST);
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_NK, 0x28), 1);           /* value count */
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_NK, 0x2c), REGF_ROOT_VALUES);
++    regf_put_u16(buf, REGF_FIELD(REGF_ROOT_NK, 0x4c), 4);           /* name length */
++    memcpy(buf + REGF_FIELD(REGF_ROOT_NK, 0x50), "Root", 4);
++
++    /* list of the root key's values */
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_VALUES, 0x00), 0xfffffff8);
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_VALUES, 0x04), REGF_ROOT_VALUE);
++
++    /* root value: REG_DWORD stored inline in the data offset */
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_VALUE, 0x00), 0xffffffe0);   /* -0x20 */
++    memcpy(buf + REGF_FIELD(REGF_ROOT_VALUE, 0x04), "vk", 2);
++    regf_put_u16(buf, REGF_FIELD(REGF_ROOT_VALUE, 0x06), 5);            /* "Count" */
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_VALUE, 0x08), 0x80000004);   /* inline, 4 bytes */
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_VALUE, 0x0c), REGF_TEST_DWORD);
++    regf_put_u32(buf, REGF_FIELD(REGF_ROOT_VALUE, 0x10), REG_DWORD);
++    regf_put_u16(buf, REGF_FIELD(REGF_ROOT_VALUE, 0x14), 0x0001);       /* VAL_COMP_NAME */
++    memcpy(buf + REGF_FIELD(REGF_ROOT_VALUE, 0x18), "Count", 5);
++
++    /* list of the root key's subkeys (an "lf" leaf) */
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_LIST, 0x00), 0xfffffff0);  /* -0x10 */
++    memcpy(buf + REGF_FIELD(REGF_SUBKEY_LIST, 0x04), "lf", 2);
++    regf_put_u16(buf, REGF_FIELD(REGF_SUBKEY_LIST, 0x06), 1);
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_LIST, 0x08), REGF_SUBKEY_NK);
++
++    /* subkey "Sub" */
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_NK, 0x00), 0xffffffa8);    /* -0x58 */
++    memcpy(buf + REGF_FIELD(REGF_SUBKEY_NK, 0x04), "nk", 2);
++    regf_put_u16(buf, REGF_FIELD(REGF_SUBKEY_NK, 0x06), 0x20);
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_NK, 0x28), 1);             /* value count */
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_NK, 0x2c), REGF_SUBKEY_VALUES);
++    regf_put_u16(buf, REGF_FIELD(REGF_SUBKEY_NK, 0x4c), 3);
++    memcpy(buf + REGF_FIELD(REGF_SUBKEY_NK, 0x50), "Sub", 3);
++
++    /* list of the subkey's values */
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_VALUES, 0x00), 0xfffffff8);
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_VALUES, 0x04), REGF_SUBKEY_VALUE);
++
++    /* subkey value: REG_SZ stored in a separate data cell; value data is UTF-16LE
++     * as in a real hive */
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_VALUE, 0x00), 0xffffffe0);  /* -0x20 */
++    memcpy(buf + REGF_FIELD(REGF_SUBKEY_VALUE, 0x04), "vk", 2);
++    regf_put_u16(buf, REGF_FIELD(REGF_SUBKEY_VALUE, 0x06), 5);          /* "Label" */
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_VALUE, 0x08), sizeof(test_string));
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_VALUE, 0x0c), REGF_SUBKEY_DATA);
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_VALUE, 0x10), REG_SZ);
++    regf_put_u16(buf, REGF_FIELD(REGF_SUBKEY_VALUE, 0x14), 0x0001);
++    memcpy(buf + REGF_FIELD(REGF_SUBKEY_VALUE, 0x18), "Label", 5);
++
++    /* subkey value data */
++    regf_put_u32(buf, REGF_FIELD(REGF_SUBKEY_DATA, 0x00), 0xfffffff0);   /* -0x10 */
++    memcpy(buf + REGF_FIELD(REGF_SUBKEY_DATA, 0x04), test_string, sizeof(test_string));
++}
++
++static void test_reg_load_app_key_regf(void)
++{
++    char hivefilepath[MAX_PATH];
++    BYTE hive[REGF_HBIN_OFF + REGF_HBIN_SIZE];
++    BYTE output[sizeof(REGF_TEST_STRING)];
++    HKEY appkey = NULL, subkey = NULL;
++    DWORD ret, type, size, value, written;
++    HANDLE file;
++
++    build_regf_hive(hive);
++
++    if (GetTempPathA(MAX_PATH, hivefilepath) + strlen("wine_reg_appkey.hiv") >= MAX_PATH)
++    {
++        skip("temp path is too long\n");
++        return;
++    }
++    strcat(hivefilepath, "wine_reg_appkey.hiv");
++
++    file = CreateFileA(hivefilepath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
++    ok(file != INVALID_HANDLE_VALUE, "failed to create %s, error %lu\n", hivefilepath, GetLastError());
++    if (file == INVALID_HANDLE_VALUE) return;
++    ok(WriteFile(file, hive, sizeof(hive), &written, NULL) && written == sizeof(hive),
++       "failed to write %s, error %lu\n", hivefilepath, GetLastError());
++    CloseHandle(file);
++
++    ret = RegLoadAppKeyA(hivefilepath, &appkey, KEY_READ | KEY_WRITE, 0, 0);
++    ok(ret == ERROR_SUCCESS, "RegLoadAppKeyA failed, error %lu\n", ret);
++
++    value = 0;
++    size = sizeof(value);
++    type = 0;
++    ret = RegQueryValueExA(appkey, "Count", NULL, &type, (BYTE *)&value, &size);
++    ok(ret == ERROR_SUCCESS, "RegQueryValueExA(Count) failed, error %lu\n", ret);
++    if (ret == ERROR_SUCCESS)
++    {
++        ok(type == REG_DWORD, "unexpected type %lu\n", type);
++        ok(size == sizeof(value), "unexpected size %lu\n", size);
++        ok(value == REGF_TEST_DWORD, "unexpected value %#lx\n", value);
++    }
++
++    ret = RegOpenKeyExA(appkey, "Sub", 0, KEY_READ, &subkey);
++    ok(ret == ERROR_SUCCESS, "RegOpenKeyExA(Sub) failed, error %lu\n", ret);
++    if (ret == ERROR_SUCCESS)
++    {
++        memset(output, 0xcc, sizeof(output));
++        size = sizeof(output);
++        type = 0;
++        ret = RegQueryValueExA(subkey, "Label", NULL, &type, output, &size);
++        ok(ret == ERROR_SUCCESS, "RegQueryValueExA(Label) failed, error %lu\n", ret);
++        if (ret == ERROR_SUCCESS)
++        {
++            ok(type == REG_SZ, "unexpected type %lu\n", type);
++            ok(size == sizeof(REGF_TEST_STRING), "unexpected size %lu\n", size);
++            ok(!memcmp(output, REGF_TEST_STRING, sizeof(REGF_TEST_STRING)),
++               "unexpected data %s\n", output);
++        }
++        RegCloseKey(subkey);
++    }
++
++    /* values can also be created on the loaded key */
++    value = 0xcafebabe;
++    ret = RegSetValueExA(appkey, "NewValue", 0, REG_DWORD, (const BYTE *)&value, sizeof(value));
++    ok(ret == ERROR_SUCCESS, "RegSetValueExA(NewValue) failed, error %lu\n", ret);
++
++    value = 0;
++    size = sizeof(value);
++    ret = RegQueryValueExA(appkey, "NewValue", NULL, &type, (BYTE *)&value, &size);
++    ok(ret == ERROR_SUCCESS, "RegQueryValueExA(NewValue) failed, error %lu\n", ret);
++    if (ret == ERROR_SUCCESS)
++    {
++        ok(type == REG_DWORD, "unexpected type %lu\n", type);
++        ok(value == 0xcafebabe, "unexpected value %#lx\n", value);
++    }
++
++    ret = RegCloseKey(appkey);
++    ok(ret == ERROR_SUCCESS, "RegCloseKey failed, error %lu\n", ret);
++
++    file = CreateFileA(hivefilepath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL,
++                       OPEN_EXISTING, 0, NULL);
++    ok(file != INVALID_HANDLE_VALUE, "hive file is still in use, error %lu\n", GetLastError());
++    if (file != INVALID_HANDLE_VALUE) CloseHandle(file);
++    ok(DeleteFileA(hivefilepath), "failed to delete %s, error %lu\n", hivefilepath, GetLastError());
++}
++
+ /* tests that show that RegConnectRegistry and
+    OpenSCManager accept computer names without the
+    \\ prefix (what MSDN says).   */
+@@ -5182,6 +5378,7 @@
+     test_classesroot_mask();
+     test_reg_load_key();
+     test_reg_load_app_key();
++    test_reg_load_app_key_regf();
+     test_reg_copy_tree();
+     test_reg_delete_tree();
+     test_rw_order();
+--- a/dlls/crypt32/tests/store.c
++++ b/dlls/crypt32/tests/store.c
+@@ -1480,6 +1480,147 @@
+     RegDeleteKeyW(HKEY_CURRENT_USER, L"Software\\Microsoft\\SystemCertificates\\Bogus");
+ }
+ 
++/* Windows always has the group-policy and enterprise certificate store keys,
++ * including the ROOT store, so CertOpenStore with
++ * CERT_STORE_OPEN_EXISTING_FLAG succeeds for them.  Wine only mapped the
++ * group-policy locations to their registry paths (opening a store whose key
++ * was not there yet failed with ERROR_FILE_NOT_FOUND) and returned NULL for
++ * CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE altogether.  The tests also add a
++ * certificate through the store API and read it back, to check the location
++ * maps to the registry path that is actually read and written.
++ */
++static const struct
++{
++    LPCSTR prov;
++    HKEY root;
++    DWORD location;
++    LPCWSTR base_path;
++} system_reg_store_locations[] =
++{
++    { CERT_STORE_PROV_SYSTEM_REGISTRY, HKEY_CURRENT_USER,
++        CERT_SYSTEM_STORE_CURRENT_USER_GROUP_POLICY,
++        CERT_GROUP_POLICY_SYSTEM_STORE_REGPATH },
++    { CERT_STORE_PROV_SYSTEM_REGISTRY, HKEY_LOCAL_MACHINE,
++        CERT_SYSTEM_STORE_LOCAL_MACHINE_GROUP_POLICY,
++        CERT_GROUP_POLICY_SYSTEM_STORE_REGPATH },
++    { CERT_STORE_PROV_SYSTEM_REGISTRY, HKEY_LOCAL_MACHINE,
++        CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE,
++        L"Software\\Microsoft\\EnterpriseCertificates" },
++    /* The generic system store provider wraps the registry store in a
++     * collection and uses the same location mapping. */
++    { CERT_STORE_PROV_SYSTEM, HKEY_LOCAL_MACHINE,
++        CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE,
++        L"Software\\Microsoft\\EnterpriseCertificates" },
++};
++
++static void testSystemRegStoreLocations(void)
++{
++    static const WCHAR store_name[] = L"ROOT";
++    WCHAR store_path[MAX_PATH], subkey_path[MAX_PATH];
++    HCERTSTORE store;
++    unsigned int i;
++
++    /* Not all OSes support CERT_STORE_PROV_SYSTEM_REGISTRY, so don't continue
++     * testing if they don't.
++     */
++    store = CertOpenStore(CERT_STORE_PROV_SYSTEM_REGISTRY, 0, 0,
++     CERT_SYSTEM_STORE_CURRENT_USER | CERT_STORE_OPEN_EXISTING_FLAG, L"My");
++    if (!store)
++    {
++        skip("CERT_STORE_PROV_SYSTEM_REGISTRY is not available\n");
++        return;
++    }
++    CertCloseStore(store, 0);
++
++    for (i = 0; i < ARRAY_SIZE(system_reg_store_locations); i++)
++    {
++        HKEY root = system_reg_store_locations[i].root, key;
++        DWORD location = system_reg_store_locations[i].location;
++        LPCWSTR base = system_reg_store_locations[i].base_path;
++        PCCERT_CONTEXT cert = NULL, found;
++        BOOL existed, added = FALSE;
++        BOOL ret;
++
++        wsprintfW(store_path, L"%s\\%s", base, store_name);
++        /* Windows has these stores, so only remove a key this test created
++         * itself.  An unfixed Wine does not create the key either, so the
++         * OPEN_EXISTING open below fails there. */
++        existed = !RegOpenKeyExW(root, store_path, 0, KEY_READ, &key);
++        if (existed)
++            RegCloseKey(key);
++
++        /* Windows always has these store keys, so OPEN_EXISTING succeeds. */
++        store = CertOpenStore(system_reg_store_locations[i].prov, 0, 0,
++         location | CERT_STORE_OPEN_EXISTING_FLAG, store_name);
++        ok(store != NULL, "%08lx: CertOpenStore failed: %08lx\n",
++         location, GetLastError());
++        if (!store)
++            continue;
++
++        cert = CertCreateCertificateContext(X509_ASN_ENCODING, bigCert,
++         sizeof(bigCert));
++        ok(cert != NULL, "%08lx: CertCreateCertificateContext failed: %08lx\n",
++         location, GetLastError());
++        if (cert)
++        {
++            ret = CertAddCertificateContextToStore(store, cert,
++             CERT_STORE_ADD_ALWAYS, NULL);
++            if (!ret && GetLastError() == ERROR_ACCESS_DENIED)
++                skip("%08lx: no access to the store\n", location);
++            else
++            {
++                ok(ret, "%08lx: adding a certificate failed: %08lx\n",
++                 location, GetLastError());
++                added = ret;
++            }
++        }
++        CertCloseStore(store, 0);
++
++        if (added)
++        {
++            /* The certificate must be readable again through the public API,
++             * from the registry location the location maps to. */
++            store = CertOpenStore(system_reg_store_locations[i].prov, 0, 0,
++             location | CERT_STORE_OPEN_EXISTING_FLAG, store_name);
++            ok(store != NULL, "%08lx: reopening the store failed: %08lx\n",
++             location, GetLastError());
++            if (store)
++            {
++                found = CertFindCertificateInStore(store, X509_ASN_ENCODING, 0,
++                 CERT_FIND_EXISTING, cert, NULL);
++                ok(found != NULL, "%08lx: the certificate was not saved\n",
++                 location);
++                if (found)
++                {
++                    /* Removes the registry value the test set up. */
++                    ret = CertDeleteCertificateFromStore(found);
++                    ok(ret, "%08lx: deleting the certificate failed: %08lx\n",
++                     location, GetLastError());
++                }
++                CertCloseStore(store, 0);
++            }
++        }
++        if (cert)
++            CertFreeCertificateContext(cert);
++
++        /* Opening the store also created the Certificates/CRLs/CTLs subkeys.
++         * Remove those and the store key the test created; RegDeleteTreeW
++         * isn't available on every Wine/Windows version. */
++        if (!existed)
++        {
++            wsprintfW(subkey_path, L"%s\\%s\\Certificates", base, store_name);
++            RegDeleteKeyW(root, subkey_path);
++            wsprintfW(subkey_path, L"%s\\%s\\CRLs", base, store_name);
++            RegDeleteKeyW(root, subkey_path);
++            wsprintfW(subkey_path, L"%s\\%s\\CTLs", base, store_name);
++            RegDeleteKeyW(root, subkey_path);
++            ret = RegDeleteKeyW(root, store_path);
++            ok(!ret, "%08lx: removing the test store failed: %08lx\n",
++             location, GetLastError());
++        }
++    }
++}
++
+ static const BYTE serializedStoreWithCertAndCRL[] = {
+  0x00,0x00,0x00,0x00,0x43,0x45,0x52,0x54,0x20,0x00,0x00,0x00,0x01,0x00,0x00,
+  0x00,0x7c,0x00,0x00,0x00,0x30,0x7a,0x02,0x01,0x01,0x30,0x02,0x06,0x00,0x30,
+@@ -2112,7 +2253,9 @@
+     { CERT_SYSTEM_STORE_LOCAL_MACHINE, TRUE, 0},
+     { CERT_SYSTEM_STORE_LOCAL_MACHINE_GROUP_POLICY, TRUE, 0},
+     { CERT_SYSTEM_STORE_CURRENT_USER_GROUP_POLICY, TRUE, 0},
+-    { CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE, TRUE, 1}
++    /* The enterprise location is mapped to its registry path (see
++     * CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE in CRYPT_SysRegOpenStoreW). */
++    { CERT_SYSTEM_STORE_LOCAL_MACHINE_ENTERPRISE, TRUE, 0}
+ };
+ 
+ static void testCertRegisterSystemStore(void)
+@@ -3873,6 +4016,7 @@
+ 
+     testSystemRegStore();
+     testSystemStore();
++    testSystemRegStoreLocations();
+     testFileStore();
+     testFileNameStore();
+     testMessageStore();
+--- a/dlls/dnsapi/tests/query.c
++++ b/dlls/dnsapi/tests/query.c
+@@ -366,6 +366,21 @@
+     free( adapters );
+ }
+ 
++/* DnsIsZtEnabled reports whether "Zero Trust DNS" is enabled for the machine;
++ * the export was added in Windows 11. */
++static void test_DnsIsZtEnabled(void)
++{
++    BOOL (WINAPI *pDnsIsZtEnabled)(void);
++    HMODULE dnsapi = GetModuleHandleA("dnsapi.dll");
++
++    pDnsIsZtEnabled = (void *)GetProcAddress(dnsapi, "DnsIsZtEnabled");
++    ok(pDnsIsZtEnabled != NULL, "DnsIsZtEnabled is not exported\n");
++    if (!pDnsIsZtEnabled) return;
++
++    /* Wine never reports Zero Trust DNS as enabled */
++    ok(!pDnsIsZtEnabled(), "expected FALSE\n");
++}
++
+ START_TEST(query)
+ {
+     WSADATA data;
+@@ -374,4 +389,5 @@
+ 
+     test_DnsQuery();
+     test_DnsQueryConfig();
++    test_DnsIsZtEnabled();
+ }
+--- a/dlls/kernel32/tests/file.c
++++ b/dlls/kernel32/tests/file.c
+@@ -1813,9 +1813,10 @@
+         hFile = pCreateFile2(filename, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, CREATE_ALWAYS, &exparams);
+         ok(hFile != INVALID_HANDLE_VALUE && GetLastError() == 0, "%ld: hFile %p, last error %lu\n", i, hFile, GetLastError());
+ 
++        /* as on Windows, a handle that was not opened with FILE_FLAG_OVERLAPPED can be
++           associated with a completion port; the flag only matters for the I/O itself */
+         iocp = CreateIoCompletionPort(hFile, NULL, 0, 2);
+-        if (i == 1) ok(iocp == NULL && GetLastError() == ERROR_INVALID_PARAMETER, "%ld: CreateIoCompletionPort returned %p, error %lu\n", i, iocp, GetLastError());
+-        else ok(iocp != INVALID_HANDLE_VALUE && GetLastError() == 0, "%ld: CreateIoCompletionPort returned %p, error %lu\n", i, iocp, GetLastError());
++        ok(iocp != NULL, "%ld: CreateIoCompletionPort returned %p, error %lu\n", i, iocp, GetLastError());
+ 
+         CloseHandle(iocp);
+         CloseHandle(hFile);
+@@ -6223,6 +6224,71 @@
+     CloseHandle( port );
+ }
+ 
++static void test_iocp_non_overlapped(void)
++{
++    char temp_path[MAX_PATH], file_name[MAX_PATH];
++    char buffer[16], read_buffer[16];
++    OVERLAPPED *povl;
++    ULONG_PTR key;
++    DWORD written, read, count;
++    HANDLE hfile, port;
++    BOOL ret;
++
++    ret = GetTempPathA( MAX_PATH, temp_path );
++    ok( ret && ret < MAX_PATH, "GetTempPathA failed, error %lu\n", GetLastError() );
++    ret = GetTempFileNameA( temp_path, "ioc", 0, file_name );
++    ok( ret, "GetTempFileNameA failed, error %lu\n", GetLastError() );
++
++    memset( buffer, 0x5a, sizeof(buffer) );
++
++    /* deliberately not opened with FILE_FLAG_OVERLAPPED; the flag only matters for
++       whether the I/O itself can be asynchronous */
++    hfile = CreateFileA( file_name, GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_ALWAYS,
++                         FILE_ATTRIBUTE_NORMAL, NULL );
++    ok( hfile != INVALID_HANDLE_VALUE, "CreateFileA failed, error %lu\n", GetLastError() );
++    if (hfile == INVALID_HANDLE_VALUE) return;
++
++    SetLastError( 0xdeadbeef );
++    port = CreateIoCompletionPort( hfile, NULL, 0x1234, 0 );
++    ok( port != NULL, "CreateIoCompletionPort on a non-overlapped handle failed, error %lu\n",
++        GetLastError() );
++    if (!port)
++    {
++        CloseHandle( hfile );
++        DeleteFileA( file_name );
++        return;
++    }
++
++    /* synchronous I/O on the handle still works */
++    ret = WriteFile( hfile, buffer, sizeof(buffer), &written, NULL );
++    ok( ret && written == sizeof(buffer), "WriteFile failed, error %lu\n", GetLastError() );
++
++    SetFilePointer( hfile, 0, NULL, FILE_BEGIN );
++    memset( read_buffer, 0, sizeof(read_buffer) );
++    ret = ReadFile( hfile, read_buffer, sizeof(read_buffer), &read, NULL );
++    ok( ret && read == sizeof(read_buffer), "ReadFile failed, error %lu\n", GetLastError() );
++    ok( !memcmp( buffer, read_buffer, sizeof(buffer) ), "got wrong data\n" );
++
++    /* the completion port is only involved in asynchronous I/O, so nothing is queued */
++    SetLastError( 0xdeadbeef );
++    ret = GetQueuedCompletionStatus( port, &count, &key, &povl, 100 );
++    ok( !ret && GetLastError() == WAIT_TIMEOUT,
++        "GetQueuedCompletionStatus returned %x, error %lu\n", ret, GetLastError() );
++
++    if (pSetFileCompletionNotificationModes)
++    {
++        SetLastError( 0xdeadbeef );
++        ret = pSetFileCompletionNotificationModes( hfile, FILE_SKIP_SET_EVENT_ON_HANDLE );
++        ok( ret, "SetFileCompletionNotificationModes on a non-overlapped handle failed, error %lu\n",
++            GetLastError() );
++    }
++    else win_skip( "SetFileCompletionNotificationModes not available\n" );
++
++    CloseHandle( port );
++    CloseHandle( hfile );
++    DeleteFileA( file_name );
++}
++
+ #define TEST_OVERLAPPED_READ_SIZE 4096
+ 
+ static void test_overlapped_read(void)
+@@ -7080,6 +7146,7 @@
+     test_SetFileRenameInfo();
+     test_GetFileAttributesExW();
+     test_post_completion();
++    test_iocp_non_overlapped();
+     test_overlapped_read();
+     test_file_readonly_access();
+     test_find_file_stream();
+--- a/dlls/kernel32/tests/process.c
++++ b/dlls/kernel32/tests/process.c
+@@ -94,6 +94,9 @@
+ static DWORD  (WINAPI *pGetActiveProcessorCount)(WORD);
+ static DWORD  (WINAPI *pGetMaximumProcessorCount)(WORD);
+ static BOOL   (WINAPI *pGetProcessInformation)(HANDLE,PROCESS_INFORMATION_CLASS,void*,DWORD);
++static BOOL   (WINAPI *pGetProcessUserModeExceptionPolicy)(DWORD*);
++static BOOL   (WINAPI *pSetProcessUserModeExceptionPolicy)(DWORD);
++static BOOL   (WINAPI *pIsUserCetAvailableInEnvironment)(DWORD);
+ static void (WINAPI *pClosePseudoConsole)(HPCON);
+ static HRESULT (WINAPI *pCreatePseudoConsole)(COORD,HANDLE,HANDLE,DWORD,HPCON*);
+ 
+@@ -281,6 +284,9 @@
+     pGetActiveProcessorCount = (void *)GetProcAddress(hkernel32, "GetActiveProcessorCount");
+     pGetMaximumProcessorCount = (void *)GetProcAddress(hkernel32, "GetMaximumProcessorCount");
+     pGetProcessInformation = (void *)GetProcAddress(hkernel32, "GetProcessInformation");
++    pGetProcessUserModeExceptionPolicy = (void *)GetProcAddress(hkernel32, "GetProcessUserModeExceptionPolicy");
++    pSetProcessUserModeExceptionPolicy = (void *)GetProcAddress(hkernel32, "SetProcessUserModeExceptionPolicy");
++    pIsUserCetAvailableInEnvironment = (void *)GetProcAddress(hkernel32, "IsUserCetAvailableInEnvironment");
+     pCreatePseudoConsole = (void *)GetProcAddress(hkernel32, "CreatePseudoConsole");
+     pClosePseudoConsole = (void *)GetProcAddress(hkernel32, "ClosePseudoConsole");
+ 
+@@ -5710,6 +5716,54 @@
+     }
+ }
+ 
++#define PROCESS_CALLBACK_FILTER_ENABLED 0x1
++
++/* GetProcessUserModeExceptionPolicy/SetProcessUserModeExceptionPolicy are only
++ * exported on Windows 7 and later, so they are resolved dynamically. */
++static void test_UserModeExceptionPolicy(void)
++{
++    DWORD flags, old;
++
++    ok(pGetProcessUserModeExceptionPolicy != NULL, "GetProcessUserModeExceptionPolicy is not exported\n");
++    ok(pSetProcessUserModeExceptionPolicy != NULL, "SetProcessUserModeExceptionPolicy is not exported\n");
++    if (!pGetProcessUserModeExceptionPolicy || !pSetProcessUserModeExceptionPolicy) return;
++
++    if (!pGetProcessUserModeExceptionPolicy(&old))
++    {
++        ok(0, "failed to query the current exception policy, error %lu\n", GetLastError());
++        return;
++    }
++
++    SetLastError(0xdeadbeef);
++    ok(!pGetProcessUserModeExceptionPolicy(NULL), "expected failure\n");
++    ok(GetLastError() == ERROR_INVALID_PARAMETER, "expected ERROR_INVALID_PARAMETER, got %lu\n", GetLastError());
++
++    flags = 0xdeadbeef;
++    ok(pSetProcessUserModeExceptionPolicy(PROCESS_CALLBACK_FILTER_ENABLED),
++       "SetProcessUserModeExceptionPolicy failed, error %lu\n", GetLastError());
++    ok(pGetProcessUserModeExceptionPolicy(&flags), "GetProcessUserModeExceptionPolicy failed, error %lu\n", GetLastError());
++    ok(flags == PROCESS_CALLBACK_FILTER_ENABLED, "expected %#x, got %#lx\n", PROCESS_CALLBACK_FILTER_ENABLED, flags);
++
++    ok(pSetProcessUserModeExceptionPolicy(0), "SetProcessUserModeExceptionPolicy failed, error %lu\n", GetLastError());
++    flags = 0xdeadbeef;
++    ok(pGetProcessUserModeExceptionPolicy(&flags), "GetProcessUserModeExceptionPolicy failed, error %lu\n", GetLastError());
++    ok(flags == 0, "expected 0, got %#lx\n", flags);
++
++    ok(pSetProcessUserModeExceptionPolicy(old), "failed to restore the exception policy, error %lu\n", GetLastError());
++}
++
++/* IsUserCetAvailableInEnvironment is only exported on Windows 11 and later. */
++static void test_IsUserCetAvailableInEnvironment(void)
++{
++    ok(pIsUserCetAvailableInEnvironment != NULL, "IsUserCetAvailableInEnvironment is not exported\n");
++    if (!pIsUserCetAvailableInEnvironment) return;
++
++    /* Wine provides no CET-enabled environment (USER_CET_ENVIRONMENT_WIN32_PROCESS,
++     * USER_CET_ENVIRONMENT_SYSTEM32_PROCESS) */
++    ok(!pIsUserCetAvailableInEnvironment(0), "expected FALSE for USER_CET_ENVIRONMENT_WIN32_PROCESS\n");
++    ok(!pIsUserCetAvailableInEnvironment(1), "expected FALSE for USER_CET_ENVIRONMENT_SYSTEM32_PROCESS\n");
++}
++
+ START_TEST(process)
+ {
+     HANDLE job, hproc, h, h2;
+@@ -5839,6 +5893,8 @@
+     test_services_exe();
+     test_startupinfo();
+     test_GetProcessInformation();
++    test_UserModeExceptionPolicy();
++    test_IsUserCetAvailableInEnvironment();
+ 
+     /* things that can be tested:
+      *  lookup:         check the way program to be executed is searched
+--- a/dlls/kernel32/tests/thread.c
++++ b/dlls/kernel32/tests/thread.c
+@@ -1585,6 +1585,7 @@
+ static DWORD (WINAPI *pFlsAlloc)(PFLS_CALLBACK_FUNCTION);
+ static BOOL (WINAPI *pFlsFree)(DWORD);
+ static PVOID (WINAPI *pFlsGetValue)(DWORD);
++static PVOID (WINAPI *pFlsGetValue2)(DWORD);
+ static BOOL (WINAPI *pFlsSetValue)(DWORD,PVOID);
+ 
+ /* A thunk function to make FlsAlloc compatible with the signature of TlsAlloc */
+@@ -1813,6 +1814,42 @@
+   run_LS_tests();
+ }
+ 
++/* FlsGetValue2 is an undocumented export added in Windows 8; it behaves like
++ * FlsGetValue.  It is resolved dynamically because older Windows versions do
++ * not export it. */
++static void test_FLS_get_value2(void)
++{
++    DWORD index;
++    PVOID val;
++
++    ok(pFlsGetValue2 != NULL, "FlsGetValue2 is not exported\n");
++    if (!pFlsGetValue2) return;
++
++    index = pFlsAlloc(NULL);
++    ok(index != FLS_OUT_OF_INDEXES, "FlsAlloc failed, error %lu\n", GetLastError());
++    if (index == FLS_OUT_OF_INDEXES) return;
++
++    SetLastError(0xdeadbeef);
++    val = pFlsGetValue2(index);
++    ok(GetLastError() == ERROR_SUCCESS, "expected ERROR_SUCCESS, got %lu\n", GetLastError());
++    ok(val == NULL, "expected NULL, got %p\n", val);
++
++    ok(pFlsSetValue(index, (PVOID)0x1234), "FlsSetValue failed, error %lu\n", GetLastError());
++
++    SetLastError(0xdeadbeef);
++    val = pFlsGetValue2(index);
++    ok(GetLastError() == ERROR_SUCCESS, "expected ERROR_SUCCESS, got %lu\n", GetLastError());
++    ok(val == (PVOID)0x1234, "expected 0x1234, got %p\n", val);
++
++    /* 0 is never a valid FLS index */
++    SetLastError(0xdeadbeef);
++    val = pFlsGetValue2(0);
++    ok(val == NULL, "expected NULL, got %p\n", val);
++    ok(GetLastError() == ERROR_INVALID_PARAMETER, "expected ERROR_INVALID_PARAMETER, got %lu\n", GetLastError());
++
++    ok(pFlsFree(index), "FlsFree failed, error %lu\n", GetLastError());
++}
++
+ static void test_ThreadErrorMode(void)
+ {
+     DWORD oldmode;
+@@ -2639,6 +2676,7 @@
+     X(FlsFree);
+     X(FlsSetValue);
+     X(FlsGetValue);
++    X(FlsGetValue2);
+ 
+     X(InitializeProcThreadAttributeList);
+     X(UpdateProcThreadAttribute);
+@@ -2790,6 +2828,7 @@
+    test_RegisterWaitForSingleObject();
+    test_TLS();
+    test_FLS();
++   test_FLS_get_value2();
+    test_ThreadErrorMode();
+    test_thread_fpu_cw();
+    test_thread_actctx();
+--- a/dlls/ntdll/tests/path.c
++++ b/dlls/ntdll/tests/path.c
+@@ -25,6 +25,7 @@
+ #include "windef.h"
+ #include "winbase.h"
+ #include "winternl.h"
++#include "winreg.h"
+ #include "winnls.h"
+ #include "ddk/ntddk.h"
+ #include "wine/test.h"
+@@ -40,6 +41,9 @@
+ static BOOLEAN (WINAPI *pRtlDosPathNameToNtPathName_U)(const WCHAR*, UNICODE_STRING*, WCHAR**, CURDIR*);
+ static NTSTATUS (WINAPI *pRtlDosPathNameToNtPathName_U_WithStatus)(const WCHAR*, UNICODE_STRING*, WCHAR**, CURDIR*);
+ static NTSTATUS (WINAPI *pNtOpenFile)( HANDLE*, ACCESS_MASK, OBJECT_ATTRIBUTES*, IO_STATUS_BLOCK*, ULONG, ULONG );
++static NTSTATUS (WINAPI *pNtOpenKey)( HANDLE*, ACCESS_MASK, OBJECT_ATTRIBUTES* );
++static NTSTATUS (WINAPI *pNtQueryValueKey)( HANDLE, const UNICODE_STRING*, KEY_VALUE_INFORMATION_CLASS, void*, DWORD, DWORD* );
++static BOOLEAN (WINAPI *pRtlAreLongPathsEnabled)(void);
+ 
+ static void test_RtlDetermineDosPathNameType_U(void)
+ {
+@@ -815,6 +819,41 @@
+     ok( bret, "got error %ld.\n", GetLastError() );
+ }
+ 
++/* RtlAreLongPathsEnabled reports whether the LongPathsEnabled registry policy
++ * is in effect; the export was added in Windows 10. */
++static void test_RtlAreLongPathsEnabled(void)
++{
++    static const WCHAR key_path[] = L"\\Registry\\Machine\\SYSTEM\\CurrentControlSet\\Control\\FileSystem";
++    static const WCHAR value_name[] = L"LongPathsEnabled";
++    BYTE buffer[FIELD_OFFSET(KEY_VALUE_PARTIAL_INFORMATION, Data) + sizeof(DWORD)];
++    KEY_VALUE_PARTIAL_INFORMATION *info = (KEY_VALUE_PARTIAL_INFORMATION *)buffer;
++    UNICODE_STRING name;
++    OBJECT_ATTRIBUTES attr;
++    NTSTATUS status;
++    BOOLEAN expected = FALSE;
++    HANDLE key;
++    DWORD size;
++
++    ok(pRtlAreLongPathsEnabled != NULL, "RtlAreLongPathsEnabled is not exported\n");
++    if (!pRtlAreLongPathsEnabled) return;
++
++    /* compare against the policy the function documents to report */
++    RtlInitUnicodeString(&name, key_path);
++    InitializeObjectAttributes(&attr, &name, OBJ_CASE_INSENSITIVE, 0, NULL);
++    status = pNtOpenKey(&key, KEY_QUERY_VALUE, &attr);
++    if (!status)
++    {
++        RtlInitUnicodeString(&name, value_name);
++        if (!pNtQueryValueKey(key, &name, KeyValuePartialInformation, buffer, sizeof(buffer), &size) &&
++            info->Type == REG_DWORD && info->DataLength >= sizeof(DWORD))
++            expected = *(DWORD *)info->Data != 0;
++        NtClose(key);
++    }
++
++    ok(pRtlAreLongPathsEnabled() == expected, "expected %u, got %u\n",
++       expected, pRtlAreLongPathsEnabled());
++}
++
+ START_TEST(path)
+ {
+     HMODULE mod = GetModuleHandleA("ntdll.dll");
+@@ -829,8 +868,12 @@
+     pRtlDosPathNameToNtPathName_U = (void *)GetProcAddress(mod, "RtlDosPathNameToNtPathName_U");
+     pRtlDosPathNameToNtPathName_U_WithStatus = (void *)GetProcAddress(mod, "RtlDosPathNameToNtPathName_U_WithStatus");
+     pNtOpenFile             = (void *)GetProcAddress(mod, "NtOpenFile");
++    pNtOpenKey              = (void *)GetProcAddress(mod, "NtOpenKey");
++    pNtQueryValueKey        = (void *)GetProcAddress(mod, "NtQueryValueKey");
++    pRtlAreLongPathsEnabled = (void *)GetProcAddress(mod, "RtlAreLongPathsEnabled");
+ 
+     test_RtlSetCurrentDirectory_U();
++    test_RtlAreLongPathsEnabled();
+     test_RtlDetermineDosPathNameType_U();
+     test_RtlIsDosDeviceName_U();
+     test_RtlIsNameLegalDOS8Dot3();
+--- a/dlls/ntdll/tests/pipe.c
++++ b/dlls/ntdll/tests/pipe.c
+@@ -3141,6 +3141,172 @@
+     CloseHandle(process_handle);
+ }
+ 
++/* A handle that Wine creates for a Unix pipe inherited from the parent process
++ * (stdio redirected to a pipe by the Unix shell, e.g. `printf data | wine
++ * ntdll_test.exe pipe`) is an fd-backed file object, not a named pipe object.
++ * GetFileType() reports it as a pipe, but unlike a Wine named pipe object it
++ * doesn't implement GetNamedPipeInfo(); that's what tells the two apart here. */
++static BOOL is_fd_backed_pipe( HANDLE handle )
++{
++    if (!handle || handle == INVALID_HANDLE_VALUE) return FALSE;
++    if (GetFileType( handle ) != FILE_TYPE_PIPE) return FALSE;
++    return !GetNamedPipeInfo( handle, NULL, NULL, NULL, NULL );
++}
++
++static void test_unix_pipe_handle( HANDLE handle, BOOL read_end )
++{
++    FILE_PIPE_PEEK_BUFFER peek;
++    FILE_PIPE_INFORMATION info;
++    IO_STATUS_BLOCK iosb;
++    ULONG_PTR total, avail;
++    DWORD mode, pipe_avail;
++    NTSTATUS status;
++    char buffer[32];
++    BOOL ret;
++    int i;
++
++    /* such a pipe always is a byte stream blocking pipe, so byte mode with
++       queue-operation completion is accepted on it */
++    info.ReadMode = FILE_PIPE_BYTE_STREAM_MODE;
++    info.CompletionMode = FILE_PIPE_QUEUE_OPERATION;
++    status = pNtSetInformationFile( handle, &iosb, &info, sizeof(info), FilePipeInformation );
++    ok( !status, "NtSetInformationFile(FilePipeInformation) on a Unix pipe returned %#lx\n", status );
++
++    /* but it has no message queue, so message mode reads are not valid on it */
++    info.ReadMode = FILE_PIPE_MESSAGE_MODE;
++    info.CompletionMode = FILE_PIPE_QUEUE_OPERATION;
++    status = pNtSetInformationFile( handle, &iosb, &info, sizeof(info), FilePipeInformation );
++    ok( status == STATUS_INVALID_PARAMETER,
++        "NtSetInformationFile(message mode) on a Unix pipe returned %#lx\n", status );
++
++    /* the same requests through the public API used by libuv (and thus Node.js) */
++    mode = PIPE_READMODE_BYTE | PIPE_WAIT;
++    SetLastError( 0xdeadbeef );
++    ret = SetNamedPipeHandleState( handle, &mode, NULL, NULL );
++    ok( ret, "SetNamedPipeHandleState on a Unix pipe failed, error %lu\n", GetLastError() );
++
++    if (!read_end) return;
++
++    /* wait for the data the parent wrote to the pipe (bounded, deterministic:
++       the parent writes it before the process starts) */
++    for (i = 0; i < 1000; i++)
++    {
++        memset( &peek, 0, sizeof(peek) );
++        status = pNtFsControlFile( handle, NULL, NULL, NULL, &iosb, FSCTL_PIPE_PEEK,
++                                   NULL, 0, &peek, sizeof(peek) );
++        if (status != STATUS_SUCCESS || peek.ReadDataAvailable) break;
++        Sleep( 1 );
++    }
++    if (status == STATUS_PIPE_BROKEN)
++    {
++        win_skip( "the piped stdin is already closed without data\n" );
++        return;
++    }
++    ok( !status, "FSCTL_PIPE_PEEK on a Unix pipe returned %#lx\n", status );
++    ok( peek.NamedPipeState == FILE_PIPE_CONNECTED_STATE,
++        "got NamedPipeState %#lx\n", peek.NamedPipeState );
++    avail = peek.ReadDataAvailable;
++
++    /* the same through the public API; peeking doesn't consume the data */
++    pipe_avail = 0;
++    SetLastError( 0xdeadbeef );
++    ret = PeekNamedPipe( handle, NULL, 0, NULL, &pipe_avail, NULL );
++    ok( ret, "PeekNamedPipe on a Unix pipe failed, error %lu\n", GetLastError() );
++    ok( pipe_avail == avail, "PeekNamedPipe reported %lu bytes, FSCTL_PIPE_PEEK %Iu\n",
++        pipe_avail, avail );
++
++    if (!avail)
++    {
++        win_skip( "the piped stdin is empty\n" );
++        return;
++    }
++
++    /* the bytes FSCTL_PIPE_PEEK reported are the ones that can be read */
++    total = 0;
++    while (total < avail)
++    {
++        iosb.Information = 0;
++        status = NtReadFile( handle, NULL, NULL, NULL, &iosb, buffer, sizeof(buffer), NULL, NULL );
++        ok( !status && iosb.Information, "NtReadFile on a Unix pipe returned %#lx, information %Iu\n",
++            status, iosb.Information );
++        if (status || !iosb.Information) break;
++        total += iosb.Information;
++    }
++    ok( total == avail, "FSCTL_PIPE_PEEK reported %Iu bytes but %Iu were read\n", avail, total );
++
++    /* once the Unix parent has closed the write end of the pipe a zero-length
++       read fails, like on Windows */
++    memset( &peek, 0, sizeof(peek) );
++    status = pNtFsControlFile( handle, NULL, NULL, NULL, &iosb, FSCTL_PIPE_PEEK,
++                               NULL, 0, &peek, sizeof(peek) );
++    if (status == STATUS_PIPE_BROKEN)
++    {
++        status = NtReadFile( handle, NULL, NULL, NULL, &iosb, buffer, 0, NULL, NULL );
++        ok( status == STATUS_PIPE_BROKEN,
++            "zero-length NtReadFile on a closed Unix pipe returned %#lx\n", status );
++    }
++    else win_skip( "the write end of the piped stdin is still open, skipping the EOF check\n" );
++}
++
++static void test_unix_pipe_semantics( void )
++{
++    HANDLE handle = GetStdHandle( STD_INPUT_HANDLE );
++
++    if (is_fd_backed_pipe( handle ))
++        test_unix_pipe_handle( handle, TRUE );
++    else
++        win_skip( "stdin is not a Unix pipe, run as `printf PIPEDATA | wine ntdll_test.exe pipe`\n" );
++
++    handle = GetStdHandle( STD_OUTPUT_HANDLE );
++    if (is_fd_backed_pipe( handle ))
++        test_unix_pipe_handle( handle, FALSE );
++}
++
++/* the same operations on a real Windows-style (Wine named pipe) anonymous pipe,
++   for reference */
++static void test_named_pipe_semantics( void )
++{
++    static const char testdata[] = "PIPEDATA";
++    FILE_PIPE_PEEK_BUFFER peek;
++    FILE_PIPE_INFORMATION info;
++    IO_STATUS_BLOCK iosb;
++    HANDLE read, write;
++    DWORD written;
++    NTSTATUS status;
++    char buffer[32];
++
++    ok( CreatePipe( &read, &write, NULL, 0 ), "CreatePipe failed, error %lu\n", GetLastError() );
++
++    ok( WriteFile( write, testdata, sizeof(testdata) - 1, &written, NULL ),
++        "WriteFile failed, error %lu\n", GetLastError() );
++    ok( written == sizeof(testdata) - 1, "wrote %lu bytes\n", written );
++
++    info.ReadMode = FILE_PIPE_BYTE_STREAM_MODE;
++    info.CompletionMode = FILE_PIPE_QUEUE_OPERATION;
++    status = pNtSetInformationFile( read, &iosb, &info, sizeof(info), FilePipeInformation );
++    ok( !status, "NtSetInformationFile(FilePipeInformation) on a named pipe returned %#lx\n", status );
++
++    memset( &peek, 0, sizeof(peek) );
++    status = pNtFsControlFile( read, NULL, NULL, NULL, &iosb, FSCTL_PIPE_PEEK,
++                               NULL, 0, &peek, sizeof(peek) );
++    ok( !status, "FSCTL_PIPE_PEEK on a named pipe returned %#lx\n", status );
++    ok( peek.ReadDataAvailable == sizeof(testdata) - 1, "got ReadDataAvailable %lu\n", peek.ReadDataAvailable );
++
++    ok( CloseHandle( write ), "CloseHandle failed, error %lu\n", GetLastError() );
++
++    memset( buffer, 0, sizeof(buffer) );
++    status = NtReadFile( read, NULL, NULL, NULL, &iosb, buffer, sizeof(testdata) - 1, NULL, NULL );
++    ok( !status, "NtReadFile on a named pipe returned %#lx\n", status );
++    ok( iosb.Information == sizeof(testdata) - 1, "read %Iu bytes\n", iosb.Information );
++    ok( !memcmp( buffer, testdata, sizeof(testdata) - 1 ), "got wrong data\n" );
++
++    status = NtReadFile( read, NULL, NULL, NULL, &iosb, buffer, 0, NULL, NULL );
++    ok( status == STATUS_PIPE_BROKEN,
++        "zero-length NtReadFile on a broken named pipe returned %#lx\n", status );
++
++    CloseHandle( read );
++}
++
+ START_TEST(pipe)
+ {
+     char **argv;
+@@ -3181,6 +3347,10 @@
+     trace("starting FILE_PIPE_INFORMATION tests\n");
+     test_filepipeinfo();
+ 
++    trace("starting fd-backed Unix pipe tests\n");
++    test_unix_pipe_semantics();
++    test_named_pipe_semantics();
++
+     if (!pOpenThread || !pQueueUserAPC)
+         return;
+ 
+--- a/dlls/secur32/tests/secur32.c
++++ b/dlls/secur32/tests/secur32.c
+@@ -19,9 +19,11 @@
+  */
+ #include <stdio.h>
+ #include <stdarg.h>
++#include <wchar.h>
+ #include <windef.h>
+ #include <winbase.h>
+ #include <winnls.h>
++#include <winreg.h>
+ #include <rpc.h>
+ #include <rpcdce.h>
+ #define SECURITY_WIN32
+@@ -251,6 +253,116 @@
+     ok(nameW[0] == (WCHAR) 0xff, "Expected unchanged buffer\n");
+ }
+ 
++/* NameUserPrincipal and NameDnsDomain are composed from the domain the account is in: "user@dns.domain"
++ * and "dns.domain\user".  Wine has no directory to take a user principal name from and uses the machine's
++ * DNS domain, which is the same value GetComputerNameExW( ComputerNameDnsDomain ) reports.  On a machine
++ * that is in no domain these two formats keep answering ERROR_NONE_MAPPED - "If the user account is not in
++ * a domain, only NameSamCompatible is supported" - so the test puts the machine in a domain when it is in
++ * none, which is what makes the answering branch reachable on every host, and restores the value after. */
++static void testGetUserNameEx_domain(void)
++{
++    static const WCHAR params_key[] = L"System\\CurrentControlSet\\Services\\Tcpip\\Parameters";
++    static const WCHAR domain_value[] = L"Domain";
++    static const WCHAR test_domain[] = L"wine.test.example";
++    static const EXTENDED_NAME_FORMAT fmts[] = { NameUserPrincipal, NameDnsDomain };
++    WCHAR user[256], domain[256], name[256], old_domain[256];
++    DWORD user_len = ARRAY_SIZE(user), domain_len, old_len, old_type;
++    BOOL have_domain, have_old_domain = FALSE;
++    ULONG size, len;
++    HKEY key;
++    UINT i;
++    BOOLEAN rc;
++
++    if (!GetUserNameW( user, &user_len ))
++    {
++        win_skip( "GetUserNameW failed: %lu\n", GetLastError() );
++        return;
++    }
++    user_len = lstrlenW( user );
++
++    if (!RegOpenKeyExW( HKEY_LOCAL_MACHINE, params_key, 0, KEY_READ | KEY_WRITE, &key ))
++    {
++        old_len = sizeof(old_domain);
++        if (!RegQueryValueExW( key, domain_value, NULL, &old_type, (BYTE *)old_domain, &old_len ))
++            have_old_domain = TRUE;
++        if (RegSetValueExW( key, domain_value, 0, REG_SZ, (const BYTE *)test_domain, sizeof(test_domain) ))
++            trace( "could not set the DNS domain (error %lu), using the machine's own\n", GetLastError() );
++        RegCloseKey( key );
++    }
++
++    domain_len = ARRAY_SIZE(domain);
++    have_domain = GetComputerNameExW( ComputerNameDnsDomain, domain, &domain_len ) && domain_len && domain[0];
++    trace( "machine DNS domain: %s\n", have_domain ? wine_dbgstr_w(domain) : "<none>" );
++
++    for (i = 0; i < ARRAY_SIZE(fmts); i++)
++    {
++        winetest_push_context( "%u", fmts[i] );
++
++        size = 0;
++        SetLastError( 0xdeadbeef );
++        rc = pGetUserNameExW( fmts[i], NULL, &size );
++
++        if (!have_domain)
++        {
++            /* Not in a domain: only NameSamCompatible has an answer */
++            ok( !rc, "got %d\n", rc );
++            ok( GetLastError() == ERROR_NONE_MAPPED, "got %lu\n", GetLastError() );
++        }
++        else
++        {
++            /* The sizing call reports the required size, the call with that size answers the name */
++            ok( !rc, "got %d\n", rc );
++            ok( GetLastError() == ERROR_MORE_DATA, "got %lu\n", GetLastError() );
++            ok( size > user_len + 1, "got %lu for user %s\n", size, wine_dbgstr_w(user) );
++
++            len = size;
++            rc = pGetUserNameExW( fmts[i], name, &len );
++            ok( rc, "got %lu\n", GetLastError() );
++            if (rc)
++            {
++                ok( len == lstrlenW( name ), "got %lu for %s\n", len, wine_dbgstr_w(name) );
++                if (fmts[i] == NameUserPrincipal)
++                {
++                    ok( name[user_len] == '@', "expected user@domain, got %s\n", wine_dbgstr_w(name) );
++                    ok( !_wcsnicmp( name, user, user_len ), "expected %s to start with %s\n",
++                        wine_dbgstr_w(name), wine_dbgstr_w(user) );
++                    ok( lstrlenW( name ) > user_len + 1, "expected a domain after the '@', got %s\n",
++                        wine_dbgstr_w(name) );
++                }
++                else
++                {
++                    ok( lstrlenW( name ) > user_len + 1, "expected domain\\user, got %s\n", wine_dbgstr_w(name) );
++                    ok( name[lstrlenW(name) - user_len - 1] == '\\', "expected domain\\user, got %s\n",
++                        wine_dbgstr_w(name) );
++                    ok( !_wcsicmp( name + lstrlenW(name) - user_len, user ), "expected %s to end with %s\n",
++                        wine_dbgstr_w(name), wine_dbgstr_w(user) );
++                }
++            }
++
++            size = 1;
++            name[0] = 0xff;
++            SetLastError( 0xdeadbeef );
++            rc = pGetUserNameExW( fmts[i], name, &size );
++            ok( !rc, "got %d\n", rc );
++            ok( GetLastError() == ERROR_MORE_DATA, "got %lu\n", GetLastError() );
++            ok( size > 1, "got %lu\n", size );
++            ok( name[0] == (WCHAR)0xff, "expected unchanged buffer\n" );
++        }
++
++        winetest_pop_context();
++    }
++
++    if (!RegOpenKeyExW( HKEY_LOCAL_MACHINE, params_key, 0, KEY_WRITE, &key ))
++    {
++        if (have_old_domain)
++            RegSetValueExW( key, domain_value, 0, REG_SZ, (const BYTE *)old_domain,
++                            (lstrlenW(old_domain) + 1) * sizeof(WCHAR) );
++        else
++            RegDeleteValueW( key, domain_value );
++        RegCloseKey( key );
++    }
++}
++
+ static void test_InitSecurityInterface(void)
+ {
+     PSecurityFunctionTableA sftA;
+@@ -760,7 +872,10 @@
+             win_skip("GetUserNameExA not exported by secur32.dll\n");
+ 
+         if (pGetUserNameExW)
++        {
+             testGetUserNameExW();
++            testGetUserNameEx_domain();
++        }
+         else
+             win_skip("GetUserNameExW not exported by secur32.dll\n");
+ 
+--- a/dlls/urlmon/tests/sec_mgr.c
++++ b/dlls/urlmon/tests/sec_mgr.c
+@@ -444,6 +444,58 @@
+     IInternetSecurityManager_Release(secmgr);
+ }
+ 
++static void test_MapUrlToZone_res_scheme(void)
++{
++    static const WCHAR res_empty_host[] = L"res:///%25prodname%25btn.xmx/$10/$RCDATA_16_COLOR";
++    static const WCHAR res_with_host[] = L"res://acadbtn.xmx/$10/$RCDATA_16_COLOR";
++    static const WCHAR http_url[] = L"http://www.example.com/";
++    static const WCHAR ftp_url[] = L"ftp://ftp.example.com/";
++    IInternetSecurityManager *secmgr;
++    DWORD zone;
++    HRESULT hres;
++
++    if(!pCoInternetCreateSecurityManager) {
++        win_skip("CoInternetCreateSecurityManager not available\n");
++        return;
++    }
++
++    trace("Testing res: URL zones...\n");
++
++    hres = pCoInternetCreateSecurityManager(NULL, &secmgr, 0);
++    ok(hres == S_OK, "CoInternetCreateSecurityManager failed: %08lx\n", hres);
++    if(FAILED(hres))
++        return;
++
++    /* Windows doesn't treat "res:" as a hierarchical scheme, so a res: URL
++     * with an empty host falls through to the ProtocolDefaults lookup and ends
++     * up in the Internet zone instead of URLZONE_INVALID. Before the AutoCAD
++     * 2027 patch Wine applied its empty-host rule to URL_SCHEME_RES and
++     * returned URLZONE_INVALID (0xffffffff) for the URL below. */
++    zone = 100;
++    hres = IInternetSecurityManager_MapUrlToZone(secmgr, res_empty_host, &zone, 0);
++    ok(hres == S_OK, "MapUrlToZone failed: %08lx\n", hres);
++    ok(zone == URLZONE_INTERNET, "zone=%ld, expected URLZONE_INTERNET\n", zone);
++
++    /* A res: URL that does have a host is unaffected by the empty-host rule. */
++    zone = 100;
++    hres = IInternetSecurityManager_MapUrlToZone(secmgr, res_with_host, &zone, 0);
++    ok(hres == S_OK, "MapUrlToZone failed: %08lx\n", hres);
++    ok(zone == URLZONE_INTERNET, "zone=%ld, expected URLZONE_INTERNET\n", zone);
++
++    /* Controls: ordinary hierarchical schemes still map to the Internet zone. */
++    zone = 100;
++    hres = IInternetSecurityManager_MapUrlToZone(secmgr, http_url, &zone, 0);
++    ok(hres == S_OK, "MapUrlToZone failed: %08lx\n", hres);
++    ok(zone == URLZONE_INTERNET, "zone=%ld, expected URLZONE_INTERNET\n", zone);
++
++    zone = 100;
++    hres = IInternetSecurityManager_MapUrlToZone(secmgr, ftp_url, &zone, 0);
++    ok(hres == S_OK, "MapUrlToZone failed: %08lx\n", hres);
++    ok(zone == URLZONE_INTERNET, "zone=%ld, expected URLZONE_INTERNET\n", zone);
++
++    IInternetSecurityManager_Release(secmgr);
++}
++
+ /* Check if Internet Explorer is configured to run in "Enhanced Security Configuration" (aka hardened mode) */
+ /* Note: this code is duplicated in dlls/mshtml/tests/mshtml_test.h and dlls/urlmon/tests/sec_mgr.c */
+ static BOOL is_ie_hardened(void)
+@@ -2445,6 +2497,7 @@
+     }
+ 
+     test_SecurityManager();
++    test_MapUrlToZone_res_scheme();
+     test_SecurityManagerEx2();
+     test_polices();
+     test_zone_domains();
+--- a/dlls/wintrust/tests/softpub.c
++++ b/dlls/wintrust/tests/softpub.c
+@@ -1739,6 +1739,76 @@
+     }
+ }
+ 
++/* Tests WTD_CHOICE_BLOB: the signed object is a PKCS#7 message held in memory.
++ * The signature embedded in SelfSignedFile32 is used as the blob, so the
++ * expected trust status is the same as when that file is verified. */
++static void test_wintrust_blob(void)
++{
++    static GUID generic_action_v2 = WINTRUST_ACTION_GENERIC_VERIFY_V2;
++    SAFE_PROVIDER_FUNCTIONS funcs = { sizeof(SAFE_PROVIDER_FUNCTIONS), 0 };
++    WINTRUST_BLOB_INFO blob = { sizeof(blob), { 0 } };
++    WINTRUST_DATA data = { sizeof(data), 0 };
++    CRYPT_PROVIDER_DATA *prov;
++    IMAGE_DOS_HEADER dos;
++    IMAGE_NT_HEADERS32 nt;
++    DWORD sig_off, sig_len;
++    LONG status;
++
++    if (!WintrustLoadFunctionPointers(&generic_action_v2,
++     (CRYPT_PROVIDER_FUNCTIONS *)&funcs) || !funcs.pfnObjectTrust)
++    {
++        skip("the generic verify trust provider is not registered\n");
++        return;
++    }
++
++    memcpy(&dos, SelfSignedFile32, sizeof(dos));
++    memcpy(&nt, SelfSignedFile32 + dos.e_lfanew, sizeof(nt));
++    sig_off = nt.OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_SECURITY].VirtualAddress;
++    sig_len = nt.OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_SECURITY].Size;
++    ok(sig_off + sig_len <= sizeof(SelfSignedFile32),
++     "unexpected signature location %#lx/%#lx\n", sig_off, sig_len);
++    if (sig_off + sig_len > sizeof(SelfSignedFile32))
++        return;
++
++    /* The signed message starts after the WIN_CERTIFICATE header; use the
++     * field offset, since sizeof(WIN_CERTIFICATE) includes padding. */
++    blob.pbMemObject = (BYTE *)SelfSignedFile32 + sig_off +
++     FIELD_OFFSET(WIN_CERTIFICATE, bCertificate);
++    blob.cbMemObject = sig_len - FIELD_OFFSET(WIN_CERTIFICATE, bCertificate);
++
++    data.dwUIChoice = WTD_UI_NONE;
++    data.fdwRevocationChecks = WTD_REVOKE_NONE;
++    data.dwUnionChoice = WTD_CHOICE_BLOB;
++    data.pBlob = &blob;
++    data.dwStateAction = WTD_STATEACTION_VERIFY;
++    status = WinVerifyTrust(NULL, &generic_action_v2, &data);
++    ok(status != ERROR_INVALID_PARAMETER,
++     "WTD_CHOICE_BLOB is not supported, got %#lx\n", status);
++    /* Same trust status as verifying the file the signature came from:
++     * Windows reports the untrusted self-signed root as CERT_E_CHAINING or
++     * CERT_E_UNTRUSTEDROOT (see test_wintrust_digest), while Wine trusts this
++     * chain and returns S_OK. */
++    ok(status == S_OK || status == CERT_E_UNTRUSTEDROOT ||
++     status == CERT_E_CHAINING,
++     "expected S_OK, CERT_E_UNTRUSTEDROOT or CERT_E_CHAINING, got %#lx\n",
++     status);
++
++    prov = WTHelperProvDataFromStateData(data.hWVTStateData);
++    ok(prov != NULL, "got NULL provider data\n");
++    if (prov)
++    {
++        /* The in-memory PKCS#7 message was decoded and its signer loaded. */
++        ok(prov->csSigners == 1, "expected 1 signer, got %lu\n", prov->csSigners);
++        if (prov->csSigners == 1)
++            ok(prov->pasSigners[0].psSigner != NULL,
++             "expected a signer info\n");
++    }
++
++    data.dwStateAction = WTD_STATEACTION_CLOSE;
++    status = WinVerifyTrust(NULL, &generic_action_v2, &data);
++    ok(status == S_OK, "closing the state failed: %#lx\n", status);
++}
++
+ static void test_get_known_usages(void)
+ {
+     BOOL ret;
+@@ -1961,6 +2031,7 @@
+     test_sip_create_indirect_data();
+     test_wintrust();
+     test_wintrust_digest();
++    test_wintrust_blob();
+     test_get_known_usages();
+     test_WTHelperGetProvCertFromChain();
+     test_multiple_signatures();
+--- a/dlls/ws2_32/tests/protocol.c
++++ b/dlls/ws2_32/tests/protocol.c
+@@ -438,6 +438,12 @@
+     todo_wine
+     ok(handle != (HANDLE)0xdeadbeef, "Handle was not filled\n");
+ 
++    if (handle == (HANDLE)0xdeadbeef)
++    {
++        /* the lookup could not be started, don't enumerate with an invalid handle */
++        return;
++    }
++
+     offset = 0;
+     do
+     {
+@@ -535,6 +541,109 @@
+     ok(!ret, "WSALookupServiceEnd failed unexpectedly\n");
+ }
+ 
++/* Does the machine have a network connection at all?  Mirrors the answer the NLA lookups are
++ * expected to give: an adapter other than the loopback is in the up state. */
++static BOOL test_have_network_connection(void)
++{
++    IP_ADAPTER_ADDRESSES *adapters, *adapter, *tmp;
++    ULONG size = 16 * 1024, flags = GAA_FLAG_SKIP_ANYCAST | GAA_FLAG_SKIP_MULTICAST | GAA_FLAG_SKIP_DNS_SERVER;
++    DWORD err;
++    BOOL ret = TRUE;
++
++    if (!(adapters = malloc( size ))) return TRUE;
++    err = GetAdaptersAddresses( AF_UNSPEC, flags, NULL, adapters, &size );
++    if (err == ERROR_BUFFER_OVERFLOW && (tmp = realloc( adapters, size )))
++    {
++        adapters = tmp;
++        err = GetAdaptersAddresses( AF_UNSPEC, flags, NULL, adapters, &size );
++    }
++    if (!err)
++    {
++        ret = FALSE;
++        for (adapter = adapters; adapter; adapter = adapter->Next)
++        {
++            if (adapter->OperStatus == IfOperStatusUp && adapter->IfType != IF_TYPE_SOFTWARE_LOOPBACK)
++            {
++                ret = TRUE;
++                break;
++            }
++        }
++    }
++    free( adapters );
++    return ret;
++}
++
++/* Chromium's network change notifier asks the Network Location Awareness namespace whether the
++ * machine has a network connection at all (WSALookupServiceBeginW(NS_NLA) followed by
++ * WSALookupServiceNextW).  Windows answers these lookups; here they must succeed as well and
++ * report one network when an adapter is up, WSA_E_NO_MORE otherwise. */
++static void test_WSALookupService_NLA(void)
++{
++    char buffer[4096];
++    WSAQUERYSETW *qs = (WSAQUERYSETW *)buffer;
++    WSAQUERYSETA *qsa = (WSAQUERYSETA *)buffer;
++    BOOL connected = test_have_network_connection();
++    HANDLE handle;
++    DWORD size;
++    int ret, count;
++
++    memset( buffer, 0, sizeof(buffer) );
++    qs->dwSize = sizeof(*qs);
++    qs->dwNameSpace = NS_NLA;
++    handle = NULL;
++
++    ret = WSALookupServiceBeginW( qs, LUP_RETURN_ALL, &handle );
++    ok( !ret, "WSALookupServiceBeginW(NS_NLA) failed with error %lu\n", WSAGetLastError() );
++    if (ret) return;
++    ok( handle != NULL, "handle was not set\n" );
++
++    for (count = 0; count < 32; count++)
++    {
++        memset( qs, 0, sizeof(*qs) );
++        size = sizeof(buffer);
++        if (WSALookupServiceNextW( handle, LUP_RETURN_NAME, &size, qs ) == SOCKET_ERROR) break;
++        ok( qs->dwNameSpace == NS_NLA, "got namespace %lu\n", qs->dwNameSpace );
++        ok( !!qs->lpszServiceInstanceName, "no service instance name\n" );
++    }
++    ok( count < 32, "too many results\n" );
++    ok( WSAGetLastError() == WSA_E_NO_MORE, "got error %lu\n", WSAGetLastError() );
++    if (connected)
++        ok( count > 0, "no network reported although an adapter is up\n" );
++    else
++        ok( !count, "network reported although no adapter is up\n" );
++
++    ok( !WSALookupServiceEnd( handle ), "WSALookupServiceEnd failed unexpectedly\n" );
++
++    /* the same through the ANSI entry points */
++    memset( buffer, 0, sizeof(buffer) );
++    qsa->dwSize = sizeof(*qsa);
++    qsa->dwNameSpace = NS_NLA;
++    handle = NULL;
++
++    ret = WSALookupServiceBeginA( qsa, LUP_RETURN_ALL, &handle );
++    ok( !ret, "WSALookupServiceBeginA(NS_NLA) failed with error %lu\n", WSAGetLastError() );
++    if (!ret)
++    {
++        memset( qsa, 0, sizeof(*qsa) );
++        size = sizeof(buffer);
++        ret = WSALookupServiceNextA( handle, LUP_RETURN_NAME, &size, qsa );
++        if (connected)
++        {
++            ok( !ret, "WSALookupServiceNextA failed with error %lu\n", WSAGetLastError() );
++            if (!ret)
++            {
++                ok( qsa->dwNameSpace == NS_NLA, "got namespace %lu\n", qsa->dwNameSpace );
++                ok( !!qsa->lpszServiceInstanceName, "no service instance name\n" );
++            }
++        }
++        else
++            ok( ret == SOCKET_ERROR && WSAGetLastError() == WSA_E_NO_MORE,
++                "got error %lu\n", WSAGetLastError() );
++
++        ok( !WSALookupServiceEnd( handle ), "WSALookupServiceEnd failed unexpectedly\n" );
++    }
++}
++
+ #define WM_ASYNCCOMPLETE (WM_USER + 100)
+ static HWND create_async_message_window(void)
+ {
+@@ -2558,6 +2667,120 @@
+     }
+ }
+ 
++/* Windows resolves names through %SystemRoot%\system32\drivers\etc\hosts before asking DNS.  Make
++ * sure an entry written there by an application (an installer, for instance) is honoured: add a
++ * unique entry to the hosts file of the current prefix, resolve it, then remove it again. */
++static void test_getaddrinfo_hosts_file(void)
++{
++    static const char host_name[] = "wine-ws2_32-hosts-test.invalid";
++    static const char host_entry[] = "127.0.0.1 wine-ws2_32-hosts-test.invalid\n";
++    char path[MAX_PATH], *content, *new_content;
++    struct sockaddr_in *sin;
++    struct in_addr expected;
++    ADDRINFOA hints, *result = NULL;
++    DWORD size, written, len;
++    HANDLE file;
++    int ret;
++
++    len = GetWindowsDirectoryA( path, ARRAY_SIZE(path) );
++    if (!len || len > ARRAY_SIZE(path) - sizeof("\\system32\\drivers\\etc\\hosts"))
++    {
++        win_skip( "cannot determine the Windows directory\n" );
++        return;
++    }
++    strcat( path, "\\system32\\drivers\\etc\\hosts" );
++
++    file = CreateFileA( path, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
++                        NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL );
++    if (file == INVALID_HANDLE_VALUE)
++    {
++        win_skip( "cannot open %s, skipping the hosts file test\n", wine_dbgstr_a(path) );
++        return;
++    }
++
++    size = GetFileSize( file, NULL );
++    if (size == INVALID_FILE_SIZE || size > 64 * 1024)
++    {
++        win_skip( "cannot read %s\n", wine_dbgstr_a(path) );
++        CloseHandle( file );
++        return;
++    }
++    content = malloc( size + 1 );
++    new_content = malloc( sizeof(host_entry) + size );
++    if (!content || !new_content)
++    {
++        win_skip( "out of memory\n" );
++        CloseHandle( file );
++        free( content );
++        free( new_content );
++        return;
++    }
++    SetFilePointer( file, 0, NULL, FILE_BEGIN );
++    if (!ReadFile( file, content, size, &written, NULL ) || written != size)
++    {
++        win_skip( "cannot read %s\n", wine_dbgstr_a(path) );
++        CloseHandle( file );
++        free( content );
++        free( new_content );
++        return;
++    }
++    content[size] = 0;
++
++    /* put the entry first: the address of an entry that is present is the one that must be used */
++    memcpy( new_content, host_entry, sizeof(host_entry) - 1 );
++    memcpy( new_content + sizeof(host_entry) - 1, content, size );
++    SetFilePointer( file, 0, NULL, FILE_BEGIN );
++    if (!WriteFile( file, new_content, sizeof(host_entry) - 1 + size, &written, NULL )
++        || written != sizeof(host_entry) - 1 + size)
++    {
++        win_skip( "cannot write %s\n", wine_dbgstr_a(path) );
++        SetFilePointer( file, 0, NULL, FILE_BEGIN );
++        WriteFile( file, content, size, &written, NULL );
++        SetEndOfFile( file );
++        CloseHandle( file );
++        free( content );
++        free( new_content );
++        return;
++    }
++    SetEndOfFile( file );
++    CloseHandle( file );
++
++    memset( &hints, 0, sizeof(hints) );
++    hints.ai_family = AF_INET;
++    hints.ai_socktype = SOCK_STREAM;
++    ret = getaddrinfo( host_name, NULL, &hints, &result );
++    ok( !ret, "getaddrinfo(%s) failed with error %d\n", host_name, ret );
++    if (!ret)
++    {
++        expected.s_addr = inet_addr( "127.0.0.1" );
++        ok( result != NULL, "no address returned for %s\n", host_name );
++        if (result)
++        {
++            ok( result->ai_family == AF_INET, "got family %d\n", result->ai_family );
++            sin = (struct sockaddr_in *)result->ai_addr;
++            ok( sin && !memcmp( &sin->sin_addr, &expected, sizeof(expected) ),
++                "got address %s for %s\n", sin ? inet_ntoa( sin->sin_addr ) : "(none)", host_name );
++            freeaddrinfo( result );
++        }
++    }
++
++    /* remove the entry again */
++    file = CreateFileA( path, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING,
++                        FILE_ATTRIBUTE_NORMAL, NULL );
++    if (file == INVALID_HANDLE_VALUE)
++        ok( 0, "cannot reopen %s to restore it: %lu\n", wine_dbgstr_a(path), GetLastError() );
++    else
++    {
++        SetFilePointer( file, 0, NULL, FILE_BEGIN );
++        ok( WriteFile( file, content, size, &written, NULL ) && written == size,
++            "cannot restore %s\n", wine_dbgstr_a(path) );
++        SetEndOfFile( file );
++        CloseHandle( file );
++    }
++    free( content );
++    free( new_content );
++}
++
+ static void test_dns(void)
+ {
+     struct hostent *h;
+@@ -3182,6 +3405,7 @@
+ 
+     test_getservbyname();
+     test_WSALookupService();
++    test_WSALookupService_NLA();
+ 
+     test_inet_ntoa();
+     test_inet_addr();
+@@ -3193,6 +3417,7 @@
+     test_GetAddrInfoW();
+     test_GetAddrInfoExW();
+     test_getaddrinfo();
++    test_getaddrinfo_hosts_file();
+ 
+     test_dns();
+     test_gethostbyname();
+--- a/dlls/dxgi/tests/dxgi.c
++++ b/dlls/dxgi/tests/dxgi.c
+@@ -2420,6 +2420,96 @@
+     DestroyWindow(creation_desc.OutputWindow);
+ }
+ 
++/* A composition swapchain has no output window; a compositor shows its frames.
++ * The compositor rasterises the page into the swapchain's back buffer through
++ * IDXGISurface1::GetDC(), so that surface has to be GDI-compatible and the
++ * returned DC has to be usable. */
++static void test_create_swapchain_for_composition(IUnknown *device, BOOL is_d3d12)
++{
++    DXGI_SWAP_CHAIN_DESC1 desc;
++    IDXGISwapChain1 *swapchain1;
++    IDXGISurface1 *surface;
++    IDXGIFactory2 *factory2;
++    IDXGIFactory *factory;
++    IDXGIDevice *d3d11_device;
++    RECT rect = {0, 0, 64, 64};
++    BOOL ret;
++    HDC dc;
++    HRESULT hr;
++
++    if (is_d3d12)
++    {
++        skip("CreateSwapChainForComposition() needs a Direct3D 11 device.\n");
++        return;
++    }
++
++    if (!(d3d11_device = create_d3d11_device()))
++    {
++        skip("Failed to create a Direct3D 11 device.\n");
++        return;
++    }
++
++    get_factory(device, is_d3d12, &factory);
++    hr = IDXGIFactory_QueryInterface(factory, &IID_IDXGIFactory2, (void **)&factory2);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    IDXGIFactory_Release(factory);
++    if (FAILED(hr))
++    {
++        IDXGIDevice_Release(d3d11_device);
++        return;
++    }
++
++    desc.Width = 64;
++    desc.Height = 64;
++    desc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
++    desc.Stereo = FALSE;
++    desc.SampleDesc.Count = 1;
++    desc.SampleDesc.Quality = 0;
++    desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
++    desc.BufferCount = 2;
++    desc.Scaling = DXGI_SCALING_STRETCH;
++    desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
++    desc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
++    desc.Flags = 0;
++
++    swapchain1 = NULL;
++    hr = IDXGIFactory2_CreateSwapChainForComposition(factory2, (IUnknown *)d3d11_device, &desc,
++            NULL, &swapchain1);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    if (FAILED(hr))
++    {
++        ok(!swapchain1, "Got unexpected swapchain %p.\n", swapchain1);
++        IDXGIFactory2_Release(factory2);
++        IDXGIDevice_Release(d3d11_device);
++        return;
++    }
++    ok(!!swapchain1, "Got unexpected swapchain %p.\n", swapchain1);
++
++    /* The back buffer the compositor reads has to give a usable DC. */
++    hr = IDXGISwapChain1_GetBuffer(swapchain1, 0, &IID_IDXGISurface1, (void **)&surface);
++    ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++    if (SUCCEEDED(hr))
++    {
++        dc = NULL;
++        hr = IDXGISurface1_GetDC(surface, FALSE, &dc);
++        ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++        ok(!!dc, "Got unexpected dc %p.\n", dc);
++        if (SUCCEEDED(hr))
++        {
++            ret = FillRect(dc, &rect, GetSysColorBrush(COLOR_WINDOW));
++            ok(ret, "Failed to draw into the surface DC, error %lu.\n", GetLastError());
++
++            hr = IDXGISurface1_ReleaseDC(surface, NULL);
++            ok(hr == S_OK, "Got unexpected hr %#lx.\n", hr);
++        }
++        IDXGISurface1_Release(surface);
++    }
++
++    IDXGISwapChain1_Release(swapchain1);
++    IDXGIFactory2_Release(factory2);
++    IDXGIDevice_Release(d3d11_device);
++}
++
+ static void test_get_containing_output(IUnknown *device, BOOL is_d3d12)
+ {
+     unsigned int adapter_idx, output_idx, output_count;
+@@ -9098,6 +9188,7 @@
+     test_swapchain_parameters();
+     test_swapchain_window_styles();
+     run_on_d3d10(test_create_swapchain);
++    run_on_d3d10(test_create_swapchain_for_composition);
+     run_on_d3d10(test_set_fullscreen);
+     run_on_d3d10(test_resize_target);
+     run_on_d3d10(test_resize_fullscreen);

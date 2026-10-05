@@ -1,0 +1,63 @@
+From 906ec5a385db2a712bd4bc3ff1207293f52a8711 Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:08:42 -0500
+Subject: [PATCH 07/23] server: allow associating non-overlapped handles with a
+ completion port
+
+Windows accepts CreateIoCompletionPort()/SetFileCompletionInformation() and
+SetFileCompletionNotificationModes() for handles that were not opened with FILE_FLAG_OVERLAPPED - the
+overlapped flag only matters for the asynchronous I/O itself.  libuv (and therefore Node.js/Electron)
+associates inherited std handles with its completion port and sets FILE_SKIP_SET_EVENT_ON_HANDLE on
+them; Wine's server rejected both with STATUS_INVALID_PARAMETER, which made Node throw
+"Error: open EBADF" as soon as it touched process.stdout with a piped stdout (which is how services
+launch the Autodesk licensing UI host, an Electron app).
+
+Verified with tools/ioprobe (P/Invoke) under Wine: for the std handles CreateIoCompletionPort went
+from 0/err=87 to a valid port with err=0, and SetFileCompletionNotificationModes from FALSE to TRUE.
+---
+ server/fd.c | 25 +++++++++++++------------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
+
+diff --git a/server/fd.c b/server/fd.c
+index 19aee94..fa50290 100644
+--- a/server/fd.c
++++ b/server/fd.c
+@@ -3158,7 +3158,11 @@ DECL_HANDLER(set_completion_info)
+ 
+     if (fd)
+     {
+-        if (is_fd_overlapped( fd ) && !fd->completion)
++        /* Windows allows associating a handle that was not opened for overlapped I/O with a
++         * completion port - the overlapped flag only matters for the asynchronous I/O itself.
++         * libuv (Node.js) associates inherited std handles with its completion port and expects
++         * this to succeed, so do not require is_fd_overlapped() here. */
++        if (!fd->completion)
+         {
+             fd->completion = get_completion_obj( current->process, req->chandle, IO_COMPLETION_MODIFY_STATE );
+             fd->comp_key = req->ckey;
+@@ -3187,17 +3191,14 @@ DECL_HANDLER(set_fd_completion_mode)
+     struct fd *fd = get_handle_fd_obj( current->process, req->handle, 0 );
+     if (fd)
+     {
+-        if (is_fd_overlapped( fd ))
+-        {
+-            if (req->flags & FILE_SKIP_SET_EVENT_ON_HANDLE)
+-                set_fd_signaled( fd, 0 );
+-            /* removing flags is not allowed */
+-            fd->comp_flags |= req->flags & ( FILE_SKIP_COMPLETION_PORT_ON_SUCCESS
+-                                           | FILE_SKIP_SET_EVENT_ON_HANDLE
+-                                           | FILE_SKIP_SET_USER_EVENT_ON_FAST_IO );
+-        }
+-        else
+-            set_error( STATUS_INVALID_PARAMETER );
++        /* as with set_completion_info, Windows accepts handles that were not opened for
++         * overlapped I/O here (libuv sets FILE_SKIP_SET_EVENT_ON_HANDLE on inherited std handles) */
++        if (req->flags & FILE_SKIP_SET_EVENT_ON_HANDLE)
++            set_fd_signaled( fd, 0 );
++        /* removing flags is not allowed */
++        fd->comp_flags |= req->flags & ( FILE_SKIP_COMPLETION_PORT_ON_SUCCESS
++                                       | FILE_SKIP_SET_EVENT_ON_HANDLE
++                                       | FILE_SKIP_SET_USER_EVENT_ON_FAST_IO );
+         release_object( fd );
+     }
+ }

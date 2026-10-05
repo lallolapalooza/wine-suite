@@ -1,0 +1,45 @@
+From 05bbced6b24408db587971ad33e6b35dcdd5e352 Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:11:10 -0500
+Subject: [PATCH 22/23] msxml3: implement IVBMXNamespaceManager::reset instead
+ of the E_NOTIMPL stub
+
+Recovered from the Power BI reference tree (/home/asdf/projects/powerbi/wine/wine-11.18):
+that tree carries this change but none of the powerbi/patches/0001..0007 files do, so the
+patch series alone does not reproduce the tree Power BI was validated against.  The change
+returns the namespace manager to its just-created state (drops pushed contexts, installs a
+fresh one) instead of returning E_NOTIMPL, which is what the Power BI XML stack calls.
+---
+ dlls/msxml3/mxnamespace.c | 19 +++++++++++++++++--
+ 1 file changed, 17 insertions(+), 2 deletions(-)
+
+diff --git a/dlls/msxml3/mxnamespace.c b/dlls/msxml3/mxnamespace.c
+index 68e2953..3f007b5 100644
+--- a/dlls/msxml3/mxnamespace.c
++++ b/dlls/msxml3/mxnamespace.c
+@@ -510,8 +510,23 @@ static HRESULT WINAPI vbnamespacemanager_get_allowOverride(IVBMXNamespaceManager
+ static HRESULT WINAPI vbnamespacemanager_reset(IVBMXNamespaceManager *iface)
+ {
+     namespacemanager *This = impl_from_IVBMXNamespaceManager( iface );
+-    FIXME("(%p): stub\n", This);
+-    return E_NOTIMPL;
++    struct nscontext *ctxt, *next;
++
++    TRACE("(%p)\n", This);
++
++    /* back to the state right after creation: no pushed contexts, no declared prefixes */
++    LIST_FOR_EACH_ENTRY_SAFE(ctxt, next, &This->ctxts, struct nscontext, entry)
++    {
++        list_remove(&ctxt->entry);
++        free_ns_context(ctxt);
++    }
++
++    ctxt = alloc_ns_context();
++    if (!ctxt) return E_OUTOFMEMORY;
++
++    list_add_head(&This->ctxts, &ctxt->entry);
++
++    return S_OK;
+ }
+ 
+ static HRESULT WINAPI vbnamespacemanager_pushContext(IVBMXNamespaceManager *iface)

@@ -1,0 +1,126 @@
+From 03d7f1e930df0d16aad6d6956e26722871486c13 Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:08:43 -0500
+Subject: [PATCH 12/23] secur32: answer GetUserNameExW's NameUserPrincipal and
+ NameDnsDomain from the machine's domain
+
+GetUserNameExW implemented only NameSamCompatible; every other format hit the FIXME and returned
+ERROR_NONE_MAPPED, including NameUserPrincipal (8) and NameDnsDomain (12).  Windows answers those
+from the account's directory entry, in the documented shapes "user@dns.domain" (NameUserPrincipal)
+and "dns.domain\user" (NameDnsDomain).  Autodesk's identity stack calls the function - the relay
+capture in logs/relay_report.md shows oneauth.dll+0x132ea5 asking for format 8 and
+AdpSDKCore.dll+0x48537 / oneauth.dll+0x2cd477 asking for format 2 - and the licence/identity code
+that wants a UPN got nothing back.
+
+The account's userPrincipalName lives in AD and Wine has no directory, so the domain is taken from
+the machine's DNS domain: that is exactly the value Wine's LSA already reports as
+POLICY_DNS_DOMAIN_INFO.DnsDomainName (advapi32/lsa.c builds it from
+GetComputerNameExW(ComputerNameDnsDomain)) and that GetComputerObjectNameW in this same file
+consults.  When the machine is in no domain the function keeps returning ERROR_NONE_MAPPED, which is
+what Windows does in that case: "If the user account is not in a domain, only NameSamCompatible is
+supported" (GetUserNameEx documentation) - measured on the Windows guest, where formats 3, 6, 7, 8,
+9, 10 and 12 all answer ERROR_NONE_MAPPED for the local account.  The two new cases therefore only
+fire where Windows would have an answer, and the buffer contract is the same as the existing
+NameSamCompatible case (success: *nSize = length without the terminating null; too small:
+ERROR_MORE_DATA with *nSize = length + 1 and the buffer untouched).
+
+Verified with tools/userprobe (net10.0-windows, P/Invoke of secur32.GetUserNameExW, also run in the
+win11 guest as the Windows reference).  With the machine in no domain, Wine before and after and the
+Windows guest all return FALSE/ERROR_NONE_MAPPED for formats 8 and 12.  With a domain configured in
+the prefix (HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Domain = corp.example.com, a
+temporary experiment; the value was empty before and is empty again afterwards), Wine before the
+patch returned FALSE/ERROR_NONE_MAPPED for both, and after the patch returns
+
+  GetUserNameExW( 8=NameUserPrincipal) NULL/0  -> FALSE nSize=22 err=234
+  GetUserNameExW( 8=NameUserPrincipal) buf/21  -> TRUE  nSize=21 err=0  "asdf@corp.example.com"
+  GetUserNameExW(12=NameDnsDomain    ) NULL/0  -> FALSE nSize=22 err=234
+  GetUserNameExW(12=NameDnsDomain    ) buf/21  -> TRUE  nSize=21 err=0  "corp.example.com\asdf"
+  GetUserNameExW( 8=NameUserPrincipal) buf/21  -> FALSE nSize=22 err=234  (buffer left untouched)
+
+The scoped secur32 test binary still passes: 236 tests executed, 0 failures.
+---
+ dlls/secur32/secur32.c | 57 ++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 55 insertions(+), 2 deletions(-)
+
+diff --git a/dlls/secur32/secur32.c b/dlls/secur32/secur32.c
+index 4ceb646..b65dc49 100644
+--- a/dlls/secur32/secur32.c
++++ b/dlls/secur32/secur32.c
+@@ -1119,6 +1119,22 @@ BOOLEAN WINAPI GetUserNameExA(
+     return rc;
+ }
+ 
++/* The DNS domain the machine is joined to, i.e. the domain the current account's user principal name
++ * is formed with.  Windows takes it from the account's userPrincipalName attribute in AD; Wine has no
++ * AD, so use the machine's DNS domain - the very same value Wine's LSA reports as
++ * POLICY_DNS_DOMAIN_INFO.DnsDomainName (advapi32/lsa.c builds it from
++ * GetComputerNameExW(ComputerNameDnsDomain), and GetComputerObjectNameW above uses that policy too).
++ * Returns FALSE when the machine is not in a domain, which is also the condition Windows uses:
++ * "If the user account is not in a domain, only NameSamCompatible is supported" (GetUserNameEx
++ * documentation), i.e. the other formats answer ERROR_NONE_MAPPED there. */
++static BOOL get_dns_domain( WCHAR *domain, DWORD len )
++{
++    DWORD size = len;
++
++    if (!GetComputerNameExW( ComputerNameDnsDomain, domain, &size )) return FALSE;
++    return size != 0 && domain[0] != 0;
++}
++
+ BOOLEAN WINAPI GetUserNameExW(
+   EXTENDED_NAME_FORMAT NameFormat, LPWSTR lpNameBuffer, PULONG nSize)
+ {
+@@ -1155,15 +1171,52 @@ BOOLEAN WINAPI GetUserNameExW(
+             return FALSE;
+         }
+ 
++    case NameUserPrincipal:
++    case NameDnsDomain:
++        {
++            WCHAR user[UNLEN + 1], domain[256];
++            DWORD user_len = ARRAY_SIZE(user), len;
++
++            if (!GetUserNameW(user, &user_len)) return FALSE;
++
++            if (!get_dns_domain(domain, ARRAY_SIZE(domain)))
++            {
++                SetLastError(ERROR_NONE_MAPPED);
++                return FALSE;
++            }
++
++            /* NameUserPrincipal is "user@dns.domain", NameDnsDomain is "dns.domain\user" */
++            len = lstrlenW(user) + lstrlenW(domain) + 1;
++            if (lpNameBuffer && *nSize > len)
++            {
++                if (NameFormat == NameUserPrincipal)
++                {
++                    lstrcpyW(lpNameBuffer, user);
++                    lstrcatW(lpNameBuffer, L"@");
++                    lstrcatW(lpNameBuffer, domain);
++                }
++                else
++                {
++                    lstrcpyW(lpNameBuffer, domain);
++                    lstrcatW(lpNameBuffer, L"\\");
++                    lstrcatW(lpNameBuffer, user);
++                }
++                *nSize = len;
++                return TRUE;
++            }
++
++            SetLastError(ERROR_MORE_DATA);
++            *nSize = len + 1;
++            return FALSE;
++        }
++
+     case NameUnknown:
+     case NameFullyQualifiedDN:
+     case NameDisplay:
+     case NameUniqueId:
+     case NameCanonical:
+-    case NameUserPrincipal:
+     case NameCanonicalEx:
+     case NameServicePrincipal:
+-    case NameDnsDomain:
+         FIXME("NameFormat %d not implemented\n", NameFormat);
+         SetLastError(ERROR_NONE_MAPPED);
+         return FALSE;

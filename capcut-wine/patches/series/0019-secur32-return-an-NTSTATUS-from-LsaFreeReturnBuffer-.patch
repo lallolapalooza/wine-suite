@@ -1,0 +1,94 @@
+From 84cd2e28b356f82c88700f37724073337d2ba1ad Mon Sep 17 00:00:00 2001
+From: omp <omp@local>
+Date: Sun, 4 Oct 2026 00:09:48 -0500
+Subject: [PATCH 19/23] secur32: return an NTSTATUS from LsaFreeReturnBuffer,
+ not VirtualFree's BOOL
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+`LsaFreeReturnBuffer` returns the result of `VirtualFree( buffer, 0, MEM_RELEASE )`, which is a BOOL:
+TRUE (1) on success, FALSE (0) on failure.  Its only consumer treats the value as an NTSTATUS, so
+under Wine a *successful* free is reported as 0x00000001 - `SEC_E_INVALID_HANDLE` - and a *failed*
+free is reported as STATUS_SUCCESS:
+
+    /* dlls/secur32/lsa.c:316 */
+    NTSTATUS WINAPI LsaFreeReturnBuffer( PVOID buffer )
+    {
+        TRACE("%p\n", buffer);
+        return VirtualFree( buffer, 0, MEM_RELEASE );
+    }
+    /* dlls/secur32/secur32.c:647 - the only consumer of the value */
+    SECURITY_STATUS WINAPI FreeContextBuffer( void *pv )
+    {
+        if (!RtlValidateHeap( GetProcessHeap(), 0, pv )) return LsaFreeReturnBuffer( pv );
+        RtlFreeHeap( GetProcessHeap(), 0, pv );
+        return SEC_E_OK;
+    }
+
+This is the call Power BI's MSOLAP OLE DB provider makes immediately after it finishes its
+authentication handshake, and the two platforms disagree on it - same probe, same provider, one
+platform each, measured on the call itself:
+
+    Wine    logs/msolap/sspi11.probe.out        [sspi] FreeContextBuffer(…) -> status=0x00000001
+    Windows logs/msolap/winprobe_sspi_ref.txt   [sspi] FreeContextBuffer(…) -> status=0x00000000
+            logs/msolap/winprobe_engine_ok.out  [sspi] FreeContextBuffer(…) -> status=0x00000000
+
+Both platforms take the same branch: the freed pointer is the `SecPkgInfoW` that
+`QueryContextAttributes( SECPKG_ATTR_PACKAGE_INFO )` hands back, which the LSA package allocates in
+the caller's process with `AllocateClientBuffer`, so `RtlValidateHeap` is false and the
+`VirtualFree` branch is the one that runs.  The Windows capture prints that explicitly
+(`HeapValidate=not the process heap`), so the branch selection is identical and only the returned
+value deviates: VirtualFree's TRUE arrives at the provider as 1.
+
+Windows behaviour restored: a successful `FreeContextBuffer`/`LsaFreeReturnBuffer` reports success.
+Nothing else changes - the failure path now returns a real error (`STATUS_INVALID_ADDRESS`) instead of
+claiming success, and the process-heap branch (`RtlFreeHeap`, which already returned SEC_E_OK) is
+untouched.
+
+Verified:
+
+  * Same-probe differential before the fix, quoted above (Wine 0x00000001 vs Windows 0x00000000), on the
+    same call, same provider, one platform each.
+  * Engine-free proof of the value, with the fix installed and everything else unchanged
+    (`logs/msolap/freebufprobe_fixed_wine.txt`; the probe is the same shape as `tools/winapi/ntlmprobe.c` -
+    a loopback `Negotiate` handshake in one process, then `QCA(SIZES)`, `QCA(PACKAGE_INFO)` and
+    `FreeContextBuffer` on both the LSA-allocated buffer and a process-heap one):
+
+        handshake round 1: client=0x00090312 out=74
+        handshake done:      client=0x00000000 server=0x00000000
+        QCA(SIZES)           status=0x00000000  cbMaxToken=1904 cbMaxSignature=16 cbBlockSize=0 cbSecurityTrailer=16
+        QCA(PACKAGE_INFO)    status=0x00000000  name=NTLM
+        FreeContextBuffer(lsa buffer) status=0x00000000  PASS  (want 0x00000000, as Windows returns)
+        FreeContextBuffer(heap buffer) status=0x00000000  PASS  (the RtlFreeHeap branch)
+
+    Before the fix the second line reported `0x00000001` (the Wine captures above); the heap branch was
+    already `SEC_E_OK` and is unchanged.
+  * The provider's differential and the application-level acceptance on the build containing this patch and
+    `0003` are recorded in `FINDINGS.md` (M41) and `docs/MSOLAP_CONNECTION.md` (§8), including whether
+    `Initialize()` flips to `S_OK`.
+
+Scope, stated plainly: this is a separate defect found on the same path, not part of the SPNEGO
+framing in `0003-secur32-negotiate-spnego.patch`; that patch does not touch this file and does not
+claim to fix this.  The inverted return is a defect either way - whether the provider's
+`Initialize()` turns on it is what the run above measures.
+---
+ dlls/secur32/lsa.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/dlls/secur32/lsa.c b/dlls/secur32/lsa.c
+index e3336a6..fd20515 100644
+--- a/dlls/secur32/lsa.c
++++ b/dlls/secur32/lsa.c
+@@ -316,7 +316,10 @@ NTSTATUS WINAPI LsaEnumerateLogonSessions(PULONG LogonSessionCount,
+ NTSTATUS WINAPI LsaFreeReturnBuffer(PVOID buffer)
+ {
+     TRACE("%p\n", buffer);
+-    return VirtualFree(buffer, 0, MEM_RELEASE);
++    /* VirtualFree returns a BOOL (TRUE on success); reporting that as an NTSTATUS makes a *successful* free
++     * look like a failure to the caller (secur32.FreeContextBuffer, its only consumer of the value) and a
++     * failed one look like success.  Windows returns success here. */
++    return VirtualFree(buffer, 0, MEM_RELEASE) ? STATUS_SUCCESS : STATUS_INVALID_ADDRESS;
+ }
+ 
+ NTSTATUS WINAPI LsaGetLogonSessionData(PLUID LogonId,

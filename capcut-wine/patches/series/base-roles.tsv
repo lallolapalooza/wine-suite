@@ -1,0 +1,26 @@
+# combined series -> origin.  Generated during the acad+powerbi merge.
+# New numbers are sequential; origin is the series it came from.
+# new	origin	source_patch	subject
+0001	acad	0001-wintrust-WTD_CHOICE_BLOB-and-RFC3161-timestamp.patch	wintrust: implement WTD_CHOICE_BLOB buffers and RFC 3161 timestamp verification
+0002	acad	0002-kernelbase-regf-hive-RegLoadAppKey.patch	kernelbase: load binary regf hive files in RegLoadAppKey
+0003	acad	0003-urlmon-MapUrlToZone-res-scheme-empty-host.patch	urlmon: keep the "res" scheme out of the empty-host URLZONE_INVALID rule
+0004	acad	0004-services-session-0.patch	wineserver: run the service manager and the services it starts in session 0
+0005	acad	0006-ws2_32-windows-hosts-file.patch	ws2_32: resolve names through the Windows hosts file
+0006	acad	0007-crypt32-group-policy-enterprise-stores.patch	crypt32: provide the group-policy and enterprise system certificate stores
+0007	acad	0008-server-completion-info-non-overlapped.patch	server: allow associating non-overlapped handles with a completion port
+0008	acad	0009-ntdll-fd-backed-pipe-semantics.patch	ntdll: make handles on fd-backed Unix pipes behave like Windows pipes
+0009	acad	0010-missing-exports-fls-cet-longpaths-zt.patch	kernel32/kernelbase/ntdll/dnsapi: export the APIs the licensing and browser stacks probe for
+0010	acad	0012-ws2_32-NS_NLA-lookups.patch	ws2_32: answer Network Location Awareness (NS_NLA) lookups
+0011	acad	0013-winex11-ignore-stale-window-errors.patch	winex11: ignore BadWindow/BadDrawable X errors on every display connection
+0012	acad	0014-secur32-GetUserNameExW-NameUserPrincipal-NameDnsDomain.patch  (+ powerbi 0005, identical hunks)	secur32: answer GetUserNameExW's NameUserPrincipal and NameDnsDomain from the machine's domain
+0013	acad	0015-msiexec-Windows-command-line-parsing.patch	msiexec: parse the command line with the Windows rules, so a property value ending in a backslash survives
+0014	acad	0016-ntdll-actctx-probing-privatePath.patch	ntdll/actctx: honour <probing privatePath="..."> from the application configuration file
+0015	acad	0017-tests-cover-the-series.patch.new  (+ ntdll/tests/file.c 0008 test recovered from acad reference tree)	tests: cover the patch series with Wine's own test suite
+0016	powerbi	0001-wintypes-winrt-metadata-resolution.patch	wintypes: resolve Windows Runtime type metadata, so .NET can bind WinRT types
+0017	powerbi	0002-ntdll-NtImpersonateAnonymousToken.patch	ntdll: implement NtImpersonateAnonymousToken, so the Analysis Services engine of Power BI Desktop can start
+0018	powerbi	0003-secur32-negotiate-spnego.patch	secur32: implement RFC 4178 SPNEGO in the Negotiate package, both roles
+0019	powerbi	0004-secur32-LsaFreeReturnBuffer.patch	secur32: return an NTSTATUS from LsaFreeReturnBuffer, not VirtualFree's BOOL
+0020	powerbi	0006-oledb32-DataConvert-VARIANT-I8-and-BOOL.patch	oledb32: convert VARIANT to DBTYPE_I8 and DBTYPE_BOOL, so a natively bound 64-bit or boolean column can be read
+0021	powerbi	0007-tests-cover-the-series.patch  (union: acad0017 domain test exists once + powerbi LsaFreeReturnBuffer assertion)	tests: cover the series with Wine's own test suite
+0022	powerbi	reference tree only: powerbi/wine/wine-11.18/dlls/msxml3/mxnamespace.c (no patch file exists)	msxml3: implement IVBMXNamespaceManager::reset instead of the E_NOTIMPL stub
+0023	acad-private	0005-bcrypt-debug-dump.patch  (DEBUG ONLY)	bcrypt: [DEBUG ONLY - not part of the fix] dump symmetric keys and plaintext
