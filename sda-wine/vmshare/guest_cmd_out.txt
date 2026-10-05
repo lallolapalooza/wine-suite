@@ -1,9 +1,0 @@
-﻿cmd=# nonce 1791078207.565447228
-$p = Get-ChildItem "$env:LOCALAPPDATA\Steinberg Download Assistant\logs" | Sort-Object LastWriteTime -Descending | Select-Object -First 1; curl.exe -s -T $p.FullName http://192.168.122.1:8000/win_sda_app.log; "uploaded " + $p.Name
-start=2026-10-03T18:43:29.6931959-07:00
-rc=0
-end=2026-10-03T18:43:30.1501885-07:00
---- output ---
-stored 11264 bytes
-uploaded Steinberg-Download-Assistant_2026-10-03_18-42-23.log
-

