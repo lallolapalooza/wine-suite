@@ -1,0 +1,209 @@
+From: Revit-on-Wine fork
+Subject: ncrypt: support importing ECC key blobs (Revit's startup crypto self-test)
+
+SYMPTOM
+  Revit 2027 aborts a few seconds into startup with
+
+      Assertion failed: line 47 of F:\Ship\2027_px64\Source\Revit\PersistenceDB\Pipeline\DataIntegrity.cpp
+      ExceptionCode=0xe06d7363 (an MSVC C++ throw) -> "An unrecoverable error has occurred" message box
+
+  immediately after the journal logs the SystemSettings block.  Wine's own log shows the call that
+  fails:
+
+      fixme:ncrypt:NCryptOpenStorageProvider (..., L"Microsoft Software Key Storage Provider", 0): stub
+      fixme:ncrypt:NCryptImportKey Silent flag not implemented
+      fixme:ncrypt:NCryptImportKey Unhandled key magic 0x32534345
+
+WHAT REVIT DOES (decompiled from PersistenceDB.dll, image base 0x180000000; its DataIntegrity.cpp
+string is the only place in the image paired with line 47)
+  0x180195d40  ASSERT(0 == helper(...));   -- helper 0x180195dc0:
+      NCryptOpenStorageProvider(&ksp, L"Microsoft Software Key Storage Provider", 0);
+      NCryptImportKey(ksp, NULL, L"ECCPRIVATEBLOB", NULL, &key, blob, cb, NCRYPT_SILENT_FLAG);
+      if (status < 0) return 1;   /* -> the assert fires */
+  with two hard-coded, byte-identical 104-byte blobs from Utility.dll's RCDATA resources 13536/13537
+  (Utility.dll!ResourceSelector::loadResourceDataFile), whose header is
+  45 43 53 32 20 00 00 00 = BCRYPT_ECDSA_PRIVATE_P256_MAGIC, cbKey = 32 (X||Y||d, i.e. ECDSA P-256).
+  It is a self-test of the process's own CNG capability, not a check of on-disk data.
+
+WINDOWS BEHAVIOUR RESTORED
+  On Windows NCryptImportKey imports ECC key blobs; the import has the same shape for every CNG
+  algorithm.  Wine's bcrypt already implements it (import_ecc_key with BCRYPT_ECCPRIVATE_BLOB /
+  BCRYPT_ECCPUBLIC_BLOB for P-256/384/521); only ncrypt's dispatch was missing and returned
+  NTE_INVALID_PARAMETER for any magic other than the three RSA ones.  This maps the ECDSA magics to
+  the matching BCRYPT_ECDSA_*_ALG_HANDLE, hands the blob to BCryptImportKeyPair, and reports the key
+  length (cbKey * 8) through NCRYPT_LENGTH_PROPERTY / BCRYPT_PUBLIC_KEY_LENGTH, as the RSA path does.
+
+TEST
+  dlls/ncrypt/tests/ncrypt.c: test_key_import_ecc() imports a P-256 private blob through
+  BCRYPT_ECCPRIVATE_BLOB and a public blob through BCRYPT_ECCPUBLIC_BLOB, and checks the handle and
+  the 256-bit NCRYPT_LENGTH_PROPERTY.  Run it with tools/run_wine_tests.sh ncrypt.
+
+--- a/dlls/ncrypt/main.c
++++ b/dlls/ncrypt/main.c
+@@ -150,9 +150,11 @@
+         break;
+ 
+     case ECDSA_P256:
++    case ECDSA_P384:
++    case ECDSA_P521:
+         if (!(object = allocate_object(KEY))) return NULL;
+ 
+-        object->key.algid = ECDSA_P256;
++        object->key.algid = algid;
+         break;
+ 
+     default:
+@@ -445,6 +447,56 @@
+         set_object_property(object, BCRYPT_PUBLIC_KEY_LENGTH, (BYTE *)&rsablob->BitLength, sizeof(rsablob->BitLength));
+         break;
+     }
++    case BCRYPT_ECDSA_PRIVATE_P256_MAGIC:
++    case BCRYPT_ECDSA_PUBLIC_P256_MAGIC:
++    case BCRYPT_ECDSA_PRIVATE_P384_MAGIC:
++    case BCRYPT_ECDSA_PUBLIC_P384_MAGIC:
++    case BCRYPT_ECDSA_PRIVATE_P521_MAGIC:
++    case BCRYPT_ECDSA_PUBLIC_P521_MAGIC:
++    {
++        NTSTATUS status;
++        BCRYPT_ECCKEY_BLOB *eccblob = (BCRYPT_ECCKEY_BLOB *)data;
++        BCRYPT_ALG_HANDLE bcrypt_alg;
++        enum algid algid;
++        DWORD bitlen;
++
++        switch (header->Magic)
++        {
++        case BCRYPT_ECDSA_PRIVATE_P256_MAGIC:
++        case BCRYPT_ECDSA_PUBLIC_P256_MAGIC:
++            bcrypt_alg = BCRYPT_ECDSA_P256_ALG_HANDLE;
++            algid = ECDSA_P256;
++            break;
++        case BCRYPT_ECDSA_PRIVATE_P384_MAGIC:
++        case BCRYPT_ECDSA_PUBLIC_P384_MAGIC:
++            bcrypt_alg = BCRYPT_ECDSA_P384_ALG_HANDLE;
++            algid = ECDSA_P384;
++            break;
++        default:
++            bcrypt_alg = BCRYPT_ECDSA_P521_ALG_HANDLE;
++            algid = ECDSA_P521;
++            break;
++        }
++
++        if (!(object = create_key_object(algid, provider)))
++        {
++            ERR("Error allocating memory\n");
++            return NTE_NO_MEMORY;
++        }
++
++        status = BCryptImportKeyPair(bcrypt_alg, NULL, type, &object->key.bcrypt_key, data, datasize, 0);
++        if (status != STATUS_SUCCESS)
++        {
++            WARN("Error importing key pair %#lx\n", status);
++            free(object);
++            return map_ntstatus(status);
++        }
++
++        bitlen = eccblob->cbKey * 8;
++        set_object_property(object, NCRYPT_LENGTH_PROPERTY, (BYTE *)&bitlen, sizeof(bitlen));
++        set_object_property(object, BCRYPT_PUBLIC_KEY_LENGTH, (BYTE *)&bitlen, sizeof(bitlen));
++        break;
++    }
+     default:
+         FIXME("Unhandled key magic %#lx\n", header->Magic);
+         return NTE_INVALID_PARAMETER;
+--- a/dlls/ncrypt/ncrypt_internal.h
++++ b/dlls/ncrypt/ncrypt_internal.h
+@@ -27,6 +27,8 @@
+     DSA,
+     ECDSA,
+     ECDSA_P256,
++    ECDSA_P384,
++    ECDSA_P521,
+ };
+ 
+ struct key
+--- a/dlls/ncrypt/tests/ncrypt.c
++++ b/dlls/ncrypt/tests/ncrypt.c
+@@ -165,6 +165,34 @@
+     0x44, 0x81, 0x09, 0x41, 0x80, 0x23, 0x7b, 0xf6, 0x3f, 0xaf, 0x91, 0xa1,
+     0x87, 0x75, 0x33, 0x15, 0xb8, 0xde, 0x32, 0x30, 0xb4, 0x5e, 0xfd};
+ 
++static UCHAR ecc_private_key_blob[] = {
++    0x45, 0x43, 0x53, 0x32, 0x20, 0x00, 0x00, 0x00, /* BCRYPT_ECDSA_PRIVATE_P256_MAGIC, cbKey = 32 */
++    /* X */
++    0x26, 0xff, 0x0e, 0xf9, 0x71, 0x93, 0xf8, 0xed, 0x59, 0xfa, 0x24, 0xec,
++    0x18, 0x13, 0xfe, 0xf5, 0x0b, 0x4a, 0xb1, 0x27, 0xb7, 0xab, 0x3e, 0x4f,
++    0xc5, 0x5a, 0x91, 0xa3, 0x6e, 0x21, 0x61, 0x65,
++    /* Y */
++    0x62, 0x7b, 0x8b, 0x30, 0x7a, 0x63, 0x4c, 0x1a, 0xf4, 0x54, 0x54, 0xbb,
++    0x75, 0x59, 0x68, 0x36, 0xfe, 0x49, 0x95, 0x75, 0x9e, 0x20, 0x3e, 0x69,
++    0x58, 0xb9, 0x7a, 0x84, 0x03, 0x45, 0x5c, 0x10,
++    /* d */
++    0xb9, 0xcd, 0xbe, 0xd4, 0x75, 0x5d, 0x05, 0xe5, 0x83, 0x0c, 0xd3, 0x37,
++    0x34, 0x15, 0xe3, 0x2c, 0xe5, 0x85, 0x15, 0xa9, 0xee, 0xba, 0x94, 0x03,
++    0x03, 0x0b, 0x86, 0xea, 0x85, 0x40, 0xbd, 0x35,
++};
++
++static UCHAR ecc_public_key_blob[] = {
++    0x45, 0x43, 0x53, 0x31, 0x20, 0x00, 0x00, 0x00, /* BCRYPT_ECDSA_PUBLIC_P256_MAGIC, cbKey = 32 */
++    /* X */
++    0x26, 0xff, 0x0e, 0xf9, 0x71, 0x93, 0xf8, 0xed, 0x59, 0xfa, 0x24, 0xec,
++    0x18, 0x13, 0xfe, 0xf5, 0x0b, 0x4a, 0xb1, 0x27, 0xb7, 0xab, 0x3e, 0x4f,
++    0xc5, 0x5a, 0x91, 0xa3, 0x6e, 0x21, 0x61, 0x65,
++    /* Y */
++    0x62, 0x7b, 0x8b, 0x30, 0x7a, 0x63, 0x4c, 0x1a, 0xf4, 0x54, 0x54, 0xbb,
++    0x75, 0x59, 0x68, 0x36, 0xfe, 0x49, 0x95, 0x75, 0x9e, 0x20, 0x3e, 0x69,
++    0x58, 0xb9, 0x7a, 0x84, 0x03, 0x45, 0x5c, 0x10,
++};
++
+ struct expected_property
+ {
+     const WCHAR *name;
+@@ -348,6 +376,40 @@
+     NCryptFreeObject(prov);
+ }
+ 
++static void test_key_import_ecc(void)
++{
++    NCRYPT_PROV_HANDLE prov;
++    NCRYPT_KEY_HANDLE key;
++    SECURITY_STATUS ret;
++    DWORD keylength, size;
++
++    ret = NCryptOpenStorageProvider(&prov, NULL, 0);
++    ok(ret == ERROR_SUCCESS, "got %#lx\n", ret);
++
++    key = 0;
++    ret = NCryptImportKey(prov, 0, BCRYPT_ECCPRIVATE_BLOB, NULL, &key, ecc_private_key_blob,
++                          sizeof(ecc_private_key_blob), 0);
++    ok(ret == ERROR_SUCCESS, "got %#lx\n", ret);
++    ok(key != 0, "got null handle\n");
++
++    keylength = 0;
++    size = 0;
++    ret = NCryptGetProperty(key, NCRYPT_LENGTH_PROPERTY, (BYTE *)&keylength, sizeof(keylength), &size, 0);
++    ok(ret == ERROR_SUCCESS, "got %#lx\n", ret);
++    ok(size == sizeof(keylength), "got %lu\n", size);
++    ok(keylength == 256, "got %lu\n", keylength);
++    NCryptFreeObject(key);
++
++    key = 0;
++    ret = NCryptImportKey(prov, 0, BCRYPT_ECCPUBLIC_BLOB, NULL, &key, ecc_public_key_blob,
++                          sizeof(ecc_public_key_blob), 0);
++    ok(ret == ERROR_SUCCESS, "got %#lx\n", ret);
++    ok(key != 0, "got null handle\n");
++    NCryptFreeObject(key);
++
++    NCryptFreeObject(prov);
++}
++
+ static void test_free_object(void)
+ {
+     NCRYPT_PROV_HANDLE prov;
+@@ -835,6 +897,7 @@
+ START_TEST(ncrypt)
+ {
+     test_key_import_rsa();
++    test_key_import_ecc();
+     test_free_object();
+     test_get_property();
+     test_set_property();
