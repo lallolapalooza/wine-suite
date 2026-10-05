@@ -1,6 +1,0 @@
-0314:trace:service:OpenSCManagerW (null) (null) 0xf003f
-0314:trace:service:OpenServiceW 00007FFFFE26BDF0 L"CodeMeter.exe" 0x10
-0314:trace:service:StartServiceW 00007FFFFE26BE30 0 00007FFFFE26BA88
-0314:err:sc:wmain failed to start service 1056
-0314:trace:service:CloseServiceHandle 00007FFFFE26BE30
-0314:trace:service:CloseServiceHandle 00007FFFFE26BDF0
