@@ -1,0 +1,148 @@
+ntdll: implement NtImpersonateAnonymousToken, so the Analysis Services engine of Power BI Desktop can start
+
+Power BI Desktop is a client for an Analysis Services tabular engine (msmdsrv.exe) that it ships
+and launches as a child process.  Under Wine the engine exits immediately after it is started -
+with exit code 0, so it looks like a clean early exit - and never writes <DataDir>\msmdsrv.port.txt,
+which is the file the app polls for.  Power BI reports that as:
+
+    PBI.AnalysisServicesService/StartProcess failed to start AS. Attempt 1 of 3
+    AnalysisServicesProcessUnexpectedExitException: AS Process PID=496 has exited with ExitCode=0
+       at …AnalysisServicesProcess.AcquireServerDynamicPortInfo()
+
+The engine's own log (it writes msmdsrv.log into the data directory the app passes with -s) names
+the failing step.  Running it standalone with exactly the configuration Power BI writes:
+
+    msmdsrv.exe -c -n AnalysisServicesWorkspace_<guid> -s "<workspace>\Data"
+
+gets all the way through crypto key generation, the thread pools, msmdsrv/mmgdsrv/MInterop load,
+transaction recovery and the flight recorder - and then:
+
+    Started listening on TCPIP: Status = ListenToPortFail, … ListenOnIP = ::1,      Port = 0, ProtocolType = IP6
+    Started listening on TCPIP: Status = ListenToPortFail, … ListenOnIP = 127.0.0.1, Port = 0, ProtocolType = IP4
+    The service cannot be started: The following system error occurred:  Invalid function.  (×2)
+    Service stopped.
+
+The socket side is not what fails.  With WINEDEBUG=+winsock,+mswsock the same run shows the
+listener binding and listening successfully, and the call that fails in between is visible
+immediately before the socket is closed:
+
+    trace:winsock:bind successfully bound to address { family AF_INET, address 127.0.0.1, port 41575 }
+    trace:winsock:listen socket 0x1f6c, backlog 2147483647
+    trace:winsock:listen status 0.
+    fixme:ntdll:NtImpersonateAnonymousToken (0xfffffffffffffffe): stub
+    trace:winsock:closesocket 0x1f6c
+
+dlls/ntdll/unix/security.c returned STATUS_NOT_IMPLEMENTED for that call, and
+STATUS_NOT_IMPLEMENTED translates to ERROR_INVALID_FUNCTION - the "Invalid function" in the log
+(0xc0000002 -> 1, measured with the probe below).  The engine requires the anonymous-logon
+impersonation on the thread that owns the listening socket; when it fails it treats the listener as
+unusable, closes it, fails to start the service and exits without writing msmdsrv.port.txt.
+
+What Windows does, measured with tools/winapi/asimp.c (one native probe, run on the guest and under
+Wine - GetProcAddress based, prints raw NTSTATUS):
+
+    NtImpersonateAnonymousToken(GetCurrentThread()) -> 0x00000000
+    token user S-1-5-7 (ANONYMOUS LOGON), primary group S-1-1-0 (Everyone), one group S-1-1-0,
+    TokenType = TokenImpersonation, TokenImpersonationLevel = 2 (SecurityImpersonation)
+
+so the thread ends up impersonating the anonymous logon, which is what a server does before talking
+to a client it has not authenticated.  Wine's server has no anonymous-logon token of its own, so
+build the equivalent token here with the existing NtCreateToken plumbing (no server protocol change
+is needed - the server already has create_token and already stores a per-thread impersonation token)
+and attach it to the requested thread with NtSetInformationThread(ThreadImpersonationToken).
+
+Verified:
+
+  * tools/winapi/asimp.c, before/after under the fork: 0xc0000002 / FALSE+GetLastError=1 ->
+    0x00000000 / TRUE, with the token shape above; logs/as/asimp_wine_{before,after}.txt.
+  * tools/as/verify_engine.sh, which launches the engine exactly as the app does and checks the
+    port file, a real TCP connection to that port, the engine's log and a clean shutdown:
+        before (logs/as/appcfg1.msmdsrv.log): no msmdsrv.port.txt, "ListenToPortFail" ×2,
+            "The service cannot be started: … Invalid function.", "Service stopped.", rc=0
+        after  (logs/as/final1.msmdsrv.log):  msmdsrv.port.txt written after 10 s (port 43509),
+            "Status = ListenToPortSuccess" ×2, port accepts a connection, rc=143 on SIGTERM (i.e.
+            the service kept running until it was killed, as on Windows), no Wine debugger
+  * the app itself, opening the user's .pbix in prefix/pbi2: its workspace log shows
+    "Status = ListenToPortSuccess … Port = 46555" for both address families and
+    "File msmdsrv.port.txt has been written with port = 46555.", the workspace now contains the
+    database it loaded, and the app trace has no AnalysisServicesProcessUnexpectedExitException -
+    instead "AnalysisServicesProcess/Successfully started the child process name='msmdsrv'" and a
+    completed "LoadDatabaseFromPbix".
+
+--- a/dlls/ntdll/unix/security.c
++++ b/dlls/ntdll/unix/security.c
+@@ -884,11 +884,72 @@
+ 
+ /***********************************************************************
+  *             NtImpersonateAnonymousToken  (NTDLL.@)
++ *
++ * Impersonate the anonymous logon on the given thread, i.e. give it an impersonation token whose
++ * user is SECURITY_ANONYMOUS_LOGON_RID (S-1-5-7) and whose primary group is Everyone - what a
++ * caller that is not asking for a specific identity gets on Windows (net sessions, and servers
++ * that must talk to an unauthenticated client).
++ *
++ * Wine's server has no anonymous-logon token of its own, so build the equivalent with
++ * NtCreateToken and attach it to the thread.  This matters in practice: Power BI Desktop's
++ * Analysis Services engine (msmdsrv.exe) calls this on the thread that has just bound and
++ * listen()ed its dynamic TCP port, and treats a failure as "ListenToPortFail" - it then closes
++ * the socket, never writes msmdsrv.port.txt and exits, which Power BI reports as
++ * AnalysisServicesProcessUnexpectedExitException.
+  */
+ NTSTATUS WINAPI NtImpersonateAnonymousToken( HANDLE thread )
+ {
+-    FIXME( "(%p): stub\n", thread );
+-    return STATUS_NOT_IMPLEMENTED;
++    /* S-1-5-7: the identity an unauthenticated caller is given */
++    static const SID anonymous_sid = { SID_REVISION, 1, {SECURITY_NT_AUTHORITY},
++                                                     {SECURITY_ANONYMOUS_LOGON_RID} };
++    /* S-1-1-0, which is both the primary group and the only group of the anonymous token */
++    static const SID world_sid = { SID_REVISION, 1, {SECURITY_WORLD_SID_AUTHORITY},
++                                                 {SECURITY_WORLD_RID} };
++    SECURITY_QUALITY_OF_SERVICE qos;
++    OBJECT_ATTRIBUTES attr;
++    TOKEN_USER user;
++    TOKEN_GROUPS groups;
++    TOKEN_PRIVILEGES privileges;
++    TOKEN_PRIMARY_GROUP primary_group;
++    LUID token_id;
++    LARGE_INTEGER expire;
++    HANDLE token;
++    NTSTATUS status;
++
++    TRACE( "(%p)\n", thread );
++
++    if (!thread) return STATUS_INVALID_HANDLE;
++
++    user.User.Sid        = (SID *)&anonymous_sid;
++    user.User.Attributes = 0;
++
++    groups.GroupCount                = 1;
++    groups.Groups[0].Sid             = (SID *)&world_sid;
++    groups.Groups[0].Attributes      = SE_GROUP_MANDATORY | SE_GROUP_ENABLED_BY_DEFAULT | SE_GROUP_ENABLED;
++
++    privileges.PrivilegeCount = 0;
++
++    primary_group.PrimaryGroup = (SID *)&world_sid;
++
++    memset( &token_id, 0, sizeof(token_id) );
++    expire.QuadPart = 0;
++
++    qos.Length              = sizeof(qos);
++    qos.ImpersonationLevel  = SecurityImpersonation;
++    qos.ContextTrackingMode = SECURITY_STATIC_TRACKING;
++    qos.EffectiveOnly       = FALSE;
++
++    InitializeObjectAttributes( &attr, NULL, 0, NULL, NULL );
++    attr.SecurityQualityOfService = &qos;
++
++    status = NtCreateToken( &token, TOKEN_IMPERSONATE | TOKEN_QUERY, &attr, TokenImpersonation,
++                            &token_id, &expire, &user, &groups, &privileges, NULL, &primary_group,
++                            NULL, NULL );
++    if (status) return status;
++
++    status = NtSetInformationThread( thread, ThreadImpersonationToken, &token, sizeof(token) );
++    NtClose( token );
++    return status;
+ }
+ 
+ 

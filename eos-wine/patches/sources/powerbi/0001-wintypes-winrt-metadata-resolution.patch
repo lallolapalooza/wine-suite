@@ -1,0 +1,828 @@
+wintypes: resolve Windows Runtime type metadata, so .NET can bind WinRT types
+
+Power BI Desktop is a .NET Framework application and its DI container builds a view whose type initialiser asks
+.NET for WinRT types:
+
+  Microsoft.PowerBI.Client.Windows.Services.StoragePropertiesProvider..cctor
+    RequiredTypes = { typeof(StorageFile).FullName, typeof(StorageItemContentProperties).FullName }
+
+.NET Framework resolves such a name by asking the OS where the type's metadata lives. Wine's DLL for that,
+wintypes.dll - the same DLL Windows uses, measured: LoadLibraryW("api-ms-win-ro-typeresolution-l1-1-1.dll") on
+Windows 10 build 26200 answers C:\WINDOWS\SYSTEM32\wintypes.dll - only had stub plumbing: RoResolveNamespace
+returned RO_E_METADATA_NAME_NOT_FOUND unconditionally and RoGetMetaDataFile was an unimplemented spec stub. The
+result was a hard failure before any window exists:
+
+  System.TypeInitializationException: The type initializer for 'StoragePropertiesProvider' threw an exception
+  System.TypeLoadException: Could not find Windows Runtime type 'Windows.Storage.StorageFile'
+  -> Failed to resolve type: Microsoft.PowerBI.Client.Windows.Views.ReportView   (DI scope: App/MainForm)
+
+On Windows this works because the OS answers both calls from the WinRT metadata it ships in
+%SystemRoot%\System32\WinMetadata\*.winmd, which is what this patch implements, with the behaviour measured on
+Windows (tools/winapi/roprobe.exe):
+
+  RoResolveNamespace("Windows.Storage")  -> S_OK, 1 file  ...\Windows.Storage.winmd, 0 sub-namespaces
+  RoResolveNamespace("Windows")          -> S_OK, 0 files, 18 sub-namespaces (AI, ApplicationModel, Data, ...)
+  RoResolveNamespace("")                 -> E_INVALIDARG
+  RoGetMetaDataFile("Windows.Storage.StorageFile") -> S_OK, path=...\Windows.Storage.winmd, token=0x02000138
+  RoGetMetaDataFile("Windows.Storage")             -> RO_E_METADATA_NAME_IS_NAMESPACE      (0x80000010)
+  RoGetMetaDataFile("Windows.Nonexistent.Type")    -> RO_E_METADATA_NAME_NOT_FOUND        (0x8000000f)
+  RoGetMetaDataFile("Windows.Storage.")            -> RO_E_METADATA_INVALID_TYPE_FORMAT   (0x80000011)
+
+So a metadata file is returned when its own name is a namespace prefix of the requested namespace (and no file for
+"Windows", which none is named after), the sub-namespaces are the ones that have a metadata file of their own,
+named relative to the namespace (18 for "Windows", none for "Windows.Storage"), and a type resolves to the file
+named after its namespace and, for the type of an API contract, to the contract file that describes the contract.
+The namespace and type lookups read Wine's own rometadata.dll (a port of the library Windows uses), which
+wintypes now imports; the ApiInformation presence queries answer from what Wine can provide, so that a program
+degrades gracefully (a type is present when Wine can activate it, so Windows.Storage.StorageFile is reported
+absent - it is metadata Wine describes but does not implement - and a method or enum value is present when the
+metadata of an activatable type declares it).
+
+Known gap: Wine's rometadata.dll implements IMetaDataImport but not IMetaDataImport2 (that vtable repeats the 65
+IMetaDataImport methods and adds 8), so RoGetMetaDataFile returns a reader only when the dispenser it was given
+has that interface; with Wine's own dispenser the call answers E_NOINTERFACE (0x80004002) and resets its outputs
+as the API contract requires, with the resolved path in the warning. clr.dll passes its own dispenser and never
+calls RoGetMetaDataFile - it resolves WinRT types through RoResolveNamespace alone - so the app path is
+unaffected. Closing it is a dlls/rometadata change.
+
+Verified in prefix/burn48 and prefix/pbi2 (evidence in logs/winrt/, docs/WINRT_METADATA.md): the net48 probe
+(tools/winrt/probe) went from four "TypeLoadException: Could not find Windows Runtime type" to OK for
+Windows.Storage.StorageFile, Windows.Storage.StorageFolder, Windows.Storage.FileProperties.BasicProperties and
+Windows.Foundation.Metadata.ApiInformation (failures=4 -> 0, rc=1 -> 0); the native probe matches the Windows
+reference except for the path letter case and the reader gap above; and Power BI opens the user's report with
+RoResolveNamespace answering "1 metadata files" for Windows.Storage / Windows.Storage.FileProperties /
+Windows.Foundation, no "Failed to resolve type" dialog, no unhandled exception and a complete startup chain in
+its own trace (Create Splash, MainForm/ctor end, ActivateMainWindow end, Main Window Loaded end).
+--- a/dlls/wintypes/main.c
++++ b/dlls/wintypes/main.c
+@@ -19,6 +19,11 @@
+ #include "initguid.h"
+ #include "private.h"
+ 
++#include "roapi.h"
++#include "cor.h"
++#include "rometadata.h"
++#include "rometadataapi.h"
++
+ WINE_DEFAULT_DEBUG_CHANNEL(wintypes);
+ 
+ static const struct
+@@ -42,6 +47,9 @@
+     return FALSE;
+ }
+ 
++/* Defined with the metadata resolution code below. */
++static BOOL metadata_has_member(const WCHAR *type_name, const WCHAR *member_name, BOOL field);
++
+ struct api_information_statics
+ {
+     IActivationFactory IActivationFactory_iface;
+@@ -142,27 +150,54 @@
+ 
+ DEFINE_IINSPECTABLE(api_information_statics, IApiInformationStatics, struct api_information_statics, IActivationFactory_iface)
+ 
++/* Windows answers the ApiInformation queries from what the operating system provides. Wine reports a type as
++ * present when it has an implementation that can be activated: Windows.Storage.StorageFile is metadata Wine
++ * describes but does not implement, and an application has to see it as absent to degrade gracefully instead
++ * of taking a code path that can only fail. */
++static BOOL is_type_present(const WCHAR *type_name, DWORD type_name_length)
++{
++    IActivationFactory *factory = NULL;
++    HSTRING name;
++    HRESULT hr;
++
++    if (FAILED(hr = WindowsCreateString( type_name, type_name_length, &name ))) return FALSE;
++    hr = RoGetActivationFactory( name, &IID_IActivationFactory, (void **)&factory );
++    if (factory) IActivationFactory_Release( factory );
++    WindowsDeleteString( name );
++
++    TRACE("type %s is %s\n", debugstr_wn( type_name, type_name_length ), SUCCEEDED(hr) ? "present" : "absent");
++    return SUCCEEDED(hr);
++}
++
+ static HRESULT STDMETHODCALLTYPE api_information_statics_IsTypePresent(
+         IApiInformationStatics *iface, HSTRING type_name, BOOLEAN *value)
+ {
+-    FIXME("iface %p, type_name %s, value %p stub!\n", iface, debugstr_hstring(type_name), value);
++    const WCHAR *name;
++    UINT32 length;
+ 
+-    if (!type_name)
+-        return E_INVALIDARG;
++    TRACE("iface %p, type_name %s, value %p.\n", iface, debugstr_hstring(type_name), value);
+ 
+-    return E_NOTIMPL;
++    if (!type_name) return E_INVALIDARG;
++
++    name = WindowsGetStringRawBuffer( type_name, &length );
++    *value = is_type_present( name, length );
++    return S_OK;
+ }
+ 
+ static HRESULT STDMETHODCALLTYPE api_information_statics_IsMethodPresent(
+         IApiInformationStatics *iface, HSTRING type_name, HSTRING method_name, BOOLEAN *value)
+ {
+-    FIXME("iface %p, type_name %s, method_name %s, value %p stub!\n", iface,
+-            debugstr_hstring(type_name), debugstr_hstring(method_name), value);
++    const WCHAR *name;
++    UINT32 length;
+ 
+-    if (!type_name)
+-        return E_INVALIDARG;
++    TRACE("iface %p, type_name %s, method_name %s, value %p.\n", iface, debugstr_hstring(type_name),
++          debugstr_hstring(method_name), value);
+ 
+-    *value = FALSE;
++    if (!type_name || !method_name) return E_INVALIDARG;
++
++    name = WindowsGetStringRawBuffer( type_name, &length );
++    *value = is_type_present( name, length ) &&
++             metadata_has_member( name, WindowsGetStringRawBuffer( method_name, NULL ), FALSE );
+     return S_OK;
+ }
+ 
+@@ -232,13 +267,18 @@
+ static HRESULT STDMETHODCALLTYPE api_information_statics_IsEnumNamedValuePresent(
+         IApiInformationStatics *iface, HSTRING enum_type_name, HSTRING value_name, BOOLEAN *value)
+ {
+-    FIXME("iface %p, enum_type_name %s, value_name %s, value %p stub!\n", iface,
+-            debugstr_hstring(enum_type_name), debugstr_hstring(value_name), value);
++    const WCHAR *name;
++    UINT32 length;
+ 
+-    if (!enum_type_name)
+-        return E_INVALIDARG;
++    TRACE("iface %p, enum_type_name %s, value_name %s, value %p.\n", iface, debugstr_hstring(enum_type_name),
++          debugstr_hstring(value_name), value);
+ 
+-    return E_NOTIMPL;
++    if (!enum_type_name || !value_name) return E_INVALIDARG;
++
++    name = WindowsGetStringRawBuffer( enum_type_name, &length );
++    *value = is_type_present( name, length ) &&
++             metadata_has_member( name, WindowsGetStringRawBuffer( value_name, NULL ), TRUE );
++    return S_OK;
+ }
+ 
+ static HRESULT STDMETHODCALLTYPE api_information_statics_IsApiContractPresentByMajor(
+@@ -1812,21 +1852,616 @@
+     return S_OK;
+ }
+ 
++struct string_list
++{
++    WCHAR **strings;
++    DWORD count;
++    DWORD capacity;
++};
++
++/* Copies 'length' characters of 'string', which does not have to be nul terminated. */
++static WCHAR *dup_string(const WCHAR *string, DWORD length)
++{
++    WCHAR *ret;
++
++    if (!(ret = malloc( (length + 1) * sizeof(*ret) ))) return NULL;
++    memcpy( ret, string, length * sizeof(*ret) );
++    ret[length] = 0;
++    return ret;
++}
++
++/* Appends a string to the list, ignoring duplicates. */
++static BOOL string_list_add(struct string_list *list, const WCHAR *string, DWORD length)
++{
++    WCHAR **strings;
++    DWORD capacity, i;
++
++    for (i = 0; i < list->count; i++)
++    {
++        if (wcslen( list->strings[i] ) == length && !wcsnicmp( list->strings[i], string, length ))
++            return TRUE;
++    }
++
++    if (list->count == list->capacity)
++    {
++        capacity = list->capacity ? list->capacity * 2 : 16;
++        if (!(strings = realloc( list->strings, capacity * sizeof(*strings) ))) return FALSE;
++        list->strings = strings;
++        list->capacity = capacity;
++    }
++
++    if (!(list->strings[list->count] = dup_string( string, length ))) return FALSE;
++    list->count++;
++    return TRUE;
++}
++
++static void string_list_free(struct string_list *list)
++{
++    DWORD i;
++
++    for (i = 0; i < list->count; i++) free( list->strings[i] );
++    free( list->strings );
++    memset( list, 0, sizeof(*list) );
++}
++
++/* TRUE when 'space' is the namespace 'prefix' or a namespace nested below it. The empty namespace is the root
++ * of the hierarchy, and thus contains every namespace. */
++static BOOL namespace_is_under(const WCHAR *space, DWORD space_length, const WCHAR *prefix, DWORD prefix_length)
++{
++    if (!prefix_length) return TRUE;
++    if (space_length < prefix_length || wcsnicmp( space, prefix, prefix_length )) return FALSE;
++    return space_length == prefix_length || space[prefix_length] == '.';
++}
++
++struct metadata_file
++{
++    WCHAR *path;
++    WCHAR *base_name; /* the file name without the .winmd extension */
++};
++
++struct metadata_file_list
++{
++    struct metadata_file *files;
++    DWORD count;
++    DWORD capacity;
++};
++
++static BOOL metadata_file_list_add(struct metadata_file_list *list, const WCHAR *path)
++{
++    static const WCHAR extension[] = L".winmd";
++    struct metadata_file *files;
++    const WCHAR *name;
++    WCHAR *base_name;
++    DWORD capacity, length, base_length;
++
++    if (!(name = wcsrchr( path, '\\' ))) name = wcsrchr( path, '/' );
++    if (name) name++;
++    else name = path;
++
++    length = wcslen( name );
++    if (length <= ARRAY_SIZE(extension) - 1) return FALSE;
++    if (wcsicmp( name + length - (ARRAY_SIZE(extension) - 1), extension )) return FALSE;
++    base_length = length - (ARRAY_SIZE(extension) - 1);
++
++    if (!(base_name = dup_string( name, base_length ))) return FALSE;
++
++    if (list->count == list->capacity)
++    {
++        capacity = list->capacity ? list->capacity * 2 : 16;
++        if (!(files = realloc( list->files, capacity * sizeof(*files) )))
++        {
++            free( base_name );
++            return FALSE;
++        }
++        list->files = files;
++        list->capacity = capacity;
++    }
++
++    if (!(list->files[list->count].path = dup_string( path, wcslen( path ) )))
++    {
++        free( base_name );
++        return FALSE;
++    }
++    list->files[list->count].base_name = base_name;
++    list->count++;
++    return TRUE;
++}
++
++static int __cdecl compare_metadata_files(const void *a, const void *b)
++{
++    const struct metadata_file *file_a = a, *file_b = b;
++
++    return wcsicmp( file_a->base_name, file_b->base_name );
++}
++
++static void metadata_file_list_free(struct metadata_file_list *list)
++{
++    DWORD i;
++
++    for (i = 0; i < list->count; i++)
++    {
++        free( list->files[i].path );
++        free( list->files[i].base_name );
++    }
++    free( list->files );
++    memset( list, 0, sizeof(*list) );
++}
++
++/* Adds the .winmd files of a metadata directory, or the file itself when it is a metadata file. */
++static void collect_metadata_files(struct metadata_file_list *list, const WCHAR *location)
++{
++    WIN32_FIND_DATAW data;
++    WCHAR path[MAX_PATH], pattern[MAX_PATH];
++    DWORD attributes;
++    HANDLE find;
++
++    if ((attributes = GetFileAttributesW( location )) == INVALID_FILE_ATTRIBUTES) return;
++    if (!(attributes & FILE_ATTRIBUTE_DIRECTORY))
++    {
++        metadata_file_list_add( list, location );
++        return;
++    }
++
++    if (swprintf( pattern, ARRAY_SIZE(pattern), L"%s\\*.winmd", location ) < 0) return;
++    if ((find = FindFirstFileW( pattern, &data )) == INVALID_HANDLE_VALUE) return;
++    do
++    {
++        if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) continue;
++        if (swprintf( path, ARRAY_SIZE(path), L"%s\\%s", location, data.cFileName ) < 0) continue;
++        metadata_file_list_add( list, path );
++    } while (FindNextFileW( find, &data ));
++    FindClose( find );
++}
++
++/* The Windows Runtime metadata is kept in %SystemRoot%\System32\WinMetadata. A Wow64 process reaches the same
++ * files through %SystemRoot%\SysWOW64\WinMetadata when the system installs a copy there. */
++static BOOL get_default_metadata_dir(WCHAR *buffer, DWORD length)
++{
++    static const WCHAR system32[] = L"\\System32\\WinMetadata";
++    static const WCHAR syswow64[] = L"\\SysWOW64\\WinMetadata";
++    WCHAR windows_dir[MAX_PATH];
++    DWORD size;
++
++    if (!(size = GetWindowsDirectoryW( windows_dir, ARRAY_SIZE(windows_dir) )) ||
++        size >= ARRAY_SIZE(windows_dir)) return FALSE;
++
++    swprintf( buffer, length, L"%s%s", windows_dir, system32 );
++    if (GetFileAttributesW( buffer ) != INVALID_FILE_ATTRIBUTES) return TRUE;
++
++    swprintf( buffer, length, L"%s%s", windows_dir, syswow64 );
++    return GetFileAttributesW( buffer ) != INVALID_FILE_ATTRIBUTES;
++}
++
++static HRESULT open_metadata_file(IMetaDataDispenser *dispenser, const WCHAR *path, REFIID iid, void **out)
++{
++    /* ofReadOnly from the Windows SDK's cor.h; no other flag is defined for the dispenser. */
++    return IMetaDataDispenser_OpenScope( dispenser, path, 0x1, iid, (IUnknown **)out );
++}
++
++/* Retrieves the full name of a type, using 'buffer' when the name fits it and allocating one when it does not. */
++static HRESULT get_type_def_name(IMetaDataImport *import, mdTypeDef type_def, WCHAR *buffer, DWORD length,
++                                 WCHAR **name)
++{
++    ULONG needed;
++    HRESULT hr;
++
++    *name = NULL;
++    if (FAILED(hr = IMetaDataImport_GetTypeDefProps( import, type_def, buffer, length, &needed, NULL, NULL )))
++        return hr;
++    if (needed <= length)
++    {
++        *name = buffer;
++        return S_OK;
++    }
++
++    if (!(*name = malloc( needed * sizeof(**name) ))) return E_OUTOFMEMORY;
++    if (FAILED(hr = IMetaDataImport_GetTypeDefProps( import, type_def, *name, needed, NULL, NULL, NULL )))
++    {
++        free( *name );
++        *name = NULL;
++    }
++    return hr;
++}
++
++/* Walks the TypeDef table of a metadata file. Returns an error when the file cannot be read. 'namespaces',
++ * when set, collects the namespace of every type of the file. */
++static HRESULT read_metadata_namespaces(IMetaDataDispenser *dispenser, const WCHAR *path, const WCHAR *name,
++                                        DWORD name_length, BOOL *type_found, BOOL *namespace_found,
++                                        struct string_list *namespaces)
++{
++    IMetaDataImport *import;
++    HCORENUM enumerator = NULL;
++    mdTypeDef type_def;
++    ULONG count;
++    WCHAR buffer[256], *full_name;
++    HRESULT hr;
++
++    if (type_found) *type_found = FALSE;
++    if (namespace_found) *namespace_found = FALSE;
++
++    if (FAILED(hr = open_metadata_file( dispenser, path, &IID_IMetaDataImport, (void **)&import ))) return hr;
++
++    while (!FAILED(hr = IMetaDataImport_EnumTypeDefs( import, &enumerator, &type_def, 1, &count )) && count)
++    {
++        const WCHAR *cursor;
++        DWORD namespace_length;
++
++        if (FAILED(hr = get_type_def_name( import, type_def, buffer, ARRAY_SIZE(buffer), &full_name ))) break;
++
++        if ((cursor = wcsrchr( full_name, '.' ))) namespace_length = cursor - full_name;
++        else namespace_length = 0;
++
++        if (type_found && !*type_found && !wcsicmp( full_name, name )) *type_found = TRUE;
++        if (namespace_found && !*namespace_found && namespace_is_under( full_name, namespace_length, name,
++                                                                       name_length ))
++            *namespace_found = TRUE;
++        if (namespaces && namespace_length)
++            string_list_add( namespaces, full_name, namespace_length );
++
++        if (full_name != buffer) free( full_name );
++    }
++
++    IMetaDataImport_CloseEnum( import, enumerator );
++    IMetaDataImport_Release( import );
++    return hr;
++}
++
++/* Adds the direct children of a namespace. Windows answers this from the metadata directory itself: a child is
++ * a namespace that has a metadata file of its own (the 18 namespaces Windows.AI.winmd ... Windows.Web.winmd
++ * give "Windows"), not a namespace that is only declared inside the types of another file (the 8 namespaces
++ * declared in Windows.Storage.winmd are not reported for "Windows.Storage"), and the names are relative to the
++ * requested namespace. The contract files are not namespaces of their own - Windows.Foundation.winmd and
++ * Windows.Foundation.FoundationContract.winmd describe the same types - which is why they are skipped. */
++static void add_child_namespaces(const struct metadata_file_list *files, const WCHAR *name, DWORD name_length,
++                                 struct string_list *children)
++{
++    static const WCHAR contract[] = L"Contract";
++    DWORD i;
++
++    for (i = 0; i < files->count; i++)
++    {
++        const WCHAR *base_name = files->files[i].base_name, *child;
++        DWORD length = wcslen( base_name ), child_length;
++
++        if (length <= name_length || !namespace_is_under( base_name, length, name, name_length )) continue;
++        child = base_name + name_length + 1;
++        child_length = length - name_length - 1;
++        if (wcschr( child, '.' )) continue; /* a namespace nested deeper than a direct child */
++        if (child_length > ARRAY_SIZE(contract) - 1 &&
++            !wcsicmp( child + child_length - (ARRAY_SIZE(contract) - 1), contract ))
++            continue;
++
++        string_list_add( children, child, child_length );
++    }
++}
++
++static HRESULT create_hstring_array(const struct string_list *list, DWORD *count, HSTRING **strings)
++{
++    HSTRING *array;
++    DWORD i;
++    HRESULT hr;
++
++    *strings = NULL;
++    if (count) *count = 0;
++    if (!list->count) return S_OK;
++
++    if (!(array = CoTaskMemAlloc( list->count * sizeof(*array) ))) return E_OUTOFMEMORY;
++    for (i = 0; i < list->count; i++)
++    {
++        if (FAILED(hr = WindowsCreateString( list->strings[i], wcslen( list->strings[i] ), &array[i] )))
++        {
++            while (i) WindowsDeleteString( array[--i] );
++            CoTaskMemFree( array );
++            return hr;
++        }
++    }
++
++    *strings = array;
++    if (count) *count = list->count;
++    return S_OK;
++}
++
++/***********************************************************************
++ *      RoResolveNamespace (wintypes.@)
++ *
++ * Returns the metadata files that can contain direct children of a namespace, and the direct children of that
++ * namespace. .NET Framework uses this to find the .winmd that describes a Windows Runtime type, and binds the
++ * type into the assembly that the reference names, which for a type of an API contract is the contract file
++ * (e.g. Windows.Foundation.FoundationContract.winmd) and not the file named after the namespace.
++ */
+ HRESULT WINAPI RoResolveNamespace(HSTRING name, HSTRING windowsMetaDataDir,
+                                   DWORD packageGraphDirsCount, const HSTRING *packageGraphDirs,
+                                   DWORD *metaDataFilePathsCount, HSTRING **metaDataFilePaths,
+                                   DWORD *subNamespacesCount, HSTRING **subNamespaces)
+ {
+-    FIXME("name %s, windowsMetaDataDir %s, metaDataFilePaths %p, subNamespaces %p stub!\n",
+-            debugstr_hstring(name), debugstr_hstring(windowsMetaDataDir),
+-            metaDataFilePaths, subNamespaces);
++    struct metadata_file_list files = {0};
++    struct string_list directories = {0}, paths = {0}, sub_namespace_names = {0};
++    const WCHAR *namespace_name = NULL;
++    UINT32 name_length = 0;
++    WCHAR default_dir[MAX_PATH];
++    BOOL found = FALSE;
++    DWORD i;
++    HRESULT hr;
+ 
+-    if (!metaDataFilePaths && !subNamespaces)
+-        return E_INVALIDARG;
++    TRACE("name %s, windowsMetaDataDir %s, packageGraphDirsCount %lu, metaDataFilePaths %p, subNamespaces %p.\n",
++          debugstr_hstring(name), debugstr_hstring(windowsMetaDataDir), packageGraphDirsCount,
++          metaDataFilePaths, subNamespaces);
++
++    if (!metaDataFilePaths && !subNamespaces) return E_INVALIDARG;
++
++    if (metaDataFilePaths)
++    {
++        *metaDataFilePaths = NULL;
++        if (metaDataFilePathsCount) *metaDataFilePathsCount = 0;
++    }
++    if (subNamespaces)
++    {
++        *subNamespaces = NULL;
++        if (subNamespacesCount) *subNamespacesCount = 0;
++    }
++
++    if (name)
++    {
++        namespace_name = WindowsGetStringRawBuffer( name, &name_length );
++        /* Names with embedded null characters cannot be resolved. */
++        if (wcslen( namespace_name ) != name_length) return E_INVALIDARG;
++    }
++
++    /* Windows rejects an empty or missing name, and so does RoParseTypeName(). */
++    if (!name_length) return E_INVALIDARG;
++
++    /* The caller may give the metadata directory to search; otherwise it is the one of the operating system. */
++    if (windowsMetaDataDir && WindowsGetStringLen( windowsMetaDataDir ))
++        string_list_add( &directories, WindowsGetStringRawBuffer( windowsMetaDataDir, NULL ),
++                         WindowsGetStringLen( windowsMetaDataDir ) );
++    else if (get_default_metadata_dir( default_dir, ARRAY_SIZE(default_dir) ))
++        string_list_add( &directories, default_dir, wcslen( default_dir ) );
++    else
++    {
++        WARN("no metadata directory found, cannot resolve %s\n", debugstr_hstring(name));
++        return RO_E_METADATA_NAME_NOT_FOUND;
++    }
++
++    for (i = 0; i < packageGraphDirsCount; i++)
++    {
++        if (!packageGraphDirs || !packageGraphDirs[i]) continue;
++        string_list_add( &directories, WindowsGetStringRawBuffer( packageGraphDirs[i], NULL ),
++                         WindowsGetStringLen( packageGraphDirs[i] ) );
++    }
++
++    for (i = 0; i < directories.count; i++) collect_metadata_files( &files, directories.strings[i] );
++    qsort( files.files, files.count, sizeof(*files.files), compare_metadata_files );
++
++    for (i = 0; i < files.count; i++)
++    {
++        /* A metadata file is returned when its own name is a namespace prefix of the requested one - the file
++         * that could contain the direct children of a namespace is the one named after an ancestor of it, e.g.
++         * Windows.Storage.winmd for Windows.Storage and for Windows.Storage.Streams. Windows does not return
++         * the API contract files, which describe types of that namespace only as a side effect of the API
++         * contract they cover. */
++        if (!namespace_is_under( namespace_name, name_length, files.files[i].base_name,
++                                 wcslen( files.files[i].base_name ) ))
++            continue;
++
++        if (metaDataFilePaths)
++            string_list_add( &paths, files.files[i].path, wcslen( files.files[i].path ) );
++    }
++
++    /* The sub-namespaces come from every metadata file of the searched directories, not only from the files
++     * returned above. */
++    if (subNamespaces)
++        add_child_namespaces( &files, namespace_name, name_length, &sub_namespace_names );
++
++    TRACE("resolved %s to %lu metadata files and %lu sub-namespaces\n", debugstr_hstring(name), paths.count,
++          sub_namespace_names.count);
++
++    /* At least one file or one sub-namespace has to have been found. */
++    found = paths.count || sub_namespace_names.count;
++
++    hr = S_OK;
++    if (metaDataFilePaths)
++        hr = create_hstring_array( &paths, metaDataFilePathsCount, metaDataFilePaths );
++    if (SUCCEEDED(hr) && subNamespaces)
++        hr = create_hstring_array( &sub_namespace_names, subNamespacesCount, subNamespaces );
++
++    metadata_file_list_free( &files );
++    string_list_free( &directories );
++    string_list_free( &paths );
++    string_list_free( &sub_namespace_names );
++
++    if (FAILED(hr)) return hr;
++    return found ? S_OK : RO_E_METADATA_NAME_NOT_FOUND;
++}
++
++/* Used to find the metadata file that describes a type: a file named after the namespace of the type is the
++ * most likely to describe its ABI, then the files whose name is a namespace prefix of it. */
++static int metadata_file_priority(const struct metadata_file *file, const WCHAR *namespace_name,
++                                  DWORD namespace_length)
++{
++    if (!namespace_is_under( namespace_name, namespace_length, file->base_name, wcslen( file->base_name ) ))
++        return 2;
++    if (wcslen( file->base_name ) == namespace_length) return 0;
++    return 1;
++}
++
++/* Finds the metadata file that declares 'type_name' and, when 'import' is set, opens it with a metadata
++ * reader and returns the token of the type's TypeDef. A file named after the namespace of the type is preferred,
++ * then the files whose name is a namespace prefix of it: that is where the ABI of a type is described, and the
++ * order matters because a type of an API contract is also declared by the files of the contract. */
++static HRESULT find_type_in_metadata(IMetaDataDispenser *dispenser, const struct metadata_file_list *files,
++                                    const WCHAR *type_name, WCHAR *path, DWORD path_length, mdTypeDef *type_def,
++                                    IMetaDataImport **import)
++{
++    const WCHAR *cursor;
++    DWORD namespace_length = 0, i, priority;
++
++    if (type_def) *type_def = mdTypeDefNil;
++    if (import) *import = NULL;
++    if ((cursor = wcsrchr( type_name, '.' ))) namespace_length = cursor - type_name;
++
++    for (priority = 0; priority < 3; priority++)
++    {
++        for (i = 0; i < files->count; i++)
++        {
++            IMetaDataImport *reader;
++            mdTypeDef token;
++
++            if (metadata_file_priority( &files->files[i], type_name, namespace_length ) != priority) continue;
++            if (FAILED(open_metadata_file( dispenser, files->files[i].path, &IID_IMetaDataImport,
++                                           (void **)&reader )))
++                continue;
++
++            if (SUCCEEDED(IMetaDataImport_FindTypeDefByName( reader, type_name, mdTokenNil, &token )))
++            {
++                TRACE("found %s in %s, token %#x\n", debugstr_w(type_name), debugstr_w(files->files[i].path),
++                      token);
++                if (path) lstrcpynW( path, files->files[i].path, path_length );
++                if (type_def) *type_def = token;
++                if (import) *import = reader;
++                else IMetaDataImport_Release( reader );
++                return S_OK;
++            }
++            IMetaDataImport_Release( reader );
++        }
++    }
+ 
+     return RO_E_METADATA_NAME_NOT_FOUND;
+ }
+ 
++/* TRUE when the metadata describes 'member_name' as a method or a field of 'type_name'. */
++static BOOL metadata_has_member(const WCHAR *type_name, const WCHAR *member_name, BOOL field)
++{
++    struct metadata_file_list files = {0};
++    IMetaDataDispenser *dispenser = NULL;
++    IMetaDataImport *import = NULL;
++    WCHAR default_dir[MAX_PATH], path[MAX_PATH];
++    mdTypeDef type_def;
++    mdMethodDef method_def;
++    mdFieldDef field_def;
++    BOOL found = FALSE;
++
++    if (!member_name || !get_default_metadata_dir( default_dir, ARRAY_SIZE(default_dir) )) return FALSE;
++    if (FAILED(MetaDataGetDispenser( &CLSID_CorMetaDataDispenser, &IID_IMetaDataDispenser, (void **)&dispenser )))
++        return FALSE;
++
++    collect_metadata_files( &files, default_dir );
++    qsort( files.files, files.count, sizeof(*files.files), compare_metadata_files );
++
++    if (SUCCEEDED(find_type_in_metadata( dispenser, &files, type_name, path, ARRAY_SIZE(path), &type_def,
++                                         &import )))
++    {
++        if (field)
++            found = SUCCEEDED(IMetaDataImport_FindField( import, type_def, member_name, NULL, 0, &field_def ));
++        else
++            found = SUCCEEDED(IMetaDataImport_FindMethod( import, type_def, member_name, NULL, 0, &method_def ));
++        IMetaDataImport_Release( import );
++    }
++
++    metadata_file_list_free( &files );
++    IMetaDataDispenser_Release( dispenser );
++    return found;
++}
++
++/***********************************************************************
++ *      RoGetMetaDataFile (wintypes.@)
++ *
++ * Retrieves the metadata file that describes the ABI of a type, together with a metadata reader for it and
++ * the token of its TypeDef. The caller may provide the metadata dispenser to open the file with, which is what
++ * .NET Framework does; RoMetadata.dll is used when it does not.
++ */
++HRESULT WINAPI RoGetMetaDataFile(HSTRING name, IMetaDataDispenserEx *metaDataDispenser, HSTRING *metaDataFilePath,
++                                 IMetaDataImport2 **metaDataImport, mdTypeDef *typeDefToken)
++{
++    struct metadata_file_list files = {0};
++    IMetaDataDispenser *dispenser = (IMetaDataDispenser *)metaDataDispenser, *created_dispenser = NULL;
++    const WCHAR *type_name, *cursor;
++    UINT32 name_length = 0;
++    WCHAR default_dir[MAX_PATH], path[MAX_PATH];
++    mdTypeDef type_def = mdTypeDefNil;
++    DWORD i;
++    BOOL found = FALSE;
++    HRESULT hr;
++
++    TRACE("name %s, metaDataDispenser %p, metaDataFilePath %p, metaDataImport %p, typeDefToken %p.\n",
++          debugstr_hstring(name), metaDataDispenser, metaDataFilePath, metaDataImport, typeDefToken);
++
++    if (metaDataFilePath) *metaDataFilePath = NULL;
++    if (metaDataImport) *metaDataImport = NULL;
++    if (typeDefToken) *typeDefToken = mdTypeDefNil;
++
++    if (!name) return E_INVALIDARG;
++    type_name = WindowsGetStringRawBuffer( name, &name_length );
++    /* The name has to be non-empty and free of embedded null characters. */
++    if (!name_length || wcslen( type_name ) != name_length) return E_INVALIDARG;
++    /* A dot separated name must not have an empty part before or after its last dot. */
++    if ((cursor = wcsrchr( type_name, '.' )) && (cursor == type_name || !cursor[1]))
++        return RO_E_METADATA_INVALID_TYPE_FORMAT;
++
++    if (!get_default_metadata_dir( default_dir, ARRAY_SIZE(default_dir) ))
++    {
++        WARN("no metadata directory found, cannot resolve %s\n", debugstr_hstring(name));
++        return RO_E_METADATA_NAME_NOT_FOUND;
++    }
++
++    if (!dispenser && FAILED(hr = MetaDataGetDispenser( &CLSID_CorMetaDataDispenser, &IID_IMetaDataDispenser,
++                                                        (void **)&created_dispenser )))
++        return hr;
++    if (!dispenser) dispenser = created_dispenser;
++
++    collect_metadata_files( &files, default_dir );
++    qsort( files.files, files.count, sizeof(*files.files), compare_metadata_files );
++
++    if (SUCCEEDED(hr = find_type_in_metadata( dispenser, &files, type_name, path, ARRAY_SIZE(path), &type_def,
++                                               NULL )))
++        found = TRUE;
++
++    if (found)
++    {
++        if (metaDataFilePath)
++        {
++            if (FAILED(hr = WindowsCreateString( path, wcslen( path ), metaDataFilePath ))) goto done;
++        }
++
++        /* The reader and the token are used together, so it is only opened when it is asked for. rometadata.dll
++         * of Wine implements IMetaDataImport but not IMetaDataImport2 yet, so a dispenser that does not have it
++         * cannot give a reader; the path of the file that was found is in the warning, and it is also what
++         * RoResolveNamespace() returns for the namespace, which is the call .NET Framework makes. */
++        if (metaDataImport)
++        {
++            if (FAILED(hr = open_metadata_file( dispenser, path, &IID_IMetaDataImport2, (void **)metaDataImport )))
++            {
++                WARN("no IMetaDataImport2 reader for %s, hr %#lx\n", debugstr_w(path), hr);
++                /* A failure resets the outputs, as the API contract requires. */
++                if (metaDataFilePath)
++                {
++                    WindowsDeleteString( *metaDataFilePath );
++                    *metaDataFilePath = NULL;
++                }
++                goto done;
++            }
++        }
++
++        if (typeDefToken) *typeDefToken = type_def;
++        hr = S_OK;
++    }
++    else
++    {
++        BOOL namespace_found = FALSE;
++
++        /* Distinguish a name that is an existing namespace from one that is not described at all. */
++        for (i = 0; i < files.count && !namespace_found; i++)
++            read_metadata_namespaces( dispenser, files.files[i].path, type_name, name_length, NULL,
++                                      &namespace_found, NULL );
++
++        hr = namespace_found ? RO_E_METADATA_NAME_IS_NAMESPACE : RO_E_METADATA_NAME_NOT_FOUND;
++    }
++
++done:
++    if (created_dispenser) IMetaDataDispenser_Release( created_dispenser );
++    metadata_file_list_free( &files );
++    return hr;
++}
++
+ struct parse_type_context
+ {
+     DWORD allocated_parts_count;
+--- a/dlls/wintypes/Makefile.in
++++ b/dlls/wintypes/Makefile.in
+@@ -1,6 +1,6 @@
+ MODULE    = wintypes.dll
+ IMPORTLIB = wintypes
+-IMPORTS   = combase
++IMPORTS   = combase rometadata
+ 
+ SOURCES = \
+ 	buffer.c \
+--- a/dlls/wintypes/wintypes.spec
++++ b/dlls/wintypes/wintypes.spec
+@@ -4,7 +4,7 @@
+ @ stub RoCreateNonAgilePropertySet
+ @ stub RoCreatePropertySetSerializer
+ @ stub RoGetBufferMarshaler
+-@ stub RoGetMetaDataFile
++@ stdcall RoGetMetaDataFile(ptr ptr ptr ptr ptr)
+ @ stdcall RoIsApiContractMajorVersionPresent(wstr long ptr)
+ @ stub RoIsApiContractPresent
+ @ stdcall RoParseTypeName(ptr ptr ptr)
+--- a/include/rometadataresolution.h
++++ b/include/rometadataresolution.h
+@@ -21,7 +21,15 @@
+ 
+ #include <windef.h>
+ #include <hstring.h>
++#include <cor.h>
+ 
++/* IMetaDataImport2 lives in rometadataapi.h, which pulls in windows.h; cor.h only has the dispenser. */
++#ifndef __IMetaDataImport2_FWD_DEFINED__
++#define __IMetaDataImport2_FWD_DEFINED__
++typedef interface IMetaDataImport2 IMetaDataImport2;
++#endif
++
++HRESULT WINAPI RoGetMetaDataFile(HSTRING, IMetaDataDispenserEx *, HSTRING *, IMetaDataImport2 **, mdTypeDef *);
+ HRESULT WINAPI RoIsApiContractMajorVersionPresent(const WCHAR *, UINT16, BOOL *);
+ HRESULT WINAPI RoParseTypeName(HSTRING, DWORD *, HSTRING **);
+ HRESULT WINAPI RoResolveNamespace(HSTRING, HSTRING, DWORD, const HSTRING *, DWORD *, HSTRING **, DWORD *, HSTRING **);
