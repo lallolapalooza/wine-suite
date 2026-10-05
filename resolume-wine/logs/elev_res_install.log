@@ -1,6 +1,0 @@
-﻿cmd=$ProgressPreference='SilentlyContinue'; curl.exe -s -o 'C:\Users\adsf\res_install.ps1' http://192.168.122.1:8000/res_install.ps1; Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','C:\Users\adsf\res_install.ps1'
-start=2026-10-02T22:19:47.4670776-07:00
-rc=0
-end=2026-10-02T22:19:53.1103010-07:00
---- output ---
-
