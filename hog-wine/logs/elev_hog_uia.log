@@ -1,7 +1,0 @@
-﻿cmd=# nonce 1791061460.554675249
-$ProgressPreference='SilentlyContinue'; curl.exe -s -o 'C:\Users\adsf\hog_uia.ps1' http://192.168.122.1:8000/hog_uia.ps1; Start-Process powershell -Verb RunAs -ArgumentList '-NoProfile','-ExecutionPolicy','Bypass','-File','C:\Users\adsf\hog_uia.ps1'
-start=2026-10-03T14:04:22.1351054-07:00
-rc=0
-end=2026-10-03T14:04:24.2095806-07:00
---- output ---
-
