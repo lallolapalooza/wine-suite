@@ -1,4 +1,0 @@
-patching file dlls/wintypes/main.c
-patching file dlls/wintypes/Makefile.in
-patching file dlls/wintypes/wintypes.spec
-patching file include/rometadataresolution.h

@@ -1,8 +1,0 @@
-patching file dlls/kernelbase/thread.c
-patching file dlls/kernelbase/process.c
-patching file dlls/kernelbase/kernelbase.spec
-patching file dlls/kernel32/kernel32.spec
-patching file dlls/ntdll/path.c
-patching file dlls/ntdll/ntdll.spec
-patching file dlls/dnsapi/query.c
-patching file dlls/dnsapi/dnsapi.spec
