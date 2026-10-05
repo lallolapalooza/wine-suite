@@ -1,0 +1,94 @@
+From: omp <omp@localhost>
+Subject: [PATCH 2/3] uxtheme: Implement the undocumented dark mode entry points
+
+AllowDarkModeForWindow/IsDarkModeAllowedForWindow now track a per-window flag,
+and SetPreferredAppMode(ForceDark) marks the existing windows of the process,
+instead of being no-op stubs that report failure.
+---
+--- a/dlls/uxtheme/system.c
++++ b/dlls/uxtheme/system.c
+@@ -1257,9 +1257,24 @@
+  *      RefreshImmersiveColorPolicyState                  (UXTHEME.104)
+  *
+  */
++/* Window property used to mark a window as using dark mode: 1 means dark,
++ * 2 means explicitly light, absent means unset. win32u reads it to decide
++ * whether the menu bar must be drawn by the application (UAH protocol). */
++#define DARK_MODE_PROP L"__wine_dark_mode"
++
++static BOOL CALLBACK mark_dark_window( HWND hwnd, LPARAM lparam )
++{
++    DWORD pid;
++
++    GetWindowThreadProcessId( hwnd, &pid );
++    if (pid == GetCurrentProcessId())
++        SetPropW( hwnd, DARK_MODE_PROP, lparam ? (HANDLE)lparam : NULL );
++    return TRUE;
++}
++
+ void WINAPI RefreshImmersiveColorPolicyState(void)
+ {
+-    FIXME("stub\n");
++    /* nothing to do, dark mode is tracked per window */
+ }
+ 
+ /**********************************************************************
+@@ -1302,18 +1317,35 @@
+  */
+ BOOLEAN WINAPI AllowDarkModeForWindow(HWND hwnd, BOOLEAN allow)
+ {
+-    FIXME("%p %d: stub\n", hwnd, allow);
+-    return FALSE;
++    if (!hwnd) return FALSE;
++    SetPropW( hwnd, DARK_MODE_PROP, allow ? (HANDLE)1 : (HANDLE)2 );
++    return TRUE;
+ }
+ 
+ /**********************************************************************
+  *      SetPreferredAppMode                             (UXTHEME.135)
+  *
++ * The mode is not stored, but ForceDark applies to the windows of this
++ * process that already exist; windows created later are expected to set
++ * their state through AllowDarkModeForWindow or DwmSetWindowAttribute.
+  */
+ int WINAPI SetPreferredAppMode(int app_mode)
+ {
+-    FIXME("%d: stub\n", app_mode);
+-    return 0;
++    static int preferred_mode;
++
++    TRACE( "%d\n", app_mode );
++
++    if (app_mode >= 0 && app_mode <= 3)
++    {
++        int previous = preferred_mode;
++
++        preferred_mode = app_mode;
++        if (app_mode == 2) EnumWindows( mark_dark_window, 1 );
++        else if (app_mode == 3) EnumWindows( mark_dark_window, 2 );
++        else EnumWindows( mark_dark_window, 0 );
++        return previous;
++    }
++    return preferred_mode;
+ }
+ 
+ /**********************************************************************
+@@ -1322,7 +1354,7 @@
+  */
+ void WINAPI FlushMenuThemes(void)
+ {
+-    FIXME("stub\n");
++    /* nothing to do, the menu bar is drawn on demand */
+ }
+ 
+ /**********************************************************************
+@@ -1331,8 +1363,7 @@
+  */
+ BOOLEAN WINAPI IsDarkModeAllowedForWindow(HWND hwnd)
+ {
+-    FIXME("%p: stub\n", hwnd);
+-    return FALSE;
++    return hwnd && GetPropW( hwnd, DARK_MODE_PROP ) == (HANDLE)1;
+ }
+ 
+ /**********************************************************************

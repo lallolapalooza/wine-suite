@@ -1,0 +1,81 @@
+{
+  "live": {
+    "main": {
+      "agentId": "Main",
+      "snapshot": {
+        "running": [],
+        "recent": [],
+        "delivery": {
+          "queued": 0,
+          "delivering": false,
+          "pendingJobIds": []
+        }
+      }
+    },
+    "agents": {
+      "Main": {
+        "agentId": "Main",
+        "snapshot": {
+          "running": [],
+          "recent": [],
+          "delivery": {
+            "queued": 0,
+            "delivering": false,
+            "pendingJobIds": []
+          }
+        }
+      }
+    }
+  },
+  "completed": [
+    {
+      "agent": "main",
+      "entryId": "5343eb2a",
+      "at": "2026-10-04T05:59:09.258Z",
+      "label": "bg_8",
+      "status": "completed"
+    },
+    {
+      "agent": "main",
+      "entryId": "5bb8895b",
+      "at": "2026-10-04T05:59:31.140Z",
+      "label": "bg_9",
+      "status": "completed"
+    },
+    {
+      "agent": "main",
+      "entryId": "926174ea",
+      "at": "2026-10-04T05:59:44.060Z",
+      "label": "bg_10",
+      "status": "completed"
+    },
+    {
+      "agent": "main",
+      "entryId": "f2139e6f",
+      "at": "2026-10-04T06:00:35.401Z",
+      "label": "bg_14",
+      "status": "completed"
+    },
+    {
+      "agent": "main",
+      "entryId": "90ec1c20",
+      "at": "2026-10-04T06:01:10.050Z",
+      "label": "bg_13",
+      "status": "completed"
+    },
+    {
+      "agent": "main",
+      "entryId": "03d45208",
+      "at": "2026-10-04T06:25:03.427Z",
+      "label": "bg_17",
+      "status": "completed"
+    },
+    {
+      "agent": "main",
+      "entryId": "37738432",
+      "at": "2026-10-04T06:25:39.066Z",
+      "label": "bg_18",
+      "status": "completed"
+    }
+  ]
+}

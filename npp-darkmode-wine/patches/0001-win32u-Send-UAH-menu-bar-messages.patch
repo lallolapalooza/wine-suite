@@ -1,0 +1,258 @@
+From: omp <omp@localhost>
+Subject: [PATCH 1/3] win32u: Let the application draw a dark menu bar
+
+Windows 10 1809+ sends the undocumented UAH messages (WM_UAHDRAWMENU /
+WM_UAHDRAWMENUITEM) to windows that use dark mode, letting the application
+paint the menu bar itself. Notepad++ 8.x relies on this to theme its menu bar.
+
+A window is considered dark when the __wine_dark_mode property is set, which
+is done by uxtheme's AllowDarkModeForWindow and by dwmapi's
+DWMWA_USE_IMMERSIVE_DARK_MODE attribute.
+---
+--- a/dlls/win32u/menu.c
++++ b/dlls/win32u/menu.c
+@@ -2389,13 +2389,53 @@
+     NtGdiDeleteObjectApp( mem_hdc );
+ }
+ 
++/* dark mode colours for popup menus, following the Windows dark theme */
++#define DARK_MENU_BACKGROUND 0x00202020  /* RGB(32,32,32) */
++#define DARK_MENU_HIGHLIGHT  0x00454545  /* RGB(69,69,69) */
++#define DARK_MENU_BORDER     0x00646464  /* RGB(100,100,100) */
++#define DARK_MENU_TEXT       0x00e0e0e0  /* RGB(224,224,224) */
++#define DARK_MENU_DISABLED   0x00808080  /* RGB(128,128,128) */
++
++/* Window property used to mark a window as using dark mode: 1 means dark,
++ * 2 means explicitly light, absent means unset. It is set by uxtheme's
++ * AllowDarkModeForWindow and by DwmSetWindowAttribute(DWMWA_USE_IMMERSIVE_DARK_MODE). */
++static const WCHAR dark_mode_property[] =
++    {'_','_','w','i','n','e','_','d','a','r','k','_','m','o','d','e',0};
++
++static BOOL is_dark_mode_allowed_for_window( HWND hwnd )
++{
++    return NtUserGetProp( hwnd, dark_mode_property ) == (HANDLE)1;
++}
++
++enum dark_menu_brush
++{
++    DARK_MENU_BRUSH_BACKGROUND,
++    DARK_MENU_BRUSH_HIGHLIGHT,
++    DARK_MENU_BRUSH_BORDER,
++};
++
++static HBRUSH get_dark_menu_brush( enum dark_menu_brush kind )
++{
++    static const COLORREF colors[3] = { DARK_MENU_BACKGROUND, DARK_MENU_HIGHLIGHT, DARK_MENU_BORDER };
++    static HBRUSH brushes[3];
++
++    if (!brushes[kind])
++        brushes[kind] = NtGdiCreateSolidBrush( colors[kind], NULL );
++    return brushes[kind];
++}
++
++static BOOL menu_is_dark( struct menu *menu )
++{
++    return menu && is_dark_mode_allowed_for_window( menu->hwndOwner );
++}
++
+ /* Draw a single menu item */
+ static void draw_menu_item( HWND hwnd, struct menu *menu, HWND owner, HDC hdc,
+                             struct menu_item *item, BOOL menu_bar, UINT odaction )
+ {
+     UINT arrow_width = 0, arrow_height = 0;
+     HRGN old_clip = NULL, clip;
+-    BOOL flat_menu = FALSE;
++    BOOL flat_menu = FALSE, dark = FALSE;
+     RECT rect, bmprc;
+     int bkgnd;
+ 
+@@ -2424,9 +2464,18 @@
+ 
+     NtUserSystemParametersInfo( SPI_GETFLATMENU, 0, &flat_menu, 0 );
+     bkgnd = (menu_bar && flat_menu) ? COLOR_MENUBAR : COLOR_MENU;
++    dark = !menu_bar && menu_is_dark( menu );
+ 
+     /* Setup colors */
+-    if (item->fState & MF_HILITE)
++    if (dark)
++    {
++        COLORREF text_col = (item->fState & MF_GRAYED) ? DARK_MENU_DISABLED : DARK_MENU_TEXT;
++        COLORREF bk_col = (item->fState & MF_HILITE) ? DARK_MENU_HIGHLIGHT : DARK_MENU_BACKGROUND;
++
++        NtGdiGetAndSetDCDword( hdc, NtGdiSetTextColor, text_col, NULL );
++        NtGdiGetAndSetDCDword( hdc, NtGdiSetBkColor, bk_col, NULL );
++    }
++    else if (item->fState & MF_HILITE)
+     {
+         if (menu_bar && !flat_menu)
+         {
+@@ -2507,7 +2556,9 @@
+ 
+     if (item->fState & MF_HILITE)
+     {
+-        if (flat_menu)
++        if (dark)
++            fill_rect( hdc, &rect, get_dark_menu_brush( DARK_MENU_BRUSH_HIGHLIGHT ));
++        else if (flat_menu)
+         {
+             InflateRect (&rect, -1, -1);
+             fill_rect( hdc, &rect, get_sys_color_brush( COLOR_MENUHILIGHT ));
+@@ -2523,7 +2574,8 @@
+         }
+     }
+     else
+-        fill_rect( hdc, &rect, get_sys_color_brush(bkgnd) );
++        fill_rect( hdc, &rect, dark ? get_dark_menu_brush( DARK_MENU_BRUSH_BACKGROUND )
++                                    : get_sys_color_brush(bkgnd) );
+ 
+     NtGdiGetAndSetDCDword( hdc, NtGdiSetBkMode, TRANSPARENT, NULL );
+ 
+@@ -2555,7 +2607,12 @@
+ 
+         InflateRect( &rc, -1, 0 );
+         rc.top = ( rc.top + rc.bottom) / 2;
+-        if (flat_menu)
++        if (dark)
++        {
++            rc.bottom = rc.top + 1;
++            fill_rect( hdc, &rc, get_dark_menu_brush( DARK_MENU_BRUSH_BORDER ));
++        }
++        else if (flat_menu)
+         {
+             oldPen = NtGdiSelectPen( hdc, get_sys_color_pen( COLOR_BTNSHADOW ));
+             NtGdiMoveTo( hdc, rc.left, rc.top, NULL );
+@@ -2738,6 +2795,98 @@
+     if (old_clip) NtGdiDeleteObjectApp( old_clip );
+ }
+ 
++/* undocumented dark mode menu bar messages (Windows 10 1809+ UAH protocol) */
++#define WM_UAHINITMENU         0x0093
++#define WM_UAHDRAWMENU         0x0091
++#define WM_UAHDRAWMENUITEM     0x0092
++#define WM_UAHMEASUREMENUITEM  0x0094
++#define WM_UAHNCPAINTMENUPOPUP 0x0095
++
++typedef struct tagUAHMENU
++{
++    HMENU hmenu;
++    HDC   hdc;
++    DWORD dwFlags;
++} UAHMENU;
++
++typedef union tagUAHMENUITEMMETRICS
++{
++    struct { DWORD cx; DWORD cy; } rgsizeBar[2];
++    struct { DWORD cx; DWORD cy; } rgsizePopup[4];
++} UAHMENUITEMMETRICS;
++
++typedef struct tagUAHMENUPOPUPMETRICS
++{
++    DWORD rgcx[4];
++    DWORD fUpdateMaxWidths : 2;
++} UAHMENUPOPUPMETRICS;
++
++typedef struct tagUAHMENUITEM
++{
++    int iPosition;
++    UAHMENUITEMMETRICS umim;
++    UAHMENUPOPUPMETRICS umpm;
++} UAHMENUITEM;
++
++typedef struct tagUAHDRAWMENUITEM
++{
++    DRAWITEMSTRUCT dis;
++    UAHMENU um;
++    UAHMENUITEM umi;
++} UAHDRAWMENUITEM;
++
++/* Ask the application to draw the menu bar itself, the way Windows 10 1809+
++ * does for windows that opted into dark mode. Applications that handle these
++ * messages paint the whole bar, so the default drawing must then be skipped. */
++static BOOL draw_dark_menu_bar( HWND hwnd, HDC hdc, struct menu *menu )
++{
++    UAHDRAWMENUITEM udmi;
++    UAHMENU um;
++    UINT i;
++
++    if (!menu->nItems || !is_dark_mode_allowed_for_window( hwnd )) return FALSE;
++
++    um.hmenu   = menu->handle;
++    um.hdc     = hdc;
++    um.dwFlags = 0x00000a00;
++
++    send_message( hwnd, WM_UAHINITMENU, 0, 0 );
++    send_message( hwnd, WM_UAHDRAWMENU, 0, (LPARAM)&um );
++
++    memset( &udmi, 0, sizeof(udmi) );
++    udmi.um = um;
++
++    for (i = 0; i < menu->nItems; i++)
++    {
++        struct menu_item *item = &menu->items[i];
++        RECT rc = item->rect;
++
++        adjust_menu_item_rect( menu, &rc );
++
++        udmi.dis.CtlType    = ODT_MENU;
++        udmi.dis.CtlID      = 0;
++        udmi.dis.itemID     = 0;
++        udmi.dis.itemAction = ODA_DRAWENTIRE;
++        udmi.dis.itemState  = 0;
++        if (item->fState & MF_CHECKED)  udmi.dis.itemState |= ODS_CHECKED;
++        if (item->fState & MF_DISABLED) udmi.dis.itemState |= ODS_DISABLED;
++        if (item->fState & MF_GRAYED)   udmi.dis.itemState |= ODS_GRAYED | ODS_DISABLED;
++        if (item->fState & MF_HILITE)   udmi.dis.itemState |= ODS_SELECTED;
++        udmi.dis.hwndItem   = hwnd;
++        udmi.dis.hDC        = hdc;
++        udmi.dis.rcItem     = rc;
++        udmi.dis.itemData   = 0;
++
++        udmi.umi.iPosition = i;
++        udmi.umi.umim.rgsizeBar[0].cx = rc.right - rc.left;
++        udmi.umi.umim.rgsizeBar[0].cy = rc.bottom - rc.top;
++
++        send_message( hwnd, WM_UAHDRAWMENUITEM, 0, (LPARAM)&udmi );
++    }
++
++    return TRUE;
++}
++
+ /***********************************************************************
+  *           NtUserDrawMenuBarTemp   (win32u.@)
+  */
+@@ -2764,6 +2913,12 @@
+ 
+     rect->bottom = rect->top + menu->Height;
+ 
++    if (draw_dark_menu_bar( hwnd, hdc, menu ))
++    {
++        if (prev_font) NtGdiSelectFont( hdc, prev_font );
++        return menu->Height;
++    }
++
+     fill_rect( hdc, rect, get_sys_color_brush( flat_menu ? COLOR_MENUBAR : COLOR_MENU ));
+ 
+     NtGdiSelectPen( hdc, get_sys_color_pen( COLOR_3DFACE ));
+@@ -2859,8 +3014,10 @@
+ 
+ static void draw_popup_menu( HWND hwnd, HDC hdc, HMENU hmenu )
+ {
+-    HBRUSH prev_hrush, brush = get_sys_color_brush( COLOR_MENU );
+     struct menu *menu = unsafe_menu_ptr( hmenu );
++    BOOL dark = menu_is_dark( menu );
++    HBRUSH prev_hrush, brush = dark ? get_dark_menu_brush( DARK_MENU_BRUSH_BACKGROUND )
++                                    : get_sys_color_brush( COLOR_MENU );
+     RECT rect;
+ 
+     TRACE( "wnd=%p dc=%p menu=%p\n", hwnd, hdc, hmenu );
+@@ -2881,7 +3038,9 @@
+             BOOL flat_menu = FALSE;
+ 
+             NtUserSystemParametersInfo( SPI_GETFLATMENU, 0, &flat_menu, 0 );
+-            if (flat_menu)
++            if (dark)
++                frame_rect( hdc, &rect, get_dark_menu_brush( DARK_MENU_BRUSH_BORDER ));
++            else if (flat_menu)
+                 frame_rect( hdc, &rect, get_sys_color_brush( COLOR_BTNSHADOW ));
+             else
+                 draw_rect_edge( hdc, &rect, EDGE_RAISED, BF_RECT, 1 );
