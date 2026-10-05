@@ -1,5 +1,9 @@
 # Resolume Arena 7 on Wine
 
+Resolume and Resolume Arena are registered trademarks of Resolume B.V. This repository is not associated with, affiliated with, supported nor endorsed by Resolume B.V. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
+No Resolume software is redistributed here. The install media must come from your own Resolume download; the scripts take it from `installer/` or `$RES_MEDIA` (see `env.sh`).
+
 `Resolume_Arena_7_28_0_rev_24303_Installer.exe` installs and **runs with its full UI** under a
 patched Wine 11.18 built here. Two deficits had to be fixed — one a Wine patch, one a font
 deployment — and both are in this directory.

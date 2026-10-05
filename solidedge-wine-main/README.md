@@ -1,5 +1,7 @@
 # Solid Edge 2026 on Wine
 
+Solid Edge is a registered trademark of Siemens AG. This repository is not associated with, affiliated with, supported nor endorsed by Siemens AG. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
 Wine 11.18 with the patches that let Siemens **Solid Edge 2026** install and run on Linux, and
 the fixes for the three defects it showed once it did:
 

@@ -1,5 +1,7 @@
 # revit2027-wine
 
+Revit is a registered trademark of Autodesk, Inc. This repository is not associated with, affiliated with, supported nor endorsed by Autodesk, Inc. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
 Wine with the patches that let Autodesk **Revit 2027** install and run on Linux.
 
 This is a sibling of the AutoCAD fork (`acad-wine-main`). It starts from the same base — Wine

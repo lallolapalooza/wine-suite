@@ -1,5 +1,7 @@
 # CapCut PC on Wine
 
+CapCut is a registered trademark of ByteDance Ltd. This repository is not associated with, affiliated with, supported nor endorsed by ByteDance Ltd. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
 Wine 11.18 with the patches that let **CapCut PC (Windows x64, app version 9.5.0.4050,
 installer `capcutpc_0_1.2.36`)** install and run on Linux, plus the environment fixups the app
 needs that are not Wine patches at all.

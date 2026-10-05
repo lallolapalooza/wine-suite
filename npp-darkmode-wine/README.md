@@ -1,5 +1,9 @@
 # Notepad++ dark mode on Wine (Wine bug 57555)
 
+Notepad++ is a trademark of Don Ho. This repository is not associated with, affiliated with, supported nor endorsed by Don Ho or the Notepad++ project. No guarantees are made, as for the suitability of the content of this repository for any particular purpose.
+
+Notepad++ is free software under the GNU GPL; the portable build and source copies under `npp/`, `src/` and `npp.8.9.8.1.portable.x64.zip` are redistributed under that licence, not as vendor install media.
+
 Goal: make Notepad++ dark mode work under Wine the way it does on Windows, by patching
 Wine. Notepad++ is a pure Win32 application (no frameworks/SDKs/browsers), so the fix is
 a generic set of win32u/uxtheme/dwmapi patches — **not** an app hack, and it does not
