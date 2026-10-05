@@ -1,0 +1,145 @@
+uiautomationcore: navigate to a *matching* sibling or child instead of giving up with E_NOTIMPL
+
+Symptom and who hits it.  The .NET UI Automation client asks its own provider (and Wine's) to
+walk the element tree with a condition.  Wine's `conditional_navigate_uia_node()`
+(dlls/uiautomationcore/uia_client.c) handled `NavigateDirection_Parent` with a condition but for
+NextSibling/PreviousSibling/FirstChild/LastChild it did:
+
+    if (cond->ConditionType != ConditionType_True)
+    {
+        FIXME("ConditionType %d based navigation for dir %d is not implemented.\n", ...);
+        return E_NOTIMPL;
+    }
+
+`System.Windows.Automation.TreeWalker` does not pass `Condition.TrueCondition`: both
+`TreeWalker.ControlViewWalker` and `TreeWalker.RawViewWalker` build a **`Not`** condition
+(ConditionType_Not == 5) to exclude invisible elements, so every `GetFirstChild`,
+`GetNextSibling`, `GetPreviousSibling` and `GetParent` through the managed tree walker hit that
+branch.  Measured with tools/winapi/uiaprobe.cs, which calls exactly those APIs under Wine:
+
+    $ wine C:\uiaprobe.exe
+    FromHandle ok: uiaprobeTarget
+    0a48:fixme:uiautomationcore:conditional_navigate_uia_node ConditionType 5 based navigation for dir 1 is not implemented.
+    automation threw: NotImplementedException: The method or operation is not implemented.
+
+so the managed caller got a *hard* failure where Windows returns the first matching element.  This
+is the same API family as the `DwmGetWindowAttribute` line Solid Edge's own log shows when the
+sketch will not close, which is why it was chased: `UIAutomationClient`'s `IsWindowReallyVisible`
+both asks DWM about `DWMWA_CLOAKED` and walks the tree through these calls.
+
+The Windows behaviour restored.  `Navigate` with a condition returns the first element in the
+requested direction that satisfies the condition (`FirstChild`/`LastChild`: the first/last
+matching child; `NextSibling`/`PreviousSibling`: the first matching sibling in that direction).
+The patch walks in the direction until a node matches, transferring ownership the same way the
+existing `NavigateDirection_Parent` loop does.
+
+Verification.  After the patch the probe's tree walk completes instead of throwing
+(tools/winapi/uiaprobe.cs, run under this fork), and the module's own suite is unchanged:
+`tools/run_wine_tests.sh uiautomationcore`.  No new unit test is shipped with this patch: the
+suite's existing navigation test drives every call through a per-test method-sequence expectation
+(`ok_method_sequence`), and inserting calls there would rewrite that expectation rather than test
+the new behaviour; the end-to-end probe above is the evidence instead.
+--- a/dlls/uiautomationcore/uia_client.c	2026-09-18 15:36:23.000000000 -0500
++++ b/dlls/uiautomationcore/uia_client.c	2026-10-01 05:50:06.293715480 -0500
+@@ -999,6 +999,49 @@
+     return S_OK;
+ }
+ 
++/* Walk from `start` in `nav_dir` until a node matching `cond` is reached.  `start` is borrowed;
++ * any node acquired on the way is released.  Windows returns the first *matching* element in
++ * that direction, which is what .NET's TreeWalker needs: TreeWalker's view conditions are `Not`
++ * conditions (ConditionType_Not), so every GetNextSibling/GetFirstChild call arrives here with a
++ * condition that is not ConditionType_True. */
++static HRESULT conditional_navigate_siblings(struct uia_node *start, int nav_dir,
++        struct UiaCondition *cond, HUIANODE *out_node)
++{
++    struct uia_node *cur = start;
++    BOOL owned = FALSE;
++    HRESULT hr;
++
++    *out_node = NULL;
++    while (1)
++    {
++        HUIANODE next = NULL;
++
++        hr = navigate_uia_node(cur, nav_dir, &next);
++        if (FAILED(hr)) return hr;
++        if (!next) break;
++
++        if (owned) IWineUiaNode_Release(&cur->IWineUiaNode_iface);
++        cur = unsafe_impl_from_IWineUiaNode((IWineUiaNode *)next);
++        owned = TRUE;
++
++        if (cond->ConditionType == ConditionType_True)
++        {
++            *out_node = next;
++            return S_OK;
++        }
++        hr = uia_condition_check(next, cond);
++        if (FAILED(hr)) return hr;
++        if (uia_condition_matched(hr))
++        {
++            *out_node = next;
++            return S_OK;
++        }
++    }
++
++    if (owned) IWineUiaNode_Release(&cur->IWineUiaNode_iface);
++    return S_OK;
++}
++
+ static HRESULT conditional_navigate_uia_node(struct uia_node *node, int nav_dir, struct UiaCondition *cond,
+         HUIANODE *out_node)
+ {
+@@ -1039,17 +1082,45 @@
+         break;
+     }
+ 
+-    case NavigateDirection_NextSibling:
+-    case NavigateDirection_PreviousSibling:
+     case NavigateDirection_FirstChild:
+     case NavigateDirection_LastChild:
+-        if (cond->ConditionType != ConditionType_True)
++    {
++        HUIANODE child = NULL;
++
++        hr = navigate_uia_node(node, nav_dir, &child);
++        if (FAILED(hr)) return hr;
++        if (!child) break;
++
++        if (cond->ConditionType == ConditionType_True)
+         {
+-            FIXME("ConditionType %d based navigation for dir %d is not implemented.\n", cond->ConditionType, nav_dir);
+-            return E_NOTIMPL;
++            *out_node = child;
++            break;
+         }
+ 
+-        hr = navigate_uia_node(node, nav_dir, out_node);
++        hr = uia_condition_check(child, cond);
++        if (FAILED(hr))
++        {
++            UiaNodeRelease(child);
++            return hr;
++        }
++        if (uia_condition_matched(hr))
++        {
++            *out_node = child;
++            break;
++        }
++
++        /* The first (or last) child is not the one asked for; continue along its siblings. */
++        hr = conditional_navigate_siblings(unsafe_impl_from_IWineUiaNode((IWineUiaNode *)child),
++                nav_dir == NavigateDirection_FirstChild ? NavigateDirection_NextSibling
++                                                        : NavigateDirection_PreviousSibling,
++                cond, out_node);
++        UiaNodeRelease(child);
++        break;
++    }
++
++    case NavigateDirection_NextSibling:
++    case NavigateDirection_PreviousSibling:
++        hr = conditional_navigate_siblings(node, nav_dir, cond, out_node);
+         break;
+ 
+     default:
