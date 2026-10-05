@@ -1,0 +1,428 @@
+--- a/dlls/kernelbase/registry.c
++++ b/dlls/kernelbase/registry.c
+@@ -3210,30 +3210,417 @@
+  * RegLoadAppKeyA (kernelbase.@)
+  *
+  */
+-LSTATUS WINAPI RegLoadAppKeyA(const char *file, HKEY *result, REGSAM sam, DWORD options, DWORD reserved)
++
++/* helpers for binary (regf) registry hive files; cell offsets are relative to
++ * the 0x1000-byte HBin base block.  All fields are little-endian. */
++#define REGF_BASE_BLOCK      0x1000
++#define REGF_MAX_FILE        0x40000000
++#define REGF_MAX_NAMELEN     0x10000
++#define REGF_KEY_COMP_NAME   0x0020
++#define REGF_VAL_COMP_NAME   0x0001
++
++static const void *regf_ptr(const BYTE *buf, DWORD size, DWORD off, DWORD len)
++{
++    if (off > size || len > size - off) return NULL;
++    return buf + off;
++}
++
++static BOOL regf_u16(const BYTE *buf, DWORD size, DWORD off, USHORT *val)
++{
++    const void *p = regf_ptr(buf, size, off, sizeof(*val));
++    if (!p) return FALSE;
++    memcpy(val, p, sizeof(*val));
++    return TRUE;
++}
++
++static BOOL regf_u32(const BYTE *buf, DWORD size, DWORD off, DWORD *val)
++{
++    const void *p = regf_ptr(buf, size, off, sizeof(*val));
++    if (!p) return FALSE;
++    memcpy(val, p, sizeof(*val));
++    return TRUE;
++}
++
++/* reader for a field inside a hive cell */
++static const void *regf_cell_ptr(const BYTE *buf, DWORD size, DWORD cell_off, DWORD field_off, DWORD len)
++{
++    ULONGLONG off = (ULONGLONG)REGF_BASE_BLOCK + cell_off + field_off;
++    if (off + len > size) return NULL;
++    return buf + (DWORD)off;
++}
++
++static BOOL regf_cell_u16(const BYTE *buf, DWORD size, DWORD cell_off, DWORD field_off, USHORT *val)
++{
++    const void *p = regf_cell_ptr(buf, size, cell_off, field_off, sizeof(*val));
++    if (!p) return FALSE;
++    memcpy(val, p, sizeof(*val));
++    return TRUE;
++}
++
++static BOOL regf_cell_u32(const BYTE *buf, DWORD size, DWORD cell_off, DWORD field_off, DWORD *val)
++{
++    const void *p = regf_cell_ptr(buf, size, cell_off, field_off, sizeof(*val));
++    if (!p) return FALSE;
++    memcpy(val, p, sizeof(*val));
++    return TRUE;
++}
++
++/* decode a key or value name; names are single-byte when the compression flag
++ * is set (KEY_COMP_NAME / VAL_COMP_NAME) and UTF-16LE otherwise */
++static WCHAR *regf_get_name(const BYTE *buf, DWORD size, DWORD cell_off, DWORD name_off,
++                            DWORD name_size, BOOL compressed)
++{
++    WCHAR *name;
++
++    if (name_size > REGF_MAX_NAMELEN) return NULL;
++    if (!name_size)
++    {
++        name = HeapAlloc(GetProcessHeap(), 0, sizeof(WCHAR));
++        if (name) name[0] = 0;
++        return name;
++    }
++
++    if (compressed)
++    {
++        const BYTE *chars = regf_cell_ptr(buf, size, cell_off, name_off, name_size);
++        DWORD i;
++
++        if (!chars) return NULL;
++        name = HeapAlloc(GetProcessHeap(), 0, (name_size + 1) * sizeof(WCHAR));
++        if (!name) return NULL;
++        for (i = 0; i < name_size; i++) name[i] = chars[i];
++        name[name_size] = 0;
++    }
++    else
++    {
++        const void *p;
++
++        if (name_size & 1) return NULL;
++        p = regf_cell_ptr(buf, size, cell_off, name_off, name_size);
++        if (!p) return NULL;
++        name = HeapAlloc(GetProcessHeap(), 0, name_size + sizeof(WCHAR));
++        if (!name) return NULL;
++        memcpy(name, p, name_size);
++        name[name_size / sizeof(WCHAR)] = 0;
++    }
++    return name;
++}
++
++/* load a single value (vk cell) into an open key */
++static LSTATUS regf_load_value(HKEY hkey, const BYTE *buf, DWORD size, DWORD cell_off)
++{
++    USHORT name_size, flags;
++    DWORD data_size, data_off, data_type, dsize;
++    BYTE inline_data[4], *data = NULL;
++    WCHAR *name;
++    const void *sig;
++    LSTATUS ret;
++
++    sig = regf_cell_ptr(buf, size, cell_off, 4, 4);
++    if (!sig || memcmp(sig, "vk", 2)) return ERROR_BADKEY;
++    if (!regf_cell_u16(buf, size, cell_off, 6, &name_size) ||
++        !regf_cell_u32(buf, size, cell_off, 8, &data_size) ||
++        !regf_cell_u32(buf, size, cell_off, 0xc, &data_off) ||
++        !regf_cell_u32(buf, size, cell_off, 0x10, &data_type) ||
++        !regf_cell_u16(buf, size, cell_off, 0x14, &flags))
++        return ERROR_BADKEY;
++
++    if (data_size & 0x80000000)
++    {
++        /* small data stored inline in the data offset field */
++        const BYTE *p;
++
++        dsize = data_size & ~0x80000000;
++        if (dsize > sizeof(inline_data)) return ERROR_BADKEY;
++        if (dsize)
++        {
++            p = regf_cell_ptr(buf, size, cell_off, 0xc, dsize);
++            if (!p) return ERROR_BADKEY;
++            memcpy(inline_data, p, dsize);
++        }
++        data = inline_data;
++    }
++    else if (data_size)
++    {
++        if (data_size > 4 * 0x1000) return ERROR_SUCCESS; /* big data blocks: unsupported, skip value */
++        data = (BYTE *)regf_cell_ptr(buf, size, data_off, 4, data_size);
++        if (!data) return ERROR_BADKEY;
++        dsize = data_size;
++    }
++    else dsize = 0;
++
++    name = regf_get_name(buf, size, cell_off, 0x18, name_size, (flags & REGF_VAL_COMP_NAME) != 0);
++    if (!name) return ERROR_BADKEY;
++
++    ret = RegSetValueExW(hkey, name, 0, data_type, data, dsize);
++    HeapFree(GetProcessHeap(), 0, name);
++    return ret;
++}
++
++static LSTATUS regf_load_key(HKEY hkey, const BYTE *buf, DWORD size, DWORD cell_off);
++static LSTATUS regf_load_list(HKEY hkey, const BYTE *buf, DWORD size, DWORD list_off);
++
++/* load a key (nk cell) as a subkey of hkey and recurse */
++static LSTATUS regf_load_subkey(HKEY hkey, const BYTE *buf, DWORD size, DWORD cell_off)
++{
++    LSTATUS ret;
++    USHORT flags, name_size;
++    WCHAR *name;
++    HKEY subkey;
++    const void *sig;
++
++    sig = regf_cell_ptr(buf, size, cell_off, 4, 4);
++    if (!sig || memcmp(sig, "nk", 2)) return ERROR_BADKEY;
++    if (!regf_cell_u16(buf, size, cell_off, 6, &flags) ||
++        !regf_cell_u16(buf, size, cell_off, 0x4c, &name_size))
++        return ERROR_BADKEY;
++
++    name = regf_get_name(buf, size, cell_off, 0x50, name_size, (flags & REGF_KEY_COMP_NAME) != 0);
++    if (!name) return ERROR_BADKEY;
++
++    ret = RegCreateKeyExW(hkey, name, 0, NULL, REG_OPTION_VOLATILE, KEY_ALL_ACCESS, NULL, &subkey, NULL);
++    HeapFree(GetProcessHeap(), 0, name);
++    if (ret != ERROR_SUCCESS) return ret;
++
++    ret = regf_load_key(subkey, buf, size, cell_off);
++    RegCloseKey(subkey);
++    return ret;
++}
++
++/* load the subkey list at list_off (lf/lh/li lists recursively, ri lists of lists) */
++static LSTATUS regf_load_list(HKEY hkey, const BYTE *buf, DWORD size, DWORD list_off)
+ {
+-    FIXME("%s %p %lu %lu %lu: stub\n", wine_dbgstr_a(file), result, sam, options, reserved);
++    USHORT count;
++    DWORD i, entry_size;
++    const void *p;
++    LSTATUS ret;
++
++    p = regf_cell_ptr(buf, size, list_off, 0, 8);
++    if (!p) return ERROR_BADKEY;
++    if (!regf_cell_u16(buf, size, list_off, 6, &count)) return ERROR_BADKEY;
++    if (count > 0x10000) return ERROR_BADKEY;
+ 
++    if (!memcmp((const BYTE *)p + 4, "lf", 2) || !memcmp((const BYTE *)p + 4, "lh", 2))
++        entry_size = 8;
++    else if (!memcmp((const BYTE *)p + 4, "li", 2) || !memcmp((const BYTE *)p + 4, "ri", 2))
++        entry_size = 4;
++    else return ERROR_BADKEY;
++
++    if (!regf_cell_ptr(buf, size, list_off, 8, count * entry_size)) return ERROR_BADKEY;
++
++    if (entry_size == 8)
++    {
++        for (i = 0; i < count; i++)
++        {
++            DWORD subkey_off;
++
++            if (!regf_u32(buf, size, REGF_BASE_BLOCK + list_off + 8 + i * 8, &subkey_off))
++                return ERROR_BADKEY;
++            ret = regf_load_subkey(hkey, buf, size, subkey_off);
++            if (ret != ERROR_SUCCESS) return ret;
++        }
++    }
++    else if (!memcmp((const BYTE *)p + 4, "li", 2))
++    {
++        for (i = 0; i < count; i++)
++        {
++            DWORD subkey_off;
++
++            if (!regf_u32(buf, size, REGF_BASE_BLOCK + list_off + 8 + i * 4, &subkey_off))
++                return ERROR_BADKEY;
++            ret = regf_load_subkey(hkey, buf, size, subkey_off);
++            if (ret != ERROR_SUCCESS) return ret;
++        }
++    }
++    else
++    {
++        for (i = 0; i < count; i++)
++        {
++            DWORD sublist_off;
++
++            if (!regf_u32(buf, size, REGF_BASE_BLOCK + list_off + 8 + i * 4, &sublist_off))
++                return ERROR_BADKEY;
++            ret = regf_load_list(hkey, buf, size, sublist_off);
++            if (ret != ERROR_SUCCESS) return ret;
++        }
++    }
++    return ERROR_SUCCESS;
++}
++
++/* materialize a key (nk cell) into an already-open key */
++static LSTATUS regf_load_key(HKEY hkey, const BYTE *buf, DWORD size, DWORD cell_off)
++{
++    LSTATUS ret = ERROR_SUCCESS;
++    DWORD sub_keys, sub_keys_list_off, values, values_list_off, i;
++    const void *sig;
++
++    sig = regf_cell_ptr(buf, size, cell_off, 4, 4);
++    if (!sig || memcmp(sig, "nk", 2)) return ERROR_BADKEY;
++    if (!regf_cell_u32(buf, size, cell_off, 0x18, &sub_keys) ||
++        !regf_cell_u32(buf, size, cell_off, 0x20, &sub_keys_list_off) ||
++        !regf_cell_u32(buf, size, cell_off, 0x28, &values) ||
++        !regf_cell_u32(buf, size, cell_off, 0x2c, &values_list_off))
++        return ERROR_BADKEY;
++
++    if (values)
++    {
++        if (values > 0x10000) return ERROR_BADKEY;
++        if (!regf_cell_ptr(buf, size, values_list_off, 4, values * sizeof(DWORD)))
++            return ERROR_BADKEY;
++        for (i = 0; i < values; i++)
++        {
++            DWORD value_off;
++
++            if (!regf_u32(buf, size, REGF_BASE_BLOCK + values_list_off + 4 + i * sizeof(DWORD), &value_off))
++                return ERROR_BADKEY;
++            ret = regf_load_value(hkey, buf, size, value_off);
++            if (ret != ERROR_SUCCESS) return ret;
++        }
++    }
++
++    if (sub_keys)
++    {
++        ret = regf_load_list(hkey, buf, size, sub_keys_list_off);
++        if (ret != ERROR_SUCCESS) return ret;
++    }
++    return ERROR_SUCCESS;
++}
++
++LSTATUS WINAPI RegLoadAppKeyW(const WCHAR *file, HKEY *result, REGSAM sam, DWORD options, DWORD reserved)
++{
++    static LONG appkey_count;
++    HANDLE fhandle;
++    HKEY hkey = NULL;
++    LARGE_INTEGER file_size;
++    DWORD read, size, root_off, hive_size, pid, seq;
++    BYTE *buf = NULL;
++    WCHAR path[48];
++    LSTATUS ret;
++
++    TRACE("%s %p %lu %lu %lu\n", wine_dbgstr_w(file), result, sam, options, reserved);
++
+     if (!file || reserved)
+         return ERROR_INVALID_PARAMETER;
+ 
+-    *result = (HKEY)0xdeadbeef;
++    fhandle = CreateFileW(file, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL,
++                          OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
++    if (fhandle == INVALID_HANDLE_VALUE)
++        return (LSTATUS)GetLastError();
++
++    ret = ERROR_BADKEY;
++    if (GetFileSizeEx(fhandle, &file_size) && file_size.QuadPart <= REGF_MAX_FILE)
++    {
++        size = (DWORD)file_size.QuadPart;
++        if (size >= REGF_BASE_BLOCK)
++        {
++            buf = HeapAlloc(GetProcessHeap(), 0, size);
++            if (buf)
++            {
++                read = 0;
++                while (read < size)
++                {
++                    DWORD chunk;
++
++                    if (!ReadFile(fhandle, buf + read, size - read, &chunk, NULL) || !chunk)
++                        break;
++                    read += chunk;
++                }
++                if (read == size) ret = ERROR_SUCCESS;
++                else ret = ERROR_READ_FAULT;
++            }
++            else ret = ERROR_OUTOFMEMORY;
++        }
++        else ret = ERROR_SUCCESS;
++    }
++    CloseHandle(fhandle);
++
++    if (ret != ERROR_SUCCESS)
++    {
++        HeapFree(GetProcessHeap(), 0, buf);
++        return ret;
++    }
++
++    /* only binary (regf) files are supported; keep the legacy behaviour for
++     * text-format hives so existing callers keep working.  Files too small to
++     * be a regf hive, or whose magic doesn't match, go down the legacy path. */
++    if (size < REGF_BASE_BLOCK || memcmp(buf, "regf", 4))
++    {
++        *result = (HKEY)0xdeadbeef;
++        HeapFree(GetProcessHeap(), 0, buf);
++        return ERROR_SUCCESS;
++    }
++
++    /* validate the regf header */
++    {
++        DWORD ver_major, ver_minor, file_type;
++
++        if (!regf_u32(buf, size, 0x14, &ver_major) ||
++            !regf_u32(buf, size, 0x18, &ver_minor) ||
++            !regf_u32(buf, size, 0x1c, &file_type) ||
++            !regf_u32(buf, size, 0x24, &root_off) ||
++            !regf_u32(buf, size, 0x28, &hive_size) ||
++            ver_major != 1 || ver_minor < 2 || ver_minor > 5 ||
++            file_type != 0 || root_off >= hive_size ||
++            (ULONGLONG)REGF_BASE_BLOCK + hive_size > size)
++        {
++            HeapFree(GetProcessHeap(), 0, buf);
++            return ERROR_BADKEY;
++        }
++    }
++
++    /* materialize the hive under a unique volatile key so that the handle
++     * survives and the data is not written to the on-disk registry */
++    seq = (DWORD)__atomic_add_fetch(&appkey_count, 1, __ATOMIC_SEQ_CST);
++    pid = HandleToULong(NtCurrentTeb()->ClientId.UniqueProcess);
++    swprintf(path, ARRAY_SIZE(path), L"Software\\Wine\\AppKeys\\%08lx_%08lx",
++             (unsigned long)pid, (unsigned long)seq);
++
++    ret = RegCreateKeyExW(HKEY_CURRENT_USER, path, 0, NULL, REG_OPTION_VOLATILE, KEY_ALL_ACCESS, NULL, &hkey, NULL);
++    if (ret == ERROR_SUCCESS)
++        ret = regf_load_key(hkey, buf, size, root_off);
++
++    if (ret != ERROR_SUCCESS)
++    {
++        if (hkey)
++        {
++            RegCloseKey(hkey);
++            hkey = NULL;
++        }
++        RegDeleteTreeW(HKEY_CURRENT_USER, path);
++        HeapFree(GetProcessHeap(), 0, buf);
++        return ret;
++    }
++
++    *result = hkey;
++    HeapFree(GetProcessHeap(), 0, buf);
+     return ERROR_SUCCESS;
+ }
+ 
++
+ /******************************************************************************
+- * RegLoadAppKeyW (kernelbase.@)
++ * RegLoadAppKeyA (kernelbase.@)
+  *
+  */
+-LSTATUS WINAPI RegLoadAppKeyW(const WCHAR *file, HKEY *result, REGSAM sam, DWORD options, DWORD reserved)
++LSTATUS WINAPI RegLoadAppKeyA(const char *file, HKEY *result, REGSAM sam, DWORD options, DWORD reserved)
+ {
+-    FIXME("%s %p %lu %lu %lu: stub\n", wine_dbgstr_w(file), result, sam, options, reserved);
++    UNICODE_STRING fileW;
++    ANSI_STRING fileA;
++    NTSTATUS status;
++    LSTATUS ret;
++
++    TRACE("%s %p %lu %lu %lu\n", wine_dbgstr_a(file), result, sam, options, reserved);
+ 
+     if (!file || reserved)
+         return ERROR_INVALID_PARAMETER;
+ 
+-    *result = (HKEY)0xdeadbeef;
+-    return ERROR_SUCCESS;
++    RtlInitAnsiString(&fileA, file);
++    status = RtlAnsiStringToUnicodeString(&fileW, &fileA, TRUE);
++    if (status != STATUS_SUCCESS)
++        return RtlNtStatusToDosError(status);
++
++    ret = RegLoadAppKeyW(fileW.Buffer, result, sam, options, reserved);
++    RtlFreeUnicodeString(&fileW);
++    return ret;
+ }
+ 
+ 

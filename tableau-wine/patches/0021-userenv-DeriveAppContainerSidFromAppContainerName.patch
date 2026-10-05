@@ -1,0 +1,195 @@
+userenv: implement DeriveAppContainerSidFromAppContainerName
+
+Qt WebEngine (Qt 6.5.11 / Chromium 122) statically imports
+userenv.dll!DeriveAppContainerSidFromAppContainerName from both Qt6WebEngineCore.dll and
+QtWebEngineProcess.exe: Chromium's AppContainerBase::Open() calls it whenever the renderer/GPU
+AppContainer sandbox is enabled (sandbox/win/src/app_container_base.cc).  Wine has no such export, so
+the loader binds the import to its abort thunk (ntdll/loader.c allocate_stub()) and the first call
+kills the process with "unimplemented function
+userenv.dll.DeriveAppContainerSidFromAppContainerName, aborting"; the neighbouring
+CreateAppContainerProfile() is only a FIXME stub returning E_NOTIMPL.
+
+Windows derives the package SID "S-1-15-2-<x0>-<x1>-...-<x6>" from the name: the name is lowercased,
+hashed as UTF-16 with SHA-256, and the first 28 bytes of the hash become seven little-endian 32-bit
+subauthorities (the eighth 32-bit word is dropped).  The mapping was pinned against the SID Windows 11
+itself derives for Microsoft.Windows.ShellExperienceHost_cw5n1h2txyewy,
+S-1-15-2-155514346-2573954481-755741238-1654018636-1233331829-3075935687-2861478708, which is exactly
+what this implementation returns, and it matches the independent documented reimplementation in
+forderud/RunInSandbox (AppContainerSid/Main.cpp: lowercase name, SHA-256 of the UTF-16 bytes, first
+28 bytes).  Wine's existing RtlDeriveCapabilitySidsFromName() (dlls/ntdll/sec.c) uses the same scheme
+for the capability SID, except that it uppercases the name.
+
+The returned SID lives on the process heap, so the FreeSid() the caller uses (Chromium's
+FreeSidDeleter) releases it.  The test in dlls/userenv/tests/userenv.c checks the subauthorities of
+that measured SID, that case does not matter (the name is lowercased before hashing), and the two
+E_INVALIDARG cases.
+--- a/dlls/userenv/userenv.spec
++++ b/dlls/userenv/userenv.spec
+@@ -2,6 +2,7 @@
+ 
+ @ stdcall CreateAppContainerProfile(wstr wstr wstr ptr long ptr)
+ @ stdcall CreateEnvironmentBlock(ptr ptr long)
++@ stdcall DeriveAppContainerSidFromAppContainerName(wstr ptr)
+ @ stdcall DestroyEnvironmentBlock(ptr)
+ @ stdcall EnterCriticalPolicySection(long)
+ @ stdcall ExpandEnvironmentStringsForUserA(ptr str ptr long)
+--- a/dlls/userenv/Makefile.in
++++ b/dlls/userenv/Makefile.in
+@@ -1,6 +1,6 @@
+ EXTRADEFS = -D_USERENV_
+ MODULE    = userenv.dll
+-IMPORTS   = advapi32
++IMPORTS   = advapi32 bcrypt
+ IMPORTLIB = userenv
+ 
+ SOURCES = \
+--- a/dlls/userenv/userenv_main.c
++++ b/dlls/userenv/userenv_main.c
+@@ -23,6 +23,7 @@
+ #include "ntstatus.h"
+ #include "windef.h"
+ #include "winbase.h"
++#include "bcrypt.h"
+ #include "winreg.h"
+ #include "winternl.h"
+ #include "winnls.h"
+@@ -696,3 +697,59 @@
+ 
+     return E_NOTIMPL;
+ }
++
++/******************************************************************************
++ *              DeriveAppContainerSidFromAppContainerName   (USERENV.@)
++ *
++ * Derive the package SID of an AppContainer from its name.
++ *
++ * Windows builds "S-1-15-2-<x0>-...-<x6>" out of the name: the name is
++ * lowercased, hashed with SHA-256 as UTF-16, and the first 28 bytes of the
++ * hash become seven little-endian 32-bit subauthorities (the remaining word is
++ * dropped).  Verified against the SID Windows 11 derives for
++ * Microsoft.Windows.ShellExperienceHost_cw5n1h2txyewy, which is
++ * S-1-15-2-155514346-2573954481-755741238-1654018636-1233331829-3075935687-2861478708.
++ * The returned SID is allocated on the process heap so that it can be freed
++ * with FreeSid, as documented.
++ */
++HRESULT WINAPI DeriveAppContainerSidFromAppContainerName( PCWSTR name, PSID *sid )
++{
++    static const SID_IDENTIFIER_AUTHORITY app_authority = { SECURITY_APP_PACKAGE_AUTHORITY };
++    UNICODE_STRING name_us, name_lower;
++    BCRYPT_ALG_HANDLE alg = NULL;
++    BCRYPT_HASH_HANDLE hash = NULL;
++    UCHAR digest[32];
++    NTSTATUS status;
++    SID *ret;
++    BOOL ok;
++
++    TRACE( "name %s, sid %p\n", debugstr_w(name), sid );
++
++    if (!name || !sid) return E_INVALIDARG;
++    *sid = NULL;
++
++    RtlInitUnicodeString( &name_us, name );
++    if ((status = RtlDowncaseUnicodeString( &name_lower, &name_us, TRUE )))
++        return HRESULT_FROM_NT( status );
++
++    ok = !BCryptOpenAlgorithmProvider( &alg, BCRYPT_SHA256_ALGORITHM, NULL, 0 ) &&
++         !BCryptCreateHash( alg, &hash, NULL, 0, NULL, 0, 0 ) &&
++         !BCryptHashData( hash, (UCHAR *)name_lower.Buffer, name_lower.Length, 0 ) &&
++         !BCryptFinishHash( hash, digest, sizeof(digest), 0 );
++    RtlFreeUnicodeString( &name_lower );
++    if (hash) BCryptDestroyHash( hash );
++    if (alg) BCryptCloseAlgorithmProvider( alg, 0 );
++    if (!ok) return E_FAIL;
++
++    ret = HeapAlloc( GetProcessHeap(), 0, RtlLengthRequiredSid( SECURITY_APP_PACKAGE_RID_COUNT ));
++    if (!ret) return E_OUTOFMEMORY;
++
++    ret->Revision = SID_REVISION;
++    ret->IdentifierAuthority = app_authority;
++    ret->SubAuthorityCount = SECURITY_APP_PACKAGE_RID_COUNT;
++    ret->SubAuthority[0] = SECURITY_APP_PACKAGE_BASE_RID;
++    memcpy( ret->SubAuthority + 1, digest, (SECURITY_APP_PACKAGE_RID_COUNT - 1) * sizeof(DWORD) );
++
++    *sid = ret;
++    return S_OK;
++}
+--- a/dlls/userenv/tests/userenv.c
++++ b/dlls/userenv/tests/userenv.c
+@@ -36,6 +36,7 @@
+ #define expect_gle(EXPECTED) ok(GetLastError() == (EXPECTED), "Expected %d, got %ld\n", (EXPECTED), GetLastError())
+ 
+ static BOOL (WINAPI *pIsWow64Process)(HANDLE,PBOOL);
++static HRESULT (WINAPI *pDeriveAppContainerSidFromAppContainerName)(const WCHAR *, PSID *);
+ 
+ struct profile_item
+ {
+@@ -457,11 +458,69 @@
+     CloseHandle( token );
+ }
+ 
++/* Windows derives an AppContainer package SID from the name: lowercase it,
++ * hash it as UTF-16 with SHA-256, and use the first 28 bytes of the hash as
++ * seven little-endian 32-bit subauthorities of S-1-15-2-* (the eighth word is
++ * dropped).  The expected value below is what Windows 11 returns for
++ * Microsoft.Windows.ShellExperienceHost_cw5n1h2txyewy. */
++static void test_DeriveAppContainerSidFromAppContainerName(void)
++{
++    static const SID_IDENTIFIER_AUTHORITY app_authority = { SECURITY_APP_PACKAGE_AUTHORITY };
++    static const DWORD expected[] =
++    {
++        155514346, 2573954481, 755741238, 1654018636, 1233331829, 3075935687, 2861478708
++    };
++    PSID sid = NULL, sid2 = NULL;
++    SID *s;
++    HRESULT hr;
++    UINT i;
++
++    ok( pDeriveAppContainerSidFromAppContainerName != NULL,
++        "DeriveAppContainerSidFromAppContainerName is not exported\n" );
++    if (!pDeriveAppContainerSidFromAppContainerName) return;
++
++    hr = pDeriveAppContainerSidFromAppContainerName( L"Microsoft.Windows.ShellExperienceHost_cw5n1h2txyewy", &sid );
++    ok( hr == S_OK, "got hr %#lx\n", hr );
++    if (hr == S_OK)
++    {
++        s = sid;
++        ok( s->Revision == SID_REVISION, "got revision %u\n", s->Revision );
++        ok( !memcmp( &s->IdentifierAuthority, &app_authority, sizeof(app_authority) ),
++            "unexpected authority\n" );
++        ok( s->SubAuthorityCount == SECURITY_APP_PACKAGE_RID_COUNT, "got %u\n", s->SubAuthorityCount );
++        if (s->SubAuthorityCount == SECURITY_APP_PACKAGE_RID_COUNT)
++        {
++            ok( s->SubAuthority[0] == SECURITY_APP_PACKAGE_BASE_RID, "got %lu\n", s->SubAuthority[0] );
++            for (i = 0; i < ARRAY_SIZE(expected); i++)
++                ok( s->SubAuthority[i + 1] == expected[i],
++                    "subauthority %u: got %lu, expected %lu\n", i, s->SubAuthority[i + 1], expected[i] );
++        }
++
++        /* the name is lowercased before hashing, so case must not matter */
++        hr = pDeriveAppContainerSidFromAppContainerName( L"MICROSOFT.WINDOWS.SHELLEXPERIENCEHOST_CW5N1H2TXYEWY", &sid2 );
++        ok( hr == S_OK, "got hr %#lx\n", hr );
++        if (hr == S_OK)
++        {
++            ok( EqualSid( sid, sid2 ), "case-insensitive names must derive the same SID\n" );
++            FreeSid( sid2 );
++        }
++        FreeSid( sid );
++    }
++
++    hr = pDeriveAppContainerSidFromAppContainerName( NULL, &sid );
++    ok( hr == E_INVALIDARG, "got hr %#lx\n", hr );
++    hr = pDeriveAppContainerSidFromAppContainerName( L"test", NULL );
++    ok( hr == E_INVALIDARG, "got hr %#lx\n", hr );
++}
++
+ START_TEST(userenv)
+ {
+     pIsWow64Process = (void*)GetProcAddress(GetModuleHandleA("kernel32.dll"), "IsWow64Process");
++    pDeriveAppContainerSidFromAppContainerName =
++        (void *)GetProcAddress(GetModuleHandleA("userenv.dll"), "DeriveAppContainerSidFromAppContainerName");
+ 
+     test_create_env();
+     test_get_profiles_dir();
+     test_get_user_profile_dir();
++    test_DeriveAppContainerSidFromAppContainerName();
+ }
