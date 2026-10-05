@@ -1,0 +1,179 @@
+secur32: answer GetUserNameExW's NameUserPrincipal and NameDnsDomain from the machine's domain
+
+`GetUserNameExW` implements only `NameSamCompatible`; every other format falls through to the FIXME arm and
+returns `ERROR_NONE_MAPPED` (1332).  Format 8 - `NameUserPrincipal` - is the one Power BI Desktop's identity
+path calls: `PBI.PQ.AcquirePlatformEmail` -> `SignInService.SignInInteractive` ->
+`AuthenticationManager.GetPlatformEmail` -> `PlatformEmailProvider.TryGetPlatformEmail` ->
+`Secur32Wrapper.GetUserName` -> `[DllImport("secur32.dll")] GetUserNameEx(ExtendedNameFormat.NameUserPrincipal,
+...)` (decompiled in `docs/DATA_FETCH_ERROR.md` §12.1, which also records the two-call protocol: a NULL-buffer
+size probe expected to answer FALSE + `ERROR_MORE_DATA` (234), then the call with a buffer of that size).
+Under Wine the *sizing* call fails, the provider returns false without ever asking again, and the
+application's own trace records it (`expectedErrorCode` is still -1, i.e. the first call is the one that
+failed):
+
+    {"Action":"PBI.PQ.AcquirePlatformEmail","foundUserEmail":"False","expectedErrorCode":"-1",
+     "errorCode":"1332",...,"isError":"True"}
+
+Windows answers these two formats from the account's directory entry - "user@dns.domain" for
+`NameUserPrincipal`, "dns.domain\user" for `NameDnsDomain` - and answers `ERROR_NONE_MAPPED` when the account
+has no such entry.  The account's `userPrincipalName` lives in AD and Wine has no directory, so the domain is
+taken from the machine's DNS domain: that is exactly the value Wine's LSA already reports as
+`POLICY_DNS_DOMAIN_INFO.DnsDomainName` (`advapi32/lsa.c` builds it from
+`GetComputerNameExW(ComputerNameDnsDomain)`, and `GetComputerObjectNameW` in this same file consults that
+policy too).  When the machine is in no domain the function keeps returning `ERROR_NONE_MAPPED`, which is
+what Windows does in that case: "If the user account is not in a domain, only NameSamCompatible is
+supported" (GetUserNameEx documentation) - measured on the Windows 11 guest, where formats 3, 6, 7, 8, 9, 10
+and 12 all answer `ERROR_NONE_MAPPED` for the local account and format 2 answers normally.  The two new cases
+therefore only fire where Windows would have an answer, and the buffer contract is the same as the existing
+`NameSamCompatible` case (success: `*nSize` = length without the terminating null; too small:
+`ERROR_MORE_DATA` with `*nSize` = length + 1 and the buffer untouched).
+
+This is the `secur32` change the AutoCAD 2027 on Wine project's series carries as its patch `0014`
+(`cad-wine-main/patches/0014-secur32-GetUserNameExW-NameUserPrincipal-NameDnsDomain.patch`), ported here
+rather than reinvented: the hunk below is identical to that one.  It has to be, because the fork in this repo
+is built on that project's tree, so `dlls/secur32/secur32.c` already differed from pristine by exactly this
+change while `patches/0001..0004` did not carry it - the series only *excused* the file through
+`check_patch_series.sh`'s `BASELINE_FILES` list.  With `0005` the series is self-contained for it (the file is
+now patch-touched, so the hard byte-identity check applies to it instead).
+
+Verified with `tools/winapi/nameprobe.c` - mingw, one binary for both platforms, everything resolved through
+`LoadLibrary`/`GetProcAddress` so the answering module is visible in the output.  It prints, for formats 2, 3,
+6, 7, 8, 9, 10 and 12, the raw return value plus `GetLastError()` and the in/out size of the three calls the
+contract has: the NULL-buffer sizing call the application makes, the sized call, and a deliberately too-small
+buffer.  It also prints the registry value and the `GetComputerNameExW` the new answers are built from.
+`tools/winapi/run_nameprobe.sh` reproduces the Wine captures into `logs/secur32/`.
+
+Same machine, same probe; the only difference is whether the machine has a DNS domain, and the Windows guest
+is the reference for the state it is actually in:
+
+  * No DNS domain - the state every prefix on this host is in, because wineboot's
+    `create_computer_name_keys()` syncs `Tcpip\Parameters\Domain` from the host's canonical name, which
+    carries no domain suffix here.  Pristine `secur32`, this patch, and the Windows guest all answer the
+    same thing, so the patch invents nothing that Windows withholds:
+
+        Wine      logs/secur32/nameprobe_wine_before_nodomain.txt  (pristine secur32)
+        Wine      logs/secur32/nameprobe_wine_after_nodomain.txt   (this patch)
+        Windows   logs/secur32/nameprobe_win_workgroup.txt         (guest: WORKGROUP, no DNS suffix)
+
+              GetComputerNameExW(2 DnsDomain)         ret=1 len=0 name=""
+              GetUserNameExW( 8 NameUserPrincipal) sizing NULL ret=0 lastError=1332 nSize=0
+              GetUserNameExW(12 NameDnsDomain)     sizing NULL ret=0 lastError=1332 nSize=0
+              GetUserNameExW( 2 NameSamCompatible) sizing NULL ret=0 lastError=234  nSize=10  (Windows)
+                                                             ... ret=1 lastError=0    name="asdf\adsf"
+
+    (The guest prints a stale `lastError=203` next to `GetComputerNameExW`'s success - Windows does not clear
+    the last error on success; the return value and length there are the datum.)
+
+  * With `HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Domain = corp.example.com` -
+    `logs/secur32/nameprobe_wine_before_domain.txt` and `..._after_domain.txt`.  The value has to be set in
+    the same Wine session as the probe because wineboot resets it on the next launch; both runs print
+    `GetComputerNameExW(2 DnsDomain) -> "corp.example.com"`, i.e. the domain *is* available in both, and only
+    the `secur32` under test differs:
+
+        pristine secur32 (before)                        this patch (after)
+        NameUserPrincipal sizing    FALSE err=1332 nSize=0     FALSE err=234  nSize=22
+        NameUserPrincipal call      FALSE err=1332             TRUE  err=0    nSize=21 "asdf@corp.example.com"
+        NameDnsDomain     sizing    FALSE err=1332 nSize=0     FALSE err=234  nSize=22
+        NameDnsDomain     call      FALSE err=1332             TRUE  err=0    nSize=21 "corp.example.com\asdf"
+        NameUserPrincipal, 1-WCHAR buffer                      FALSE err=234  nSize=22, buffer untouched
+        NameSamCompatible (either)  unchanged: 234/nSize=21, then TRUE nSize=20 "ASDF-THINKPAD-E\asdf"
+
+    The domain-configured *Windows* reference could not be taken, and it is the one measurement missing here:
+    the guest's command channel runs non-elevated (measured: `IsInRole(Administrator)=False`) so the temporary
+    `Tcpip\Parameters\Domain` write is refused - `Set-ItemProperty` reports "Requested registry access is not
+    allowed" and the value reads back empty - and raising UAC on the shared desktop (the guest is in use for
+    another measurement) is not acceptable.  The guest's native state is therefore the Windows side of this
+    patch's differential, and the domain-configured answer is Windows' documented one, which is what the two
+    new cases implement.
+
+Scope, stated plainly.  This closes the identity gap the in-tree AutoCAD series was carrying by accident; it
+does **not** make the report canvas render - FINDINGS M50 measures that failure to the provider's *chaptered*
+row fetch (`IRowset::GetNextRows` -> `DB_E_ERRORSINCOMMAND`), which happens whether or not the user is signed
+in.  It also does not change what the application sees on this host's prefixes: with no DNS domain configured,
+patched Wine answers `1332` exactly like Windows on this workgroup machine, so the `PBI.PQ.AcquirePlatformEmail`
+trace record is unchanged here and only a domain-configured machine gets the principal name.  Formats 3, 6, 7,
+9 and 10 still answer `ERROR_NONE_MAPPED`, as Windows does for a local account; `NameUserPrincipal` is composed
+from the machine's DNS domain and the local account name, not from an AD `userPrincipalName` attribute, so it
+is the right *shape* rather than a directory lookup.  It is a candidate explanation for FINDINGS M44's finding
+that the AutoCAD series is load-bearing for A3 (same gap, same file, the API behind `AcquirePlatformEmail`),
+and with `0005` in the series that can now be tested as pristine + `0001..0005` instead of pristine + CAD.
+--- a/dlls/secur32/secur32.c
++++ b/dlls/secur32/secur32.c
+@@ -1119,6 +1119,22 @@
+     return rc;
+ }
+ 
++/* The DNS domain the machine is joined to, i.e. the domain the current account's user principal name
++ * is formed with.  Windows takes it from the account's userPrincipalName attribute in AD; Wine has no
++ * AD, so use the machine's DNS domain - the very same value Wine's LSA reports as
++ * POLICY_DNS_DOMAIN_INFO.DnsDomainName (advapi32/lsa.c builds it from
++ * GetComputerNameExW(ComputerNameDnsDomain), and GetComputerObjectNameW above uses that policy too).
++ * Returns FALSE when the machine is not in a domain, which is also the condition Windows uses:
++ * "If the user account is not in a domain, only NameSamCompatible is supported" (GetUserNameEx
++ * documentation), i.e. the other formats answer ERROR_NONE_MAPPED there. */
++static BOOL get_dns_domain( WCHAR *domain, DWORD len )
++{
++    DWORD size = len;
++
++    if (!GetComputerNameExW( ComputerNameDnsDomain, domain, &size )) return FALSE;
++    return size != 0 && domain[0] != 0;
++}
++
+ BOOLEAN WINAPI GetUserNameExW(
+   EXTENDED_NAME_FORMAT NameFormat, LPWSTR lpNameBuffer, PULONG nSize)
+ {
+@@ -1155,15 +1171,52 @@
+             return FALSE;
+         }
+ 
++    case NameUserPrincipal:
++    case NameDnsDomain:
++        {
++            WCHAR user[UNLEN + 1], domain[256];
++            DWORD user_len = ARRAY_SIZE(user), len;
++
++            if (!GetUserNameW(user, &user_len)) return FALSE;
++
++            if (!get_dns_domain(domain, ARRAY_SIZE(domain)))
++            {
++                SetLastError(ERROR_NONE_MAPPED);
++                return FALSE;
++            }
++
++            /* NameUserPrincipal is "user@dns.domain", NameDnsDomain is "dns.domain\user" */
++            len = lstrlenW(user) + lstrlenW(domain) + 1;
++            if (lpNameBuffer && *nSize > len)
++            {
++                if (NameFormat == NameUserPrincipal)
++                {
++                    lstrcpyW(lpNameBuffer, user);
++                    lstrcatW(lpNameBuffer, L"@");
++                    lstrcatW(lpNameBuffer, domain);
++                }
++                else
++                {
++                    lstrcpyW(lpNameBuffer, domain);
++                    lstrcatW(lpNameBuffer, L"\\");
++                    lstrcatW(lpNameBuffer, user);
++                }
++                *nSize = len;
++                return TRUE;
++            }
++
++            SetLastError(ERROR_MORE_DATA);
++            *nSize = len + 1;
++            return FALSE;
++        }
++
+     case NameUnknown:
+     case NameFullyQualifiedDN:
+     case NameDisplay:
+     case NameUniqueId:
+     case NameCanonical:
+-    case NameUserPrincipal:
+     case NameCanonicalEx:
+     case NameServicePrincipal:
+-    case NameDnsDomain:
+         FIXME("NameFormat %d not implemented\n", NameFormat);
+         SetLastError(ERROR_NONE_MAPPED);
+         return FALSE;

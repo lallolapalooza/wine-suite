@@ -1,0 +1,104 @@
+From: omp session <noreply@example.com>
+Subject: [PATCH] dxgi: implement IDXGIOutput::WaitForVBlank
+
+Resolume Arena 7 refuses to finish starting on Wine: after its OpenGL renderer and
+shader/texture/GPU-monitor setup it goes idle with nothing painted, leaving a black
+window, and never reaches its UI.
+
+Wine returns E_NOTIMPL from IDXGIOutput::WaitForVBlank, which Arena calls while bringing
+up its display/output path.  On Windows that call blocks until the next vertical blank;
+returning E_NOTIMPL immediately makes the caller spin or abandon its timing loop, and the
+application stops making progress (measured with the project's API tracer: the last GPU
+call before the stall is dxgi!CreateDXGIFactory, and dxgi_output_WaitForVBlank is reached
+shortly after).
+
+Wine has no driver event for a vertical blank, so pace the caller against the refresh rate
+of the output's current display mode: the first call (or one that arrives after an
+unexpectedly long gap, such as a suspend or a debugger stop) anchors the clock, and each
+later call sleeps until the next expected blank.
+
+Verified: Resolume Arena 7.28.0 now completes startup under Wine and renders its full UI
+(composition grid, Composition/Preview monitors, panels, status bar "Resolume Arena 7.28.0");
+the "dxgi_output_WaitForVBlank ... stub!" fixme no longer appears.
+
+---
+ dlls/dxgi/dxgi_private.h | 4 ++++
+ dlls/dxgi/output.c       | 54 ++++++++++++++++++++++++++++++++++++++++++++--------
+ 2 files changed, 50 insertions(+), 8 deletions(-)
+
+diff --git a/dlls/dxgi/dxgi_private.h b/dlls/dxgi/dxgi_private.h
+diff --git a/dlls/dxgi/output.c b/dlls/dxgi/output.c
+--- a/dlls/dxgi/dxgi_private.h
++++ b/dlls/dxgi/dxgi_private.h
+@@ -149,6 +149,9 @@
+     struct wined3d_output *wined3d_output;
+     struct wined3d_private_store private_store;
+     struct dxgi_adapter *adapter;
++    /* Next expected vertical blank, in QueryPerformanceCounter ticks; used by
++     * IDXGIOutput::WaitForVBlank to pace callers at the output's refresh rate. */
++    ULONGLONG vblank_next;
+ };
+ 
+ HRESULT dxgi_output_create(struct dxgi_adapter *adapter, unsigned int output_idx,
+--- a/dlls/dxgi/output.c
++++ b/dlls/dxgi/output.c
+@@ -361,16 +361,53 @@
+     return hr;
+ }
+ 
++/* IDXGIOutput::WaitForVBlank.
++ *
++ * Windows blocks the caller until the next vertical blank of this output.  Wine has no driver
++ * event for that, so pace the caller against the output's current refresh rate: the first call
++ * (or one that arrives after an unexpectedly long gap, e.g. a suspend or a debugger stop) starts
++ * the clock, and every later call sleeps until the next expected blank.  Returning E_NOTIMPL, as
++ * this used to, makes callers that pace a render loop on WaitForVBlank spin at full speed or
++ * abandon their timing loop.
++ */
+ static HRESULT STDMETHODCALLTYPE dxgi_output_WaitForVBlank(IDXGIOutput6 *iface)
+ {
+-    static BOOL once = FALSE;
++    struct dxgi_output *output = impl_from_IDXGIOutput6(iface);
++    static LARGE_INTEGER frequency;
++    struct wined3d_display_mode mode;
++    enum wined3d_display_rotation rotation;
++    LARGE_INTEGER now;
++    LONGLONG interval, wait_ms;
++    unsigned int refresh_rate = 60;
+ 
+-    if (!once++)
+-        FIXME("iface %p stub!\n", iface);
+-    else
+-        TRACE("iface %p stub!\n", iface);
++    if (!frequency.QuadPart)
++        QueryPerformanceFrequency(&frequency);
++    if (!frequency.QuadPart)
++        return S_OK; /* cannot pace; a no-op is closer to Windows than failing */
+ 
+-    return E_NOTIMPL;
++    wined3d_mutex_lock();
++    if (SUCCEEDED(wined3d_output_get_display_mode(output->wined3d_output, &mode, &rotation))
++            && mode.refresh_rate > 1)
++        refresh_rate = mode.refresh_rate;
++    wined3d_mutex_unlock();
++
++    interval = frequency.QuadPart / refresh_rate;
++    QueryPerformanceCounter(&now);
++
++    /* First call, or we lost sync: re-anchor rather than trying to catch up. */
++    if (!output->vblank_next || now.QuadPart - output->vblank_next > 4 * interval)
++        output->vblank_next = now.QuadPart;
++
++    output->vblank_next += interval;
++    if (output->vblank_next > now.QuadPart)
++    {
++        wait_ms = (output->vblank_next - now.QuadPart) * 1000 / frequency.QuadPart;
++        if (wait_ms > 0)
++            Sleep((DWORD)wait_ms);
++    }
++
++    TRACE("iface %p, refresh rate %u Hz.\n", iface, refresh_rate);
++    return S_OK;
+ }
+ 
+ static HRESULT STDMETHODCALLTYPE dxgi_output_TakeOwnership(IDXGIOutput6 *iface, IUnknown *device, BOOL exclusive)
