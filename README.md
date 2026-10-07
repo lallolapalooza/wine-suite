@@ -6,6 +6,8 @@ is preserved: every project keeps its original commits under its own subdirector
 
 Everything here targets **Wine 11.18**.
 
+What this does: every folder contains patches required to make that specific app fun on linux. see individual folders for details. 
+
 ## Projects
 
 | directory | application |
